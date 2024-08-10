@@ -1,0 +1,62 @@
+/*
+//Put Ball in Goal
+ * Start at <-1.5, -2.5, 90>
+ * moveTo <2, -2.5, 90>
+ * moveTo <2.5, -1, 180>
+ * 
+ * //Grab Preload
+ * spin(180)
+ * moveTo <2.5, -2.5, 45>
+ * IntakeArm.lower
+ * Intake.In
+ * spin(180)
+ * moveTo <2.5, -1, 180>
+ * Intake.Out
+ * 
+ * delay (until 24)
+
+
+
+
+
+//Grab Ball Under Bar
+
+flywheel.move(3_tile)
+IntakeArm.lower
+Intake.In
+
+//Put Ball in Goal
+flywheel.move(3_tile)
+Turn (180)(South)
+flywheel.move(1_tile)
+Turn (-90)(West)
+flywheel.move(1_tile)
+Turn (180)(South)
+Intake.out
+IntakeArm.Lift
+flywheel.move(0.5_tile) 
+
+//Grab Preload
+flywheel.move(0.5_tile) backward
+Turn (0)(North)
+flywheel.move(1_tile)
+IntakeArm.lower
+Intake.In
+IntakeArm.lift
+flywheel.move(0.5_tile) backwards
+
+
+//Score Preload
+Turn (180)(South)
+Intake.Out
+flywheel.move(1_tile)
+
+//Return  to Pole
+flywheel.move(0.5_tile) backwards
+Turn (90)(East)
+flywheel.move(1_tile)
+Turn (0)(North)
+flywheel.move(1_tile)
+Turn (90)(East)
+flywheel.move(1.5_tile)
+*/
