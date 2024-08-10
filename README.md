@@ -1,4 +1,3 @@
-[![Test](https://github.com/The-ATU-Robotics-Club/ATUM-VRC-Over-Under-Code/actions/workflows/test.yml/badge.svg)](https://github.com/The-ATU-Robotics-Club/ATUM-VRC-Over-Under-Code/actions/workflows/test.yml)
 [![GitHub
 license](https://img.shields.io/badge/C%2B%2B-20-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp20)
 # ATUM-VRC-Over-Under-Code
