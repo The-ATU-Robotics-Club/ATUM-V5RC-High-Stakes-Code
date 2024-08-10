@@ -2,8 +2,7 @@
 [![GitHub
 license](https://img.shields.io/badge/C%2B%2B-20-blue)](https://en.cppreference.com/w/cpp/compiler_support#cpp20)
 # ATUM-VRC-Over-Under-Code
-This repository contains the code used for team ATUM's 24" and 15" robots for
-the VRC 2023-2024 game, Over Under.
+This repository contains the code used for team ATUM's robots for the V5RC 2024-2025 game, High Stakes.
 
 ## Set Up
 Install [Cygwin](https://www.cygwin.com/install.html) and run the installer.
