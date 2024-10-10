@@ -6,7 +6,7 @@
 namespace atum {
 class Robot : public Task {
   public:
-  Robot(std::unique_ptr<Logger> iLogger);
+  Robot();
 
   virtual void disabled() = 0;
 
@@ -29,10 +29,7 @@ class Robot : public Task {
   void deschedule();
 
   virtual ~Robot() = default;
-
-  protected:
-  std::unique_ptr<Logger> logger;
-
+  
   private:
   void taskFn1() override;
 

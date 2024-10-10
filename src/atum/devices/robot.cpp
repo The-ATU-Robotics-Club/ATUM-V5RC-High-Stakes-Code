@@ -1,20 +1,15 @@
 #include "robot.hpp"
 
 namespace atum {
-Robot::Robot(std::unique_ptr<Logger> iLogger) :
-    Task{{"Robot"}}, logger{std::move(iLogger)} {
+Robot::Robot() : Task{{"Robot"}} {
   start();
 }
 
 void Robot::schedule(const ScheduledAction &scheduledAction) {
-  if(logger) logger->debug("Scheduled " + scheduledAction.name + "!");
   timedScheduledAction = make_pair(time(), scheduledAction);
 }
 
 void Robot::deschedule() {
-  if(logger && timedScheduledAction)
-    logger->debug("Descheduled " + timedScheduledAction.value().second.name +
-                  "!");
   timedScheduledAction = {};
 }
 
@@ -28,8 +23,6 @@ void Robot::taskFn1() {
       if(scheduledAction.actOnTimeout && !pros::competition::is_disabled())
         scheduledAction.action();
       deschedule();
-      if(logger)
-        logger->warn("Scheduled action" + scheduledAction.name + " timed out!");
       continue;
     }
     if(scheduledAction.condition() && !pros::competition::is_disabled()) {

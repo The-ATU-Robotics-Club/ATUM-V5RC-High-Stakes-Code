@@ -5,9 +5,7 @@
 #include "api.h"
 #include "atum/atum.hpp"
 #include "pros/apix.h"
-#include "robots/15in/robot15In.hpp"
-#include "robots/24in/robot24In.hpp"
-#include "robots/descore/robotDescore.hpp"
+#include "robots/robot15/robot15.hpp"
 
 #ifdef __cplusplus
 extern "C" {
