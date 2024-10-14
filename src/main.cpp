@@ -1,5 +1,9 @@
 #include "main.h"
 
+#ifndef BRAIN_ID
+#define BRAIN_ID 0
+#endif
+
 std::unique_ptr<atum::Robot> robot;
 
 void initialize() {
@@ -21,5 +25,6 @@ void autonomous() {
 }
 
 void opcontrol() {
+  std::cout << std::hex << BRAIN_ID << '\n';
   robot->opcontrol();
 }

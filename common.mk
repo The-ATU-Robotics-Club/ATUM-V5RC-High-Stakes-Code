@@ -2,7 +2,13 @@ ARCHTUPLE=arm-none-eabi-
 DEVICE=VEX EDR V5
 
 MFLAGS=-mcpu=cortex-a9 -mfpu=neon-fp16 -mfloat-abi=softfp -Os -g
-CPPFLAGS=-D_POSIX_THREADS -D_UNIX98_THREAD_MUTEX_ATTRIBUTES -D_POSIX_TIMERS -D_POSIX_MONOTONIC_CLOCK
+# Gets the unique ID for the currently wired brain, or zero otherwise.
+# This is accessible in code as the preprocessor definition BRAIN_ID. 
+# TODO: Fix problem with uploading while unplugged. 
+# https://stackoverflow.com/questions/3236145/force-gnu-make-to-rebuild-objects-affected-by-compiler-definition
+BRAIN_ID:=$(shell pros v5 status | grep -ohZ '0x[0-9]*' || echo 0)
+$(info Brain ID is $(BRAIN_ID))
+CPPFLAGS=-D_POSIX_THREADS -D_UNIX98_THREAD_MUTEX_ATTRIBUTES -D_POSIX_TIMERS -D_POSIX_MONOTONIC_CLOCK -DBRAIN_ID=$(BRAIN_ID)
 GCCFLAGS=-ffunction-sections -fdata-sections -fdiagnostics-color -funwind-tables
 
 # Check if the llemu files in libvgl exist. If they do, define macros that the
