@@ -50,7 +50,6 @@ void RAMSETE::go(const std::string &trajName,
 void RAMSETE::performRAMSETE(RawPosition state,
                              const RawPosition &target,
                              const bool reversed) {
-  GUI::graph("Drive RPM", std::make_pair(-600, 600), 1000);
   if(reversed) state.h += M_PI;
   const RawPosition error{getError(state, target)};
   const double k{2.0 * lambda *
@@ -61,8 +60,6 @@ void RAMSETE::performRAMSETE(RawPosition state,
                  beta * target.v * sincHError * error.y};
   const auto [refVL, refVR] = drive->toLRVelocity(v, w);
   const auto [stateVL, stateVR] = drive->getLRVelocity();
-  GUI::greenPlot(abs(refVR));
-  GUI::redPlot(abs(stateVR));
   if(reversed)
     drive->tank(left->getOutput(stateVL, -refVR),
                 right->getOutput(stateVR, -refVL));

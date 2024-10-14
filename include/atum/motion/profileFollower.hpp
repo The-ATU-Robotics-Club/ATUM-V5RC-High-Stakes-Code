@@ -2,7 +2,6 @@
 
 #include "../controllers/controller.hpp"
 #include "../time/timer.hpp"
-#include "../utility/gui.hpp"
 #include "motionProfile.hpp"
 
 namespace atum {
@@ -38,11 +37,8 @@ class ProfileFollower {
     const std::optional<MotionStep> step{
         profile->getMotionStep(timer.timeElapsed())};
     if(!step) return {};
-    GUI::graph("Lateral Profile", std::make_pair(0, 60), 250);
     const double posOutput{position->getOutput(getValueAs<X>(currentX),
                                                getValueAs<X>(step.value().x))};
-    GUI::redPlot(getValueAs<V>(currentV));
-    GUI::greenPlot(getValueAs<V>(step.value().v));
     return getOutput(currentV, step.value()) + posOutput;
   }
 

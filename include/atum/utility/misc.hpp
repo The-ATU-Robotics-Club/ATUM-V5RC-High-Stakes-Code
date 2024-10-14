@@ -24,13 +24,5 @@ T average(const std::vector<T> &items) {
   return std::reduce(items.begin(), items.end()) / size;
 }
 
-std::unique_ptr<pros::Motor>
-    createMotor(const std::int8_t port,
-                const pros::motor_gearset_e gear = pros::E_MOTOR_GEAR_BLUE);
-
-std::unique_ptr<pros::MotorGroup> createMotorGroup(
-    std::initializer_list<std::int8_t> ports,
-    const pros::motor_gearset_e gear = pros::E_MOTOR_GEAR_BLUE);
-
 bool fileExists(const std::string &filename);
 } // namespace atum

@@ -2,7 +2,6 @@
 
 #include "../motion/profileFollower.hpp"
 #include "../utility/acceptable.hpp"
-#include "../utility/gui.hpp"
 #include "drive.hpp"
 
 namespace atum {

@@ -66,8 +66,8 @@ radians_per_second_t Drive::getAngularVelocity() const {
 }
 
 std::pair<double, double> Drive::getLRVelocity() const {
-  const double lAvg{average(left->get_actual_velocities())};
-  const double rAvg{average(right->get_actual_velocities())};
+  const double lAvg{average(left->get_actual_velocity_all())};
+  const double rAvg{average(right->get_actual_velocity_all())};
   return std::make_pair(lAvg * geometry.gearRatio, rAvg * geometry.gearRatio);
 }
 
@@ -80,13 +80,13 @@ std::pair<double, double> Drive::toLRVelocity(const double v,
                         60.0 * (v - angularAdjustment) / denom);
 }
 
-void Drive::setBrakeMode(const pros::motor_brake_mode_e brakeMode) {
-  left->set_brake_modes(brakeMode);
-  right->set_brake_modes(brakeMode);
+void Drive::setBrakeMode(const pros::v5::MotorBrake brakeMode) {
+  left->set_brake_mode_all(brakeMode);
+  right->set_brake_mode_all(brakeMode);
 }
 
-pros::motor_brake_mode_e Drive::getBrakeMode() const {
-  return left->get_brake_modes()[0];
+pros::v5::MotorBrake Drive::getBrakeMode() const {
+  return left->get_brake_mode();
 }
 
 Drive::Geometry Drive::getGeometry() const {

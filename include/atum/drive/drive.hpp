@@ -37,9 +37,9 @@ class Drive {
 
   std::pair<double, double> toLRVelocity(const double v, const double w) const;
 
-  void setBrakeMode(const pros::motor_brake_mode_e brakeMode);
+  void setBrakeMode(const pros::v5::MotorBrake brakeMode);
 
-  pros::motor_brake_mode_e getBrakeMode() const;
+  pros::v5::MotorBrake getBrakeMode() const;
 
   Geometry getGeometry() const;
 
