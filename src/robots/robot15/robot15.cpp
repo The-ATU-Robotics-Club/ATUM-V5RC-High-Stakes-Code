@@ -9,10 +9,10 @@ void Robot15::disabled() {}
 
 void Robot15::opcontrol() {
   while(true) {
-    const double leftCmd{remote.getLStick().second};
-    leftMotors.move(leftCmd);
-    const double rightCmd{remote.getRStick().second};
-    rightMotors.move(rightCmd);
+    const double forward{remote.getLStick().second};
+    const double turn{remote.getRStick().first};
+    leftMotors.move_voltage(forward + turn);
+    rightMotors.move_voltage(forward - turn);
     wait(10_ms);
   }
 }

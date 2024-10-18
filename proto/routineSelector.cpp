@@ -22,10 +22,11 @@ void robot::initializeRoutines()
 #define END_ROUTINE \
             }});
  
+template <typename SpecRobot>
 class Robot {
 public:
-    Robot(Robot* spec) {
-        spec->initializeRoutines();
+    Robot(SpecRobot* spec) {
+        spec->initializeRoutines(); 
     }
 
     virtual void autonomous() {
@@ -35,17 +36,15 @@ public:
     }
 
 protected:
-    virtual void initializeRoutines() = 0;
     std::vector<Routine> routines;
 };
 
-
 class Robot15 : public Robot<Robot15> {
 public:
-    Robot15(const int iSpecialNumber) : specialNumber{iSpecialNumber} {}
-    
+  friend class Robot<Robot15>;
+    Robot15(const int iSpecialNumber) : Robot<Robot15>{this}, specialNumber{iSpecialNumber} {}
 private:
-    void initializeRoutines() override;
+    void initializeRoutines();
     const int specialNumber;
 };
 
@@ -56,13 +55,13 @@ ROUTINE_DEFINITIONS_FOR(Robot15) {
     END_ROUTINE
 }
 
-
 class Robot24 : public Robot<Robot24> {
 public:
-    Robot24(const std::string &iSpecialWord) : specialWord{iSpecialWord} {}
+  friend class Robot<Robot24>;
+    Robot24(const std::string &iSpecialWord) : Robot<Robot24>{this}, specialWord{iSpecialWord} {}
     
 private:
-    void initializeRoutines() override;
+    void initializeRoutines();
     const std::string specialWord;
 };
 
@@ -72,10 +71,11 @@ ROUTINE_DEFINITIONS_FOR(Robot24) {
         std::cout << specialWord << '\n';
     END_ROUTINE
 }
-    
 
 int main() {
-    Robot15 test{2};
-    test.autonomous();
+    Robot15 test15{2};
+    test15.autonomous();
+    Robot24 test24{"dang"};
+    test24.autonomous();
     return 0;
 }

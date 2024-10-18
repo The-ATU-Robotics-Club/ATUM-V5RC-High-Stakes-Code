@@ -8,8 +8,8 @@ std::unique_ptr<atum::Robot> robot;
 
 void initialize() {
   robot = std::make_unique<atum::Robot15>(
-      std::initializer_list<std::int8_t>{1, 2, 3},
-      std::initializer_list<std::int8_t>{4, 5, 6});
+      std::initializer_list<std::int8_t>{-11, -12, -13},
+      std::initializer_list<std::int8_t>{18, 19, 20});
 }
 
 void disabled() {
