@@ -22,9 +22,11 @@ void robot::initializeRoutines()
 #define END_ROUTINE \
             }});
  
-template <typename SpecRobot>
 class Robot {
 public:
+    Robot() = delete;
+    
+    template <typename SpecRobot>
     Robot(SpecRobot* spec) {
         spec->initializeRoutines(); 
     }
@@ -39,10 +41,10 @@ protected:
     std::vector<Routine> routines;
 };
 
-class Robot15 : public Robot<Robot15> {
+class Robot15 : public Robot {
 public:
-  friend class Robot<Robot15>;
-    Robot15(const int iSpecialNumber) : Robot<Robot15>{this}, specialNumber{iSpecialNumber} {}
+  friend class Robot;
+    Robot15(const int iSpecialNumber) : Robot{this}, specialNumber{iSpecialNumber} {}
 private:
     void initializeRoutines();
     const int specialNumber;
@@ -55,10 +57,10 @@ ROUTINE_DEFINITIONS_FOR(Robot15) {
     END_ROUTINE
 }
 
-class Robot24 : public Robot<Robot24> {
+class Robot24 : public Robot {
 public:
-  friend class Robot<Robot24>;
-    Robot24(const std::string &iSpecialWord) : Robot<Robot24>{this}, specialWord{iSpecialWord} {}
+  friend class Robot;
+  Robot24(const std::string &iSpecialWord) : Robot{this}, specialWord{iSpecialWord} {}
     
 private:
     void initializeRoutines();
