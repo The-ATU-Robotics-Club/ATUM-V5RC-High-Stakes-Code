@@ -90,7 +90,7 @@ class Motor {
   double getTorque() const;
 
   /**
-   * @brief Get the voltage of the motors in voltage.
+   * @brief Get the voltage of the motors in volts.
    *
    * @return std::int32_t
    */
@@ -107,17 +107,15 @@ class Motor {
    * @brief Set the brake mode of all the motors.
    *
    * @param mode
-   * @return std::int32_t
    */
-  std::int32_t setBrakeMode(const pros::motor_brake_mode_e_t mode) const;
+  void setBrakeMode(const pros::motor_brake_mode_e_t mode) const;
 
   /**
    * @brief Set the current limit of all the motors in mA.
    *
    * @param limit
-   * @return std::int32_t
    */
-  std::int32_t setCurrentLimit(const std::int32_t limit) const;
+  void setCurrentLimit(const std::int32_t limit) const;
 
   /**
    * @brief Checks if any motors are uninitialized, too hot, or over current. If
