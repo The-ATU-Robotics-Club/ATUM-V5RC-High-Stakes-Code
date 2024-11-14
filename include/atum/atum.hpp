@@ -27,6 +27,7 @@
 #include "time/time.hpp"
 #include "time/timer.hpp"
 #include "utility/acceptable.hpp"
+#include "utility/gui.hpp"
 #include "utility/logger.hpp"
 #include "utility/misc.hpp"
 #include "utility/units.hpp"
