@@ -15,8 +15,7 @@ const int GUI::defaultPadding{bgBorderWidth};
 const int GUI::fillWidth{workingWidth - 4 * defaultPadding};
 const int GUI::fillHeight{workingHeight - defaultHeight - 4 * defaultPadding};
 const int GUI::contentYOffset{defaultHeight + 2 * defaultPadding};
-const int GUI::graphRange{10000};
-const int GUI::mapRange{12000};
+
 
 // Commonly used colors.
 const lv_color_t GUI::black{lv_color_hex(0x1f1f1f)};
@@ -27,6 +26,11 @@ const lv_color_t GUI::red{lv_color_hex(0xFF0000)};
 const lv_color_t GUI::green{lv_color_hex(0x00FF00)};
 const lv_color_t GUI::blue{lv_color_hex(0x0000FF)};
 const lv_color_t GUI::white{lv_color_white()};
+
+// Other important values.
+const std::size_t GUI::maxLogLines{30};
+const int GUI::graphRange{10000};
+const int GUI::mapRange{12000};
 
 void GUI::startLoading(const std::string &routines) {
   // Initialization.
@@ -514,7 +518,6 @@ lv_style_t GUI::styleTitle;
 lv_style_t GUI::styleDropDownIdle;
 lv_style_t GUI::styleDropDownPressed;
 lv_style_t GUI::styleChart;
-const std::size_t GUI::maxLogLines{25};
 
 // Screens.
 lv_obj_t *GUI::loadingScreen;
