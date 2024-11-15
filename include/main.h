@@ -6,6 +6,7 @@
 #include "atum/atum.hpp"
 #include "pros/apix.h"
 #include "robots/robot15/robot15.hpp"
+#include "robots/robotPrototype/robotPrototype.hpp"
 
 #ifdef __cplusplus
 extern "C" {

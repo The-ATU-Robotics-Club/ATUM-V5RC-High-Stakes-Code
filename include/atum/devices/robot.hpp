@@ -1,39 +1,42 @@
 #pragma once
 
-#include "../drive/drive.hpp"
-#include "../time/task.hpp"
+#include <functional>
+#include <string>
 
 namespace atum {
-class Robot : public Task {
+using Routine = std::function<void()>;
+
+#define ROUTINE_DEFINITIONS_FOR(robot) void robot::initializeRoutines()
+#define START_ROUTINE(name)                                                    \
+  if(!routineNames.empty()) routineNames += '\n';                              \
+  routineNames += name;                                                        \
+        routines.push_back( \
+            [this]() {
+#define END_ROUTINE                                                            \
+  });
+
+class Robot {
   public:
-  Robot();
+  Robot() = delete;
+
+  template <typename SpecRobot>
+  Robot(SpecRobot *spec) {
+    spec->initializeRoutines();
+  }
 
   virtual void disabled() = 0;
 
   virtual void opcontrol() = 0;
 
-  virtual void autonomous() = 0;
+  virtual void autonomous();
 
-  using Condition = std::function<bool()>;
-  using Action = std::function<void()>;
-  struct ScheduledAction {
-    Condition condition;
-    Action action;
-    std::string name;
-    second_t timeout{0_s};
-    bool actOnTimeout{true};
-  };
+  std::string getRoutineNames();
 
-  void schedule(const ScheduledAction &scheduledAction);
-
-  void deschedule();
-
-  virtual ~Robot() = default;
+  protected:
+  virtual void initializeRoutines() = 0;
   
-  private:
-  void taskFn1() override;
-
-  std::optional<std::pair<second_t, ScheduledAction>> timedScheduledAction;
+  std::string routineNames;
+  std::vector<Routine> routines;
 };
 
 } // namespace atum

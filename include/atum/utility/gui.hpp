@@ -336,7 +336,7 @@ class GUI {
     LV_IMG_DECLARE(kelly)
 
     srand(pros::micros());
-    const int rng = rand() % 30 + 1;
+    const int rng = rand() % 15 + 1;
     std::cout << rng << '\n';
     if(rng == 1) {
       lv_img_set_src(atumLogo, &kelly); // Easter egg Randy Kelly!
@@ -424,9 +424,6 @@ class GUI {
 
     routineSelections = lv_dropdown_create(routinesScreen);
     lv_dropdown_set_options(routineSelections, routines.c_str());
-    lv_dropdown_add_option(
-        routineSelections, "Placeholder", LV_DROPDOWN_POS_LAST);
-    lv_dropdown_add_option(routineSelections, "Testing", LV_DROPDOWN_POS_LAST);
     lv_obj_align(routineSelections, LV_ALIGN_TOP_MID, 0, contentYOffset);
     lv_obj_set_size(routineSelections, fillWidth, defaultHeight);
     lv_obj_t *routineSelectionsList{lv_dropdown_get_list(routineSelections)};

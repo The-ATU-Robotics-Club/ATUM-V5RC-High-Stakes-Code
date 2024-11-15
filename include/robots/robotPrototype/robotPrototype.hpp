@@ -4,10 +4,10 @@
 #include "atum/devices/remote.hpp"
 
 namespace atum {
-class Robot15 : public Robot {
+class RobotPrototype : public Robot {
   public:
   friend class Robot;
-  Robot15(std::initializer_list<std::int8_t> leftPorts,
+  RobotPrototype(std::initializer_list<std::int8_t> leftPorts,
           std::initializer_list<std::int8_t> rightPorts);
 
   void disabled() override;
@@ -16,7 +16,7 @@ class Robot15 : public Robot {
 
   private:
   void initializeRoutines() override;
-  
+
   atum::Remote remote{pros::E_CONTROLLER_MASTER};
   pros::MotorGroup leftMotors;
   pros::MotorGroup rightMotors;

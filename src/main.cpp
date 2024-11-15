@@ -1,5 +1,8 @@
 #include "main.h"
 
+static constexpr int prototypeID{0x9e344900};
+static constexpr int a15ID{0x64824900};
+
 #ifndef BRAIN_ID
 #define BRAIN_ID 0
 #endif
@@ -7,20 +10,23 @@
 std::unique_ptr<atum::Robot> robot;
 
 void initialize() {
-  const std::string routines{
-    "None\n"
-    "Simple Left\n"
-    "Simple Right\n"
-    "WP Left\n"
-    "WP Right\n"
-    "Defensive Left\n"
-    "Defensive Right\n"
-    "Offensive Left"
-};
-  GUI::startLoading(routines);
-  robot = std::make_unique<atum::Robot15>(
-      std::initializer_list<std::int8_t>{-11, -12, -13},
-      std::initializer_list<std::int8_t>{18, 19, 20});
+  std::cout << __LINE__ << '\n';
+  std::cout << BRAIN_ID << '\n';
+  std::cout << prototypeID << '\n';
+  switch(BRAIN_ID) {
+    case prototypeID:
+      robot = std::make_unique<atum::RobotPrototype>(
+          std::initializer_list<std::int8_t>{},
+          std::initializer_list<std::int8_t>{});
+      break;
+
+    case a15ID:
+      robot = std::make_unique<atum::RobotPrototype>(
+          std::initializer_list<std::int8_t>{},
+          std::initializer_list<std::int8_t>{});
+      break;
+  }
+  GUI::startLoading(robot->getRoutineNames());
   atum::wait(0.5_s);
   GUI::finishLoading();
 }

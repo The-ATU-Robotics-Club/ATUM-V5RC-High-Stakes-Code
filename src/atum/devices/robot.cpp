@@ -1,35 +1,13 @@
 #include "robot.hpp"
 
 namespace atum {
-Robot::Robot() : Task{{"Robot"}} {
-  start();
+void Robot::autonomous() {
+  // This will later be received from the RoutineSelector.
+  const std::size_t routineIndex{0};
+  routines[routineIndex]();
 }
 
-void Robot::schedule(const ScheduledAction &scheduledAction) {
-  timedScheduledAction = make_pair(time(), scheduledAction);
-}
-
-void Robot::deschedule() {
-  timedScheduledAction = {};
-}
-
-void Robot::taskFn1() {
-  while(true) {
-    wait(50_ms);
-    if(!timedScheduledAction) continue;
-    auto [startTime, scheduledAction] = timedScheduledAction.value();
-    if(scheduledAction.timeout &&
-       time() - startTime > scheduledAction.timeout) {
-      if(scheduledAction.actOnTimeout && !pros::competition::is_disabled())
-        scheduledAction.action();
-      deschedule();
-      continue;
-    }
-    if(scheduledAction.condition() && !pros::competition::is_disabled()) {
-      scheduledAction.action();
-      deschedule();
-      continue;
-    }
-  }
+std::string Robot::getRoutineNames() {
+  return routineNames;
 }
 } // namespace atum

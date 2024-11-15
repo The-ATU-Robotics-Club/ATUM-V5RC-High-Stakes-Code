@@ -4,7 +4,7 @@ DEVICE=VEX EDR V5
 MFLAGS=-mcpu=cortex-a9 -mfpu=neon-fp16 -mfloat-abi=softfp -Os -g
 # Gets the unique ID for the currently wired brain, or zero otherwise.
 # This is accessible in code as the preprocessor definition BRAIN_ID. 
-BRAIN_ID:=$(shell pros v5 status | grep -ohZ "0x[0-9]*" || echo 0)
+BRAIN_ID:=$(shell pros v5 status | grep -ohZ "0x[0-9a-e]*" || echo 0)
 $(info Brain ID is $(BRAIN_ID))
 $(shell ./run-brain-id-check.sh $(BRAIN_ID)) # Forces main to rebuild if brain-id has changed. 
 CPPFLAGS=-D_POSIX_THREADS -D_UNIX98_THREAD_MUTEX_ATTRIBUTES -D_POSIX_TIMERS -D_POSIX_MONOTONIC_CLOCK -DBRAIN_ID=$(BRAIN_ID)
