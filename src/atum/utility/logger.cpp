@@ -1,12 +1,7 @@
 #include "logger.hpp"
 
 namespace atum {
-Logger::Logger(LoggerLevel iLevel,
-               const std::string &iFilename,
-               std::initializer_list<Logger::LoggerOutput *> iOutputs) :
-    level{iLevel}, filename{iFilename}, outputs{iOutputs} {
-  if(filename != "") std::fstream file{filename, std::fstream::out};
-}
+Logger::Logger(LoggerLevel iLevel) : level{iLevel} {}
 
 void Logger::debug(const std::string &msg) {
   log("DEBUG", msg, LoggerLevel::Debug);
@@ -27,18 +22,18 @@ void Logger::error(const std::string &msg) {
 void Logger::log(const std::string &prefix,
                  const std::string &msg,
                  LoggerLevel msgLevel) {
+  logMutex.take();
   if(level < msgLevel) return;
   std::stringstream fmtMsg{};
   fmtMsg << std::setw(5) << prefix << std::setw(0) << ": " + msg << '\n';
   std::cout << fmtMsg.str();
-  for(auto output : outputs) output->log(fmtMsg.str());
-  if(filename == "") return;
-  std::fstream file{filename, std::fstream::app};
+  std::fstream file{logFilename, std::fstream::app};
   file << fmtMsg.str();
+  GUI::writeToLog(fmtMsg.str());
+  logMutex.give();
 }
 
-std::unique_ptr<Logger> Logger::makeLog(const LoggerLevel level,
-                                        const std::string &filename) {
-  return std::make_unique<Logger>(level, filename);
-}
+const std::string Logger::logFilename{"log.txt"};
+
+pros::Mutex Logger::logMutex{};
 } // namespace atum

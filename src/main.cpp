@@ -8,11 +8,9 @@ static constexpr int a15ID{0x64824900};
 #endif
 
 std::unique_ptr<atum::Robot> robot;
+atum::Logger logger{};
 
 void initialize() {
-  std::cout << __LINE__ << '\n';
-  std::cout << BRAIN_ID << '\n';
-  std::cout << prototypeID << '\n';
   switch(BRAIN_ID) {
     case prototypeID:
       robot = std::make_unique<atum::RobotPrototype>(
@@ -26,9 +24,10 @@ void initialize() {
           std::initializer_list<std::int8_t>{});
       break;
   }
-  GUI::startLoading(robot->getRoutineNames());
+  atum::GUI::startLoading(robot->getRoutineNames());
   atum::wait(0.5_s);
-  GUI::finishLoading();
+  atum::GUI::finishLoading();
+  logger.info("Initialization finished!");
 }
 
 void disabled() {
@@ -44,6 +43,6 @@ void autonomous() {
 }
 
 void opcontrol() {
-  std::cout << std::hex << BRAIN_ID << '\n';
+  logger.info("Opcontrol has started!");
   robot->opcontrol();
 }
