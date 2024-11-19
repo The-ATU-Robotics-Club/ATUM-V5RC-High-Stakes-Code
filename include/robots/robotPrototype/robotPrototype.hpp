@@ -7,8 +7,7 @@ namespace atum {
 class RobotPrototype : public Robot {
   public:
   friend class Robot;
-  RobotPrototype(std::initializer_list<std::int8_t> leftPorts,
-          std::initializer_list<std::int8_t> rightPorts);
+  RobotPrototype();
 
   void disabled() override;
 
@@ -18,7 +17,7 @@ class RobotPrototype : public Robot {
   void initializeRoutines() override;
 
   atum::Remote remote{pros::E_CONTROLLER_MASTER};
-  pros::MotorGroup leftMotors;
-  pros::MotorGroup rightMotors;
+  pros::MotorGroup leftMotors{1, 2};
+  pros::MotorGroup rightMotors{3, 4};
 };
 } // namespace atum

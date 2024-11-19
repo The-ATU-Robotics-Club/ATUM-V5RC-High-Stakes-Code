@@ -13,21 +13,16 @@ atum::Logger logger{};
 void initialize() {
   switch(BRAIN_ID) {
     case prototypeID:
-      robot = std::make_unique<atum::RobotPrototype>(
-          std::initializer_list<std::int8_t>{},
-          std::initializer_list<std::int8_t>{});
+      robot = std::make_unique<atum::RobotPrototype>();
       break;
 
     case a15ID:
-      robot = std::make_unique<atum::RobotPrototype>(
-          std::initializer_list<std::int8_t>{},
-          std::initializer_list<std::int8_t>{});
+      robot = std::make_unique<atum::Robot15>();
       break;
   }
-  atum::GUI::startLoading(robot->getRoutineNames());
   atum::wait(0.5_s);
-  atum::GUI::finishLoading();
   logger.info("Initialization finished!");
+  atum::GUI::finishLoading();
 }
 
 void disabled() {

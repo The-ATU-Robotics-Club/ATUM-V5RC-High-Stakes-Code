@@ -7,6 +7,18 @@ void Robot15::opcontrol() {
     const double turn{remote.getRStick().first};
     leftMotors.move_voltage(forward + turn);
     rightMotors.move_voltage(forward - turn);
+
+    switch(remote.getRTrigger()) {
+      case -1:
+        intake.move_voltage(-12000);
+        break;
+      case 1:
+        intake.move_voltage(12000);
+        break;
+      default:
+        intake.brake();
+        break;
+    }
     wait(10_ms);
   }
 }

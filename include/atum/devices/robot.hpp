@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../utility/gui.hpp"
 #include <functional>
 #include <string>
 
@@ -22,6 +23,7 @@ class Robot {
   template <typename SpecRobot>
   Robot(SpecRobot *spec) {
     spec->initializeRoutines();
+    GUI::startLoading(spec->getRoutineNames());
   }
 
   virtual void disabled() = 0;
@@ -34,7 +36,7 @@ class Robot {
 
   protected:
   virtual void initializeRoutines() = 0;
-  
+
   std::string routineNames;
   std::vector<Routine> routines;
 };
