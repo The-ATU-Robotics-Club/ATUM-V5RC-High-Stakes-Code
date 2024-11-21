@@ -74,7 +74,7 @@ Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
   return currentPosition;
 }
 
-void Odometry::taskFn1() {
+void Odometry::backgroundTask() {
   while(true) {
     update();
     wait(10_ms);

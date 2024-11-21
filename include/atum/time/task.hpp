@@ -1,7 +1,6 @@
 #pragma once
 
 #include "api.h"
-#include "time.hpp"
 
 namespace atum {
 class Task {
@@ -12,29 +11,16 @@ class Task {
     std::uint16_t depth{TASK_STACK_DEPTH_DEFAULT};
   };
 
-  Task(const TaskParams &iParams1,
-       const std::optional<TaskParams> &iParams2 = {},
-       const std::optional<TaskParams> &iParams3 = {});
+  Task(const TaskParams &iParams);
 
-  void start();
+  void startBackgroundTask();
 
-  void stop();
+  void stopBackgroundTask();
 
   private:
-  void createTask1();
-  void createTask2();
-  void createTask3();
+  virtual void backgroundTask() = 0;
 
-  // Must implement one; if you need four, something's gone awry.
-  virtual void taskFn1() = 0;
-  virtual void taskFn2();
-  virtual void taskFn3();
-
-  std::unique_ptr<pros::Task> task1;
-  std::unique_ptr<pros::Task> task2;
-  std::unique_ptr<pros::Task> task3;
-  const TaskParams params1;
-  const std::optional<TaskParams> params2;
-  const std::optional<TaskParams> params3;
+  std::unique_ptr<pros::Task> task;
+  const TaskParams params;
 };
 } // namespace atum

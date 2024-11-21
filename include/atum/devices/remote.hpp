@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../time/task.hpp"
+#include "../time/time.hpp"
 #include "../utility/units.hpp"
 #include "api.h"
 #include <queue>
@@ -29,7 +30,7 @@ class Remote : public Task {
   std::int32_t getBattery();
 
   private:
-  void taskFn1() override;
+  void backgroundTask() override;
 
   pros::Controller remote;
   const double deadzone;

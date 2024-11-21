@@ -4,7 +4,7 @@ namespace atum {
 Remote::Remote(const pros::controller_id_e_t id, const double iDeadzone) :
     Task{{"Remote"}}, remote{id}, deadzone{iDeadzone} {
   remote.clear();
-  start();
+  startBackgroundTask();
 }
 
 int Remote::getLTrigger() {
@@ -75,7 +75,7 @@ std::int32_t Remote::getBattery() {
   return remote.get_battery_capacity();
 }
 
-void Remote::taskFn1() {
+void Remote::backgroundTask() {
   while(true) {
     row0QueueMutex.take(10);
     if(row0Queue.size()) {

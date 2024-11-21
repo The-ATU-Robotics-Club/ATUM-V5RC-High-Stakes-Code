@@ -29,6 +29,6 @@ class Odometry : public Tracker, public Task {
   std::unique_ptr<IMU> imu;
 
   private:
-  void taskFn1() override;
+  void backgroundTask() override;
 };
 } // namespace atum
