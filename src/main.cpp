@@ -21,18 +21,18 @@ void initialize() {
   atum::GUI::finishLoading();
 }
 
-void disabled() {
-  logger.info("Robot is disabled.");
-  robot->disabled();
-}
-
 void competition_initialize() {
   // Treat competition_initialize as if disabled.
   disabled();
 }
 
+void disabled() {
+  logger.info("Robot is disabled.");
+  robot->disabled();
+}
+
 void autonomous() {
-  logger.info("Opcontrol has started.");
+  logger.info("Autonomous has started.");
   robot->autonomous();
 }
 
