@@ -11,33 +11,32 @@ std::unique_ptr<atum::Robot> robot;
 atum::Logger logger{};
 
 void initialize() {
+  logger.info("Initialization has started.");
   switch(BRAIN_ID) {
-    case prototypeID:
-      robot = std::make_unique<atum::RobotPrototype>();
-      break;
-
-    case a15ID:
-      robot = std::make_unique<atum::Robot15>();
-      break;
+    case prototypeID: robot = std::make_unique<atum::RobotPrototype>(); break;
+    case a15ID: robot = std::make_unique<atum::Robot15>(); break;
   }
-  atum::wait(0.5_s);
-  logger.info("Initialization finished!");
+  atum::wait(0.5_s); // Temporary wait for testing loading screen. 
+  logger.info("Initialization finished.");
   atum::GUI::finishLoading();
 }
 
 void disabled() {
+  logger.info("Robot is disabled.");
   robot->disabled();
 }
 
 void competition_initialize() {
-  robot->disabled();
+  // Treat competition_initialize as if disabled.
+  disabled();
 }
 
 void autonomous() {
+  logger.info("Opcontrol has started.");
   robot->autonomous();
 }
 
 void opcontrol() {
-  logger.info("Opcontrol has started!");
+  logger.info("Opcontrol has started.");
   robot->opcontrol();
 }

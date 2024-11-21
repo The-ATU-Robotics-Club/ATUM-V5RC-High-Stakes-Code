@@ -29,7 +29,7 @@ void Logger::log(const std::string &prefix,
   std::cout << fmtMsg.str();
   std::fstream file{logFilename, std::fstream::app};
   file << fmtMsg.str();
-  GUI::writeToLog(fmtMsg.str());
+  if(msgLevel <= LoggerLevel::Info) GUI::writeToLog(fmtMsg.str());
   logMutex.give();
 }
 
