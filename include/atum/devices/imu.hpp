@@ -7,17 +7,17 @@
 namespace atum {
 class IMU {
   public:
-  IMU(std::initializer_list<std::uint8_t> ports,
+  IMU(std::vector<std::uint8_t> ports,
       const bool iReversed = -1,
       Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
 
   void setHeading(degree_t heading);
 
-  degree_t getHeading() const;
+  degree_t getHeading();
 
   degree_t getTraveled();
 
-  protected:
+  private:
   std::vector<std::unique_ptr<pros::IMU>> imus;
   const bool reversed;
   Logger logger;

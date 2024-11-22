@@ -123,7 +123,7 @@ class Motor {
    * upon.
    *
    */
-  void motorCheck() const;
+  void motorCheck();
 
   private:
   std::vector<std::unique_ptr<pros::Motor>> motors;

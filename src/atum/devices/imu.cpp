@@ -1,7 +1,7 @@
 #include "imu.hpp"
 
 namespace atum {
-IMU::IMU(std::initializer_list<std::uint8_t> ports,
+IMU::IMU(std::vector<std::uint8_t> ports,
          const bool iReversed,
          Logger::LoggerLevel loggerLevel) :
     reversed{iReversed}, logger{loggerLevel} {
@@ -9,8 +9,8 @@ IMU::IMU(std::initializer_list<std::uint8_t> ports,
     imus.push_back(std::make_unique<pros::IMU>(port));
     if(pros::c::registry_get_plugged_type(port - 1) !=
        pros::c::v5_device_e_t::E_DEVICE_IMU) {
-        logger.error("IMU at port " + std::to_string(port) +
-                      " could not be initialized!");
+      logger.error("IMU at port " + std::to_string(port) +
+                   " could not be initialized!");
       imus.erase(imus.end());
     }
   }
@@ -26,7 +26,7 @@ void IMU::setHeading(degree_t heading) {
   previous = heading;
 }
 
-degree_t IMU::getHeading() const {
+degree_t IMU::getHeading() {
   std::vector<degree_t> readings;
   for(auto &imu : imus) readings.push_back(degree_t{imu->get_rotation()});
   degree_t heading{average(readings)};

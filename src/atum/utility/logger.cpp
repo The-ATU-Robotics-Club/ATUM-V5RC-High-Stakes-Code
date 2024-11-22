@@ -3,25 +3,28 @@
 namespace atum {
 Logger::Logger(LoggerLevel iLevel) : level{iLevel} {}
 
-void Logger::debug(const std::string &msg) const {
+void Logger::debug(const std::string &msg) {
   log("DEBUG", msg, LoggerLevel::Debug);
 }
 
-void Logger::info(const std::string &msg) const {
+void Logger::info(const std::string &msg) {
+  if(alreadyLogged(msg)) return;
   log("INFO", msg, LoggerLevel::Info);
 }
 
-void Logger::warn(const std::string &msg) const {
+void Logger::warn(const std::string &msg) {
+  if(alreadyLogged(msg)) return;
   log("WARN", msg, LoggerLevel::Warn);
 }
 
-void Logger::error(const std::string &msg) const {
+void Logger::error(const std::string &msg) {
+  if(alreadyLogged(msg)) return;
   log("ERROR", msg, LoggerLevel::Error);
 }
 
 void Logger::log(const std::string &prefix,
                  const std::string &msg,
-                 LoggerLevel msgLevel) const {
+                 LoggerLevel msgLevel) {
   logMutex.take(10);
   if(level < msgLevel) return;
   std::stringstream fmtMsg{};
@@ -31,6 +34,12 @@ void Logger::log(const std::string &prefix,
   file << fmtMsg.str();
   if(msgLevel <= LoggerLevel::Info) GUI::writeToLog(fmtMsg.str());
   logMutex.give();
+}
+
+bool Logger::alreadyLogged(const std::string &msg) {
+  if(std::find(logs.begin(), logs.end(), msg) != logs.end()) return true;
+  logs.push_back(msg);
+  return false;
 }
 
 const std::string Logger::logFilename{"log.txt"};

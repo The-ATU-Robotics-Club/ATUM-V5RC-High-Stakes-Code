@@ -116,7 +116,7 @@ void Motor::setCurrentLimit(const std::int32_t limit) const {
   }
 }
 
-void Motor::motorCheck() const {
+void Motor::motorCheck() {
   for(std::size_t i{0}; i < motors.size(); i++) {
     const std::string port{std::to_string(motors[i]->get_port())};
     if(!motors[i]->is_installed()) {
