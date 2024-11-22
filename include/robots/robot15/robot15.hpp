@@ -20,5 +20,6 @@ class Robot15 : public Robot {
   pros::MotorGroup leftMotors{1, 2, 3};
   pros::MotorGroup rightMotors{4, 5, 6};
   pros::MotorGroup intake{-7, 8};
+  pros::adi::Pneumatics goalClamp{'A', false};
 };
 } // namespace atum
