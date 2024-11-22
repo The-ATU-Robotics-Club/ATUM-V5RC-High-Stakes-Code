@@ -8,9 +8,7 @@ Odometer::Odometer(const std::uint8_t topPort,
                    const bool reversed) :
     encoder{topPort, botPort, reversed},
     wheelCircum{iWheelCircum},
-    fromCenter{iFromCenter} {
-  wait(0.25_s); // Allow time for the encoders initialize.
-}
+    fromCenter{iFromCenter} {}
 
 inch_t Odometer::traveled() {
   const int32_t ticks{encoder.get_value()};

@@ -3,26 +3,26 @@
 namespace atum {
 Logger::Logger(LoggerLevel iLevel) : level{iLevel} {}
 
-void Logger::debug(const std::string &msg) {
+void Logger::debug(const std::string &msg) const {
   log("DEBUG", msg, LoggerLevel::Debug);
 }
 
-void Logger::info(const std::string &msg) {
+void Logger::info(const std::string &msg) const {
   log("INFO", msg, LoggerLevel::Info);
 }
 
-void Logger::warn(const std::string &msg) {
+void Logger::warn(const std::string &msg) const {
   log("WARN", msg, LoggerLevel::Warn);
 }
 
-void Logger::error(const std::string &msg) {
+void Logger::error(const std::string &msg) const {
   log("ERROR", msg, LoggerLevel::Error);
 }
 
 void Logger::log(const std::string &prefix,
                  const std::string &msg,
-                 LoggerLevel msgLevel) {
-  logMutex.take();
+                 LoggerLevel msgLevel) const {
+  logMutex.take(10);
   if(level < msgLevel) return;
   std::stringstream fmtMsg{};
   fmtMsg << std::setw(5) << prefix << std::setw(0) << ": " + msg << '\n';

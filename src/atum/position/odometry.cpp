@@ -1,20 +1,18 @@
 #include "odometry.hpp"
 
 namespace atum {
-Odometry::Odometry(std::unique_ptr<Odometer> iL,
-                   std::unique_ptr<Odometer> iR,
+Odometry::Odometry(std::unique_ptr<Odometer> iForward,
+                   std::unique_ptr<Odometer> iSide,
                    std::unique_ptr<IMU> iImu,
-                   std::unique_ptr<Logger> iLogger) :
-    Tracker(std::move(iLogger)),
+                   Logger::LoggerLevel loggerLevel) :
+    Tracker(loggerLevel),
     Task({"Odometry", TASK_PRIORITY_MAX}),
-    l{std::move(iL)},
-    r{std::move(iR)},
+    forward{std::move(iForward)},
+    side{std::move(iSide)},
     imu{std::move(iImu)} {
-  if(!r && logger) logger->error("The right odometer must be provided.");
-  if(!l && !imu && logger)
-    logger->error(
-        "At least either the left odometer or an IMU must be provided.");
-  if(logger) logger->info("Odometry constructed!");
+  if(!forward) logger.error("The right odometer must be provided.");
+  if(!imu) logger.error("An IMU must be provided.");
+  logger.info("Odometry constructed!");
 }
 
 Position Odometry::update() {
@@ -24,17 +22,10 @@ Position Odometry::update() {
 }
 
 std::tuple<inch_t, inch_t, radian_t> Odometry::getDeltas() {
-  const inch_t dr{r->traveled()};
-  inch_t dl{dr};
+  const inch_t dr{forward->traveled()};
   radian_t dh;
-  if(l) {
-    dl = l->traveled();
-    dh = radian_t{getValueAs<meter_t>(dl - dr) /
-                  getValueAs<meter_t>(l->getFromCenter() + r->getFromCenter())};
-    if(imu) dh = imu->combine(dh);
-  } else
-    dh = imu->getTraveled();
-  return std::make_tuple(dl, dr, dh);
+  dh = imu->getTraveled();
+  return std::make_tuple(dr, dr, dh);
 }
 
 std::pair<inch_t, inch_t> Odometry::getRelativeDeltas(const inch_t dl,
@@ -42,17 +33,9 @@ std::pair<inch_t, inch_t> Odometry::getRelativeDeltas(const inch_t dl,
                                                       const radian_t dh) {
   inch_t dx{0.0_in};
   inch_t dy{0.0_in};
-  if(!dh) {
-    const inch_t dd = (dl + dr) / 2.0;
-    dx = sin(dh) * dd;
-    dy = cos(dh) * dd;
-  } else if(!l)
-    dy = 2.0 * sin(dh / 2.0) *
-         (dr / getValueAs<radian_t>(dh) + r->getFromCenter());
-  else {
-    const inch_t radius{(l->getFromCenter() + r->getFromCenter()) / 2.0};
-    dy = radius * (dl + dr) / (dr - dl);
-  }
+  const inch_t dd = (dl + dr) / 2.0;
+  dx = sin(dh) * dd;
+  dy = cos(dh) * dd;
   return std::make_pair(dx, dy);
 }
 
@@ -70,7 +53,7 @@ Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
   currentPosition.v = v;
   currentPosition.w = w;
   setPosition(currentPosition);
-  if(logger) logger->debug("Odometry Reading: " + toString(currentPosition));
+  logger.debug("Odometry Reading: " + toString(currentPosition));
   return currentPosition;
 }
 

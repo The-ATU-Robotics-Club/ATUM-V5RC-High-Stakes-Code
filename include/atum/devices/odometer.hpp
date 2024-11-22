@@ -17,7 +17,7 @@ class Odometer {
   inch_t getFromCenter() const;
 
   private:
-  pros::ADIEncoder encoder;
+  pros::adi::Encoder encoder;
   const inch_t wheelCircum;
   const inch_t fromCenter;
   int32_t prevTicks{0};

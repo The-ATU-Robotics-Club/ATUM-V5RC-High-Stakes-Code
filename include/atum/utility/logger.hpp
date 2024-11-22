@@ -14,20 +14,20 @@ class Logger {
 
   Logger(const LoggerLevel iLevel = LoggerLevel::Info);
 
-  void debug(const std::string &msg);
+  void debug(const std::string &msg) const;
 
-  void info(const std::string &msg);
+  void info(const std::string &msg) const;
 
-  void warn(const std::string &msg);
+  void warn(const std::string &msg) const;
 
-  void error(const std::string &msg);
+  void error(const std::string &msg) const;
 
   private:
   friend void GUI::writeToLog(const std::string &msg);
 
   void log(const std::string &prefix,
            const std::string &msg,
-           LoggerLevel msgLevel);
+           LoggerLevel msgLevel) const;
 
   static const std::string logFilename;
   static pros::Mutex logMutex;

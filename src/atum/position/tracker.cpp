@@ -1,8 +1,8 @@
 #include "tracker.hpp"
 
 namespace atum {
-Tracker::Tracker(std::unique_ptr<Logger> iLogger) :
-    logger{std::move(iLogger)} {}
+Tracker::Tracker(const Logger::LoggerLevel loggerLevel) :
+    logger{loggerLevel} {}
 
 void Tracker::setPosition(const Position &iPosition) {
   positionMutex.take(10);

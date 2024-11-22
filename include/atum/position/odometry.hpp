@@ -9,10 +9,10 @@
 namespace atum {
 class Odometry : public Tracker, public Task {
   public:
-  Odometry(std::unique_ptr<Odometer> iL,
-           std::unique_ptr<Odometer> iR,
+  Odometry(std::unique_ptr<Odometer> iForward,
+           std::unique_ptr<Odometer> iSide,
            std::unique_ptr<IMU> iImu,
-           std::unique_ptr<Logger> iLogger = nullptr);
+           Logger::LoggerLevel iLoggerLevel = Logger::LoggerLevel::Info);
 
   virtual Position update() override;
 
@@ -24,8 +24,8 @@ class Odometry : public Tracker, public Task {
 
   Position integratePosition(inch_t dx, inch_t dy, radian_t dh);
 
-  std::unique_ptr<Odometer> l;
-  std::unique_ptr<Odometer> r;
+  std::unique_ptr<Odometer> forward;
+  std::unique_ptr<Odometer> side;
   std::unique_ptr<IMU> imu;
 
   private:

@@ -7,7 +7,7 @@
 namespace atum {
 class Tracker {
   public:
-  Tracker(std::unique_ptr<Logger> iLogger = nullptr);
+  Tracker(const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
 
   virtual Position update() = 0;
 
@@ -19,7 +19,7 @@ class Tracker {
   std::pair<meters_per_second_t, radians_per_second_t>
       getVW(const inch_t distance, const radian_t dh);
 
-  std::unique_ptr<Logger> logger;
+  Logger logger;
   Position position{0_tile, 0_tile, 0_deg};
   pros::Mutex positionMutex;
 
