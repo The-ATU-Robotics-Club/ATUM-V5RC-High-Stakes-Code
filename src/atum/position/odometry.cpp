@@ -41,7 +41,6 @@ Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
     dh = 0_rad;
   }
   Position currentPosition{getPosition()};
-  Position previousPosition{currentPosition};
   const radian_t averageHeading{currentPosition.h + 0.5 * dh};
   currentPosition.x += cos(averageHeading) * dx + sin(averageHeading) * dy;
   currentPosition.y += -sin(averageHeading) * dx + cos(averageHeading) * dy;
