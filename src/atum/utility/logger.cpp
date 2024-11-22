@@ -1,7 +1,14 @@
 #include "logger.hpp"
 
 namespace atum {
-Logger::Logger(LoggerLevel iLevel) : level{iLevel} {}
+Logger::Logger(LoggerLevel iLevel) : level{iLevel} {
+  // Denote new logging session.
+  if(!beganLogging) {
+    beganLogging = true;
+    std::fstream file{logFilename, std::fstream::app};
+    file << '\n' << "~~~~~~~~~~~~ BEGIN LOG ~~~~~~~~~~~~\n";
+  }
+}
 
 void Logger::debug(const std::string &msg) {
   log("DEBUG", msg, LoggerLevel::Debug);
@@ -30,9 +37,11 @@ void Logger::log(const std::string &prefix,
   std::stringstream fmtMsg{};
   fmtMsg << std::setw(5) << prefix << std::setw(0) << ": " + msg << '\n';
   std::cout << fmtMsg.str();
-  std::fstream file{logFilename, std::fstream::app};
-  file << fmtMsg.str();
-  if(msgLevel <= LoggerLevel::Info) GUI::writeToLog(fmtMsg.str());
+  if(msgLevel <= LoggerLevel::Info) {
+    std::fstream file{logFilename, std::fstream::app};
+    file << fmtMsg.str();
+    GUI::writeToLog(fmtMsg.str());
+  }
   logMutex.give();
 }
 
@@ -43,6 +52,8 @@ bool Logger::alreadyLogged(const std::string &msg) {
 }
 
 const std::string Logger::logFilename{"log.txt"};
+
+bool Logger::beganLogging{false};
 
 pros::Mutex Logger::logMutex{};
 } // namespace atum

@@ -5,9 +5,10 @@ Motor::Motor(const std::vector<std::int8_t> ports,
              const pros::v5::MotorGears gearset,
              const Logger::LoggerLevel loggerLevel) :
     logger{loggerLevel} {
-  for(std::uint8_t port : ports) {
+  for(std::int8_t port : ports) {
     motors.push_back(std::make_unique<pros::Motor>(
-        port, gearset, pros::v5::MotorEncoderUnits::degrees));
+        abs(port), gearset, pros::v5::MotorEncoderUnits::degrees));
+    if(port < 0) motors.back()->set_reversed(true);
   }
   motorCheck();
 }
@@ -25,6 +26,13 @@ void Motor::moveVoltage(double voltage) {
   voltage *= 1000;
   for(std::size_t i{0}; i < motors.size(); i++) {
     motors[i]->move_voltage(voltage);
+  }
+}
+
+void Motor::brake() {
+  motorCheck();
+  for(std::size_t i{0}; i < motors.size(); i++) {
+    motors[i]->brake();
   }
 }
 
@@ -125,7 +133,7 @@ void Motor::motorCheck() {
     } else if(motors[i]->is_over_temp()) {
       logger.warn("The motor on port " + port + " is overheating.");
     } else if(motors[i]->is_over_current()) {
-      logger.warn("The motor on port " + port + " is over its current limit.");
+      logger.info("The motor on port " + port + " is over its current limit.");
     }
   }
 }

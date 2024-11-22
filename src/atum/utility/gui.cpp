@@ -16,7 +16,6 @@ const int GUI::fillWidth{workingWidth - 4 * defaultPadding};
 const int GUI::fillHeight{workingHeight - defaultHeight - 4 * defaultPadding};
 const int GUI::contentYOffset{defaultHeight + 2 * defaultPadding};
 
-
 // Commonly used colors.
 const lv_color_t GUI::black{lv_color_hex(0x1f1f1f)};
 const lv_color_t GUI::darkGrey{lv_color_hex(0x303030)};
@@ -32,21 +31,23 @@ const std::size_t GUI::maxLogLines{30};
 const int GUI::graphRange{10000};
 const int GUI::mapRange{12000};
 
-void GUI::startLoading(const std::string &routines) {
+void GUI::initialize() {
   // Initialization.
   createScreens();
   initializeStyles();
 
-  // Screen setup.
+  // Screen setup. Can't do routine screen yet. 
   loadingScreenSetup();
   homeScreenSetup();
   mainMenuScreenSetup();
-  routinesScreenSetup(routines);
   logScreenSetup();
   graphScreenSetup();
   mapScreenSetup();
+}
 
+void GUI::startLoading(const std::string &routines) {
   // Go to the loading screen until given signal robot is good to go.
+  routinesScreenSetup(routines);
   lv_scr_load(loadingScreen);
 }
 

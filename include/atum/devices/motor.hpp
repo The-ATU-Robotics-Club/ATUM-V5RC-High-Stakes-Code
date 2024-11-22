@@ -34,6 +34,12 @@ class Motor {
   void moveVoltage(const double voltage);
 
   /**
+   * @brief Stops the motors with the current brake mode.
+   * 
+   */
+  void brake();
+
+  /**
    * @brief Get the average position of all the motors.
    *
    * @return degree_t

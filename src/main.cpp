@@ -11,12 +11,13 @@ std::unique_ptr<atum::Robot> robot;
 atum::Logger logger{};
 
 void initialize() {
+  atum::GUI::initialize();
   logger.info("Initialization has started.");
   switch(BRAIN_ID) {
     case prototypeID: robot = std::make_unique<atum::RobotPrototype>(); break;
     case a15ID: robot = std::make_unique<atum::Robot15>(); break;
   }
-  atum::wait(0.5_s); // Temporary wait for testing loading screen. 
+  atum::wait(0.5_s); // Temporary wait for testing loading screen.
   logger.info("Initialization finished.");
   atum::GUI::finishLoading();
 }

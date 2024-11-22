@@ -78,6 +78,7 @@ class Logger {
   bool alreadyLogged(const std::string &msg);
 
   static const std::string logFilename;
+  static bool beganLogging;
   static pros::Mutex logMutex;
 
   const LoggerLevel level;

@@ -9,7 +9,7 @@
 namespace atum {
 class Remote : public Task {
   public:
-  Remote(pros::controller_id_e_t id, const double iDeadzone = 1000);
+  Remote(pros::controller_id_e_t id, const double iDeadzone = 1.0);
 
   int getLTrigger();
 

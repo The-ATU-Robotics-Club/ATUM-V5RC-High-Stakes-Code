@@ -15,6 +15,7 @@ class GUI {
   public:
   enum SeriesColor { Red, Green, Blue };
 
+  static void initialize();
   static void startLoading(const std::string &routines);
   static void finishLoading();
   static std::size_t getRoutineIndex();
@@ -129,4 +130,4 @@ class GUI {
   static std::string logText;
   static std::size_t logLines;
 };
-}
+} // namespace atum

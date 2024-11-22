@@ -1,7 +1,8 @@
 #pragma once
 
-#include "atum/devices/robot.hpp"
+#include "atum/devices/motor.hpp"
 #include "atum/devices/remote.hpp"
+#include "atum/devices/robot.hpp"
 
 namespace atum {
 class RobotPrototype : public Robot {
@@ -16,8 +17,8 @@ class RobotPrototype : public Robot {
   private:
   void initializeRoutines() override;
 
-  atum::Remote remote{pros::E_CONTROLLER_MASTER};
-  pros::MotorGroup leftMotors{1, 2};
-  pros::MotorGroup rightMotors{3, 4};
+  Remote remote{pros::E_CONTROLLER_MASTER};
+  Motor leftMotors{{1, 2}, pros::v5::MotorGears::green};
+  Motor rightMotors{{3, 4}, pros::v5::MotorGears::green};
 };
 } // namespace atum
