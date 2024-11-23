@@ -20,5 +20,6 @@ class RobotPrototype : public Robot {
   Remote remote{pros::E_CONTROLLER_MASTER};
   Motor leftMotors{{1, 2}, pros::v5::MotorGears::green};
   Motor rightMotors{{3, 4}, pros::v5::MotorGears::green};
+  Motor climbMotors{{9, -10}, pros::v5::MotorGears::green};
 };
 } // namespace atum

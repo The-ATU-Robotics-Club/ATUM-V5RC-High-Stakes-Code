@@ -118,7 +118,7 @@ class GUI {
   // Important objects.
   static lv_obj_t *routineSelections;
   static lv_obj_t *colorSwitch;
-  static lv_obj_t *logTextArea;
+  static lv_obj_t *logTextLabel;
   static lv_obj_t *logSwitch;
   static lv_obj_t *graphChart;
   static std::array<lv_chart_series_t *, 3> graphSeries;

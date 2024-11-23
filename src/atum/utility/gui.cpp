@@ -27,7 +27,7 @@ const lv_color_t GUI::blue{lv_color_hex(0x0000FF)};
 const lv_color_t GUI::white{lv_color_white()};
 
 // Other important values.
-const std::size_t GUI::maxLogLines{30};
+const std::size_t GUI::maxLogLines{100};
 const int GUI::graphRange{10000};
 const int GUI::mapRange{12000};
 
@@ -36,7 +36,7 @@ void GUI::initialize() {
   createScreens();
   initializeStyles();
 
-  // Screen setup. Can't do routine screen yet. 
+  // Screen setup. Can't do routine screen yet.
   loadingScreenSetup();
   homeScreenSetup();
   mainMenuScreenSetup();
@@ -65,13 +65,14 @@ MatchColor GUI::getMatchColor() {
 }
 
 void GUI::writeToLog(const std::string &msg) {
+  std::string logText{lv_label_get_text(logTextLabel)};
   if(!lv_obj_has_state(logSwitch, LV_STATE_CHECKED)) return;
   if(logLines >= maxLogLines)
     logText.erase(0, logText.find('\n') + 1);
   else
     logLines++;
   logText += msg + '\n';
-  lv_textarea_set_text(logTextArea, logText.c_str());
+  lv_label_set_text(logTextLabel, logText.c_str());
 }
 
 void GUI::addGraphPoint(const double point, const SeriesColor seriesColor) {
@@ -426,16 +427,21 @@ void GUI::logScreenSetup() {
       logSwitch, white, LV_PART_INDICATOR | LV_STATE_CHECKED);
   lv_obj_set_style_bg_color(logSwitch, black, LV_PART_KNOB | LV_STATE_CHECKED);
 
-  logTextArea = lv_textarea_create(logScreen);
-  lv_obj_align(logTextArea, LV_ALIGN_TOP_MID, 0, contentYOffset);
-  lv_obj_set_size(
-      logTextArea, fillWidth, fillHeight - defaultHeight - defaultPadding);
-  lv_obj_set_style_bg_color(logTextArea, lightGrey, LV_STATE_DEFAULT);
-  lv_obj_set_style_bg_opa(logTextArea, LV_OPA_COVER, LV_STATE_DEFAULT);
-  lv_obj_set_style_text_color(logTextArea, black, LV_STATE_DEFAULT);
+  lv_obj_t *logTextBackground = lv_obj_create(logScreen);
+  lv_obj_align(logTextBackground, LV_ALIGN_TOP_MID, 0, contentYOffset);
+  lv_obj_set_size(logTextBackground,
+                  fillWidth,
+                  fillHeight - defaultHeight - defaultPadding);
+  lv_obj_set_style_bg_color(logTextBackground, lightGrey, LV_STATE_DEFAULT);
+  lv_obj_set_style_bg_opa(logTextBackground, LV_OPA_COVER, LV_STATE_DEFAULT);
   lv_obj_set_style_bg_color(
-      logTextArea, white, LV_STATE_DEFAULT | LV_PART_SCROLLBAR);
-  lv_textarea_set_max_length(logTextArea, 1000);
+      logTextBackground, white, LV_STATE_DEFAULT | LV_PART_SCROLLBAR);
+  lv_obj_set_scrollbar_mode(logTextBackground, LV_SCROLLBAR_MODE_ACTIVE);
+  lv_obj_set_scroll_dir(logTextBackground, LV_DIR_VER);
+
+  logTextLabel = lv_label_create(logTextBackground);
+  lv_obj_align(logTextLabel, LV_ALIGN_TOP_LEFT, 0, 0);
+  lv_obj_set_style_text_color(logTextLabel, black, LV_STATE_DEFAULT);
 }
 
 void GUI::graphScreenSetup() {
@@ -532,7 +538,7 @@ lv_obj_t *GUI::mapScreen;
 // Important objects
 lv_obj_t *GUI::routineSelections;
 lv_obj_t *GUI::colorSwitch;
-lv_obj_t *GUI::logTextArea;
+lv_obj_t *GUI::logTextLabel;
 lv_obj_t *GUI::logSwitch;
 lv_obj_t *GUI::graphChart;
 std::array<lv_chart_series_t *, 3> GUI::graphSeries;

@@ -132,9 +132,7 @@ void Motor::motorCheck() {
       motors.erase(std::next(motors.begin(), i));
     } else if(motors[i]->is_over_temp()) {
       logger.warn("The motor on port " + port + " is overheating.");
-    } else if(motors[i]->is_over_current()) {
-      logger.info("The motor on port " + port + " is over its current limit.");
-    }
+    } 
   }
 }
 
