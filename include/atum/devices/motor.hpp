@@ -35,7 +35,7 @@ class Motor {
 
   /**
    * @brief Stops the motors with the current brake mode.
-   * 
+   *
    */
   void brake();
 
@@ -114,7 +114,7 @@ class Motor {
    *
    * @param mode
    */
-  void setBrakeMode(const pros::motor_brake_mode_e_t mode) const;
+  void setBrakeMode(const pros::v5::MotorBrake mode) const;
 
   /**
    * @brief Set the current limit of all the motors in mA.

@@ -112,7 +112,7 @@ std::int32_t Motor::getCurrentLimit() const {
   return motors[0]->get_current_limit();
 }
 
-void Motor::setBrakeMode(const pros::motor_brake_mode_e_t mode) const {
+void Motor::setBrakeMode(const pros::v5::MotorBrake mode) const {
   for(std::size_t i{0}; i < motors.size(); i++) {
     motors[i]->set_brake_mode(mode);
   }
