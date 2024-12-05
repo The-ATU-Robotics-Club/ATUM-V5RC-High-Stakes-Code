@@ -18,9 +18,10 @@ class Robot15 : public Robot {
   void initializeRoutines() override;
 
   Remote remote{pros::E_CONTROLLER_MASTER};
-  Motor leftMotors{{1, 2, 3}, pros::v5::MotorGears::blue};
-  Motor rightMotors{{4, 5, 6}, pros::v5::MotorGears::blue};
-  Motor intake{{-7, 8}, pros::v5::MotorGears::blue};
+  Motor leftMotors{{-7, -8, -9, 10}, pros::v5::MotorGears::blue};
+  Motor rightMotors{{1, 2, 3, -4}, pros::v5::MotorGears::blue};
+  Motor intake{{-5, 6}, pros::v5::MotorGears::blue};
+  Motor ladybrown{{15, -16}, pros::v5::MotorGears::green};
   pros::adi::Pneumatics goalClamp{'A', false};
 };
 } // namespace atum

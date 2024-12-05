@@ -14,6 +14,12 @@ void Robot15::opcontrol() {
       default: intake.brake(); break;
     }
 
+    switch(remote.getLTrigger()) {
+      case -1: ladybrown.moveVoltage(-12); break;
+      case 1: ladybrown.moveVoltage(12); break;
+      default: ladybrown.brake(); break;
+    }
+
     if(remote.getPress(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A)) {
       goalClamp.toggle();
     }
