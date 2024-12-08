@@ -15,13 +15,17 @@ void Robot15::opcontrol() {
     }
 
     switch(remote.getLTrigger()) {
-      case -1: ladybrown.moveVoltage(-12); break;
-      case 1: ladybrown.moveVoltage(12); break;
-      default: ladybrown.brake(); break;
+      case -1: ladybrownArm.moveVoltage(-6); break;
+      case 1: ladybrownArm.moveVoltage(6); break;
+      default: ladybrownArm.brake(); break;
     }
 
     if(remote.getPress(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A)) {
       goalClamp.toggle();
+    }
+
+    if(remote.getPress(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_X)) {
+      ladybrownWrist.toggle();
     }
 
     wait(10_ms);

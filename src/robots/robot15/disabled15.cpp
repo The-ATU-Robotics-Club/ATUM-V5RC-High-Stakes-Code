@@ -2,7 +2,7 @@
 
 namespace atum {
 Robot15::Robot15() : Robot{this} {
-    ladybrown.setBrakeMode(pros::v5::MotorBrake::brake);
+    ladybrownArm.setBrakeMode(pros::v5::MotorBrake::hold);
 }
 
 void Robot15::disabled() {}

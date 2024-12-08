@@ -9,7 +9,9 @@
 namespace atum {
 class Remote : public Task {
   public:
-  Remote(pros::controller_id_e_t id, const double iDeadzone = 1.0);
+  Remote(pros::controller_id_e_t id,
+         const double iDeadzone = 1.0,
+         const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
 
   int getLTrigger();
 
@@ -30,7 +32,7 @@ class Remote : public Task {
   std::int32_t getBattery();
 
   private:
-  void backgroundTask() override;
+  TASK_BOILERPLATE();
 
   pros::Controller remote;
   const double deadzone;

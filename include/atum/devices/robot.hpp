@@ -15,10 +15,15 @@ using Routine = std::function<void()>;
             [this]() {
 #define END_ROUTINE                                                            \
   });
+#define ROBOT_BOILERPLATE()                                                    \
+  friend class Robot;                                                          \
+  void initializeRoutines() override
 
 class Robot {
   public:
   Robot() = delete;
+  Robot(const Robot &) = delete;
+  Robot(Robot &&) = delete;
 
   template <typename SpecRobot>
   Robot(SpecRobot *spec) {

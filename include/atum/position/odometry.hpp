@@ -12,17 +12,17 @@ class Odometry : public Tracker, public Task {
   Odometry(std::unique_ptr<Odometer> iForward,
            std::unique_ptr<Odometer> iSide,
            std::unique_ptr<IMU> iImu,
-           Logger::LoggerLevel iLoggerLevel = Logger::LoggerLevel::Info);
+           Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
 
   virtual Position update() override;
 
   private:
+  TASK_BOILERPLATE();
+
   Position integratePosition(inch_t dx, inch_t dy, radian_t dh);
 
   std::unique_ptr<Odometer> forward;
   std::unique_ptr<Odometer> side;
   std::unique_ptr<IMU> imu;
-
-  void backgroundTask() override;
 };
 } // namespace atum

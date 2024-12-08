@@ -3,11 +3,13 @@
 namespace atum {
 Logger::Logger(LoggerLevel iLevel) : level{iLevel} {
   // Denote new logging session.
+  logMutex.take(10);
   if(!beganLogging) {
     beganLogging = true;
     std::fstream file{logFilename, std::fstream::app};
     file << '\n' << "~~~~~~~~~~~~ BEGIN LOG ~~~~~~~~~~~~\n";
   }
+  logMutex.give();
 }
 
 void Logger::debug(const std::string &msg) {

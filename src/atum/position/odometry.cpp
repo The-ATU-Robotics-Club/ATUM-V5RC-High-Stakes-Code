@@ -6,7 +6,7 @@ Odometry::Odometry(std::unique_ptr<Odometer> iForward,
                    std::unique_ptr<IMU> iImu,
                    Logger::LoggerLevel loggerLevel) :
     Tracker(loggerLevel),
-    Task({"Odometry", TASK_PRIORITY_MAX}),
+    Task(this, loggerLevel),
     forward{std::move(iForward)},
     side{std::move(iSide)},
     imu{std::move(iImu)} {
@@ -50,10 +50,12 @@ Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
   return currentPosition;
 }
 
-void Odometry::backgroundTask() {
+TASK_DEFINITIONS_FOR(Odometry) {
+  START_TASK("Odometry Loop", TASK_PRIORITY_MAX)
   while(true) {
     update();
     wait(10_ms);
   }
+  END_TASK
 }
 } // namespace atum
