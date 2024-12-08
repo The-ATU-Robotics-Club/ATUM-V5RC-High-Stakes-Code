@@ -3,14 +3,14 @@
 namespace atum {
 void RobotPrototype::opcontrol() {
   while(true) {
-    const double forward{remote.getLStick().second};
-    const double turn{remote.getRStick().first};
+    const double forward{remote.getLStick().y};
+    const double turn{remote.getRStick().x};
     leftMotors.moveVoltage(forward + turn);
     rightMotors.moveVoltage(forward - turn);
 
-    if(remote.getHold(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_UP)) {
+    if(remote.getHold(Remote::Button::Up)) {
       climbMotors.moveVoltage(12);
-    } else if(remote.getHold(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_DOWN)) {
+    } else if(remote.getHold(Remote::Button::Down)) {
       climbMotors.moveVoltage(-12);
     } else {
       climbMotors.brake();

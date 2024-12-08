@@ -1,71 +1,56 @@
 #include "remote.hpp"
 
 namespace atum {
-Remote::Remote(const pros::controller_id_e_t id,
-               const double iDeadzone,
-               const Logger::LoggerLevel loggerLevel) :
-    Task(this, loggerLevel), remote{id}, deadzone{iDeadzone} {
+Remote::Remote(const Type type, const Logger::LoggerLevel loggerLevel) :
+    Task(this, loggerLevel),
+    remote{static_cast<pros::controller_id_e_t>(type)} {
   remote.clear();
 }
 
 int Remote::getLTrigger() {
-  if(getHold(pros::E_CONTROLLER_DIGITAL_L1)) return 1;
-  if(getHold(pros::E_CONTROLLER_DIGITAL_L2)) return -1;
+  if(getHold(Button::L1)) return 1;
+  if(getHold(Button::L2)) return -1;
   return 0;
 }
 
 int Remote::getRTrigger() {
-  if(getHold(pros::E_CONTROLLER_DIGITAL_R1)) return 1;
-  if(getHold(pros::E_CONTROLLER_DIGITAL_R2)) return -1;
+  if(getHold(Button::R1)) return 1;
+  if(getHold(Button::R2)) return -1;
   return 0;
 }
 
-std::pair<double, double> Remote::getLStick() {
+Remote::StickAxis Remote::getLStick() {
   double x{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X)};
   double y{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)};
-  if(abs(x) < deadzone) x = 0;
-  if(abs(y) < deadzone) y = 0;
-  return std::make_pair(x, y);
+  if(std::abs(x) < deadzone) x = 0;
+  if(std::abs(y) < deadzone) y = 0;
+  return {x, y};
 }
 
-std::pair<double, double> Remote::getRStick() {
+Remote::StickAxis Remote::getRStick() {
   double x{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X)};
   double y{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)};
-  if(abs(x) < deadzone) x = 0;
-  if(abs(y) < deadzone) y = 0;
-  return std::make_pair(x, y);
+  if(std::abs(x) < deadzone) x = 0;
+  if(std::abs(y) < deadzone) y = 0;
+  return {x, y};
 }
 
-bool Remote::getPress(const pros::controller_digital_e_t button) {
-  return remote.get_digital_new_press(button);
+bool Remote::getPress(const Button button) {
+  const auto prosButton = static_cast<pros::controller_digital_e_t>(button);
+  return remote.get_digital_new_press(prosButton);
 }
 
-bool Remote::getHold(const pros::controller_digital_e_t button) {
-  return remote.get_digital(button);
+bool Remote::getHold(const Button button) {
+  const auto prosButton = static_cast<pros::controller_digital_e_t>(button);
+  return remote.get_digital(prosButton);
 }
 
 void Remote::print(const std::uint8_t line, const std::string &message) {
-  switch(line) {
-    case 0:
-      row0QueueMutex.take(10);
-      if(row0Queue.size() < printQueueSize)
-        row0Queue.push(message + "                   ");
-      row0QueueMutex.give();
-      break;
-    case 1:
-      row1QueueMutex.take(10);
-      if(row1Queue.size() < printQueueSize)
-        row1Queue.push(message + "                   ");
-      row1QueueMutex.give();
-      break;
-    case 2:
-      row2QueueMutex.take(10);
-      if(row2Queue.size() < printQueueSize)
-        row2Queue.push(message + "                   ");
-      row2QueueMutex.give();
-      break;
-    default: break;
+  rowQueueMutexes[line].take(10);
+  if(rowQueues[line].size() < printQueueSize) {
+    rowQueues[line].push(message + linePadding);
   }
+  rowQueueMutexes[line].give();
 }
 
 void Remote::rumble(const std::string &pattern) {
@@ -79,31 +64,19 @@ std::int32_t Remote::getBattery() {
 TASK_DEFINITIONS_FOR(Remote) {
   START_TASK("Print Handler")
   while(true) {
-    row0QueueMutex.take(10);
-    if(row0Queue.size()) {
-      const auto output = row0Queue.front();
-      row0Queue.pop();
-      remote.set_text(0, 0, output);
+    for(std::size_t line{0}; line < 3; line++) {
+      rowQueueMutexes[line].take(10);
+      if(rowQueues[line].size()) {
+        const auto output = rowQueues[line].front();
+        rowQueues[line].pop();
+        remote.set_text(line, 0, output);
+      }
+      rowQueueMutexes[line].give();
+      wait(minimumPrintDelay);
     }
-    row0QueueMutex.give();
-    wait(75_ms);
-    row1QueueMutex.take(10);
-    if(row1Queue.size()) {
-      const auto output = row1Queue.front();
-      row1Queue.pop();
-      remote.set_text(1, 0, output);
-    }
-    row1QueueMutex.give();
-    wait(75_ms);
-    row2QueueMutex.take(10);
-    if(row2Queue.size()) {
-      const auto output = row2Queue.front();
-      row2Queue.pop();
-      remote.set_text(2, 0, output);
-    }
-    row2QueueMutex.give();
-    wait(75_ms);
   }
   END_TASK
 }
+
+const std::string Remote::linePadding{"                   "};
 } // namespace atum

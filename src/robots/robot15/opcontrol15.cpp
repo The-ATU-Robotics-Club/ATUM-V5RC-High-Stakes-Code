@@ -3,8 +3,8 @@
 namespace atum {
 void Robot15::opcontrol() {
   while(true) {
-    const double forward{remote.getLStick().second};
-    const double turn{remote.getRStick().first};
+    const double forward{remote.getLStick().y};
+    const double turn{remote.getRStick().x};
     leftMotors.moveVoltage(forward + turn);
     rightMotors.moveVoltage(forward - turn);
 
@@ -20,11 +20,11 @@ void Robot15::opcontrol() {
       default: ladybrownArm.brake(); break;
     }
 
-    if(remote.getPress(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A)) {
+    if(remote.getPress(Remote::Button::A)) {
       goalClamp.toggle();
     }
 
-    if(remote.getPress(pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_X)) {
+    if(remote.getPress(Remote::Button::X)) {
       ladybrownWrist.toggle();
     }
 

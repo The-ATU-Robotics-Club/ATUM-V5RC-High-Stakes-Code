@@ -17,7 +17,7 @@ class RobotPrototype : public Robot {
   private:
   void initializeRoutines() override;
 
-  Remote remote{pros::E_CONTROLLER_MASTER};
+  Remote remote;
   Motor leftMotors{{1, 2}, pros::v5::MotorGears::green};
   Motor rightMotors{{3, 4}, pros::v5::MotorGears::green};
   Motor climbMotors{{9, -10}, pros::v5::MotorGears::green};

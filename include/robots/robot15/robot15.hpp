@@ -16,7 +16,7 @@ class Robot15 : public Robot {
   private:
   ROBOT_BOILERPLATE();
 
-  Remote remote{pros::E_CONTROLLER_MASTER};
+  Remote remote;
   Motor leftMotors{{-7, -8, -9, 10}, pros::v5::MotorGears::blue};
   Motor rightMotors{{1, 2, 3, -4}, pros::v5::MotorGears::blue};
   Motor intake{{-5, 6}, pros::v5::MotorGears::blue};

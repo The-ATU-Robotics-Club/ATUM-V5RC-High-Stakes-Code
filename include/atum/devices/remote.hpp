@@ -9,21 +9,45 @@
 namespace atum {
 class Remote : public Task {
   public:
-  Remote(pros::controller_id_e_t id,
-         const double iDeadzone = 1.0,
+  enum class Type {
+    Master = pros::controller_id_e_t::E_CONTROLLER_MASTER,
+    Partner = pros::controller_id_e_t::E_CONTROLLER_PARTNER
+  };
+
+  enum class Button {
+    A = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_A,
+    B = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_B,
+    X = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_X,
+    Y = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_Y,
+    Up = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_UP,
+    Down = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_DOWN,
+    Left = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_LEFT,
+    Right = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_RIGHT,
+    L1 = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L1,
+    L2 = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_L2,
+    R1 = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R1,
+    R2 = pros::controller_digital_e_t::E_CONTROLLER_DIGITAL_R2
+  };
+
+  struct StickAxis {
+    double x;
+    double y;
+  };
+
+  Remote(const Type type = Type::Master,
          const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
 
   int getLTrigger();
 
   int getRTrigger();
 
-  std::pair<double, double> getLStick();
+  StickAxis getLStick();
 
-  std::pair<double, double> getRStick();
+  StickAxis getRStick();
 
-  bool getPress(pros::controller_digital_e_t button);
+  bool getPress(const Button button);
 
-  bool getHold(pros::controller_digital_e_t button);
+  bool getHold(const Button button);
 
   void print(const std::uint8_t line, const std::string &message);
 
@@ -35,14 +59,12 @@ class Remote : public Task {
   TASK_BOILERPLATE();
 
   pros::Controller remote;
-  const double deadzone;
-  std::queue<std::string> row0Queue;
-  std::queue<std::string> row1Queue;
-  std::queue<std::string> row2Queue;
-  pros::Mutex row0QueueMutex;
-  pros::Mutex row1QueueMutex;
-  pros::Mutex row2QueueMutex;
-  const double analogToVolt{maxMotorVoltage / 127.0};
-  const std::size_t printQueueSize{3}; // Three as there are three lines.
+  std::array<std::queue<std::string>, 3> rowQueues;
+  std::array<pros::Mutex, 3> rowQueueMutexes;
+  static constexpr double deadzone{1.0};
+  static constexpr double analogToVolt{maxMotorVoltage / 127.0};
+  static const std::string linePadding;
+  static constexpr std::size_t printQueueSize{3};
+  static constexpr second_t minimumPrintDelay{75_ms};
 };
 } // namespace atum
