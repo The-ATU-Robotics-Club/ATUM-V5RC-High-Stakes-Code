@@ -1,7 +1,7 @@
 #include "remote.hpp"
 
 namespace atum {
-Remote::Remote(const Type type, const Logger::LoggerLevel loggerLevel) :
+Remote::Remote(const Type type, const Logger::Level loggerLevel) :
     Task(this, loggerLevel),
     remote{static_cast<pros::controller_id_e_t>(type)} {
   remote.clear();

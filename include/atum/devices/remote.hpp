@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../devices/motor.hpp"
 #include "../time/task.hpp"
 #include "../time/time.hpp"
 #include "../utility/units.hpp"
@@ -35,7 +36,7 @@ class Remote : public Task {
   };
 
   Remote(const Type type = Type::Master,
-         const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
+         const Logger::Level loggerLevel = Logger::Level::Info);
 
   int getLTrigger();
 
@@ -62,7 +63,7 @@ class Remote : public Task {
   std::array<std::queue<std::string>, 3> rowQueues;
   std::array<pros::Mutex, 3> rowQueueMutexes;
   static constexpr double deadzone{1.0};
-  static constexpr double analogToVolt{maxMotorVoltage / 127.0};
+  static constexpr double analogToVolt{Motor::maxVoltage / 127.0};
   static const std::string linePadding;
   static constexpr std::size_t printQueueSize{3};
   static constexpr second_t minimumPrintDelay{75_ms};

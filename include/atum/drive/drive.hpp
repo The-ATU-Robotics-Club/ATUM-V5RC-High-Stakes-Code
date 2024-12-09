@@ -1,5 +1,6 @@
 #pragma once
 
+#include "../devices/motor.hpp"
 #include "../position/tracker.hpp"
 #include "../utility/logger.hpp"
 #include "../utility/misc.hpp"

@@ -1,41 +1,36 @@
 #include "pid.hpp"
 
 namespace atum {
-PID::PID(const Parameters &iParams) : params{iParams} {};
+PID::PID(const Parameters &iParams, const Logger::Level loggerLevel) :
+    Controller{loggerLevel}, params{iParams} {};
 
 double PID::getOutput(const double error) {
   const double P{params.kP * error};
-  if(std::abs(error) <= params.threshI)
-    I += params.kI * error;
-  else
-    I = 0;
-  if(std::signbit(error) != std::signbit(prevError)) I = 0.0;
-  I = std::clamp(I, params.constraints.first, params.constraints.second);
   const double D{params.kD * (error - prevError)};
-  prevError = error;
+  updateI(error); // Updates prevError as side effect, so must be after D.
+  if(params.ffScaling) {
+    logger.warn("Feedforward scaling enabled, but not applied.");
+  }
   output = P + I + D + params.ff;
   output =
       std::clamp(output, params.constraints.first, params.constraints.second);
-
-  return output;
+  return Controller::getOutput(); // Use getOutput() logging purposes.
 };
 
 double PID::getOutput(const double state, const double reference) {
   const double error{reference - state};
   const double P{params.kP * error};
-  if(std::abs(error) <= params.threshI)
-    I += params.kI * error;
-  else
-    I = 0;
-  if(std::signbit(error) != std::signbit(prevError)) I = 0.0;
-  prevError = error;
-  I = std::clamp(I, params.constraints.first, params.constraints.second);
+  updateI(error);
   const double D{params.kD * (prevState - state)};
   prevState = state;
-  output = P + I + D + params.ff * reference;
+  if(params.ffScaling) {
+    output = P + I + D + params.ff * reference;
+  } else {
+    output = P + I + D + params.ff;
+  }
   output =
       std::clamp(output, params.constraints.first, params.constraints.second);
-  return output;
+  return Controller::getOutput(); // Use getOutput() logging purposes.
 };
 
 void PID::reset() {
@@ -46,5 +41,18 @@ void PID::reset() {
 
 PID::Parameters PID::getParams() const {
   return params;
+}
+
+void PID::updateI(const double error) {
+  if(std::abs(error) <= params.threshI) {
+    I += params.kI * error;
+  } else {
+    I = 0;
+  }
+  if(std::signbit(error) != std::signbit(prevError)) {
+    I = 0.0;
+  }
+  prevError = error;
+  I = std::clamp(I, params.constraints.first, params.constraints.second);
 }
 }; // namespace atum

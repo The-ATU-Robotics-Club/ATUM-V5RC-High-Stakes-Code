@@ -37,7 +37,7 @@ class Task {
 
   template <typename TaskHandler>
   Task(TaskHandler *handler,
-       const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info) :
+       const Logger::Level loggerLevel = Logger::Level::Info) :
       taskLogger{loggerLevel} {
     handler->prepBackgroundTasks();
     taskLogger.debug("Tasks associated with " + handler->getHandlerName() +

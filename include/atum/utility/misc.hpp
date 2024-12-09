@@ -15,8 +15,6 @@ static constexpr int ledBlue{0x0000BB};
 static constexpr int brainScreenWidth{480};
 static constexpr int brainScreenHeight{240};
 
-constexpr double maxMotorVoltage{12};
-
 template <typename T>
 T average(const std::vector<T> &items) {
   if(items.empty()) return T{0};

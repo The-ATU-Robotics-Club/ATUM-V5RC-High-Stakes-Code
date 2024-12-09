@@ -1,21 +1,27 @@
 #include "slewRate.hpp"
 
 namespace atum {
-SlewRate::SlewRate(const std::pair<double, double> &rates) :
-    decRate{std::abs(rates.first)}, incRate{std::abs(rates.second)} {}
+SlewRate::SlewRate(const double maxDecRate,
+                   const double maxIncRate,
+                   const Logger::Level loggerLevel) :
+    decRate{std::abs(maxDecRate)},
+    incRate{std::abs(maxIncRate)},
+    logger{loggerLevel} {}
 
-SlewRate::SlewRate(const double rate) :
-    decRate{std::abs(rate)}, incRate{std::abs(rate)} {}
+SlewRate::SlewRate(const double rate, const Logger::Level loggerLevel) :
+    decRate{std::abs(rate)}, incRate{std::abs(rate)}, logger{loggerLevel} {}
 
 double SlewRate::slew(const double desired) {
-  if(desired > output)
+  if(desired > output) {
     output = std::min(output + incRate, desired);
-  else
+  } else {
     output = std::max(output - decRate, desired);
-  return output;
+  }
+  return getOutput(); // Use getOutput() logging purposes.
 }
 
-double SlewRate::getOutput() const {
+double SlewRate::getOutput() {
+  logger.debug("Output of slew rate is " + std::to_string(output));
   return output;
 }
 } // namespace atum

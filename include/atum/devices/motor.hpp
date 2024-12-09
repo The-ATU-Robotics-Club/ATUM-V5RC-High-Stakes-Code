@@ -8,6 +8,12 @@ namespace atum {
 class Motor {
   public:
   /**
+   * @brief The max voltage that can be applied to a motor.
+   *
+   */
+  static constexpr double maxVoltage{12};
+
+  /**
    * @brief Construct a new Motor object. Acts as a wrapper around potentially
    * several motors of the same gearset.
    *
@@ -17,7 +23,7 @@ class Motor {
    */
   Motor(const std::vector<std::int8_t> ports,
         const pros::v5::MotorGears gearset,
-        const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
+        const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Sets the target velocity of the motors.

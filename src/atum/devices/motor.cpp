@@ -3,7 +3,7 @@
 namespace atum {
 Motor::Motor(const std::vector<std::int8_t> ports,
              const pros::v5::MotorGears gearset,
-             const Logger::LoggerLevel loggerLevel) :
+             const Logger::Level loggerLevel) :
     logger{loggerLevel} {
   for(std::int8_t port : ports) {
     motors.push_back(std::make_unique<pros::Motor>(
@@ -132,7 +132,7 @@ void Motor::motorCheck() {
       motors.erase(std::next(motors.begin(), i));
     } else if(motors[i]->is_over_temp()) {
       logger.warn("The motor on port " + port + " is overheating.");
-    } 
+    }
   }
 }
 

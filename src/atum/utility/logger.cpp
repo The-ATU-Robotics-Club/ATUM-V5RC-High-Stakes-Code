@@ -1,7 +1,7 @@
 #include "logger.hpp"
 
 namespace atum {
-Logger::Logger(LoggerLevel iLevel) : level{iLevel} {
+Logger::Logger(Level iLevel) : level{iLevel} {
   // Denote new logging session.
   logMutex.take(10);
   if(!beganLogging) {
@@ -13,33 +13,33 @@ Logger::Logger(LoggerLevel iLevel) : level{iLevel} {
 }
 
 void Logger::debug(const std::string &msg) {
-  log("DEBUG", msg, LoggerLevel::Debug);
+  log("DEBUG", msg, Level::Debug);
 }
 
 void Logger::info(const std::string &msg) {
   if(alreadyLogged(msg)) return;
-  log("INFO", msg, LoggerLevel::Info);
+  log("INFO", msg, Level::Info);
 }
 
 void Logger::warn(const std::string &msg) {
   if(alreadyLogged(msg)) return;
-  log("WARN", msg, LoggerLevel::Warn);
+  log("WARN", msg, Level::Warn);
 }
 
 void Logger::error(const std::string &msg) {
   if(alreadyLogged(msg)) return;
-  log("ERROR", msg, LoggerLevel::Error);
+  log("ERROR", msg, Level::Error);
 }
 
 void Logger::log(const std::string &prefix,
                  const std::string &msg,
-                 LoggerLevel msgLevel) {
+                 Level msgLevel) {
   logMutex.take(10);
   if(level < msgLevel) return;
   std::stringstream fmtMsg{};
   fmtMsg << std::setw(5) << prefix << std::setw(0) << ": " + msg << '\n';
   std::cout << fmtMsg.str();
-  if(msgLevel <= LoggerLevel::Info) {
+  if(msgLevel <= Level::Info) {
     std::fstream file{logFilename, std::fstream::app};
     file << fmtMsg.str();
     GUI::writeToLog(fmtMsg.str());

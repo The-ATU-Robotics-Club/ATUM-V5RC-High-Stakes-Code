@@ -4,7 +4,7 @@ namespace atum {
 Odometry::Odometry(std::unique_ptr<Odometer> iForward,
                    std::unique_ptr<Odometer> iSide,
                    std::unique_ptr<IMU> iImu,
-                   Logger::LoggerLevel loggerLevel) :
+                   Logger::Level loggerLevel) :
     Tracker(loggerLevel),
     Task(this, loggerLevel),
     forward{std::move(iForward)},

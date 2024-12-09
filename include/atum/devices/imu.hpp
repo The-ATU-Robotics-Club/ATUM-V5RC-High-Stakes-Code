@@ -9,7 +9,7 @@ class IMU {
   public:
   IMU(std::vector<std::uint8_t> ports,
       const bool iReversed = -1,
-      Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
+      Logger::Level loggerLevel = Logger::Level::Info);
 
   void setHeading(degree_t heading);
 

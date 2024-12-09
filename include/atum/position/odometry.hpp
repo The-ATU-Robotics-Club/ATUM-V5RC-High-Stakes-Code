@@ -12,7 +12,7 @@ class Odometry : public Tracker, public Task {
   Odometry(std::unique_ptr<Odometer> iForward,
            std::unique_ptr<Odometer> iSide,
            std::unique_ptr<IMU> iImu,
-           Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
+           Logger::Level loggerLevel = Logger::Level::Info);
 
   virtual Position update() override;
 

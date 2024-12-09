@@ -1,7 +1,8 @@
 #include "tbh.hpp"
 
 namespace atum {
-TBH::TBH(const Parameters &iParams) : params{iParams} {}
+TBH::TBH(const Parameters &iParams, const Logger::Level loggerLevel) :
+    Controller{loggerLevel}, params{iParams} {}
 
 double TBH::getOutput(const double error) {
   output += error * params.kTBH;
@@ -14,12 +15,14 @@ double TBH::getOutput(const double error) {
   outputAtReference = output;
   output =
       std::clamp(output, params.constraints.first, params.constraints.second);
-  return output;
+  return Controller::getOutput(); // Use getOutput() logging purposes.
 }
 
 double TBH::getOutput(const double state, const double reference) {
   const double error{reference - state};
-  if(reference != prevReference) reset(reference, error);
+  if(reference != prevReference) {
+    reset(reference, error);
+  }
   return getOutput(error);
 }
 

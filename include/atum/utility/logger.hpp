@@ -15,14 +15,14 @@ class Logger {
    * @brief Various levels for logging. Controls what messages are logged.
    *
    */
-  enum class LoggerLevel { Debug = 4, Info = 3, Warn = 2, Error = 1, Off = 0 };
+  enum class Level { Debug = 4, Info = 3, Warn = 2, Error = 1, Off = 0 };
 
   /**
    * @brief Constructs a new Logger object.
    *
    * @param iLevel
    */
-  Logger(const LoggerLevel iLevel = LoggerLevel::Info);
+  Logger(const Level iLevel = Level::Info);
 
   /**
    * @brief Log message if logger level is debug.
@@ -64,9 +64,7 @@ class Logger {
    * @param msg
    * @param msgLevel
    */
-  void log(const std::string &prefix,
-           const std::string &msg,
-           LoggerLevel msgLevel);
+  void log(const std::string &prefix, const std::string &msg, Level msgLevel);
 
   /**
    * @brief Checks if the message has already been printed.
@@ -81,7 +79,7 @@ class Logger {
   static bool beganLogging;
   static pros::Mutex logMutex;
 
-  const LoggerLevel level;
+  const Level level;
 
   std::vector<std::string> logs;
 };

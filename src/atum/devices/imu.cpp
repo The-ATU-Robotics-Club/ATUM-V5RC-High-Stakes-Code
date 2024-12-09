@@ -3,7 +3,7 @@
 namespace atum {
 IMU::IMU(std::vector<std::uint8_t> ports,
          const bool iReversed,
-         Logger::LoggerLevel loggerLevel) :
+         Logger::Level loggerLevel) :
     reversed{iReversed}, logger{loggerLevel} {
   for(std::uint8_t port : ports) {
     imus.push_back(std::make_unique<pros::IMU>(port));

@@ -7,7 +7,7 @@
 namespace atum {
 class Tracker {
   public:
-  Tracker(const Logger::LoggerLevel loggerLevel = Logger::LoggerLevel::Info);
+  Tracker(const Logger::Level loggerLevel = Logger::Level::Info);
 
   virtual Position update() = 0;
 
