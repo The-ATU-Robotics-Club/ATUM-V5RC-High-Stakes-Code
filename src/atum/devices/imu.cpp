@@ -5,25 +5,51 @@ IMU::IMU(std::vector<std::uint8_t> ports,
          const bool iReversed,
          Logger::Level loggerLevel) :
     reversed{iReversed}, logger{loggerLevel} {
-  for(std::uint8_t port : ports) {
-    imus.push_back(std::make_unique<pros::IMU>(port));
-    if(pros::c::registry_get_plugged_type(port - 1) !=
-       pros::c::v5_device_e_t::E_DEVICE_IMU) {
-      logger.error("IMU at port " + std::to_string(port) +
-                   " could not be initialized!");
-      imus.erase(imus.end());
+  for(const std::uint8_t port : ports) {
+    pros::v5::Device device{port};
+    if(device.is_installed()) {
+      imus.push_back(std::make_unique<pros::IMU>(port));
+      logger.debug("IMU found on port " + std::to_string(device.get_port()) +
+                   ".");
+    } else {
+      logger.warn("IMU at port " + std::to_string(port) +
+                  " could not be initialized!");
     }
   }
-  for(auto &imu : imus) imu->set_data_rate(5);
-  logger.info("IMU is constructed!");
-  while(imus.size() && imus.back()->is_calibrating()) pros::delay(10);
-  logger.info("IMU is calibrated!");
+  if(!imus.size()) {
+    logger.error("No IMUs found!");
+  }
+  initializeIMUs();
+}
+
+IMU::IMU(const std::size_t minimumAmount,
+         const bool iReversed,
+         Logger::Level loggerLevel) :
+    reversed{iReversed}, logger{loggerLevel} {
+  for(const pros::v5::Device device : pros::v5::Device::get_all_devices()) {
+    if(device.get_plugged_type() == pros::v5::DeviceType::imu) {
+      imus.push_back(std::make_unique<pros::IMU>(device.get_port()));
+      logger.debug("IMU found on port " + std::to_string(device.get_port()) +
+                   ".");
+    }
+  }
+  if(!imus.size()) {
+    logger.error("No IMUs found!");
+  } else if(imus.size() < minimumAmount) {
+    logger.warn("Number of IMUs found lower than minimum!");
+  }
+  initializeIMUs();
 }
 
 void IMU::setHeading(degree_t heading) {
-  if(reversed) heading *= -1;
-  for(auto &imu : imus) imu->set_rotation(getValueAs<degree_t>(heading));
+  if(reversed) {
+    heading *= -1;
+  }
+  for(auto &imu : imus) {
+    imu->set_rotation(getValueAs<degree_t>(heading));
+  }
   previous = heading;
+  logger.debug("IMU heading set to " + to_string(heading) + ".");
 }
 
 degree_t IMU::getHeading() {
@@ -31,7 +57,7 @@ degree_t IMU::getHeading() {
   for(auto &imu : imus) readings.push_back(degree_t{imu->get_rotation()});
   degree_t heading{average(readings)};
   if(reversed) heading *= -1;
-  logger.debug("IMU Rotation: " + to_string(heading));
+  logger.debug("IMU is reading " + to_string(heading) + ".");
   return heading;
 }
 
@@ -39,6 +65,19 @@ degree_t IMU::getTraveled() {
   const degree_t current{getHeading()};
   const degree_t dh{current - previous};
   previous = current;
+  logger.debug("IMU has traveled " + to_string(dh) + " since last called.");
   return dh;
+}
+
+void IMU::initializeIMUs() {
+  for(const auto &imu : imus) {
+    imu->set_data_rate(5); // Increase refresh rate of IMUs.
+  }
+  logger.info("IMU is constructed!");
+  while(imus.size() && imus.back()->is_calibrating()) {
+    wait(10_ms);
+  }
+  logger.info("IMU is calibrated!");
+  
 }
 } // namespace atum
