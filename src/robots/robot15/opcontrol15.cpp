@@ -9,9 +9,9 @@ void Robot15::opcontrol() {
     rightMotors.moveVoltage(forward - turn);
 
     switch(remote.getRTrigger()) {
-      case -1: intake.moveVoltage(-12); break;
-      case 1: intake.moveVoltage(12); break;
-      default: intake.brake(); break;
+      case -1: intake->outtake(); break;
+      case 1: intake->intake(); break;
+      default: intake->stop(); break;
     }
 
     switch(remote.getLTrigger()) {

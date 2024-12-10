@@ -5,10 +5,9 @@
 #include <fstream>
 #include <numeric>
 
-extern "C" pros::c::v5_device_e_t
-    pros::c::registry_get_plugged_type(uint8_t port);
-
 namespace atum {
+using PortsList = std::vector<std::int8_t>;
+
 static constexpr int ledRed{0xAA0000};
 static constexpr int ledBlue{0x0000BB};
 
