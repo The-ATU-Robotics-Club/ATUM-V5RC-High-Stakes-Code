@@ -30,6 +30,7 @@ class GUI {
   static void addMapPoint(const std::pair<int, int> point,
                           const SeriesColor seriesColor);
   static void clearMapSeries(const SeriesColor seriesColor);
+  static void errorScreen();
 
   private:
   struct GUISize {
@@ -121,6 +122,7 @@ class GUI {
   static lv_obj_t *logTextLabel;
   static lv_obj_t *logSwitch;
   static lv_obj_t *graphChart;
+  static lv_obj_t *atumLogo;
   static std::array<lv_chart_series_t *, 3> graphSeries;
   static std::array<double, 3> graphSeriesRanges;
   static lv_obj_t *mapChart;

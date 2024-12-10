@@ -16,7 +16,10 @@ using Routine = std::function<void()>;
 #define END_ROUTINE                                                            \
   });
 #define ROBOT_BOILERPLATE()                                                    \
+  public:                                                                      \
   friend class Robot;                                                          \
+                                                                               \
+  private:                                                                     \
   void initializeRoutines() override
 
 class Robot {
@@ -25,7 +28,7 @@ class Robot {
   Robot(const Robot &) = delete;
   Robot(Robot &&) = delete;
 
-  template <typename SpecRobot>
+  template <class SpecRobot>
   Robot(SpecRobot *spec) {
     spec->initializeRoutines();
     GUI::startLoading(spec->getRoutineNames());

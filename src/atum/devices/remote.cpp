@@ -2,9 +2,10 @@
 
 namespace atum {
 Remote::Remote(const Type type, const Logger::Level loggerLevel) :
-    Task(this, loggerLevel),
+    Task{this, loggerLevel},
     remote{static_cast<pros::controller_id_e_t>(type)} {
   remote.clear();
+  startBackgroundTasks();
 }
 
 int Remote::getLTrigger() {

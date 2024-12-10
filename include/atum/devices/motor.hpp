@@ -23,12 +23,12 @@ class Motor {
    * logging messages.
    *
    * @param ports
-   * @param gearset
+   * @param iGearset
    * @param iName
    * @param loggerLevel
    */
   Motor(const std::vector<std::int8_t> ports,
-        const pros::v5::MotorGears gearset,
+        const pros::v5::MotorGears iGearset,
         const std::string &iName = "",
         const Logger::Level loggerLevel = Logger::Level::Info);
 
@@ -145,11 +145,19 @@ class Motor {
   void motorCheck();
 
   private:
-  void getName();
-  
+  /**
+   * @brief Helper for logging, formats the name of the motor if given with
+   * the port.
+   *
+   * @param port
+   * @return std::string
+   */
+  std::string getName(const std::int8_t port);
 
-  std::vector<std::unique_ptr<pros::Motor>> motors;
+  const pros::v5::MotorGears gearset;
   const std::string name;
+  std::vector<std::unique_ptr<pros::v5::Motor>> motors;
+  std::vector<char> enabled; // Avoid vector<bool>. 
 
   Logger logger;
 };

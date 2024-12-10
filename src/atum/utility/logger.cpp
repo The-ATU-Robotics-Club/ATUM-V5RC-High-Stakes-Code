@@ -27,6 +27,7 @@ void Logger::warn(const std::string &msg) {
 }
 
 void Logger::error(const std::string &msg) {
+  GUI::errorScreen();
   if(alreadyLogged(msg)) return;
   log("ERROR", msg, Level::Error);
 }

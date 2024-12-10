@@ -15,7 +15,7 @@ void Task::startBackgroundTasks() {
 
 void Task::stopBackgroundTasks() {
   tasks.clear();
-  taskLogger.info("Tasks associated with " + getHandlerName() +
+  taskLogger.info("Tasks associated with " + handlerName +
                   " have been stopped.");
 }
 } // namespace atum

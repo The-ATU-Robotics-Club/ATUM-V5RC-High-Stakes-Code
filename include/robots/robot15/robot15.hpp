@@ -4,6 +4,8 @@
 
 namespace atum {
 class Robot15 : public Robot {
+  ROBOT_BOILERPLATE();
+
   public:
   Robot15();
 
@@ -12,14 +14,11 @@ class Robot15 : public Robot {
   void opcontrol() override;
 
   private:
-  ROBOT_BOILERPLATE();
-
-  Remote remote;
-  DistanceSensor goalSensor = DistanceSensor{2_in};
+  Remote remote{Remote::Type::Master, Logger::Level::Debug};
   Motor leftMotors{{-7, -8, -9, 10}, pros::v5::MotorGears::blue};
   Motor rightMotors{{1, 2, 3, -4}, pros::v5::MotorGears::blue};
   Motor intake{{-5, 6}, pros::v5::MotorGears::blue};
-  Motor ladybrownArm{{15, -16}, pros::v5::MotorGears::green};
+  Motor ladybrownArm{{15, -16}, pros::v5::MotorGears::green, "ladybrown", Logger::Level::Debug};
   pros::adi::Pneumatics ladybrownWrist{'B', false};
   pros::adi::Pneumatics goalClamp{'A', false};
 };

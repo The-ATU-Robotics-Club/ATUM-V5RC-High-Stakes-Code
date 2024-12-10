@@ -9,6 +9,8 @@
 
 namespace atum {
 class Remote : public Task {
+  TASK_BOILERPLATE();
+
   public:
   enum class Type {
     Master = pros::controller_id_e_t::E_CONTROLLER_MASTER,
@@ -57,8 +59,6 @@ class Remote : public Task {
   std::int32_t getBattery();
 
   private:
-  TASK_BOILERPLATE();
-
   pros::Controller remote;
   std::array<std::queue<std::string>, 3> rowQueues;
   std::array<pros::Mutex, 3> rowQueueMutexes;

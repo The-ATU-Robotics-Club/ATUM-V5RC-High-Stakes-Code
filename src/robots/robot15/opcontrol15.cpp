@@ -28,6 +28,13 @@ void Robot15::opcontrol() {
       ladybrownWrist.toggle();
     }
 
+    remote.print(
+        0,
+        "Brain: " +
+            std::to_string(static_cast<int>(pros::battery::get_capacity())) +
+            "%");
+    remote.print(1, "Remote: " + std::to_string(remote.getBattery()) + "%");
+
     wait(10_ms);
   }
 }

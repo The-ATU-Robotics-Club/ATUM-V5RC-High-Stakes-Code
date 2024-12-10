@@ -116,6 +116,10 @@ void GUI::clearMapSeries(const SeriesColor seriesColor) {
   lv_chart_set_all_value(mapChart, series, LV_CHART_POINT_NONE);
 }
 
+void GUI::errorScreen() {
+  lv_img_set_src(atumLogo, &kelly); // Easter egg Randy Kelly!
+}
+
 void GUI::addStyles(lv_obj_t *obj,
                     const std::vector<lv_style_t *> &styles,
                     const lv_style_selector_t selector) {
@@ -277,16 +281,8 @@ void GUI::loadingScreenSetup() {
 }
 
 void GUI::homeScreenSetup() {
-  lv_obj_t *atumLogo = lv_img_create(homeScreen);
-
-  srand(pros::micros());
-  const int rng = rand() % 15 + 1;
-  std::cout << rng << '\n';
-  if(rng == 1) {
-    lv_img_set_src(atumLogo, &kelly); // Easter egg Randy Kelly!
-  } else {
-    lv_img_set_src(atumLogo, &atumimg);
-  }
+  atumLogo = lv_img_create(homeScreen);
+  lv_img_set_src(atumLogo, &atumimg);
 
   lv_obj_set_style_opa(atumLogo, LV_OPA_COVER, LV_PART_MAIN);
   lv_obj_center(atumLogo);
@@ -541,6 +537,7 @@ lv_obj_t *GUI::colorSwitch;
 lv_obj_t *GUI::logTextLabel;
 lv_obj_t *GUI::logSwitch;
 lv_obj_t *GUI::graphChart;
+lv_obj_t *GUI::atumLogo;
 std::array<lv_chart_series_t *, 3> GUI::graphSeries;
 std::array<double, 3> GUI::graphSeriesRanges{graphRange,
                                              graphRange,
