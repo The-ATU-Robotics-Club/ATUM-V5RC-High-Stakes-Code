@@ -3,6 +3,7 @@
 #include "../utility/logger.hpp"
 #include "../utility/units.hpp"
 
+
 namespace atum {
 class DistanceSensor {
   public:
@@ -10,28 +11,28 @@ class DistanceSensor {
    * @brief Constructs a new distance sensor with the given port.
    *
    * @param port
-   * @param threshold
+   * @param iThreshold
    * @param loggerLevel
    */
   DistanceSensor(const std::int8_t port,
-                 const inch_t threshold = 0_in,
+                 const millimeter_t iThreshold = 0_mm,
                  const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Constructs a new distance sensor by finding its port dynamically.
    *
-   * @param threshold
+   * @param iThreshold
    * @param loggerLevel
    */
-  DistanceSensor(const inch_t threshold = 0_in,
+  DistanceSensor(const millimeter_t iThreshold = 0_mm,
                  const Logger::Level loggerLevel = Logger::Level::Info);
   
   /**
    * @brief Returns the current reading of the distance sensor.
    *
-   * @return inch_t
+   * @return millimeter_t
    */
-  inch_t getDistance();
+  millimeter_t getDistance();
 
   /**
    * @brief Returns true if detected object is within the given
@@ -43,7 +44,9 @@ class DistanceSensor {
   bool closeTo();
 
   private:
+  static constexpr int32_t noObjectDistance{9999};
   std::unique_ptr<pros::Distance> distanceSensor;
   Logger logger;
+  const millimeter_t threshold;
 };
 } // namespace atum

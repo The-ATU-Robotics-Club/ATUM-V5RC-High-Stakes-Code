@@ -15,6 +15,7 @@ class Robot15 : public Robot {
   ROBOT_BOILERPLATE();
 
   Remote remote;
+  DistanceSensor goalSensor = DistanceSensor{2_in};
   Motor leftMotors{{-7, -8, -9, 10}, pros::v5::MotorGears::blue};
   Motor rightMotors{{1, 2, 3, -4}, pros::v5::MotorGears::blue};
   Motor intake{{-5, 6}, pros::v5::MotorGears::blue};

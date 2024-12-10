@@ -146,6 +146,7 @@ class Motor {
 
   private:
   void getName();
+  
 
   std::vector<std::unique_ptr<pros::Motor>> motors;
   const std::string name;
