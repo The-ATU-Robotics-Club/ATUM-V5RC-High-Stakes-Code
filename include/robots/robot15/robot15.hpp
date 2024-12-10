@@ -1,8 +1,6 @@
 #pragma once
 
-#include "atum/devices/motor.hpp"
-#include "atum/devices/remote.hpp"
-#include "atum/devices/robot.hpp"
+#include "atum/atum.hpp"
 
 namespace atum {
 class Robot15 : public Robot {

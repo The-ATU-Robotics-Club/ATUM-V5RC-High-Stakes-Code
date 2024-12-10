@@ -3,8 +3,9 @@
 namespace atum {
 Motor::Motor(const std::vector<std::int8_t> ports,
              const pros::v5::MotorGears gearset,
+             const std::string &iName,
              const Logger::Level loggerLevel) :
-    logger{loggerLevel} {
+    name{iName}, logger{loggerLevel} {
   for(std::int8_t port : ports) {
     motors.push_back(std::make_unique<pros::Motor>(
         abs(port), gearset, pros::v5::MotorEncoderUnits::degrees));

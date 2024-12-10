@@ -2,7 +2,9 @@
 
 namespace atum {
 PID::PID(const Parameters &iParams, const Logger::Level loggerLevel) :
-    Controller{loggerLevel}, params{iParams} {};
+    Controller{loggerLevel}, params{iParams} {
+  logger.debug("PID controller is constructed!");
+};
 
 double PID::getOutput(const double error) {
   const double P{params.kP * error};

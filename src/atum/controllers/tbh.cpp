@@ -2,7 +2,9 @@
 
 namespace atum {
 TBH::TBH(const Parameters &iParams, const Logger::Level loggerLevel) :
-    Controller{loggerLevel}, params{iParams} {}
+    Controller{loggerLevel}, params{iParams} {
+  logger.debug("TBH controller is constructed!");
+}
 
 double TBH::getOutput(const double error) {
   output += error * params.kTBH;

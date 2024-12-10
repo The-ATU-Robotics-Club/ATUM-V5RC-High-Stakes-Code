@@ -6,7 +6,9 @@ SlewRate::SlewRate(const double maxDecRate,
                    const Logger::Level loggerLevel) :
     decRate{std::abs(maxDecRate)},
     incRate{std::abs(maxIncRate)},
-    logger{loggerLevel} {}
+    logger{loggerLevel} {
+  logger.debug("Slew rate is constructed!");
+}
 
 SlewRate::SlewRate(const double rate, const Logger::Level loggerLevel) :
     decRate{std::abs(rate)}, incRate{std::abs(rate)}, logger{loggerLevel} {}

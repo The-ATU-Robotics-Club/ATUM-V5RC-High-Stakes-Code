@@ -5,6 +5,11 @@
 #include "../utility/units.hpp"
 
 namespace atum {
+/**
+ * @brief A wrapper around potentially several motors to help with
+ * common actions (averaging readings) and perform logging.
+ *
+ */
 class Motor {
   public:
   /**
@@ -14,15 +19,17 @@ class Motor {
   static constexpr double maxVoltage{12};
 
   /**
-   * @brief Construct a new Motor object. Acts as a wrapper around potentially
-   * several motors of the same gearset.
+   * @brief Construct a new Motor object. Providing a name will give better
+   * logging messages.
    *
    * @param ports
    * @param gearset
+   * @param iName
    * @param loggerLevel
    */
   Motor(const std::vector<std::int8_t> ports,
         const pros::v5::MotorGears gearset,
+        const std::string &iName = "",
         const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -138,7 +145,10 @@ class Motor {
   void motorCheck();
 
   private:
+  void getName();
+
   std::vector<std::unique_ptr<pros::Motor>> motors;
+  const std::string name;
 
   Logger logger;
 };
