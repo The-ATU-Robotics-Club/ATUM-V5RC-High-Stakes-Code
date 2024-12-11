@@ -10,7 +10,8 @@ Robot15::Robot15() : Robot{this} {
   intakeParams.jamVelocity = 50_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.1_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
-  intake = std::make_unique<Intake>(std::move(intakeMtr), intakeParams, Logger::Level::Debug);
+  intake = std::make_unique<Intake>(
+      std::move(intakeMtr), intakeParams, Logger::Level::Debug);
 }
 
 void Robot15::disabled() {

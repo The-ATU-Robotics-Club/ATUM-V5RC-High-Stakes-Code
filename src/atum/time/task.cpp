@@ -2,6 +2,10 @@
 
 namespace atum {
 void Task::startBackgroundTasks() {
+  // If the tasks have already started, don't try to start them again.
+  if(tasks.size()) {
+    return;
+  }
   for(TaskParams params : taskParams) {
     auto task = std::make_unique<pros::Task>(params.taskFn,
                                              params.priority,

@@ -17,7 +17,8 @@ void initialize() {
     case prototypeID: robot = std::make_unique<atum::RobotPrototype>(); break;
     case a15ID: robot = std::make_unique<atum::Robot15>(); break;
   }
-  atum::wait(0.5_s); // Temporary wait for testing loading screen.
+  atum::wait(0.5_s); // Basic wait for VEX OS to start up.
+  robot->disabled(); // Make sure disabled has atleast ran once.
   logger.info("Initialization finished.");
   atum::GUI::finishLoading();
 }
