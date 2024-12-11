@@ -7,7 +7,7 @@ IMU::IMU(std::vector<std::uint8_t> ports,
     reversed{iReversed}, logger{loggerLevel} {
   for(const std::uint8_t port : ports) {
     pros::v5::Device device{port};
-    if(device.is_installed()) {
+    if(device.get_plugged_type() == pros::DeviceType::imu) {
       imus.push_back(std::make_unique<pros::IMU>(port));
       logger.debug("IMU found on port " + std::to_string(device.get_port()) +
                    ".");
@@ -26,17 +26,16 @@ IMU::IMU(const std::size_t minimumAmount,
          const bool iReversed,
          Logger::Level loggerLevel) :
     reversed{iReversed}, logger{loggerLevel} {
-  for(const pros::v5::Device device : pros::v5::Device::get_all_devices()) {
-    if(device.get_plugged_type() == pros::v5::DeviceType::imu) {
-      imus.push_back(std::make_unique<pros::IMU>(device.get_port()));
-      logger.debug("IMU found on port " + std::to_string(device.get_port()) +
-                   ".");
-    }
-  }
-  if(!imus.size()) {
+  const auto rawIMUs{pros::Distance::get_all_devices()};
+  if(!rawIMUs.size()) {
     logger.error("No IMUs found!");
+    return;
   } else if(imus.size() < minimumAmount) {
     logger.warn("Number of IMUs found lower than minimum!");
+  }
+  for(auto imu : rawIMUs) {
+    imus.push_back(std::make_unique<pros::IMU>(imu.get_port()));
+    logger.debug("IMU found on port " + std::to_string(imu.get_port()) + ".");
   }
   initializeIMUs();
 }
@@ -78,6 +77,5 @@ void IMU::initializeIMUs() {
     wait(10_ms);
   }
   logger.info("IMU is calibrated!");
-  
 }
 } // namespace atum

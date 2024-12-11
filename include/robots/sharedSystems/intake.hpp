@@ -30,10 +30,12 @@ class Intake : public Task {
    * @brief Constructs a new Intake object with the provided parameters.
    *
    * @param iMtr
+   * @param iColorSensor
    * @param iParams
    * @param loggerLevel
    */
   Intake(std::unique_ptr<Motor> iMtr,
+         std::unique_ptr<ColorSensor> iColorSensor,
          const Parameters &iParams,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
@@ -64,12 +66,28 @@ class Intake : public Task {
   void setAntiJam(const bool iAntiJamEnabled);
 
   private:
-  enum class IntakeState { Idle, Intaking, Outtaking, Jammed };
+  /**
+   * @brief The various states that the intake can be in.
+   *
+   */
+  enum class IntakeState { Idle, Intaking, Outtaking, Jammed, Sorting };
+
+  void intakeMacro();
+
+  /**
+   * @brief Changes the state and sets the previous state.
+   *
+   * @param newState
+   */
+  void changeState(const IntakeState newState);
 
   std::unique_ptr<Motor> mtr;
+  std::unique_ptr<ColorSensor> colorSensor;
   Logger logger;
   Parameters params;
   bool antiJamEnabled{true};
+  ColorSensor::Color sortOutColor{ColorSensor::Color::Red};
   IntakeState state{IntakeState::Idle};
+  IntakeState previousState{IntakeState::Idle};
 };
 } // namespace atum

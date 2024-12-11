@@ -27,15 +27,15 @@ void Logger::warn(const std::string &msg) {
 }
 
 void Logger::error(const std::string &msg) {
-  GUI::errorScreen();
   if(alreadyLogged(msg)) return;
+  GUI::errorScreen();
   log("ERROR", msg, Level::Error);
 }
 
 void Logger::log(const std::string &prefix,
                  const std::string &msg,
                  Level msgLevel) {
-  logMutex.take(10);
+  std::scoped_lock lock{logMutex};
   if(level < msgLevel) return;
   std::stringstream fmtMsg{};
   fmtMsg << std::setw(5) << prefix << std::setw(0) << ": " + msg << '\n';
@@ -45,7 +45,6 @@ void Logger::log(const std::string &prefix,
     file << fmtMsg.str();
     GUI::writeToLog(fmtMsg.str());
   }
-  logMutex.give();
 }
 
 bool Logger::alreadyLogged(const std::string &msg) {

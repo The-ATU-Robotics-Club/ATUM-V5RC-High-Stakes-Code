@@ -53,11 +53,13 @@ class Motor {
   void brake();
 
   /**
-   * @brief Get the average position of all the motors.
+   * @brief Get the average position of all the motors in degrees
+   * (can't use units for this, since the library will constrain them 
+   * to 360).
    *
-   * @return degree_t
+   * @return double
    */
-  degree_t getPosition() const;
+  double getPosition() const;
 
   /**
    * @brief Get the average velocity of all the motors.

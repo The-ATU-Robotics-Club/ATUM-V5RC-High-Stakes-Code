@@ -42,10 +42,7 @@ namespace c {
  * errno values as specified above.
  */
 bool __attribute__((weak)) lcd_print(int16_t line, const char* fmt, ...)  {
-    // Added to suppress warning.
-    line = 0;
-    fmt = "";
-    return line && fmt;
+    return false;
 }
 
 #ifdef __cplusplus

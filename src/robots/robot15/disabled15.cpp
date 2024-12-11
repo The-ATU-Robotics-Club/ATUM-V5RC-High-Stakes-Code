@@ -6,12 +6,18 @@ Robot15::Robot15() : Robot{this} {
 
   std::unique_ptr<Motor> intakeMtr{
       std::make_unique<Motor>(PortsList{-5, 6}, pros::v5::MotorGears::blue)};
+  std::vector<ColorSensor::HueField> hueFields{
+      {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
+  std::unique_ptr<ColorSensor> colorSensor{
+      std::make_unique<ColorSensor>(hueFields, Logger::Level::Debug)};
   Intake::Parameters intakeParams;
-  intakeParams.jamVelocity = 50_rpm;
-  intakeParams.timerUntilJamChecks = Timer{0.1_s};
+  intakeParams.jamVelocity = 30_rpm;
+  intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
-  intake = std::make_unique<Intake>(
-      std::move(intakeMtr), intakeParams, Logger::Level::Debug);
+  intake = std::make_unique<Intake>(std::move(intakeMtr),
+                                    std::move(colorSensor),
+                                    intakeParams,
+                                    Logger::Level::Debug);
 }
 
 void Robot15::disabled() {

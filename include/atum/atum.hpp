@@ -5,6 +5,7 @@
 #include "controllers/slewRate.hpp"
 #include "controllers/tbh.hpp"
 #include "depend/units.h"
+#include "devices/colorSensor.hpp"
 #include "devices/distanceSensor.hpp"
 #include "devices/imu.hpp"
 #include "devices/motor.hpp"

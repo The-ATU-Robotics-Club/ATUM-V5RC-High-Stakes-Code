@@ -47,12 +47,11 @@ void Motor::brake() {
   }
 }
 
-degree_t Motor::getPosition() const {
-  std::vector<degree_t> positions;
+double Motor::getPosition() const {
+  std::vector<double> positions;
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      const degree_t position{motors[i]->get_position()};
-      positions.push_back(position);
+      positions.push_back(motors[i]->get_position());
     }
   }
   return average(positions);

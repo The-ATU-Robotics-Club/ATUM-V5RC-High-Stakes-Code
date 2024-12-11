@@ -5,40 +5,39 @@ DistanceSensor::DistanceSensor(const std::int8_t port,
                                const millimeter_t iThreshold,
                                const Logger::Level loggerLevel) :
     logger{loggerLevel}, threshold{iThreshold} {
-  pros::v5::Device device{port};
-  if(device.is_installed()) {
-    distanceSensor = std::make_unique<pros::Distance>(port);
+  distanceSensor = std::make_unique<pros::Distance>(port);
+  if(distanceSensor->is_installed()) {
     logger.debug("Distance sensor found on port " +
-                 std::to_string(device.get_port()) + ".");
+                 std::to_string(distanceSensor->get_port()) + ".");
   } else {
-    logger.warn("Distance sensor at port " + std::to_string(port) +
-                " could not be initialized!");
+    logger.error("Distance sensor at port " +
+                 std::to_string(distanceSensor->get_port()) +
+                 " could not be initialized!");
   }
-
   logger.info("Distance sensor contructed with port " +
-              std::to_string(device.get_port()) + ".");
+              std::to_string(distanceSensor->get_port()) + ".");
 }
 
 DistanceSensor::DistanceSensor(const millimeter_t iThreshold,
                                const Logger::Level loggerLevel) :
     logger{loggerLevel}, threshold{iThreshold} {
-  for(const pros::v5::Device device : pros::v5::Device::get_all_devices()) {
-    if(device.get_plugged_type() == pros::v5::DeviceType::distance) {
-      distanceSensor = std::make_unique<pros::Distance>(device.get_port());
-      logger.debug("Distance sensor found on port " +
-                   std::to_string(device.get_port()) + ".");
-      break;
-    }
+  const auto distanceSensors{pros::Distance::get_all_devices()};
+  if(!distanceSensors.size()) {
+    logger.error("Distance sensor not found!");
+    return;
+  } else if(distanceSensors.size() > 1) {
+    logger.warn("Multiple distance sensors found! Using first port found.");
   }
-  if(!distanceSensor) {
-    logger.error("Distance sensor not found!!");
-  }
+  distanceSensor =
+      std::make_unique<pros::Distance>(distanceSensors.front().get_port());
+  logger.debug("Distance sensor found on port " +
+               std::to_string(distanceSensor->get_port()) + ".");
 }
 
 millimeter_t DistanceSensor::getDistance() {
   const int32_t distance{distanceSensor->get_distance()};
   if(distance == noObjectDistance) {
-    logger.warn("Distance sensor cannot detect object.");
+    logger.debug("Distance sensor cannot detect object.");
   }
   return millimeter_t{distance};
 }
