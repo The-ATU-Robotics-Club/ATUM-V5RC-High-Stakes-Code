@@ -24,6 +24,10 @@ class Intake : public Task {
     Timer timerUntilJamChecks;
     // The time the intake will run outward when jammed.
     second_t timeUntilUnjammed;
+    // The time the intake will run outward when throwing while sorting.
+    second_t sortThrowTime;
+    // The time the intake will attempt to perform an action before giving up.
+    second_t generalTimeout;
   };
 
   /**
@@ -72,14 +76,35 @@ class Intake : public Task {
    */
   enum class IntakeState { Idle, Intaking, Outtaking, Jammed, Sorting };
 
-  void intakeMacro();
+  /**
+   * @brief This method runs whenever we are intaking. It checks for jams or
+   * when to color sort and changes state accordingly.
+   *
+   */
+  void intaking();
 
   /**
-   * @brief Changes the state and sets the previous state.
+   * @brief This method runs whenever we need to get the intake unjammed. When
+   * finished, it goes back to intaking (since that's the only state
+   * jammed is accessible from).
    *
-   * @param newState
    */
-  void changeState(const IntakeState newState);
+  void unjamming();
+
+  /**
+   * @brief This method runs whenever we need to sort a ring. When
+   * finished, it goes back to intaking (since that's the only state
+   * sorting is accessible from).
+   *
+   */
+  void sorting();
+
+  /**
+   * @brief For internal use, doesn't have the check on state before switching
+   * to intaking.
+   *
+   */
+  void forceIntake();
 
   std::unique_ptr<Motor> mtr;
   std::unique_ptr<ColorSensor> colorSensor;

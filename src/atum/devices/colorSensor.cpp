@@ -59,9 +59,14 @@ double ColorSensor::getRawHue() {
 }
 
 void ColorSensor::initializeColorSensor() {
-  wait(50_ms);
+  // The abundance of delays in here is because of a seeming undocumented
+  // "delay" needed for many of these values to be set.
+  wait(100_ms);
   colorSensor->set_led_pwm(100);
-  colorSensor->set_integration_time(20);
+  wait(100_ms);
+  colorSensor->set_integration_time(3);
+  wait(100_ms);
   colorSensor->disable_gesture();
+  wait(100_ms);
 }
 } // namespace atum

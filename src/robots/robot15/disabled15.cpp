@@ -14,6 +14,7 @@ Robot15::Robot15() : Robot{this} {
   intakeParams.jamVelocity = 30_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
+  intakeParams.sortThrowTime = 0.05_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     intakeParams,

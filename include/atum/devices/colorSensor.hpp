@@ -10,6 +10,13 @@ namespace atum {
 class ColorSensor {
   public:
   /**
+   * @brief This should be used whenever polling the color from these
+   * sensors, since it results in the best performance. 
+   * 
+   */
+  static constexpr second_t refreshRate{20_ms};
+
+  /**
    * @brief List of colors that can be recognized. Later this class
    * may make use of templates or a more extensible structure.
    *
