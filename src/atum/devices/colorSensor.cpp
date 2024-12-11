@@ -5,8 +5,7 @@ namespace atum {
 ColorSensor::ColorSensor(const std::int8_t port,
                          const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields},
-    logger{loggerLevel} {
+    hueFields{iHueFields}, logger{loggerLevel} {
   colorSensor = std::make_unique<pros::Optical>(port);
   if(colorSensor->is_installed()) {
     logger.debug("Color sensor found on port " +
@@ -23,8 +22,7 @@ ColorSensor::ColorSensor(const std::int8_t port,
 
 ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields},
-    logger{loggerLevel} {
+    hueFields{iHueFields}, logger{loggerLevel} {
   const auto colorSensors{pros::Optical::get_all_devices()};
   if(!colorSensors.size()) {
     logger.error("Color sensor not found!");
@@ -63,7 +61,7 @@ double ColorSensor::getRawHue() {
 void ColorSensor::initializeColorSensor() {
   wait(50_ms);
   colorSensor->set_led_pwm(100);
-  wait(50_ms);
+  colorSensor->set_integration_time(20);
   colorSensor->disable_gesture();
 }
 } // namespace atum
