@@ -2,15 +2,20 @@
 
 #include "../time/time.hpp"
 #include "../utility/units.hpp"
+#include "adi.hpp"
 #include "api.h"
 #include <queue>
 
 namespace atum {
+/**
+ * @brief
+ *
+ */
 class Potentiometer {
   public:
   Potentiometer(const std::uint8_t port);
 
-  Potentiometer(const pros::adi::ext_adi_port_pair_t port);
+  Potentiometer(const ADIExtenderPort &port);
 
   degree_t getPosition() const;
 

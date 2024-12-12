@@ -6,7 +6,7 @@ Potentiometer::Potentiometer(const std::uint8_t port) : pot{port} {
   wait(0.5_s); // Wait for sensor to calibrate.
 }
 
-Potentiometer::Potentiometer(const pros::adi::ext_adi_port_pair_t port) : pot{port} {
+Potentiometer::Potentiometer(const ADIExtenderPort &port) : pot{port()} {
   pot.calibrate();
   wait(0.5_s); // Wait for sensor to calibrate.
 }

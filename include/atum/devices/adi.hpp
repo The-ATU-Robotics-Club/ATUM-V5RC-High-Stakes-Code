@@ -11,6 +11,7 @@ namespace atum {
  *
  */
 class ADIExtenderPort {
+  public:
   // These are deleted to force the use of the only sensible constructor.
   ADIExtenderPort() = delete;
   ADIExtenderPort(const ADIExtenderPort &) = delete;
