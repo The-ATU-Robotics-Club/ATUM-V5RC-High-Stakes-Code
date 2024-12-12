@@ -14,8 +14,6 @@ DistanceSensor::DistanceSensor(const std::int8_t port,
                  std::to_string(distanceSensor->get_port()) +
                  " could not be initialized!");
   }
-  logger.info("Distance sensor contructed with port " +
-              std::to_string(distanceSensor->get_port()) + ".");
 }
 
 DistanceSensor::DistanceSensor(const millimeter_t iThreshold,
