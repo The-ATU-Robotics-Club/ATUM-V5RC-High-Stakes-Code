@@ -5,8 +5,7 @@
 namespace atum {
 /**
  * @brief Class to implement the intake for the robot. Contains basic controls
- * as well as more complex support for color sorting, anti-jam, and positioning
- * the hooks.
+ * as well as more complex support for color sorting, anti-jam, and indexing.
  *
  */
 class Intake : public Task {
@@ -51,6 +50,14 @@ class Intake : public Task {
   void intake();
 
   /**
+   * @brief Tell the intake to run inward until it detects a ring
+   * that isn't being sorted. Can be interrupted by the anti-jam
+   * or color sort code.
+   *
+   */
+  void index();
+
+  /**
    * @brief Tell the intake run outward.
    *
    */
@@ -74,7 +81,14 @@ class Intake : public Task {
    * @brief The various states that the intake can be in.
    *
    */
-  enum class IntakeState { Idle, Intaking, Outtaking, Jammed, Sorting };
+  enum class IntakeState {
+    Idle,
+    Intaking,
+    Indexing,
+    Outtaking,
+    Jammed,
+    Sorting
+  };
 
   /**
    * @brief This method runs whenever we are intaking. It checks for jams or
@@ -101,10 +115,11 @@ class Intake : public Task {
 
   /**
    * @brief For internal use, doesn't have the check on state before switching
-   * to intaking.
+   * to intaking/indexing.
    *
+   * @param newState
    */
-  void forceIntake();
+  void forceIntake(const IntakeState newState);
 
   std::unique_ptr<Motor> mtr;
   std::unique_ptr<ColorSensor> colorSensor;
@@ -113,6 +128,6 @@ class Intake : public Task {
   bool antiJamEnabled{true};
   ColorSensor::Color sortOutColor{ColorSensor::Color::Red};
   IntakeState state{IntakeState::Idle};
-  IntakeState previousState{IntakeState::Idle};
+  IntakeState returnState{IntakeState::Intaking};
 };
 } // namespace atum

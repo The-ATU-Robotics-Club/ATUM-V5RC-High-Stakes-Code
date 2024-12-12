@@ -17,7 +17,14 @@ void Intake::intake() {
   if(state == IntakeState::Jammed || state == IntakeState::Sorting) {
     return;
   }
-  forceIntake();
+  forceIntake(IntakeState::Intaking);
+}
+
+void Intake::index() {
+  if(state == IntakeState::Jammed || state == IntakeState::Sorting) {
+    return;
+  }
+  forceIntake(IntakeState::Indexing);
 }
 
 void Intake::outtake() {
@@ -33,44 +40,58 @@ void Intake::setAntiJam(const bool iAntiJamEnabled) {
 }
 
 void Intake::intaking() {
-  mtr->moveVoltage(12);
-  if(params.timerUntilJamChecks.goneOff() && antiJamEnabled &&
-     mtr->getVelocity() < params.jamVelocity) {
-    state = IntakeState::Jammed;
-  }
   if(sortOutColor != ColorSensor::Color::None &&
      colorSensor->getColor() == sortOutColor) {
     logger.debug("Switching to sorting!");
     state = IntakeState::Sorting;
+  }
+  if(state == IntakeState::Indexing) {
+    if(colorSensor->getColor() != ColorSensor::Color::None) {
+      params.timerUntilJamChecks.resetAlarm();
+      mtr->brake();
+      return;
+    }
+  }
+  mtr->moveVoltage(12);
+  if(params.timerUntilJamChecks.goneOff() && antiJamEnabled &&
+     mtr->getVelocity() < params.jamVelocity) {
+    state = IntakeState::Jammed;
   }
 }
 
 void Intake::unjamming() {
   mtr->moveVoltage(-12);
   wait(params.timeUntilUnjammed);
-  forceIntake();
+  forceIntake(returnState);
 }
 
 void Intake::sorting() {
   mtr->moveVoltage(12);
   Timer timeout{params.generalTimeout};
   while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
+    if(params.timerUntilJamChecks.goneOff() && antiJamEnabled &&
+       mtr->getVelocity() < params.jamVelocity) {
+      state = IntakeState::Jammed;
+      return;
+    }
     wait(ColorSensor::refreshRate);
   }
   // Short delay after seems to provide minor advantage.
   wait();
   mtr->moveVoltage(-12);
   wait(params.sortThrowTime);
-  forceIntake();
+  forceIntake(returnState);
 }
 
-void Intake::forceIntake() {
+void Intake::forceIntake(const IntakeState newState) {
   // It should at least be at a standstill before checks occur. This is to
   // prevent false jams if going from outtaking to inttaking quickly.
-  if(state != IntakeState::Intaking || mtr->getVelocity() < 0_rpm) {
+  if(state != IntakeState::Intaking || state != IntakeState::Indexing ||
+     mtr->getVelocity() < 0_rpm) {
     params.timerUntilJamChecks.resetAlarm();
   }
-  state = IntakeState::Intaking;
+  state = newState;
+  returnState = newState;
 }
 
 TASK_DEFINITIONS_FOR(Intake) {
@@ -78,6 +99,7 @@ TASK_DEFINITIONS_FOR(Intake) {
   while(true) {
     switch(state) {
       case IntakeState::Idle: mtr->brake(); break;
+      case IntakeState::Indexing:
       case IntakeState::Intaking: intaking(); break;
       case IntakeState::Outtaking: mtr->moveVoltage(-12); break;
       case IntakeState::Jammed: unjamming(); break;
