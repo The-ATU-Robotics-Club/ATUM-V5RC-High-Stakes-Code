@@ -3,7 +3,8 @@
 namespace atum {
 RotationSensor::RotationSensor(const std::int8_t port,
                                const bool reversed,
-                               const Logger::Level loggerLevel) {
+                               const Logger::Level loggerLevel) :
+    logger{loggerLevel} {
   rotationSensor = std::make_unique<pros::Rotation>(port);
   if(rotationSensor->is_installed()) {
     logger.debug("Rotation sensor found on port " +
@@ -17,7 +18,8 @@ RotationSensor::RotationSensor(const std::int8_t port,
 }
 
 RotationSensor::RotationSensor(const bool reversed,
-                               const Logger::Level loggerLevel) {
+                               const Logger::Level loggerLevel) :
+    logger{loggerLevel} {
   const auto rotationSensors{pros::Rotation::get_all_devices()};
   if(!rotationSensors.size()) {
     logger.error("Rotation sensor not found!");

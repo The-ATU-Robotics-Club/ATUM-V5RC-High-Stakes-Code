@@ -9,6 +9,7 @@ namespace atum {
 /**
  * @brief A class to wrap around potentially several IMUs and provide some
  * useful methods for common actions. Supports dynamically finding port numbers.
+ * Assumes the IMU is flat side down (or bearing side down). 
  *
  */
 class IMU {

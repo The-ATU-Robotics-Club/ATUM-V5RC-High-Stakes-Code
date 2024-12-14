@@ -1,29 +1,37 @@
 #include "potentiometer.hpp"
 
 namespace atum {
-Potentiometer::Potentiometer(const std::uint8_t port) : pot{port} {
+Potentiometer::Potentiometer(const std::uint8_t port,
+                             const bool iReversed,
+                             const Logger::Level loggerLevel) :
+    pot{port}, reversed{iReversed}, logger{loggerLevel} {
+  calibrate();
+}
+
+Potentiometer::Potentiometer(const ADIExtenderPort &port,
+                             const bool iReversed,
+                             const Logger::Level loggerLevel) :
+    pot{port()}, reversed{iReversed}, logger{loggerLevel} {
+  calibrate();
+}
+
+int32_t Potentiometer::getReading() {
+  double reading{pot.get_value_calibrated()};
+  if(reversed) {
+    reading *= -1;
+  }
+  logger.debug("Line tracker on port " +
+               std::to_string(std::get<1>(pot.get_port())) + " is reading " +
+               std::to_string(reading) + ".");
+  return reading;
+}
+
+void Potentiometer::calibrate() {
   pot.calibrate();
-  wait(0.5_s); // Wait for sensor to calibrate.
+  // Give time to calibrate the sensor.
+  wait(calibrationTime);
+  logger.debug("Potentiometer on port " +
+               std::to_string(std::get<1>(pot.get_port())) +
+               " has been constructed.");
 }
-
-Potentiometer::Potentiometer(const ADIExtenderPort &port) : pot{port()} {
-  pot.calibrate();
-  wait(0.5_s); // Wait for sensor to calibrate.
-}
-
-degree_t Potentiometer::getPosition() const {
-  const double reading{std::abs(pot.get_value_calibrated())};
-  return potMaxAngle * reading / 4095.0;
-}
-
-degrees_per_second_t Potentiometer::getVelocity() {
-  const second_t currentTime{time()};
-  const second_t timeDifference{currentTime - previousTime};
-  previousTime = currentTime;
-  const degree_t currentPosition{getPosition()};
-  const degree_t positionDifference{currentPosition - previousPosition};
-  previousPosition = currentPosition;
-  return positionDifference / timeDifference;
-}
-
 } // namespace atum

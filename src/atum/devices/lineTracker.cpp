@@ -6,9 +6,6 @@ LineTracker::LineTracker(const std::uint8_t port,
                          const Logger::Level loggerLevel) :
     lineTracker{port}, threshold{iThreshold}, logger{loggerLevel} {
   calibrate();
-  logger.debug("Line tracker on port " +
-               std::to_string(std::get<1>(lineTracker.get_port())) +
-               " has been constructed.");
 }
 
 LineTracker::LineTracker(const ADIExtenderPort &port,
@@ -16,9 +13,6 @@ LineTracker::LineTracker(const ADIExtenderPort &port,
                          const Logger::Level loggerLevel) :
     lineTracker{port()}, threshold{iThreshold}, logger{loggerLevel} {
   calibrate();
-  logger.debug("Line tracker on port " +
-               std::to_string(std::get<1>(lineTracker.get_port())) +
-               " has been constructed.");
 }
 
 bool LineTracker::triggered() {
@@ -37,5 +31,8 @@ void LineTracker::calibrate() {
   lineTracker.calibrate();
   // Give time to calibrate the sensor to different lighting conditions.
   wait(calibrationTime);
+  logger.debug("Line tracker on port " +
+               std::to_string(std::get<1>(lineTracker.get_port())) +
+               " has been constructed.");
 }
 } // namespace atum

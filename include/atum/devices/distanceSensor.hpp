@@ -25,7 +25,7 @@ class DistanceSensor {
    */
   DistanceSensor(const millimeter_t iThreshold = 0_mm,
                  const Logger::Level loggerLevel = Logger::Level::Info);
-  
+
   /**
    * @brief Returns the current reading of the distance sensor.
    *
@@ -43,6 +43,8 @@ class DistanceSensor {
   bool closeTo();
 
   private:
+  // This is the distance that is returned from the distance sensor if no object
+  // is detected.
   static constexpr int32_t noObjectDistance{9999};
   std::unique_ptr<pros::Distance> distanceSensor;
   Logger logger;

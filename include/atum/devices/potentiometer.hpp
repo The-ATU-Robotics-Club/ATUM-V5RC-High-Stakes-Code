@@ -1,31 +1,60 @@
 #pragma once
 
 #include "../time/time.hpp"
-#include "../utility/units.hpp"
 #include "adi.hpp"
-#include "api.h"
-#include <queue>
 
 namespace atum {
 /**
- * @brief
+ * @brief Very straightforward wrapper on the PROS implementation
+ * of the potentiometer. Pretty much provides options to reverse the
+ * sensor readings, logging, and automatic calibration.
  *
  */
 class Potentiometer {
   public:
-  Potentiometer(const std::uint8_t port);
+  /**
+   * @brief Constructs a new potentiometer based on the given port.
+   * Will block in order to calibrate the sensor.
+   *
+   * @param port
+   * @param iReversed
+   * @param loggerLevel
+   */
+  Potentiometer(const std::uint8_t port,
+                const bool iReversed = false,
+                const Logger::Level loggerLevel = Logger::Level::Info);
 
-  Potentiometer(const ADIExtenderPort &port);
+  /**
+   * @brief Constructs a new potentiometer based on the given extender port.
+   * Will block in order to calibrate the sensor.
+   *
+   * @param port
+   * @param iReversed
+   * @param loggerLevel
+   */
+  Potentiometer(const ADIExtenderPort &port,
+                const bool iReversed = false,
+                const Logger::Level loggerLevel = Logger::Level::Info);
 
-  degree_t getPosition() const;
-
-  degrees_per_second_t getVelocity();
+  /**
+   * @brief Gets the current reading of the potentiometer. Performs logging if
+   * requested.
+   *
+   * @return int32_t
+   */
+  int32_t getReading();
 
   private:
-  pros::adi::Potentiometer pot;
-  degree_t previousPosition{0_deg};
-  second_t previousTime{0_s};
+  /**
+   * @brief Calibrates the potentiometer and blocks for an appropriate amount
+   * of time for the process to be complete.
+   *
+   */
+  void calibrate();
 
-  static constexpr degree_t potMaxAngle{333_deg};
+  pros::adi::Potentiometer pot;
+  const bool reversed;
+  Logger logger;
+  static constexpr second_t calibrationTime{500_ms};
 };
 } // namespace atum
