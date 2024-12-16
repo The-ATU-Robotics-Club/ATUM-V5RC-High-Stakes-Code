@@ -11,7 +11,7 @@ void Tracker::setPosition(const Position &iPosition) {
 Position Tracker::getPosition() {
   std::scoped_lock lock{positionMutex};
   Position current = position;
-  logger.debug("Current tracker position is " + to_string(position) + ".");
+  logger.debug("Current tracker position is " + toString(position) + ".");
   return current;
 }
 } // namespace atum

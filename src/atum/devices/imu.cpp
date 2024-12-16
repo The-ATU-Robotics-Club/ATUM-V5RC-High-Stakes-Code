@@ -22,16 +22,16 @@ IMU::IMU(std::vector<std::uint8_t> ports,
   initializeIMUs();
 }
 
-IMU::IMU(const std::size_t minimumAmount,
+IMU::IMU(const std::size_t expectedAmount,
          const bool iReversed,
          Logger::Level loggerLevel) :
     reversed{iReversed}, logger{loggerLevel} {
-  const auto rawIMUs{pros::Distance::get_all_devices()};
+  const auto rawIMUs{pros::IMU::get_all_devices()};
   if(!rawIMUs.size()) {
     logger.error("No IMUs found!");
     return;
-  } else if(imus.size() < minimumAmount) {
-    logger.warn("Number of IMUs found lower than minimum!");
+  } else if(rawIMUs.size() < expectedAmount) {
+    logger.warn("Number of IMUs found lower than expected!");
   }
   for(auto imu : rawIMUs) {
     imus.push_back(std::make_unique<pros::IMU>(imu.get_port()));

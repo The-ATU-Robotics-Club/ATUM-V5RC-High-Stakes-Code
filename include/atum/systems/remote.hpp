@@ -152,9 +152,10 @@ class Remote : public Task {
    * set to zero. Helps prevent motor stalling.
    *
    */
-  static constexpr double deadzone{0.5};
+  static constexpr double deadzone{0.25};
 
   pros::Controller remote;
+  Logger logger;
   std::array<std::queue<std::string>, 3> rowQueues;
   std::array<pros::Mutex, 3> rowQueueMutexes;
   static constexpr double analogToVolt{Motor::maxVoltage / 127.0};

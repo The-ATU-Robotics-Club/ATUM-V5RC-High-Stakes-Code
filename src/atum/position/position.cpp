@@ -1,7 +1,7 @@
 #include "position.hpp"
 
 namespace atum {
-std::string to_string(const Position &position) {
+std::string toString(const Position &position) {
   return "(" + to_string(position.x) + ", " + to_string(position.y) + ", " +
          to_string(position.h) + ", " + to_string(position.v) + ", " +
          to_string(position.w) + ", " + to_string(position.t) + ")";
@@ -62,7 +62,7 @@ RawPosition operator*(const double lhs, const RawPosition &rhs) {
   return {lhs * rhs.x, lhs * rhs.y, rhs.h, rhs.v, rhs.w, rhs.t};
 }
 
-std::string to_string(const RawPosition &rawPosition) {
+std::string toString(const RawPosition &rawPosition) {
   return "(" + std::to_string(rawPosition.x) + " m, " +
          std::to_string(rawPosition.y) + " m, " +
          std::to_string(rawPosition.h) + " rad, " +

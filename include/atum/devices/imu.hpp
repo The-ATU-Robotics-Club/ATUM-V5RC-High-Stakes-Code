@@ -22,7 +22,7 @@ class IMU {
    * @param loggerLevel
    */
   IMU(std::vector<std::uint8_t> ports,
-      const bool iReversed = -1,
+      const bool iReversed = false,
       Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -30,12 +30,12 @@ class IMU {
    * Minimum amount refers to the acceptable minimum amount of IMUs to be
    * found to not trigger a warning (zero IMUs will trigger an error).
    *
-   * @param minimumAmount
+   * @param expectedAmount
    * @param iReversed
    * @param loggerLevel
    */
-  IMU(const std::size_t minimumAmount,
-      const bool iReversed = -1,
+  IMU(const std::size_t expectedAmount,
+      const bool iReversed = false,
       Logger::Level loggerLevel = Logger::Level::Info);
 
   /**

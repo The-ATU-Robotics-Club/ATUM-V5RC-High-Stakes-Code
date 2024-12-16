@@ -22,5 +22,6 @@ class Robot15 : public Robot {
   Motor ladybrownArm{{15, -16}, pros::v5::MotorGears::green, "ladybrown"};
   pros::adi::Pneumatics ladybrownWrist{'B', false};
   pros::adi::Pneumatics goalClamp{'A', false};
+  std::unique_ptr<Odometry> odometry;
 };
 } // namespace atum

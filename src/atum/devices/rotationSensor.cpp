@@ -22,7 +22,7 @@ RotationSensor::RotationSensor(const bool reversed,
     logger{loggerLevel} {
   const auto rotationSensors{pros::Rotation::get_all_devices()};
   if(!rotationSensors.size()) {
-    logger.error("Rotation sensor not found!");
+    logger.error("Rotation sesnsor not found!");
     return;
   } else if(rotationSensors.size() > 1) {
     logger.warn("Multiple rotation sensors found! Using first port found.");

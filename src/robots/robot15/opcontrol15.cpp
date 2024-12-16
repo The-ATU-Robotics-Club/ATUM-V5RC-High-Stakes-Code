@@ -2,7 +2,13 @@
 
 namespace atum {
 void Robot15::opcontrol() {
+  odometry->setPosition({-2_tile, 0_tile, 0_deg});
   while(true) {
+    const Position pos{odometry->getPosition()};
+    GUI::addMapPoint({getValueAs<inch_t>(pos.x) * 83.333,
+                      getValueAs<inch_t>(pos.y) * 83.333},
+                     GUI::SeriesColor::Green);
+
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
     leftMotors.moveVoltage(forward + turn);

@@ -29,7 +29,7 @@ const lv_color_t GUI::white{lv_color_white()};
 // Other important values.
 const std::size_t GUI::maxLogLines{100};
 const int GUI::graphRange{10000};
-const int GUI::mapRange{12000};
+const int GUI::mapRange{6000};
 
 void GUI::initialize() {
   // Initialization.

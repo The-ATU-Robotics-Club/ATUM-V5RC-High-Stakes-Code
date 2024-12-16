@@ -19,6 +19,18 @@ Robot15::Robot15() : Robot{this} {
                                     std::move(colorSensor),
                                     intakeParams,
                                     Logger::Level::Debug);
+
+  const inch_t wheelCircumference{203.724231788_mm};
+  std::unique_ptr<Odometer> forwardOdometer{
+      std::make_unique<Odometer>('C', 'D', wheelCircumference, -1.8625_in)};
+  std::unique_ptr<Odometer> sideOdometer{
+      std::make_unique<Odometer>('E', 'F', wheelCircumference, 0.25_in)};
+  std::unique_ptr<IMU> imu{std::make_unique<IMU>(2)};
+  odometry = std::make_unique<Odometry>(std::move(forwardOdometer),
+                                        std::move(sideOdometer),
+                                        std::move(imu),
+                                        Logger::Level::Debug);
+  odometry->startBackgroundTasks();
 }
 
 void Robot15::disabled() {
