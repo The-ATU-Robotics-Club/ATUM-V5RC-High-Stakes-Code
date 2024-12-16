@@ -55,6 +55,5 @@ class Potentiometer {
   pros::adi::Potentiometer pot;
   const bool reversed;
   Logger logger;
-  static constexpr second_t calibrationTime{500_ms};
 };
 } // namespace atum

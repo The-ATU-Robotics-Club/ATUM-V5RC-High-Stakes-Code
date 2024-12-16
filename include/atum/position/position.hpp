@@ -16,7 +16,7 @@ struct Position {
 
 Position operator*(const double lhs, const Position &rhs);
 
-std::string toString(const Position &position);
+std::string to_string(const Position &position);
 
 tile_t distance(const Position &a, const Position &b);
 
@@ -46,7 +46,7 @@ struct RawPosition {
 
 RawPosition operator*(const double lhs, const RawPosition &rhs);
 
-std::string toString(const RawPosition &position);
+std::string to_string(const RawPosition &position);
 
 double distance(const RawPosition &a, const RawPosition &b);
 

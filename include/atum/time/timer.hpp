@@ -5,14 +5,45 @@
 namespace atum {
 class Timer {
   public:
-  explicit Timer(const second_t &iAlarmTime = 0_s);
+  /**
+   * @brief Constructs a new timer with an alarm time at which
+   * it will be considered to have gone off. The default of 0 s
+   * will make it so that the alarm is always considered to have
+   * gone off, and it mostly for when you simply want to retrieve
+   * time elapsed since some point.
+   *
+   * @param iAlarmTime
+   */
+  explicit Timer(const second_t iAlarmTime = 0_s);
 
-  void setAlarmTime(const second_t &iAlarmTime);
+  /**
+   * @brief Sets the alarm time, the time it will take for the alarm
+   * to go off after being reset.
+   *
+   * @param iAlarmTime
+   */
+  void setAlarmTime(const second_t iAlarmTime);
 
+  /**
+   * @brief Resets the timer (so that an additional alarm time must pass
+   * before the alarm has gone off).
+   *
+   */
   void resetAlarm();
 
+  /**
+   * @brief Says if the alarm time has elapsed since last reset.
+   *
+   * @return true
+   * @return false
+   */
   bool goneOff() const;
 
+  /**
+   * @brief Gets the time elapsed since the alarm was created.
+   *
+   * @return second_t
+   */
   second_t timeElapsed() const;
 
   private:

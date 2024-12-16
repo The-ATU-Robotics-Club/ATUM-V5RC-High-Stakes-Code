@@ -17,7 +17,7 @@ double TBH::getOutput(const double error) {
   outputAtReference = output;
   output =
       std::clamp(output, params.constraints.first, params.constraints.second);
-  return Controller::getOutput(); // Use getOutput() logging purposes.
+  return Controller::getOutput(); // Use getOutput() for logging purposes.
 }
 
 double TBH::getOutput(const double state, const double reference) {

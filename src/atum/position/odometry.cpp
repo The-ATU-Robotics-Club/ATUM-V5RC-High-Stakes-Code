@@ -20,6 +20,7 @@ Position Odometry::update() {
   inch_t sideChange{side->traveled()};
   inch_t forwardChange{forward->traveled()};
   const radian_t headingChange{imu->getTraveled()};
+  /*
   if(headingChange) {
     sideChange = 2.0 * sin(headingChange / 2.0) *
                  (sideChange / getValueAs<radian_t>(headingChange) +
@@ -27,7 +28,7 @@ Position Odometry::update() {
     forwardChange = 2.0 * sin(headingChange / 2.0) *
                     (forwardChange / getValueAs<radian_t>(headingChange) +
                      forward->getFromCenter());
-  }
+  }*/
   return integratePosition(sideChange, forwardChange, headingChange);
 }
 
@@ -46,8 +47,7 @@ Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
   currentPosition.y += -sin(averageHeading) * dx + cos(averageHeading) * dy;
   currentPosition.h += dh;
   setPosition(currentPosition);
-  logger.debug("Odometry Reading: " + toString(currentPosition));
-  return currentPosition;
+  return getPosition(); // Use getPosition() to perform logging. 
 }
 
 TASK_DEFINITIONS_FOR(Odometry) {

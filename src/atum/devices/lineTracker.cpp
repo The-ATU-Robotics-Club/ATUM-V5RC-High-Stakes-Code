@@ -30,7 +30,7 @@ std::int32_t LineTracker::getReading() {
 void LineTracker::calibrate() {
   lineTracker.calibrate();
   // Give time to calibrate the sensor to different lighting conditions.
-  wait(calibrationTime);
+  wait(adiCalibrationTime);
   logger.debug("Line tracker on port " +
                std::to_string(std::get<1>(lineTracker.get_port())) +
                " has been constructed.");

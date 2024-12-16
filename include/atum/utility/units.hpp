@@ -3,6 +3,12 @@
 #include "../depend/units.h"
 #include "misc.hpp"
 
+/**
+ * @brief This section of the code deals with making the use of the nholthaus
+ * dimensional unit library more straightforward, involving declaring new
+ * units as well.
+ *
+ */
 using namespace units;
 using namespace units::math;
 using namespace units::constants;
@@ -58,11 +64,28 @@ UNIT_ADD(jerk,
 using namespace units::jerk;
 
 namespace atum {
+/**
+ * @brief This function allows us to convert units into another form
+ * before storing them as a plain floating point value.
+ *
+ * @tparam T
+ * @tparam R
+ * @param quantity
+ * @return R
+ */
 template <typename T, typename R = double>
 R getValueAs(const T &quantity) {
   return unit_cast<R>(T{quantity});
 }
 
+/**
+ * @brief This is a template specialization for averaging angles together.
+ * This is necessary to deal with angle wrap and the like.
+ *
+ * @tparam
+ * @param angles
+ * @return degree_t
+ */
 template <>
 degree_t average<degree_t>(const std::vector<degree_t> &angles);
-}
+} // namespace atum

@@ -4,9 +4,46 @@
 #include "api.h"
 
 namespace atum {
+/**
+ * @brief Because many analog ADI sensors have an option to calibrate and that
+ * calibration involves 500 samples taken 1 ms apart, this constant is for use
+ * in delays after said calibration begins.
+ *
+ */
+static constexpr second_t adiCalibrationTime{500_ms};
+
+/**
+ * @brief This is the typical rate at which devices can give or receive data.
+ *
+ */
+static constexpr second_t standardDelay{10_ms};
+
+/**
+ * @brief Gets the current time since starting.
+ *
+ * @return second_t
+ */
 second_t time();
 
-void wait(second_t time = 10_ms);
+/**
+ * @brief Waits for the specified amount of time (or standard delay of 10 ms if
+ * no such time is given).
+ *
+ * @param delay
+ */
+void wait(second_t delay = standardDelay);
 
-void waitUntil(const std::function<bool()> &condition, const second_t timeout = 0_s);
+/**
+ * @brief Waits until the condition given is true or the timeout is reached
+ * (unless 0 s is provided for the timeout). The delay parameter refers to how
+ * long to wait between each check, provided for sensors like the color sensor
+ * that benefit from specific delay.
+ *
+ * @param condition
+ * @param timeout
+ * @param delay
+ */
+void waitUntil(const std::function<bool()> &condition,
+               const second_t timeout = 0_s,
+               const second_t delay = standardDelay);
 } // namespace atum

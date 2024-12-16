@@ -5,6 +5,7 @@ Remote::Remote(const Type type, const Logger::Level loggerLevel) :
     Task{this, loggerLevel},
     remote{static_cast<pros::controller_id_e_t>(type)} {
   remote.clear();
+  logger.debug("Remote is constructed!");
   startBackgroundTasks();
 }
 
@@ -47,11 +48,10 @@ bool Remote::getHold(const Button button) {
 }
 
 void Remote::print(const std::uint8_t line, const std::string &message) {
-  rowQueueMutexes[line].take(10);
+  std::scoped_lock lock{rowQueueMutexes[line]};
   if(rowQueues[line].size() < printQueueSize) {
     rowQueues[line].push(message + linePadding);
   }
-  rowQueueMutexes[line].give();
 }
 
 void Remote::rumble(const std::string &pattern) {
@@ -66,13 +66,12 @@ TASK_DEFINITIONS_FOR(Remote) {
   START_TASK("Print Handler")
   while(true) {
     for(std::size_t line{0}; line < 3; line++) {
-      rowQueueMutexes[line].take(10);
+      std::scoped_lock lock{rowQueueMutexes[line]};
       if(rowQueues[line].size()) {
         const auto output = rowQueues[line].front();
         rowQueues[line].pop();
         remote.set_text(line, 0, output);
       }
-      rowQueueMutexes[line].give();
       wait(minimumPrintDelay);
     }
   }

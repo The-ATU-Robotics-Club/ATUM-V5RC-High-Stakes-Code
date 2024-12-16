@@ -5,16 +5,21 @@ second_t time() {
   return millisecond_t{pros::millis()};
 }
 
-void wait(second_t time) {
-  if(time == 0_s) return;
+void wait(const second_t delay) {
+  if(delay == 0_s) {
+    return;
+  }
   std::uint32_t now{pros::millis()};
-  std::uint32_t delay{getValueAs<millisecond_t, std::uint32_t>(time)};
-  pros::Task::delay_until(&now, delay);
+  const std::uint32_t then{getValueAs<millisecond_t, std::uint32_t>(delay)};
+  pros::Task::delay_until(&now, then);
 }
 
-void waitUntil(const std::function<bool()> &condition, const second_t timeout) {
+void waitUntil(const std::function<bool()> &condition,
+               const second_t timeout,
+               const second_t delay) {
   const second_t startTime{time()};
-  while((timeout == 0_s || time() - startTime < timeout) && !condition())
-    wait();
+  while((timeout == 0_s || time() - startTime < timeout) && !condition()) {
+    wait(delay);
+  }
 }
 } // namespace atum

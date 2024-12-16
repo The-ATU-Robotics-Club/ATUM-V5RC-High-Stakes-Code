@@ -1,10 +1,10 @@
 #include "timer.hpp"
 
 namespace atum {
-Timer::Timer(const second_t &iAlarmTime) :
+Timer::Timer(const second_t iAlarmTime) :
     startTime{time()}, alarmTime{iAlarmTime} {}
 
-void Timer::setAlarmTime(const second_t &iAlarmTime) {
+void Timer::setAlarmTime(const second_t iAlarmTime) {
   alarmTime = iAlarmTime;
 }
 

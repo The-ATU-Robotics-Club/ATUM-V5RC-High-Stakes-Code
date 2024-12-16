@@ -19,7 +19,7 @@ double SlewRate::slew(const double desired) {
   } else {
     output = std::max(output - decRate, desired);
   }
-  return getOutput(); // Use getOutput() logging purposes.
+  return getOutput(); // Use getOutput() for logging purposes.
 }
 
 double SlewRate::getOutput() {

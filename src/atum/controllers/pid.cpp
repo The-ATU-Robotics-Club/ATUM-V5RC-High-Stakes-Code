@@ -32,7 +32,7 @@ double PID::getOutput(const double state, const double reference) {
   }
   output =
       std::clamp(output, params.constraints.first, params.constraints.second);
-  return Controller::getOutput(); // Use getOutput() logging purposes.
+  return Controller::getOutput(); // Use getOutput() for logging purposes.
 };
 
 void PID::reset() {

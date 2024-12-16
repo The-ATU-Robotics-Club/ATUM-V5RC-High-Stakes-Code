@@ -29,7 +29,7 @@ int32_t Potentiometer::getReading() {
 void Potentiometer::calibrate() {
   pot.calibrate();
   // Give time to calibrate the sensor.
-  wait(calibrationTime);
+  wait(adiCalibrationTime);
   logger.debug("Potentiometer on port " +
                std::to_string(std::get<1>(pot.get_port())) +
                " has been constructed.");

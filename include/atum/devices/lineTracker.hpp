@@ -66,6 +66,5 @@ class LineTracker {
   pros::adi::LineSensor lineTracker;
   const std::int32_t threshold;
   Logger logger;
-  static constexpr second_t calibrationTime{500_ms};
 };
 } // namespace atum
