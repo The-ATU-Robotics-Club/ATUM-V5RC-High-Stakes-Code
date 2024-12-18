@@ -41,6 +41,7 @@ void Log::setupScreen() {
   lv_obj_set_scroll_dir(logTextBackground, LV_DIR_VER);
 
   logTextLabel = lv_label_create(logTextBackground);
+  lv_label_set_text(logTextLabel, ""); // Clear default text.
   lv_obj_align(logTextLabel, LV_ALIGN_TOP_LEFT, 0, 0);
   lv_obj_set_style_text_color(logTextLabel, black, LV_STATE_DEFAULT);
 }

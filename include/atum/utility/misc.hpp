@@ -30,5 +30,4 @@ T average(const std::vector<T> &items) {
   const double size{static_cast<double>(items.size())};
   return std::reduce(items.begin(), items.end()) / size;
 }
-
 } // namespace atum

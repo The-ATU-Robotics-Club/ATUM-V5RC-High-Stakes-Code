@@ -2,7 +2,7 @@
 
 namespace atum {
 void Robot15::opcontrol() {
-  odometry->setPosition({-2_tile, 0_tile, 0_deg});
+  odometry->setPosition({2_tile, 0_tile, 0_deg});
   while(true) {
     const Position pos{odometry->getPosition()};
     GUI::Map::addPosition(pos, GUI::SeriesColor::Green);

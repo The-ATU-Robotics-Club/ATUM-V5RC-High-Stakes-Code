@@ -11,16 +11,14 @@ void Map::addPositions(const std::vector<Position> &positions,
   for(Position position : positions) {
     addPosition(position, seriesColor);
   }
-  addPosition(positions.back(), seriesColor);
 }
 
 void Map::addPosition(const Position position, const SeriesColor seriesColor) {
   lv_chart_series_t *series{mapSeries[seriesColor]};
   const int maxPossibleCoordinate{72};
-  const lv_coord_t x{getValueAs<inch_t, lv_coord_t>(position.x) * mapRange /
-              maxPossibleCoordinate};
-  const lv_coord_t y{getValueAs<inch_t, lv_coord_t>(position.y) * mapRange /
-              maxPossibleCoordinate};
+  const int coordAdjustment{mapRange / maxPossibleCoordinate};
+  const lv_coord_t x{getValueAs<inch_t, lv_coord_t>(position.x) * coordAdjustment};
+  const lv_coord_t y{getValueAs<inch_t, lv_coord_t>(position.y) * coordAdjustment};
   lv_chart_set_next_value2(mapChart, series, x, y);
   lv_chart_refresh(mapChart);
 }
@@ -56,7 +54,9 @@ void Map::setupScreen() {
   lv_obj_align(mapChart, LV_ALIGN_TOP_LEFT, 6 * defaultPadding, defaultPadding);
   lv_chart_set_range(mapChart, LV_CHART_AXIS_PRIMARY_X, -mapRange, mapRange);
   lv_chart_set_range(mapChart, LV_CHART_AXIS_PRIMARY_Y, -mapRange, mapRange);
-  lv_chart_set_div_line_count(mapChart, 9, 9);
+  lv_chart_set_div_line_count(mapChart, 7, 7);
+  lv_obj_set_style_pad_all(mapChart, 0, LV_PART_MAIN);
+  lv_obj_set_style_radius(mapChart, 0, LV_PART_MAIN);
   lv_obj_set_style_line_width(mapChart, 0, LV_PART_ITEMS);
   lv_obj_set_style_size(mapChart, 12, LV_PART_INDICATOR);
   lv_obj_set_style_bg_img_src(mapChart, &field, LV_PART_MAIN);
