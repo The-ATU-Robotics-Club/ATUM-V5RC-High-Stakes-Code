@@ -4,11 +4,13 @@
 #include "atum/atum.hpp"
 
 namespace atum {
-class Robot15 : public Robot {
+class Robot15A : public Robot {
   ROBOT_BOILERPLATE();
 
   public:
-  Robot15();
+  static constexpr int ID{0x64824900};
+
+  Robot15A();
 
   void disabled() override;
 

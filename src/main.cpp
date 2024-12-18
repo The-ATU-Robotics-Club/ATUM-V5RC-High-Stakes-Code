@@ -1,8 +1,5 @@
 #include "main.h"
 
-static constexpr int prototypeID{0x9e344900};
-static constexpr int a15ID{0x64824900};
-
 #ifndef BRAIN_ID
 #define BRAIN_ID 0
 #endif
@@ -14,8 +11,8 @@ void initialize() {
   atum::GUI::Manager::initialize();
   logger.info("Initialization has started.");
   switch(BRAIN_ID) {
-    case prototypeID: robot = std::make_unique<atum::RobotPrototype>(); break;
-    case a15ID: robot = std::make_unique<atum::Robot15>(); break;
+    case atum::Robot15A::ID: robot = std::make_unique<atum::Robot15A>(); break;
+    default: robot = std::make_unique<atum::RobotPrototype>(); break;
   }
   atum::wait(0.5_s); // Basic wait for VEX OS to start up.
   robot->disabled(); // Make sure disabled has atleast ran once.

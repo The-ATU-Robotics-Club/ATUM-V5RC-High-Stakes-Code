@@ -1,7 +1,7 @@
-#include "robot15.hpp"
+#include "robot15A.hpp"
 
 namespace atum {
-Robot15::Robot15() : Robot{this} {
+Robot15A::Robot15A() : Robot{this} {
   ladybrownArm.setBrakeMode(pros::v5::MotorBrake::hold);
 
   std::unique_ptr<Motor> intakeMtr{
@@ -33,7 +33,7 @@ Robot15::Robot15() : Robot{this} {
   odometry->startBackgroundTasks();
 }
 
-void Robot15::disabled() {
+void Robot15A::disabled() {
   intake->startBackgroundTasks();
 }
 } // namespace atum

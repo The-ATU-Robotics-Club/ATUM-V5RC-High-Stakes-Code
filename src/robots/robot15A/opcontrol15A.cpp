@@ -1,7 +1,7 @@
-#include "robot15.hpp"
+#include "robot15A.hpp"
 
 namespace atum {
-void Robot15::opcontrol() {
+void Robot15A::opcontrol() {
   odometry->setPosition({2_tile, 0_tile, 0_deg});
   while(true) {
     const Pose pos{odometry->getPosition()};
