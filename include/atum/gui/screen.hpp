@@ -6,31 +6,85 @@
 
 namespace atum {
 namespace GUI {
+/**
+ * @brief This enumerated value represents the different series available to
+ * write to on the map and graph screens.
+ *
+ */
 enum SeriesColor { Red, Green, Blue };
 
+/**
+ * @brief This class provides the common resources and methods needed by several
+ * different screens in a more encapsulated fasion.
+ *
+ */
 class Screen {
   protected:
+  /**
+   * @brief Packs together the width and height of GUI elements.
+   *
+   */
   struct GUISize {
     const int width;
     const int height;
   };
 
+  /**
+   * @brief Packs together the x offset, y offset, and alignment of GUI
+   * elements.
+   *
+   */
   struct GUIPosition {
     const int x;
     const int y;
     const lv_align_t align{LV_ALIGN_TOP_LEFT};
   };
 
+  /**
+   * @brief Allocates space for all of the screens. Should be ran early in
+   * initialization.
+   *
+   */
   static void createScreens();
 
+  /**
+   * @brief Initializes the various styles used across the GUI. Should be ran
+   * early in initialization.
+   *
+   */
   static void initializeStyles();
 
+  /**
+   * @brief Adds several styles to an object at once.
+   *
+   * @param obj
+   * @param styles
+   * @param selector
+   */
   static void addStyles(lv_obj_t *obj,
                         const std::vector<lv_style_t *> &styles,
                         const lv_style_selector_t selector = LV_STATE_DEFAULT);
 
+  /**
+   * @brief The callback used whenever a button or element being interacted with
+   * should result in the screen being changed.
+   *
+   * @param event
+   */
   static void changeScreenCB(lv_event_t *event);
 
+  /**
+   * @brief Creates a button to change the screen.
+   *
+   * @param currentScr
+   * @param text
+   * @param size
+   * @param position
+   * @param nextScr
+   * @param extraIdleStyles
+   * @param extraPressedStyles
+   * @return lv_obj_t*
+   */
   static lv_obj_t *createScreenChangeButton(
       lv_obj_t *currentScr,
       const std::string &text,
@@ -40,6 +94,16 @@ class Screen {
       const std::vector<lv_style_t *> &extraIdleStyles = {},
       const std::vector<lv_style_t *> &extraPressedStyles = {});
 
+  /**
+   * @brief Creates a label. Typically used in the title for screens.
+   *
+   * @param scr
+   * @param text
+   * @param size
+   * @param position
+   * @param styles
+   * @return lv_obj_t*
+   */
   static lv_obj_t *createLabel(lv_obj_t *scr,
                                const std::string &text,
                                const GUISize &size,

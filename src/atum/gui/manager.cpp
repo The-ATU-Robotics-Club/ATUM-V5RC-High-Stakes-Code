@@ -1,6 +1,7 @@
 #include "manager.hpp"
 
 LV_IMG_DECLARE(atumlogo);
+LV_IMG_DECLARE(atumerror);
 LV_IMG_DECLARE(kelly);
 
 namespace atum {
@@ -30,12 +31,19 @@ void Manager::finishLoading() {
 }
 
 void Manager::error() {
+  // Don't interrupt easter egg.
+  if(lv_img_get_src(splashImage) != &kelly) {
+    lv_img_set_src(splashImage, &atumerror);
+  }
+}
+
+void Manager::easteregg() {
   lv_img_set_src(splashImage, &kelly); // Easter egg Randy Kelly!
 }
 
 void Manager::loadingScreenSetup() {
   lv_obj_t *loadingLabel{lv_label_create(loadingScreen)};
-  lv_label_set_text(loadingLabel, "LOADING!   DO NOT TOUCH!");
+  lv_label_set_text(loadingLabel, "LOADING!   DO NOT TOUCH!   ARMS IN!");
   lv_obj_center(loadingLabel);
   lv_obj_set_width(loadingLabel, screenWidth);
   lv_label_set_long_mode(loadingLabel, LV_LABEL_LONG_SCROLL_CIRCULAR);

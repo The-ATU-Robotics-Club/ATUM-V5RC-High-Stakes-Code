@@ -32,6 +32,10 @@ void Robot15A::opcontrol() {
       ladybrownWrist.toggle();
     }
 
+    if(remote.getPress(Remote::Button::Up) && remote.getPress(Remote::Button::Down)) {
+      GUI::Manager::easteregg();
+    }
+
     remote.print(
         0,
         "Brain: " +
