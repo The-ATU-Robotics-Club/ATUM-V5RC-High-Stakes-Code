@@ -18,12 +18,22 @@ class Graph : public Screen {
   friend class Manager;
 
   /**
-   * @brief Adds a data point on one of the grpah series.
+   * @brief Packs together into named fields the minimum and maximum values
+   * expected when graphing for a series.
    *
-   * @param point
+   */
+  struct SeriesRange {
+    double minimum;
+    double maximum;
+  };
+
+  /**
+   * @brief Adds a data point on one of the graph series.
+   *
+   * @param value
    * @param seriesColor
    */
-  static void addPoint(const double point, const SeriesColor seriesColor);
+  static void addValue(double value, const SeriesColor seriesColor);
 
   /**
    * @brief Sets the range (negative and positive bounds) for one of the series.
@@ -31,10 +41,11 @@ class Graph : public Screen {
    * @param range
    * @param seriesColor
    */
-  static void setSeriesRange(const double range, const SeriesColor seriesColor);
+  static void setSeriesRange(const SeriesRange &range,
+                             const SeriesColor seriesColor);
 
   /**
-   * @brief Clears all the values in a given series.
+   * @brief Clears all the data points in a given series.
    *
    * @param seriesColor
    */
@@ -48,10 +59,10 @@ class Graph : public Screen {
    */
   static void setupScreen();
 
-  static const int graphRange;
+  static const int graphResolution;
   static lv_obj_t *graphChart;
-  static std::array<lv_chart_series_t *, 3> graphSeries;
-  static std::array<double, 3> graphSeriesRanges;
+  static std::array<lv_chart_series_t *, 7> graphSeries;
+  static std::array<SeriesRange, 7> graphSeriesRanges;
 };
 } // namespace GUI
 } // namespace atum

@@ -4,7 +4,7 @@ LV_IMG_DECLARE(field);
 
 namespace atum {
 namespace GUI {
-const int Map::mapRange{6000};
+const int Map::mapResolution{6000};
 
 void Map::addPositions(const std::vector<Pose> &positions,
                        const SeriesColor seriesColor) {
@@ -15,8 +15,9 @@ void Map::addPositions(const std::vector<Pose> &positions,
 
 void Map::addPosition(const Pose position, const SeriesColor seriesColor) {
   lv_chart_series_t *series{mapSeries[seriesColor]};
-  const int maxPossibleCoordinate{72};
-  const int coordAdjustment{mapRange / maxPossibleCoordinate};
+  // From 12 in for the 6 ft in either direction from the origin. 
+  const int maxPossibleCoordinate{72}; 
+  const int coordAdjustment{mapResolution / maxPossibleCoordinate};
   const lv_coord_t x{getValueAs<inch_t, lv_coord_t>(position.x) *
                      coordAdjustment};
   const lv_coord_t y{getValueAs<inch_t, lv_coord_t>(position.y) *
@@ -54,8 +55,10 @@ void Map::setupScreen() {
   static const int mapChartSize{screenHeight - 4 * defaultPadding};
   lv_obj_set_size(mapChart, mapChartSize, mapChartSize);
   lv_obj_align(mapChart, LV_ALIGN_TOP_LEFT, 6 * defaultPadding, defaultPadding);
-  lv_chart_set_range(mapChart, LV_CHART_AXIS_PRIMARY_X, -mapRange, mapRange);
-  lv_chart_set_range(mapChart, LV_CHART_AXIS_PRIMARY_Y, -mapRange, mapRange);
+  lv_chart_set_range(
+      mapChart, LV_CHART_AXIS_PRIMARY_X, -mapResolution, mapResolution);
+  lv_chart_set_range(
+      mapChart, LV_CHART_AXIS_PRIMARY_Y, -mapResolution, mapResolution);
   lv_chart_set_div_line_count(mapChart, 7, 7);
   lv_obj_set_style_pad_all(mapChart, 0, LV_PART_MAIN);
   lv_obj_set_style_radius(mapChart, 0, LV_PART_MAIN);
@@ -70,9 +73,17 @@ void Map::setupScreen() {
       lv_chart_add_series(mapChart, green, LV_CHART_AXIS_PRIMARY_Y);
   mapSeries[SeriesColor::Blue] =
       lv_chart_add_series(mapChart, blue, LV_CHART_AXIS_PRIMARY_Y);
+  mapSeries[SeriesColor::Cyan] =
+      lv_chart_add_series(mapChart, cyan, LV_CHART_AXIS_PRIMARY_Y);
+  mapSeries[SeriesColor::Magenta] =
+      lv_chart_add_series(mapChart, magenta, LV_CHART_AXIS_PRIMARY_Y);
+  mapSeries[SeriesColor::Yellow] =
+      lv_chart_add_series(mapChart, yellow, LV_CHART_AXIS_PRIMARY_Y);
+  mapSeries[SeriesColor::White] =
+      lv_chart_add_series(mapChart, white, LV_CHART_AXIS_PRIMARY_Y);
 }
 
 lv_obj_t *Map::mapChart;
-std::array<lv_chart_series_t *, 3> Map::mapSeries;
+std::array<lv_chart_series_t *, 7> Map::mapSeries;
 } // namespace GUI
 } // namespace atum

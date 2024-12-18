@@ -23,6 +23,9 @@ const lv_color_t Screen::lightGrey{lv_color_hex(0xbebebe)};
 const lv_color_t Screen::red{lv_color_hex(0xFF0000)};
 const lv_color_t Screen::green{lv_color_hex(0x00FF00)};
 const lv_color_t Screen::blue{lv_color_hex(0x0000FF)};
+const lv_color_t Screen::cyan{lv_color_hex(0x00FFFF)};
+const lv_color_t Screen::magenta{lv_color_hex(0xFF00FF)};
+const lv_color_t Screen::yellow{lv_color_hex(0xFFFF00)};
 const lv_color_t Screen::white{lv_color_white()};
 
 void Screen::createScreens() {

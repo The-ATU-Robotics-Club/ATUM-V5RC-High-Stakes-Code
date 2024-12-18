@@ -6,11 +6,11 @@ void Robot15A::opcontrol() {
   while(true) {
     const Pose pos{drive->getPose()};
     GUI::Map::addPosition(pos, GUI::SeriesColor::Green);
-    GUI::Graph::setSeriesRange(6000, GUI::SeriesColor::Red);
-        GUI::Graph::addPoint(getValueAs<feet_per_second_t>(pos.v) * 1000,
+    GUI::Graph::setSeriesRange({-6000, 6000}, GUI::SeriesColor::Red);
+        GUI::Graph::addValue(getValueAs<feet_per_second_t>(pos.v) * 1000,
                              GUI::SeriesColor::Red);
-    GUI::Graph::setSeriesRange(3600, GUI::SeriesColor::Red);
-    GUI::Graph::addPoint(getValueAs<degrees_per_second_t>(pos.w) * 10, GUI::SeriesColor::Blue);
+    GUI::Graph::setSeriesRange({-3600, 3600}, GUI::SeriesColor::Magenta);
+    GUI::Graph::addValue(getValueAs<degrees_per_second_t>(pos.w) * 10, GUI::SeriesColor::Magenta);
 
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};

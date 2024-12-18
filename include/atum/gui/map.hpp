@@ -50,9 +50,9 @@ class Map : public Screen {
    */
   static void setupScreen();
 
-  static const int mapRange;
+  static const int mapResolution;
   static lv_obj_t *mapChart;
-  static std::array<lv_chart_series_t *, 3> mapSeries;
+  static std::array<lv_chart_series_t *, 7> mapSeries;
 };
 } // namespace GUI
 } // namespace atum

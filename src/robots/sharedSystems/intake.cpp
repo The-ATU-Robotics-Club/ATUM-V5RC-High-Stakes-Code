@@ -85,7 +85,7 @@ void Intake::sorting() {
 
 void Intake::forceIntake(const IntakeState newState) {
   // It should at least be at a standstill before checks occur. This is to
-  // prevent false jams if going from outtaking to inttaking quickly.
+  // prevent false jams if going from outtaking to intaking quickly.
   if((state != IntakeState::Intaking && state != IntakeState::Indexing) ||
      mtr->getVelocity() < 0_rpm) {
     params.timerUntilJamChecks.resetAlarm();

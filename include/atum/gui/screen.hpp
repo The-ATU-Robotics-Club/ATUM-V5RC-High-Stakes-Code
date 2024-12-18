@@ -11,7 +11,7 @@ namespace GUI {
  * write to on the map and graph screens.
  *
  */
-enum SeriesColor { Red, Green, Blue };
+enum SeriesColor { Red, Green, Blue, Cyan, Magenta, Yellow, White };
 
 /**
  * @brief This class provides the common resources and methods needed by several
@@ -130,6 +130,9 @@ class Screen {
   static const lv_color_t red;
   static const lv_color_t green;
   static const lv_color_t blue;
+  static const lv_color_t cyan;
+  static const lv_color_t magenta;
+  static const lv_color_t yellow;
   static const lv_color_t white;
 
   // Commonly used styles.
