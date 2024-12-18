@@ -59,10 +59,6 @@ void Remote::rumble(const std::string &pattern) {
   remote.rumble(pattern.c_str());
 }
 
-std::int32_t Remote::getBattery() {
-  return remote.get_battery_capacity();
-}
-
 TASK_DEFINITIONS_FOR(Remote) {
   START_TASK("Print Handler")
   while(true) {

@@ -5,9 +5,7 @@ void Robot15::opcontrol() {
   odometry->setPosition({-2_tile, 0_tile, 0_deg});
   while(true) {
     const Position pos{odometry->getPosition()};
-    GUI::addMapPoint({getValueAs<inch_t>(pos.x) * 83.333,
-                      getValueAs<inch_t>(pos.y) * 83.333},
-                     GUI::SeriesColor::Green);
+    GUI::Map::addPosition(pos, GUI::SeriesColor::Green);
 
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
@@ -39,8 +37,6 @@ void Robot15::opcontrol() {
         "Brain: " +
             std::to_string(static_cast<int>(pros::battery::get_capacity())) +
             "%");
-    remote.print(1, "Remote: " + std::to_string(remote.getBattery()) + "%");
-
     wait(10_ms);
   }
 }

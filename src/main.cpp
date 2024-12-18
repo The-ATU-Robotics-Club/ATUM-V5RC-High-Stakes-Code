@@ -8,10 +8,10 @@ static constexpr int a15ID{0x64824900};
 #endif
 
 std::unique_ptr<atum::Robot> robot;
-atum::Logger logger{};
+atum::Logger logger;
 
 void initialize() {
-  atum::GUI::initialize();
+  atum::GUI::Manager::initialize();
   logger.info("Initialization has started.");
   switch(BRAIN_ID) {
     case prototypeID: robot = std::make_unique<atum::RobotPrototype>(); break;
@@ -20,7 +20,7 @@ void initialize() {
   atum::wait(0.5_s); // Basic wait for VEX OS to start up.
   robot->disabled(); // Make sure disabled has atleast ran once.
   logger.info("Initialization finished.");
-  atum::GUI::finishLoading();
+  atum::GUI::Manager::finishLoading();
 }
 
 void competition_initialize() {

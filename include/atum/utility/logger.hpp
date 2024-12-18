@@ -1,7 +1,8 @@
 #pragma once
 
 #include "../../pros/rtos.hpp"
-#include "gui.hpp"
+#include "../gui/log.hpp"
+#include "../gui/manager.hpp"
 #include <algorithm>
 #include <fstream>
 #include <iomanip>
@@ -54,8 +55,8 @@ class Logger {
   void error(const std::string &msg);
 
   private:
-  // Allow Logger to use writeToLog.
-  friend void GUI::writeToLog(const std::string &msg);
+  // Allow Logger to use writeTo.
+  friend void GUI::Log::write(const std::string &msg);
 
   /**
    * @brief Adds prefix to the message, and outputs to the terminal, file, and

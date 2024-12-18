@@ -139,13 +139,6 @@ class Remote : public Task {
    */
   void rumble(const std::string &pattern);
 
-  /**
-   * @brief Returns the current battery level of the remote.
-   *
-   * @return std::int32_t
-   */
-  std::int32_t getBattery();
-
   private:
   /**
    * @brief A universal, small deadzone where lower joystick readings will be

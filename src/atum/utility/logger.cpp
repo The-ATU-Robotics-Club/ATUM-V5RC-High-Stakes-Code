@@ -16,18 +16,24 @@ void Logger::debug(const std::string &msg) {
 }
 
 void Logger::info(const std::string &msg) {
-  if(alreadyLogged(msg)) return;
+  if(alreadyLogged(msg)) {
+    return;
+  }
   log("INFO", msg, Level::Info);
 }
 
 void Logger::warn(const std::string &msg) {
-  if(alreadyLogged(msg)) return;
+  if(alreadyLogged(msg)) {
+    return;
+  }
   log("WARN", msg, Level::Warn);
 }
 
 void Logger::error(const std::string &msg) {
-  if(alreadyLogged(msg)) return;
-  GUI::errorScreen();
+  if(alreadyLogged(msg)) {
+    return;
+  }
+  GUI::Manager::error();
   log("ERROR", msg, Level::Error);
 }
 
@@ -44,12 +50,14 @@ void Logger::log(const std::string &prefix,
   if(msgLevel <= Level::Info) {
     std::fstream file{logFilename, std::fstream::app};
     file << fmtMsg.str();
-    GUI::writeToLog(fmtMsg.str());
+    GUI::Log::write(fmtMsg.str());
   }
 }
 
 bool Logger::alreadyLogged(const std::string &msg) {
-  if(std::find(logs.begin(), logs.end(), msg) != logs.end()) return true;
+  if(std::find(logs.begin(), logs.end(), msg) != logs.end()) {
+    return true;
+  }
   logs.push_back(msg);
   return false;
 }

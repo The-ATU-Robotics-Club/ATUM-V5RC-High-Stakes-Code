@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../utility/gui.hpp"
+#include "../gui/manager.hpp"
 #include <functional>
 #include <string>
 
@@ -67,7 +67,7 @@ class Robot {
   template <class SpecRobot>
   Robot(SpecRobot *spec) {
     spec->initializeRoutines();
-    GUI::startLoading(spec->getRoutineNames());
+    GUI::Manager::startLoading(spec->getRoutineNames());
   }
 
   /**
