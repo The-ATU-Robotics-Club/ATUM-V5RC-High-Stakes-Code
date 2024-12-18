@@ -54,7 +54,7 @@ class Motor {
 
   /**
    * @brief Get the average position of all the motors in degrees
-   * (can't use units for this, since the library will constrain them 
+   * (can't use units for this, since the library will constrain them
    * to 360).
    *
    * @return double
@@ -118,6 +118,13 @@ class Motor {
   std::int32_t getVoltage() const;
 
   /**
+   * @brief Gets the brake mode of the motors.
+   *
+   * @return pros::v5::MotorBrake
+   */
+  pros::v5::MotorBrake getBrakeMode() const;
+
+  /**
    * @brief Get the current limit of the motors in mA.
    *
    * @return std::int32_t
@@ -159,7 +166,7 @@ class Motor {
   const pros::v5::MotorGears gearset;
   const std::string name;
   std::vector<std::unique_ptr<pros::v5::Motor>> motors;
-  std::vector<char> enabled; // Avoid vector<bool>. 
+  std::vector<char> enabled; // Avoid vector<bool>.
 
   Logger logger;
 };

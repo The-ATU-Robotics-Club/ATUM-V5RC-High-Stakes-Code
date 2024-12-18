@@ -1,9 +1,9 @@
 #include "pose.hpp"
 
 namespace atum {
-std::string toString(const Pose &position) {
-  return "(" + to_string(position.x) + ", " + to_string(position.y) + ", " +
-         to_string(position.h) + ")";
+std::string toString(const Pose &pose) {
+  return "(" + to_string(pose.x) + ", " + to_string(pose.y) + ", " +
+         to_string(pose.h) + ")";
 }
 
 Pose Pose::operator+(const Pose &rhs) const {

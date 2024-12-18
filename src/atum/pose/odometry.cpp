@@ -10,9 +10,15 @@ Odometry::Odometry(std::unique_ptr<Odometer> iForward,
     forward{std::move(iForward)},
     side{std::move(iSide)},
     imu{std::move(iImu)} {
-  if(!forward) logger.error("The forward odometer must be provided.");
-  if(!side) logger.error("The side odometer was not provided.");
-  if(!imu) logger.error("An IMU must be provided.");
+  if(!forward) {
+    logger.error("The forward odometer must be provided.");
+  }
+  if(!side) {
+    logger.error("The side odometer was not provided.");
+  }
+  if(!imu) {
+    logger.error("An IMU must be provided.");
+  }
   logger.info("Odometry constructed!");
 }
 
@@ -35,10 +41,10 @@ Pose Odometry::update() {
   // Accounting for angular velocity.
   const inch_t dxRAdj{sinDHOverDH * dxR + cosDHMinusOneOverDH * dyR};
   const inch_t dyRAdj{-cosDHMinusOneOverDH * dxR + sinDHOverDH * dyR};
-  return integratePosition(dxRAdj, dyRAdj, dh);
+  return integratePose(dxRAdj, dyRAdj, dh);
 }
 
-Pose Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
+Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
   if(!std::isfinite(getValueAs<inch_t>(dx)) ||
      !std::isfinite(getValueAs<inch_t>(dy)) ||
      !std::isfinite(getValueAs<radian_t>(dh))) {
@@ -47,13 +53,16 @@ Pose Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
     dy = 0_in;
     dh = 0_rad;
   }
-  Pose currentPosition{getPosition()};
-  const radian_t h0{currentPosition.h};
-  currentPosition.x += cos(h0) * dx + sin(h0) * dy;
-  currentPosition.y += -sin(h0) * dx + cos(h0) * dy;
-  currentPosition.h += dh;
-  setPosition(currentPosition);
-  return getPosition(); // Use getPosition() for logging purposes.
+  Pose currentPose{getPose()};
+  currentPose.x += cos(currentPose.h) * dx + sin(currentPose.h) * dy;
+  currentPose.y += -sin(currentPose.h) * dx + cos(currentPose.h) * dy;
+  currentPose.h += dh;
+  const second_t dt{timer.timeElapsed()};
+  currentPose.v = dy / dt;
+  currentPose.w = dh / dt;
+  timer.resetAlarm();
+  setPose(currentPose);
+  return getPose(); // Use getPose() for logging purposes.
 }
 
 TASK_DEFINITIONS_FOR(Odometry) {

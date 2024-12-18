@@ -7,7 +7,7 @@
 namespace atum {
 /**
  * @brief This class creates an interface for any system that can
- * do position tracking.
+ * do pose tracking.
  *
  */
 class Tracker {
@@ -20,7 +20,7 @@ class Tracker {
   Tracker(const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
-   * @brief This method should update the current tracked position.
+   * @brief This method should update the current tracked pose.
    * It should be overriden in derivatives of Tracker.
    *
    * @return Pose
@@ -28,22 +28,22 @@ class Tracker {
   virtual Pose update() = 0;
 
   /**
-   * @brief Sets the current position of the tracker.
+   * @brief Sets the current pose of the tracker.
    *
-   * @param iPosition
+   * @param iPose
    */
-  virtual void setPosition(const Pose &iPosition);
+  virtual void setPose(const Pose &iPose);
 
   /**
-   * @brief Gets the current position of the tracker.
+   * @brief Gets the current pose of the tracker.
    *
    * @return Pose
    */
-  virtual Pose getPosition();
+  virtual Pose getPose();
 
   protected:
   Logger logger;
-  Pose position{0_tile, 0_tile, 0_deg};
-  pros::Mutex positionMutex;
+  Pose pose;
+  pros::Mutex poseMutex;
 };
 } // namespace atum

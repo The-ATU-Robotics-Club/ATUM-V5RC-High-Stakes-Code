@@ -6,13 +6,16 @@ namespace atum {
 /**
  * @brief This is the struct used to represent poses: x and y coordinates
  * with a heading. For reference on the coordinate system we use, see the
- * GPS documentation from VEX.
+ * GPS documentation from VEX. Also included (not normally in pose, but here
+ * for convenience) is linear and angular velocity. 
  *
  */
 struct Pose {
   tile_t x{0_tile};
   tile_t y{0_tile};
   degree_t h{0_deg};
+  feet_per_second_t v{0_fps};
+  degrees_per_second_t w{0_deg_per_s};
   /**
    * @brief Returns a pose where the x and y values are the
    * sums of the left and right sides x and y values.
@@ -55,10 +58,10 @@ Pose operator*(const Pose &lhs, const double rhs);
 /**
  * @brief Returns a string representation of the given pose.
  *
- * @param position
+ * @param pose
  * @return std::string
  */
-std::string toString(const Pose &position);
+std::string toString(const Pose &pose);
 
 /**
  * @brief Gets the distance between two given poses.

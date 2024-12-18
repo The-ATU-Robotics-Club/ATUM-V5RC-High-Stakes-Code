@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../position/pose.hpp"
+#include "../pose/pose.hpp"
 #include "screen.hpp"
 #include <array>
 

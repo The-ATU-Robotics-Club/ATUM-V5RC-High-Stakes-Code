@@ -18,8 +18,7 @@ class Robot15A : public Robot {
 
   private:
   Remote remote;
-  Motor leftMotors{{-7, -8, -9, 10}, pros::v5::MotorGears::blue, "left drive"};
-  Motor rightMotors{{1, 2, 3, -4}, pros::v5::MotorGears::blue, "right drive"};
+  std::unique_ptr<Drive> drive;
   std::unique_ptr<Intake> intake;
   Motor ladybrownArm{{15, -16}, pros::v5::MotorGears::green, "ladybrown"};
   pros::adi::Pneumatics ladybrownWrist{'B', false};

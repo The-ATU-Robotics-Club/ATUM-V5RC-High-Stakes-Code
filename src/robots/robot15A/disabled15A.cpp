@@ -20,17 +20,24 @@ Robot15A::Robot15A() : Robot{this} {
                                     intakeParams,
                                     Logger::Level::Debug);
 
+  std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
+      PortsList{-7, -8, -9, 10}, pros::v5::MotorGears::blue, "left drive")};
+  std::unique_ptr<Motor> rightDriveMtr{std::make_unique<Motor>(
+      PortsList{1, 2, 3, -4}, pros::v5::MotorGears::blue, "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, -1.8625_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('E', 'F', wheelCircumference, 0.25_in)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(2)};
-  odometry = std::make_unique<Odometry>(std::move(forwardOdometer),
-                                        std::move(sideOdometer),
-                                        std::move(imu),
-                                        Logger::Level::Debug);
+  std::unique_ptr<Odometry> odometry{
+      std::make_unique<Odometry>(std::move(forwardOdometer),
+                                 std::move(sideOdometer),
+                                 std::move(imu),
+                                 Logger::Level::Debug)};
   odometry->startBackgroundTasks();
+  drive = std::make_unique<Drive>(
+      std::move(leftDriveMtr), std::move(rightDriveMtr), std::move(odometry));
 }
 
 void Robot15A::disabled() {

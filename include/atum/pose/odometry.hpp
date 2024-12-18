@@ -35,7 +35,7 @@ class Odometry : public Tracker, public Task {
            Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
-   * @brief Updates the current position as tracked by the odometers.
+   * @brief Updates the current pose as tracked by the odometers.
    * Typically called in the background, but could be manually called.
    *
    * @return Pose
@@ -45,7 +45,7 @@ class Odometry : public Tracker, public Task {
   private:
   /**
    * @brief Checks that dx, dy, and dh are finite, valid values before
-   * rotating them appropriately and adding them to the current position
+   * rotating them appropriately and adding them to the current pose
    * estimate.
    *
    * @param dx
@@ -53,10 +53,11 @@ class Odometry : public Tracker, public Task {
    * @param dh
    * @return Pose
    */
-  Pose integratePosition(inch_t dx, inch_t dy, radian_t dh);
+  Pose integratePose(inch_t dx, inch_t dy, radian_t dh);
 
   std::unique_ptr<Odometer> forward;
   std::unique_ptr<Odometer> side;
   std::unique_ptr<IMU> imu;
+  Timer timer;
 };
 } // namespace atum

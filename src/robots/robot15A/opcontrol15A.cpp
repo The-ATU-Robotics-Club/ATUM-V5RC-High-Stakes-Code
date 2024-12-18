@@ -2,15 +2,19 @@
 
 namespace atum {
 void Robot15A::opcontrol() {
-  odometry->setPosition({2_tile, 0_tile, 0_deg});
+  drive->setPose({2_tile, 0_tile, 0_deg});
   while(true) {
-    const Pose pos{odometry->getPosition()};
+    const Pose pos{drive->getPose()};
     GUI::Map::addPosition(pos, GUI::SeriesColor::Green);
+    GUI::Graph::setSeriesRange(6000, GUI::SeriesColor::Red);
+        GUI::Graph::addPoint(getValueAs<feet_per_second_t>(pos.v) * 1000,
+                             GUI::SeriesColor::Red);
+    GUI::Graph::setSeriesRange(3600, GUI::SeriesColor::Red);
+    GUI::Graph::addPoint(getValueAs<degrees_per_second_t>(pos.w) * 10, GUI::SeriesColor::Blue);
 
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
-    leftMotors.moveVoltage(forward + turn);
-    rightMotors.moveVoltage(forward - turn);
+    drive->arcade(forward, turn);
 
     switch(remote.getRTrigger()) {
       case -1: intake->outtake(); break;
@@ -32,7 +36,8 @@ void Robot15A::opcontrol() {
       ladybrownWrist.toggle();
     }
 
-    if(remote.getPress(Remote::Button::Up) && remote.getPress(Remote::Button::Down)) {
+    if(remote.getPress(Remote::Button::Up) &&
+       remote.getPress(Remote::Button::Down)) {
       GUI::Manager::easteregg();
     }
 

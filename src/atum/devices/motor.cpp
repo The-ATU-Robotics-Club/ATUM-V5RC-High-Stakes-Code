@@ -5,7 +5,9 @@ Motor::Motor(const std::vector<std::int8_t> ports,
              const pros::v5::MotorGears iGearset,
              const std::string &iName,
              const Logger::Level loggerLevel) :
-    gearset{iGearset}, name{iName}, logger{loggerLevel} {
+    gearset{iGearset},
+    name{iName},
+    logger{loggerLevel} {
   for(std::int8_t port : ports) {
     motors.push_back(std::make_unique<pros::Motor>(
         std::abs(port), gearset, pros::v5::MotorEncoderUnits::degrees));
@@ -141,6 +143,15 @@ std::int32_t Motor::getVoltage() const {
     }
   }
   return 0;
+}
+
+pros::v5::MotorBrake Motor::getBrakeMode() const {
+  for(std::size_t i{0}; i < motors.size(); i++) {
+    if(enabled[i]) {
+      return motors[i]->get_brake_mode();
+    }
+  }
+  return pros::v5::MotorBrake::coast;
 }
 
 std::int32_t Motor::getCurrentLimit() const {
