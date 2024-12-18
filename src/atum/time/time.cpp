@@ -14,7 +14,7 @@ void wait(const second_t delay) {
   pros::Task::delay_until(&now, then);
 }
 
-void waitUntil(const std::function<bool()> &condition,
+void waitUntil(const Condition &condition,
                const second_t timeout,
                const second_t delay) {
   const second_t startTime{time()};

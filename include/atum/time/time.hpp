@@ -5,6 +5,13 @@
 
 namespace atum {
 /**
+ * @brief Alias provided for the very common function type returning a boolean
+ * value.
+ *
+ */
+using Condition = std::function<bool()>;
+
+/**
  * @brief Because many analog ADI sensors have an option to calibrate and that
  * calibration involves 500 samples taken 1 ms apart, this constant is for use
  * in delays after said calibration begins.
@@ -43,7 +50,7 @@ void wait(second_t delay = standardDelay);
  * @param timeout
  * @param delay
  */
-void waitUntil(const std::function<bool()> &condition,
+void waitUntil(const Condition &condition,
                const second_t timeout = 0_s,
                const second_t delay = standardDelay);
 } // namespace atum
