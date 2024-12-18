@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../position/position.hpp"
+#include "../position/pose.hpp"
 #include "screen.hpp"
 #include <array>
 
@@ -9,10 +9,10 @@ namespace GUI {
 class Map : public Screen {
   public:
   friend class Manager;
-  static void addPositions(const std::vector<Position> &positions,
-                        const SeriesColor seriesColor);
+  static void addPositions(const std::vector<Pose> &positions,
+                           const SeriesColor seriesColor);
 
-  static void addPosition(const Position position, const SeriesColor seriesColor);
+  static void addPosition(const Pose position, const SeriesColor seriesColor);
 
   static void clearSeries(const SeriesColor seriesColor);
 

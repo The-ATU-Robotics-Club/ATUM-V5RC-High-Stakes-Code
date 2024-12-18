@@ -6,19 +6,21 @@ namespace atum {
 namespace GUI {
 const int Map::mapRange{6000};
 
-void Map::addPositions(const std::vector<Position> &positions,
-                    const SeriesColor seriesColor) {
-  for(Position position : positions) {
+void Map::addPositions(const std::vector<Pose> &positions,
+                       const SeriesColor seriesColor) {
+  for(Pose position : positions) {
     addPosition(position, seriesColor);
   }
 }
 
-void Map::addPosition(const Position position, const SeriesColor seriesColor) {
+void Map::addPosition(const Pose position, const SeriesColor seriesColor) {
   lv_chart_series_t *series{mapSeries[seriesColor]};
   const int maxPossibleCoordinate{72};
   const int coordAdjustment{mapRange / maxPossibleCoordinate};
-  const lv_coord_t x{getValueAs<inch_t, lv_coord_t>(position.x) * coordAdjustment};
-  const lv_coord_t y{getValueAs<inch_t, lv_coord_t>(position.y) * coordAdjustment};
+  const lv_coord_t x{getValueAs<inch_t, lv_coord_t>(position.x) *
+                     coordAdjustment};
+  const lv_coord_t y{getValueAs<inch_t, lv_coord_t>(position.y) *
+                     coordAdjustment};
   lv_chart_set_next_value2(mapChart, series, x, y);
   lv_chart_refresh(mapChart);
 }

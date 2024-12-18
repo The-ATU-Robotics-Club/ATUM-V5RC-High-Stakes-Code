@@ -35,7 +35,7 @@ void Drive::arcade(const double forwardVoltage, const double turnVoltage) {
   tank(left, right);
 }
 
-void Drive::setPosition(const Position &iPosition) {
+void Drive::setPosition(const Pose &iPosition) {
   if(!tracker) {
     if(logger) logger->error("No tracker provided!");
     return;
@@ -43,10 +43,10 @@ void Drive::setPosition(const Position &iPosition) {
   tracker->setPosition(iPosition);
 }
 
-Position Drive::getPosition() const {
+Pose Drive::getPosition() const {
   if(!tracker) {
     if(logger) logger->error("No tracker provided!");
-    return Position{};
+    return Pose{};
   }
   return tracker->getPosition();
 }

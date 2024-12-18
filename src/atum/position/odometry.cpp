@@ -16,7 +16,7 @@ Odometry::Odometry(std::unique_ptr<Odometer> iForward,
   logger.info("Odometry constructed!");
 }
 
-Position Odometry::update() {
+Pose Odometry::update() {
   inch_t dxR{side->traveled()};
   inch_t dyR{forward->traveled()};
   const radian_t dh{imu->getTraveled()};
@@ -38,7 +38,7 @@ Position Odometry::update() {
   return integratePosition(dxRAdj, dyRAdj, dh);
 }
 
-Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
+Pose Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
   if(!std::isfinite(getValueAs<inch_t>(dx)) ||
      !std::isfinite(getValueAs<inch_t>(dy)) ||
      !std::isfinite(getValueAs<radian_t>(dh))) {
@@ -47,7 +47,7 @@ Position Odometry::integratePosition(inch_t dx, inch_t dy, radian_t dh) {
     dy = 0_in;
     dh = 0_rad;
   }
-  Position currentPosition{getPosition()};
+  Pose currentPosition{getPosition()};
   const radian_t h0{currentPosition.h};
   currentPosition.x += cos(h0) * dx + sin(h0) * dy;
   currentPosition.y += -sin(h0) * dx + cos(h0) * dy;

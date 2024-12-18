@@ -26,9 +26,9 @@ class Drive {
 
   void arcade(const double forwardVoltage, const double turnVoltage);
 
-  void setPosition(const Position &iPosition);
+  void setPosition(const Pose &iPosition);
 
-  Position getPosition() const;
+  Pose getPosition() const;
 
   meters_per_second_t getLinearVelocity() const;
 

@@ -38,9 +38,9 @@ class Odometry : public Tracker, public Task {
    * @brief Updates the current position as tracked by the odometers.
    * Typically called in the background, but could be manually called.
    *
-   * @return Position
+   * @return Pose
    */
-  Position update() override;
+  Pose update() override;
 
   private:
   /**
@@ -51,9 +51,9 @@ class Odometry : public Tracker, public Task {
    * @param dx
    * @param dy
    * @param dh
-   * @return Position
+   * @return Pose
    */
-  Position integratePosition(inch_t dx, inch_t dy, radian_t dh);
+  Pose integratePosition(inch_t dx, inch_t dy, radian_t dh);
 
   std::unique_ptr<Odometer> forward;
   std::unique_ptr<Odometer> side;

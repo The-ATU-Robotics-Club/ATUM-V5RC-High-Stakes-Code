@@ -3,14 +3,14 @@
 namespace atum {
 Tracker::Tracker(const Logger::Level loggerLevel) : logger{loggerLevel} {}
 
-void Tracker::setPosition(const Position &iPosition) {
+void Tracker::setPosition(const Pose &iPosition) {
   std::scoped_lock lock{positionMutex};
   position = iPosition;
 }
 
-Position Tracker::getPosition() {
+Pose Tracker::getPosition() {
   std::scoped_lock lock{positionMutex};
-  Position current = position;
+  Pose current = position;
   logger.debug("Current tracker position is " + toString(position) + ".");
   return current;
 }

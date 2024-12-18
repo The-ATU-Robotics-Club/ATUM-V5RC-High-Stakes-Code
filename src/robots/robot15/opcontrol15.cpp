@@ -4,7 +4,7 @@ namespace atum {
 void Robot15::opcontrol() {
   odometry->setPosition({2_tile, 0_tile, 0_deg});
   while(true) {
-    const Position pos{odometry->getPosition()};
+    const Pose pos{odometry->getPosition()};
     GUI::Map::addPosition(pos, GUI::SeriesColor::Green);
 
     const double forward{remote.getLStick().y};
