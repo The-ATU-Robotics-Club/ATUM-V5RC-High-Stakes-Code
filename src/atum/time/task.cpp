@@ -12,14 +12,14 @@ void Task::startBackgroundTasks() {
                                              TASK_STACK_DEPTH_DEFAULT,
                                              params.name.c_str());
     tasks.push_back(std::move(task));
-    taskLogger.info("Task " + params.name + " with priority " +
+    taskLogger.info("Task \"" + params.name + "\" with priority " +
                     std::to_string(params.priority) + " has started.");
   }
 }
 
 void Task::stopBackgroundTasks() {
   tasks.clear();
-  taskLogger.info("Tasks associated with " + handlerName +
-                  " have been stopped.");
+  taskLogger.info("Tasks associated with \"" + handlerName +
+                  "\" have been stopped.");
 }
 } // namespace atum

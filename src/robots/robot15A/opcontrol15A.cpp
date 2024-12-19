@@ -2,15 +2,23 @@
 
 namespace atum {
 void Robot15A::opcontrol() {
+  Timer timer{5_s};
+  {
+    Schedule{Schedule::Item{"Rumble at 5s",
+                            [&timer]() { return timer.goneOff(); },
+                            [=]() { remote.rumble("..."); }},
+             Logger::Level::Debug};
+  }
   drive->setPose({2_tile, 0_tile, 0_deg});
   while(true) {
     const Pose pos{drive->getPose()};
     GUI::Map::addPosition(pos, GUI::SeriesColor::Green);
     GUI::Graph::setSeriesRange({-6000, 6000}, GUI::SeriesColor::Red);
-        GUI::Graph::addValue(getValueAs<feet_per_second_t>(pos.v) * 1000,
-                             GUI::SeriesColor::Red);
+    GUI::Graph::addValue(getValueAs<feet_per_second_t>(pos.v) * 1000,
+                         GUI::SeriesColor::Red);
     GUI::Graph::setSeriesRange({-3600, 3600}, GUI::SeriesColor::Magenta);
-    GUI::Graph::addValue(getValueAs<degrees_per_second_t>(pos.w) * 10, GUI::SeriesColor::Magenta);
+    GUI::Graph::addValue(getValueAs<degrees_per_second_t>(pos.w) * 10,
+                         GUI::SeriesColor::Magenta);
 
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};

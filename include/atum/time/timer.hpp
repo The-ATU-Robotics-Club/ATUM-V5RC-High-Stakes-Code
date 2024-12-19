@@ -8,9 +8,8 @@ class Timer {
   /**
    * @brief Constructs a new timer with an alarm time at which
    * it will be considered to have gone off. The default of 0 s
-   * will make it so that the alarm is always considered to have
-   * gone off, and it mostly for when you simply want to retrieve
-   * time elapsed since some point.
+   * will make it so that the alarm is never considered to have
+   * gone off.
    *
    * @param iAlarmTime
    */
@@ -32,7 +31,8 @@ class Timer {
   void resetAlarm();
 
   /**
-   * @brief Says if the alarm time has elapsed since last reset.
+   * @brief Says if the alarm time has elapsed since last reset is greater
+   * than the alarm time (or if the alarm time is zero seconds).
    *
    * @return true
    * @return false

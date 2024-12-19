@@ -11,30 +11,46 @@ Remote::Remote(const Type type, const Logger::Level loggerLevel) :
 }
 
 int Remote::getLTrigger() {
-  if(getHold(Button::L1)) return 1;
-  if(getHold(Button::L2)) return -1;
+  if(getHold(Button::L1)) {
+    return 1;
+  }
+  if(getHold(Button::L2)) {
+    return -1;
+  }
   return 0;
 }
 
 int Remote::getRTrigger() {
-  if(getHold(Button::R1)) return 1;
-  if(getHold(Button::R2)) return -1;
+  if(getHold(Button::R1)) {
+    return 1;
+  }
+  if(getHold(Button::R2)) {
+    return -1;
+  }
   return 0;
 }
 
 Remote::StickAxis Remote::getLStick() {
   double x{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_X)};
   double y{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y)};
-  if(std::abs(x) < deadzone) x = 0;
-  if(std::abs(y) < deadzone) y = 0;
+  if(std::abs(x) < deadzone) {
+    x = 0;
+  }
+  if(std::abs(y) < deadzone) {
+    y = 0;
+  }
   return {x, y};
 }
 
 Remote::StickAxis Remote::getRStick() {
   double x{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X)};
   double y{analogToVolt * remote.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y)};
-  if(std::abs(x) < deadzone) x = 0;
-  if(std::abs(y) < deadzone) y = 0;
+  if(std::abs(x) < deadzone) {
+    x = 0;
+  }
+  if(std::abs(y) < deadzone) {
+    y = 0;
+  }
   return {x, y};
 }
 

@@ -31,6 +31,7 @@
 #include "systems/drive.hpp"
 #include "systems/remote.hpp"
 #include "systems/robot.hpp"
+#include "time/schedule.hpp"
 #include "time/task.hpp"
 #include "time/time.hpp"
 #include "time/timer.hpp"

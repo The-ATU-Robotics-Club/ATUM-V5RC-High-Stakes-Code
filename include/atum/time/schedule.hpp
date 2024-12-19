@@ -1,11 +1,13 @@
 #pragma once
 
 #include "task.hpp"
-#include "time.hpp"
+#include "timer.hpp"
 #include <queue>
 
 namespace atum {
-class Scheduler : public Task {
+class Schedule : public Task {
+  TASK_BOILERPLATE(); // Included in all task derivatives for setup.
+
   public:
   struct Item {
     const std::string name;
@@ -18,13 +20,11 @@ class Scheduler : public Task {
     const std::function<void()> todoTimeout{[]() {}};
   };
 
-  Scheduler(const Logger::Level loggerLevel = Logger::Level::Info);
-
-  void schedule(const Item &item);
-
-  void deschedule();
+  Schedule(const Item &iItem,
+           const Logger::Level loggerLevel = Logger::Level::Info);
 
   private:
-  std::queue<Item> items;
+  Item item;
+  Logger logger;
 };
 } // namespace atum

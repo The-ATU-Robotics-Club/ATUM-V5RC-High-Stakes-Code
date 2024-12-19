@@ -9,7 +9,7 @@ Robot15A::Robot15A() : Robot{this} {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(hueFields, Logger::Level::Debug)};
+      std::make_unique<ColorSensor>(hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 30_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
@@ -17,8 +17,7 @@ Robot15A::Robot15A() : Robot{this} {
   intakeParams.sortThrowTime = 0.05_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
-                                    intakeParams,
-                                    Logger::Level::Debug);
+                                    intakeParams);
 
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
       PortsList{-7, -8, -9, 10}, pros::v5::MotorGears::blue, "left drive")};
@@ -33,8 +32,7 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
                                  std::move(sideOdometer),
-                                 std::move(imu),
-                                 Logger::Level::Debug)};
+                                 std::move(imu))};
   odometry->startBackgroundTasks();
   drive = std::make_unique<Drive>(
       std::move(leftDriveMtr), std::move(rightDriveMtr), std::move(odometry));
