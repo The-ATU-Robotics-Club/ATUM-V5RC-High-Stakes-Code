@@ -8,9 +8,10 @@
 namespace atum {
 /**
  * @brief This class serves as a way to perform actions once certain conditions
- * are met. Construct an anonymous object with the necessary parameters for a
- * schedule item (e.g., Schedule{{...}}; ). Will be interrupted if competition
- * state changes. Actions should be fairly simple.
+ * are met. Construct an object with the necessary parameters for a schedule
+ * item (e.g., Schedule someAction{{...}}; ). Will be interrupted if competition
+ * state changes or the object goes out of scope. Actions should be fairly
+ * simple.
  *
  */
 class Schedule : public Task {
@@ -55,6 +56,13 @@ class Schedule : public Task {
    */
   Schedule(const Item &iItem,
            const Logger::Level loggerLevel = Logger::Level::Info);
+
+  /**
+   * @brief Cleans up the scheduled action and stops the background task
+   * associated with it.
+   *
+   */
+  ~Schedule();
 
   private:
   Item item;

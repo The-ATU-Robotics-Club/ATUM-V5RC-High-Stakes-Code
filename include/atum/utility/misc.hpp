@@ -7,6 +7,13 @@
 
 namespace atum {
 /**
+ * @brief Used internally to automatically make use of different macros
+ * depending on number of parameters. Do not use explicity.
+ *
+ */
+#define GET_MACRO(_1, _2, NAME, ...) NAME
+
+/**
  * @brief Because make_unique and make_shared seemed to brick the type inference
  * of constructors involving vectors, this alias makes constructed smart
  * pointers to said objects a little nicer looking.

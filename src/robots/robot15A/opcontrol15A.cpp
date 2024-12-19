@@ -2,12 +2,16 @@
 
 namespace atum {
 void Robot15A::opcontrol() {
-  Schedule{Schedule::Item{"Rumble at 5s",
-                          Schedule::neverMet,
-                          Schedule::doNothing,
-                          5_s,
-                          [=]() { remote.rumble("..."); }},
-           Logger::Level::Debug};
+  Timer halfway{37.5_s};
+  Schedule halfwayRumbleScheduled{{"Rumble at Halfway Time",
+                                   halfway.checkGoneOff(),
+                                   [=]() { remote.rumble("-"); }},
+                                  Logger::Level::Debug};
+  Timer fifteenAway{1_min};
+  Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
+                                 fifteenAway.checkGoneOff(),
+                                 [=]() { remote.rumble("---"); }},
+                                Logger::Level::Debug};
   drive->setPose({2_tile, 0_tile, 0_deg});
   while(true) {
     const Pose pos{drive->getPose()};

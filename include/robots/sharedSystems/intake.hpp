@@ -4,11 +4,17 @@
 
 namespace atum {
 /**
+ * @brief The various states that the intake can be in.
+ *
+ */
+enum class IntakeState { Idle, Intaking, Indexing, Outtaking, Jammed, Sorting };
+
+/**
  * @brief Class to implement the intake for the robot. Contains basic controls
  * as well as more complex support for color sorting, anti-jam, and indexing.
  *
  */
-class Intake : public Task {
+class Intake : public Task, public StateMachine<IntakeState> {
   TASK_BOILERPLATE();
 
   public:
@@ -78,19 +84,6 @@ class Intake : public Task {
 
   private:
   /**
-   * @brief The various states that the intake can be in.
-   *
-   */
-  enum class IntakeState {
-    Idle,
-    Intaking,
-    Indexing,
-    Outtaking,
-    Jammed,
-    Sorting
-  };
-
-  /**
    * @brief This method runs whenever we are intaking. It checks for jams or
    * when to color sort and changes state accordingly.
    *
@@ -127,7 +120,6 @@ class Intake : public Task {
   Parameters params;
   bool antiJamEnabled{true};
   ColorSensor::Color sortOutColor{ColorSensor::Color::Red};
-  IntakeState state{IntakeState::Idle};
   IntakeState returnState{IntakeState::Intaking};
 };
 } // namespace atum

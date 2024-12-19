@@ -46,6 +46,15 @@ class Timer {
    */
   second_t timeElapsed() const;
 
+  /**
+   * @brief A condition to be used for scheduling or waiting. Returns a function
+   * that, when called, returns true if the alarm has gone off.
+   *
+   * @param desired
+   * @return Condition
+   */
+  Condition checkGoneOff() const;
+
   private:
   second_t startTime;
   second_t alarmTime;

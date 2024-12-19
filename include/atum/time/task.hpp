@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../utility/logger.hpp"
+#include "../utility/misc.hpp"
 #include "api.h"
 
 namespace atum {
@@ -42,20 +43,13 @@ namespace atum {
  */
 #define START_TASK_2(name, priority) taskParams.push_back({name, priority, [=](){
 /**
- * @brief Used internally to automatically make use of START_TASK_1 or
- * START_TASK_2 depending on number of parameters. Do not use explicity.
- *
- */
-#define GET_START_TASK_MACRO(_1, _2, NAME, ...) NAME
-
-/**
  * @brief Starts the definition of a task. Accepts between one and two
  * parameters. First refers to the name of the task, second refers to its
  * priority.
  *
  */
 #define START_TASK(...)                                                        \
-  GET_START_TASK_MACRO(__VA_ARGS__, START_TASK_2, START_TASK_1)(__VA_ARGS__)
+  GET_MACRO(__VA_ARGS__, START_TASK_2, START_TASK_1)(__VA_ARGS__)
 
 /**
  * @brief Ends a task definition.
@@ -96,7 +90,8 @@ class Task {
   template <class TaskHandler>
   Task(TaskHandler *handler,
        const Logger::Level loggerLevel = Logger::Level::Info) :
-      handlerName{handler->getHandlerName()}, taskLogger{loggerLevel} {
+      handlerName{handler->getHandlerName()},
+      taskLogger{loggerLevel} {
     handler->prepBackgroundTasks();
     taskLogger.debug("Tasks associated with " + handlerName +
                      " have been prepared to start.");

@@ -1,6 +1,8 @@
 #include "schedule.hpp"
 
 namespace atum {
+#define SCHEDULE()
+
 const std::function<void()> Schedule::doNothing{[]() {}};
 const Condition Schedule::neverMet{[]() { return false; }};
 
@@ -12,16 +14,23 @@ Schedule::Schedule(const Item &iItem, const Logger::Level loggerLevel) :
   logger.debug("The item \"" + item.name + "\" has been scheduled.");
 }
 
+Schedule::~Schedule() {
+  stopBackgroundTasks();
+  logger.debug("Scheduled item was interrupted (out of scope).");
+}
+
 TASK_DEFINITIONS_FOR(Schedule) {
   START_TASK("Scheduled Item")
   const uint8_t initialStatus{pros::competition::get_status()};
   Timer timer{item.timeout};
   while(pros::competition::get_status() == initialStatus && !item.condition() &&
         !timer.goneOff()) {
-    wait();
+    // Higher than standard delay to allow several scheduled items at once with
+    // little impact.
+    wait(100_ms);
   }
   if(pros::competition::get_status() != initialStatus) {
-    logger.debug("Scheduled item was interrupted.");
+    logger.debug("Scheduled item was interrupted (status change).");
     return;
   }
   if(item.timeout && timer.goneOff()) {

@@ -11,6 +11,14 @@
 #include <vector>
 
 namespace atum {
+
+/**
+ * @brief This class handles logging to the terminal, SD card, and log screen.
+ * Messages are displayed depending on the provided logger level. If the logger
+ * is initialized with the "Info" level, for instance, info, warn, and error
+ * messages will be logged.
+ *
+ */
 class Logger {
   public:
   /**
@@ -48,7 +56,8 @@ class Logger {
   void warn(const std::string &msg);
 
   /**
-   * @brief Log message if logger level is error or higher.
+   * @brief Log message if logger level is error or higher. Also trigger error
+   * screen.
    *
    * @param msg
    */
