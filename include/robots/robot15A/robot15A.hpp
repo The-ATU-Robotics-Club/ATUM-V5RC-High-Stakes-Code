@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../sharedSystems/intake.hpp"
+#include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
 
 namespace atum {
@@ -20,8 +21,7 @@ class Robot15A : public Robot {
   Remote remote;
   std::unique_ptr<Drive> drive;
   std::unique_ptr<Intake> intake;
-  Motor ladybrownArm{{15, -16}, pros::v5::MotorGears::green, "ladybrown"};
-  pros::adi::Pneumatics ladybrownWrist{'B', false};
+  std::unique_ptr<Ladybrown> ladybrown;
   pros::adi::Pneumatics goalClamp{'A', false};
   std::unique_ptr<Odometry> odometry;
 };

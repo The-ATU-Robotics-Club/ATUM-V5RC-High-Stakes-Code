@@ -177,6 +177,13 @@ void Motor::setCurrentLimit(const std::int32_t limit) const {
   }
 }
 
+void Motor::resetPosition() const {
+  for(std::size_t i{0}; i < motors.size(); i++) {
+    // Regardless of enabled, try to change this setting.
+    motors[i]->tare_position();
+  }
+}
+
 void Motor::motorCheck() {
   for(int i{motors.size() - 1}; i >= 0; i--) {
     std::int8_t port{motors[i]->get_port()};

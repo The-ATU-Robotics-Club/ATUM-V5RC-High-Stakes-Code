@@ -18,6 +18,7 @@
 #include "devices/lineTracker.hpp"
 #include "devices/motor.hpp"
 #include "devices/odometer.hpp"
+#include "devices/piston.hpp"
 #include "devices/potentiometer.hpp"
 #include "devices/rotationSensor.hpp"
 #include "gui/graph.hpp"

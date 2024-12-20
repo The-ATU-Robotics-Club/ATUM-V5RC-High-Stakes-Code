@@ -20,7 +20,7 @@ int32_t Potentiometer::getReading() {
   if(reversed) {
     reading *= -1;
   }
-  logger.debug("Line tracker on port " +
+  logger.debug("Potentiometer on port " +
                std::to_string(std::get<1>(pot.get_port())) + " is reading " +
                std::to_string(reading) + ".");
   return reading;

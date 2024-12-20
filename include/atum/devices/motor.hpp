@@ -153,6 +153,12 @@ class Motor {
    */
   void motorCheck();
 
+  /**
+   * @brief Sets the current position of all the motors to 0. 
+   * 
+   */
+  void resetPosition() const;
+
   private:
   /**
    * @brief Helper for logging, formats the name of the motor if given with

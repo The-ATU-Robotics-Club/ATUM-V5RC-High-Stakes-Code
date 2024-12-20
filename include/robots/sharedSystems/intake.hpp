@@ -15,7 +15,7 @@ enum class IntakeState { Idle, Intaking, Indexing, Outtaking, Jammed, Sorting };
  *
  */
 class Intake : public Task, public StateMachine<IntakeState> {
-  TASK_BOILERPLATE();
+  TASK_BOILERPLATE(); // Included in all task derivatives for setup.
 
   public:
   /**
