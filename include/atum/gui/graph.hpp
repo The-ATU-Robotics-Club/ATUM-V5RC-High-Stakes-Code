@@ -51,10 +51,24 @@ class Graph : public Screen {
    */
   static void clearSeries(const SeriesColor seriesColor);
 
+  /**
+   * @brief Clears all the data points in every series.
+   *
+   */
+  static void clearAll();
+
+  /**
+   * @brief Sets the number of points the graph can display at once. Values
+   * should be between 0 and 1000. Default is 1000.
+   *
+   * @param numOfPoints
+   */
+  static void setNumOfPoints(const uint16_t numOfPoints);
+
   private:
   /**
-   * @brief This deals with setting up the actual screen. Private to force the
-   * proper series of steps for setup.
+   * @brief This deals with setting up the actual screen. Private to force
+   * the proper series of steps for setup.
    *
    */
   static void setupScreen();

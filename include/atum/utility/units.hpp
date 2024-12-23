@@ -52,7 +52,7 @@ UNIT_ADD(acceleration,
 UNIT_ADD(jerk,
          meters_per_second_cubed,
          meters_per_second_cubed,
-         m_per_s_cb,
+         mps_cb,
          compound_unit<meter, inverse<cubed<seconds>>>)
 UNIT_ADD(jerk,
          degrees_per_second_cubed,

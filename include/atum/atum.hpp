@@ -27,6 +27,8 @@
 #include "gui/map.hpp"
 #include "gui/routines.hpp"
 #include "gui/screen.hpp"
+#include "motion/kinematics.hpp"
+#include "motion/motionProfile.hpp"
 #include "pose/odometry.hpp"
 #include "pose/tracker.hpp"
 #include "systems/drive.hpp"

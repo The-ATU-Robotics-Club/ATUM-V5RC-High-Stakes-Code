@@ -104,8 +104,8 @@ class Acceptable {
   const second_t timeout;
   const U maxError;
   const dU maxDeriv;
-  Logger logger;
   Timer minTimer;
+  Logger logger;
   std::optional<Timer> timeoutTimer;
   U prevError{0};
   second_t prevTime{0_s};

@@ -25,6 +25,20 @@ void Graph::clearSeries(const SeriesColor seriesColor) {
   lv_chart_set_all_value(graphChart, series, LV_CHART_POINT_NONE);
 }
 
+void Graph::clearAll() {
+  clearSeries(SeriesColor::Red);
+  clearSeries(SeriesColor::Green);
+  clearSeries(SeriesColor::Blue);
+  clearSeries(SeriesColor::Cyan);
+  clearSeries(SeriesColor::Magenta);
+  clearSeries(SeriesColor::Yellow);
+  clearSeries(SeriesColor::White);
+}
+
+void Graph::setNumOfPoints(const uint16_t numOfPoints) {
+  lv_chart_set_point_count(graphChart, numOfPoints);
+}
+
 void Graph::setupScreen() {
   createLabel(graphScreen,
               "GRAPH",
