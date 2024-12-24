@@ -29,7 +29,7 @@ class Ladybrown : public Task, StateMachine<LadybrownStates> {
             const Parameters &iParams,
             const Logger::Level loggerLevel = Logger::Level::Info);
 
-  void idle();
+  void stop();
 
   void extend();
 

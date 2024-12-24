@@ -91,12 +91,4 @@ tile_t distance(const Pose &a, const Pose &b);
  * @return degree_t
  */
 degree_t angle(const Pose &state, const Pose &reference);
-
-/**
- * @brief Constrains an angle between -180 and 180 degrees.
- *
- * @param angle
- * @return degree_t
- */
-degree_t constrain180(const degree_t angle);
 } // namespace atum

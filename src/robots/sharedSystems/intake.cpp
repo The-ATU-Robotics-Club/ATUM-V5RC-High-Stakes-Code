@@ -11,6 +11,7 @@ Intake::Intake(std::unique_ptr<Motor> iMtr,
     logger{loggerLevel},
     params{iParams} {
   logger.info("Intake is constructed!");
+  stop();
 }
 
 void Intake::intake() {

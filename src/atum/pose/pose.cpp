@@ -32,8 +32,4 @@ degree_t angle(const Pose &state, const Pose &reference) {
   const degree_t dh{90_deg - atan2(dy, dx)};
   return constrain180(dh);
 }
-
-degree_t constrain180(const degree_t angle) {
-  return degree_t{remainder(getValueAs<degree_t>(angle), 360.0)};
-}
 } // namespace atum

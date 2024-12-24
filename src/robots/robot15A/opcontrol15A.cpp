@@ -36,7 +36,7 @@ void Robot15A::opcontrol() {
     switch(remote.getLTrigger()) {
       case -1: ladybrown->retract(); break;
       case 1: ladybrown->extend(); break;
-      default: ladybrown->idle(); break;
+      default: ladybrown->stop(); break;
     }
 
     if(remote.getPress(Remote::Button::A)) {

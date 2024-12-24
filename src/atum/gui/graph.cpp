@@ -20,6 +20,11 @@ void Graph::setSeriesRange(const SeriesRange &range,
   graphSeriesRanges[seriesColor] = range;
 }
 
+void Graph::setSeriesRange(double range, const SeriesColor seriesColor) {
+  range = std::abs(range);
+  graphSeriesRanges[seriesColor] = {-range, range};
+}
+
 void Graph::clearSeries(const SeriesColor seriesColor) {
   lv_chart_series_t *series{graphSeries[seriesColor]};
   lv_chart_set_all_value(graphChart, series, LV_CHART_POINT_NONE);

@@ -1,10 +1,10 @@
 /**
  * @file logger.hpp
- * @brief Includes the Logger class. 
+ * @brief Includes the Logger class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -71,6 +71,13 @@ class Logger {
    * @param msg
    */
   void error(const std::string &msg);
+
+  /**
+   * @brief Gets the logger level.
+   *
+   * @return Level
+   */
+  Level getLevel() const;
 
   private:
   // Allow Logger to use writeTo.

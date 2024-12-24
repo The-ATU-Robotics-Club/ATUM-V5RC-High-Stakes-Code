@@ -1,10 +1,10 @@
 /**
  * @file timer.hpp
- * @brief Includes the Timer class. 
+ * @brief Includes the Timer class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -33,11 +33,12 @@ class Timer {
   void setAlarmTime(const second_t iAlarmTime);
 
   /**
-   * @brief Resets the timer (so that an additional alarm time must pass
-   * before the alarm has gone off).
+   * @brief Resets the timer to a specified time (so that an additional alarm
+   * time must pass before the alarm has gone off); default is 0s.
    *
+   * @param resetTime
    */
-  void resetAlarm();
+  void resetAlarm(const second_t resetTime = 0_s);
 
   /**
    * @brief Says if the alarm time has elapsed since last reset is greater

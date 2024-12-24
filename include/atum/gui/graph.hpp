@@ -1,10 +1,10 @@
 /**
  * @file graph.hpp
- * @brief Includes the Graph class. 
+ * @brief Includes the Graph class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -52,6 +52,15 @@ class Graph : public Screen {
    */
   static void setSeriesRange(const SeriesRange &range,
                              const SeriesColor seriesColor);
+
+  /**
+   * @brief Sets the range for one of the series (in the form of [-range,
+   * range]).
+   *
+   * @param range
+   * @param seriesColor
+   */
+  static void setSeriesRange(double range, const SeriesColor seriesColor);
 
   /**
    * @brief Clears all the data points in a given series.

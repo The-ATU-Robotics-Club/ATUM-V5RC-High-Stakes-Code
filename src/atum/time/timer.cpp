@@ -9,8 +9,8 @@ void Timer::setAlarmTime(const second_t iAlarmTime) {
   alarmTime = iAlarmTime;
 }
 
-void Timer::resetAlarm() {
-  startTime = time();
+void Timer::resetAlarm(const second_t resetTime) {
+  startTime = time() - resetTime;
 }
 
 bool Timer::goneOff() const {

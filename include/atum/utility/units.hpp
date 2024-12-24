@@ -93,4 +93,31 @@ R getValueAs(const T &quantity) {
  */
 template <>
 degree_t average<degree_t>(const std::vector<degree_t> &angles);
+
+/**
+ * @brief Constrains an angle between -180 and 180 degrees.
+ *
+ * @param angle
+ * @return degree_t
+ */
+degree_t constrain180(const degree_t angle);
+
+/**
+ * @brief Gets the difference between the left and right values (provided for
+ * template purposes).
+ *
+ * @param left
+ * @param right
+ * @return meter_t
+ */
+meter_t difference(const meter_t left, const meter_t right);
+
+/**
+ * @brief Gets the minimum difference between the left and right values.
+ *
+ * @param left
+ * @param right
+ * @return radian_t
+ */
+radian_t difference(const radian_t left, const radian_t right);
 } // namespace atum

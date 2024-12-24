@@ -17,9 +17,10 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     params{iParams} {
   left->resetPosition();
   right->resetPosition();
+  stop();
 }
 
-void Ladybrown::idle() {
+void Ladybrown::stop() {
   state = LadybrownStates::Idle;
 }
 
@@ -69,7 +70,8 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
     } else {
       piston->retract();
     }
-    if(rotation->getDisplacement() <= params.restPosition && getVoltage() <= 0) {
+    if(rotation->getDisplacement() <= params.restPosition &&
+       getVoltage() <= 0) {
       left->setBrakeMode(pros::MotorBrake::brake);
       right->setBrakeMode(pros::MotorBrake::brake);
     } else {
