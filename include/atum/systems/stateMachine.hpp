@@ -1,3 +1,12 @@
+/**
+ * @file stateMachine.hpp
+ * @brief Includes the StateMachine template class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../time/timer.hpp"

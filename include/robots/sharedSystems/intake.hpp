@@ -1,3 +1,12 @@
+/**
+ * @file intake.hpp
+ * @brief Includes the Intake class.
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "atum/atum.hpp"

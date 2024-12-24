@@ -1,3 +1,12 @@
+/**
+ * @file screen.hpp
+ * @brief Includes the Screen class and the available series colors. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "liblvgl/lvgl.h"

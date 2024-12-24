@@ -1,3 +1,12 @@
+/**
+ * @file tbh.hpp
+ * @brief Includes the TBH class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../devices/motor.hpp"

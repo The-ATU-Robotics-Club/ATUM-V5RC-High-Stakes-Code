@@ -1,3 +1,12 @@
+/**
+ * @file colorSensor.hpp
+ * @brief Includes the ColorSensor class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../../pros/optical.hpp"

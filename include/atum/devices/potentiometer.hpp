@@ -1,3 +1,12 @@
+/**
+ * @file potentiometer.hpp
+ * @brief Includes the Potentiometer class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../time/time.hpp"

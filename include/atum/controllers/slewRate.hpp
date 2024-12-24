@@ -1,3 +1,12 @@
+/**
+ * @file slewRate.hpp
+ * @brief Includes the SlewRate class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../utility/logger.hpp"

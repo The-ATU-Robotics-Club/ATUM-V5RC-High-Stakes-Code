@@ -1,3 +1,12 @@
+/**
+ * @file odometer.hpp
+ * @brief Includes the Odometer class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../time/time.hpp"

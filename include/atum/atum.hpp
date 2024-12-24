@@ -1,11 +1,15 @@
-#pragma once
-
 /**
- * @brief The following lists the header files of the ATUM API.
- * This is to make including all of these into specific robot files
- * much easier.
+ * @file atum.hpp
+ * @brief Lists the header files of the ATUM API to make it easier to include
+ * all-at-once.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
  *
  */
+
+#pragma once
+
 #include "controllers/controller.hpp"
 #include "controllers/pid.hpp"
 #include "controllers/slewRate.hpp"

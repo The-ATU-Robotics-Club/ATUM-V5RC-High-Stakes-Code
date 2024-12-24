@@ -1,3 +1,12 @@
+/**
+ * @file motor.hpp
+ * @brief Includes the Motor class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../../pros/motor_group.hpp"

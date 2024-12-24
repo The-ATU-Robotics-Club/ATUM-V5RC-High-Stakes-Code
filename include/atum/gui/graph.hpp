@@ -1,3 +1,12 @@
+/**
+ * @file graph.hpp
+ * @brief Includes the Graph class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "screen.hpp"

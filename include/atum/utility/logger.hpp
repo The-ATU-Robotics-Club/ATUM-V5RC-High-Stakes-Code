@@ -1,3 +1,12 @@
+/**
+ * @file logger.hpp
+ * @brief Includes the Logger class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../../pros/rtos.hpp"

@@ -1,3 +1,12 @@
+/**
+ * @file acceptable.hpp
+ * @brief Includes the Acceptable template class and some helpful aliases.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../time/timer.hpp"

@@ -1,3 +1,12 @@
+/**
+ * @file pose.hpp
+ * @brief Includes the Pose struct as well as corresponding functions.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../utility/units.hpp"
@@ -7,7 +16,7 @@ namespace atum {
  * @brief This is the struct used to represent poses: x and y coordinates
  * with a heading. For reference on the coordinate system we use, see the
  * GPS documentation from VEX. Also included (not normally in pose, but here
- * for convenience) is linear and angular velocity. 
+ * for convenience) is linear and angular velocity.
  *
  */
 struct Pose {

@@ -1,3 +1,12 @@
+/**
+ * @file rotationSensor.hpp
+ * @brief Includes the RotationSensor class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../../pros/rotation.hpp"

@@ -1,3 +1,12 @@
+/**
+ * @file distanceSensor.hpp
+ * @brief Includes the DistanceSensor class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../utility/logger.hpp"

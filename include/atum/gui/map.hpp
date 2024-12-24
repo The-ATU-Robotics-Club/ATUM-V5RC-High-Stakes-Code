@@ -1,3 +1,12 @@
+/**
+ * @file map.hpp
+ * @brief Includes the Map class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../pose/pose.hpp"

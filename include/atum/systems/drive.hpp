@@ -1,3 +1,12 @@
+/**
+ * @file drive.hpp
+ * @brief Includes the Drive class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../devices/motor.hpp"

@@ -1,3 +1,12 @@
+/**
+ * @file odometry.hpp
+ * @brief Includes the Odometry class.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../devices/imu.hpp"

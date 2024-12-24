@@ -1,3 +1,12 @@
+/**
+ * @file time.hpp
+ * @brief Includes various functions, constants, and aliases related to time.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../utility/units.hpp"

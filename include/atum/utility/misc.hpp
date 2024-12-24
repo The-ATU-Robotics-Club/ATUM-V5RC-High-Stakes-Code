@@ -1,3 +1,13 @@
+/**
+ * @file misc.hpp
+ * @brief Includes various functions, aliases, and macros that are useful but
+ * don't categorize well.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "api.h"

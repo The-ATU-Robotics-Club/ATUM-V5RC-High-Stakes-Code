@@ -1,14 +1,19 @@
+/**
+ * @file units.hpp
+ * @brief This file deals with with making the use of the nholthaus
+ * dimensional unit library more straightforward, involving declaring new
+ * units as well.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../depend/units.h"
 #include "misc.hpp"
 
-/**
- * @brief This section of the code deals with making the use of the nholthaus
- * dimensional unit library more straightforward, involving declaring new
- * units as well.
- *
- */
 using namespace units;
 using namespace units::math;
 using namespace units::constants;

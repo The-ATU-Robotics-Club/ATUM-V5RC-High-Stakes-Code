@@ -1,3 +1,12 @@
+/**
+ * @file robot.hpp
+ * @brief Includes the Robot parent class as well as the macros needed for it to
+ * function. In addition there are some useful aliases included.
+ * @date 2024-12-23
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../gui/manager.hpp"

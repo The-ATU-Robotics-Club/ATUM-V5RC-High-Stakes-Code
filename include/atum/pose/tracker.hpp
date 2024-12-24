@@ -1,3 +1,12 @@
+/**
+ * @file tracker.hpp
+ * @brief Includes the Tracker parent class.
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../time/timer.hpp"

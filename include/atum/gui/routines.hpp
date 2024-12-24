@@ -1,3 +1,12 @@
+/**
+ * @file routines.hpp
+ * @brief Includes the Routines class and the MatchColor enum class.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "screen.hpp"

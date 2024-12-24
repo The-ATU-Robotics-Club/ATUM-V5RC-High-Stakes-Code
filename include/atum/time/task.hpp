@@ -1,3 +1,13 @@
+/**
+ * @file task.hpp
+ * @brief Includes the Task parent class as well as the macros needed for it to
+ * function.
+ * @date 2024-12-23
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../utility/logger.hpp"

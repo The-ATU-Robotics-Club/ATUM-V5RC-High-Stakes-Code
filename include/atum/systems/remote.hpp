@@ -1,3 +1,12 @@
+/**
+ * @file remote.hpp
+ * @brief Includes the Remote class. 
+ * @date 2024-12-23
+ * 
+ * @copyright Copyright (c) 2024
+ * 
+ */
+
 #pragma once
 
 #include "../devices/motor.hpp"
