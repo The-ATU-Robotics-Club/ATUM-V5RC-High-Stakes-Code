@@ -131,6 +131,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a62a671f215aae393d61a322d14e0f180"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180">setSeriesRange</a> (const <a class="el" href="structatum_1_1GUI_1_1Graph_1_1SeriesRange.html">SeriesRange</a> &amp;range, const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">SeriesColor</a> seriesColor)</td></tr>
 <tr class="memdesc:a62a671f215aae393d61a322d14e0f180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the range (negative and positive bounds) for one of the series.  <br /></td></tr>
 <tr class="separator:a62a671f215aae393d61a322d14e0f180"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affee93a149cdbef0f3a25cd80d103216"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GUI_1_1Graph.html#affee93a149cdbef0f3a25cd80d103216">setSeriesRange</a> (double range, const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">SeriesColor</a> seriesColor)</td></tr>
+<tr class="memdesc:affee93a149cdbef0f3a25cd80d103216"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the range for one of the series (in the form of [-range, range]).  <br /></td></tr>
+<tr class="separator:affee93a149cdbef0f3a25cd80d103216"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a172cf2d5c17b62bd9929e2a0fe82c64f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GUI_1_1Graph.html#a172cf2d5c17b62bd9929e2a0fe82c64f">clearSeries</a> (const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">SeriesColor</a> seriesColor)</td></tr>
 <tr class="memdesc:a172cf2d5c17b62bd9929e2a0fe82c64f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clears all the data points in a given series.  <br /></td></tr>
 <tr class="separator:a172cf2d5c17b62bd9929e2a0fe82c64f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -425,7 +428,7 @@ static lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><b>mapScree
 </div>
 </div>
 <a id="a62a671f215aae393d61a322d14e0f180" name="a62a671f215aae393d61a322d14e0f180"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62a671f215aae393d61a322d14e0f180">&#9670;&#160;</a></span>setSeriesRange()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a671f215aae393d61a322d14e0f180">&#9670;&#160;</a></span>setSeriesRange() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -459,6 +462,51 @@ static lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><b>mapScree
 </div><div class="memdoc">
 
 <p>Sets the range (negative and positive bounds) for one of the series. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">range</td><td></td></tr>
+    <tr><td class="paramname">seriesColor</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="affee93a149cdbef0f3a25cd80d103216" name="affee93a149cdbef0f3a25cd80d103216"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affee93a149cdbef0f3a25cd80d103216">&#9670;&#160;</a></span>setSeriesRange() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void atum::GUI::Graph::setSeriesRange </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">SeriesColor</a>&#160;</td>
+          <td class="paramname"><em>seriesColor</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the range for one of the series (in the form of [-range, range]). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">range</td><td></td></tr>

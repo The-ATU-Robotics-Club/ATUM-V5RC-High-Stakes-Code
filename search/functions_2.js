@@ -8,7 +8,7 @@ var searchData=
   ['clearseries_5',['clearSeries',['../classatum_1_1GUI_1_1Map.html#a4e7826647ac86da31a5e2440861137d1',1,'atum::GUI::Map::clearSeries()'],['../classatum_1_1GUI_1_1Graph.html#a172cf2d5c17b62bd9929e2a0fe82c64f',1,'atum::GUI::Graph::clearSeries()']]],
   ['closeto_6',['closeTo',['../classatum_1_1DistanceSensor.html#a6ece869287aefa7f1e297eaa4579ee39',1,'atum::DistanceSensor']]],
   ['colorsensor_7',['ColorSensor',['../classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189',1,'atum::ColorSensor::ColorSensor(const std::int8_t port, const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488',1,'atum::ColorSensor::ColorSensor(const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)']]],
-  ['constrain180_8',['constrain180',['../pose_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1',1,'atum']]],
+  ['constrain180_8',['constrain180',['../units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1',1,'atum']]],
   ['controller_9',['Controller',['../classatum_1_1Controller.html#a401558bc2468addd0a7a39eaef73f62f',1,'atum::Controller']]],
   ['createlabel_10',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
   ['createscreenchangebutton_11',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],

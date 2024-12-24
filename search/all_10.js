@@ -15,7 +15,7 @@ var searchData=
   ['setheading_12',['setHeading',['../classatum_1_1IMU.html#ab2c7de112a484d12704dda215a1864c2',1,'atum::IMU']]],
   ['setnumofpoints_13',['setNumOfPoints',['../classatum_1_1GUI_1_1Graph.html#a6d05bfce524904372c489b9b2c6a7ffe',1,'atum::GUI::Graph']]],
   ['setpose_14',['setPose',['../classatum_1_1Tracker.html#ad3af8500f4e8b72a2b99794c5e7234c1',1,'atum::Tracker::setPose()'],['../classatum_1_1Drive.html#a1b21296734df5a8105b52342b6a7f456',1,'atum::Drive::setPose()']]],
-  ['setseriesrange_15',['setSeriesRange',['../classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180',1,'atum::GUI::Graph']]],
+  ['setseriesrange_15',['setSeriesRange',['../classatum_1_1GUI_1_1Graph.html#affee93a149cdbef0f3a25cd80d103216',1,'atum::GUI::Graph::setSeriesRange(double range, const SeriesColor seriesColor)'],['../classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180',1,'atum::GUI::Graph::setSeriesRange(const SeriesRange &amp;range, const SeriesColor seriesColor)']]],
   ['slew_16',['slew',['../classatum_1_1SlewRate.html#a965b258aa217f096205233a8e99b83e3',1,'atum::SlewRate']]],
   ['slewrate_17',['SlewRate',['../classatum_1_1SlewRate.html',1,'atum::SlewRate'],['../classatum_1_1SlewRate.html#ac8b1ea105aeb42f5551af1fe5dbf1df4',1,'atum::SlewRate::SlewRate(const double rate, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1SlewRate.html#a0042e0cee5b1196fed54d8b7d86f8742',1,'atum::SlewRate::SlewRate(const double maxDecRate, const double maxIncRate, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['slewrate_2ehpp_18',['slewRate.hpp',['../slewRate_8hpp.html',1,'']]],

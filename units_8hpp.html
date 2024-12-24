@@ -127,6 +127,15 @@ compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_
 <tr class="memitem:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="memTemplItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a777c6fa95aea3c5e226eab7c1cfd7eca">atum::average&lt; degree_t &gt;</a> (const std::vector&lt; degree_t &gt; &amp;angles)</td></tr>
 <tr class="memdesc:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a template specialization for averaging angles together. This is necessary to deal with angle wrap and the like.  <br /></td></tr>
 <tr class="separator:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">atum::constrain180</a> (const degree_t angle)</td></tr>
+<tr class="memdesc:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrains an angle between -180 and 180 degrees.  <br /></td></tr>
+<tr class="separator:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7671eeecf3b023e523b78395a5916f98"><td class="memItemLeft" align="right" valign="top">meter_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">atum::difference</a> (const meter_t left, const meter_t right)</td></tr>
+<tr class="memdesc:a7671eeecf3b023e523b78395a5916f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the difference between the left and right values (provided for template purposes).  <br /></td></tr>
+<tr class="separator:a7671eeecf3b023e523b78395a5916f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc0be4dbad40fc12062a8eb218fdf90"><td class="memItemLeft" align="right" valign="top">radian_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a2dc0be4dbad40fc12062a8eb218fdf90">atum::difference</a> (const radian_t left, const radian_t right)</td></tr>
+<tr class="memdesc:a2dc0be4dbad40fc12062a8eb218fdf90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the minimum difference between the left and right values.  <br /></td></tr>
+<tr class="separator:a2dc0be4dbad40fc12062a8eb218fdf90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -180,6 +189,109 @@ template&lt;&gt; </div>
   </dd>
 </dl>
 <p>param angles </p><dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
+
+</div>
+</div>
+<a id="a3e54638dfa8d8892e8c6331b9113a3e1" name="a3e54638dfa8d8892e8c6331b9113a3e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e54638dfa8d8892e8c6331b9113a3e1">&#9670;&#160;</a></span>constrain180()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">degree_t atum::constrain180 </td>
+          <td>(</td>
+          <td class="paramtype">const degree_t&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constrains an angle between -180 and 180 degrees. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
+
+</div>
+</div>
+<a id="a7671eeecf3b023e523b78395a5916f98" name="a7671eeecf3b023e523b78395a5916f98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7671eeecf3b023e523b78395a5916f98">&#9670;&#160;</a></span>difference() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">meter_t atum::difference </td>
+          <td>(</td>
+          <td class="paramtype">const meter_t&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const meter_t&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the difference between the left and right values (provided for template purposes). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td></td></tr>
+    <tr><td class="paramname">right</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>meter_t </dd></dl>
+
+</div>
+</div>
+<a id="a2dc0be4dbad40fc12062a8eb218fdf90" name="a2dc0be4dbad40fc12062a8eb218fdf90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc0be4dbad40fc12062a8eb218fdf90">&#9670;&#160;</a></span>difference() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">radian_t atum::difference </td>
+          <td>(</td>
+          <td class="paramtype">const radian_t&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const radian_t&#160;</td>
+          <td class="paramname"><em>right</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the minimum difference between the left and right values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">left</td><td></td></tr>
+    <tr><td class="paramname">right</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>radian_t </dd></dl>
 
 </div>
 </div>

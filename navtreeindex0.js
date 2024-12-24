@@ -74,8 +74,9 @@ var NAVTREEINDEX0 =
 "classatum_1_1LineTracker.html#aef031eabc247e13b155d11546ff8a905":[1,0,0,11,2],
 "classatum_1_1Logger.html":[1,0,0,12],
 "classatum_1_1Logger.html#a66749b87ece0705cd8d32d3effff924c":[1,0,0,12,3],
-"classatum_1_1Logger.html#a9a6b391293c2448fd93aa4d34848e29d":[1,0,0,12,5],
-"classatum_1_1Logger.html#ab5ee2ca1d00c82acce84d15c3a6a5b39":[1,0,0,12,4],
+"classatum_1_1Logger.html#a9a6b391293c2448fd93aa4d34848e29d":[1,0,0,12,6],
+"classatum_1_1Logger.html#ab4c4a227221f58dfae158d5039d33a13":[1,0,0,12,4],
+"classatum_1_1Logger.html#ab5ee2ca1d00c82acce84d15c3a6a5b39":[1,0,0,12,5],
 "classatum_1_1Logger.html#adb8b98bccaec6e25190c4e363d82ffbc":[1,0,0,12,2],
 "classatum_1_1Logger.html#ae25f94f7ae6d34e1482e999758b6cd53":[1,0,0,12,1],
 "classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b":[1,0,0,12,0],
@@ -196,11 +197,11 @@ var NAVTREEINDEX0 =
 "classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c":[1,0,0,29,3],
 "classatum_1_1Task.html#af3d0d52a5131f9bf95f09e3f8d6b73f8":[1,0,0,29,1],
 "classatum_1_1Timer.html":[1,0,0,31],
+"classatum_1_1Timer.html#a0744c166f14250d5fbf3304e698d7098":[1,0,0,31,3],
 "classatum_1_1Timer.html#a4f80a0fcdf140f0525dfc5cdaaa5d349":[1,0,0,31,5],
 "classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e":[1,0,0,31,2],
 "classatum_1_1Timer.html#a842ade31934e347aa627199f243414d8":[1,0,0,31,4],
 "classatum_1_1Timer.html#a89a2d01b5771f6bc8d58e43f509dc438":[1,0,0,31,1],
-"classatum_1_1Timer.html#a9955d97d6334e4e0ea263992b7c46746":[1,0,0,31,3],
 "classatum_1_1Timer.html#afaaa169674b4b67a2d60f98fcfe56cf6":[1,0,0,31,0],
 "classatum_1_1Tracker.html":[1,0,0,32],
 "classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c":[1,0,0,32,3],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f":[2,0,0,1,2,0,2],
 "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa2808a34767e19b842d906ab8ab6264c6":[2,0,0,1,2,0,2,5],
 "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa41d4c71faaf9ec2d1d9883df8540e77c":[2,0,0,1,2,0,2,3],
-"intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa50ab33317386710725c02921307f769e":[2,0,0,1,2,0,2,1],
-"intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa521d4edc7c22d5f63bc5912ff2afa61a":[2,0,0,1,2,0,2,2]
+"intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa50ab33317386710725c02921307f769e":[2,0,0,1,2,0,2,1]
 };

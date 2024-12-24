@@ -10,6 +10,7 @@ var classatum_1_1Logger =
     [ "Logger", "classatum_1_1Logger.html#ae25f94f7ae6d34e1482e999758b6cd53", null ],
     [ "debug", "classatum_1_1Logger.html#adb8b98bccaec6e25190c4e363d82ffbc", null ],
     [ "error", "classatum_1_1Logger.html#a66749b87ece0705cd8d32d3effff924c", null ],
+    [ "getLevel", "classatum_1_1Logger.html#ab4c4a227221f58dfae158d5039d33a13", null ],
     [ "info", "classatum_1_1Logger.html#ab5ee2ca1d00c82acce84d15c3a6a5b39", null ],
     [ "warn", "classatum_1_1Logger.html#a9a6b391293c2448fd93aa4d34848e29d", null ]
 ];
