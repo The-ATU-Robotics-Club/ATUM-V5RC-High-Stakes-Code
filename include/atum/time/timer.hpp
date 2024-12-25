@@ -42,7 +42,7 @@ class Timer {
 
   /**
    * @brief Says if the alarm time has elapsed since last reset is greater
-   * than the alarm time (or if the alarm time is zero seconds).
+   * than the alarm time; never goes off if alarm time is 0s.
    *
    * @return true
    * @return false

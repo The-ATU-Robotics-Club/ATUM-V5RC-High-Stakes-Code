@@ -53,7 +53,7 @@ void Robot15A::opcontrol() {
         "Brain: " +
             std::to_string(static_cast<int>(pros::battery::get_capacity())) +
             "%");
-    wait(10_ms);
+    wait();
   }
 }
 } // namespace atum

@@ -5,7 +5,8 @@ namespace atum {
 ColorSensor::ColorSensor(const std::int8_t port,
                          const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields}, logger{loggerLevel} {
+    hueFields{iHueFields},
+    logger{loggerLevel} {
   colorSensor = std::make_unique<pros::Optical>(port);
   if(colorSensor->is_installed()) {
     logger.debug("Color sensor found on port " +
@@ -22,7 +23,8 @@ ColorSensor::ColorSensor(const std::int8_t port,
 
 ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields}, logger{loggerLevel} {
+    hueFields{iHueFields},
+    logger{loggerLevel} {
   const auto colorSensors{pros::Optical::get_all_devices()};
   if(!colorSensors.size()) {
     logger.error("Color sensor not found!");
@@ -37,12 +39,15 @@ ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
   initializeColorSensor();
 }
 
-ColorSensor::Color ColorSensor::getColor() const {
-  if(colorSensor->get_proximity() < nearProximity) {
+ColorSensor::Color ColorSensor::getColor() {
+  const int32_t proximity{colorSensor->get_proximity()};
+  if(proximity < nearProximity) {
+    colorSensor->set_led_pwm(0);
     return Color::None;
   }
+  colorSensor->set_led_pwm(100);
   for(const HueField &hueField : hueFields) {
-    const double reading{colorSensor->get_hue()};
+    const double reading{getRawHue()};
     // Have to account for the "angle wrap" here.
     const double difference{remainder(hueField.center - reading, 360.0)};
     if(std::abs(difference) < hueField.threshold) {
@@ -61,8 +66,6 @@ double ColorSensor::getRawHue() {
 void ColorSensor::initializeColorSensor() {
   // The abundance of delays in here is because of a seeming undocumented
   // "delay" needed for many of these values to be set.
-  wait(100_ms);
-  colorSensor->set_led_pwm(100);
   wait(100_ms);
   colorSensor->set_integration_time(3);
   wait(100_ms);

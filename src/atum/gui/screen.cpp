@@ -33,8 +33,9 @@ void Screen::createScreens() {
   lv_obj_set_style_bg_color(loadingScreen,
                             lv_color_black(),
                             LV_PART_MAIN); // Darker black than normal.
-  mainMenuScreen = lv_obj_create(nullptr);
   lv_obj_set_style_bg_color(loadingScreen, black, LV_PART_MAIN);
+  mainMenuScreen = lv_obj_create(nullptr);
+  lv_obj_add_style(mainMenuScreen, &styleBG, 0);
   homeScreen = lv_obj_create(nullptr);
   lv_obj_set_style_bg_color(homeScreen,
                             lv_color_black(),

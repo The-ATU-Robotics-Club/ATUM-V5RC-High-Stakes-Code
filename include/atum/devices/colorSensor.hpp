@@ -76,11 +76,11 @@ class ColorSensor {
 
   /**
    * @brief Gets the detected color. Will return None if outside of proximity
-   * threshold given (unless 0).
+   * threshold given (unless 0). Turns LED on if something is nearby. 
    *
    * @return Color
    */
-  Color getColor() const;
+  Color getColor();
 
   /**
    * @brief Returns the raw value for hue given by the sensor and logs the
@@ -96,10 +96,10 @@ class ColorSensor {
    * near according to the brain device menu.
    *
    */
-  static constexpr int32_t nearProximity{255};
+  static constexpr int32_t nearProximity{250};
 
   /**
-   * @brief Sets the LED to max brightness and disables gestures.
+   * @brief Sets the LED integration time and disables gestures.
    *
    */
   void initializeColorSensor();

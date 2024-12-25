@@ -43,7 +43,7 @@ void Manager::easteregg() {
 
 void Manager::loadingScreenSetup() {
   lv_obj_t *loadingLabel{lv_label_create(loadingScreen)};
-  lv_label_set_text(loadingLabel, "LOADING!   DO NOT TOUCH!   ARMS IN!");
+  lv_label_set_text(loadingLabel, "LOADING!   DO NOT TOUCH!");
   lv_obj_center(loadingLabel);
   lv_obj_set_width(loadingLabel, screenWidth);
   lv_label_set_long_mode(loadingLabel, LV_LABEL_LONG_SCROLL_CIRCULAR);

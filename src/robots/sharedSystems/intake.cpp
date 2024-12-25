@@ -106,7 +106,7 @@ TASK_DEFINITIONS_FOR(Intake) {
       case IntakeState::Jammed: unjamming(); break;
       case IntakeState::Sorting: sorting(); break;
     }
-    wait(10_ms);
+    wait();
   }
   END_TASK
 }
