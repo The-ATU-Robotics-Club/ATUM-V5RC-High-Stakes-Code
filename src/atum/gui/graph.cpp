@@ -40,10 +40,6 @@ void Graph::clearAll() {
   clearSeries(SeriesColor::White);
 }
 
-void Graph::setNumOfPoints(const uint16_t numOfPoints) {
-  lv_chart_set_point_count(graphChart, numOfPoints);
-}
-
 void Graph::setupScreen() {
   createLabel(graphScreen,
               "GRAPH",
