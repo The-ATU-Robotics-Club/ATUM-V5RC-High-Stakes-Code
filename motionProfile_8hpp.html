@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: atum::MotionProfile&lt; Unit &gt;::Parameters Struct Reference</title>
+<title>VURC Team ATUM: include/atum/motion/motionProfile.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structatum_1_1MotionProfile_1_1Parameters.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('motionProfile_8hpp.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -95,36 +95,49 @@ $(document).ready(function(){initNavTree('structatum_1_1MotionProfile_1_1Paramet
 
 <div class="header">
   <div class="summary">
-<a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structatum_1_1MotionProfile_1_1Parameters-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">atum::MotionProfile&lt; Unit &gt;::Parameters Struct Reference</div></div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a>  </div>
+  <div class="headertitle"><div class="title">motionProfile.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Includes the MotionProfile template class and some helpful aliases.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="timer_8hpp_source.html">../time/timer.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8hpp_source.html">../utility/logger.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="kinematics_8hpp_source.html">kinematics.hpp</a>&quot;</code><br />
+<code>#include &lt;limits&gt;</code><br />
+</div>
+<p><a href="motionProfile_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:ad32cbe874f0a70b0522ff8a23dd51f4b"><td class="memItemLeft" align="right" valign="top"><a id="ad32cbe874f0a70b0522ff8a23dd51f4b" name="ad32cbe874f0a70b0522ff8a23dd51f4b"></a>
-UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><b>maxV</b></td></tr>
-<tr class="separator:ad32cbe874f0a70b0522ff8a23dd51f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5b00555ad5562e98f16ee04e97d2fd5"><td class="memItemLeft" align="right" valign="top"><a id="af5b00555ad5562e98f16ee04e97d2fd5" name="af5b00555ad5562e98f16ee04e97d2fd5"></a>
-UnitsPerSecondSq&#160;</td><td class="memItemRight" valign="bottom"><b>maxA</b></td></tr>
-<tr class="separator:af5b00555ad5562e98f16ee04e97d2fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30583773220fd0e1043b76d258fc1343"><td class="memItemLeft" align="right" valign="top"><a id="a30583773220fd0e1043b76d258fc1343" name="a30583773220fd0e1043b76d258fc1343"></a>
-UnitsPerSecondCb&#160;</td><td class="memItemRight" valign="bottom"><b>maxJ</b> {std::numeric_limits&lt;double&gt;::max()}</td></tr>
-<tr class="separator:a30583773220fd0e1043b76d258fc1343"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a437c622cf1d7adf9c5a4144d386c22"><td class="memItemLeft" align="right" valign="top"><a id="a7a437c622cf1d7adf9c5a4144d386c22" name="a7a437c622cf1d7adf9c5a4144d386c22"></a>
-std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>searchIterations</b> {15}</td></tr>
-<tr class="separator:a7a437c622cf1d7adf9c5a4144d386c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile&lt; Unit &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">atum::MotionProfile&lt; Unit &gt;::Parameters</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Point.html">atum::MotionProfile&lt; Unit &gt;::Point</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a23f1513743615fcba499f451588ff562"><td class="memItemLeft" align="right" valign="top"><a id="a23f1513743615fcba499f451588ff562" name="a23f1513743615fcba499f451588ff562"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>atum::LateralProfile</b> = MotionProfile&lt; meter_t &gt;</td></tr>
+<tr class="separator:a23f1513743615fcba499f451588ff562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65fed3a58a2037826a5e0db1ba2c804c"><td class="memItemLeft" align="right" valign="top"><a id="a65fed3a58a2037826a5e0db1ba2c804c" name="a65fed3a58a2037826a5e0db1ba2c804c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>atum::AngularProfile</b> = MotionProfile&lt; radian_t &gt;</td></tr>
+<tr class="separator:a65fed3a58a2037826a5e0db1ba2c804c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/atum/motion/<a class="el" href="motionProfile_8hpp_source.html">motionProfile.hpp</a></li>
-</ul>
-</div><!-- contents -->
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Includes the MotionProfile template class and some helpful aliases. </p>
+<dl class="section date"><dt>Date</dt><dd>2024-12-25</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1MotionProfile.html">MotionProfile</a></li><li class="navelem"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_a3acc2f368f9b12e0132a198399d370b.html">motion</a></li><li class="navelem"><a class="el" href="motionProfile_8hpp.html">motionProfile.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
