@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['canaccept_0',['canAccept',['../classatum_1_1Acceptable.html#ac1a8620fbdbf8816fc031a89d9815ce2',1,'atum::Acceptable::canAccept(const U &amp;error)'],['../classatum_1_1Acceptable.html#a01ad9cb3bd1459f2f85526f6d9a2b4e9',1,'atum::Acceptable::canAccept()'],['../classatum_1_1Acceptable.html#a0739eeebcdd3bbfe10296e960694a671',1,'atum::Acceptable::canAccept(const U &amp;state, const U &amp;reference)']]],
+  ['canaccept_0',['canAccept',['../classatum_1_1Acceptable.html#af9d129547305ba86da61e8f73e431851',1,'atum::Acceptable::canAccept(const Unit &amp;error)'],['../classatum_1_1Acceptable.html#a275bdfa48b6f5f18d69de566b4b490df',1,'atum::Acceptable::canAccept()'],['../classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165',1,'atum::Acceptable::canAccept(const Unit &amp;state, const Unit &amp;reference)']]],
   ['changescreencb_1',['changeScreenCB',['../classatum_1_1GUI_1_1Screen.html#a278c89d52d6105e332477c86c5b6788a',1,'atum::GUI::Screen']]],
   ['checkgoneoff_2',['checkGoneOff',['../classatum_1_1Timer.html#a89a2d01b5771f6bc8d58e43f509dc438',1,'atum::Timer']]],
   ['checkstateis_3',['checkStateIs',['../classatum_1_1StateMachine.html#a528bc101f8771596bb12802c81fc91b9',1,'atum::StateMachine']]],

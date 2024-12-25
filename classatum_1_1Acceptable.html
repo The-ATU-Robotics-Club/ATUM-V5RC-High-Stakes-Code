@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: atum::Acceptable&lt; U, dU &gt; Class Template Reference</title>
+<title>VURC Team ATUM: atum::Acceptable&lt; Unit &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -95,9 +95,10 @@ $(document).ready(function(){initNavTree('classatum_1_1Acceptable.html',''); ini
 
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classatum_1_1Acceptable-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">atum::Acceptable&lt; U, dU &gt; Class Template Reference</div></div>
+  <div class="headertitle"><div class="title">atum::Acceptable&lt; Unit &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
@@ -106,45 +107,51 @@ $(document).ready(function(){initNavTree('classatum_1_1Acceptable.html',''); ini
 
 <p><code>#include &lt;<a class="el" href="acceptable_8hpp_source.html">acceptable.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:a58e297856083c73ad5617fce959aaebf"><td class="memItemLeft" align="right" valign="top"><a id="a58e297856083c73ad5617fce959aaebf" name="a58e297856083c73ad5617fce959aaebf"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>UnitsPerSecond</b> = decltype(Unit{1}/1_s)</td></tr>
+<tr class="separator:a58e297856083c73ad5617fce959aaebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac42d74589b62fe422069fd240276da86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#ac42d74589b62fe422069fd240276da86">Acceptable</a> (const second_t iTimeout, const U &amp;iMaxError=U{0.0}, const dU &amp;iMaxDeriv=dU{std::numeric_limits&lt; double &gt;::max()}, const second_t minTime=0_s, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:ac42d74589b62fe422069fd240276da86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new acceptable object, checking for the parameters given to see if an action is complete, including timeout (past which the action is considered acceptable), a max error (below which, the action is considered acceptable), a max derivative of error (below which, assuming error is fine, the action is considered acceptable) in order to account for momentum, and a minimum time to meet those conditions for.  <br /></td></tr>
-<tr class="separator:ac42d74589b62fe422069fd240276da86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0739eeebcdd3bbfe10296e960694a671"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#a0739eeebcdd3bbfe10296e960694a671">canAccept</a> (const U &amp;state, const U &amp;reference)</td></tr>
-<tr class="memdesc:a0739eeebcdd3bbfe10296e960694a671"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if under the current conditions the results can be accepted.  <br /></td></tr>
-<tr class="separator:a0739eeebcdd3bbfe10296e960694a671"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1a8620fbdbf8816fc031a89d9815ce2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#ac1a8620fbdbf8816fc031a89d9815ce2">canAccept</a> (const U &amp;error)</td></tr>
-<tr class="memdesc:ac1a8620fbdbf8816fc031a89d9815ce2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if under the current conditions the results can be accepted.  <br /></td></tr>
-<tr class="separator:ac1a8620fbdbf8816fc031a89d9815ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01ad9cb3bd1459f2f85526f6d9a2b4e9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#a01ad9cb3bd1459f2f85526f6d9a2b4e9">canAccept</a> ()</td></tr>
-<tr class="memdesc:a01ad9cb3bd1459f2f85526f6d9a2b4e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the results can be accepted based on the last check. Also performs some logging.  <br /></td></tr>
-<tr class="separator:a01ad9cb3bd1459f2f85526f6d9a2b4e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3edb71117cac257ab98de7e93223f561"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">Acceptable</a> (const second_t iTimeout, const Unit &amp;iMaxError=Unit{0.0}, const UnitsPerSecond &amp;iMaxDeriv=UnitsPerSecond{std::numeric_limits&lt; double &gt;::max()}, const second_t minTime=0_s, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a3edb71117cac257ab98de7e93223f561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new acceptable object, checking for the parameters given to see if an action is complete, including timeout (past which the action is considered acceptable), a max error (below which, the action is considered acceptable), a max derivative of error (below which, assuming error is fine, the action is considered acceptable) in order to account for momentum, and a minimum time to meet those conditions for.  <br /></td></tr>
+<tr class="separator:a3edb71117cac257ab98de7e93223f561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5b3b6e75f7316c179429a22b7366165"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">canAccept</a> (const Unit &amp;state, const Unit &amp;reference)</td></tr>
+<tr class="memdesc:aa5b3b6e75f7316c179429a22b7366165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if under the current conditions the results can be accepted.  <br /></td></tr>
+<tr class="separator:aa5b3b6e75f7316c179429a22b7366165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d129547305ba86da61e8f73e431851"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#af9d129547305ba86da61e8f73e431851">canAccept</a> (const Unit &amp;error)</td></tr>
+<tr class="memdesc:af9d129547305ba86da61e8f73e431851"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if under the current conditions the results can be accepted.  <br /></td></tr>
+<tr class="separator:af9d129547305ba86da61e8f73e431851"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275bdfa48b6f5f18d69de566b4b490df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#a275bdfa48b6f5f18d69de566b4b490df">canAccept</a> ()</td></tr>
+<tr class="memdesc:a275bdfa48b6f5f18d69de566b4b490df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the results can be accepted based on the last check. Also performs some logging.  <br /></td></tr>
+<tr class="separator:a275bdfa48b6f5f18d69de566b4b490df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename U = double, typename dU = double&gt;<br />
-class atum::Acceptable&lt; U, dU &gt;</div><p>This class template produces encapsulates several conditions for the results of an action being considered acceptable, including a timeout (past which the action is considered acceptable), a max error (below which, the action is considered acceptable), a max derivative of error (below which, assuming error is fine, the action is considered acceptable) in order to account for momentum, and a minimum time to meet those conditions for. </p>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
+class atum::Acceptable&lt; Unit &gt;</div><p>This class template produces encapsulates several conditions for the results of an action being considered acceptable, including a timeout (past which the action is considered acceptable), a max error (below which, the action is considered acceptable), a max derivative of error (below which, assuming error is fine, the action is considered acceptable) in order to account for momentum, and a minimum time to meet those conditions for. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">U</td><td></td></tr>
-    <tr><td class="paramname">dU</td><td></td></tr>
+    <tr><td class="paramname">Unit</td><td></td></tr>
+    <tr><td class="paramname">UnitsPerSecond</td><td></td></tr>
   </table>
   </dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac42d74589b62fe422069fd240276da86" name="ac42d74589b62fe422069fd240276da86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac42d74589b62fe422069fd240276da86">&#9670;&#160;</a></span>Acceptable()</h2>
+<a id="a3edb71117cac257ab98de7e93223f561" name="a3edb71117cac257ab98de7e93223f561"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3edb71117cac257ab98de7e93223f561">&#9670;&#160;</a></span>Acceptable()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename U  = double, typename dU  = double&gt; </div>
+template&lt;typename Unit &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; U, dU &gt;::Acceptable </td>
+          <td class="memname"><a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; Unit &gt;::Acceptable </td>
           <td>(</td>
           <td class="paramtype">const second_t&#160;</td>
           <td class="paramname"><em>iTimeout</em>, </td>
@@ -152,14 +159,14 @@ template&lt;typename U  = double, typename dU  = double&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const U &amp;&#160;</td>
-          <td class="paramname"><em>iMaxError</em> = <code>U{0.0}</code>, </td>
+          <td class="paramtype">const Unit &amp;&#160;</td>
+          <td class="paramname"><em>iMaxError</em> = <code>Unit{0.0}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const dU &amp;&#160;</td>
-          <td class="paramname"><em>iMaxDeriv</em> = <code>dU{std::numeric_limits&lt;double&gt;::max()}</code>, </td>
+          <td class="paramtype">const UnitsPerSecond &amp;&#160;</td>
+          <td class="paramname"><em>iMaxDeriv</em> = <code>UnitsPerSecond{std::numeric_limits&lt;double&gt;::max()}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -201,19 +208,19 @@ template&lt;typename U  = double, typename dU  = double&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a01ad9cb3bd1459f2f85526f6d9a2b4e9" name="a01ad9cb3bd1459f2f85526f6d9a2b4e9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a01ad9cb3bd1459f2f85526f6d9a2b4e9">&#9670;&#160;</a></span>canAccept() <span class="overload">[1/3]</span></h2>
+<a id="a275bdfa48b6f5f18d69de566b4b490df" name="a275bdfa48b6f5f18d69de566b4b490df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275bdfa48b6f5f18d69de566b4b490df">&#9670;&#160;</a></span>canAccept() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename U  = double, typename dU  = double&gt; </div>
+template&lt;typename Unit &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; U, dU &gt;::canAccept </td>
+          <td class="memname">bool <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; Unit &gt;::canAccept </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -233,21 +240,21 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="ac1a8620fbdbf8816fc031a89d9815ce2" name="ac1a8620fbdbf8816fc031a89d9815ce2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac1a8620fbdbf8816fc031a89d9815ce2">&#9670;&#160;</a></span>canAccept() <span class="overload">[2/3]</span></h2>
+<a id="af9d129547305ba86da61e8f73e431851" name="af9d129547305ba86da61e8f73e431851"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9d129547305ba86da61e8f73e431851">&#9670;&#160;</a></span>canAccept() <span class="overload">[2/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename U  = double, typename dU  = double&gt; </div>
+template&lt;typename Unit &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; U, dU &gt;::canAccept </td>
+          <td class="memname">bool <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; Unit &gt;::canAccept </td>
           <td>(</td>
-          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramtype">const Unit &amp;&#160;</td>
           <td class="paramname"><em>error</em></td><td>)</td>
           <td></td>
         </tr>
@@ -272,27 +279,27 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="a0739eeebcdd3bbfe10296e960694a671" name="a0739eeebcdd3bbfe10296e960694a671"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0739eeebcdd3bbfe10296e960694a671">&#9670;&#160;</a></span>canAccept() <span class="overload">[3/3]</span></h2>
+<a id="aa5b3b6e75f7316c179429a22b7366165" name="aa5b3b6e75f7316c179429a22b7366165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5b3b6e75f7316c179429a22b7366165">&#9670;&#160;</a></span>canAccept() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename U  = double, typename dU  = double&gt; </div>
+template&lt;typename Unit &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; U, dU &gt;::canAccept </td>
+          <td class="memname">bool <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; Unit &gt;::canAccept </td>
           <td>(</td>
-          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramtype">const Unit &amp;&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const U &amp;&#160;</td>
+          <td class="paramtype">const Unit &amp;&#160;</td>
           <td class="paramname"><em>reference</em>&#160;</td>
         </tr>
         <tr>

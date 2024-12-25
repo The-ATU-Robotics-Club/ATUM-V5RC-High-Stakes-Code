@@ -1,7 +1,7 @@
 var hierarchy =
 [
-    [ "atum::Acceptable< U, dU >", "classatum_1_1Acceptable.html", null ],
-    [ "atum::Acceptable< degree_t, degrees_per_second_t >", "classatum_1_1Acceptable.html", null ],
+    [ "atum::Acceptable< Unit >", "classatum_1_1Acceptable.html", null ],
+    [ "atum::Acceptable< degree_t >", "classatum_1_1Acceptable.html", null ],
     [ "atum::ADIExtenderPort", "classatum_1_1ADIExtenderPort.html", null ],
     [ "atum::ColorSensor", "classatum_1_1ColorSensor.html", null ],
     [ "atum::Controller", "classatum_1_1Controller.html", [

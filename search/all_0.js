@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['acceptable_0',['Acceptable',['../classatum_1_1Acceptable.html#ac42d74589b62fe422069fd240276da86',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; U, dU &gt;']]],
+  ['acceptable_0',['Acceptable',['../classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
   ['acceptable_2ehpp_1',['acceptable.hpp',['../acceptable_8hpp.html',1,'']]],
-  ['acceptable_3c_20degree_5ft_2c_20degrees_5fper_5fsecond_5ft_20_3e_2',['Acceptable&lt; degree_t, degrees_per_second_t &gt;',['../classatum_1_1Acceptable.html',1,'atum']]],
-  ['acceptabledistance_3',['AcceptableDistance',['../acceptable_8hpp.html#ac6d399f309208d6af31da8c00353af8e',1,'atum']]],
+  ['acceptable_3c_20degree_5ft_20_3e_2',['Acceptable&lt; degree_t &gt;',['../classatum_1_1Acceptable.html',1,'atum']]],
+  ['acceptabledistance_3',['AcceptableDistance',['../acceptable_8hpp.html#adb220f86b5f4e9d792b9dc17d5354496',1,'atum']]],
   ['addposition_4',['addPosition',['../classatum_1_1GUI_1_1Map.html#a714d39c010b0fcc250a59b0ef75087f8',1,'atum::GUI::Map']]],
   ['addpositions_5',['addPositions',['../classatum_1_1GUI_1_1Map.html#abc995a19b41fea3075581d67422b8b0e',1,'atum::GUI::Map']]],
   ['addstyles_6',['addStyles',['../classatum_1_1GUI_1_1Screen.html#acc4ff5b62ec07589b1f37bf6e718226f',1,'atum::GUI::Screen']]],
