@@ -23,12 +23,15 @@ namespace atum {
  * acceptable) in order to account for momentum, and a minimum time to meet
  * those conditions for.
  *
- * @tparam U
- * @tparam dU
+ * @tparam Unit
+ * @tparam UnitsPerSecond
  */
-template <typename U = double, typename dU = double>
+template <typename Unit>
 class Acceptable {
   public:
+  // Figure out the corresponding types for the derivative of Unit. 
+  using UnitsPerSecond = decltype(Unit{1} / 1_s);
+
   /**
    * @brief Constructs a new acceptable object, checking for the parameters
    * given to see if an action is complete, including timeout (past which the
@@ -44,8 +47,8 @@ class Acceptable {
    * @param loggerLevel
    */
   Acceptable(const second_t iTimeout,
-             const U &iMaxError = U{0.0},
-             const dU &iMaxDeriv = dU{std::numeric_limits<double>::max()},
+             const Unit &iMaxError = Unit{0.0},
+             const UnitsPerSecond &iMaxDeriv = UnitsPerSecond{std::numeric_limits<double>::max()},
              const second_t minTime = 0_s,
              const Logger::Level loggerLevel = Logger::Level::Info) :
       timeout{iTimeout},
@@ -64,7 +67,7 @@ class Acceptable {
    * @return true
    * @return false
    */
-  bool canAccept(const U &state, const U &reference) {
+  bool canAccept(const Unit &state, const Unit &reference) {
     return canAccept(reference - state);
   }
 
@@ -75,12 +78,12 @@ class Acceptable {
    * @return true
    * @return false
    */
-  bool canAccept(const U &error) {
+  bool canAccept(const Unit &error) {
     if(!timeoutTimer) {
       timeoutTimer = Timer{timeout};
     }
     const second_t currentTime{time()};
-    const dU deriv{(error - prevError) / (currentTime - prevTime)};
+    const UnitsPerSecond deriv{(error - prevError) / (currentTime - prevTime)};
     accepted = abs(error) <= maxError;
     accepted = accepted && abs(deriv) <= maxDeriv;
     if(!accepted) {
@@ -111,12 +114,12 @@ class Acceptable {
   private:
   bool accepted{false};
   const second_t timeout;
-  const U maxError;
-  const dU maxDeriv;
+  const Unit maxError;
+  const UnitsPerSecond maxDeriv;
   Timer minTimer;
   Logger logger;
   std::optional<Timer> timeoutTimer;
-  U prevError{0};
+  Unit prevError{0};
   second_t prevTime{0_s};
 };
 
@@ -125,6 +128,6 @@ class Acceptable {
  * are particularly common.
  *
  */
-using AcceptableDistance = Acceptable<inch_t, feet_per_second_t>;
-using AcceptableAngle = Acceptable<degree_t, degrees_per_second_t>;
+using AcceptableDistance = Acceptable<inch_t>;
+using AcceptableAngle = Acceptable<degree_t>;
 } // namespace atum

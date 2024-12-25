@@ -18,6 +18,7 @@ namespace atum {
 template <typename Unit>
 class MotionProfile {
   public:
+  // Figure out the corresponding types for the derivative of Unit.
   using UnitsPerSecond = decltype(Unit{1} / 1_s);
   using UnitsPerSecondSq = decltype(UnitsPerSecond{1} / 1_s);
   using UnitsPerSecondCb = decltype(UnitsPerSecondSq{1} / 1_s);
@@ -56,7 +57,7 @@ class MotionProfile {
     finishProfile();
     timer = Timer{};
     logger.debug("Motion profile going from " + to_string(start) + " to " +
-                 to_string(end) " has been constructed!");
+                 to_string(end) + " has been constructed!");
   }
 
   Point getPoint(const Unit s) {
