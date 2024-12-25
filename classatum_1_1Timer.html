@@ -113,7 +113,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0744c166f14250d5fbf3304e698d7098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the timer to a specified time (so that an additional alarm time must pass before the alarm has gone off); default is 0s.  <br /></td></tr>
 <tr class="separator:a0744c166f14250d5fbf3304e698d7098"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64b59dcb1eed397de325f17f3718830e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e">goneOff</a> () const</td></tr>
-<tr class="memdesc:a64b59dcb1eed397de325f17f3718830e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Says if the alarm time has elapsed since last reset is greater than the alarm time (or if the alarm time is zero seconds).  <br /></td></tr>
+<tr class="memdesc:a64b59dcb1eed397de325f17f3718830e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Says if the alarm time has elapsed since last reset is greater than the alarm time; never goes off if alarm time is 0s.  <br /></td></tr>
 <tr class="separator:a64b59dcb1eed397de325f17f3718830e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f80a0fcdf140f0525dfc5cdaaa5d349"><td class="memItemLeft" align="right" valign="top">second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a4f80a0fcdf140f0525dfc5cdaaa5d349">timeElapsed</a> () const</td></tr>
 <tr class="memdesc:a4f80a0fcdf140f0525dfc5cdaaa5d349"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the time elapsed since the alarm was created.  <br /></td></tr>
@@ -199,7 +199,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Says if the alarm time has elapsed since last reset is greater than the alarm time (or if the alarm time is zero seconds). </p>
+<p>Says if the alarm time has elapsed since last reset is greater than the alarm time; never goes off if alarm time is 0s. </p>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>

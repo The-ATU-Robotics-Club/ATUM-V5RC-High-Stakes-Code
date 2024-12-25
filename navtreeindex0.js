@@ -19,7 +19,7 @@ var NAVTREEINDEX0 =
 "classatum_1_1Acceptable.html#ac42d74589b62fe422069fd240276da86":[1,0,0,1,0],
 "classatum_1_1ColorSensor.html":[1,0,0,3],
 "classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488":[1,0,0,3,3],
-"classatum_1_1ColorSensor.html#a45ddd5299ac9a06bd35c9ed9218b2c13":[1,0,0,3,4],
+"classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44":[1,0,0,3,4],
 "classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf":[1,0,0,3,5],
 "classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97":[1,0,0,3,1],
 "classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97a6adf97f83acf6453d4a6a4b1070f3754":[1,0,0,3,1,0],

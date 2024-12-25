@@ -9,6 +9,6 @@ var classatum_1_1ColorSensor =
     ] ],
     [ "ColorSensor", "classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189", null ],
     [ "ColorSensor", "classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488", null ],
-    [ "getColor", "classatum_1_1ColorSensor.html#a45ddd5299ac9a06bd35c9ed9218b2c13", null ],
+    [ "getColor", "classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44", null ],
     [ "getRawHue", "classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf", null ]
 ];

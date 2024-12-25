@@ -128,9 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0392263b382eee7453186d46a9a1f488"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">ColorSensor</a> (const std::vector&lt; <a class="el" href="structatum_1_1ColorSensor_1_1HueField.html">HueField</a> &gt; iHueFields, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
 <tr class="memdesc:a0392263b382eee7453186d46a9a1f488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> by finding the port dynamically. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields.  <br /></td></tr>
 <tr class="separator:a0392263b382eee7453186d46a9a1f488"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45ddd5299ac9a06bd35c9ed9218b2c13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a45ddd5299ac9a06bd35c9ed9218b2c13">getColor</a> () const</td></tr>
-<tr class="memdesc:a45ddd5299ac9a06bd35c9ed9218b2c13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the detected color. Will return None if outside of proximity threshold given (unless 0).  <br /></td></tr>
-<tr class="separator:a45ddd5299ac9a06bd35c9ed9218b2c13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">getColor</a> ()</td></tr>
+<tr class="memdesc:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns LED on if something is nearby.  <br /></td></tr>
+<tr class="separator:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61bfb8618409f707da827f49dcb40fdf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">getRawHue</a> ()</td></tr>
 <tr class="memdesc:a61bfb8618409f707da827f49dcb40fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning purposes, prefer getColor.  <br /></td></tr>
 <tr class="separator:a61bfb8618409f707da827f49dcb40fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,8 +251,8 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a45ddd5299ac9a06bd35c9ed9218b2c13" name="a45ddd5299ac9a06bd35c9ed9218b2c13"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45ddd5299ac9a06bd35c9ed9218b2c13">&#9670;&#160;</a></span>getColor()</h2>
+<a id="a26cb4e38ef4adf2bd6bba32f65aebd44" name="a26cb4e38ef4adf2bd6bba32f65aebd44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26cb4e38ef4adf2bd6bba32f65aebd44">&#9670;&#160;</a></span>getColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -261,12 +261,12 @@ Static Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a> atum::ColorSensor::getColor </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the detected color. Will return None if outside of proximity threshold given (unless 0). </p>
+<p>Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns LED on if something is nearby. </p>
 <dl class="section return"><dt>Returns</dt><dd>Color </dd></dl>
 
 </div>

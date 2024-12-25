@@ -2,7 +2,7 @@ var searchData=
 [
   ['get_5fmacro_0',['GET_MACRO',['../misc_8hpp.html#a84890a00d8c73dde4e766ef13c716e10',1,'misc.hpp']]],
   ['getbrakemode_1',['getBrakeMode',['../classatum_1_1Motor.html#a2535c2a9f3779ed9deafd7a74603ee0c',1,'atum::Motor::getBrakeMode()'],['../classatum_1_1Drive.html#acf43f1b97bb419b2d29eb9a7f3495206',1,'atum::Drive::getBrakeMode()']]],
-  ['getcolor_2',['getColor',['../classatum_1_1ColorSensor.html#a45ddd5299ac9a06bd35c9ed9218b2c13',1,'atum::ColorSensor']]],
+  ['getcolor_2',['getColor',['../classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44',1,'atum::ColorSensor']]],
   ['getcurrentdraw_3',['getCurrentDraw',['../classatum_1_1Motor.html#a725753ed425450a5abdb26fdb70d846b',1,'atum::Motor']]],
   ['getcurrentlimit_4',['getCurrentLimit',['../classatum_1_1Motor.html#af86422c47beb4212a8b6c13535a248c9',1,'atum::Motor']]],
   ['getdisplacement_5',['getDisplacement',['../classatum_1_1RotationSensor.html#a412f95cbb2e1c51ee809241b49fd588d',1,'atum::RotationSensor']]],
