@@ -1,3 +1,12 @@
+/**
+ * @file kinematics.hpp
+ * @brief Includes the Kinematics template class and helpful aliases.
+ * @date 2024-12-25
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../utility/units.hpp"

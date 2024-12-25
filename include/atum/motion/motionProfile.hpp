@@ -1,4 +1,11 @@
-
+/**
+ * @file motionProfile.hpp
+ * @brief Includes the MotionProfile template class and some helpful aliases.
+ * @date 2024-12-25
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
 
 #pragma once
 
@@ -21,7 +28,7 @@ class MotionProfile {
     UnitsPerSecondSq maxA;
     // Default to a trapezoidal profile.
     UnitsPerSecondCb maxJ{std::numeric_limits<double>::max()};
-    std::size_t searchIterations{20};
+    std::size_t searchIterations{15};
   };
 
   struct Point {
@@ -48,6 +55,8 @@ class MotionProfile {
     beginProfile();
     finishProfile();
     timer = Timer{};
+    logger.debug("Motion profile going from " + to_string(start) + " to " +
+                 to_string(end) " has been constructed!");
   }
 
   Point getPoint(const Unit s) {
@@ -58,9 +67,14 @@ class MotionProfile {
       point = closestPoint;
     }
     if(logger.getLevel() == Logger::Level::Debug) {
-      graphPoint(closestPoint); // TODO: Change this!
+      graphPoint(point);
     }
     return point;
+  }
+
+  Point getTimedPoint() {
+    const second_t t{timer.timeElapsed()};
+    return getPointAt(t);
   }
 
   Point getClosestPoint(const Unit s) {
@@ -78,37 +92,12 @@ class MotionProfile {
               UnitsPerSecondCb{0},
               points[6].t};
     }
-    int i{0};
-    while(distance(s, points[i].s) < Unit{0}) {
-      i++;
-    }
-    second_t t0{0_s};
-    second_t t2{points[6].t};
-    for(std::size_t n{0}; n < params.searchIterations; n++) {
-      const second_t t1{(t0 + t2) / 2.0};
-      if(distance(s, getPointAt(t1).s) >= Unit{0}) {
-        t2 = t1;
-      } else {
-        t0 = t1;
-      }
-    }
-    const second_t t1{(t0 + t2) / 2.0};
+    const auto [t0, t2] = getTimeBounds(s);
+    const second_t t1{searchForClosestPointTime(s, t0, t2)};
     return getPointAt(t1);
   }
 
-  Unit distance(const Unit left, const Unit right) {
-    Unit diff{difference(right, left)};
-    if(target < Unit{0}) {
-      diff *= -1;
-    }
-    return diff;
-  }
-
-  Point getTimedPoint() {
-    const second_t t{timer.timeElapsed()};
-    return getPointAt(t);
-  }
-
+  private:
   Point getPointAt(const second_t t) {
     if(t < 0_s) {
       return {start,
@@ -117,7 +106,6 @@ class MotionProfile {
               UnitsPerSecondCb{(target < Unit{0}) ? -params.maxJ : params.maxJ},
               0_s};
     } else if(t >= points[6].t) {
-      done = true;
       return {end,
               UnitsPerSecond{0},
               UnitsPerSecondSq{0},
@@ -142,11 +130,42 @@ class MotionProfile {
     return p;
   }
 
-  bool isDone() const {
-    return done;
+  std::pair<second_t, second_t> getTimeBounds(const Unit s) {
+    // Finds first point we're past (starts with 1 since we know we're past the
+    // start if this ever gets called).
+    int i{1};
+    while(i < 7 && distance(s, points[i].s) < Unit{0}) {
+      i++;
+    }
+    if(i < 2) {
+      return {0_s, points[0].t};
+    } else if(i >= 7) {
+      return {points[5].t, points[6].t};
+    } else {
+      return {points[i - 2].t, points[i - 1].t};
+    }
   }
 
-  private:
+  second_t searchForClosestPointTime(const Unit s, second_t t0, second_t t2) {
+    for(std::size_t n{0}; n < params.searchIterations; n++) {
+      const second_t t1{(t0 + t2) / 2.0};
+      if(distance(s, getPointAt(t1).s) >= Unit{0}) {
+        t2 = t1;
+      } else {
+        t0 = t1;
+      }
+    }
+    return (t0 + t2) / 2.0;
+  }
+
+  Unit distance(const Unit left, const Unit right) {
+    Unit diff{difference(right, left)};
+    if(target < Unit{0}) {
+      diff *= -1;
+    }
+    return diff;
+  }
+
   void beginProfile() {
     const bool reachesMaxAccel{params.maxA * params.maxA / params.maxJ <
                                params.maxV};
@@ -306,7 +325,6 @@ class MotionProfile {
   const Unit target;
   Parameters params;
   std::array<Point, 7> points;
-  bool done{false};
   Logger logger;
   Timer timer;
 };
