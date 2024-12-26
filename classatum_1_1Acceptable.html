@@ -127,6 +127,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a275bdfa48b6f5f18d69de566b4b490df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#a275bdfa48b6f5f18d69de566b4b490df">canAccept</a> ()</td></tr>
 <tr class="memdesc:a275bdfa48b6f5f18d69de566b4b490df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the results can be accepted based on the last check. Also performs some logging.  <br /></td></tr>
 <tr class="separator:a275bdfa48b6f5f18d69de566b4b490df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbaf931542c6a9a73964ae228e9e678c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">reset</a> ()</td></tr>
+<tr class="memdesc:acbaf931542c6a9a73964ae228e9e678c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the internal state, useful for whenever the reference changes.  <br /></td></tr>
+<tr class="separator:acbaf931542c6a9a73964ae228e9e678c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
@@ -134,7 +137,6 @@ class atum::Acceptable&lt; Unit &gt;</div><p>This class template produces encaps
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Unit</td><td></td></tr>
-    <tr><td class="paramname">UnitsPerSecond</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -326,6 +328,35 @@ template&lt;typename Unit &gt; </div>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
+
+</div>
+</div>
+<a id="acbaf931542c6a9a73964ae228e9e678c" name="acbaf931542c6a9a73964ae228e9e678c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbaf931542c6a9a73964ae228e9e678c">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; Unit &gt;::reset </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the internal state, useful for whenever the reference changes. </p>
 
 </div>
 </div>

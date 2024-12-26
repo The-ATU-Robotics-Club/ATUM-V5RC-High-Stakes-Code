@@ -109,19 +109,19 @@ $(document).ready(function(){initNavTree('pid_8hpp_source.html',''); initResizab
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="classatum_1_1PID.html">   24</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1PID.html">PID</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Controller.html">Controller</a> {</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structatum_1_1PID_1_1Parameters.html">   30</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1PID_1_1Parameters.html">Parameters</a> {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> kP{0};</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> kI{0};</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> kD{0};</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> ff{0};</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">double</span> kP{0};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordtype">double</span> kI{0};</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">double</span> kD{0};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">double</span> ff{0};</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="comment">// Threshold of error at which the integral term begins accumulating.</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> threshI{std::numeric_limits&lt;long double&gt;::max()};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordtype">double</span> threshI{std::numeric_limits&lt;long double&gt;::max()};</div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="comment">// If ffScaling is true, then feedforward will be scaled by the desired</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="comment">// reference. Otherwise, the raw value will simply be added to the total</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="comment">// output.</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">const</span> <span class="keywordtype">bool</span> ffScaling{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">bool</span> ffScaling{<span class="keyword">false</span>};</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// Sets bounds for the output of the PID controller.</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">const</span> std::pair&lt;double, double&gt; constraints{-<a class="code hl_variable" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                                                <a class="code hl_variable" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>};</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    std::pair&lt;double, double&gt; constraints{-<a class="code hl_variable" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>,</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>                                          <a class="code hl_variable" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>};</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  };</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classatum_1_1PID.html#ade7488d1ab76448ee23bd58b73a647b7">   52</a></span>  <a class="code hl_function" href="classatum_1_1PID.html#ade7488d1ab76448ee23bd58b73a647b7">PID</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1PID_1_1Parameters.html">Parameters</a> &amp;iParams,</div>

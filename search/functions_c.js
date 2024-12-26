@@ -1,7 +1,7 @@
 var searchData=
 [
   ['remote_0',['Remote',['../classatum_1_1Remote.html#ad18f73598b108eecc4893559bf47de59',1,'atum::Remote']]],
-  ['reset_1',['reset',['../classatum_1_1Controller.html#a78b11be4e5b1a6e4de36d460d42e4d15',1,'atum::Controller::reset()'],['../classatum_1_1PID.html#ae3f2912458dffb1a55be32924443c07a',1,'atum::PID::reset()'],['../classatum_1_1TBH.html#a44ceab9d0a539b7854601211615ab7c9',1,'atum::TBH::reset()'],['../classatum_1_1RotationSensor.html#ab8fe89ab0082c3350be7f81937f9a6ce',1,'atum::RotationSensor::reset()']]],
+  ['reset_1',['reset',['../classatum_1_1Controller.html#a78b11be4e5b1a6e4de36d460d42e4d15',1,'atum::Controller::reset()'],['../classatum_1_1PID.html#ae3f2912458dffb1a55be32924443c07a',1,'atum::PID::reset()'],['../classatum_1_1TBH.html#a44ceab9d0a539b7854601211615ab7c9',1,'atum::TBH::reset()'],['../classatum_1_1RotationSensor.html#ab8fe89ab0082c3350be7f81937f9a6ce',1,'atum::RotationSensor::reset()'],['../classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c',1,'atum::Acceptable::reset()']]],
   ['resetalarm_2',['resetAlarm',['../classatum_1_1Timer.html#a0744c166f14250d5fbf3304e698d7098',1,'atum::Timer']]],
   ['resetposition_3',['resetPosition',['../classatum_1_1Motor.html#a1a092eefabcf252cfb2cf4e1643af541',1,'atum::Motor']]],
   ['retract_4',['retract',['../classatum_1_1Piston.html#a1db6c21109da8a3745864c018bdfc19b',1,'atum::Piston']]],

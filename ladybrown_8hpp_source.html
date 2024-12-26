@@ -110,14 +110,14 @@ $(document).ready(function(){initNavTree('ladybrown_8hpp_source.html',''); initR
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="structatum_1_1Ladybrown_1_1Parameters.html">   12</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> {</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordtype">double</span> maxVoltage;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    <span class="keywordtype">double</span> restPosition;</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    <span class="keywordtype">double</span> loadingPosition;</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordtype">double</span> flippingPosition;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">double</span> scoredPosition;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classatum_1_1Acceptable.html">AcceptableAngle</a> acceptableDeviation;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classatum_1_1SlewRate.html">SlewRate</a> voltageSlew;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_class" href="classatum_1_1PID.html">PID</a> positionController;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_class" href="classatum_1_1PID.html">PID</a> balanceController;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    degree_t restPosition;</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    degree_t loadingPosition;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    degree_t flippingPosition;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    degree_t scoredPosition;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <a class="code hl_class" href="classatum_1_1PID.html">PID</a> holdController;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_class" href="classatum_1_1PID.html">PID</a> balanceController;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="comment">// The time the intake will attempt to perform an action before giving up.</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    second_t generalTimeout{forever};</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  };</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a>(std::unique_ptr&lt;Motor&gt; iLeft,</div>
@@ -126,41 +126,42 @@ $(document).ready(function(){initNavTree('ladybrown_8hpp_source.html',''); initR
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            std::unique_ptr&lt;RotationSensor&gt; iRotation,</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            std::unique_ptr&lt;LineTracker&gt; iLine,</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            <span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> &amp;iParams,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordtype">void</span> stop();</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">void</span> extend();</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keywordtype">void</span> retract();</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="keywordtype">void</span> load();</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordtype">void</span> score();</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">void</span> setVoltage(<span class="keyword">const</span> <span class="keywordtype">double</span> voltage);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">double</span> getVoltage();</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  std::unique_ptr&lt;Motor&gt; left;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  std::unique_ptr&lt;Motor&gt; right;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  std::unique_ptr&lt;Piston&gt; piston;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  std::unique_ptr&lt;RotationSensor&gt; rotation;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  std::unique_ptr&lt;LineTracker&gt; line;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_struct" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> params;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="keywordtype">double</span> voltage;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  pros::Mutex voltageMutex;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>};</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            std::unique_ptr&lt;AngularProfileFollower&gt; iFollower,</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">void</span> stop();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordtype">void</span> extend();</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">void</span> retract();</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordtype">void</span> load();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keywordtype">void</span> score();</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keywordtype">void</span> setVoltage(<span class="keyword">const</span> <span class="keywordtype">double</span> voltage);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordtype">double</span> getVoltage();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordtype">void</span> moveTo(<span class="keyword">const</span> degree_t target);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  std::unique_ptr&lt;Motor&gt; left;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  std::unique_ptr&lt;Motor&gt; right;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  std::unique_ptr&lt;Piston&gt; piston;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  std::unique_ptr&lt;RotationSensor&gt; rotation;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  std::unique_ptr&lt;LineTracker&gt; line;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <a class="code hl_struct" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> params;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  std::unique_ptr&lt;AngularProfileFollower&gt; follower;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">double</span> voltage;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  pros::Mutex voltageMutex;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
-<div class="ttc" id="aclassatum_1_1Acceptable_html"><div class="ttname"><a href="classatum_1_1Acceptable.html">atum::Acceptable&lt; degree_t &gt;</a></div></div>
 <div class="ttc" id="aclassatum_1_1Ladybrown_html"><div class="ttname"><a href="classatum_1_1Ladybrown.html">atum::Ladybrown</a></div><div class="ttdef"><b>Definition:</b> ladybrown.hpp:8</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html"><div class="ttname"><a href="classatum_1_1Logger.html">atum::Logger</a></div><div class="ttdoc">This class handles logging to the terminal, SD card, and log screen. Messages are displayed depending...</div><div class="ttdef"><b>Definition:</b> logger.hpp:31</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
 <div class="ttc" id="aclassatum_1_1PID_html"><div class="ttname"><a href="classatum_1_1PID.html">atum::PID</a></div><div class="ttdoc">Implementation of a PID controller with the option for feedforward control; feedforward control is a ...</div><div class="ttdef"><b>Definition:</b> pid.hpp:24</div></div>
-<div class="ttc" id="aclassatum_1_1SlewRate_html"><div class="ttname"><a href="classatum_1_1SlewRate.html">atum::SlewRate</a></div><div class="ttdoc">Implementation of a slew rate. Used to limit the acceleration of a motor or other system by stepping ...</div><div class="ttdef"><b>Definition:</b> slewRate.hpp:23</div></div>
 <div class="ttc" id="aclassatum_1_1StateMachine_html"><div class="ttname"><a href="classatum_1_1StateMachine.html">atum::StateMachine</a></div><div class="ttdoc">Provides some common functionality associated with state machines. Most is left to its derivatives,...</div><div class="ttdef"><b>Definition:</b> stateMachine.hpp:23</div></div>
 <div class="ttc" id="aclassatum_1_1Task_html"><div class="ttname"><a href="classatum_1_1Task.html">atum::Task</a></div><div class="ttdoc">This class allows its derivatives to &quot;own&quot; their own tasks and better control their management....</div><div class="ttdef"><b>Definition:</b> task.hpp:85</div></div>
 <div class="ttc" id="astructatum_1_1Ladybrown_1_1Parameters_html"><div class="ttname"><a href="structatum_1_1Ladybrown_1_1Parameters.html">atum::Ladybrown::Parameters</a></div><div class="ttdef"><b>Definition:</b> ladybrown.hpp:12</div></div>

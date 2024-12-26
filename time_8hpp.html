@@ -122,9 +122,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a092f688fb161d6bd9b1d12751a77d08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8hpp.html#a092f688fb161d6bd9b1d12751a77d08e">atum::wait</a> (second_t delay=standardDelay)</td></tr>
 <tr class="memdesc:a092f688fb161d6bd9b1d12751a77d08e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits for the specified amount of time (or standard delay of 10 ms if no such time is given).  <br /></td></tr>
 <tr class="separator:a092f688fb161d6bd9b1d12751a77d08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8bdab202ead8a42eaeb32403e4bfbde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8hpp.html#ab8bdab202ead8a42eaeb32403e4bfbde">atum::waitUntil</a> (const Condition &amp;condition, const second_t timeout=0_s, const second_t delay=standardDelay)</td></tr>
-<tr class="memdesc:ab8bdab202ead8a42eaeb32403e4bfbde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the condition given is true or the timeout is reached (unless 0 s is provided for the timeout). The delay parameter refers to how long to wait between each check, provided for sensors like the color sensor that benefit from specific delay.  <br /></td></tr>
-<tr class="separator:ab8bdab202ead8a42eaeb32403e4bfbde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e56b7b76cc993a5b07841fe62488978"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="time_8hpp.html#a4e56b7b76cc993a5b07841fe62488978">atum::waitUntil</a> (const Condition &amp;condition, const second_t timeout=forever, const second_t delay=standardDelay)</td></tr>
+<tr class="memdesc:a4e56b7b76cc993a5b07841fe62488978"><td class="mdescLeft">&#160;</td><td class="mdescRight">Waits until the condition given is true or the timeout is reached (unless forever is provided for the timeout). The delay parameter refers to how long to wait between each check, provided for sensors like the color sensor that benefit from specific delay.  <br /></td></tr>
+<tr class="separator:a4e56b7b76cc993a5b07841fe62488978"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Includes various functions, constants, and aliases related to time. </p>
@@ -194,8 +194,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab8bdab202ead8a42eaeb32403e4bfbde" name="ab8bdab202ead8a42eaeb32403e4bfbde"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8bdab202ead8a42eaeb32403e4bfbde">&#9670;&#160;</a></span>waitUntil()</h2>
+<a id="a4e56b7b76cc993a5b07841fe62488978" name="a4e56b7b76cc993a5b07841fe62488978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e56b7b76cc993a5b07841fe62488978">&#9670;&#160;</a></span>waitUntil()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,7 +210,7 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const second_t&#160;</td>
-          <td class="paramname"><em>timeout</em> = <code>0_s</code>, </td>
+          <td class="paramname"><em>timeout</em> = <code>forever</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -226,7 +226,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Waits until the condition given is true or the timeout is reached (unless 0 s is provided for the timeout). The delay parameter refers to how long to wait between each check, provided for sensors like the color sensor that benefit from specific delay. </p>
+<p>Waits until the condition given is true or the timeout is reached (unless forever is provided for the timeout). The delay parameter refers to how long to wait between each check, provided for sensors like the color sensor that benefit from specific delay. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">condition</td><td></td></tr>

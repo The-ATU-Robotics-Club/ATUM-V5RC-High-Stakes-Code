@@ -4,7 +4,7 @@ var searchData=
   ['getcolor_1',['getColor',['../classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44',1,'atum::ColorSensor']]],
   ['getcurrentdraw_2',['getCurrentDraw',['../classatum_1_1Motor.html#a725753ed425450a5abdb26fdb70d846b',1,'atum::Motor']]],
   ['getcurrentlimit_3',['getCurrentLimit',['../classatum_1_1Motor.html#af86422c47beb4212a8b6c13535a248c9',1,'atum::Motor']]],
-  ['getdisplacement_4',['getDisplacement',['../classatum_1_1RotationSensor.html#a412f95cbb2e1c51ee809241b49fd588d',1,'atum::RotationSensor']]],
+  ['getdisplacement_4',['getDisplacement',['../classatum_1_1RotationSensor.html#a3983094568445e65911be457823c024d',1,'atum::RotationSensor']]],
   ['getdistance_5',['getDistance',['../classatum_1_1DistanceSensor.html#a3025bdaf4f94592b8cfbfd27c361ae40',1,'atum::DistanceSensor']]],
   ['getefficiency_6',['getEfficiency',['../classatum_1_1Motor.html#a31cf87fb74a4a46f23f5c6bac6431ce3',1,'atum::Motor']]],
   ['getfromcenter_7',['getFromCenter',['../classatum_1_1Odometer.html#a0db24a49cb5fdfaa427de18b70fb0b85',1,'atum::Odometer']]],
@@ -16,7 +16,7 @@ var searchData=
   ['getoutput_13',['getOutput',['../classatum_1_1Controller.html#aa83d803e7c9d0d272db3fbe054b5e4c0',1,'atum::Controller::getOutput()'],['../classatum_1_1Controller.html#ae18b8fd073df0130c94bca60df137110',1,'atum::Controller::getOutput(const double error)=0'],['../classatum_1_1Controller.html#a1a81b9121eaba1b3d09f08f35513ef9b',1,'atum::Controller::getOutput(const double state, const double reference)=0'],['../classatum_1_1PID.html#a1c8bf498d7b7a33024d2f3347da94e2d',1,'atum::PID::getOutput(const double error) override'],['../classatum_1_1PID.html#a862ac97c898e8e2bfce2c8f00fa361f2',1,'atum::PID::getOutput(const double state, const double reference) override'],['../classatum_1_1SlewRate.html#ae9cd05c2805ad076f95e94cbfbd72765',1,'atum::SlewRate::getOutput()'],['../classatum_1_1TBH.html#aa6ee7ae8108659a6d80e65497f06de7d',1,'atum::TBH::getOutput(const double error) override'],['../classatum_1_1TBH.html#ad53cad6aab74e646f88997e4fc231e85',1,'atum::TBH::getOutput(const double state, const double reference) override']]],
   ['getparams_14',['getParams',['../classatum_1_1TBH.html#aa13dbe020de08561485a25a82e489028',1,'atum::TBH::getParams()'],['../classatum_1_1PID.html#ac59d81be33d7a4ba72ec0a3bce3f3495',1,'atum::PID::getParams()']]],
   ['getpose_15',['getPose',['../classatum_1_1Tracker.html#aa6c8fdba0cf87e8d055530708ab83273',1,'atum::Tracker::getPose()'],['../classatum_1_1Drive.html#a5fbfa40771fdbc33fecc5cff6646c72e',1,'atum::Drive::getPose()']]],
-  ['getposition_16',['getPosition',['../classatum_1_1Motor.html#a7da602133c374737da697c0b0ca98988',1,'atum::Motor::getPosition()'],['../classatum_1_1RotationSensor.html#adc16cb862da6d8cbb7bb3e8dbdf735ec',1,'atum::RotationSensor::getPosition()']]],
+  ['getposition_16',['getPosition',['../classatum_1_1Motor.html#a7da602133c374737da697c0b0ca98988',1,'atum::Motor::getPosition()'],['../classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62',1,'atum::RotationSensor::getPosition()']]],
   ['getpower_17',['getPower',['../classatum_1_1Motor.html#a60be5a435be459c6c76eec3a041c965e',1,'atum::Motor']]],
   ['getpress_18',['getPress',['../classatum_1_1Remote.html#acb026dbb81e8e2b1347d2e0cdc0b3d13',1,'atum::Remote']]],
   ['getrawhue_19',['getRawHue',['../classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf',1,'atum::ColorSensor']]],
@@ -31,7 +31,7 @@ var searchData=
   ['gettorque_28',['getTorque',['../classatum_1_1Motor.html#ac50bca40a4287ce928062f1a60db3403',1,'atum::Motor']]],
   ['gettraveled_29',['getTraveled',['../classatum_1_1IMU.html#affd387999e140b063ded3d003fc36aeb',1,'atum::IMU']]],
   ['getvalueas_30',['getValueAs',['../units_8hpp.html#aeac34d4fb84865ae14173383554ea741',1,'atum']]],
-  ['getvelocity_31',['getVelocity',['../classatum_1_1Motor.html#a406cefc8ce3d7ee302057bbcecb08673',1,'atum::Motor::getVelocity()'],['../classatum_1_1RotationSensor.html#ad581c9b2981549978684912bb46df90b',1,'atum::RotationSensor::getVelocity()']]],
+  ['getvelocity_31',['getVelocity',['../classatum_1_1Motor.html#a406cefc8ce3d7ee302057bbcecb08673',1,'atum::Motor::getVelocity()'],['../classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d',1,'atum::RotationSensor::getVelocity()']]],
   ['getvoltage_32',['getVoltage',['../classatum_1_1Motor.html#ab52a3589c274b9d92fef6153af1a04cc',1,'atum::Motor']]],
   ['goneoff_33',['goneOff',['../classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e',1,'atum::Timer']]]
 ];

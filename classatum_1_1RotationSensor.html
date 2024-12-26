@@ -114,15 +114,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af9847b10bbeb51ba2f93ae5ab67341bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd">RotationSensor</a> (const bool reversed=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
 <tr class="memdesc:af9847b10bbeb51ba2f93ae5ab67341bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new rotation sensor by finding its port dynamically. Reverses if requested.  <br /></td></tr>
 <tr class="separator:af9847b10bbeb51ba2f93ae5ab67341bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc16cb862da6d8cbb7bb3e8dbdf735ec"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#adc16cb862da6d8cbb7bb3e8dbdf735ec">getPosition</a> () const</td></tr>
-<tr class="memdesc:adc16cb862da6d8cbb7bb3e8dbdf735ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the absolute position of the rotation sensor from 0 to 360 degrees with wrapping.  <br /></td></tr>
-<tr class="separator:adc16cb862da6d8cbb7bb3e8dbdf735ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a412f95cbb2e1c51ee809241b49fd588d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a412f95cbb2e1c51ee809241b49fd588d">getDisplacement</a> () const</td></tr>
-<tr class="memdesc:a412f95cbb2e1c51ee809241b49fd588d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the displacement of the rotation sensor either from when it started or when it was last reset. Returns a floating point value to avoid angle wrap. Returns should be interpreted as degrees.  <br /></td></tr>
-<tr class="separator:a412f95cbb2e1c51ee809241b49fd588d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad581c9b2981549978684912bb46df90b"><td class="memItemLeft" align="right" valign="top">degrees_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ad581c9b2981549978684912bb46df90b">getVelocity</a> () const</td></tr>
-<tr class="memdesc:ad581c9b2981549978684912bb46df90b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the velocity of the rotation sensor in degrees per second.  <br /></td></tr>
-<tr class="separator:ad581c9b2981549978684912bb46df90b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a480d99ff4f2d792d7f64bbe22ff20a62"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62">getPosition</a> ()</td></tr>
+<tr class="memdesc:a480d99ff4f2d792d7f64bbe22ff20a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the absolute position of the rotation sensor from 0 to 360 degrees with wrapping.  <br /></td></tr>
+<tr class="separator:a480d99ff4f2d792d7f64bbe22ff20a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3983094568445e65911be457823c024d"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a3983094568445e65911be457823c024d">getDisplacement</a> ()</td></tr>
+<tr class="memdesc:a3983094568445e65911be457823c024d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the displacement of the rotation sensor either from when it started or when it was last reset.  <br /></td></tr>
+<tr class="separator:a3983094568445e65911be457823c024d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab500022219f45c262a86ccbaf651399d"><td class="memItemLeft" align="right" valign="top">degrees_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d">getVelocity</a> ()</td></tr>
+<tr class="memdesc:ab500022219f45c262a86ccbaf651399d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the velocity of the rotation sensor in degrees per second.  <br /></td></tr>
+<tr class="separator:ab500022219f45c262a86ccbaf651399d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8fe89ab0082c3350be7f81937f9a6ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ab8fe89ab0082c3350be7f81937f9a6ce">reset</a> ()</td></tr>
 <tr class="memdesc:ab8fe89ab0082c3350be7f81937f9a6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the displacement of the rotation sensor to zero.  <br /></td></tr>
 <tr class="separator:ab8fe89ab0082c3350be7f81937f9a6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,28 +212,28 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a412f95cbb2e1c51ee809241b49fd588d" name="a412f95cbb2e1c51ee809241b49fd588d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a412f95cbb2e1c51ee809241b49fd588d">&#9670;&#160;</a></span>getDisplacement()</h2>
+<a id="a3983094568445e65911be457823c024d" name="a3983094568445e65911be457823c024d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3983094568445e65911be457823c024d">&#9670;&#160;</a></span>getDisplacement()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double atum::RotationSensor::getDisplacement </td>
+          <td class="memname">degree_t atum::RotationSensor::getDisplacement </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the displacement of the rotation sensor either from when it started or when it was last reset. Returns a floating point value to avoid angle wrap. Returns should be interpreted as degrees. </p>
+<p>Gets the displacement of the rotation sensor either from when it started or when it was last reset. </p>
 <dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
 
 </div>
 </div>
-<a id="adc16cb862da6d8cbb7bb3e8dbdf735ec" name="adc16cb862da6d8cbb7bb3e8dbdf735ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc16cb862da6d8cbb7bb3e8dbdf735ec">&#9670;&#160;</a></span>getPosition()</h2>
+<a id="a480d99ff4f2d792d7f64bbe22ff20a62" name="a480d99ff4f2d792d7f64bbe22ff20a62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a480d99ff4f2d792d7f64bbe22ff20a62">&#9670;&#160;</a></span>getPosition()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -242,7 +242,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">degree_t atum::RotationSensor::getPosition </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -252,8 +252,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad581c9b2981549978684912bb46df90b" name="ad581c9b2981549978684912bb46df90b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad581c9b2981549978684912bb46df90b">&#9670;&#160;</a></span>getVelocity()</h2>
+<a id="ab500022219f45c262a86ccbaf651399d" name="ab500022219f45c262a86ccbaf651399d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab500022219f45c262a86ccbaf651399d">&#9670;&#160;</a></span>getVelocity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -262,7 +262,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">degrees_per_second_t atum::RotationSensor::getVelocity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">

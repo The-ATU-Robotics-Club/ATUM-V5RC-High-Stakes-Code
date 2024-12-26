@@ -1,7 +1,7 @@
 var hierarchy =
 [
+    [ "atum::ProfileFollower< Unit >::AccelerationConstants", "structatum_1_1ProfileFollower_1_1AccelerationConstants.html", null ],
     [ "atum::Acceptable< Unit >", "classatum_1_1Acceptable.html", null ],
-    [ "atum::Acceptable< degree_t >", "classatum_1_1Acceptable.html", null ],
     [ "atum::ADIExtenderPort", "classatum_1_1ADIExtenderPort.html", null ],
     [ "atum::ColorSensor", "classatum_1_1ColorSensor.html", null ],
     [ "atum::Controller", "classatum_1_1Controller.html", [
@@ -30,6 +30,7 @@ var hierarchy =
     [ "atum::MotionProfile< Unit >::Point", "structatum_1_1MotionProfile_1_1Point.html", null ],
     [ "atum::Pose", "structatum_1_1Pose.html", null ],
     [ "atum::Potentiometer", "classatum_1_1Potentiometer.html", null ],
+    [ "atum::ProfileFollower< Unit >", "classatum_1_1ProfileFollower.html", null ],
     [ "atum::Robot", "classatum_1_1Robot.html", [
       [ "atum::Robot15A", "classatum_1_1Robot15A.html", null ],
       [ "atum::RobotPrototype", "classatum_1_1RobotPrototype.html", null ]

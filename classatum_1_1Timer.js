@@ -1,6 +1,6 @@
 var classatum_1_1Timer =
 [
-    [ "Timer", "classatum_1_1Timer.html#afaaa169674b4b67a2d60f98fcfe56cf6", null ],
+    [ "Timer", "classatum_1_1Timer.html#a6ee9e7024904d361af2ad854ecf324ff", null ],
     [ "checkGoneOff", "classatum_1_1Timer.html#a89a2d01b5771f6bc8d58e43f509dc438", null ],
     [ "goneOff", "classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e", null ],
     [ "resetAlarm", "classatum_1_1Timer.html#a0744c166f14250d5fbf3304e698d7098", null ],

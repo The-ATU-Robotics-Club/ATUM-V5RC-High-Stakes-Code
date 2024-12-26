@@ -11,5 +11,6 @@ var searchData=
   ['pose_2ehpp_8',['pose.hpp',['../pose_8hpp.html',1,'']]],
   ['potentiometer_9',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum::Potentiometer'],['../classatum_1_1Potentiometer.html#ac47916cfa85d8d6593edad3a80ac7ab2',1,'atum::Potentiometer::Potentiometer(const std::uint8_t port, const bool iReversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1Potentiometer.html#a77814abd14df2fba6c44d658b3813ead',1,'atum::Potentiometer::Potentiometer(const ADIExtenderPort &amp;port, const bool iReversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['potentiometer_2ehpp_10',['potentiometer.hpp',['../potentiometer_8hpp.html',1,'']]],
-  ['print_11',['print',['../classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2',1,'atum::Remote']]]
+  ['print_11',['print',['../classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2',1,'atum::Remote']]],
+  ['profilefollower_12',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
 ];

@@ -105,15 +105,16 @@ $(document).ready(function(){initNavTree('acceptable_8hpp_source.html',''); init
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;limits&gt;</span></div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace </span>atum {</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Unit&gt;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classatum_1_1Acceptable.html">   30</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1Acceptable.html">Acceptable</a> {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="comment">// Figure out the corresponding types for the derivative of Unit. </span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keyword">using </span>UnitsPerSecond = <span class="keyword">decltype</span>(Unit{1} / 1_s);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">   49</a></span>  <a class="code hl_function" href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">Acceptable</a>(<span class="keyword">const</span> second_t iTimeout,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>             <span class="keyword">const</span> Unit &amp;iMaxError = Unit{0.0},</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>             <span class="keyword">const</span> UnitsPerSecond &amp;iMaxDeriv = UnitsPerSecond{std::numeric_limits&lt;double&gt;::max()},</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Unit&gt;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="classatum_1_1Acceptable.html">   29</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1Acceptable.html">Acceptable</a> {</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="comment">// Figure out the corresponding types for the derivative of Unit.</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keyword">using </span>UnitsPerSecond = <span class="keyword">decltype</span>(Unit{1} / 1_s);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">   48</a></span>  <a class="code hl_function" href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">Acceptable</a>(<span class="keyword">const</span> second_t iTimeout,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>             <span class="keyword">const</span> Unit &amp;iMaxError = Unit{0.0},</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>             <span class="keyword">const</span> UnitsPerSecond &amp;iMaxDeriv =</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>                 UnitsPerSecond{std::numeric_limits&lt;double&gt;::max()},</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>             <span class="keyword">const</span> second_t minTime = 0_s,</div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>             <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info) :</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      timeout{iTimeout},</div>
@@ -154,25 +155,36 @@ $(document).ready(function(){initNavTree('acceptable_8hpp_source.html',''); init
 <div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    <span class="keywordflow">return</span> accepted;</div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  }</div>
 <div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordtype">bool</span> accepted{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="keyword">const</span> second_t timeout;</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keyword">const</span> Unit maxError;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="keyword">const</span> UnitsPerSecond maxDeriv;</div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  Timer minTimer;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  Logger logger;</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  std::optional&lt;Timer&gt; timeoutTimer;</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  Unit prevError{0};</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  second_t prevTime{0_s};</div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>};</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="acceptable_8hpp.html#adb220f86b5f4e9d792b9dc17d5354496">  131</a></span><span class="keyword">using </span><a class="code hl_class" href="classatum_1_1Acceptable.html">AcceptableDistance</a> = <a class="code hl_class" href="classatum_1_1Acceptable.html">Acceptable&lt;inch_t&gt;</a>;</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="keyword">using </span><a class="code hl_class" href="classatum_1_1Acceptable.html">AcceptableAngle</a> = <a class="code hl_class" href="classatum_1_1Acceptable.html">Acceptable&lt;degree_t&gt;</a>;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>} <span class="comment">// namespace atum</span></div>
-<div class="ttc" id="aclassatum_1_1Acceptable_html"><div class="ttname"><a href="classatum_1_1Acceptable.html">atum::Acceptable</a></div><div class="ttdoc">This class template produces encapsulates several conditions for the results of an action being consi...</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:30</div></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">  119</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">reset</a>() {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    accepted = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    minTimer.<a class="code hl_function" href="classatum_1_1Timer.html#a0744c166f14250d5fbf3304e698d7098">resetAlarm</a>();</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <span class="keywordflow">if</span>(timeoutTimer.has_value()) {</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>      timeoutTimer.value().resetAlarm();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    }</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    prevError = Unit{0};</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    prevTime = 0_s;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>  }</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keywordtype">bool</span> accepted{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keyword">const</span> second_t timeout;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>  <span class="keyword">const</span> Unit maxError;</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>  <span class="keyword">const</span> UnitsPerSecond maxDeriv;</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  Timer minTimer;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  Logger logger;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>  std::optional&lt;Timer&gt; timeoutTimer;</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  Unit prevError{0};</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  second_t prevTime{0_s};</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>};</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno"><a class="line" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">  146</a></span><span class="keyword">using </span><a class="code hl_class" href="classatum_1_1Acceptable.html">AcceptableDistance</a> = <a class="code hl_class" href="classatum_1_1Acceptable.html">Acceptable&lt;meter_t&gt;</a>;</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="keyword">using </span><a class="code hl_class" href="classatum_1_1Acceptable.html">AcceptableAngle</a> = <a class="code hl_class" href="classatum_1_1Acceptable.html">Acceptable&lt;radian_t&gt;</a>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>} <span class="comment">// namespace atum</span></div>
+<div class="ttc" id="aclassatum_1_1Acceptable_html"><div class="ttname"><a href="classatum_1_1Acceptable.html">atum::Acceptable</a></div><div class="ttdoc">This class template produces encapsulates several conditions for the results of an action being consi...</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:29</div></div>
 <div class="ttc" id="aclassatum_1_1Acceptable_html_a275bdfa48b6f5f18d69de566b4b490df"><div class="ttname"><a href="classatum_1_1Acceptable.html#a275bdfa48b6f5f18d69de566b4b490df">atum::Acceptable::canAccept</a></div><div class="ttdeci">bool canAccept()</div><div class="ttdoc">Returns if the results can be accepted based on the last check. Also performs some logging.</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:107</div></div>
-<div class="ttc" id="aclassatum_1_1Acceptable_html_a3edb71117cac257ab98de7e93223f561"><div class="ttname"><a href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">atum::Acceptable::Acceptable</a></div><div class="ttdeci">Acceptable(const second_t iTimeout, const Unit &amp;iMaxError=Unit{0.0}, const UnitsPerSecond &amp;iMaxDeriv=UnitsPerSecond{std::numeric_limits&lt; double &gt;::max()}, const second_t minTime=0_s, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new acceptable object, checking for the parameters given to see if an action is complete...</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:49</div></div>
+<div class="ttc" id="aclassatum_1_1Acceptable_html_a3edb71117cac257ab98de7e93223f561"><div class="ttname"><a href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">atum::Acceptable::Acceptable</a></div><div class="ttdeci">Acceptable(const second_t iTimeout, const Unit &amp;iMaxError=Unit{0.0}, const UnitsPerSecond &amp;iMaxDeriv=UnitsPerSecond{std::numeric_limits&lt; double &gt;::max()}, const second_t minTime=0_s, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new acceptable object, checking for the parameters given to see if an action is complete...</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:48</div></div>
 <div class="ttc" id="aclassatum_1_1Acceptable_html_aa5b3b6e75f7316c179429a22b7366165"><div class="ttname"><a href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">atum::Acceptable::canAccept</a></div><div class="ttdeci">bool canAccept(const Unit &amp;state, const Unit &amp;reference)</div><div class="ttdoc">Checks if under the current conditions the results can be accepted.</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:70</div></div>
+<div class="ttc" id="aclassatum_1_1Acceptable_html_acbaf931542c6a9a73964ae228e9e678c"><div class="ttname"><a href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">atum::Acceptable::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets the internal state, useful for whenever the reference changes.</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:119</div></div>
 <div class="ttc" id="aclassatum_1_1Acceptable_html_af9d129547305ba86da61e8f73e431851"><div class="ttname"><a href="classatum_1_1Acceptable.html#af9d129547305ba86da61e8f73e431851">atum::Acceptable::canAccept</a></div><div class="ttdeci">bool canAccept(const Unit &amp;error)</div><div class="ttdoc">Checks if under the current conditions the results can be accepted.</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:81</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_adb8b98bccaec6e25190c4e363d82ffbc"><div class="ttname"><a href="classatum_1_1Logger.html#adb8b98bccaec6e25190c4e363d82ffbc">atum::Logger::debug</a></div><div class="ttdeci">void debug(const std::string &amp;msg)</div><div class="ttdoc">Log message if logger level is debug.</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>

@@ -5,5 +5,6 @@ var searchData=
   ['piston_2',['Piston',['../classatum_1_1Piston.html',1,'atum']]],
   ['point_3',['Point',['../structatum_1_1MotionProfile_1_1Point.html',1,'atum::MotionProfile']]],
   ['pose_4',['Pose',['../structatum_1_1Pose.html',1,'atum']]],
-  ['potentiometer_5',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]]
+  ['potentiometer_5',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]],
+  ['profilefollower_6',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
 ];

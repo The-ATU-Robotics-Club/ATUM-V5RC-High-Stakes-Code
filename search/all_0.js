@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['acceptable_0',['Acceptable',['../classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
-  ['acceptable_2ehpp_1',['acceptable.hpp',['../acceptable_8hpp.html',1,'']]],
-  ['acceptable_3c_20degree_5ft_20_3e_2',['Acceptable&lt; degree_t &gt;',['../classatum_1_1Acceptable.html',1,'atum']]],
-  ['acceptabledistance_3',['AcceptableDistance',['../acceptable_8hpp.html#adb220f86b5f4e9d792b9dc17d5354496',1,'atum']]],
+  ['accelerationconstants_0',['AccelerationConstants',['../structatum_1_1ProfileFollower_1_1AccelerationConstants.html',1,'atum::ProfileFollower']]],
+  ['acceptable_1',['Acceptable',['../classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
+  ['acceptable_2ehpp_2',['acceptable.hpp',['../acceptable_8hpp.html',1,'']]],
+  ['acceptabledistance_3',['AcceptableDistance',['../acceptable_8hpp.html#a2ced36be98b215924043da849414aded',1,'atum']]],
   ['addposition_4',['addPosition',['../classatum_1_1GUI_1_1Map.html#a714d39c010b0fcc250a59b0ef75087f8',1,'atum::GUI::Map']]],
   ['addpositions_5',['addPositions',['../classatum_1_1GUI_1_1Map.html#abc995a19b41fea3075581d67422b8b0e',1,'atum::GUI::Map']]],
   ['addstyles_6',['addStyles',['../classatum_1_1GUI_1_1Screen.html#acc4ff5b62ec07589b1f37bf6e718226f',1,'atum::GUI::Screen']]],
