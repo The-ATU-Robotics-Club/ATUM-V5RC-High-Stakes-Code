@@ -52,7 +52,7 @@ class Schedule : public Task {
     const std::function<void()> todo;
     // The time before the scheduler gives up and runs timeout action. Zero
     // seconds indicates it will never gives up.
-    const second_t timeout{0_s};
+    const second_t timeout{forever};
     // Default timeout action to be nothing.
     const std::function<void()> todoTimeout{doNothing};
   };

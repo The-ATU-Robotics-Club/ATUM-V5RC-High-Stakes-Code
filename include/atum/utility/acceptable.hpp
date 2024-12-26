@@ -24,12 +24,11 @@ namespace atum {
  * those conditions for.
  *
  * @tparam Unit
- * @tparam UnitsPerSecond
  */
 template <typename Unit>
 class Acceptable {
   public:
-  // Figure out the corresponding types for the derivative of Unit. 
+  // Figure out the corresponding types for the derivative of Unit.
   using UnitsPerSecond = decltype(Unit{1} / 1_s);
 
   /**
@@ -48,7 +47,8 @@ class Acceptable {
    */
   Acceptable(const second_t iTimeout,
              const Unit &iMaxError = Unit{0.0},
-             const UnitsPerSecond &iMaxDeriv = UnitsPerSecond{std::numeric_limits<double>::max()},
+             const UnitsPerSecond &iMaxDeriv =
+                 UnitsPerSecond{std::numeric_limits<double>::max()},
              const second_t minTime = 0_s,
              const Logger::Level loggerLevel = Logger::Level::Info) :
       timeout{iTimeout},
@@ -111,6 +111,21 @@ class Acceptable {
     return accepted;
   }
 
+  /**
+   * @brief Resets the internal state, useful for whenever the reference
+   * changes.
+   *
+   */
+  void reset() {
+    accepted = false;
+    minTimer.resetAlarm();
+    if(timeoutTimer.has_value()) {
+      timeoutTimer.value().resetAlarm();
+    }
+    prevError = Unit{0};
+    prevTime = 0_s;
+  }
+
   private:
   bool accepted{false};
   const second_t timeout;
@@ -128,6 +143,6 @@ class Acceptable {
  * are particularly common.
  *
  */
-using AcceptableDistance = Acceptable<inch_t>;
-using AcceptableAngle = Acceptable<degree_t>;
+using AcceptableDistance = Acceptable<meter_t>;
+using AcceptableAngle = Acceptable<radian_t>;
 } // namespace atum

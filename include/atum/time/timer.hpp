@@ -16,13 +16,13 @@ class Timer {
   public:
   /**
    * @brief Constructs a new timer with an alarm time at which
-   * it will be considered to have gone off. The default of 0 s
+   * it will be considered to have gone off. The default of forever
    * will make it so that the alarm is never considered to have
    * gone off.
    *
    * @param iAlarmTime
    */
-  explicit Timer(const second_t iAlarmTime = 0_s);
+  explicit Timer(const second_t iAlarmTime = forever);
 
   /**
    * @brief Sets the alarm time, the time it will take for the alarm

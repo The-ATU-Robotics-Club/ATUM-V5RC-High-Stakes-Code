@@ -35,6 +35,13 @@ static constexpr second_t adiCalibrationTime{500_ms};
 static constexpr second_t standardDelay{10_ms};
 
 /**
+ * @brief This is a length of time considered to be "forever" for the sake of
+ * delays.
+ *
+ */
+static constexpr hour_t forever{std::numeric_limits<double>::max()};
+
+/**
  * @brief Gets the current time since starting.
  *
  * @return second_t
@@ -51,15 +58,15 @@ void wait(second_t delay = standardDelay);
 
 /**
  * @brief Waits until the condition given is true or the timeout is reached
- * (unless 0 s is provided for the timeout). The delay parameter refers to how
- * long to wait between each check, provided for sensors like the color sensor
- * that benefit from specific delay.
+ * (unless forever is provided for the timeout). The delay parameter refers to
+ * how long to wait between each check, provided for sensors like the color
+ * sensor that benefit from specific delay.
  *
  * @param condition
  * @param timeout
  * @param delay
  */
 void waitUntil(const Condition &condition,
-               const second_t timeout = 0_s,
+               const second_t timeout = forever,
                const second_t delay = standardDelay);
 } // namespace atum

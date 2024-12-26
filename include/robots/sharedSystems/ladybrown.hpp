@@ -11,14 +11,14 @@ class Ladybrown : public Task, StateMachine<LadybrownStates> {
   public:
   struct Parameters {
     double maxVoltage;
-    double restPosition;
-    double loadingPosition;
-    double flippingPosition;
-    double scoredPosition;
-    AcceptableAngle acceptableDeviation;
-    SlewRate voltageSlew;
-    PID positionController;
+    degree_t restPosition;
+    degree_t loadingPosition;
+    degree_t flippingPosition;
+    degree_t scoredPosition;
+    PID holdController;
     PID balanceController;
+    // The time the intake will attempt to perform an action before giving up.
+    second_t generalTimeout{forever};
   };
 
   Ladybrown(std::unique_ptr<Motor> iLeft,
@@ -27,6 +27,7 @@ class Ladybrown : public Task, StateMachine<LadybrownStates> {
             std::unique_ptr<RotationSensor> iRotation,
             std::unique_ptr<LineTracker> iLine,
             const Parameters &iParams,
+            std::unique_ptr<AngularProfileFollower> iFollower,
             const Logger::Level loggerLevel = Logger::Level::Info);
 
   void stop();
@@ -42,6 +43,7 @@ class Ladybrown : public Task, StateMachine<LadybrownStates> {
   private:
   void setVoltage(const double voltage);
   double getVoltage();
+  void moveTo(const degree_t target);
 
   std::unique_ptr<Motor> left;
   std::unique_ptr<Motor> right;
@@ -49,6 +51,7 @@ class Ladybrown : public Task, StateMachine<LadybrownStates> {
   std::unique_ptr<RotationSensor> rotation;
   std::unique_ptr<LineTracker> line;
   Parameters params;
+  std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;
 
   double voltage;

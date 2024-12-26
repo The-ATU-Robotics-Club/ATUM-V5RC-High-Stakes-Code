@@ -18,7 +18,7 @@ void waitUntil(const Condition &condition,
                const second_t timeout,
                const second_t delay) {
   const second_t startTime{time()};
-  while((timeout == 0_s || time() - startTime < timeout) && !condition()) {
+  while((timeout == forever || time() - startTime < timeout) && !condition()) {
     wait(delay);
   }
 }

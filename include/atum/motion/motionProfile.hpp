@@ -29,6 +29,7 @@ class MotionProfile {
     UnitsPerSecondSq maxA;
     // Default to a trapezoidal profile.
     UnitsPerSecondCb maxJ{std::numeric_limits<double>::max()};
+    bool usePosition{true};
     std::size_t searchIterations{15};
   };
 
@@ -40,32 +41,38 @@ class MotionProfile {
     second_t t;
   };
 
-  MotionProfile(const Unit iStart,
-                const Unit iEnd,
-                const Parameters &iParams,
+  MotionProfile(const Parameters &iParams,
                 const Logger::Level &loggerLevel = Logger::Level::Info) :
-      start{iStart},
-      end{iEnd},
-      target{end - start},
       params{iParams},
       logger{loggerLevel} {
+    logger.debug("Motion profile has been constructed!");
+  }
+
+  void generate(const Unit iStart, const Unit iEnd) {
+    start = iStart;
+    end = iEnd;
+    target = end - start;
+    for(Point &p : points) {
+      p = Point{};
+    }
     if(logger.getLevel() == Logger::Level::Debug) {
       prepareGraphing();
     }
-    const Unit target{end - start};
     beginProfile();
     finishProfile();
-    timer = Timer{};
+    timer.resetAlarm();
     logger.debug("Motion profile going from " + to_string(start) + " to " +
-                 to_string(end) + " has been constructed!");
+                 to_string(end) + " has been generated!");
   }
 
   Point getPoint(const Unit s) {
     Point point{getTimedPoint()};
-    const Point closestPoint{getClosestPoint(s)};
-    if(abs(closestPoint.v) > abs(point.v)) {
-      timer.resetAlarm(closestPoint.t);
-      point = closestPoint;
+    if(params.usePosition) {
+      const Point closestPoint{getClosestPoint(s)};
+      if(abs(closestPoint.v) > abs(point.v)) {
+        timer.resetAlarm(closestPoint.t);
+        point = closestPoint;
+      }
     }
     if(logger.getLevel() == Logger::Level::Debug) {
       graphPoint(point);
@@ -84,7 +91,7 @@ class MotionProfile {
       return {start,
               UnitsPerSecond{0},
               UnitsPerSecondSq{0},
-              UnitsPerSecondCb{(target < Unit{0}) ? -params.maxJ : params.maxJ},
+              UnitsPerSecondCb{(isBackwards()) ? -params.maxJ : params.maxJ},
               0_s};
     } else if(distance(s, end) < Unit{0}) {
       return {end,
@@ -98,13 +105,21 @@ class MotionProfile {
     return getPointAt(t1);
   }
 
+  Parameters getParameters() const {
+    return params;
+  }
+
+  bool isBackwards() const {
+    return target < Unit{0};
+  }
+
   private:
   Point getPointAt(const second_t t) {
     if(t < 0_s) {
       return {start,
               UnitsPerSecond{0},
               UnitsPerSecondSq{0},
-              UnitsPerSecondCb{(target < Unit{0}) ? -params.maxJ : params.maxJ},
+              UnitsPerSecondCb{(isBackwards()) ? -params.maxJ : params.maxJ},
               0_s};
     } else if(t >= points[6].t) {
       return {end,
@@ -160,8 +175,8 @@ class MotionProfile {
   }
 
   Unit distance(const Unit left, const Unit right) {
-    Unit diff{difference(right, left)};
-    if(target < Unit{0}) {
+    Unit diff{right - left};
+    if(isBackwards()) {
       diff *= -1;
     }
     return diff;
@@ -296,34 +311,36 @@ class MotionProfile {
   }
 
   void prepareGraphing() {
-    atum::GUI::Graph::clearAll();
+    GUI::Graph::clearSeries(GUI::SeriesColor::White);
+    GUI::Graph::clearSeries(GUI::SeriesColor::Magenta);
+    GUI::Graph::clearSeries(GUI::SeriesColor::Red);
+    GUI::Graph::clearSeries(GUI::SeriesColor::Blue);
     const double rawStart{getValueAs<Unit>(start)};
     const double rawEnd{getValueAs<Unit>(end)};
-    atum::GUI::Graph::setSeriesRange(
+    GUI::Graph::setSeriesRange(
         {std::min(rawStart, rawEnd), std::max(rawStart, rawEnd)},
-        atum::GUI::SeriesColor::White);
-    atum::GUI::Graph::setSeriesRange(getValueAs<UnitsPerSecond>(params.maxV),
-                                     atum::GUI::SeriesColor::Magenta);
-    atum::GUI::Graph::setSeriesRange(getValueAs<UnitsPerSecondSq>(params.maxA),
-                                     atum::GUI::SeriesColor::Red);
-    atum::GUI::Graph::setSeriesRange(getValueAs<UnitsPerSecondCb>(params.maxJ),
-                                     atum::GUI::SeriesColor::Blue);
+        GUI::SeriesColor::White);
+    GUI::Graph::setSeriesRange(getValueAs<UnitsPerSecond>(params.maxV),
+                               GUI::SeriesColor::Magenta);
+    GUI::Graph::setSeriesRange(getValueAs<UnitsPerSecondSq>(params.maxA),
+                               GUI::SeriesColor::Red);
+    GUI::Graph::setSeriesRange(getValueAs<UnitsPerSecondCb>(params.maxJ),
+                               GUI::SeriesColor::Blue);
   }
 
   void graphPoint(const Point &p) {
-    atum::GUI::Graph::addValue(atum::getValueAs<meter_t>(p.s),
-                               atum::GUI::SeriesColor::White);
-    atum::GUI::Graph::addValue(atum::getValueAs<UnitsPerSecond>(p.v),
-                               atum::GUI::SeriesColor::Magenta);
-    atum::GUI::Graph::addValue(atum::getValueAs<UnitsPerSecondSq>(p.a),
-                               atum::GUI::SeriesColor::Red);
-    atum::GUI::Graph::addValue(atum::getValueAs<UnitsPerSecondCb>(p.j),
-                               atum::GUI::SeriesColor::Blue);
+    GUI::Graph::addValue(getValueAs<Unit>(p.s), GUI::SeriesColor::White);
+    GUI::Graph::addValue(getValueAs<UnitsPerSecond>(p.v),
+                         GUI::SeriesColor::Magenta);
+    GUI::Graph::addValue(getValueAs<UnitsPerSecondSq>(p.a),
+                         GUI::SeriesColor::Red);
+    GUI::Graph::addValue(getValueAs<UnitsPerSecondCb>(p.j),
+                         GUI::SeriesColor::Blue);
   }
 
-  const Unit start;
-  const Unit end;
-  const Unit target;
+  Unit start;
+  Unit end;
+  Unit target;
   Parameters params;
   std::array<Point, 7> points;
   Logger logger;

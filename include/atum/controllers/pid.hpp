@@ -1,10 +1,10 @@
 /**
  * @file pid.hpp
- * @brief Includes the PID class. 
+ * @brief Includes the PID class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -28,19 +28,19 @@ class PID : public Controller {
    *
    */
   struct Parameters {
-    const double kP{0};
-    const double kI{0};
-    const double kD{0};
-    const double ff{0};
+    double kP{0};
+    double kI{0};
+    double kD{0};
+    double ff{0};
     // Threshold of error at which the integral term begins accumulating.
-    const double threshI{std::numeric_limits<long double>::max()};
+    double threshI{std::numeric_limits<long double>::max()};
     // If ffScaling is true, then feedforward will be scaled by the desired
     // reference. Otherwise, the raw value will simply be added to the total
     // output.
-    const bool ffScaling{false};
+    bool ffScaling{false};
     // Sets bounds for the output of the PID controller.
-    const std::pair<double, double> constraints{-Motor::maxVoltage,
-                                                Motor::maxVoltage};
+    std::pair<double, double> constraints{-Motor::maxVoltage,
+                                          Motor::maxVoltage};
   };
 
   /**
@@ -80,9 +80,9 @@ class PID : public Controller {
   void reset() override;
 
   /**
-   * @brief Gets the parameters of the PID controller. 
-   * 
-   * @return Parameters 
+   * @brief Gets the parameters of the PID controller.
+   *
+   * @return Parameters
    */
   Parameters getParams() const;
 

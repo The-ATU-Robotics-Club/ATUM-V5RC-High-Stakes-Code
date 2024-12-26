@@ -34,29 +34,41 @@ Robot15A::Robot15A() : Robot{this} {
       std::move(leftDriveMtr), std::move(rightDriveMtr), std::move(odometry));
 
   std::unique_ptr<Motor> leftLadybrownMotor{std::make_unique<Motor>(
-      PortsList{15}, pros::v5::MotorGears::green, "left ladybrown")};
+      PortsList{-15}, pros::v5::MotorGears::green, "left ladybrown")};
   std::unique_ptr<Motor> rightLadybrownMotor{std::make_unique<Motor>(
-      PortsList{-16}, pros::v5::MotorGears::green, "right ladybrown")};
+      PortsList{16}, pros::v5::MotorGears::green, "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B', false)};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>('H', 2685)};
-  Ladybrown::Parameters ladybrownParameters{12,
-                                            10,
-                                            30,
-                                            60,
-                                            135,
-                                            AcceptableAngle{2_s},
-                                            SlewRate{0.1},
-                                            PID{{0}},
-                                            PID{{0.1}}};
+  Ladybrown::Parameters ladybrownParameters{
+      12, 10_deg, 30_deg, 60_deg, 135_deg, PID{{0}}, PID{{0.1}}};
+  AngularProfile::Parameters ladybrownMotionParams{
+      240_deg_per_s, 240_deg_per_s_sq, 480_deg_per_s_cb};
+  ladybrownMotionParams.usePosition = true;
+  AcceptableAngle ladybrownAcceptable{forever, 2_deg};
+  PID::Parameters ladybrownPIDParams{0.1, 0, 0, 1.65};
+  ladybrownPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> ladybrownVelocityController =
+      std::make_unique<PID>(ladybrownPIDParams);
+  const AngularProfileFollower::AccelerationConstants kA{0.325, 0.175};
+  AngularProfile ladybrownProfile{ladybrownMotionParams, Logger::Level::Debug};
+  std::unique_ptr<AngularProfileFollower> profileFollower =
+      std::make_unique<AngularProfileFollower>(
+          ladybrownProfile,
+          ladybrownAcceptable,
+          std::move(ladybrownVelocityController),
+          kA,
+          nullptr,
+          Logger::Level::Debug);
   ladybrown = std::make_unique<Ladybrown>(std::move(leftLadybrownMotor),
                                           std::move(rightLadybrownMotor),
                                           std::move(ladybrownPiston),
                                           std::move(ladybrownRotation),
                                           std::move(ladybrownLineTracker),
-                                          ladybrownParameters);
+                                          ladybrownParameters,
+                                          std::move(profileFollower));
 }
 
 void Robot15A::disabled() {

@@ -14,9 +14,6 @@ void Timer::resetAlarm(const second_t resetTime) {
 }
 
 bool Timer::goneOff() const {
-  if(alarmTime == 0_s) {
-    return false;
-  }
   return timeElapsed() >= alarmTime;
 }
 

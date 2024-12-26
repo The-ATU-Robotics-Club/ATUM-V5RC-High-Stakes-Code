@@ -63,7 +63,7 @@ void Graph::setupScreen() {
       graphChart, LV_CHART_AXIS_PRIMARY_Y, -graphResolution, graphResolution);
   lv_chart_set_div_line_count(graphChart, 9, 18);
   lv_obj_add_style(graphChart, &styleChart, LV_PART_MAIN | LV_STATE_DEFAULT);
-  lv_chart_set_point_count(graphChart, 1000);
+  lv_chart_set_point_count(graphChart, 500);
   graphSeries[SeriesColor::Red] =
       lv_chart_add_series(graphChart, red, LV_CHART_AXIS_PRIMARY_Y);
   graphSeries[SeriesColor::Green] =

@@ -16,12 +16,6 @@ void Robot15A::opcontrol() {
   while(true) {
     const Pose pos{drive->getPose()};
     GUI::Map::addPosition(pos, GUI::SeriesColor::Green);
-    GUI::Graph::setSeriesRange({-6000, 6000}, GUI::SeriesColor::Red);
-    GUI::Graph::addValue(getValueAs<feet_per_second_t>(pos.v) * 1000,
-                         GUI::SeriesColor::Red);
-    GUI::Graph::setSeriesRange({-3600, 3600}, GUI::SeriesColor::Magenta);
-    GUI::Graph::addValue(getValueAs<degrees_per_second_t>(pos.w) * 10,
-                         GUI::SeriesColor::Magenta);
 
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
@@ -33,10 +27,15 @@ void Robot15A::opcontrol() {
       default: intake->stop(); break;
     }
 
-    switch(remote.getLTrigger()) {
+    /*switch(remote.getLTrigger()) {
       case -1: ladybrown->retract(); break;
       case 1: ladybrown->extend(); break;
       default: ladybrown->stop(); break;
+    }*/
+    if(remote.getPress(Remote::Button::L2)) {
+      ladybrown->load();
+    } else if(remote.getPress(Remote::Button::L1)) {
+      ladybrown->score();
     }
 
     if(remote.getPress(Remote::Button::A)) {

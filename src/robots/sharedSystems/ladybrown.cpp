@@ -7,6 +7,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
                      std::unique_ptr<RotationSensor> iRotation,
                      std::unique_ptr<LineTracker> iLine,
                      const Parameters &iParams,
+                     std::unique_ptr<AngularProfileFollower> iFollower,
                      const Logger::Level loggerLevel) :
     Task{this, loggerLevel},
     left{std::move(iLeft)},
@@ -14,9 +15,12 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     piston{std::move(iPiston)},
     rotation{std::move(iRotation)},
     line{std::move(iLine)},
-    params{iParams} {
+    params{iParams},
+    follower{std::move(iFollower)},
+    logger{loggerLevel} {
   left->resetPosition();
   right->resetPosition();
+  rotation->reset();
   stop();
 }
 
@@ -50,6 +54,17 @@ double Ladybrown::getVoltage() {
   return voltage;
 }
 
+void Ladybrown::moveTo(const degree_t target) {
+  follower->startProfile(rotation->getDisplacement(), target);
+  while(!follower->isDone()) {
+    const double followerOutput{
+        follower->getOutput(rotation->getPosition(), rotation->getVelocity())};
+    setVoltage(followerOutput);
+    wait(5_ms);
+  }
+  state = LadybrownStates::Idle;
+}
+
 TASK_DEFINITIONS_FOR(Ladybrown) {
   START_TASK("Ladybrown State Machine")
   while(true) {
@@ -57,6 +72,8 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       case LadybrownStates::Idle: setVoltage(0); break;
       case LadybrownStates::Extending: setVoltage(params.maxVoltage); break;
       case LadybrownStates::Retracting: setVoltage(-params.maxVoltage); break;
+      case LadybrownStates::Scoring: moveTo(params.scoredPosition); break;
+      case LadybrownStates::Loading: moveTo(params.loadingPosition); break;
       default: break;
     }
     wait();
@@ -65,6 +82,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
 
   START_TASK("Ladybrown Control")
   while(true) {
+    rotation->getVelocity();
     if(rotation->getDisplacement() >= params.flippingPosition) {
       piston->extend();
     } else {
@@ -78,17 +96,17 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       left->setBrakeMode(pros::MotorBrake::hold);
       right->setBrakeMode(pros::MotorBrake::hold);
     }
-    double output{params.voltageSlew.slew(getVoltage())};
+    const double output{getVoltage()};
     const double balance{params.balanceController.getOutput(
         left->getPosition(), right->getPosition())};
     if(output) {
       left->moveVoltage(output + balance);
       right->moveVoltage(output);
-    } else {
+    } else { // TODO: Add custom hold code.
       left->brake();
       right->brake();
     }
-    wait();
+    wait(5_ms);
   }
   END_TASK
 }

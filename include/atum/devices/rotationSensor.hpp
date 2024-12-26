@@ -1,10 +1,10 @@
 /**
  * @file rotationSensor.hpp
- * @brief Includes the RotationSensor class. 
+ * @brief Includes the RotationSensor class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -50,23 +50,22 @@ class RotationSensor {
    *
    * @return degree_t
    */
-  degree_t getPosition() const;
+  degree_t getPosition();
 
   /**
    * @brief Gets the displacement of the rotation sensor either from when it
-   * started or when it was last reset. Returns a floating point value to avoid
-   * angle wrap. Returns should be interpreted as degrees.
+   * started or when it was last reset.
    *
    * @return double
    */
-  double getDisplacement() const;
+  degree_t getDisplacement();
 
   /**
    * @brief Gets the velocity of the rotation sensor in degrees per second.
    *
    * @return degrees_per_second_t
    */
-  degrees_per_second_t getVelocity() const;
+  degrees_per_second_t getVelocity();
 
   /**
    * @brief Resets the displacement of the rotation sensor to zero.

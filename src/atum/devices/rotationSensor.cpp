@@ -34,18 +34,25 @@ RotationSensor::RotationSensor(const bool reversed,
   initializeRotationSensor(reversed);
 }
 
-degree_t RotationSensor::getPosition() const {
+degree_t RotationSensor::getPosition() {
   const double reading{rotationSensor->get_angle()};
-  return degree_t{reading / 100.0};
+  const degree_t value{reading / 100.0};
+  logger.debug("Rotation sensor position is: " + to_string(value));
+  return value;
 }
 
-double RotationSensor::getDisplacement() const {
-  return rotationSensor->get_position() / 100;
+degree_t RotationSensor::getDisplacement() {
+  const double reading{rotationSensor->get_position()};
+  const degree_t value{reading / 100.0};
+  logger.debug("Rotation sensor displacement is: " + to_string(value));
+  return value;
 }
 
-degrees_per_second_t RotationSensor::getVelocity() const {
+degrees_per_second_t RotationSensor::getVelocity() {
   const double reading{rotationSensor->get_velocity()};
-  return degrees_per_second_t{reading / 100.0};
+  const degrees_per_second_t value{reading};
+  logger.debug("Rotation sensor velocity is: " + to_string(value));
+  return value;
 }
 
 void RotationSensor::reset() {
