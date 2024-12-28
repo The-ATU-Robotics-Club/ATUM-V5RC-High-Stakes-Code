@@ -6,6 +6,6 @@ var searchData=
   ['slewrate_3',['SlewRate',['../classatum_1_1SlewRate.html',1,'atum']]],
   ['statemachine_4',['StateMachine',['../classatum_1_1StateMachine.html',1,'atum']]],
   ['statemachine_3c_20intakestate_20_3e_5',['StateMachine&lt; IntakeState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['statemachine_3c_20ladybrownstates_20_3e_6',['StateMachine&lt; LadybrownStates &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
+  ['statemachine_3c_20ladybrownstate_20_3e_6',['StateMachine&lt; LadybrownState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
   ['stickaxis_7',['StickAxis',['../structatum_1_1Remote_1_1StickAxis.html',1,'atum::Remote']]]
 ];

@@ -125,15 +125,18 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a12a00727cd9cb3fc3680db570a46c716"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a12a00727cd9cb3fc3680db570a46c716">Intake</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iMtr, std::unique_ptr&lt; <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> &gt; iColorSensor, const <a class="el" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> &amp;iParams, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a12a00727cd9cb3fc3680db570a46c716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Intake.html" title="Class to implement the intake for the robot. Contains basic controls as well as more complex support ...">Intake</a> object with the provided parameters.  <br /></td></tr>
-<tr class="separator:a12a00727cd9cb3fc3680db570a46c716"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a179b403fb64d615adc5aa1c71417d860"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860">Intake</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iMtr, std::unique_ptr&lt; <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> &gt; iColorSensor, <a class="el" href="classatum_1_1Ladybrown.html">Ladybrown</a> *iLadybrown, const <a class="el" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> &amp;iParams, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a179b403fb64d615adc5aa1c71417d860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Intake.html" title="Class to implement the intake for the robot. Contains basic controls as well as more complex support ...">Intake</a> object with the provided parameters.  <br /></td></tr>
+<tr class="separator:a179b403fb64d615adc5aa1c71417d860"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af3d49793d05ff5133240a0b3367e76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76">intake</a> ()</td></tr>
 <tr class="memdesc:a5af3d49793d05ff5133240a0b3367e76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the intake to run inward. Can be interrupted by the anti-jam or color sort code.  <br /></td></tr>
 <tr class="separator:a5af3d49793d05ff5133240a0b3367e76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc785d6ce352190128380f28831a435b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b">index</a> ()</td></tr>
 <tr class="memdesc:adc785d6ce352190128380f28831a435b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the intake to run inward until it detects a ring that isn't being sorted. Can be interrupted by the anti-jam or color sort code.  <br /></td></tr>
 <tr class="separator:adc785d6ce352190128380f28831a435b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bfb2b6105006b315a4f5a5dcc3bb3a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0">load</a> ()</td></tr>
+<tr class="memdesc:a1bfb2b6105006b315a4f5a5dcc3bb3a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the intake to work with the ladybrown to load a ring into the arm.  <br /></td></tr>
+<tr class="separator:a1bfb2b6105006b315a4f5a5dcc3bb3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b68a73407b07cdd4825cd50e8d52ba6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6">outtake</a> ()</td></tr>
 <tr class="memdesc:a8b68a73407b07cdd4825cd50e8d52ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the intake run outward.  <br /></td></tr>
 <tr class="separator:a8b68a73407b07cdd4825cd50e8d52ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,8 +188,8 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to implement the intake for the robot. Contains basic controls as well as more complex support for color sorting, anti-jam, and indexing. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a12a00727cd9cb3fc3680db570a46c716" name="a12a00727cd9cb3fc3680db570a46c716"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12a00727cd9cb3fc3680db570a46c716">&#9670;&#160;</a></span>Intake()</h2>
+<a id="a179b403fb64d615adc5aa1c71417d860" name="a179b403fb64d615adc5aa1c71417d860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a179b403fb64d615adc5aa1c71417d860">&#9670;&#160;</a></span>Intake()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,6 +205,12 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
           <td></td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> &gt;&#160;</td>
           <td class="paramname"><em>iColorSensor</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Ladybrown.html">Ladybrown</a> *&#160;</td>
+          <td class="paramname"><em>iLadybrown</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -228,6 +237,7 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
   <table class="params">
     <tr><td class="paramname">iMtr</td><td></td></tr>
     <tr><td class="paramname">iColorSensor</td><td></td></tr>
+    <tr><td class="paramname">iLadybrown</td><td></td></tr>
     <tr><td class="paramname">iParams</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
@@ -272,6 +282,25 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 </div><div class="memdoc">
 
 <p>Tell the intake to run inward. Can be interrupted by the anti-jam or color sort code. </p>
+
+</div>
+</div>
+<a id="a1bfb2b6105006b315a4f5a5dcc3bb3a0" name="a1bfb2b6105006b315a4f5a5dcc3bb3a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bfb2b6105006b315a4f5a5dcc3bb3a0">&#9670;&#160;</a></span>load()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::Intake::load </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tell the intake to work with the ladybrown to load a ring into the arm. </p>
 
 </div>
 </div>

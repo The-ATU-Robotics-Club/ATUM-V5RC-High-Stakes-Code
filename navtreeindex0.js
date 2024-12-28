@@ -17,6 +17,7 @@ var NAVTREEINDEX0 =
 "classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561":[1,0,0,1,0],
 "classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165":[1,0,0,1,3],
 "classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c":[1,0,0,1,4],
+"classatum_1_1Acceptable.html#af35ce4e031afb110739516b980955bb7":[1,0,0,1,5],
 "classatum_1_1Acceptable.html#af9d129547305ba86da61e8f73e431851":[1,0,0,1,2],
 "classatum_1_1ColorSensor.html":[1,0,0,3],
 "classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488":[1,0,0,3,3],
@@ -60,11 +61,12 @@ var NAVTREEINDEX0 =
 "classatum_1_1IMU.html#ab2c7de112a484d12704dda215a1864c2":[1,0,0,7,4],
 "classatum_1_1IMU.html#affd387999e140b063ded3d003fc36aeb":[1,0,0,7,3],
 "classatum_1_1Intake.html":[1,0,0,8],
-"classatum_1_1Intake.html#a12a00727cd9cb3fc3680db570a46c716":[1,0,0,8,1],
+"classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860":[1,0,0,8,1],
+"classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0":[1,0,0,8,4],
 "classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76":[1,0,0,8,3],
-"classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4":[1,0,0,8,6],
-"classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99":[1,0,0,8,5],
-"classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6":[1,0,0,8,4],
+"classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4":[1,0,0,8,7],
+"classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99":[1,0,0,8,6],
+"classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6":[1,0,0,8,5],
 "classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b":[1,0,0,8,2],
 "classatum_1_1Kinematics.html":[1,0,0,9],
 "classatum_1_1Ladybrown.html":[1,0,0,10],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "imu_8hpp_source.html":[2,0,0,0,1,3],
 "index.html":[],
 "index.html#autotoc_md1":[0],
-"intake_8hpp.html":[2,0,0,1,2,0],
-"intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f":[2,0,0,1,2,0,2],
-"intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa2808a34767e19b842d906ab8ab6264c6":[2,0,0,1,2,0,2,5]
+"intake_8hpp.html":[2,0,0,1,2,0]
 };

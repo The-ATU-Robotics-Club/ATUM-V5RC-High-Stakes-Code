@@ -130,6 +130,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acbaf931542c6a9a73964ae228e9e678c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">reset</a> ()</td></tr>
 <tr class="memdesc:acbaf931542c6a9a73964ae228e9e678c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the internal state, useful for whenever the reference changes.  <br /></td></tr>
 <tr class="separator:acbaf931542c6a9a73964ae228e9e678c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af35ce4e031afb110739516b980955bb7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#af35ce4e031afb110739516b980955bb7">reset</a> (const second_t newTimeout)</td></tr>
+<tr class="memdesc:af35ce4e031afb110739516b980955bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the internal state and allows for changing the timeout (since that is a common thing to change).  <br /></td></tr>
+<tr class="separator:af35ce4e031afb110739516b980955bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
@@ -332,7 +335,7 @@ false </dd></dl>
 </div>
 </div>
 <a id="acbaf931542c6a9a73964ae228e9e678c" name="acbaf931542c6a9a73964ae228e9e678c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acbaf931542c6a9a73964ae228e9e678c">&#9670;&#160;</a></span>reset()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#acbaf931542c6a9a73964ae228e9e678c">&#9670;&#160;</a></span>reset() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -357,6 +360,42 @@ template&lt;typename Unit &gt; </div>
 </div><div class="memdoc">
 
 <p>Resets the internal state, useful for whenever the reference changes. </p>
+
+</div>
+</div>
+<a id="af35ce4e031afb110739516b980955bb7" name="af35ce4e031afb110739516b980955bb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af35ce4e031afb110739516b980955bb7">&#9670;&#160;</a></span>reset() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classatum_1_1Acceptable.html">atum::Acceptable</a>&lt; Unit &gt;::reset </td>
+          <td>(</td>
+          <td class="paramtype">const second_t&#160;</td>
+          <td class="paramname"><em>newTimeout</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Resets the internal state and allows for changing the timeout (since that is a common thing to change). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newTimeout</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

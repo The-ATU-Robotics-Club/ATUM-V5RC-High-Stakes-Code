@@ -27,7 +27,7 @@ var searchData=
   ['statemachine_24',['StateMachine',['../classatum_1_1StateMachine.html',1,'atum']]],
   ['statemachine_2ehpp_25',['stateMachine.hpp',['../stateMachine_8hpp.html',1,'']]],
   ['statemachine_3c_20intakestate_20_3e_26',['StateMachine&lt; IntakeState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['statemachine_3c_20ladybrownstates_20_3e_27',['StateMachine&lt; LadybrownStates &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
+  ['statemachine_3c_20ladybrownstate_20_3e_27',['StateMachine&lt; LadybrownState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
   ['stickaxis_28',['StickAxis',['../structatum_1_1Remote_1_1StickAxis.html',1,'atum::Remote']]],
   ['stop_29',['stop',['../classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4',1,'atum::Intake']]],
   ['stopbackgroundtasks_30',['stopBackgroundTasks',['../classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c',1,'atum::Task']]]

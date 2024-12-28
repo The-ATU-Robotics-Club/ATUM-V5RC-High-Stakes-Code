@@ -126,7 +126,7 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a3ab602a0390342eeac906d697f44586d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GUI_1_1Graph.html#a3ab602a0390342eeac906d697f44586d">addValue</a> (double value, const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">SeriesColor</a> seriesColor)</td></tr>
-<tr class="memdesc:a3ab602a0390342eeac906d697f44586d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a data point on one of the graph series.  <br /></td></tr>
+<tr class="memdesc:a3ab602a0390342eeac906d697f44586d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a data point on one of the graph series. Won't add the point if the robot is disabled (in order to provide the option to "freeze" data input).  <br /></td></tr>
 <tr class="separator:a3ab602a0390342eeac906d697f44586d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a671f215aae393d61a322d14e0f180"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180">setSeriesRange</a> (const <a class="el" href="structatum_1_1GUI_1_1Graph_1_1SeriesRange.html">SeriesRange</a> &amp;range, const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">SeriesColor</a> seriesColor)</td></tr>
 <tr class="memdesc:a62a671f215aae393d61a322d14e0f180"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the range (negative and positive bounds) for one of the series.  <br /></td></tr>
@@ -318,7 +318,7 @@ static lv_obj_t *&#160;</td><td class="memItemRight" valign="bottom"><b>mapScree
 </table>
 </div><div class="memdoc">
 
-<p>Adds a data point on one of the graph series. </p>
+<p>Adds a data point on one of the graph series. Won't add the point if the robot is disabled (in order to provide the option to "freeze" data input). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td></td></tr>

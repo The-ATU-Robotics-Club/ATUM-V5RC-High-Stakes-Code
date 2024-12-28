@@ -49,7 +49,7 @@ var hierarchy =
     [ "atum::StateMachine< IntakeState >", "classatum_1_1StateMachine.html", [
       [ "atum::Intake", "classatum_1_1Intake.html", null ]
     ] ],
-    [ "atum::StateMachine< LadybrownStates >", "classatum_1_1StateMachine.html", [
+    [ "atum::StateMachine< LadybrownState >", "classatum_1_1StateMachine.html", [
       [ "atum::Ladybrown", "classatum_1_1Ladybrown.html", null ]
     ] ],
     [ "atum::Remote::StickAxis", "structatum_1_1Remote_1_1StickAxis.html", null ],

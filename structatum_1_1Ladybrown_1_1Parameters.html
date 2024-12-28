@@ -106,23 +106,29 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a271dd92fc3bf733a0ff6697c92c85466"><td class="memItemLeft" align="right" valign="top"><a id="a271dd92fc3bf733a0ff6697c92c85466" name="a271dd92fc3bf733a0ff6697c92c85466"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>maxVoltage</b></td></tr>
 <tr class="separator:a271dd92fc3bf733a0ff6697c92c85466"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa07d561b2a8af1552d4a91c7d71fb443"><td class="memItemLeft" align="right" valign="top"><a id="aa07d561b2a8af1552d4a91c7d71fb443" name="aa07d561b2a8af1552d4a91c7d71fb443"></a>
-degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>restPosition</b></td></tr>
-<tr class="separator:aa07d561b2a8af1552d4a91c7d71fb443"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5008cbe0c544784d412fd53a777be138"><td class="memItemLeft" align="right" valign="top"><a id="a5008cbe0c544784d412fd53a777be138" name="a5008cbe0c544784d412fd53a777be138"></a>
-degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>loadingPosition</b></td></tr>
-<tr class="separator:a5008cbe0c544784d412fd53a777be138"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995522a8d5e1c0f82b199cd30fb9ab35"><td class="memItemLeft" align="right" valign="top"><a id="a995522a8d5e1c0f82b199cd30fb9ab35" name="a995522a8d5e1c0f82b199cd30fb9ab35"></a>
+degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>absoluteStartingPosition</b> {0_deg}</td></tr>
+<tr class="separator:a995522a8d5e1c0f82b199cd30fb9ab35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5606904aeede3fef07d5af06c322d8bc"><td class="memItemLeft" align="right" valign="top"><a id="a5606904aeede3fef07d5af06c322d8bc" name="a5606904aeede3fef07d5af06c322d8bc"></a>
+degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>noHoldPosition</b> {0_deg}</td></tr>
+<tr class="separator:a5606904aeede3fef07d5af06c322d8bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8fb145692ba081a857cfca17f98271c3"><td class="memItemLeft" align="right" valign="top"><a id="a8fb145692ba081a857cfca17f98271c3" name="a8fb145692ba081a857cfca17f98271c3"></a>
-degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>flippingPosition</b></td></tr>
+degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>flippingPosition</b> {0_deg}</td></tr>
 <tr class="separator:a8fb145692ba081a857cfca17f98271c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f863549c25c068c2c1ffeaf81e45d17"><td class="memItemLeft" align="right" valign="top"><a id="a5f863549c25c068c2c1ffeaf81e45d17" name="a5f863549c25c068c2c1ffeaf81e45d17"></a>
-degree_t&#160;</td><td class="memItemRight" valign="bottom"><b>scoredPosition</b></td></tr>
-<tr class="separator:a5f863549c25c068c2c1ffeaf81e45d17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cce5a61e1af8632b098428ccfb591fe"><td class="memItemLeft" align="right" valign="top"><a id="a7cce5a61e1af8632b098428ccfb591fe" name="a7cce5a61e1af8632b098428ccfb591fe"></a>
+std::unordered_map&lt; LadybrownState, degree_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>statePositions</b></td></tr>
+<tr class="separator:a7cce5a61e1af8632b098428ccfb591fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9688d86e502fe2e141d5c992a9e7fff5"><td class="memItemLeft" align="right" valign="top"><a id="a9688d86e502fe2e141d5c992a9e7fff5" name="a9688d86e502fe2e141d5c992a9e7fff5"></a>
+second_t&#160;</td><td class="memItemRight" valign="bottom"><b>pistonDelay</b> {0_s}</td></tr>
+<tr class="separator:a9688d86e502fe2e141d5c992a9e7fff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32e5349c37abaa341a50fd5c8992c133"><td class="memItemLeft" align="right" valign="top"><a id="a32e5349c37abaa341a50fd5c8992c133" name="a32e5349c37abaa341a50fd5c8992c133"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>kG</b> {0.0}</td></tr>
+<tr class="separator:a32e5349c37abaa341a50fd5c8992c133"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8512b7ff73ee3e78bca5df13558fca4"><td class="memItemLeft" align="right" valign="top"><a id="ab8512b7ff73ee3e78bca5df13558fca4" name="ab8512b7ff73ee3e78bca5df13558fca4"></a>
-<a class="el" href="classatum_1_1PID.html">PID</a>&#160;</td><td class="memItemRight" valign="bottom"><b>holdController</b></td></tr>
+<a class="el" href="classatum_1_1PID.html">PID</a>&#160;</td><td class="memItemRight" valign="bottom"><b>holdController</b> {{}}</td></tr>
 <tr class="separator:ab8512b7ff73ee3e78bca5df13558fca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b2ac26ded87c5ea0c7745b89178b67f"><td class="memItemLeft" align="right" valign="top"><a id="a5b2ac26ded87c5ea0c7745b89178b67f" name="a5b2ac26ded87c5ea0c7745b89178b67f"></a>
-<a class="el" href="classatum_1_1PID.html">PID</a>&#160;</td><td class="memItemRight" valign="bottom"><b>balanceController</b></td></tr>
+<a class="el" href="classatum_1_1PID.html">PID</a>&#160;</td><td class="memItemRight" valign="bottom"><b>balanceController</b> {{}}</td></tr>
 <tr class="separator:a5b2ac26ded87c5ea0c7745b89178b67f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1059e1e5381911bd4f581793bc121e92"><td class="memItemLeft" align="right" valign="top"><a id="a1059e1e5381911bd4f581793bc121e92" name="a1059e1e5381911bd4f581793bc121e92"></a>
 second_t&#160;</td><td class="memItemRight" valign="bottom"><b>generalTimeout</b> {forever}</td></tr>
