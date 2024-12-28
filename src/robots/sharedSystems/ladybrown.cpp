@@ -74,12 +74,7 @@ void Ladybrown::score() {
 }
 
 bool Ladybrown::mayConflictWithIntake() {
-  const degree_t position{rotation->getPosition()};
-  const degree_t loadingPosition{
-      params.statePositions[LadybrownState::Loading]};
-  bool movingUpPast{position <= loadingPosition && getVoltage() > 0};
-  bool movingDownPast{position >= loadingPosition && getVoltage() < 0};
-  return movingUpPast || movingDownPast;
+  return getClosestPosition() == LadybrownState::Loading && hasRing();
 }
 
 LadybrownState Ladybrown::getClosestPosition() const {

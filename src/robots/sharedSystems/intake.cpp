@@ -51,8 +51,7 @@ void Intake::setAntiJam(const bool iAntiJamEnabled) {
 }
 
 void Intake::intaking() {
-  if(ladybrown->getClosestPosition() == LadybrownState::Loading &&
-     ladybrown->hasRing()) {
+  if(ladybrown->mayConflictWithIntake()) {
     params.timerUntilJamChecks.resetAlarm();
     if(state == IntakeState::FinishedLoading) {
       mtr->brake();
@@ -61,21 +60,17 @@ void Intake::intaking() {
     }
     return;
   } else if(state == IntakeState::FinishedLoading) {
-    // No longer finished loading, so must reset state.
     state = IntakeState::Loading;
     return;
   }
   if(sortOutColor != ColorSensor::Color::None &&
      colorSensor->getColor() == sortOutColor) {
     logger.debug("Switching to sorting!");
-    // TODO: Try sorting while ladybrown is loading.
     state = IntakeState::Sorting;
     return;
   }
   // If indexing or loading while the ladybrown isn't ready, index.
-  if(state == IntakeState::Indexing ||
-     (state == IntakeState::Loading &&
-      ladybrown->getClosestPosition() != LadybrownState::Loading)) {
+  if(shouldIndex()) {
     if(colorSensor->getColor() != ColorSensor::Color::None) {
       params.timerUntilJamChecks.resetAlarm();
       mtr->brake();
@@ -133,6 +128,13 @@ void Intake::forceIntake(const IntakeState newState) {
   }
   state = newState;
   returnState = newState;
+}
+
+bool Intake::shouldIndex() const {
+  bool ladybrownNotInPosition{state == IntakeState::Loading &&
+                              ladybrown->getClosestPosition() !=
+                                  LadybrownState::Loading};
+  return state == IntakeState::Indexing || ladybrownNotInPosition;
 }
 
 TASK_DEFINITIONS_FOR(Intake) {

@@ -131,8 +131,8 @@ class Intake : public Task, public StateMachine<IntakeState> {
 
   /**
    * @brief This method runs whenever we need to sort a ring. When
-   * finished, it goes back to intaking (since that's the only state
-   * sorting is accessible from).
+   * finished, it goes back to an appropriate state (intaking, loading, or
+   * indexing). If loading, may override lift controls.
    *
    */
   void sorting();
@@ -152,6 +152,14 @@ class Intake : public Task, public StateMachine<IntakeState> {
    * @param newState
    */
   void forceIntake(const IntakeState newState);
+
+  /**
+   * @brief Checks if the intake should index based
+   *
+   * @return true
+   * @return false
+   */
+  bool shouldIndex() const;
 
   std::unique_ptr<Motor> mtr;
   std::unique_ptr<ColorSensor> colorSensor;
