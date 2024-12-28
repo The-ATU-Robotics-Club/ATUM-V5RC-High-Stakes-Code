@@ -163,16 +163,18 @@ $(document).ready(function(){initNavTree('intake_8hpp_source.html',''); initResi
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <span class="keywordtype">void</span> forceIntake(<span class="keyword">const</span> <a class="code hl_enumeration" href="intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f">IntakeState</a> newState);</div>
 <div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  std::unique_ptr&lt;Motor&gt; mtr;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  std::unique_ptr&lt;ColorSensor&gt; colorSensor;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a> *ladybrown;</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  <a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> params;</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <span class="keywordtype">bool</span> antiJamEnabled{<span class="keyword">true</span>};</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <a class="code hl_enumeration" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a> sortOutColor{ColorSensor::Color::Red};</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  IntakeState returnState{IntakeState::Intaking};</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>};</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <span class="keywordtype">bool</span> shouldIndex() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  std::unique_ptr&lt;Motor&gt; mtr;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  std::unique_ptr&lt;ColorSensor&gt; colorSensor;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a> *ladybrown;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> params;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keywordtype">bool</span> antiJamEnabled{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <a class="code hl_enumeration" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a> sortOutColor{ColorSensor::Color::Red};</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  IntakeState returnState{IntakeState::Intaking};</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>};</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
 <div class="ttc" id="aclassatum_1_1ColorSensor_html_a817dd3078f72068ae0b39adcc42dcb97"><div class="ttname"><a href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">atum::ColorSensor::Color</a></div><div class="ttdeci">Color</div><div class="ttdoc">List of colors that can be recognized. Later this class may make use of templates or a more extensibl...</div><div class="ttdef"><b>Definition:</b> colorSensor.hpp:33</div></div>
 <div class="ttc" id="aclassatum_1_1Intake_html"><div class="ttname"><a href="classatum_1_1Intake.html">atum::Intake</a></div><div class="ttdoc">Class to implement the intake for the robot. Contains basic controls as well as more complex support ...</div><div class="ttdef"><b>Definition:</b> intake.hpp:36</div></div>
