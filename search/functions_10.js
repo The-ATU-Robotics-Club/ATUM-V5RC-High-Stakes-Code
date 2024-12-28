@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['wait_0',['wait',['../time_8hpp.html#a092f688fb161d6bd9b1d12751a77d08e',1,'atum']]],
-  ['waituntil_1',['waitUntil',['../time_8hpp.html#a4e56b7b76cc993a5b07841fe62488978',1,'atum']]],
-  ['warn_2',['warn',['../classatum_1_1Logger.html#a9a6b391293c2448fd93aa4d34848e29d',1,'atum::Logger']]],
-  ['write_3',['write',['../classatum_1_1GUI_1_1Log.html#a950ffc4500ffe65bc9eae2e37049bf85',1,'atum::GUI::Log']]]
+  ['update_0',['update',['../classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5',1,'atum::Odometry::update()'],['../classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c',1,'atum::Tracker::update()']]]
 ];

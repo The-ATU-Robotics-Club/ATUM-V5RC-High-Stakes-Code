@@ -101,7 +101,7 @@ $(document).ready(function(){initNavTree('intake_8hpp_source.html',''); initResi
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="atum_8hpp.html">atum/atum.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;ladybrown.hpp&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="ladybrown_8hpp.html">ladybrown.hpp</a>&quot;</span></div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="keyword">namespace </span>atum {</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f">   20</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f">IntakeState</a> {</div>
@@ -115,69 +115,69 @@ $(document).ready(function(){initNavTree('intake_8hpp_source.html',''); initResi
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  FinishedLoading</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html">   36</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1Intake.html">Intake</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Task.html">Task</a>, <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1StateMachine.html">StateMachine</a>&lt;IntakeState&gt; {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  TASK_BOILERPLATE(); <span class="comment">// Included in all task derivatives for setup.</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structatum_1_1Intake_1_1Parameters.html">   45</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    revolutions_per_minute_t jamVelocity;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// Timer to track from when we start intaking to when we check for jams.</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_class" href="classatum_1_1Timer.html">Timer</a> timerUntilJamChecks;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// The time the intake will run outward when jammed.</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    second_t timeUntilUnjammed;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// The time the intake will run outward when throwing while sorting.</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    second_t sortThrowTime;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// The time the intake will run outward when throwing while finishing</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// loading.</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    second_t finishLoadingTime;</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// The time the intake will attempt to perform an action before giving up.</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    second_t generalTimeout;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  };</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860">   69</a></span>  <a class="code hl_function" href="classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860">Intake</a>(std::unique_ptr&lt;Motor&gt; iMtr,</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>         std::unique_ptr&lt;ColorSensor&gt; iColorSensor,</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>         <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a> *iLadybrown,</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>         <span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> &amp;iParams,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>         <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76">   80</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76">intake</a>();</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b">   88</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b">index</a>();</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0">   95</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0">load</a>();</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6">  101</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6">outtake</a>();</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4">  107</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4">stop</a>();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99">  114</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99">setAntiJam</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> iAntiJamEnabled);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>  <span class="keywordtype">void</span> intaking();</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>  <span class="keywordtype">void</span> unjamming();</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>  <span class="keywordtype">void</span> sorting();</div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>  <span class="keywordtype">void</span> finishLoading();</div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <span class="keywordtype">void</span> forceIntake(<span class="keyword">const</span> <a class="code hl_enumeration" href="intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f">IntakeState</a> newState);</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  <span class="keywordtype">bool</span> shouldIndex() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  std::unique_ptr&lt;Motor&gt; mtr;</div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  std::unique_ptr&lt;ColorSensor&gt; colorSensor;</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a> *ladybrown;</div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> params;</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keywordtype">bool</span> antiJamEnabled{<span class="keyword">true</span>};</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <a class="code hl_enumeration" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a> sortOutColor{ColorSensor::Color::Red};</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  IntakeState returnState{IntakeState::Intaking};</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>};</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html">   37</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1Intake.html">Intake</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Task.html">Task</a>, <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1StateMachine.html">StateMachine</a>&lt;IntakeState&gt; {</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  TASK_BOILERPLATE(); <span class="comment">// Included in all task derivatives for setup.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structatum_1_1Intake_1_1Parameters.html">   46</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    revolutions_per_minute_t jamVelocity;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// Timer to track from when we start intaking to when we check for jams.</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <a class="code hl_class" href="classatum_1_1Timer.html">Timer</a> timerUntilJamChecks;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="comment">// The time the intake will run outward when jammed.</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    second_t timeUntilUnjammed;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// The time the intake will run outward when throwing while sorting.</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    second_t sortThrowTime;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// The time the intake will run outward when throwing while finishing</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// loading.</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    second_t finishLoadingTime;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// The time the intake will attempt to perform an action before giving up.</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    second_t generalTimeout;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  };</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860">   70</a></span>  <a class="code hl_function" href="classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860">Intake</a>(std::unique_ptr&lt;Motor&gt; iMtr,</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>         std::unique_ptr&lt;ColorSensor&gt; iColorSensor,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>         <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a> *iLadybrown,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>         <span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> &amp;iParams,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>         <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76">   81</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76">intake</a>();</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b">   89</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b">index</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0">   96</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0">load</a>();</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6">  102</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6">outtake</a>();</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4">  108</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4">stop</a>();</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99">  115</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99">setAntiJam</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> iAntiJamEnabled);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>  <span class="keywordtype">void</span> intaking();</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>  <span class="keywordtype">void</span> unjamming();</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>  <span class="keywordtype">void</span> sorting();</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">void</span> finishLoading();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="keywordtype">void</span> forceIntake(<span class="keyword">const</span> <a class="code hl_enumeration" href="intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f">IntakeState</a> newState);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordtype">bool</span> shouldIndex() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>  std::unique_ptr&lt;Motor&gt; mtr;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>  std::unique_ptr&lt;ColorSensor&gt; colorSensor;</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  <a class="code hl_class" href="classatum_1_1Ladybrown.html">Ladybrown</a> *ladybrown;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <a class="code hl_struct" href="structatum_1_1Intake_1_1Parameters.html">Parameters</a> params;</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keywordtype">bool</span> antiJamEnabled{<span class="keyword">true</span>};</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>  <a class="code hl_enumeration" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a> sortOutColor{ColorSensor::Color::Red};</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>  IntakeState returnState{IntakeState::Intaking};</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>};</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
 <div class="ttc" id="aclassatum_1_1ColorSensor_html_a817dd3078f72068ae0b39adcc42dcb97"><div class="ttname"><a href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">atum::ColorSensor::Color</a></div><div class="ttdeci">Color</div><div class="ttdoc">List of colors that can be recognized. Later this class may make use of templates or a more extensibl...</div><div class="ttdef"><b>Definition:</b> colorSensor.hpp:33</div></div>
-<div class="ttc" id="aclassatum_1_1Intake_html"><div class="ttname"><a href="classatum_1_1Intake.html">atum::Intake</a></div><div class="ttdoc">Class to implement the intake for the robot. Contains basic controls as well as more complex support ...</div><div class="ttdef"><b>Definition:</b> intake.hpp:36</div></div>
+<div class="ttc" id="aclassatum_1_1Intake_html"><div class="ttname"><a href="classatum_1_1Intake.html">atum::Intake</a></div><div class="ttdoc">Class to implement the intake for the robot. Contains basic controls as well as more complex support ...</div><div class="ttdef"><b>Definition:</b> intake.hpp:37</div></div>
 <div class="ttc" id="aclassatum_1_1Intake_html_a179b403fb64d615adc5aa1c71417d860"><div class="ttname"><a href="classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860">atum::Intake::Intake</a></div><div class="ttdeci">Intake(std::unique_ptr&lt; Motor &gt; iMtr, std::unique_ptr&lt; ColorSensor &gt; iColorSensor, Ladybrown *iLadybrown, const Parameters &amp;iParams, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new Intake object with the provided parameters.</div></div>
 <div class="ttc" id="aclassatum_1_1Intake_html_a1bfb2b6105006b315a4f5a5dcc3bb3a0"><div class="ttname"><a href="classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0">atum::Intake::load</a></div><div class="ttdeci">void load()</div><div class="ttdoc">Tell the intake to work with the ladybrown to load a ring into the arm.</div></div>
 <div class="ttc" id="aclassatum_1_1Intake_html_a5af3d49793d05ff5133240a0b3367e76"><div class="ttname"><a href="classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76">atum::Intake::intake</a></div><div class="ttdeci">void intake()</div><div class="ttdoc">Tell the intake to run inward. Can be interrupted by the anti-jam or color sort code.</div></div>
@@ -185,14 +185,15 @@ $(document).ready(function(){initNavTree('intake_8hpp_source.html',''); initResi
 <div class="ttc" id="aclassatum_1_1Intake_html_a6829e024538c3428c184c414f64caf99"><div class="ttname"><a href="classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99">atum::Intake::setAntiJam</a></div><div class="ttdeci">void setAntiJam(const bool iAntiJamEnabled)</div><div class="ttdoc">Sets whether to use the anti-jam.</div></div>
 <div class="ttc" id="aclassatum_1_1Intake_html_a8b68a73407b07cdd4825cd50e8d52ba6"><div class="ttname"><a href="classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6">atum::Intake::outtake</a></div><div class="ttdeci">void outtake()</div><div class="ttdoc">Tell the intake run outward.</div></div>
 <div class="ttc" id="aclassatum_1_1Intake_html_adc785d6ce352190128380f28831a435b"><div class="ttname"><a href="classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b">atum::Intake::index</a></div><div class="ttdeci">void index()</div><div class="ttdoc">Tell the intake to run inward until it detects a ring that isn't being sorted. Can be interrupted by ...</div></div>
-<div class="ttc" id="aclassatum_1_1Ladybrown_html"><div class="ttname"><a href="classatum_1_1Ladybrown.html">atum::Ladybrown</a></div><div class="ttdef"><b>Definition:</b> ladybrown.hpp:17</div></div>
+<div class="ttc" id="aclassatum_1_1Ladybrown_html"><div class="ttname"><a href="classatum_1_1Ladybrown.html">atum::Ladybrown</a></div><div class="ttdoc">Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...</div><div class="ttdef"><b>Definition:</b> ladybrown.hpp:42</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html"><div class="ttname"><a href="classatum_1_1Logger.html">atum::Logger</a></div><div class="ttdoc">This class handles logging to the terminal, SD card, and log screen. Messages are displayed depending...</div><div class="ttdef"><b>Definition:</b> logger.hpp:31</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
 <div class="ttc" id="aclassatum_1_1StateMachine_html"><div class="ttname"><a href="classatum_1_1StateMachine.html">atum::StateMachine</a></div><div class="ttdoc">Provides some common functionality associated with state machines. Most is left to its derivatives,...</div><div class="ttdef"><b>Definition:</b> stateMachine.hpp:23</div></div>
 <div class="ttc" id="aclassatum_1_1Task_html"><div class="ttname"><a href="classatum_1_1Task.html">atum::Task</a></div><div class="ttdoc">This class allows its derivatives to &quot;own&quot; their own tasks and better control their management....</div><div class="ttdef"><b>Definition:</b> task.hpp:85</div></div>
 <div class="ttc" id="aclassatum_1_1Timer_html"><div class="ttname"><a href="classatum_1_1Timer.html">atum::Timer</a></div><div class="ttdef"><b>Definition:</b> timer.hpp:15</div></div>
 <div class="ttc" id="aintake_8hpp_html_afe5a0214875f664ac0b2e585da2a044f"><div class="ttname"><a href="intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f">atum::IntakeState</a></div><div class="ttdeci">IntakeState</div><div class="ttdoc">The various states that the intake can be in.</div><div class="ttdef"><b>Definition:</b> intake.hpp:20</div></div>
-<div class="ttc" id="astructatum_1_1Intake_1_1Parameters_html"><div class="ttname"><a href="structatum_1_1Intake_1_1Parameters.html">atum::Intake::Parameters</a></div><div class="ttdoc">Different parameters to customize for the intake to function well.</div><div class="ttdef"><b>Definition:</b> intake.hpp:45</div></div>
+<div class="ttc" id="aladybrown_8hpp_html"><div class="ttname"><a href="ladybrown_8hpp.html">ladybrown.hpp</a></div><div class="ttdoc">Includes the Ladybrown class.</div></div>
+<div class="ttc" id="astructatum_1_1Intake_1_1Parameters_html"><div class="ttname"><a href="structatum_1_1Intake_1_1Parameters.html">atum::Intake::Parameters</a></div><div class="ttdoc">Different parameters to customize for the intake to function well.</div><div class="ttdef"><b>Definition:</b> intake.hpp:46</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['linetracker_0',['LineTracker',['../classatum_1_1LineTracker.html#a84e3198afc32b7d1a68a96d3e0c43e06',1,'atum::LineTracker::LineTracker(const std::uint8_t port, const std::int32_t iThreshold, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1LineTracker.html#a987edcdda7b3d10cf19de91c1f6a28e4',1,'atum::LineTracker::LineTracker(const ADIExtenderPort &amp;port, const std::int32_t iThreshold, const Logger::Level loggerLevel=Logger::Level::Info)']]],
-  ['load_1',['load',['../classatum_1_1Intake.html#a1bfb2b6105006b315a4f5a5dcc3bb3a0',1,'atum::Intake']]],
-  ['logger_2',['Logger',['../classatum_1_1Logger.html#ae25f94f7ae6d34e1482e999758b6cd53',1,'atum::Logger']]]
+  ['imu_0',['IMU',['../classatum_1_1IMU.html#aad7dc27607fe1e0d0bfd365e1b14104d',1,'atum::IMU::IMU(std::vector&lt; std::uint8_t &gt; ports, const bool iReversed=false, Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1IMU.html#a89d16737954d369b31176969c0bbdb50',1,'atum::IMU::IMU(const std::size_t expectedAmount, const bool iReversed=false, Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['index_1',['index',['../classatum_1_1Intake.html#adc785d6ce352190128380f28831a435b',1,'atum::Intake']]],
+  ['info_2',['info',['../classatum_1_1Logger.html#ab5ee2ca1d00c82acce84d15c3a6a5b39',1,'atum::Logger']]],
+  ['initialize_3',['initialize',['../classatum_1_1GUI_1_1Manager.html#ab0b26d3e9c79bb0f8a976074b3826cef',1,'atum::GUI::Manager']]],
+  ['initializestyles_4',['initializeStyles',['../classatum_1_1GUI_1_1Screen.html#ab4761245f17269f709fd4cf3aa2c41af',1,'atum::GUI::Screen']]],
+  ['intake_5',['intake',['../classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76',1,'atum::Intake']]],
+  ['intake_6',['Intake',['../classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860',1,'atum::Intake']]],
+  ['isextended_7',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]]
 ];
