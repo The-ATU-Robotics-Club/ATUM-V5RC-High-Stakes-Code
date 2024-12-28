@@ -1,32 +1,65 @@
+/**
+ * @file ladybrown.hpp
+ * @brief Includes the Ladybrown class.
+ * @date 2024-12-28
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "atum/atum.hpp"
 
 namespace atum {
+/**
+ * @brief The various states that the ladybrown can be in.
+ *
+ */
 enum class LadybrownState {
   Idle,
   Extending,
   Retracting,
-  Resting,
-  Loading,
-  Preparing,
-  Scoring,
+  // Moving to the completely down position.
+  Resting, // Associated with a position!
+  Loading, // Associated with a position!
+  // Moving past the loading position to get ready to score and continue
+  // indexing.
+  Preparing, // Associated with a position!
+  // Moving to the completely extended position before going to the preparing
+  // position.
+  Scoring, // Associated with a position!
   FinishScoring
 };
 
+/**
+ * @brief Class to implement the ladybrown for the robot. Includes manual
+ * controls as well as macros to move to several important positions.
+ * Additionally provides a holding and balancing mechanism, as well as automates
+ * piston actuation.
+ *
+ */
 class Ladybrown : public Task, public StateMachine<LadybrownState> {
   TASK_BOILERPLATE(); // Included in all task derivatives for setup.
 
   public:
+  /**
+   * @brief Different parameters to customize for the ladybrown to function
+   * well.
+   *
+   */
   struct Parameters {
-    double maxVoltage;
+    double manualVoltage;
     // The angle of the arms to the floor (completely up would be 90 deg; think
     // unit circle).
     degree_t absoluteStartingPosition{0_deg};
-    degree_t noHoldPosition{0_deg};
+    // Below this position, the code for holding and balancing will not be used
+    // and downward movement will be prevented.
+    degree_t noMovePosition{0_deg};
+    // The position at which the pistons will actuate.
     degree_t flippingPosition{0_deg};
     // Map connecting states that involve moving to a position to their
-    // corresponding end position.
+    // corresponding end position (Resting, Loading, Preparing, and Scoring).
     std::unordered_map<LadybrownState, degree_t> statePositions;
     // Amount of time allocated for the pistons to move before the ladybrown
     // moves on.
@@ -34,12 +67,25 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     // Constant for overcoming gravity (overestimating will make the arm "float"
     // use lowest value to keep arm up).
     double kG{0.0};
+    // Used to hold the arm in place (or move to a position if profile follower
+    // failed to do so).
     PID holdController{{}};
+    // Used to help balance the left and right arms.
     PID balanceController{{}};
-    // The time the intake will attempt to perform an action before giving up.
-    second_t generalTimeout{forever};
   };
 
+  /**
+   * @brief Constructs a new Ladybrown object with the provided parameters.
+   *
+   * @param iLeft
+   * @param iRight
+   * @param iPiston
+   * @param iRotation
+   * @param iLine
+   * @param iParams
+   * @param iFollower
+   * @param loggerLevel
+   */
   Ladybrown(std::unique_ptr<Motor> iLeft,
             std::unique_ptr<Motor> iRight,
             std::unique_ptr<Piston> iPiston,
@@ -49,30 +95,134 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
             std::unique_ptr<AngularProfileFollower> iFollower,
             const Logger::Level loggerLevel = Logger::Level::Info);
 
+  /**
+   * @brief Tells the ladybrown to stop moving and (in manual control) sets the
+   * position to hold.
+   *
+   */
   void stop();
 
+  /**
+   * @brief Tells the ladybrown to manually extend.
+   *
+   */
   void extend();
 
+  /**
+   * @brief Tells the ladybrown to manually retract.
+   *
+   */
   void retract();
 
+  /**
+   * @brief Tells the ladybrown to go to its resting position (completely down).
+   *
+   */
   void rest();
 
-  void prepare();
-
+  /**
+   * @brief Tells the ladybrown to go to its loading position.
+   *
+   */
   void load();
 
+  /**
+   * @brief Tells the ladybrown to go to its prepared position (past the loading
+   * position but not at the scored position).
+   *
+   */
+  void prepare();
+
+  /**
+   * @brief Tells the ladybrown to go to its scoring position (completely
+   * extended).
+   *
+   */
   void score();
 
+  /**
+   * @brief Checks if running the intake would conflict with a ring in the
+   * intake.
+   *
+   * @return true
+   * @return false
+   */
   bool mayConflictWithIntake();
 
-  LadybrownState getClosestPosition() const;
+  /**
+   * @brief Gets the name state of the closest important position (Resting,
+   * Loading, Preparing, or Scoring) or Idle if moving.
+   *
+   * @return LadybrownState
+   */
+  LadybrownState getClosestNamedPosition() const;
 
+  /**
+   * @brief Returns if the ladybown detects a ring based on the linetracker;
+   * always returns false if the ladybrown is down.
+   *
+   * @return true
+   * @return false
+   */
   bool hasRing() const;
 
   private:
+  /**
+   * @brief Moves to a given position, so long as the state does not change.
+   *
+   * @param target
+   */
   void moveTo(const degree_t target);
+
+  /**
+   * @brief Gets the current position of the ladybrown. Currently based solely
+   * on the rotation sensor, but included for future-proofing.
+   *
+   * @return degree_t
+   */
+  degree_t getPosition() const;
+
+  /**
+   * @brief Gets the current angular velocity of the ladybrown by averaging the
+   * readings from the motors and rotation sensor.
+   *
+   * @return degrees_per_second_t
+   */
+  degrees_per_second_t getVelocity() const;
+
+  /**
+   * @brief Sets the desired voltage to apply to the motors, to be processed by
+   * the background tasks to account for balancing, holding, and so on.
+   *
+   * @param voltage
+   */
   void setVoltage(const double voltage);
+
+  /**
+   * @brief Gets the desired voltage to apply to the motors, to be processed by
+   * the background tasks to account for balancing, holding, and so on.
+   *
+   * @param voltage
+   */
   double getVoltage();
+
+  /**
+   * @brief Ran in the background tasks to extend and retract the piston as the
+   * ladybrown passes the flipping position. Can apply a delay when retracting
+   * to support slower retracting pistons.
+   *
+   */
+  void handlePiston();
+
+  /**
+   * @brief Gets the output for holding the ladybrown in place. If not moving,
+   * will use the given hold controller. Will always apply a voltage
+   * proportional to the cosine of the absolute position of the ladybrown to
+   * counteract gravity.
+   *
+   * @return double
+   */
+  double getHoldOutput();
 
   std::unique_ptr<Motor> left;
   std::unique_ptr<Motor> right;

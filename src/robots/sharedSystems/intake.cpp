@@ -91,7 +91,7 @@ void Intake::unjamming() {
 }
 
 void Intake::sorting() {
-  if(ladybrown->getClosestPosition() == LadybrownState::Loading) {
+  if(ladybrown->getClosestNamedPosition() == LadybrownState::Loading) {
     ladybrown->prepare();
   }
   mtr->moveVoltage(12);
@@ -132,7 +132,7 @@ void Intake::forceIntake(const IntakeState newState) {
 
 bool Intake::shouldIndex() const {
   bool ladybrownNotInPosition{state == IntakeState::Loading &&
-                              ladybrown->getClosestPosition() !=
+                              ladybrown->getClosestNamedPosition() !=
                                   LadybrownState::Loading};
   return state == IntakeState::Indexing || ladybrownNotInPosition;
 }
@@ -143,10 +143,11 @@ TASK_DEFINITIONS_FOR(Intake) {
     switch(state) {
       case IntakeState::Idle: mtr->brake(); break;
       case IntakeState::Loading:
-        if(ladybrown->getClosestPosition() != LadybrownState::Loading &&
+        if(ladybrown->getClosestNamedPosition() != LadybrownState::Loading &&
            !ladybrown->hasRing()) {
           ladybrown->load();
         }
+        // fall through
       case IntakeState::FinishedLoading:
       case IntakeState::Indexing:
       case IntakeState::Intaking: intaking(); break;

@@ -30,7 +30,8 @@ enum class IntakeState {
 
 /**
  * @brief Class to implement the intake for the robot. Contains basic controls
- * as well as more complex support for color sorting, anti-jam, and indexing.
+ * as well as more complex support for color sorting, anti-jam, indexing, and
+ * loading.
  *
  */
 class Intake : public Task, public StateMachine<IntakeState> {
