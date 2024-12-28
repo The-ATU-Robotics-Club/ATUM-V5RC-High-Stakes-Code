@@ -106,7 +106,7 @@ class Logger {
   static bool beganLogging;
   static pros::Mutex logMutex;
 
-  const Level level;
+  Level level;
 
   std::vector<std::string> logs;
 };

@@ -5,6 +5,10 @@ namespace GUI {
 const int Graph::graphResolution{10000};
 
 void Graph::addValue(double value, const SeriesColor seriesColor) {
+  // Don't plot anything if disabled (useful for testing)!
+  if(pros::competition::is_disabled()) {
+    return;
+  }
   lv_chart_series_t *series{graphSeries[seriesColor]};
   const SeriesRange range{graphSeriesRanges[seriesColor]};
   const double absMin{std::abs(range.minimum)};

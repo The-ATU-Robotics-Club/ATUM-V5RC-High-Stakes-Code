@@ -2,21 +2,31 @@
  * @file intake.hpp
  * @brief Includes the Intake class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
 
 #include "atum/atum.hpp"
+#include "ladybrown.hpp"
 
 namespace atum {
 /**
  * @brief The various states that the intake can be in.
  *
  */
-enum class IntakeState { Idle, Intaking, Indexing, Outtaking, Jammed, Sorting };
+enum class IntakeState {
+  Idle,
+  Intaking,
+  Indexing,
+  Loading,
+  Outtaking,
+  Jammed,
+  Sorting,
+  FinishedLoading
+};
 
 /**
  * @brief Class to implement the intake for the robot. Contains basic controls
@@ -40,6 +50,9 @@ class Intake : public Task, public StateMachine<IntakeState> {
     second_t timeUntilUnjammed;
     // The time the intake will run outward when throwing while sorting.
     second_t sortThrowTime;
+    // The time the intake will run outward when throwing while finishing
+    // loading.
+    second_t finishLoadingTime;
     // The time the intake will attempt to perform an action before giving up.
     second_t generalTimeout;
   };
@@ -49,11 +62,13 @@ class Intake : public Task, public StateMachine<IntakeState> {
    *
    * @param iMtr
    * @param iColorSensor
+   * @param iLadybrown
    * @param iParams
    * @param loggerLevel
    */
   Intake(std::unique_ptr<Motor> iMtr,
          std::unique_ptr<ColorSensor> iColorSensor,
+         Ladybrown *iLadybrown,
          const Parameters &iParams,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
@@ -71,6 +86,13 @@ class Intake : public Task, public StateMachine<IntakeState> {
    *
    */
   void index();
+
+  /**
+   * @brief Tell the intake to work with the ladybrown to load a ring into the
+   * arm.
+   *
+   */
+  void load();
 
   /**
    * @brief Tell the intake run outward.
@@ -116,6 +138,14 @@ class Intake : public Task, public StateMachine<IntakeState> {
   void sorting();
 
   /**
+   * @brief Runs the intake outward for a time to get the hooks away from the
+   * ring, before specifying that we are finished loading by changing state (so
+   * we don't repeat the action).
+   *
+   */
+  void finishLoading();
+
+  /**
    * @brief For internal use, doesn't have the check on state before switching
    * to intaking/indexing.
    *
@@ -125,6 +155,7 @@ class Intake : public Task, public StateMachine<IntakeState> {
 
   std::unique_ptr<Motor> mtr;
   std::unique_ptr<ColorSensor> colorSensor;
+  Ladybrown *ladybrown;
   Logger logger;
   Parameters params;
   bool antiJamEnabled{true};

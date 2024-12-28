@@ -30,7 +30,7 @@ class MotionProfile {
     // Default to a trapezoidal profile.
     UnitsPerSecondCb maxJ{std::numeric_limits<double>::max()};
     bool usePosition{true};
-    std::size_t searchIterations{15};
+    std::size_t searchIterations{25};
   };
 
   struct Point {
@@ -103,6 +103,10 @@ class MotionProfile {
     const auto [t0, t2] = getTimeBounds(s);
     const second_t t1{searchForClosestPointTime(s, t0, t2)};
     return getPointAt(t1);
+  }
+
+  second_t getTotalTime() const {
+    return points[6].t;
   }
 
   Parameters getParameters() const {

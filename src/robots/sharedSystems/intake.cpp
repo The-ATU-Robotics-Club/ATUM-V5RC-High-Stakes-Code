@@ -3,11 +3,13 @@
 namespace atum {
 Intake::Intake(std::unique_ptr<Motor> iMtr,
                std::unique_ptr<ColorSensor> iColorSensor,
+               Ladybrown *iLadybrown,
                const Parameters &iParams,
                const Logger::Level loggerLevel) :
     Task{this, loggerLevel},
     mtr{std::move(iMtr)},
     colorSensor{std::move(iColorSensor)},
+    ladybrown{iLadybrown},
     logger{loggerLevel},
     params{iParams} {
   logger.info("Intake is constructed!");
@@ -28,6 +30,14 @@ void Intake::index() {
   forceIntake(IntakeState::Indexing);
 }
 
+void Intake::load() {
+  if(state == IntakeState::Jammed || state == IntakeState::Sorting ||
+     state == IntakeState::FinishedLoading) {
+    return;
+  }
+  forceIntake(IntakeState::Loading);
+}
+
 void Intake::outtake() {
   state = IntakeState::Outtaking;
 }
@@ -41,23 +51,42 @@ void Intake::setAntiJam(const bool iAntiJamEnabled) {
 }
 
 void Intake::intaking() {
+  if(ladybrown->getClosestPosition() == LadybrownState::Loading &&
+     ladybrown->hasRing()) {
+    params.timerUntilJamChecks.resetAlarm();
+    if(state == IntakeState::FinishedLoading) {
+      mtr->brake();
+    } else {
+      finishLoading();
+    }
+    return;
+  } else if(state == IntakeState::FinishedLoading) {
+    // No longer finished loading, so must reset state.
+    state = IntakeState::Loading;
+    return;
+  }
   if(sortOutColor != ColorSensor::Color::None &&
      colorSensor->getColor() == sortOutColor) {
     logger.debug("Switching to sorting!");
+    // TODO: Try sorting while ladybrown is loading.
     state = IntakeState::Sorting;
+    return;
   }
-  if(state == IntakeState::Indexing) {
+  // If indexing or loading while the ladybrown isn't ready, index.
+  if(state == IntakeState::Indexing ||
+     (state == IntakeState::Loading &&
+      ladybrown->getClosestPosition() != LadybrownState::Loading)) {
     if(colorSensor->getColor() != ColorSensor::Color::None) {
       params.timerUntilJamChecks.resetAlarm();
       mtr->brake();
       return;
     }
   }
-  mtr->moveVoltage(12);
   if(params.timerUntilJamChecks.goneOff() && antiJamEnabled &&
      mtr->getVelocity() < params.jamVelocity) {
     state = IntakeState::Jammed;
   }
+  mtr->moveVoltage(12);
 }
 
 void Intake::unjamming() {
@@ -67,6 +96,9 @@ void Intake::unjamming() {
 }
 
 void Intake::sorting() {
+  if(ladybrown->getClosestPosition() == LadybrownState::Loading) {
+    ladybrown->prepare();
+  }
   mtr->moveVoltage(12);
   Timer timeout{params.generalTimeout};
   while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
@@ -84,10 +116,18 @@ void Intake::sorting() {
   forceIntake(returnState);
 }
 
+void Intake::finishLoading() {
+  mtr->moveVoltage(-12);
+  wait(params.finishLoadingTime);
+  state = IntakeState::FinishedLoading;
+  ladybrown->prepare();
+}
+
 void Intake::forceIntake(const IntakeState newState) {
   // It should at least be at a standstill before checks occur. This is to
   // prevent false jams if going from outtaking to intaking quickly.
-  if((state != IntakeState::Intaking && state != IntakeState::Indexing) ||
+  if((state != IntakeState::Intaking && state != IntakeState::Indexing &&
+      state != IntakeState::Loading) ||
      mtr->getVelocity() < 0_rpm) {
     params.timerUntilJamChecks.resetAlarm();
   }
@@ -100,6 +140,12 @@ TASK_DEFINITIONS_FOR(Intake) {
   while(true) {
     switch(state) {
       case IntakeState::Idle: mtr->brake(); break;
+      case IntakeState::Loading:
+        if(ladybrown->getClosestPosition() != LadybrownState::Loading &&
+           !ladybrown->hasRing()) {
+          ladybrown->load();
+        }
+      case IntakeState::FinishedLoading:
       case IntakeState::Indexing:
       case IntakeState::Intaking: intaking(); break;
       case IntakeState::Outtaking: mtr->moveVoltage(-12); break;

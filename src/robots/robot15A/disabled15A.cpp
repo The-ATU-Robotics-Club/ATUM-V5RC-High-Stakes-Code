@@ -2,21 +2,6 @@
 
 namespace atum {
 Robot15A::Robot15A() : Robot{this} {
-  std::unique_ptr<Motor> intakeMtr{
-      std::make_unique<Motor>(PortsList{-5, 6}, pros::v5::MotorGears::blue)};
-  std::vector<ColorSensor::HueField> hueFields{
-      {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
-  std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(hueFields)};
-  Intake::Parameters intakeParams;
-  intakeParams.jamVelocity = 30_rpm;
-  intakeParams.timerUntilJamChecks = Timer{0.25_s};
-  intakeParams.timeUntilUnjammed = 0.25_s;
-  intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.generalTimeout = 1_s;
-  intake = std::make_unique<Intake>(
-      std::move(intakeMtr), std::move(colorSensor), intakeParams);
-
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
       PortsList{-7, -8, -9, 10}, pros::v5::MotorGears::blue, "left drive")};
   std::unique_ptr<Motor> rightDriveMtr{std::make_unique<Motor>(
@@ -41,26 +26,38 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('H', 2685)};
+      std::make_unique<LineTracker>('H', 2800)};
+  std::unordered_map<LadybrownState, degree_t> ladybrownPositions{
+      {LadybrownState::Resting, 0_deg},
+      {LadybrownState::Loading, 27.5_deg},
+      {LadybrownState::Preparing, 70_deg},
+      {LadybrownState::Scoring, 135_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      12, 10_deg, 30_deg, 60_deg, 135_deg, PID{{0}}, PID{{0.1}}};
+      12, -11.1_deg, 5_deg, 60_deg, ladybrownPositions, 0.375_s};
+  ladybrownParameters.kG = 0.2;
+  ladybrownParameters.holdController = PID{{0.15}};
+  ladybrownParameters.balanceController = PID{{0.15}};
   AngularProfile::Parameters ladybrownMotionParams{
-      240_deg_per_s, 240_deg_per_s_sq, 480_deg_per_s_cb};
+      240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;
-  AcceptableAngle ladybrownAcceptable{forever, 2_deg};
-  PID::Parameters ladybrownPIDParams{0.1, 0, 0, 1.65};
+  // Timeout here gets set by the follower, so don't worry about the "forever."
+  AcceptableAngle ladybrownAcceptable{forever, 3_deg};
+  PID::Parameters ladybrownPIDParams{0.15, 0, 0, 1.65};
   ladybrownPIDParams.ffScaling = true;
   std::unique_ptr<Controller> ladybrownVelocityController =
       std::make_unique<PID>(ladybrownPIDParams);
-  const AngularProfileFollower::AccelerationConstants kA{0.325, 0.175};
-  AngularProfile ladybrownProfile{ladybrownMotionParams, Logger::Level::Debug};
+  const AngularProfileFollower::AccelerationConstants kA{0.44, 0.1};
+  AngularProfile ladybrownProfile{ladybrownMotionParams};
+  std::unique_ptr<Controller> ladybrownPositionController =
+      std::make_unique<PID>(PID::Parameters{0.15});
   std::unique_ptr<AngularProfileFollower> profileFollower =
       std::make_unique<AngularProfileFollower>(
           ladybrownProfile,
           ladybrownAcceptable,
           std::move(ladybrownVelocityController),
           kA,
-          nullptr,
+          std::move(ladybrownPositionController),
+          1.1,
           Logger::Level::Debug);
   ladybrown = std::make_unique<Ladybrown>(std::move(leftLadybrownMotor),
                                           std::move(rightLadybrownMotor),
@@ -69,6 +66,24 @@ Robot15A::Robot15A() : Robot{this} {
                                           std::move(ladybrownLineTracker),
                                           ladybrownParameters,
                                           std::move(profileFollower));
+
+  std::unique_ptr<Motor> intakeMtr{
+      std::make_unique<Motor>(PortsList{-5, 6}, pros::v5::MotorGears::blue)};
+  std::vector<ColorSensor::HueField> hueFields{
+      {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
+  std::unique_ptr<ColorSensor> colorSensor{
+      std::make_unique<ColorSensor>(hueFields)};
+  Intake::Parameters intakeParams;
+  intakeParams.jamVelocity = 30_rpm;
+  intakeParams.timerUntilJamChecks = Timer{0.25_s};
+  intakeParams.timeUntilUnjammed = 0.25_s;
+  intakeParams.sortThrowTime = 0.05_s;
+  intakeParams.finishLoadingTime = 0.125_s;
+  intakeParams.generalTimeout = 1_s;
+  intake = std::make_unique<Intake>(std::move(intakeMtr),
+                                    std::move(colorSensor),
+                                    ladybrown.get(),
+                                    intakeParams);
 }
 
 void Robot15A::disabled() {

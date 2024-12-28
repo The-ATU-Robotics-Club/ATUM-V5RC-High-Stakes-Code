@@ -3,6 +3,12 @@
 namespace atum {
 ROUTINE_DEFINITIONS_FOR(Robot15A) {
   START_ROUTINE("Test 1")
+  for(int i{0}; i < 2; i++) {
+    intake->load();
+    waitUntil(intake->checkStateIs(IntakeState::FinishedLoading), 2_s);
+    ladybrown->score();
+    waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 2_s);
+  }
   END_ROUTINE
   START_ROUTINE("Test 2")
   END_ROUTINE

@@ -96,7 +96,7 @@ class PID : public Controller {
    */
   void updateI(const double error);
 
-  const Parameters params;
+  Parameters params;
   double I{0};
   double prevState{0};
   double prevError{0};

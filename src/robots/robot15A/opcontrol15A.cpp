@@ -19,24 +19,34 @@ void Robot15A::opcontrol() {
 
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
-    drive->arcade(forward, turn);
+    // drive->arcade(forward, turn);
 
     switch(remote.getRTrigger()) {
       case -1: intake->outtake(); break;
-      case 1: intake->intake(); break;
+      case 1: intake->load(); break;
       default: intake->stop(); break;
     }
-
-    /*switch(remote.getLTrigger()) {
-      case -1: ladybrown->retract(); break;
-      case 1: ladybrown->extend(); break;
-      default: ladybrown->stop(); break;
-    }*/
-    if(remote.getPress(Remote::Button::L2)) {
-      ladybrown->load();
-    } else if(remote.getPress(Remote::Button::L1)) {
-      ladybrown->score();
+    if(intake->getState() != IntakeState::Loading) {
+      switch(remote.getLTrigger()) {
+        case -1: ladybrown->score(); break;
+        case 1:
+          if(!ladybrown->hasRing()) {
+            ladybrown->rest();
+          }
+          break;
+      }
     }
+
+    // switch(remote.getLTrigger()) {
+    //   case -1: ladybrown->retract(); break;
+    //   case 1: ladybrown->extend(); break;
+    //   default: ladybrown->stop(); break;
+    // }
+    // if(remote.getPress(Remote::Button::L2)) {
+    //   ladybrown->load();
+    // } else if(remote.getPress(Remote::Button::L1)) {
+    //   ladybrown->score();
+    // }
 
     if(remote.getPress(Remote::Button::A)) {
       goalClamp.toggle();

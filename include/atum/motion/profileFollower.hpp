@@ -24,27 +24,14 @@ class ProfileFollower {
                   std::unique_ptr<Controller> iVelocityController,
                   const AccelerationConstants &iKA,
                   std::unique_ptr<Controller> iPositionController = nullptr,
+                  const double iTimeoutScaling = 1.0,
                   const Logger::Level loggerLevel = Logger::Level::Info) :
       profile{iProfile},
       acceptable{iAcceptable},
       velocityController{std::move(iVelocityController)},
       kA{iKA},
       positionController{std::move(iPositionController)},
-      logger{loggerLevel} {
-    logger.debug("Profile follower constructed!");
-  }
-
-  ProfileFollower(const UnitProfile &iProfile,
-                  const UnitAcceptable &iAcceptable,
-                  std::unique_ptr<Controller> iVelocityController,
-                  const double &iKA,
-                  std::unique_ptr<Controller> iPositionController = nullptr,
-                  const Logger::Level loggerLevel = Logger::Level::Info) :
-      profile{iProfile},
-      acceptable{iAcceptable},
-      velocityController{std::move(iVelocityController)},
-      kA{iKA, iKA},
-      positionController{std::move(iPositionController)},
+      timeoutScaling{iTimeoutScaling},
       logger{loggerLevel} {
     if(!velocityController) {
       logger.error("Must provide a velocity controller to profile follower!");
@@ -55,7 +42,7 @@ class ProfileFollower {
   void startProfile(const Unit &start, const Unit &iEnd) {
     end = iEnd;
     profile.generate(start, end);
-    acceptable.reset();
+    acceptable.reset(timeoutScaling * profile.getTotalTime());
     velocityController->reset();
     if(positionController) {
       positionController->reset();
@@ -96,7 +83,8 @@ class ProfileFollower {
 
   private:
   void prepareGraphing(const Unit start) {
-    const typename UnitProfile::Parameters motionParams{profile.getParameters()};
+    const typename UnitProfile::Parameters motionParams{
+        profile.getParameters()};
     GUI::Graph::clearSeries(GUI::SeriesColor::Green);
     GUI::Graph::clearSeries(GUI::SeriesColor::Cyan);
     const double rawStart{getValueAs<Unit>(start)};
@@ -118,6 +106,7 @@ class ProfileFollower {
   std::unique_ptr<Controller> velocityController;
   AccelerationConstants kA;
   std::unique_ptr<Controller> positionController;
+  const double timeoutScaling;
   Logger logger;
   Unit end;
 };

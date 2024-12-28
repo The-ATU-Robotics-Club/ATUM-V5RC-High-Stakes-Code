@@ -18,30 +18,105 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     params{iParams},
     follower{std::move(iFollower)},
     logger{loggerLevel} {
+  left->setBrakeMode(pros::MotorBrake::brake);
+  right->setBrakeMode(pros::MotorBrake::brake);
   left->resetPosition();
   right->resetPosition();
   rotation->reset();
-  stop();
+  // Manually set state to avoid setting hold position.
+  state = LadybrownState::Idle;
 }
 
 void Ladybrown::stop() {
-  state = LadybrownStates::Idle;
+  // During manual control, hold wherever you stop.
+  if(!holdPosition.has_value()) {
+    holdPosition = rotation->getDisplacement();
+    params.holdController.reset();
+  }
+  state = LadybrownState::Idle;
 }
 
 void Ladybrown::extend() {
-  state = LadybrownStates::Extending;
+  // During manual control, hold wherever you stop.
+  state = LadybrownState::Extending;
+  holdPosition = {};
 }
 
 void Ladybrown::retract() {
-  state = LadybrownStates::Retracting;
+  // During manual control, hold wherever you stop.
+  state = LadybrownState::Retracting;
+  holdPosition = {};
+}
+
+void Ladybrown::rest() {
+  state = LadybrownState::Resting;
+  holdPosition = params.statePositions[state];
 }
 
 void Ladybrown::load() {
-  state = LadybrownStates::Loading;
+  state = LadybrownState::Loading;
+  holdPosition = params.statePositions[state];
+}
+
+void Ladybrown::prepare() {
+  state = LadybrownState::Preparing;
+  holdPosition = params.statePositions[state];
 }
 
 void Ladybrown::score() {
-  state = LadybrownStates::Scoring;
+  // Don't override back up on the arm after scoring.
+  if(state == LadybrownState::FinishScoring) {
+    holdPosition = params.statePositions[LadybrownState::Preparing];
+    return;
+  }
+  state = LadybrownState::Scoring;
+  holdPosition = params.statePositions[state];
+}
+
+bool Ladybrown::mayConflictWithIntake() {
+  const degree_t position{rotation->getPosition()};
+  const degree_t loadingPosition{
+      params.statePositions[LadybrownState::Loading]};
+  bool movingUpPast{position <= loadingPosition && getVoltage() > 0};
+  bool movingDownPast{position >= loadingPosition && getVoltage() < 0};
+  return movingUpPast || movingDownPast;
+}
+
+LadybrownState Ladybrown::getClosestPosition() const {
+  // Don't give a measurement if you are still moving.
+  if(state != LadybrownState::Idle) {
+    return LadybrownState::Idle;
+  }
+  degree_t shortestDistance{std::numeric_limits<double>::max()};
+  LadybrownState closestPosition{LadybrownState::Resting};
+  for(const auto &[position, angle] : params.statePositions) {
+    const degree_t distance{abs(angle - rotation->getPosition())};
+    if(distance <= shortestDistance) {
+      shortestDistance = distance;
+      closestPosition = position;
+    }
+  }
+  return closestPosition;
+}
+
+bool Ladybrown::hasRing() const {
+  return getClosestPosition() != LadybrownState::Resting && line->triggered();
+}
+
+void Ladybrown::moveTo(const degree_t target) {
+  const LadybrownState startingState{state};
+  follower->startProfile(rotation->getDisplacement(), target);
+  while(!follower->isDone() && state == startingState) {
+    const degrees_per_second_t avgVelocity{
+        (0.2 * (left->getVelocity() + right->getVelocity()) +
+         rotation->getVelocity()) /
+        3.0};
+    const double followerOutput{
+        follower->getOutput(rotation->getPosition(), avgVelocity)};
+    setVoltage(followerOutput);
+    wait(5_ms);
+  }
+  stop();
 }
 
 void Ladybrown::setVoltage(const double newVoltage) {
@@ -54,26 +129,26 @@ double Ladybrown::getVoltage() {
   return voltage;
 }
 
-void Ladybrown::moveTo(const degree_t target) {
-  follower->startProfile(rotation->getDisplacement(), target);
-  while(!follower->isDone()) {
-    const double followerOutput{
-        follower->getOutput(rotation->getPosition(), rotation->getVelocity())};
-    setVoltage(followerOutput);
-    wait(5_ms);
-  }
-  state = LadybrownStates::Idle;
-}
-
 TASK_DEFINITIONS_FOR(Ladybrown) {
   START_TASK("Ladybrown State Machine")
   while(true) {
     switch(state) {
-      case LadybrownStates::Idle: setVoltage(0); break;
-      case LadybrownStates::Extending: setVoltage(params.maxVoltage); break;
-      case LadybrownStates::Retracting: setVoltage(-params.maxVoltage); break;
-      case LadybrownStates::Scoring: moveTo(params.scoredPosition); break;
-      case LadybrownStates::Loading: moveTo(params.loadingPosition); break;
+      case LadybrownState::Idle: setVoltage(0); break;
+      case LadybrownState::Extending: setVoltage(params.maxVoltage); break;
+      case LadybrownState::Retracting: setVoltage(-params.maxVoltage); break;
+      case LadybrownState::Resting:
+      case LadybrownState::Loading:
+      case LadybrownState::Preparing:
+        moveTo(params.statePositions[state]);
+        break;
+      case LadybrownState::Scoring:
+        moveTo(params.statePositions[state]);
+        state = LadybrownState::FinishScoring;
+        break;
+      case LadybrownState::FinishScoring:
+        holdPosition = params.statePositions[LadybrownState::Preparing];
+        moveTo(params.statePositions[LadybrownState::Preparing]);
+        break;
       default: break;
     }
     wait();
@@ -82,32 +157,38 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
 
   START_TASK("Ladybrown Control")
   while(true) {
-    rotation->getVelocity();
+    wait(5_ms); // At the top because of continue statement below.
     if(rotation->getDisplacement() >= params.flippingPosition) {
       piston->extend();
     } else {
-      piston->retract();
+      if(piston->isExtended()) {
+        piston->retract();
+        left->brake();
+        right->brake();
+        wait(params.pistonDelay);
+      }
     }
-    if(rotation->getDisplacement() <= params.restPosition &&
+    if(rotation->getDisplacement() <= params.noHoldPosition &&
        getVoltage() <= 0) {
-      left->setBrakeMode(pros::MotorBrake::brake);
-      right->setBrakeMode(pros::MotorBrake::brake);
-    } else {
-      left->setBrakeMode(pros::MotorBrake::hold);
-      right->setBrakeMode(pros::MotorBrake::hold);
-    }
-    const double output{getVoltage()};
-    const double balance{params.balanceController.getOutput(
-        left->getPosition(), right->getPosition())};
-    if(output) {
-      left->moveVoltage(output + balance);
-      right->moveVoltage(output);
-    } else { // TODO: Add custom hold code.
       left->brake();
       right->brake();
+      continue;
     }
-    wait(5_ms);
+    double output{getVoltage()};
+    const double balance{params.balanceController.getOutput(
+        left->getPosition(), right->getPosition())};
+    if(state == LadybrownState::Idle) {
+      const double holdError{getValueAs<degree_t>(holdPosition.value() -
+                                                  rotation->getDisplacement())};
+      const double hold{params.holdController.getOutput(holdError)};
+      output += hold;
+    }
+    const degree_t absolutePosition{params.absoluteStartingPosition +
+                                    rotation->getDisplacement()};
+    output += params.kG * cos(getValueAs<radian_t>(absolutePosition));
+    left->moveVoltage(output + balance);
+    right->moveVoltage(output);
   }
   END_TASK
-}
+} // namespace atum
 } // namespace atum

@@ -120,15 +120,26 @@ class Acceptable {
     accepted = false;
     minTimer.resetAlarm();
     if(timeoutTimer.has_value()) {
-      timeoutTimer.value().resetAlarm();
+      timeoutTimer = {};
     }
     prevError = Unit{0};
     prevTime = 0_s;
   }
 
+  /**
+   * @brief Resets the internal state and allows for changing the timeout (since
+   * that is a common thing to change).
+   *
+   * @param newTimeout
+   */
+  void reset(const second_t newTimeout) {
+    timeout = newTimeout;
+    reset();
+  }
+
   private:
   bool accepted{false};
-  const second_t timeout;
+  second_t timeout;
   const Unit maxError;
   const UnitsPerSecond maxDeriv;
   Timer minTimer;

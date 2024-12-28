@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "../../pros/misc.hpp"
 #include "screen.hpp"
 #include <array>
 
@@ -37,7 +38,9 @@ class Graph : public Screen {
   };
 
   /**
-   * @brief Adds a data point on one of the graph series.
+   * @brief Adds a data point on one of the graph series. Won't add the point if
+   * the robot is disabled (in order to provide the option to "freeze" data
+   * input).
    *
    * @param value
    * @param seriesColor
