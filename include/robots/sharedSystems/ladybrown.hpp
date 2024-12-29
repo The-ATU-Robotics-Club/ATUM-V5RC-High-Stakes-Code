@@ -141,15 +141,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   void score();
 
   /**
-   * @brief Checks if running the intake would conflict with a ring in the
-   * intake.
-   *
-   * @return true
-   * @return false
-   */
-  bool mayConflictWithIntake();
-
-  /**
    * @brief Gets the name state of the closest important position (Resting,
    * Loading, Preparing, or Scoring) or Idle if moving.
    *
@@ -166,7 +157,31 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   bool hasRing() const;
 
+  /**
+   * @brief Checks if the ladybrown is ready to score.
+   *
+   * @return true
+   * @return false
+   */
+  bool readyToScore();
+
+  /**
+   * @brief Checks if running the intake would conflict with a ring in the
+   * intake.
+   *
+   * @return true
+   * @return false
+   */
+  bool mayConflictWithIntake();
+
   private:
+  /**
+   * @brief Tells the ladybrown to back up after scoring. Moves to the Preparing
+   * position.
+   *
+   */
+  void finishScore();
+
   /**
    * @brief Moves to a given position, so long as the state does not change.
    *
@@ -189,22 +204,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    * @return degrees_per_second_t
    */
   degrees_per_second_t getVelocity() const;
-
-  /**
-   * @brief Sets the desired voltage to apply to the motors, to be processed by
-   * the background tasks to account for balancing, holding, and so on.
-   *
-   * @param voltage
-   */
-  void setVoltage(const double voltage);
-
-  /**
-   * @brief Gets the desired voltage to apply to the motors, to be processed by
-   * the background tasks to account for balancing, holding, and so on.
-   *
-   * @param voltage
-   */
-  double getVoltage();
 
   /**
    * @brief Ran in the background tasks to extend and retract the piston as the
@@ -235,6 +234,5 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   std::optional<degree_t> holdPosition;
 
   double voltage;
-  pros::Mutex voltageMutex;
 };
 } // namespace atum

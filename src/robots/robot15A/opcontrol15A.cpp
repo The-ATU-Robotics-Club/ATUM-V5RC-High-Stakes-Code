@@ -26,22 +26,20 @@ void Robot15A::opcontrol() {
       case 1: intake->load(); break;
       default: intake->stop(); break;
     }
-    if(intake->getState() != IntakeState::Loading) {
-      switch(remote.getLTrigger()) {
-        case -1: ladybrown->score(); break;
-        case 1:
-          if(!ladybrown->hasRing()) {
-            ladybrown->rest();
-          }
-          break;
-      }
+
+    switch(remote.getLTrigger()) {
+      case -1:
+        if(ladybrown->readyToScore()) {
+          ladybrown->score();
+        }
+        break;
+      case 1:
+        if(!ladybrown->hasRing()) {
+          ladybrown->rest();
+        }
+        break;
     }
 
-    // switch(remote.getLTrigger()) {
-    //   case -1: ladybrown->retract(); break;
-    //   case 1: ladybrown->extend(); break;
-    //   default: ladybrown->stop(); break;
-    // }
     // if(remote.getPress(Remote::Button::L2)) {
     //   ladybrown->load();
     // } else if(remote.getPress(Remote::Button::L1)) {

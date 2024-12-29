@@ -26,7 +26,7 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('H', 2800)};
+      std::make_unique<LineTracker>('H', 2700)};
   std::unordered_map<LadybrownState, degree_t> ladybrownPositions{
       {LadybrownState::Resting, 0_deg},
       {LadybrownState::Loading, 27.5_deg},
@@ -78,7 +78,7 @@ Robot15A::Robot15A() : Robot{this} {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.finishLoadingTime = 0.125_s;
+  intakeParams.finishLoadingTime = 0.0125_s;
   intakeParams.generalTimeout = 1_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),

@@ -46,16 +46,18 @@ void Intake::stop() {
   state = IntakeState::Idle;
 }
 
-void Intake::setAntiJam(const bool iAntiJamEnabled) {
-  antiJamEnabled = iAntiJamEnabled;
+void Intake::setSortOutColor(const ColorSensor::Color iSortOutColor) {
+  sortOutColor = iSortOutColor;
+}
+
+ColorSensor::Color Intake::getSortOutColor() const {
+  return sortOutColor;
 }
 
 void Intake::intaking() {
   if(ladybrown->mayConflictWithIntake()) {
     params.timerUntilJamChecks.resetAlarm();
-    if(state == IntakeState::FinishedLoading) {
-      mtr->brake();
-    } else {
+    if(state != IntakeState::FinishedLoading) {
       finishLoading();
     }
     return;
@@ -63,9 +65,7 @@ void Intake::intaking() {
     state = IntakeState::Loading;
     return;
   }
-  if(sortOutColor != ColorSensor::Color::None &&
-     colorSensor->getColor() == sortOutColor) {
-    logger.debug("Switching to sorting!");
+  if(shouldSort()) {
     state = IntakeState::Sorting;
     return;
   }
@@ -77,7 +77,7 @@ void Intake::intaking() {
       return;
     }
   }
-  if(params.timerUntilJamChecks.goneOff() && antiJamEnabled &&
+  if(params.timerUntilJamChecks.goneOff() &&
      mtr->getVelocity() < params.jamVelocity) {
     state = IntakeState::Jammed;
   }
@@ -97,7 +97,7 @@ void Intake::sorting() {
   mtr->moveVoltage(12);
   Timer timeout{params.generalTimeout};
   while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
-    if(params.timerUntilJamChecks.goneOff() && antiJamEnabled &&
+    if(params.timerUntilJamChecks.goneOff() &&
        mtr->getVelocity() < params.jamVelocity) {
       state = IntakeState::Jammed;
       return;
@@ -135,6 +135,11 @@ bool Intake::shouldIndex() const {
                               ladybrown->getClosestNamedPosition() !=
                                   LadybrownState::Loading};
   return state == IntakeState::Indexing || ladybrownNotInPosition;
+}
+
+bool Intake::shouldSort() const {
+  return sortOutColor != ColorSensor::Color::None &&
+         colorSensor->getColor() == sortOutColor;
 }
 
 TASK_DEFINITIONS_FOR(Intake) {

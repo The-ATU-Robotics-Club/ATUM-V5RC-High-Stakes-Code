@@ -53,6 +53,5 @@ class Tracker {
   protected:
   Logger logger;
   Pose pose;
-  pros::Mutex poseMutex;
 };
 } // namespace atum

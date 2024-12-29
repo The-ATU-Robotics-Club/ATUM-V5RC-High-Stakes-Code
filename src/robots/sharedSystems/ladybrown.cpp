@@ -28,23 +28,23 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
 }
 
 void Ladybrown::stop() {
+  params.holdController.reset();
+  state = LadybrownState::Idle;
   // During manual control, hold wherever you stop.
   if(!holdPosition.has_value()) {
     holdPosition = getPosition();
   }
-  params.holdController.reset();
-  state = LadybrownState::Idle;
 }
 
 void Ladybrown::extend() {
-  // During manual control, hold wherever you stop.
   state = LadybrownState::Extending;
+  // During manual control, hold wherever you stop.
   holdPosition = {};
 }
 
 void Ladybrown::retract() {
-  // During manual control, hold wherever you stop.
   state = LadybrownState::Retracting;
+  // During manual control, hold wherever you stop.
   holdPosition = {};
 }
 
@@ -66,15 +66,10 @@ void Ladybrown::prepare() {
 void Ladybrown::score() {
   // Don't override back up on the arm after scoring.
   if(state == LadybrownState::FinishScoring) {
-    holdPosition = params.statePositions[LadybrownState::Preparing];
     return;
   }
   state = LadybrownState::Scoring;
   holdPosition = params.statePositions[state];
-}
-
-bool Ladybrown::mayConflictWithIntake() {
-  return getClosestNamedPosition() == LadybrownState::Loading && hasRing();
 }
 
 LadybrownState Ladybrown::getClosestNamedPosition() const {
@@ -99,20 +94,33 @@ bool Ladybrown::hasRing() const {
          line->triggered();
 }
 
+bool Ladybrown::readyToScore() {
+  return getClosestNamedPosition() != LadybrownState::Loading && hasRing();
+}
+
+bool Ladybrown::mayConflictWithIntake() {
+  return getClosestNamedPosition() == LadybrownState::Loading && hasRing();
+}
+
+void Ladybrown::finishScore() {
+  state = LadybrownState::FinishScoring;
+  holdPosition = params.statePositions[LadybrownState::Preparing];
+}
+
 void Ladybrown::moveTo(const degree_t target) {
   const LadybrownState startingState{state};
   follower->startProfile(getPosition(), target);
   while(!follower->isDone() && state == startingState) {
     const double followerOutput{
         follower->getOutput(getPosition(), getVelocity())};
-    setVoltage(followerOutput);
+    voltage = followerOutput;
     wait(5_ms);
   }
   stop();
 }
 
 degree_t Ladybrown::getPosition() const {
-  return getPosition();
+  return rotation->getDisplacement();
 }
 
 degrees_per_second_t Ladybrown::getVelocity() const {
@@ -120,16 +128,6 @@ degrees_per_second_t Ladybrown::getVelocity() const {
   const degrees_per_second_t rightMotorVelocity{0.2 * right->getVelocity()};
   const degrees_per_second_t rotationVelocity{rotation->getVelocity()};
   return (leftMotorVelocity + rightMotorVelocity + rotationVelocity) / 3.0;
-}
-
-void Ladybrown::setVoltage(const double newVoltage) {
-  std::scoped_lock lock{voltageMutex};
-  voltage = newVoltage;
-}
-
-double Ladybrown::getVoltage() {
-  std::scoped_lock lock{voltageMutex};
-  return voltage;
 }
 
 void Ladybrown::handlePiston() {
@@ -163,9 +161,9 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
   START_TASK("Ladybrown State Machine")
   while(true) {
     switch(state) {
-      case LadybrownState::Idle: setVoltage(0); break;
-      case LadybrownState::Extending: setVoltage(params.manualVoltage); break;
-      case LadybrownState::Retracting: setVoltage(-params.manualVoltage); break;
+      case LadybrownState::Idle: voltage = 0; break;
+      case LadybrownState::Extending: voltage = params.manualVoltage; break;
+      case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       case LadybrownState::Resting:
       case LadybrownState::Loading:
       case LadybrownState::Preparing:
@@ -173,10 +171,9 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
         break;
       case LadybrownState::Scoring:
         moveTo(params.statePositions[state]);
-        state = LadybrownState::FinishScoring;
+        finishScore();
         break;
       case LadybrownState::FinishScoring:
-        holdPosition = params.statePositions[LadybrownState::Preparing];
         moveTo(params.statePositions[LadybrownState::Preparing]);
         break;
       default: break;
@@ -189,12 +186,12 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
   while(true) {
     wait(5_ms); // At the top because of continue statement below.
     handlePiston();
-    if(getPosition() <= params.noMovePosition && getVoltage() <= 0) {
+    if(getPosition() <= params.noMovePosition && voltage <= 0) {
       left->brake();
       right->brake();
       continue;
     }
-    double output{getVoltage() + getHoldOutput()};
+    double output{voltage + getHoldOutput()};
     const double balance{params.balanceController.getOutput(
         left->getPosition(), right->getPosition())};
     left->moveVoltage(output + balance);

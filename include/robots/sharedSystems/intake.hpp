@@ -108,11 +108,19 @@ class Intake : public Task, public StateMachine<IntakeState> {
   void stop();
 
   /**
-   * @brief Sets whether to use the anti-jam.
+   * @brief Sets the color the intake will sort out. Setting to "None" will
+   * disable sorting.
    *
-   * @param iAntiJamEnabled
+   * @param iSortOutColor
    */
-  void setAntiJam(const bool iAntiJamEnabled);
+  void setSortOutColor(const ColorSensor::Color iSortOutColor);
+
+  /**
+   * @brief Gets the color the intake is sorting out.
+   *
+   * @return ColorSensor::Color
+   */
+  ColorSensor::Color getSortOutColor() const;
 
   private:
   /**
@@ -155,19 +163,28 @@ class Intake : public Task, public StateMachine<IntakeState> {
   void forceIntake(const IntakeState newState);
 
   /**
-   * @brief Checks if the intake should index based
+   * @brief Checks if the intake should index based on the state, sensor
+   * functionality, and if enabled (and potentially where the ladybrown is).
    *
    * @return true
    * @return false
    */
   bool shouldIndex() const;
 
+  /**
+   * @brief Checks if the intake should sort based on the state, sensor
+   * functionality, and if enabled.
+   *
+   * @return true
+   * @return false
+   */
+  bool shouldSort() const;
+
   std::unique_ptr<Motor> mtr;
   std::unique_ptr<ColorSensor> colorSensor;
   Ladybrown *ladybrown;
   Logger logger;
   Parameters params;
-  bool antiJamEnabled{true};
   ColorSensor::Color sortOutColor{ColorSensor::Color::Red};
   IntakeState returnState{IntakeState::Intaking};
 };
