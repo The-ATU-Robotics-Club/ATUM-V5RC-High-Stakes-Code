@@ -7,6 +7,7 @@ var classatum_1_1Ladybrown =
     [ "hasRing", "classatum_1_1Ladybrown.html#ab1f25b77e6d72d040e3d4dbb70f6b284", null ],
     [ "load", "classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79", null ],
     [ "mayConflictWithIntake", "classatum_1_1Ladybrown.html#a5d1fe46e01b0cae54359cd6aa8d0f0ec", null ],
+    [ "noRingDetection", "classatum_1_1Ladybrown.html#adc84f21b3773cacae92bd46d221fd86d", null ],
     [ "prepare", "classatum_1_1Ladybrown.html#a73fd580e8e076475689a027ee08b9921", null ],
     [ "readyToScore", "classatum_1_1Ladybrown.html#a723123ef03689102d1d741161d39b6fb", null ],
     [ "rest", "classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e", null ],

@@ -14,7 +14,7 @@ var searchData=
   ['timer_11',['Timer',['../classatum_1_1Timer.html',1,'atum::Timer'],['../classatum_1_1Timer.html#a6ee9e7024904d361af2ad854ecf324ff',1,'atum::Timer::Timer()']]],
   ['timer_2ehpp_12',['timer.hpp',['../timer_8hpp.html',1,'']]],
   ['toggle_13',['toggle',['../classatum_1_1Piston.html#a93b5f050315efa7145b80d1f3f790356',1,'atum::Piston']]],
-  ['tostring_14',['toString',['../pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65',1,'atum']]],
+  ['tostring_14',['toString',['../colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6',1,'atum::toString(const ColorSensor::Color &amp;color)'],['../pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65',1,'atum::toString(const Pose &amp;pose)']]],
   ['tracker_15',['Tracker',['../classatum_1_1Tracker.html',1,'atum::Tracker'],['../classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d',1,'atum::Tracker::Tracker()']]],
   ['tracker_2ehpp_16',['tracker.hpp',['../tracker_8hpp.html',1,'']]],
   ['traveled_17',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer']]],

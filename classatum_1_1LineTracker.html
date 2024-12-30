@@ -120,6 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aef031eabc247e13b155d11546ff8a905"><td class="memItemLeft" align="right" valign="top">std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#aef031eabc247e13b155d11546ff8a905">getReading</a> ()</td></tr>
 <tr class="memdesc:aef031eabc247e13b155d11546ff8a905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current reading of the line tracker and perform logging. Mostly made public for the purposes of tuning.  <br /></td></tr>
 <tr class="separator:aef031eabc247e13b155d11546ff8a905"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1abd38487289272836146e377018d77e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#a1abd38487289272836146e377018d77e">check</a> ()</td></tr>
+<tr class="memdesc:a1abd38487289272836146e377018d77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the distance sensor is functioning by seeing if it is reading a normal value.  <br /></td></tr>
+<tr class="separator:a1abd38487289272836146e377018d77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A wrapper around the VEX line sensor to support dynamic port initialization and to encapsulate detection logic. WIll also calibrate the sensor, so there should be no major reading changes when this is constructed. </p>
@@ -213,6 +216,28 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1abd38487289272836146e377018d77e" name="a1abd38487289272836146e377018d77e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1abd38487289272836146e377018d77e">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::LineTracker::check </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the distance sensor is functioning by seeing if it is reading a normal value. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="aef031eabc247e13b155d11546ff8a905" name="aef031eabc247e13b155d11546ff8a905"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef031eabc247e13b155d11546ff8a905">&#9670;&#160;</a></span>getReading()</h2>
 

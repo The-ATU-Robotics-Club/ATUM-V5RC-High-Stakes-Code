@@ -118,17 +118,22 @@ $(document).ready(function(){initNavTree('lineTracker_8hpp_source.html',''); ini
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classatum_1_1LineTracker.html#aef031eabc247e13b155d11546ff8a905">   65</a></span>  std::int32_t <a class="code hl_function" href="classatum_1_1LineTracker.html#aef031eabc247e13b155d11546ff8a905">getReading</a>();</div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordtype">void</span> calibrate();</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  pros::adi::LineSensor lineTracker;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">const</span> std::int32_t threshold;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classatum_1_1LineTracker.html#a1abd38487289272836146e377018d77e">   74</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1LineTracker.html#a1abd38487289272836146e377018d77e">check</a>();</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> std::int32_t errorThreshold{20};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordtype">void</span> initializeLineTracker();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  pros::adi::LineSensor lineTracker;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keyword">const</span> std::int32_t threshold;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>};</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aadi_8hpp_html"><div class="ttname"><a href="adi_8hpp.html">adi.hpp</a></div><div class="ttdoc">Includes the ADI class.</div></div>
 <div class="ttc" id="aclassatum_1_1ADIExtenderPort_html"><div class="ttname"><a href="classatum_1_1ADIExtenderPort.html">atum::ADIExtenderPort</a></div><div class="ttdoc">This class acts as a functor to support dynamically initializing ADI devices on an extender and loggi...</div><div class="ttdef"><b>Definition:</b> adi.hpp:22</div></div>
 <div class="ttc" id="aclassatum_1_1LineTracker_html"><div class="ttname"><a href="classatum_1_1LineTracker.html">atum::LineTracker</a></div><div class="ttdoc">A wrapper around the VEX line sensor to support dynamic port initialization and to encapsulate detect...</div><div class="ttdef"><b>Definition:</b> lineTracker.hpp:23</div></div>
+<div class="ttc" id="aclassatum_1_1LineTracker_html_a1abd38487289272836146e377018d77e"><div class="ttname"><a href="classatum_1_1LineTracker.html#a1abd38487289272836146e377018d77e">atum::LineTracker::check</a></div><div class="ttdeci">bool check()</div><div class="ttdoc">Checks if the distance sensor is functioning by seeing if it is reading a normal value.</div></div>
 <div class="ttc" id="aclassatum_1_1LineTracker_html_a84e3198afc32b7d1a68a96d3e0c43e06"><div class="ttname"><a href="classatum_1_1LineTracker.html#a84e3198afc32b7d1a68a96d3e0c43e06">atum::LineTracker::LineTracker</a></div><div class="ttdeci">LineTracker(const std::uint8_t port, const std::int32_t iThreshold, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new line tracker based on the given port and a threshold for which the sensor will be co...</div></div>
 <div class="ttc" id="aclassatum_1_1LineTracker_html_a987edcdda7b3d10cf19de91c1f6a28e4"><div class="ttname"><a href="classatum_1_1LineTracker.html#a987edcdda7b3d10cf19de91c1f6a28e4">atum::LineTracker::LineTracker</a></div><div class="ttdeci">LineTracker(const ADIExtenderPort &amp;port, const std::int32_t iThreshold, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new line tracker by detecting the port for the sensor and with a threshold for which the...</div></div>
 <div class="ttc" id="aclassatum_1_1LineTracker_html_aa6c2077261f93ad1af01386fb35d9b63"><div class="ttname"><a href="classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63">atum::LineTracker::triggered</a></div><div class="ttdeci">bool triggered()</div><div class="ttdoc">This will return if the line tracker reading is below the threshold given for it to be considered &quot;tr...</div></div>

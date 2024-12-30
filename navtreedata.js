@@ -50,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acceptable_8hpp.html",
-"drive_8hpp_source.html"
+"distanceSensor_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
