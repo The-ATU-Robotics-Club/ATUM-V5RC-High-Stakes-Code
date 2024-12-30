@@ -158,6 +158,15 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   bool hasRing() const;
 
   /**
+   * @brief Returns if the line tracker has had any detected issues (and is
+   * therefore not being used).
+   *
+   * @return true
+   * @return false
+   */
+  bool noRingDetection();
+
+  /**
    * @brief Checks if the ladybrown is ready to score.
    *
    * @return true

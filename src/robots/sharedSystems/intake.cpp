@@ -87,16 +87,20 @@ void Intake::intaking() {
 void Intake::unjamming() {
   mtr->moveVoltage(-12);
   wait(params.timeUntilUnjammed);
+  if(returnState == IntakeState::Loading) {
+    ladybrown->prepare();
+  }
   forceIntake(returnState);
 }
 
 void Intake::sorting() {
-  if(ladybrown->getClosestNamedPosition() == LadybrownState::Loading) {
+  if(!ladybrown->noRingDetection() &&
+     ladybrown->getClosestNamedPosition() == LadybrownState::Loading) {
     ladybrown->prepare();
   }
   mtr->moveVoltage(12);
   Timer timeout{params.generalTimeout};
-  while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
+  while(shouldSort() && !timeout.goneOff()) {
     if(params.timerUntilJamChecks.goneOff() &&
        mtr->getVelocity() < params.jamVelocity) {
       state = IntakeState::Jammed;
@@ -149,8 +153,10 @@ TASK_DEFINITIONS_FOR(Intake) {
     switch(state) {
       case IntakeState::Idle: mtr->brake(); break;
       case IntakeState::Loading:
-        if(ladybrown->getClosestNamedPosition() != LadybrownState::Loading &&
-           !ladybrown->hasRing()) {
+        if((ladybrown->noRingDetection() &&
+            ladybrown->getClosestNamedPosition() == LadybrownState::Resting) ||
+           (ladybrown->getClosestNamedPosition() != LadybrownState::Loading &&
+            !ladybrown->noRingDetection() && !ladybrown->hasRing())) {
           ladybrown->load();
         }
         // fall through

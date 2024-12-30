@@ -34,7 +34,7 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('H', 2700)};
+      std::make_unique<LineTracker>('H', 2700, Logger::Level::Debug)};
   std::unordered_map<LadybrownState, degree_t> ladybrownPositions{
       {LadybrownState::Resting, -11.1_deg},
       {LadybrownState::Loading, 16.5_deg},

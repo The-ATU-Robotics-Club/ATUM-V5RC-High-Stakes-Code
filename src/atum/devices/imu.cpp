@@ -4,7 +4,8 @@ namespace atum {
 IMU::IMU(const PortsList &ports,
          const bool iReversed,
          Logger::Level loggerLevel) :
-    reversed{iReversed}, logger{loggerLevel} {
+    reversed{iReversed},
+    logger{loggerLevel} {
   for(const std::uint8_t port : ports) {
     pros::v5::Device device{port};
     if(device.get_plugged_type() == pros::DeviceType::imu) {
@@ -25,7 +26,8 @@ IMU::IMU(const PortsList &ports,
 IMU::IMU(const std::size_t expectedAmount,
          const bool iReversed,
          Logger::Level loggerLevel) :
-    reversed{iReversed}, logger{loggerLevel} {
+    reversed{iReversed},
+    logger{loggerLevel} {
   const auto rawIMUs{pros::IMU::get_all_devices()};
   if(!rawIMUs.size()) {
     logger.error("No IMUs found!");
@@ -53,7 +55,12 @@ void IMU::setHeading(degree_t heading) {
 degree_t IMU::getHeading() {
   std::vector<degree_t> readings;
   for(auto &imu : imus) {
-    readings.push_back(degree_t{imu->get_rotation()});
+    if(imu->is_installed()) {
+      readings.push_back(degree_t{imu->get_rotation()});
+    } else {
+      logger.error("IMU on port " + std::to_string(imu->get_port()) +
+                   " is not installed.");
+    }
   }
   degree_t heading{average(readings)};
   if(reversed) {

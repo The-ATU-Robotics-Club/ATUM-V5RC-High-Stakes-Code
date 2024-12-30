@@ -11,6 +11,7 @@
 
 #include "../../pros/misc.hpp"
 #include "screen.hpp"
+#include <algorithm>
 #include <array>
 
 namespace atum {

@@ -132,8 +132,7 @@ class Intake : public Task, public StateMachine<IntakeState> {
 
   /**
    * @brief This method runs whenever we need to get the intake unjammed. When
-   * finished, it goes back to intaking (since that's the only state
-   * jammed is accessible from).
+   * finished, it goes back to the state it was called from. 
    *
    */
   void unjamming();

@@ -23,8 +23,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
   left->resetPosition(params.absoluteStartingPosition);
   right->resetPosition(params.absoluteStartingPosition);
   rotation->resetDisplacement(params.absoluteStartingPosition);
-  // Manually set state to avoid setting hold position.
-  state = LadybrownState::Idle;
+  stop();
 }
 
 void Ladybrown::stop() {
@@ -91,11 +90,16 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
 
 bool Ladybrown::hasRing() const {
   return getClosestNamedPosition() != LadybrownState::Resting &&
-         line->triggered();
+         line->check() && line->triggered();
 }
 
 bool Ladybrown::readyToScore() {
-  return getClosestNamedPosition() != LadybrownState::Loading && hasRing();
+  return getClosestNamedPosition() != LadybrownState::Loading &&
+         (hasRing() || noRingDetection());
+}
+
+bool Ladybrown::noRingDetection() {
+  return !line->check();
 }
 
 bool Ladybrown::mayConflictWithIntake() {

@@ -40,12 +40,6 @@ void Robot15A::opcontrol() {
         break;
     }
 
-    // if(remote.getPress(Remote::Button::L2)) {
-    //   ladybrown->load();
-    // } else if(remote.getPress(Remote::Button::L1)) {
-    //   ladybrown->score();
-    // }
-
     if(remote.getPress(Remote::Button::A)) {
       goalClamp.toggle();
     }

@@ -1,10 +1,10 @@
 /**
  * @file lineTracker.hpp
- * @brief Includes the LineTracker class. 
+ * @brief Includes the LineTracker class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -64,13 +64,29 @@ class LineTracker {
    */
   std::int32_t getReading();
 
+  /**
+   * @brief Checks if the distance sensor is functioning by seeing if it is
+   * reading a normal value.
+   *
+   * @return true
+   * @return false
+   */
+  bool check();
+
   private:
   /**
-   * @brief Calibrates the line tracker and blocks for an appropriate amount
-   * of time for the process to be complete.
+   * @brief Below this reading, the line tracker is likely not plugged in or is
+   * otherwise having issues.
    *
    */
-  void calibrate();
+  static constexpr std::int32_t errorThreshold{20};
+
+  /**
+   * @brief Calibrates the line tracker and blocks for an appropriate amount
+   * of time for the process to be complete. Also checks to see if its working.
+   *
+   */
+  void initializeLineTracker();
 
   pros::adi::LineSensor lineTracker;
   const std::int32_t threshold;
