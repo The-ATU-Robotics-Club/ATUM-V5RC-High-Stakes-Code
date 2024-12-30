@@ -39,7 +39,7 @@ class ProfileFollower {
     logger.debug("Profile follower constructed!");
   }
 
-  void startProfile(const Unit &start, const Unit &iEnd) {
+  void startProfile(const Unit start, const Unit iEnd) {
     end = iEnd;
     profile.generate(start, end);
     acceptable.reset(timeoutScaling * profile.getTotalTime());
@@ -54,25 +54,16 @@ class ProfileFollower {
     }
   }
 
-  double getOutput(const Unit &s, const UnitsPerSecond &v) {
+  double getOutput(const Unit s, const UnitsPerSecond v) {
     if(logger.getLevel() == Logger::Level::Debug) {
       graphPoint(s, v);
     }
     const typename UnitProfile::Point reference{profile.getPoint(s)};
+    const double positionOutput{getPositionOutput(s, reference.s)};
     const double velocityOutput{
         velocityController->getOutput(getValueAs<UnitsPerSecond>(v),
                                       getValueAs<UnitsPerSecond>(reference.v))};
-    double accelerationOutput{getValueAs<UnitsPerSecondSq>(reference.a)};
-    if(reference.a < UnitsPerSecondSq{0}) {
-      accelerationOutput *= profile.isBackwards() ? kA.accel : kA.decel;
-    } else {
-      accelerationOutput *= profile.isBackwards() ? kA.decel : kA.accel;
-    }
-    double positionOutput{0.0};
-    if(positionController) {
-      const double positionError{difference(reference.s, s)};
-      positionOutput = positionController->getOutput(positionError);
-    }
+    double accelerationOutput{getAccelerationOutput(reference.a)};
     acceptable.canAccept(s, end);
     return positionOutput + velocityOutput + accelerationOutput;
   }
@@ -82,6 +73,24 @@ class ProfileFollower {
   }
 
   private:
+  double getPositionOutput(const Unit state, const Unit reference) const {
+    if(!positionController) {
+      return 0.0;
+    }
+    const double positionError{difference(reference, state)};
+    return positionController->getOutput(positionError);
+  }
+
+  double getAccelerationOutput(const UnitsPerSecondSq accel) const {
+    double accelerationOutput{getValueAs<UnitsPerSecondSq>(accel)};
+    if(accel < UnitsPerSecondSq{0}) {
+      accelerationOutput *= profile.isBackwards() ? kA.accel : kA.decel;
+    } else {
+      accelerationOutput *= profile.isBackwards() ? kA.decel : kA.accel;
+    }
+    return accelerationOutput;
+  }
+
   void prepareGraphing(const Unit start) {
     const typename UnitProfile::Parameters motionParams{
         profile.getParameters()};

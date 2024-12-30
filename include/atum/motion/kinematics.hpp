@@ -19,8 +19,8 @@ class Kinematics {
   Kinematics() = delete;
   Kinematics(const Kinematics &) = delete;
   Kinematics(Kinematics &&) = delete;
-  
-  // Figure out the corresponding types for the derivative of Unit. 
+
+  // Figure out the corresponding types for the derivative of Unit.
   using UnitsPerSecond = decltype(Unit{1} / 1_s);
   using UnitsPerSecondSq = decltype(UnitsPerSecond{1} / 1_s);
   using UnitsPerSecondCb = decltype(UnitsPerSecondSq{1} / 1_s);

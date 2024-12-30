@@ -15,6 +15,16 @@
 #include <limits>
 
 namespace atum {
+/**
+ * @brief This class supports the efficient creation of S and trapezoidal motion
+ * profiles, alongside helpful logging and graphing functionalities.
+ *
+ * Can be polled by position to allow for robust following. This works by
+ * comparing the closest point in time and position along the profile and using
+ * the point with the larger velocity.
+ *
+ * @tparam Unit
+ */
 template <typename Unit>
 class MotionProfile {
   public:
@@ -24,15 +34,26 @@ class MotionProfile {
   using UnitsPerSecondCb = decltype(UnitsPerSecondSq{1} / 1_s);
   using UnitKinematics = Kinematics<Unit>;
 
+  /**
+   * @brief The parameters involved in creating the motion profile.
+   *
+   */
   struct Parameters {
     UnitsPerSecond maxV;
     UnitsPerSecondSq maxA;
     // Default to a trapezoidal profile.
     UnitsPerSecondCb maxJ{std::numeric_limits<double>::max()};
     bool usePosition{true};
+    // The number of iterations in the binary search for the closest point on
+    // the motion profile.
     std::size_t searchIterations{25};
   };
 
+  /**
+   * @brief The points along a motion profile with relevant information to
+   * follow.
+   *
+   */
   struct Point {
     Unit s;
     UnitsPerSecond v;
@@ -41,13 +62,26 @@ class MotionProfile {
     second_t t;
   };
 
+  /**
+   * @brief Constructs a motion profile with the given parameters. Need to call
+   * generate before getting points.
+   *
+   * @param iParams
+   * @param loggerLevel
+   */
   MotionProfile(const Parameters &iParams,
                 const Logger::Level &loggerLevel = Logger::Level::Info) :
-      params{iParams},
-      logger{loggerLevel} {
+      params{iParams}, logger{loggerLevel} {
     logger.debug("Motion profile has been constructed!");
   }
 
+  /**
+   * @brief Generates the relevant points of the motion profile based on the
+   * given start and end position.
+   *
+   * @param iStart
+   * @param iEnd
+   */
   void generate(const Unit iStart, const Unit iEnd) {
     start = iStart;
     end = iEnd;
@@ -65,7 +99,17 @@ class MotionProfile {
                  to_string(end) + " has been generated!");
   }
 
-  Point getPoint(const Unit s) {
+  /**
+   * @brief Gets a point along the motion profile based on time along the
+   * profile and the given position (whichever gives a higher velocity).
+   *
+   * The default of zero for the position parameter allows for easy use in
+   * time-only polling contexts.
+   *
+   * @param s
+   * @return Point
+   */
+  Point getPoint(const Unit s = Unit{0}) {
     Point point{getTimedPoint()};
     if(params.usePosition) {
       const Point closestPoint{getClosestPoint(s)};
@@ -80,11 +124,51 @@ class MotionProfile {
     return point;
   }
 
+  /**
+   * @brief Gets the total time the profile should take to complete.
+   *
+   * @return second_t
+   */
+  second_t getTotalTime() const {
+    return points[6].t;
+  }
+
+  /**
+   * @brief Gets the parameters for the profile.
+   *
+   * @return Parameters
+   */
+  Parameters getParameters() const {
+    return params;
+  }
+
+  /**
+   * @brief Returns if the profile involves moving backwards.
+   *
+   * @return true
+   * @return false
+   */
+  bool isBackwards() const {
+    return target < Unit{0};
+  }
+
+  private:
+  /**
+   * @brief Gets a point based on the internal timer.
+   *
+   * @return Point
+   */
   Point getTimedPoint() {
     const second_t t{timer.timeElapsed()};
     return getPointAt(t);
   }
 
+  /**
+   * @brief Gets the closest point to the given position.
+   *
+   * @param s
+   * @return Point
+   */
   Point getClosestPoint(const Unit s) {
     // Return appropriate value if behind start or in front of end.
     if(distance(s, start) > Unit{0}) {
@@ -105,19 +189,12 @@ class MotionProfile {
     return getPointAt(t1);
   }
 
-  second_t getTotalTime() const {
-    return points[6].t;
-  }
-
-  Parameters getParameters() const {
-    return params;
-  }
-
-  bool isBackwards() const {
-    return target < Unit{0};
-  }
-
-  private:
+  /**
+   * @brief Calculates the reference point at a given time along the profile.
+   *
+   * @param t
+   * @return Point
+   */
   Point getPointAt(const second_t t) {
     if(t < 0_s) {
       return {start,
@@ -150,6 +227,12 @@ class MotionProfile {
     return p;
   }
 
+  /**
+   * @brief Gets the time interval that the given position lies in between.
+   *
+   * @param s
+   * @return std::pair<second_t, second_t>
+   */
   std::pair<second_t, second_t> getTimeBounds(const Unit s) {
     // Finds first point we're past (starts with 1 since we know we're past the
     // start if this ever gets called).
@@ -166,6 +249,15 @@ class MotionProfile {
     }
   }
 
+  /**
+   * @brief Performs a binary search starting with the two given times to find
+   * the closest point to the given position.
+   *
+   * @param s
+   * @param t0
+   * @param t2
+   * @return second_t
+   */
   second_t searchForClosestPointTime(const Unit s, second_t t0, second_t t2) {
     for(std::size_t n{0}; n < params.searchIterations; n++) {
       const second_t t1{(t0 + t2) / 2.0};
@@ -178,6 +270,14 @@ class MotionProfile {
     return (t0 + t2) / 2.0;
   }
 
+  /**
+   * @brief Gets the difference between the right and left sides parameters and
+   * reverses as necessary.
+   *
+   * @param left
+   * @param right
+   * @return Unit
+   */
   Unit distance(const Unit left, const Unit right) {
     Unit diff{right - left};
     if(isBackwards()) {
@@ -186,6 +286,11 @@ class MotionProfile {
     return diff;
   }
 
+  /**
+   * @brief Begins the profiling process by determining how many stages the
+   * profile has.
+   *
+   */
   void beginProfile() {
     const bool reachesMaxAccel{params.maxA * params.maxA / params.maxJ <
                                params.maxV};
@@ -214,6 +319,10 @@ class MotionProfile {
     }
   }
 
+  /**
+   * @brief Generate a profile with no zero jerk section.
+   *
+   */
   void profile4Stage() {
     logger.debug("Generated profile is 4 stages.");
     const Unit absTarget{abs(target)};
@@ -229,6 +338,10 @@ class MotionProfile {
     points[5].a = points[6].a = -points[1].a;
   }
 
+  /**
+   * @brief Generate a profile that never reaches max acceleration.
+   *
+   */
   void profile5Stage() {
     logger.debug("Generated profile is 5 stages.");
     const Unit absTarget{abs(target)};
@@ -244,6 +357,10 @@ class MotionProfile {
     points[5].a = points[6].a = -points[1].a;
   }
 
+  /**
+   * @brief Generate a profile that never reaches max velocity.
+   *
+   */
   void profile6Stage() {
     logger.debug("Generated profile is 6 stages.");
     const Unit absTarget{abs(target)};
@@ -272,6 +389,10 @@ class MotionProfile {
         params.maxJ * points[2].t * points[2].t * points[2].t / 6.0;
   }
 
+  /**
+   * @brief Generate a profile that reaches max velocity.
+   *
+   */
   void profileAllStages() {
     logger.debug("Generated profile is 7 (all) stages.");
     const Unit absTarget{abs(target)};
@@ -296,6 +417,11 @@ class MotionProfile {
     points[5].a = points[6].a = -params.maxA;
   }
 
+  /**
+   * @brief Finish up the profile by setting the jerk at each point, reversing
+   * if necessary, and integrating time and position.
+   *
+   */
   void finishProfile() {
     points[0].j = points[6].j = params.maxJ;
     points[2].j = points[4].j = -params.maxJ;
@@ -314,6 +440,10 @@ class MotionProfile {
     }
   }
 
+  /**
+   * @brief Prepare the graph screen.
+   *
+   */
   void prepareGraphing() {
     GUI::Graph::clearSeries(GUI::SeriesColor::White);
     GUI::Graph::clearSeries(GUI::SeriesColor::Magenta);
@@ -332,6 +462,11 @@ class MotionProfile {
                                GUI::SeriesColor::Blue);
   }
 
+  /**
+   * @brief Graphs a point.
+   *
+   * @param p
+   */
   void graphPoint(const Point &p) {
     GUI::Graph::addValue(getValueAs<Unit>(p.s), GUI::SeriesColor::White);
     GUI::Graph::addValue(getValueAs<UnitsPerSecond>(p.v),

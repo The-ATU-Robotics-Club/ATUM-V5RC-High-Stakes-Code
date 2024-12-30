@@ -2,11 +2,11 @@
 
 namespace atum {
 Timer::Timer(const second_t iAlarmTime) :
-    startTime{time()},
-    alarmTime{iAlarmTime} {}
+    startTime{time()}, alarmTime{iAlarmTime} {}
 
 void Timer::setAlarmTime(const second_t iAlarmTime) {
   alarmTime = iAlarmTime;
+  resetAlarm();
 }
 
 void Timer::resetAlarm(const second_t resetTime) {

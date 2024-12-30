@@ -2,6 +2,8 @@
 
 namespace atum {
 ROUTINE_DEFINITIONS_FOR(Robot15A) {
+  START_ROUTINE("Skills")
+  END_ROUTINE
   START_ROUTINE("Test 1")
   intake->load();
   wait(5_s);
