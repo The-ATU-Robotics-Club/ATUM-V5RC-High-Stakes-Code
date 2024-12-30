@@ -24,13 +24,33 @@ namespace atum {
 #define GET_MACRO(_1, _2, NAME, ...) NAME
 
 /**
+ * @brief Provided for disambiguation purposes in a few constructors.
+ *
+ */
+using SmartPort = std::int8_t;
+
+/**
  * @brief Because make_unique and make_shared seemed to brick the type inference
- * of constructors involving vectors, this alias makes constructed smart
+ * of constructors involving vectors, this aliases makes constructed smart
  * pointers to said objects a little nicer looking.
  *
  *
  */
-using PortsList = std::vector<std::int8_t>;
+using PortsList = std::vector<std::uint8_t>;
+
+/**
+ * @brief Same as PortsList, but for the signed integers associated with
+ * reversed motors.
+ *
+ */
+using MotorPortsList = std::vector<std::int8_t>;
+
+/**
+ * @brief Used in the case where a port can not be found during dynamic
+ * initialization of a device.
+ *
+ */
+static constexpr std::int8_t errorPort{0};
 
 /**
  * @brief A simple templated function to take an average of a vector of items.

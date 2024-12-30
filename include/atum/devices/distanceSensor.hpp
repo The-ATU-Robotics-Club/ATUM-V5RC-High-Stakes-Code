@@ -1,10 +1,10 @@
 /**
  * @file distanceSensor.hpp
- * @brief Includes the DistanceSensor class. 
+ * @brief Includes the DistanceSensor class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -17,6 +17,9 @@ class DistanceSensor {
   public:
   /**
    * @brief Constructs a new distance sensor with the given port.
+   *
+   * By providing a port, reconnecting is supported whenever the device isn't
+   * connected at the beginning of the match.
    *
    * @param port
    * @param iThreshold
@@ -50,6 +53,15 @@ class DistanceSensor {
    * @return false
    */
   bool closeTo();
+
+  /**
+   * @brief Checks if the distance sensor is functioning by seeing if it is
+   * installed.
+   *
+   * @return true
+   * @return false
+   */
+  bool check();
 
   private:
   // This is the distance that is returned from the distance sensor if no object

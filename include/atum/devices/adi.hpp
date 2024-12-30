@@ -1,10 +1,10 @@
 /**
  * @file adi.hpp
- * @brief Includes the ADI class. 
+ * @brief Includes the ADI class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once

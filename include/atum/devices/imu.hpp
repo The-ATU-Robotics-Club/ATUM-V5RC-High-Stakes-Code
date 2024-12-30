@@ -1,10 +1,10 @@
 /**
  * @file imu.hpp
- * @brief Includes the IMU class. 
+ * @brief Includes the IMU class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -18,7 +18,7 @@ namespace atum {
 /**
  * @brief A class to wrap around potentially several IMUs and provide some
  * useful methods for common actions. Supports dynamically finding port numbers.
- * Assumes the IMU is flat side down (or bearing side down). 
+ * Assumes the IMU is flat side down (or bearing side down).
  *
  */
 class IMU {
@@ -26,11 +26,14 @@ class IMU {
   /**
    * @brief Constructs a new IMU object with port numbers given.
    *
+   * By providing ports, reconnecting is supported whenever the device isn't
+   * connected at the beginning of the match.
+   *
    * @param ports
    * @param iReversed
    * @param loggerLevel
    */
-  IMU(std::vector<std::uint8_t> ports,
+  IMU(const PortsList &ports,
       const bool iReversed = false,
       Logger::Level loggerLevel = Logger::Level::Info);
 

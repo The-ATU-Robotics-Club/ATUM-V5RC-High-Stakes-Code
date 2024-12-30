@@ -84,17 +84,6 @@ R getValueAs(const T &quantity) {
 }
 
 /**
- * @brief This is a template specialization for averaging angles together.
- * This is necessary to deal with angle wrap and the like.
- *
- * @tparam
- * @param angles
- * @return degree_t
- */
-template <>
-degree_t average<degree_t>(const std::vector<degree_t> &angles);
-
-/**
  * @brief Constrains an angle between -180 and 180 degrees.
  *
  * @param angle

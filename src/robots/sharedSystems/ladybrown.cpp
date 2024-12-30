@@ -20,9 +20,9 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     logger{loggerLevel} {
   left->setBrakeMode(pros::MotorBrake::brake);
   right->setBrakeMode(pros::MotorBrake::brake);
-  left->resetPosition();
-  right->resetPosition();
-  rotation->reset();
+  left->resetPosition(params.absoluteStartingPosition);
+  right->resetPosition(params.absoluteStartingPosition);
+  rotation->resetDisplacement(params.absoluteStartingPosition);
   // Manually set state to avoid setting hold position.
   state = LadybrownState::Idle;
 }
@@ -120,14 +120,32 @@ void Ladybrown::moveTo(const degree_t target) {
 }
 
 degree_t Ladybrown::getPosition() const {
-  return rotation->getDisplacement();
+  if(rotation->check()) {
+    // Just use reading from rotation sensor if available.
+    return rotation->getDisplacement();
+  }
+  std::vector<degree_t> readings;
+  if(left->check()) {
+    readings.push_back(left->getPosition());
+  }
+  if(right->check()) {
+    readings.push_back(right->getPosition());
+  }
+  return average(readings);
 }
 
 degrees_per_second_t Ladybrown::getVelocity() const {
-  const degrees_per_second_t leftMotorVelocity{0.2 * left->getVelocity()};
-  const degrees_per_second_t rightMotorVelocity{0.2 * right->getVelocity()};
-  const degrees_per_second_t rotationVelocity{rotation->getVelocity()};
-  return (leftMotorVelocity + rightMotorVelocity + rotationVelocity) / 3.0;
+  std::vector<degrees_per_second_t> readings;
+  if(rotation->check()) {
+    readings.push_back(rotation->getVelocity());
+  }
+  if(left->check()) {
+    readings.push_back(left->getVelocity());
+  }
+  if(right->check()) {
+    readings.push_back(right->getVelocity());
+  }
+  return average(readings);
 }
 
 void Ladybrown::handlePiston() {
@@ -151,9 +169,7 @@ double Ladybrown::getHoldOutput() {
     const double hold{params.holdController.getOutput(holdError)};
     holdOutput += hold;
   }
-  const degree_t absolutePosition{params.absoluteStartingPosition +
-                                  getPosition()};
-  holdOutput += params.kG * cos(getValueAs<radian_t>(absolutePosition));
+  holdOutput += params.kG * cos(getValueAs<radian_t>(getPosition()));
   return holdOutput;
 }
 
@@ -192,8 +208,22 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       continue;
     }
     double output{voltage + getHoldOutput()};
-    const double balance{params.balanceController.getOutput(
-        left->getPosition(), right->getPosition())};
+    double balance{0.0};
+    if(left->check() && right->check()) {
+      balance = params.balanceController.getOutput(
+          getValueAs<degree_t>(left->getPosition()),
+          getValueAs<degree_t>(right->getPosition()));
+    }
+
+    // If one is still working, reset the position of the others so everything
+    // works if it comes back online.
+    if(!left->check()) {
+      left->resetPosition(getPosition());
+    }
+    if(!right->check()) {
+      right->resetPosition(getPosition());
+    }
+
     left->moveVoltage(output + balance);
     right->moveVoltage(output);
   }

@@ -1,47 +1,46 @@
 #include "motor.hpp"
 
 namespace atum {
-Motor::Motor(const std::vector<std::int8_t> ports,
-             const pros::v5::MotorGears iGearset,
+Motor::Motor(const MotorPortsList &ports,
+             const Gearing &iGearing,
              const std::string &iName,
              const Logger::Level loggerLevel) :
-    gearset{iGearset},
-    name{iName},
-    logger{loggerLevel} {
+    gearing{iGearing}, name{iName}, logger{loggerLevel} {
   for(std::int8_t port : ports) {
-    motors.push_back(std::make_unique<pros::Motor>(
-        std::abs(port), gearset, pros::v5::MotorEncoderUnits::degrees));
+    motors.push_back(
+        std::make_unique<pros::Motor>(std::abs(port),
+                                      gearing.cartridge,
+                                      pros::v5::MotorEncoderUnits::degrees));
     enabled.push_back(true);
-    if(port < 0) {
-      motors.back()->set_reversed(true);
-    }
+    directions.push_back((port < 0) ? -1 : 1);
   }
+  check();
   logger.debug("The " + name + " motor is constructed!");
-  motorCheck();
 }
 
 void Motor::moveVelocity(const revolutions_per_minute_t velocity) {
-  motorCheck();
-  const double rawVelocity{getValueAs<revolutions_per_minute_t>(velocity)};
+  check();
+  const double rawVelocity{
+      getValueAs<revolutions_per_minute_t>(velocity * gearing.ratio)};
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      motors[i]->move_velocity(rawVelocity);
+      motors[i]->move_velocity(directions[i] * rawVelocity);
     }
   }
 }
 
 void Motor::moveVoltage(double voltage) {
-  motorCheck();
+  check();
   voltage *= 1000;
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      motors[i]->move_voltage(voltage);
+      motors[i]->move_voltage(directions[i] * voltage);
     }
   }
 }
 
 void Motor::brake() {
-  motorCheck();
+  check();
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
       motors[i]->brake();
@@ -49,31 +48,33 @@ void Motor::brake() {
   }
 }
 
-double Motor::getPosition() const {
-  std::vector<double> positions;
+degree_t Motor::getPosition() const {
+  std::vector<degree_t> positions;
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      positions.push_back(motors[i]->get_position());
+      positions.push_back(degree_t{directions[i] * motors[i]->get_position()});
     }
   }
-  return average(positions);
+  return offset + average(positions) / gearing.ratio;
 }
 
 revolutions_per_minute_t Motor::getVelocity() const {
   std::vector<revolutions_per_minute_t> velocities;
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      const revolutions_per_minute_t velocity{motors[i]->get_actual_velocity()};
+      const revolutions_per_minute_t velocity{directions[i] *
+                                              motors[i]->get_actual_velocity()};
       velocities.push_back(velocity);
     }
   }
-  return average(velocities);
+  return average(velocities) / gearing.ratio;
 }
 
 revolutions_per_minute_t Motor::getTargetVelocity() const {
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      const std::int32_t targetVelocity{motors[0]->get_target_velocity()};
+      const std::int32_t targetVelocity{directions[i] *
+                                        motors[0]->get_target_velocity()};
       return revolutions_per_minute_t{targetVelocity};
     }
   }
@@ -139,7 +140,7 @@ double Motor::getTorque() const {
 std::int32_t Motor::getVoltage() const {
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      return motors[i]->get_voltage();
+      return directions[i] * motors[i]->get_voltage();
     }
   }
   return 0;
@@ -177,23 +178,27 @@ void Motor::setCurrentLimit(const std::int32_t limit) const {
   }
 }
 
-void Motor::resetPosition() const {
+void Motor::resetPosition(const degree_t iOffset) {
+  offset = iOffset;
   for(std::size_t i{0}; i < motors.size(); i++) {
     // Regardless of enabled, try to change this setting.
     motors[i]->tare_position();
   }
 }
 
-void Motor::motorCheck() {
+bool Motor::check() {
+  bool goodEnough{true};
   for(int i{motors.size() - 1}; i >= 0; i--) {
     std::int8_t port{motors[i]->get_port()};
     enabled[i] = motors[i]->is_installed();
+    goodEnough = goodEnough && enabled[i];
     if(!enabled[i]) {
       logger.error("The " + getName(port) + " motor is not installed.");
     } else if(motors[i]->is_over_temp()) {
       logger.warn("The " + getName(port) + " motor is overheating.");
     }
   }
+  return goodEnough;
 }
 
 std::string Motor::getName(const std::int8_t port) {

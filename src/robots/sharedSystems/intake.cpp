@@ -134,11 +134,12 @@ bool Intake::shouldIndex() const {
   bool ladybrownNotInPosition{state == IntakeState::Loading &&
                               ladybrown->getClosestNamedPosition() !=
                                   LadybrownState::Loading};
-  return state == IntakeState::Indexing || ladybrownNotInPosition;
+  return colorSensor->check() &&
+         (state == IntakeState::Indexing || ladybrownNotInPosition);
 }
 
 bool Intake::shouldSort() const {
-  return sortOutColor != ColorSensor::Color::None &&
+  return colorSensor->check() && sortOutColor != ColorSensor::Color::None &&
          colorSensor->getColor() == sortOutColor;
 }
 

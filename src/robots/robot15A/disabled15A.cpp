@@ -2,41 +2,49 @@
 
 namespace atum {
 Robot15A::Robot15A() : Robot{this} {
-  std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
-      PortsList{-7, -8, -9, 10}, pros::v5::MotorGears::blue, "left drive")};
-  std::unique_ptr<Motor> rightDriveMtr{std::make_unique<Motor>(
-      PortsList{1, 2, 3, -4}, pros::v5::MotorGears::blue, "right drive")};
+  std::unique_ptr<Motor> leftDriveMtr{
+      std::make_unique<Motor>(MotorPortsList{-7, -8, -9, 10},
+                              Motor::Gearing{pros::v5::MotorGears::blue},
+                              "left drive")};
+  std::unique_ptr<Motor> rightDriveMtr{
+      std::make_unique<Motor>(MotorPortsList{1, 2, 3, -4},
+                              Motor::Gearing{pros::v5::MotorGears::blue},
+                              "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, -1.8625_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('E', 'F', wheelCircumference, 0.25_in)};
-  std::unique_ptr<IMU> imu{std::make_unique<IMU>(2)};
+  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{11, 18})};
   std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
       std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
   drive = std::make_unique<Drive>(
       std::move(leftDriveMtr), std::move(rightDriveMtr), std::move(odometry));
 
-  std::unique_ptr<Motor> leftLadybrownMotor{std::make_unique<Motor>(
-      PortsList{-15}, pros::v5::MotorGears::green, "left ladybrown")};
-  std::unique_ptr<Motor> rightLadybrownMotor{std::make_unique<Motor>(
-      PortsList{16}, pros::v5::MotorGears::green, "right ladybrown")};
+  std::unique_ptr<Motor> leftLadybrownMotor{
+      std::make_unique<Motor>(MotorPortsList{-15},
+                              Motor::Gearing{pros::v5::MotorGears::green, 5},
+                              "left ladybrown")};
+  std::unique_ptr<Motor> rightLadybrownMotor{
+      std::make_unique<Motor>(MotorPortsList{16},
+                              Motor::Gearing{pros::v5::MotorGears::green, 5},
+                              "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B', false)};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>('H', 2700)};
   std::unordered_map<LadybrownState, degree_t> ladybrownPositions{
-      {LadybrownState::Resting, 0_deg},
-      {LadybrownState::Loading, 27.5_deg},
-      {LadybrownState::Preparing, 70_deg},
-      {LadybrownState::Scoring, 135_deg}};
+      {LadybrownState::Resting, -11.1_deg},
+      {LadybrownState::Loading, 16.5_deg},
+      {LadybrownState::Preparing, 60_deg},
+      {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      12, -11.1_deg, 5_deg, 60_deg, ladybrownPositions, 0.375_s};
+      12, -11.1_deg, -5_deg, 50_deg, ladybrownPositions, 0.375_s};
   ladybrownParameters.kG = 0.2;
-  ladybrownParameters.holdController = PID{{0.15}};
-  ladybrownParameters.balanceController = PID{{0.15}};
+  ladybrownParameters.holdController = PID{{0.3}};
+  ladybrownParameters.balanceController = PID{{0.75}};
   AngularProfile::Parameters ladybrownMotionParams{
       240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;
@@ -67,12 +75,12 @@ Robot15A::Robot15A() : Robot{this} {
                                           ladybrownParameters,
                                           std::move(profileFollower));
 
-  std::unique_ptr<Motor> intakeMtr{
-      std::make_unique<Motor>(PortsList{-5, 6}, pros::v5::MotorGears::blue)};
+  std::unique_ptr<Motor> intakeMtr{std::make_unique<Motor>(
+      MotorPortsList{-5, 6}, Motor::Gearing{pros::v5::MotorGears::blue})};
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(hueFields)};
+      std::make_unique<ColorSensor>(17, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 30_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};

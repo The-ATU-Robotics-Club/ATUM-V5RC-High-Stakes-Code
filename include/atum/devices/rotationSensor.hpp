@@ -26,6 +26,10 @@ class RotationSensor {
    * @brief Constructs a new rotation sensor based on a given port. Reverses if
    * requested.
    *
+   * Unlike other smart port devices, explicit-port construction does NOT
+   * provide the opportunity to reconnect whenever the device isn't connected at
+   * the beginning of the match.
+   *
    * @param port
    * @param reversed
    * @param loggerLevel
@@ -68,10 +72,25 @@ class RotationSensor {
   degrees_per_second_t getVelocity();
 
   /**
-   * @brief Resets the displacement of the rotation sensor to zero.
+   * @brief Resets the displacement of the rotation sensor to the given offset
+   * (default is zero).
    *
+   * @param iOffset
    */
-  void reset();
+  void resetDisplacement(const degree_t iOffset = 0_deg);
+
+  /**
+   * @brief Checks if the rotation sensor is functioning by seeing if it is
+   * installed or has ever been uninstalled (since reinitialization is finnicky,
+   * so it's better to use another sensor).
+   *
+   * By providing a port, reconnecting is supported whenever the device isn't
+   * connected at the beginning of the match.
+   *
+   * @return true
+   * @return false
+   */
+  bool check();
 
   private:
   /**
@@ -83,7 +102,8 @@ class RotationSensor {
   void initializeRotationSensor(const bool reversed);
 
   std::unique_ptr<pros::Rotation> rotationSensor;
-
   Logger logger;
+  degree_t offset{0_deg};
+  bool doNotUseAgain{false};
 };
 } // namespace atum

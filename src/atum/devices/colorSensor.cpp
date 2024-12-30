@@ -5,37 +5,25 @@ namespace atum {
 ColorSensor::ColorSensor(const std::int8_t port,
                          const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields},
-    logger{loggerLevel} {
+    hueFields{iHueFields}, logger{loggerLevel} {
   colorSensor = std::make_unique<pros::Optical>(port);
-  if(colorSensor->is_installed()) {
-    logger.debug("Color sensor found on port " +
-                 std::to_string(colorSensor->get_port()) + ".");
-  } else {
-    logger.error("Color sensor at port " +
-                 std::to_string(colorSensor->get_port()) +
-                 " could not be initialized!");
-  }
-  logger.info("Color sensor contructed with port " +
-              std::to_string(colorSensor->get_port()) + ".");
+  check();
   initializeColorSensor();
 }
 
 ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields},
-    logger{loggerLevel} {
+    hueFields{iHueFields}, logger{loggerLevel} {
   const auto colorSensors{pros::Optical::get_all_devices()};
   if(!colorSensors.size()) {
     logger.error("Color sensor not found!");
+    colorSensor = std::make_unique<pros::Optical>(errorPort);
     return;
   } else if(colorSensors.size() > 1) {
     logger.warn("Multiple color sensors found! Using first port found.");
   }
   colorSensor =
       std::make_unique<pros::Optical>(colorSensors.front().get_port());
-  logger.debug("Color sensor found on port " +
-               std::to_string(colorSensor->get_port()) + ".");
   initializeColorSensor();
 }
 
@@ -58,9 +46,20 @@ ColorSensor::Color ColorSensor::getColor() {
 }
 
 double ColorSensor::getRawHue() {
+  check();
   const double reading{colorSensor->get_hue()};
   logger.debug("Color sensor hue reading is " + std::to_string(reading) + ".");
   return reading;
+}
+
+bool ColorSensor::check() {
+  const bool installed{colorSensor->is_installed()};
+  if(!installed) {
+    logger.error("Color sensor on port " +
+                 std::to_string(colorSensor->get_port()) +
+                 " is not installed!");
+  }
+  return installed;
 }
 
 void ColorSensor::initializeColorSensor() {
@@ -71,5 +70,7 @@ void ColorSensor::initializeColorSensor() {
   wait(100_ms);
   colorSensor->disable_gesture();
   wait(100_ms);
+  logger.info("Color sensor contructed with port " +
+              std::to_string(colorSensor->get_port()) + ".");
 }
 } // namespace atum

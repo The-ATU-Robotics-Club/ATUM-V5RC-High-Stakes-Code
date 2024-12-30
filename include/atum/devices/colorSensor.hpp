@@ -1,10 +1,10 @@
 /**
  * @file colorSensor.hpp
- * @brief Includes the ColorSensor class. 
+ * @brief Includes the ColorSensor class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -20,8 +20,8 @@ class ColorSensor {
   public:
   /**
    * @brief This should be used whenever polling the color from these
-   * sensors, since it results in the best performance. 
-   * 
+   * sensors, since it results in the best performance.
+   *
    */
   static constexpr second_t refreshRate{20_ms};
 
@@ -52,6 +52,9 @@ class ColorSensor {
    *
    * Also turns on LED to max brightness and disables gestures.
    *
+   * By providing a port, reconnecting is supported whenever the device isn't
+   * connected at the beginning of the match.
+   *
    * @param port
    * @param iHueFields
    * @param loggerLevel
@@ -76,7 +79,7 @@ class ColorSensor {
 
   /**
    * @brief Gets the detected color. Will return None if outside of proximity
-   * threshold given (unless 0). Turns LED on if something is nearby. 
+   * threshold given (unless 0). Turns LED on if something is nearby.
    *
    * @return Color
    */
@@ -89,6 +92,15 @@ class ColorSensor {
    * @return double
    */
   double getRawHue();
+
+  /**
+   * @brief Checks if the color sensor is functioning by seeing if it is
+   * installed.
+   *
+   * @return true
+   * @return false
+   */
+  bool check();
 
   private:
   /**

@@ -1,7 +1,7 @@
 #include "imu.hpp"
 
 namespace atum {
-IMU::IMU(std::vector<std::uint8_t> ports,
+IMU::IMU(const PortsList &ports,
          const bool iReversed,
          Logger::Level loggerLevel) :
     reversed{iReversed}, logger{loggerLevel} {
@@ -29,7 +29,6 @@ IMU::IMU(const std::size_t expectedAmount,
   const auto rawIMUs{pros::IMU::get_all_devices()};
   if(!rawIMUs.size()) {
     logger.error("No IMUs found!");
-    return;
   } else if(rawIMUs.size() < expectedAmount) {
     logger.warn("Number of IMUs found lower than expected!");
   }
@@ -53,9 +52,13 @@ void IMU::setHeading(degree_t heading) {
 
 degree_t IMU::getHeading() {
   std::vector<degree_t> readings;
-  for(auto &imu : imus) readings.push_back(degree_t{imu->get_rotation()});
+  for(auto &imu : imus) {
+    readings.push_back(degree_t{imu->get_rotation()});
+  }
   degree_t heading{average(readings)};
-  if(reversed) heading *= -1;
+  if(reversed) {
+    heading *= -1;
+  }
   logger.debug("IMU is reading " + to_string(heading) + ".");
   return heading;
 }
