@@ -487,6 +487,11 @@ class MotionProfile {
   Timer timer;
 };
 
+/**
+ * @brief Specifically produce motion profiles for lateral and angular
+ * contexts and make them easy to access.
+ *
+ */
 using LateralProfile = MotionProfile<meter_t>;
 using AngularProfile = MotionProfile<radian_t>;
 } // namespace atum

@@ -12,6 +12,13 @@
 #include "../utility/units.hpp"
 
 namespace atum {
+/**
+ * @brief This template class provides several static methods to support common
+ * kinematic calculations. It is a template so the same equations do not have to
+ * be redefined for angles.
+ *
+ * @tparam Unit
+ */
 template <typename Unit>
 class Kinematics {
   public:
@@ -25,6 +32,16 @@ class Kinematics {
   using UnitsPerSecondSq = decltype(UnitsPerSecond{1} / 1_s);
   using UnitsPerSecondCb = decltype(UnitsPerSecondSq{1} / 1_s);
 
+  /**
+   * @brief Calculate the next position based on the given parameters.
+   *
+   * @param dt
+   * @param x0
+   * @param v0
+   * @param a0
+   * @param j
+   * @return Unit
+   */
   static Unit position(const second_t dt,
                        const Unit x0,
                        const UnitsPerSecond v0 = UnitsPerSecond{0.0},
@@ -34,6 +51,15 @@ class Kinematics {
     return x0 + v0 * dt + 0.5 * a0 * dt2 + (1.0 / 6.0) * j * dt2 * dt;
   }
 
+  /**
+   * @brief Calculates the next velocity based on the given parameters.
+   *
+   * @param dt
+   * @param v0
+   * @param a0
+   * @param j
+   * @return UnitsPerSecond
+   */
   static UnitsPerSecond
       velocity(const second_t dt,
                const UnitsPerSecond v0,
@@ -42,6 +68,14 @@ class Kinematics {
     return v0 + a0 * dt + 0.5 * j * dt * dt;
   }
 
+  /**
+   * @brief Calculates the next velocity based on the given parameters.
+   *
+   * @param dx
+   * @param v0
+   * @param a0
+   * @return UnitsPerSecond
+   */
   static UnitsPerSecond velocity(const Unit dx,
                                  const UnitsPerSecond v0,
                                  const UnitsPerSecondSq a0 = UnitsPerSecondSq{
@@ -49,6 +83,14 @@ class Kinematics {
     return v0 + 2.0 * a0 * dx;
   }
 
+  /**
+   * @brief Calculates the next acceleration based on the given parameters.
+   *
+   * @param dt
+   * @param a0
+   * @param j
+   * @return UnitsPerSecondSq
+   */
   static UnitsPerSecondSq accel(const second_t dt,
                                 const UnitsPerSecondSq a0,
                                 const UnitsPerSecondCb j = UnitsPerSecondCb{
@@ -57,6 +99,11 @@ class Kinematics {
   }
 };
 
+/**
+ * @brief Specifically produce kinematic equations for lateral and angular
+ * kinematics and make them easy to access.
+ *
+ */
 using LateralKinematics = Kinematics<meter_t>;
 using AngularKinematics = Kinematics<radian_t>;
 } // namespace atum

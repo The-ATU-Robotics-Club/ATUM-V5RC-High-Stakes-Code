@@ -1,3 +1,12 @@
+/**
+ * @file profileFollower.hpp
+ * @brief Includes the ProfileFollower template class and some helpful aliases.
+ * @date 2024-12-30
+ *
+ * @copyright Copyright (c) 2024
+ *
+ */
+
 #pragma once
 
 #include "../controllers/controller.hpp"
@@ -5,6 +14,16 @@
 #include "motionProfile.hpp"
 
 namespace atum {
+/**
+ * @brief This template class supports easily following a motion profile
+ * (lateral or angular depending on the template parameter).
+ *
+ * Start by tuning without polling position, before tuning the feedforward for
+ * the velocity controller, moving onto acceleration constants, before adding in
+ * velocity and position feedback.
+ *
+ * @tparam Unit
+ */
 template <typename Unit>
 class ProfileFollower {
   public:
@@ -14,11 +33,31 @@ class ProfileFollower {
   using UnitProfile = MotionProfile<Unit>;
   using UnitAcceptable = Acceptable<Unit>;
 
+  /**
+   * @brief These constants are multiplied by the acceleration at each point
+   * along the profile (accel when accelerating, decel when decelerating) to
+   * better tracker the profile.
+   *
+   */
   struct AccelerationConstants {
     double accel;
     double decel;
   };
 
+  /**
+   * @brief Constructs a new ProfileFollower based on the given parameters.
+   *
+   * The time out scaling parameter will be used to determine the time out on
+   * the profile by multiplying the profile's total time by it.
+   *
+   * @param iProfile
+   * @param iAcceptable
+   * @param iVelocityController
+   * @param iKA
+   * @param iPositionController
+   * @param iTimeoutScaling
+   * @param loggerLevel
+   */
   ProfileFollower(const UnitProfile &iProfile,
                   const UnitAcceptable &iAcceptable,
                   std::unique_ptr<Controller> iVelocityController,
@@ -39,6 +78,13 @@ class ProfileFollower {
     logger.debug("Profile follower constructed!");
   }
 
+  /**
+   * @brief Prepare to follow a new profile defined by the start and end
+   * positions. Involves reseting the controllers and acceptable object.
+   *
+   * @param start
+   * @param iEnd
+   */
   void startProfile(const Unit start, const Unit iEnd) {
     end = iEnd;
     profile.generate(start, end);
@@ -54,6 +100,14 @@ class ProfileFollower {
     }
   }
 
+  /**
+   * @brief Gets the output of the follower based on the current position (s)
+   * and velocity (v) readings.
+   *
+   * @param s
+   * @param v
+   * @return double
+   */
   double getOutput(const Unit s, const UnitsPerSecond v) {
     if(logger.getLevel() == Logger::Level::Debug) {
       graphPoint(s, v);
@@ -68,11 +122,24 @@ class ProfileFollower {
     return positionOutput + velocityOutput + accelerationOutput;
   }
 
+  /**
+   * @brief Returns true if finished following the profile.
+   *
+   * @return true
+   * @return false
+   */
   bool isDone() {
     return acceptable.canAccept();
   }
 
   private:
+  /**
+   * @brief Gets the output of the position controller if it is provided.
+   *
+   * @param state
+   * @param reference
+   * @return double
+   */
   double getPositionOutput(const Unit state, const Unit reference) const {
     if(!positionController) {
       return 0.0;
@@ -81,6 +148,13 @@ class ProfileFollower {
     return positionController->getOutput(positionError);
   }
 
+  /**
+   * @brief Gets the output of the acceleration constants multiplied by the
+   * reference acceleration.
+   *
+   * @param accel
+   * @return double
+   */
   double getAccelerationOutput(const UnitsPerSecondSq accel) const {
     double accelerationOutput{getValueAs<UnitsPerSecondSq>(accel)};
     if(accel < UnitsPerSecondSq{0}) {
@@ -91,6 +165,10 @@ class ProfileFollower {
     return accelerationOutput;
   }
 
+  /**
+   * @brief Prepare the graph screen.
+   *
+   */
   void prepareGraphing(const Unit start) {
     const typename UnitProfile::Parameters motionParams{
         profile.getParameters()};
@@ -105,6 +183,11 @@ class ProfileFollower {
                                GUI::SeriesColor::Cyan);
   }
 
+  /**
+   * @brief Graphs a point.
+   *
+   * @param p
+   */
   void graphPoint(const Unit s, const UnitsPerSecond v) {
     GUI::Graph::addValue(getValueAs<Unit>(s), GUI::SeriesColor::Green);
     GUI::Graph::addValue(getValueAs<UnitsPerSecond>(v), GUI::SeriesColor::Cyan);
@@ -120,6 +203,11 @@ class ProfileFollower {
   Unit end;
 };
 
+/**
+ * @brief Specifically produce profile followers for lateral and angular
+ * profiles and make them easy to access.
+ *
+ */
 using LateralProfileFollower = ProfileFollower<meter_t>;
 using AngularProfileFollower = ProfileFollower<radian_t>;
 } // namespace atum
