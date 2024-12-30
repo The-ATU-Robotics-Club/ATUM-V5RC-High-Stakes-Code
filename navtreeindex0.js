@@ -105,6 +105,12 @@ var NAVTREEINDEX0 =
 "classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177baa603905470e2a5b8c13e96b579ef0dba":[1,0,0,12,0,0],
 "classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177bad15305d7a4e34e02489c74a5ef542f36":[1,0,0,12,0,4],
 "classatum_1_1MotionProfile.html":[1,0,0,13],
+"classatum_1_1MotionProfile.html#a1fce75ccd4c0a441294587fc5d4e0bf6":[1,0,0,13,4],
+"classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102":[1,0,0,13,7],
+"classatum_1_1MotionProfile.html#a790db94b58199fc2766d8cae32263ef9":[1,0,0,13,2],
+"classatum_1_1MotionProfile.html#aa76cf2899abfe018b42cf171cdf909bf":[1,0,0,13,5],
+"classatum_1_1MotionProfile.html#ab9647a647322ffba5bb6b026ab08846a":[1,0,0,13,6],
+"classatum_1_1MotionProfile.html#ab9817fb36f0a19e9977275dd8b0de1b0":[1,0,0,13,3],
 "classatum_1_1Motor.html":[1,0,0,14],
 "classatum_1_1Motor.html#a19351834929f898f34dd480b87863fc5":[1,0,0,14,15],
 "classatum_1_1Motor.html#a2535c2a9f3779ed9deafd7a74603ee0c":[1,0,0,14,4],
@@ -243,11 +249,5 @@ var NAVTREEINDEX0 =
 "dir_70d896ce8007cc8302a5768fed59734e.html":[2,0,0,0,0],
 "dir_94010ad16aedcb2a9149365d3e62b963.html":[2,0,0,0,4],
 "dir_98c01ade21989893abaa4aeb26e1ba26.html":[2,0,0,1],
-"dir_a3acc2f368f9b12e0132a198399d370b.html":[2,0,0,0,3],
-"dir_d44c64559bbebec7f509842c48db8b23.html":[2,0,0],
-"dir_ddbd85c19d66ad3425e9d03011fb5806.html":[2,0,0,1,0],
-"dir_dfde4bd97591a67560f817188441da3f.html":[2,0,0,0,5],
-"dir_ea7687f77ee6b3876ebbebbaea759ef9.html":[2,0,0,1,1],
-"dir_ec667569f7f995848149ea17568b47cb.html":[2,0,0,0,2],
-"distanceSensor_8hpp.html":[2,0,0,0,1,2]
+"dir_a3acc2f368f9b12e0132a198399d370b.html":[2,0,0,0,3]
 };

@@ -102,12 +102,19 @@ $(document).ready(function(){initNavTree('classatum_1_1MotionProfile.html',''); 
   <div class="headertitle"><div class="title">atum::MotionProfile&lt; Unit &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class supports the efficient creation of S and trapezoidal motion profiles, alongside helpful logging and graphing functionalities.  
+ <a href="classatum_1_1MotionProfile.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="motionProfile_8hpp_source.html">motionProfile.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parameters involved in creating the motion profile.  <a href="structatum_1_1MotionProfile_1_1Parameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Point.html">Point</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The points along a motion profile with relevant information to follow.  <a href="structatum_1_1MotionProfile_1_1Point.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -127,31 +134,261 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>UnitKinematics</b> =
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a790db94b58199fc2766d8cae32263ef9"><td class="memItemLeft" align="right" valign="top"><a id="a790db94b58199fc2766d8cae32263ef9" name="a790db94b58199fc2766d8cae32263ef9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>MotionProfile</b> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;iParams, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> &amp;loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memitem:a790db94b58199fc2766d8cae32263ef9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html#a790db94b58199fc2766d8cae32263ef9">MotionProfile</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;iParams, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> &amp;loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a790db94b58199fc2766d8cae32263ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a motion profile with the given parameters. Need to call generate before getting points.  <br /></td></tr>
 <tr class="separator:a790db94b58199fc2766d8cae32263ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9817fb36f0a19e9977275dd8b0de1b0"><td class="memItemLeft" align="right" valign="top"><a id="ab9817fb36f0a19e9977275dd8b0de1b0" name="ab9817fb36f0a19e9977275dd8b0de1b0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>generate</b> (const Unit iStart, const Unit iEnd)</td></tr>
+<tr class="memitem:ab9817fb36f0a19e9977275dd8b0de1b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html#ab9817fb36f0a19e9977275dd8b0de1b0">generate</a> (const Unit iStart, const Unit iEnd)</td></tr>
+<tr class="memdesc:ab9817fb36f0a19e9977275dd8b0de1b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates the relevant points of the motion profile based on the given start and end position.  <br /></td></tr>
 <tr class="separator:ab9817fb36f0a19e9977275dd8b0de1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ec253d45e30fdc11943f47e9c273666"><td class="memItemLeft" align="right" valign="top"><a id="a1ec253d45e30fdc11943f47e9c273666" name="a1ec253d45e30fdc11943f47e9c273666"></a>
-<a class="el" href="structatum_1_1MotionProfile_1_1Point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getPoint</b> (const Unit s)</td></tr>
-<tr class="separator:a1ec253d45e30fdc11943f47e9c273666"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2933afdff93182cebf9de743cc3a4688"><td class="memItemLeft" align="right" valign="top"><a id="a2933afdff93182cebf9de743cc3a4688" name="a2933afdff93182cebf9de743cc3a4688"></a>
-<a class="el" href="structatum_1_1MotionProfile_1_1Point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getTimedPoint</b> ()</td></tr>
-<tr class="separator:a2933afdff93182cebf9de743cc3a4688"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53251fd97d3d61ca8bb53b59ff3fb441"><td class="memItemLeft" align="right" valign="top"><a id="a53251fd97d3d61ca8bb53b59ff3fb441" name="a53251fd97d3d61ca8bb53b59ff3fb441"></a>
-<a class="el" href="structatum_1_1MotionProfile_1_1Point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getClosestPoint</b> (const Unit s)</td></tr>
-<tr class="separator:a53251fd97d3d61ca8bb53b59ff3fb441"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9647a647322ffba5bb6b026ab08846a"><td class="memItemLeft" align="right" valign="top"><a id="ab9647a647322ffba5bb6b026ab08846a" name="ab9647a647322ffba5bb6b026ab08846a"></a>
-second_t&#160;</td><td class="memItemRight" valign="bottom"><b>getTotalTime</b> () const</td></tr>
+<tr class="memitem:aa76cf2899abfe018b42cf171cdf909bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1MotionProfile_1_1Point.html">Point</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html#aa76cf2899abfe018b42cf171cdf909bf">getPoint</a> (const Unit s=Unit{0})</td></tr>
+<tr class="memdesc:aa76cf2899abfe018b42cf171cdf909bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a point along the motion profile based on time along the profile and the given position (whichever gives a higher velocity).  <br /></td></tr>
+<tr class="separator:aa76cf2899abfe018b42cf171cdf909bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9647a647322ffba5bb6b026ab08846a"><td class="memItemLeft" align="right" valign="top">second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html#ab9647a647322ffba5bb6b026ab08846a">getTotalTime</a> () const</td></tr>
+<tr class="memdesc:ab9647a647322ffba5bb6b026ab08846a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total time the profile should take to complete.  <br /></td></tr>
 <tr class="separator:ab9647a647322ffba5bb6b026ab08846a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1fce75ccd4c0a441294587fc5d4e0bf6"><td class="memItemLeft" align="right" valign="top"><a id="a1fce75ccd4c0a441294587fc5d4e0bf6" name="a1fce75ccd4c0a441294587fc5d4e0bf6"></a>
-<a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><b>getParameters</b> () const</td></tr>
+<tr class="memitem:a1fce75ccd4c0a441294587fc5d4e0bf6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html#a1fce75ccd4c0a441294587fc5d4e0bf6">getParameters</a> () const</td></tr>
+<tr class="memdesc:a1fce75ccd4c0a441294587fc5d4e0bf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the parameters for the profile.  <br /></td></tr>
 <tr class="separator:a1fce75ccd4c0a441294587fc5d4e0bf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ceb41275df910bede783e75ec019102"><td class="memItemLeft" align="right" valign="top"><a id="a4ceb41275df910bede783e75ec019102" name="a4ceb41275df910bede783e75ec019102"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isBackwards</b> () const</td></tr>
+<tr class="memitem:a4ceb41275df910bede783e75ec019102"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102">isBackwards</a> () const</td></tr>
+<tr class="memdesc:a4ceb41275df910bede783e75ec019102"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the profile involves moving backwards.  <br /></td></tr>
 <tr class="separator:a4ceb41275df910bede783e75ec019102"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
+class atum::MotionProfile&lt; Unit &gt;</div><p>This class supports the efficient creation of S and trapezoidal motion profiles, alongside helpful logging and graphing functionalities. </p>
+<p>Can be polled by position to allow for robust following. This works by comparing the closest point in time and position along the profile and using the point with the larger velocity.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Unit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a790db94b58199fc2766d8cae32263ef9" name="a790db94b58199fc2766d8cae32263ef9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a790db94b58199fc2766d8cae32263ef9">&#9670;&#160;</a></span>MotionProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::MotionProfile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>iParams</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> &amp;&#160;</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a motion profile with the given parameters. Need to call generate before getting points. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iParams</td><td></td></tr>
+    <tr><td class="paramname">loggerLevel</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab9817fb36f0a19e9977275dd8b0de1b0" name="ab9817fb36f0a19e9977275dd8b0de1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9817fb36f0a19e9977275dd8b0de1b0">&#9670;&#160;</a></span>generate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::generate </td>
+          <td>(</td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>iStart</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>iEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Generates the relevant points of the motion profile based on the given start and end position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iStart</td><td></td></tr>
+    <tr><td class="paramname">iEnd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1fce75ccd4c0a441294587fc5d4e0bf6" name="a1fce75ccd4c0a441294587fc5d4e0bf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1fce75ccd4c0a441294587fc5d4e0bf6">&#9670;&#160;</a></span>getParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::getParameters </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the parameters for the profile. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa76cf2899abfe018b42cf171cdf909bf" name="aa76cf2899abfe018b42cf171cdf909bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa76cf2899abfe018b42cf171cdf909bf">&#9670;&#160;</a></span>getPoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structatum_1_1MotionProfile_1_1Point.html">Point</a> <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::getPoint </td>
+          <td>(</td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>s</em> = <code>Unit{0}</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets a point along the motion profile based on time along the profile and the given position (whichever gives a higher velocity). </p>
+<p>The default of zero for the position parameter allows for easy use in time-only polling contexts.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1MotionProfile_1_1Point.html" title="The points along a motion profile with relevant information to follow.">Point</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab9647a647322ffba5bb6b026ab08846a" name="ab9647a647322ffba5bb6b026ab08846a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9647a647322ffba5bb6b026ab08846a">&#9670;&#160;</a></span>getTotalTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">second_t <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::getTotalTime </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the total time the profile should take to complete. </p>
+<dl class="section return"><dt>Returns</dt><dd>second_t </dd></dl>
+
+</div>
+</div>
+<a id="a4ceb41275df910bede783e75ec019102" name="a4ceb41275df910bede783e75ec019102"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ceb41275df910bede783e75ec019102">&#9670;&#160;</a></span>isBackwards()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::isBackwards </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns if the profile involves moving backwards. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/motion/<a class="el" href="motionProfile_8hpp_source.html">motionProfile.hpp</a></li>
 </ul>

@@ -138,10 +138,10 @@ $(document).ready(function(){initNavTree('profileFollower_8hpp_source.html','');
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    logger.<a class="code hl_function" href="classatum_1_1Logger.html#adb8b98bccaec6e25190c4e363d82ffbc">debug</a>(<span class="stringliteral">&quot;Profile follower constructed!&quot;</span>);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  }</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> startProfile(<span class="keyword">const</span> Unit &amp;start, <span class="keyword">const</span> Unit &amp;iEnd) {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">void</span> startProfile(<span class="keyword">const</span> Unit start, <span class="keyword">const</span> Unit iEnd) {</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    end = iEnd;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    profile.generate(start, end);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    acceptable.<a class="code hl_function" href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">reset</a>(timeoutScaling * profile.getTotalTime());</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    profile.<a class="code hl_function" href="classatum_1_1MotionProfile.html#ab9817fb36f0a19e9977275dd8b0de1b0">generate</a>(start, end);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    acceptable.<a class="code hl_function" href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">reset</a>(timeoutScaling * profile.<a class="code hl_function" href="classatum_1_1MotionProfile.html#ab9647a647322ffba5bb6b026ab08846a">getTotalTime</a>());</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    velocityController-&gt;reset();</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">if</span>(positionController) {</div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>      positionController-&gt;reset();</div>
@@ -153,66 +153,75 @@ $(document).ready(function(){initNavTree('profileFollower_8hpp_source.html','');
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    }</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">double</span> getOutput(<span class="keyword">const</span> Unit &amp;s, <span class="keyword">const</span> UnitsPerSecond &amp;v) {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keywordtype">double</span> getOutput(<span class="keyword">const</span> Unit s, <span class="keyword">const</span> UnitsPerSecond v) {</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">if</span>(logger.<a class="code hl_function" href="classatum_1_1Logger.html#ab4c4a227221f58dfae158d5039d33a13">getLevel</a>() == Logger::Level::Debug) {</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>      graphPoint(s, v);</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> <span class="keyword">typename</span> UnitProfile::Point reference{profile.getPoint(s)};</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> velocityOutput{</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>        velocityController-&gt;getOutput(getValueAs&lt;UnitsPerSecond&gt;(v),</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                                      getValueAs&lt;UnitsPerSecond&gt;(reference.v))};</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordtype">double</span> accelerationOutput{getValueAs&lt;UnitsPerSecondSq&gt;(reference.a)};</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordflow">if</span>(reference.a &lt; UnitsPerSecondSq{0}) {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>      accelerationOutput *= profile.isBackwards() ? kA.accel : kA.decel;</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      accelerationOutput *= profile.isBackwards() ? kA.decel : kA.accel;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">double</span> positionOutput{0.0};</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span>(positionController) {</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keyword">const</span> <span class="keywordtype">double</span> positionError{<a class="code hl_function" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">difference</a>(reference.s, s)};</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>      positionOutput = positionController-&gt;getOutput(positionError);</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    acceptable.<a class="code hl_function" href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">canAccept</a>(s, end);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">return</span> positionOutput + velocityOutput + accelerationOutput;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  }</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keywordtype">bool</span> isDone() {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> acceptable.<a class="code hl_function" href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">canAccept</a>();</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keyword">const</span> <span class="keyword">typename</span> UnitProfile::Point reference{profile.<a class="code hl_function" href="classatum_1_1MotionProfile.html#aa76cf2899abfe018b42cf171cdf909bf">getPoint</a>(s)};</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> positionOutput{getPositionOutput(s, reference.s)};</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> velocityOutput{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>        velocityController-&gt;getOutput(getValueAs&lt;UnitsPerSecond&gt;(v),</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>                                      getValueAs&lt;UnitsPerSecond&gt;(reference.v))};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">double</span> accelerationOutput{getAccelerationOutput(reference.a)};</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    acceptable.<a class="code hl_function" href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">canAccept</a>(s, end);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> positionOutput + velocityOutput + accelerationOutput;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">bool</span> isDone() {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> acceptable.<a class="code hl_function" href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">canAccept</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">double</span> getPositionOutput(<span class="keyword">const</span> Unit state, <span class="keyword">const</span> Unit reference)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordflow">if</span>(!positionController) {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>      <span class="keywordflow">return</span> 0.0;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    }</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> positionError{<a class="code hl_function" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">difference</a>(reference, state)};</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">return</span> positionController-&gt;getOutput(positionError);</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  }</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="keywordtype">void</span> prepareGraphing(<span class="keyword">const</span> Unit start) {</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">const</span> <span class="keyword">typename</span> UnitProfile::Parameters motionParams{</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        profile.getParameters()};</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a172cf2d5c17b62bd9929e2a0fe82c64f">GUI::Graph::clearSeries</a>(GUI::SeriesColor::Green);</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a172cf2d5c17b62bd9929e2a0fe82c64f">GUI::Graph::clearSeries</a>(GUI::SeriesColor::Cyan);</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> rawStart{getValueAs&lt;Unit&gt;(start)};</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> rawEnd{getValueAs&lt;Unit&gt;(end)};</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180">GUI::Graph::setSeriesRange</a>(</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>        {std::min(rawStart, rawEnd), std::max(rawStart, rawEnd)},</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>        GUI::SeriesColor::Green);</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180">GUI::Graph::setSeriesRange</a>(getValueAs&lt;UnitsPerSecond&gt;(motionParams.maxV),</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>                               GUI::SeriesColor::Cyan);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  }</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keywordtype">void</span> graphPoint(<span class="keyword">const</span> Unit s, <span class="keyword">const</span> UnitsPerSecond v) {</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a3ab602a0390342eeac906d697f44586d">GUI::Graph::addValue</a>(getValueAs&lt;Unit&gt;(s), GUI::SeriesColor::Green);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a3ab602a0390342eeac906d697f44586d">GUI::Graph::addValue</a>(getValueAs&lt;UnitsPerSecond&gt;(v), GUI::SeriesColor::Cyan);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  }</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  UnitProfile profile;</div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  UnitAcceptable acceptable;</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  std::unique_ptr&lt;Controller&gt; velocityController;</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  AccelerationConstants kA;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  std::unique_ptr&lt;Controller&gt; positionController;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> timeoutScaling;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  Logger logger;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  Unit end;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keyword">using </span>LateralProfileFollower = ProfileFollower&lt;meter_t&gt;;</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keyword">using </span>AngularProfileFollower = ProfileFollower&lt;radian_t&gt;;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="keywordtype">double</span> getAccelerationOutput(<span class="keyword">const</span> UnitsPerSecondSq accel)<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    <span class="keywordtype">double</span> accelerationOutput{getValueAs&lt;UnitsPerSecondSq&gt;(accel)};</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keywordflow">if</span>(accel &lt; UnitsPerSecondSq{0}) {</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>      accelerationOutput *= profile.<a class="code hl_function" href="classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102">isBackwards</a>() ? kA.accel : kA.decel;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>      accelerationOutput *= profile.<a class="code hl_function" href="classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102">isBackwards</a>() ? kA.decel : kA.accel;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span> accelerationOutput;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordtype">void</span> prepareGraphing(<span class="keyword">const</span> Unit start) {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keyword">const</span> <span class="keyword">typename</span> UnitProfile::Parameters motionParams{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        profile.<a class="code hl_function" href="classatum_1_1MotionProfile.html#a1fce75ccd4c0a441294587fc5d4e0bf6">getParameters</a>()};</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a172cf2d5c17b62bd9929e2a0fe82c64f">GUI::Graph::clearSeries</a>(GUI::SeriesColor::Green);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a172cf2d5c17b62bd9929e2a0fe82c64f">GUI::Graph::clearSeries</a>(GUI::SeriesColor::Cyan);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> rawStart{getValueAs&lt;Unit&gt;(start)};</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">const</span> <span class="keywordtype">double</span> rawEnd{getValueAs&lt;Unit&gt;(end)};</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180">GUI::Graph::setSeriesRange</a>(</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        {std::min(rawStart, rawEnd), std::max(rawStart, rawEnd)},</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        GUI::SeriesColor::Green);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180">GUI::Graph::setSeriesRange</a>(getValueAs&lt;UnitsPerSecond&gt;(motionParams.maxV),</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                               GUI::SeriesColor::Cyan);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  }</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordtype">void</span> graphPoint(<span class="keyword">const</span> Unit s, <span class="keyword">const</span> UnitsPerSecond v) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a3ab602a0390342eeac906d697f44586d">GUI::Graph::addValue</a>(getValueAs&lt;Unit&gt;(s), GUI::SeriesColor::Green);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <a class="code hl_function" href="classatum_1_1GUI_1_1Graph.html#a3ab602a0390342eeac906d697f44586d">GUI::Graph::addValue</a>(getValueAs&lt;UnitsPerSecond&gt;(v), GUI::SeriesColor::Cyan);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  UnitProfile profile;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  UnitAcceptable acceptable;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  std::unique_ptr&lt;Controller&gt; velocityController;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  AccelerationConstants kA;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  std::unique_ptr&lt;Controller&gt; positionController;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> timeoutScaling;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  Logger logger;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  Unit end;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>};</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="keyword">using </span>LateralProfileFollower = ProfileFollower&lt;meter_t&gt;;</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="keyword">using </span>AngularProfileFollower = ProfileFollower&lt;radian_t&gt;;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aclassatum_1_1Acceptable_html"><div class="ttname"><a href="classatum_1_1Acceptable.html">atum::Acceptable</a></div><div class="ttdoc">This class template produces encapsulates several conditions for the results of an action being consi...</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:29</div></div>
 <div class="ttc" id="aclassatum_1_1Acceptable_html_aa5b3b6e75f7316c179429a22b7366165"><div class="ttname"><a href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">atum::Acceptable::canAccept</a></div><div class="ttdeci">bool canAccept(const Unit &amp;state, const Unit &amp;reference)</div><div class="ttdoc">Checks if under the current conditions the results can be accepted.</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:70</div></div>
 <div class="ttc" id="aclassatum_1_1Acceptable_html_acbaf931542c6a9a73964ae228e9e678c"><div class="ttname"><a href="classatum_1_1Acceptable.html#acbaf931542c6a9a73964ae228e9e678c">atum::Acceptable::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">Resets the internal state, useful for whenever the reference changes.</div><div class="ttdef"><b>Definition:</b> acceptable.hpp:119</div></div>
@@ -223,7 +232,12 @@ $(document).ready(function(){initNavTree('profileFollower_8hpp_source.html','');
 <div class="ttc" id="aclassatum_1_1Logger_html_ab4c4a227221f58dfae158d5039d33a13"><div class="ttname"><a href="classatum_1_1Logger.html#ab4c4a227221f58dfae158d5039d33a13">atum::Logger::getLevel</a></div><div class="ttdeci">Level getLevel() const</div><div class="ttdoc">Gets the logger level.</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_adb8b98bccaec6e25190c4e363d82ffbc"><div class="ttname"><a href="classatum_1_1Logger.html#adb8b98bccaec6e25190c4e363d82ffbc">atum::Logger::debug</a></div><div class="ttdeci">void debug(const std::string &amp;msg)</div><div class="ttdoc">Log message if logger level is debug.</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
-<div class="ttc" id="aclassatum_1_1MotionProfile_html"><div class="ttname"><a href="classatum_1_1MotionProfile.html">atum::MotionProfile</a></div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:19</div></div>
+<div class="ttc" id="aclassatum_1_1MotionProfile_html"><div class="ttname"><a href="classatum_1_1MotionProfile.html">atum::MotionProfile</a></div><div class="ttdoc">This class supports the efficient creation of S and trapezoidal motion profiles, alongside helpful lo...</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:29</div></div>
+<div class="ttc" id="aclassatum_1_1MotionProfile_html_a1fce75ccd4c0a441294587fc5d4e0bf6"><div class="ttname"><a href="classatum_1_1MotionProfile.html#a1fce75ccd4c0a441294587fc5d4e0bf6">atum::MotionProfile::getParameters</a></div><div class="ttdeci">Parameters getParameters() const</div><div class="ttdoc">Gets the parameters for the profile.</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:141</div></div>
+<div class="ttc" id="aclassatum_1_1MotionProfile_html_a4ceb41275df910bede783e75ec019102"><div class="ttname"><a href="classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102">atum::MotionProfile::isBackwards</a></div><div class="ttdeci">bool isBackwards() const</div><div class="ttdoc">Returns if the profile involves moving backwards.</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:151</div></div>
+<div class="ttc" id="aclassatum_1_1MotionProfile_html_aa76cf2899abfe018b42cf171cdf909bf"><div class="ttname"><a href="classatum_1_1MotionProfile.html#aa76cf2899abfe018b42cf171cdf909bf">atum::MotionProfile::getPoint</a></div><div class="ttdeci">Point getPoint(const Unit s=Unit{0})</div><div class="ttdoc">Gets a point along the motion profile based on time along the profile and the given position (whichev...</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:112</div></div>
+<div class="ttc" id="aclassatum_1_1MotionProfile_html_ab9647a647322ffba5bb6b026ab08846a"><div class="ttname"><a href="classatum_1_1MotionProfile.html#ab9647a647322ffba5bb6b026ab08846a">atum::MotionProfile::getTotalTime</a></div><div class="ttdeci">second_t getTotalTime() const</div><div class="ttdoc">Gets the total time the profile should take to complete.</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:132</div></div>
+<div class="ttc" id="aclassatum_1_1MotionProfile_html_ab9817fb36f0a19e9977275dd8b0de1b0"><div class="ttname"><a href="classatum_1_1MotionProfile.html#ab9817fb36f0a19e9977275dd8b0de1b0">atum::MotionProfile::generate</a></div><div class="ttdeci">void generate(const Unit iStart, const Unit iEnd)</div><div class="ttdoc">Generates the relevant points of the motion profile based on the given start and end position.</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:85</div></div>
 <div class="ttc" id="aclassatum_1_1ProfileFollower_html"><div class="ttname"><a href="classatum_1_1ProfileFollower.html">atum::ProfileFollower</a></div><div class="ttdef"><b>Definition:</b> profileFollower.hpp:9</div></div>
 <div class="ttc" id="amotionProfile_8hpp_html"><div class="ttname"><a href="motionProfile_8hpp.html">motionProfile.hpp</a></div><div class="ttdoc">Includes the MotionProfile template class and some helpful aliases.</div></div>
 <div class="ttc" id="astructatum_1_1ProfileFollower_1_1AccelerationConstants_html"><div class="ttname"><a href="structatum_1_1ProfileFollower_1_1AccelerationConstants.html">atum::ProfileFollower::AccelerationConstants</a></div><div class="ttdef"><b>Definition:</b> profileFollower.hpp:17</div></div>

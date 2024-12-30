@@ -7,5 +7,6 @@ var searchData=
   ['initializestyles_4',['initializeStyles',['../classatum_1_1GUI_1_1Screen.html#ab4761245f17269f709fd4cf3aa2c41af',1,'atum::GUI::Screen']]],
   ['intake_5',['intake',['../classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76',1,'atum::Intake']]],
   ['intake_6',['Intake',['../classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860',1,'atum::Intake']]],
-  ['isextended_7',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]]
+  ['isbackwards_7',['isBackwards',['../classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102',1,'atum::MotionProfile']]],
+  ['isextended_8',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]]
 ];
