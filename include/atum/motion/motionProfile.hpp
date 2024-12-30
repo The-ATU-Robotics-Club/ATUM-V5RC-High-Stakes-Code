@@ -20,8 +20,8 @@ namespace atum {
  * profiles, alongside helpful logging and graphing functionalities.
  *
  * Can be polled by position to allow for robust following. This works by
- * comparing the closest point in time and position along the profile and using
- * the point with the larger velocity.
+ * comparing the closest point in time and closest point in position along the
+ * profile and using the point with the larger velocity.
  *
  * @tparam Unit
  */
@@ -71,7 +71,8 @@ class MotionProfile {
    */
   MotionProfile(const Parameters &iParams,
                 const Logger::Level &loggerLevel = Logger::Level::Info) :
-      params{iParams}, logger{loggerLevel} {
+      params{iParams},
+      logger{loggerLevel} {
     logger.debug("Motion profile has been constructed!");
   }
 

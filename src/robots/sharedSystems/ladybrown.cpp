@@ -18,11 +18,19 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     params{iParams},
     follower{std::move(iFollower)},
     logger{loggerLevel} {
+  // Reset devices.
   left->setBrakeMode(pros::MotorBrake::brake);
   right->setBrakeMode(pros::MotorBrake::brake);
-  left->resetPosition(params.statePositions[LadybrownState::Resting]);
-  right->resetPosition(params.statePositions[LadybrownState::Resting]);
-  rotation->resetDisplacement(params.statePositions[LadybrownState::Resting]);
+  left->resetPosition(params.statePositions[LadybrownState::Resting].value());
+  right->resetPosition(params.statePositions[LadybrownState::Resting].value());
+  rotation->resetDisplacement(
+      params.statePositions[LadybrownState::Resting].value());
+
+  // Manage stored positions and state.
+  params.statePositions[LadybrownState::Extending] = {};
+  params.statePositions[LadybrownState::Retracting] = {};
+  params.statePositions[LadybrownState::FinishScoring] =
+      params.statePositions[LadybrownState::Preparing];
   stop();
 }
 
@@ -35,45 +43,31 @@ void Ladybrown::stop() {
 }
 
 void Ladybrown::extend() {
-  enableSlew = true;
-  state = LadybrownState::Extending;
-  // During manual control, hold wherever you stop.
-  holdPosition = {};
+  changeState(LadybrownState::Extending, true);
 }
 
 void Ladybrown::retract() {
-  enableSlew = true;
-  state = LadybrownState::Retracting;
-  // During manual control, hold wherever you stop.
-  holdPosition = {};
+  changeState(LadybrownState::Retracting, true);
 }
 
 void Ladybrown::rest() {
-  enableSlew = false;
-  state = LadybrownState::Resting;
-  holdPosition = params.statePositions[state];
+  changeState(LadybrownState::Resting, false);
 }
 
 void Ladybrown::load() {
-  enableSlew = false;
-  state = LadybrownState::Loading;
-  holdPosition = params.statePositions[state];
+  changeState(LadybrownState::Loading, false);
 }
 
 void Ladybrown::prepare() {
-  enableSlew = false;
-  state = LadybrownState::Preparing;
-  holdPosition = params.statePositions[state];
+  changeState(LadybrownState::Preparing, false);
 }
 
 void Ladybrown::score() {
-  enableSlew = false;
   // Don't override back up on the arm after scoring.
   if(state == LadybrownState::FinishScoring) {
     return;
   }
-  state = LadybrownState::Scoring;
-  holdPosition = params.statePositions[state];
+  changeState(LadybrownState::Scoring, false);
 }
 
 LadybrownState Ladybrown::getClosestNamedPosition() const {
@@ -84,7 +78,10 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
   degree_t shortestDistance{std::numeric_limits<double>::max()};
   LadybrownState closestPosition{LadybrownState::Resting};
   for(const auto &[position, angle] : params.statePositions) {
-    const degree_t distance{abs(angle - getPosition())};
+    if(!angle.has_value()) {
+      continue;
+    }
+    const degree_t distance{abs(angle.value() - getPosition())};
     if(distance <= shortestDistance) {
       shortestDistance = distance;
       closestPosition = position;
@@ -112,12 +109,18 @@ bool Ladybrown::mayConflictWithIntake() {
 }
 
 void Ladybrown::finishScore() {
-  enableSlew = false;
-  state = LadybrownState::FinishScoring;
-  holdPosition = params.statePositions[LadybrownState::Preparing];
+  changeState(LadybrownState::FinishScoring, false);
 }
 
-void Ladybrown::moveTo(const degree_t target) {
+void Ladybrown::changeState(const LadybrownState newState,
+                            const bool iEnableSlew) {
+  enableSlew = iEnableSlew;
+  state = newState;
+  holdPosition = params.statePositions[state];
+}
+
+void Ladybrown::moveTo(const LadybrownState targetState) {
+  const degree_t target{params.statePositions[targetState].value()};
   const LadybrownState startingState{state};
   follower->startProfile(getPosition(), target);
   while(!follower->isDone() && state == startingState) {
@@ -214,14 +217,10 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       case LadybrownState::Resting:
       case LadybrownState::Loading:
       case LadybrownState::Preparing:
-        moveTo(params.statePositions[state]);
-        break;
+      case LadybrownState::FinishScoring: moveTo(state); break;
       case LadybrownState::Scoring:
-        moveTo(params.statePositions[state]);
+        moveTo(state);
         finishScore();
-        break;
-      case LadybrownState::FinishScoring:
-        moveTo(params.statePositions[LadybrownState::Preparing]);
         break;
       default: break;
     }

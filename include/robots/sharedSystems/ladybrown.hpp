@@ -57,7 +57,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     degree_t flippingPosition{0_deg};
     // Map connecting states that involve moving to a position to their
     // corresponding end position (Resting, Loading, Preparing, and Scoring).
-    std::unordered_map<LadybrownState, degree_t> statePositions;
+    std::unordered_map<LadybrownState, std::optional<degree_t>> statePositions;
     // Amount of time allocated for the pistons to move before the ladybrown
     // moves on.
     second_t pistonDelay{0_s};
@@ -191,11 +191,21 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   void finishScore();
 
   /**
-   * @brief Moves to a given position, so long as the state does not change.
+   * @brief Changes the state, sets if the slew rate is enabled, and sets the
+   * current hold position based on the new state.
    *
-   * @param target
+   * @param newState
+   * @param newEnableSlew
    */
-  void moveTo(const degree_t target);
+  void changeState(const LadybrownState newState, const bool newEnableSlew);
+
+  /**
+   * @brief Moves to the position associated with a given state, so long as the
+   * current state does not change.
+   *
+   * @param targetState
+   */
+  void moveTo(const LadybrownState targetState);
 
   /**
    * @brief Gets the current position of the ladybrown. Currently based solely

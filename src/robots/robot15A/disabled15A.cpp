@@ -35,11 +35,11 @@ Robot15A::Robot15A() : Robot{this} {
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>('H', 2700, Logger::Level::Debug)};
-  std::unordered_map<LadybrownState, degree_t> ladybrownPositions{
-      {LadybrownState::Resting, -11.1_deg},
-      {LadybrownState::Loading, 16.5_deg},
-      {LadybrownState::Preparing, 60_deg},
-      {LadybrownState::Scoring, 125_deg}};
+  std::unordered_map<LadybrownState, std::optional<degree_t>>
+      ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
+                         {LadybrownState::Loading, 16.5_deg},
+                         {LadybrownState::Preparing, 60_deg},
+                         {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
       6, -5_deg, 50_deg, ladybrownPositions, 0.375_s};
   ladybrownParameters.kG = 0.2;
