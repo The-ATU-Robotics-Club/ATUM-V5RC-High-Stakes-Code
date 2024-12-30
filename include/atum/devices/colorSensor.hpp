@@ -30,7 +30,7 @@ class ColorSensor {
    * may make use of templates or a more extensible structure.
    *
    */
-  enum class Color { None, Red, Green, Blue };
+  enum class Color { None, Red, Blue };
 
   /**
    * @brief Given a color, what is its typical hue (center) and the area
@@ -121,4 +121,11 @@ class ColorSensor {
   Logger logger;
 };
 
+/**
+ * @brief Returns a string representation of the color given.
+ *
+ * @param color
+ * @return std::string
+ */
+std::string toString(const ColorSensor::Color &color);
 } // namespace atum

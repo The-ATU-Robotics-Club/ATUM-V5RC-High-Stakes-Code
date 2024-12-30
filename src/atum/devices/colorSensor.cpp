@@ -5,7 +5,8 @@ namespace atum {
 ColorSensor::ColorSensor(const std::int8_t port,
                          const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields}, logger{loggerLevel} {
+    hueFields{iHueFields},
+    logger{loggerLevel} {
   colorSensor = std::make_unique<pros::Optical>(port);
   check();
   initializeColorSensor();
@@ -13,7 +14,8 @@ ColorSensor::ColorSensor(const std::int8_t port,
 
 ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields}, logger{loggerLevel} {
+    hueFields{iHueFields},
+    logger{loggerLevel} {
   const auto colorSensors{pros::Optical::get_all_devices()};
   if(!colorSensors.size()) {
     logger.error("Color sensor not found!");
@@ -72,5 +74,13 @@ void ColorSensor::initializeColorSensor() {
   wait(100_ms);
   logger.info("Color sensor contructed with port " +
               std::to_string(colorSensor->get_port()) + ".");
+}
+
+std::string toString(const ColorSensor::Color &color) {
+  switch(color) {
+    case ColorSensor::Color::Red: return "Red";
+    case ColorSensor::Color::Blue: return "Blue";
+    default: return "None";
+  }
 }
 } // namespace atum

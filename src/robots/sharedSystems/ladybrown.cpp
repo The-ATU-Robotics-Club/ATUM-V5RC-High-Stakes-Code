@@ -20,49 +20,54 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     logger{loggerLevel} {
   left->setBrakeMode(pros::MotorBrake::brake);
   right->setBrakeMode(pros::MotorBrake::brake);
-  left->resetPosition(params.absoluteStartingPosition);
-  right->resetPosition(params.absoluteStartingPosition);
-  rotation->resetDisplacement(params.absoluteStartingPosition);
+  left->resetPosition(params.statePositions[LadybrownState::Resting]);
+  right->resetPosition(params.statePositions[LadybrownState::Resting]);
+  rotation->resetDisplacement(params.statePositions[LadybrownState::Resting]);
   stop();
 }
 
 void Ladybrown::stop() {
-  params.holdController.reset();
   state = LadybrownState::Idle;
   // During manual control, hold wherever you stop.
-  if(!holdPosition.has_value()) {
+  if(!holdPosition.has_value() && getVelocity() == 0_rpm) {
     holdPosition = getPosition();
   }
 }
 
 void Ladybrown::extend() {
+  enableSlew = true;
   state = LadybrownState::Extending;
   // During manual control, hold wherever you stop.
   holdPosition = {};
 }
 
 void Ladybrown::retract() {
+  enableSlew = true;
   state = LadybrownState::Retracting;
   // During manual control, hold wherever you stop.
   holdPosition = {};
 }
 
 void Ladybrown::rest() {
+  enableSlew = false;
   state = LadybrownState::Resting;
   holdPosition = params.statePositions[state];
 }
 
 void Ladybrown::load() {
+  enableSlew = false;
   state = LadybrownState::Loading;
   holdPosition = params.statePositions[state];
 }
 
 void Ladybrown::prepare() {
+  enableSlew = false;
   state = LadybrownState::Preparing;
   holdPosition = params.statePositions[state];
 }
 
 void Ladybrown::score() {
+  enableSlew = false;
   // Don't override back up on the arm after scoring.
   if(state == LadybrownState::FinishScoring) {
     return;
@@ -107,6 +112,7 @@ bool Ladybrown::mayConflictWithIntake() {
 }
 
 void Ladybrown::finishScore() {
+  enableSlew = false;
   state = LadybrownState::FinishScoring;
   holdPosition = params.statePositions[LadybrownState::Preparing];
 }
@@ -165,9 +171,30 @@ void Ladybrown::handlePiston() {
   }
 }
 
+bool Ladybrown::maintainMotors() {
+  // If one is still working, reset the position of the others so everything
+  // works if it comes back online.
+  if(!left->check()) {
+    left->resetPosition(getPosition());
+  }
+  if(!right->check()) {
+    right->resetPosition(getPosition());
+  }
+
+  if(getPosition() <= params.noMovePosition && voltage <= 0) {
+    left->brake();
+    right->brake();
+    return true;
+  }
+  return false;
+}
+
 double Ladybrown::getHoldOutput() {
+  if(getPosition() < params.noMovePosition) {
+    return 0.0;
+  }
   double holdOutput{0.0};
-  if(state == LadybrownState::Idle) {
+  if(holdPosition.has_value() && state == LadybrownState::Idle) {
     const double holdError{
         getValueAs<degree_t>(holdPosition.value() - getPosition())};
     const double hold{params.holdController.getOutput(holdError)};
@@ -206,28 +233,24 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
   while(true) {
     wait(5_ms); // At the top because of continue statement below.
     handlePiston();
-    if(getPosition() <= params.noMovePosition && voltage <= 0) {
-      left->brake();
-      right->brake();
+    if(maintainMotors()) {
       continue;
     }
-    double output{voltage + getHoldOutput()};
+    double output{0.0};
+    params.manualSlew.slew(voltage);
+    if(enableSlew) {
+      output += params.manualSlew.getOutput();
+    } else {
+      output = voltage;
+    }
+    output += getHoldOutput();
     double balance{0.0};
-    if(left->check() && right->check()) {
+    if(getValueAs<degree_t>(getPosition()) >= params.noMovePosition() &&
+       left->check() && right->check()) {
       balance = params.balanceController.getOutput(
           getValueAs<degree_t>(left->getPosition()),
           getValueAs<degree_t>(right->getPosition()));
     }
-
-    // If one is still working, reset the position of the others so everything
-    // works if it comes back online.
-    if(!left->check()) {
-      left->resetPosition(getPosition());
-    }
-    if(!right->check()) {
-      right->resetPosition(getPosition());
-    }
-
     left->moveVoltage(output + balance);
     right->moveVoltage(output);
   }

@@ -41,10 +41,11 @@ Robot15A::Robot15A() : Robot{this} {
       {LadybrownState::Preparing, 60_deg},
       {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      12, -11.1_deg, -5_deg, 50_deg, ladybrownPositions, 0.375_s};
+      6, -5_deg, 50_deg, ladybrownPositions, 0.375_s};
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
-  ladybrownParameters.balanceController = PID{{0.75}};
+  ladybrownParameters.balanceController = PID{{0.2}};
+  ladybrownParameters.manualSlew = SlewRate{0.2};
   AngularProfile::Parameters ladybrownMotionParams{
       240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;

@@ -159,7 +159,6 @@ class Remote : public Task {
   pros::Controller remote;
   Logger logger;
   std::array<std::queue<std::string>, 3> rowQueues;
-  std::array<pros::Mutex, 3> rowQueueMutexes;
   static constexpr double analogToVolt{Motor::maxVoltage / 127.0};
   static const std::string linePadding;
   static constexpr std::size_t printQueueSize{3};

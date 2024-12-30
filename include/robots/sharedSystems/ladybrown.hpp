@@ -50,9 +50,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   struct Parameters {
     double manualVoltage;
-    // The angle of the arms to the floor (completely up would be 90 deg; think
-    // unit circle).
-    degree_t absoluteStartingPosition{0_deg};
     // Below this position, the code for holding and balancing will not be used
     // and downward movement will be prevented.
     degree_t noMovePosition{0_deg};
@@ -72,6 +69,8 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     PID holdController{{}};
     // Used to help balance the left and right arms.
     PID balanceController{{}};
+    // Used to limit jerk whenever manual controls are enabled.
+    SlewRate manualSlew{0};
   };
 
   /**
@@ -223,6 +222,15 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   void handlePiston();
 
   /**
+   * @brief Prevents motors from going further down than its resting position.
+   * Also resets motor positions if they aren't functional.
+   *
+   * @return true
+   * @return false
+   */
+  bool maintainMotors();
+
+  /**
    * @brief Gets the output for holding the ladybrown in place. If not moving,
    * will use the given hold controller. Will always apply a voltage
    * proportional to the cosine of the absolute position of the ladybrown to
@@ -241,6 +249,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;
   std::optional<degree_t> holdPosition;
+  bool enableSlew{false};
 
   double voltage;
 };

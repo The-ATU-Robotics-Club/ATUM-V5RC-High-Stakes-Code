@@ -22,7 +22,7 @@ class Robot15A : public Robot {
   std::unique_ptr<Drive> drive;
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
-  pros::adi::Pneumatics goalClamp{'A', false};
+  Piston goalClamp{'A', false};
   std::unique_ptr<Odometry> odometry;
 };
 } // namespace atum

@@ -61,8 +61,8 @@ class SlewRate {
   double getOutput();
 
   private:
-  const double decRate;
-  const double incRate;
+  double decRate;
+  double incRate;
   Logger logger;
   double output{0};
 };

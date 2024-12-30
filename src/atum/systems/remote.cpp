@@ -65,7 +65,6 @@ bool Remote::getHold(const Button button) {
 }
 
 void Remote::print(const std::uint8_t line, const std::string &message) {
-  std::scoped_lock lock{rowQueueMutexes[line]};
   if(rowQueues[line].size() < printQueueSize) {
     rowQueues[line].push(message + linePadding);
   }
@@ -79,7 +78,6 @@ TASK_DEFINITIONS_FOR(Remote) {
   START_TASK("Print Handler")
   while(true) {
     for(std::size_t line{0}; line < 3; line++) {
-      std::scoped_lock lock{rowQueueMutexes[line]};
       if(rowQueues[line].size()) {
         const auto output = rowQueues[line].front();
         rowQueues[line].pop();
