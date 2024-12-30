@@ -111,7 +111,7 @@ class ColorSensor {
   static constexpr int32_t nearProximity{250};
 
   /**
-   * @brief Sets the LED integration time and disables gestures.
+   * @brief Turns the LED on, sets the integration time, and disables gestures.
    *
    */
   void initializeColorSensor();

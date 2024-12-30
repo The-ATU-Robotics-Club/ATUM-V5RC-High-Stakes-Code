@@ -30,12 +30,9 @@ ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
 }
 
 ColorSensor::Color ColorSensor::getColor() {
-  const int32_t proximity{colorSensor->get_proximity()};
-  if(proximity < nearProximity) {
-    colorSensor->set_led_pwm(0);
+  if(colorSensor->get_proximity() < nearProximity) {
     return Color::None;
   }
-  colorSensor->set_led_pwm(100);
   for(const HueField &hueField : hueFields) {
     const double reading{getRawHue()};
     // Have to account for the "angle wrap" here.
@@ -67,6 +64,8 @@ bool ColorSensor::check() {
 void ColorSensor::initializeColorSensor() {
   // The abundance of delays in here is because of a seeming undocumented
   // "delay" needed for many of these values to be set.
+  wait(100_ms);
+  colorSensor->set_led_pwm(100);
   wait(100_ms);
   colorSensor->set_integration_time(3);
   wait(100_ms);
