@@ -115,9 +115,9 @@ $(document).ready(function(){initNavTree('robotPrototype_8hpp_source.html',''); 
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keyword">private</span>:</div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <a class="code hl_class" href="classatum_1_1Remote.html">Remote</a> remote;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <a class="code hl_class" href="classatum_1_1Motor.html">Motor</a> leftMotors{{1, 2}, pros::v5::MotorGears::green};</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  Motor rightMotors{{3, 4}, pros::v5::MotorGears::green};</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  Motor climbMotors{{9, -10}, pros::v5::MotorGears::green};</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <a class="code hl_class" href="classatum_1_1Motor.html">Motor</a> leftMotors{{1, 2}, <a class="code hl_struct" href="structatum_1_1Motor_1_1Gearing.html">Motor::Gearing</a>{pros::v5::MotorGears::green}};</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  Motor rightMotors{{3, 4}, Motor::Gearing{pros::v5::MotorGears::green}};</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  Motor climbMotors{{9, -10}, Motor::Gearing{pros::v5::MotorGears::green}};</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>};</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
@@ -127,6 +127,7 @@ $(document).ready(function(){initNavTree('robotPrototype_8hpp_source.html',''); 
 <div class="ttc" id="aclassatum_1_1RobotPrototype_html_a2a7ee5e0fe656d6f9e8e3d13643ce01e"><div class="ttname"><a href="classatum_1_1RobotPrototype.html#a2a7ee5e0fe656d6f9e8e3d13643ce01e">atum::RobotPrototype::opcontrol</a></div><div class="ttdeci">void opcontrol() override</div><div class="ttdoc">The behavior of the robot during the operator control period.</div></div>
 <div class="ttc" id="aclassatum_1_1RobotPrototype_html_a69beaa427ac592ab102ee17202e6ac2b"><div class="ttname"><a href="classatum_1_1RobotPrototype.html#a69beaa427ac592ab102ee17202e6ac2b">atum::RobotPrototype::disabled</a></div><div class="ttdeci">void disabled() override</div><div class="ttdoc">The behavior of the robot during the disabled period.</div></div>
 <div class="ttc" id="aclassatum_1_1Robot_html"><div class="ttname"><a href="classatum_1_1Robot.html">atum::Robot</a></div><div class="ttdef"><b>Definition:</b> robot.hpp:61</div></div>
+<div class="ttc" id="astructatum_1_1Motor_1_1Gearing_html"><div class="ttname"><a href="structatum_1_1Motor_1_1Gearing.html">atum::Motor::Gearing</a></div><div class="ttdoc">Information relevant to the gearing of a motor. Ratio should be given as input RPM / output RPM.</div><div class="ttdef"><b>Definition:</b> motor.hpp:35</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

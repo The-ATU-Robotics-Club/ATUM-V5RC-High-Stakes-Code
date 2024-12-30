@@ -50,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acceptable_8hpp.html",
-"functions_vars.html"
+"drive_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

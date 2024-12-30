@@ -119,29 +119,32 @@ $(document).ready(function(){initNavTree('colorSensor_8hpp_source.html',''); ini
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">double</span> threshold;</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  };</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189">   59</a></span>  <a class="code hl_function" href="classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189">ColorSensor</a>(<span class="keyword">const</span> std::int8_t port,</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>              <span class="keyword">const</span> std::vector&lt;HueField&gt; iHueFields,</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>              <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">   74</a></span>  <a class="code hl_function" href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">ColorSensor</a>(<span class="keyword">const</span> std::vector&lt;HueField&gt; iHueFields,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>              <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">   83</a></span>  <a class="code hl_enumeration" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a> <a class="code hl_function" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">getColor</a>();</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">   91</a></span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">getRawHue</a>();</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> int32_t nearProximity{250};</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keywordtype">void</span> initializeColorSensor();</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  std::unique_ptr&lt;pros::v5::Optical&gt; colorSensor;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  std::vector&lt;HueField&gt; hueFields;</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>};</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189">   62</a></span>  <a class="code hl_function" href="classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189">ColorSensor</a>(<span class="keyword">const</span> std::int8_t port,</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>              <span class="keyword">const</span> std::vector&lt;HueField&gt; iHueFields,</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>              <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">   77</a></span>  <a class="code hl_function" href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">ColorSensor</a>(<span class="keyword">const</span> std::vector&lt;HueField&gt; iHueFields,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>              <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">   86</a></span>  <a class="code hl_enumeration" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a> <a class="code hl_function" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">getColor</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">   94</a></span>  <span class="keywordtype">double</span> <a class="code hl_function" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">getRawHue</a>();</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9">  103</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9">check</a>();</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> int32_t nearProximity{250};</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  <span class="keywordtype">void</span> initializeColorSensor();</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  std::unique_ptr&lt;pros::v5::Optical&gt; colorSensor;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>  std::vector&lt;HueField&gt; hueFields;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>};</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aclassatum_1_1ColorSensor_html"><div class="ttname"><a href="classatum_1_1ColorSensor.html">atum::ColorSensor</a></div><div class="ttdef"><b>Definition:</b> colorSensor.hpp:19</div></div>
+<div class="ttc" id="aclassatum_1_1ColorSensor_html_a00c5f8f3832cb1e2efbceb07052c4fa9"><div class="ttname"><a href="classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9">atum::ColorSensor::check</a></div><div class="ttdeci">bool check()</div><div class="ttdoc">Checks if the color sensor is functioning by seeing if it is installed.</div></div>
 <div class="ttc" id="aclassatum_1_1ColorSensor_html_a0392263b382eee7453186d46a9a1f488"><div class="ttname"><a href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">atum::ColorSensor::ColorSensor</a></div><div class="ttdeci">ColorSensor(const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new ColorSensor by finding the port dynamically. Hue fields given should form a partitio...</div></div>
 <div class="ttc" id="aclassatum_1_1ColorSensor_html_a26cb4e38ef4adf2bd6bba32f65aebd44"><div class="ttname"><a href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">atum::ColorSensor::getColor</a></div><div class="ttdeci">Color getColor()</div><div class="ttdoc">Gets the detected color. Will return None if outside of proximity threshold given (unless 0)....</div></div>
 <div class="ttc" id="aclassatum_1_1ColorSensor_html_a61bfb8618409f707da827f49dcb40fdf"><div class="ttname"><a href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">atum::ColorSensor::getRawHue</a></div><div class="ttdeci">double getRawHue()</div><div class="ttdoc">Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning pur...</div></div>

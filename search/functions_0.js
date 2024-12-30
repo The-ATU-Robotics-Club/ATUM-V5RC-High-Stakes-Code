@@ -9,6 +9,5 @@ var searchData=
   ['angle_6',['angle',['../pose_8hpp.html#afd14a4bf12c748aadb94673587804c66',1,'atum']]],
   ['arcade_7',['arcade',['../classatum_1_1Drive.html#a36ebb7dc126b52775dba69466a6f197c',1,'atum::Drive']]],
   ['autonomous_8',['autonomous',['../classatum_1_1Robot.html#a721e1155876bf8242337100f7ec26b58',1,'atum::Robot']]],
-  ['average_9',['average',['../misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88',1,'atum']]],
-  ['average_3c_20degree_5ft_20_3e_10',['average&lt; degree_t &gt;',['../units_8hpp.html#a777c6fa95aea3c5e226eab7c1cfd7eca',1,'atum']]]
+  ['average_9',['average',['../misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88',1,'atum']]]
 ];

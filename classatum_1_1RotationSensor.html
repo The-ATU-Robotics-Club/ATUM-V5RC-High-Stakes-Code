@@ -123,9 +123,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab500022219f45c262a86ccbaf651399d"><td class="memItemLeft" align="right" valign="top">degrees_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d">getVelocity</a> ()</td></tr>
 <tr class="memdesc:ab500022219f45c262a86ccbaf651399d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the velocity of the rotation sensor in degrees per second.  <br /></td></tr>
 <tr class="separator:ab500022219f45c262a86ccbaf651399d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8fe89ab0082c3350be7f81937f9a6ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ab8fe89ab0082c3350be7f81937f9a6ce">reset</a> ()</td></tr>
-<tr class="memdesc:ab8fe89ab0082c3350be7f81937f9a6ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the displacement of the rotation sensor to zero.  <br /></td></tr>
-<tr class="separator:ab8fe89ab0082c3350be7f81937f9a6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac956db731262b4aba4c38ef549d6865f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ac956db731262b4aba4c38ef549d6865f">resetDisplacement</a> (const degree_t iOffset=0_deg)</td></tr>
+<tr class="memdesc:ac956db731262b4aba4c38ef549d6865f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the displacement of the rotation sensor to the given offset (default is zero).  <br /></td></tr>
+<tr class="separator:ac956db731262b4aba4c38ef549d6865f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade9e475ad0bcdfce697bc7f87cdc3aeb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#ade9e475ad0bcdfce697bc7f87cdc3aeb">check</a> ()</td></tr>
+<tr class="memdesc:ade9e475ad0bcdfce697bc7f87cdc3aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the rotation sensor is functioning by seeing if it is installed or has ever been uninstalled (since reinitialization is finnicky, so it's better to use another sensor).  <br /></td></tr>
+<tr class="separator:ade9e475ad0bcdfce697bc7f87cdc3aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A simple wrapper around the rotation sensor to support logging, dynamic initialization, and dimensional units. </p>
@@ -163,6 +166,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new rotation sensor based on a given port. Reverses if requested. </p>
+<p>Unlike other smart port devices, explicit-port construction does NOT provide the opportunity to reconnect whenever the device isn't connected at the beginning of the match.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
@@ -212,6 +216,29 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ade9e475ad0bcdfce697bc7f87cdc3aeb" name="ade9e475ad0bcdfce697bc7f87cdc3aeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade9e475ad0bcdfce697bc7f87cdc3aeb">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::RotationSensor::check </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the rotation sensor is functioning by seeing if it is installed or has ever been uninstalled (since reinitialization is finnicky, so it's better to use another sensor). </p>
+<p>By providing a port, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="a3983094568445e65911be457823c024d" name="a3983094568445e65911be457823c024d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3983094568445e65911be457823c024d">&#9670;&#160;</a></span>getDisplacement()</h2>
 
@@ -272,22 +299,29 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ab8fe89ab0082c3350be7f81937f9a6ce" name="ab8fe89ab0082c3350be7f81937f9a6ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab8fe89ab0082c3350be7f81937f9a6ce">&#9670;&#160;</a></span>reset()</h2>
+<a id="ac956db731262b4aba4c38ef549d6865f" name="ac956db731262b4aba4c38ef549d6865f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac956db731262b4aba4c38ef549d6865f">&#9670;&#160;</a></span>resetDisplacement()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::RotationSensor::reset </td>
+          <td class="memname">void atum::RotationSensor::resetDisplacement </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const degree_t&#160;</td>
+          <td class="paramname"><em>iOffset</em> = <code>0_deg</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Resets the displacement of the rotation sensor to zero. </p>
+<p>Resets the displacement of the rotation sensor to the given offset (default is zero). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iOffset</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

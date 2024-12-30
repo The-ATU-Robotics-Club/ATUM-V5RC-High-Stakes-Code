@@ -10,9 +10,9 @@ var searchData=
   ['misc_2ehpp_7',['misc.hpp',['../misc_8hpp.html',1,'']]],
   ['motionprofile_8',['MotionProfile',['../classatum_1_1MotionProfile.html',1,'atum']]],
   ['motionprofile_2ehpp_9',['motionProfile.hpp',['../motionProfile_8hpp.html',1,'']]],
-  ['motor_10',['Motor',['../classatum_1_1Motor.html',1,'atum::Motor'],['../classatum_1_1Motor.html#ae6ef8bf5d8c96ad276fffa7d87f31cd7',1,'atum::Motor::Motor()']]],
+  ['motor_10',['Motor',['../classatum_1_1Motor.html',1,'atum::Motor'],['../classatum_1_1Motor.html#a6d36804f19f6a63c03f4eb8a879e4123',1,'atum::Motor::Motor()']]],
   ['motor_2ehpp_11',['motor.hpp',['../motor_8hpp.html',1,'']]],
-  ['motorcheck_12',['motorCheck',['../classatum_1_1Motor.html#a43bf89d3a68e6c37efc964cd323dfc82',1,'atum::Motor']]],
+  ['motorportslist_12',['MotorPortsList',['../misc_8hpp.html#a20c281f24bce247514f2ccabf0454c5c',1,'atum']]],
   ['movevelocity_13',['moveVelocity',['../classatum_1_1Motor.html#a19351834929f898f34dd480b87863fc5',1,'atum::Motor']]],
   ['movevoltage_14',['moveVoltage',['../classatum_1_1Motor.html#ad3b1560d5e7f791821526a2e82898f37',1,'atum::Motor']]]
 ];

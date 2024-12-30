@@ -143,9 +143,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a665af9b1bffa104f86ddb87ece1c40e4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4">stop</a> ()</td></tr>
 <tr class="memdesc:a665af9b1bffa104f86ddb87ece1c40e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tell the intake to stop moving.  <br /></td></tr>
 <tr class="separator:a665af9b1bffa104f86ddb87ece1c40e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6829e024538c3428c184c414f64caf99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a6829e024538c3428c184c414f64caf99">setAntiJam</a> (const bool iAntiJamEnabled)</td></tr>
-<tr class="memdesc:a6829e024538c3428c184c414f64caf99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether to use the anti-jam.  <br /></td></tr>
-<tr class="separator:a6829e024538c3428c184c414f64caf99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a4ceedb6d9002bbcc69c245bb8d6879"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#a6a4ceedb6d9002bbcc69c245bb8d6879">setSortOutColor</a> (const <a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a> iSortOutColor)</td></tr>
+<tr class="memdesc:a6a4ceedb6d9002bbcc69c245bb8d6879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the color the intake will sort out. Setting to "None" will disable sorting.  <br /></td></tr>
+<tr class="separator:a6a4ceedb6d9002bbcc69c245bb8d6879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdd16ab633ad8bdac8278c40de58d6c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Intake.html#acdd16ab633ad8bdac8278c40de58d6c1">getSortOutColor</a> () const</td></tr>
+<tr class="memdesc:acdd16ab633ad8bdac8278c40de58d6c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the color the intake is sorting out.  <br /></td></tr>
+<tr class="separator:acdd16ab633ad8bdac8278c40de58d6c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Task"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Task')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Task.html">atum::Task</a></td></tr>
 <tr class="memitem:a5a32417bc0b345e62446142173b492bf inherit pub_methods_classatum_1_1Task"><td class="memItemLeft" align="right" valign="top"><a id="a5a32417bc0b345e62446142173b492bf" name="a5a32417bc0b345e62446142173b492bf"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Task</b> (const <a class="el" href="classatum_1_1Task.html">Task</a> &amp;)=delete</td></tr>
@@ -247,6 +250,26 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="acdd16ab633ad8bdac8278c40de58d6c1" name="acdd16ab633ad8bdac8278c40de58d6c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdd16ab633ad8bdac8278c40de58d6c1">&#9670;&#160;</a></span>getSortOutColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a> atum::Intake::getSortOutColor </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the color the intake is sorting out. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97" title="List of colors that can be recognized. Later this class may make use of templates or a more extensibl...">ColorSensor::Color</a> </dd></dl>
+
+</div>
+</div>
 <a id="adc785d6ce352190128380f28831a435b" name="adc785d6ce352190128380f28831a435b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc785d6ce352190128380f28831a435b">&#9670;&#160;</a></span>index()</h2>
 
@@ -323,26 +346,26 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 
 </div>
 </div>
-<a id="a6829e024538c3428c184c414f64caf99" name="a6829e024538c3428c184c414f64caf99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6829e024538c3428c184c414f64caf99">&#9670;&#160;</a></span>setAntiJam()</h2>
+<a id="a6a4ceedb6d9002bbcc69c245bb8d6879" name="a6a4ceedb6d9002bbcc69c245bb8d6879"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a4ceedb6d9002bbcc69c245bb8d6879">&#9670;&#160;</a></span>setSortOutColor()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::Intake::setAntiJam </td>
+          <td class="memname">void atum::Intake::setSortOutColor </td>
           <td>(</td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>iAntiJamEnabled</em></td><td>)</td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">ColorSensor::Color</a>&#160;</td>
+          <td class="paramname"><em>iSortOutColor</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sets whether to use the anti-jam. </p>
+<p>Sets the color the intake will sort out. Setting to "None" will disable sorting. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">iAntiJamEnabled</td><td></td></tr>
+    <tr><td class="paramname">iSortOutColor</td><td></td></tr>
   </table>
   </dd>
 </dl>

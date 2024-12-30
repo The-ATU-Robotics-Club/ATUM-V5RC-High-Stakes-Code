@@ -123,10 +123,6 @@ compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_
 <tr class="memitem:aeac34d4fb84865ae14173383554ea741"><td class="memTemplItemLeft" align="right" valign="top">R&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">atum::getValueAs</a> (const T &amp;quantity)</td></tr>
 <tr class="memdesc:aeac34d4fb84865ae14173383554ea741"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function allows us to convert units into another form before storing them as a plain floating point value.  <br /></td></tr>
 <tr class="separator:aeac34d4fb84865ae14173383554ea741"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="memItemLeft" align="right" valign="top">template&lt;&gt; </td></tr>
-<tr class="memitem:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="memTemplItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a777c6fa95aea3c5e226eab7c1cfd7eca">atum::average&lt; degree_t &gt;</a> (const std::vector&lt; degree_t &gt; &amp;angles)</td></tr>
-<tr class="memdesc:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is a template specialization for averaging angles together. This is necessary to deal with angle wrap and the like.  <br /></td></tr>
-<tr class="separator:a777c6fa95aea3c5e226eab7c1cfd7eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">atum::constrain180</a> (const degree_t angle)</td></tr>
 <tr class="memdesc:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrains an angle between -180 and 180 degrees.  <br /></td></tr>
 <tr class="separator:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,35 +159,6 @@ compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_
 <dl class="section date"><dt>Date</dt><dd>2024-12-23</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a777c6fa95aea3c5e226eab7c1cfd7eca" name="a777c6fa95aea3c5e226eab7c1cfd7eca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a777c6fa95aea3c5e226eab7c1cfd7eca">&#9670;&#160;</a></span>average&lt; degree_t &gt;()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">degree_t <a class="el" href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">atum::average</a>&lt; degree_t &gt; </td>
-          <td>(</td>
-          <td class="paramtype">const std::vector&lt; degree_t &gt; &amp;&#160;</td>
-          <td class="paramname"><em>angles</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This is a template specialization for averaging angles together. This is necessary to deal with angle wrap and the like. </p>
-<dl class="tparams"><dt>Template Parameters</dt><dd>
-  <table class="tparams">
-    <tr><td class="paramname"></td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<p>param angles </p><dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
-
-</div>
-</div>
 <a id="a3e54638dfa8d8892e8c6331b9113a3e1" name="a3e54638dfa8d8892e8c6331b9113a3e1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3e54638dfa8d8892e8c6331b9113a3e1">&#9670;&#160;</a></span>constrain180()</h2>
 

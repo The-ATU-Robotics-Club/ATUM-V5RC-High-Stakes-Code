@@ -115,6 +115,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ece869287aefa7f1e297eaa4579ee39"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1DistanceSensor.html#a6ece869287aefa7f1e297eaa4579ee39">closeTo</a> ()</td></tr>
 <tr class="memdesc:a6ece869287aefa7f1e297eaa4579ee39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if detected object is within the given threshold.  <br /></td></tr>
 <tr class="separator:a6ece869287aefa7f1e297eaa4579ee39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f59d43990be1ad4acd97870d2a2444f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1DistanceSensor.html#a8f59d43990be1ad4acd97870d2a2444f">check</a> ()</td></tr>
+<tr class="memdesc:a8f59d43990be1ad4acd97870d2a2444f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the distance sensor is functioning by seeing if it is installed.  <br /></td></tr>
+<tr class="separator:a8f59d43990be1ad4acd97870d2a2444f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae19cf59eed4ec7769790d4d8cb921bcf" name="ae19cf59eed4ec7769790d4d8cb921bcf"></a>
@@ -150,6 +153,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new distance sensor with the given port. </p>
+<p>By providing a port, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
@@ -199,6 +203,28 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8f59d43990be1ad4acd97870d2a2444f" name="a8f59d43990be1ad4acd97870d2a2444f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f59d43990be1ad4acd97870d2a2444f">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::DistanceSensor::check </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the distance sensor is functioning by seeing if it is installed. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="a6ece869287aefa7f1e297eaa4579ee39" name="a6ece869287aefa7f1e297eaa4579ee39"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6ece869287aefa7f1e297eaa4579ee39">&#9670;&#160;</a></span>closeTo()</h2>
 

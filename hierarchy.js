@@ -10,6 +10,7 @@ var hierarchy =
     ] ],
     [ "atum::DistanceSensor", "classatum_1_1DistanceSensor.html", null ],
     [ "atum::Drive", "classatum_1_1Drive.html", null ],
+    [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
     [ "atum::GUI::Screen::GUIPosition", "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html", null ],
     [ "atum::GUI::Screen::GUISize", "structatum_1_1GUI_1_1Screen_1_1GUISize.html", null ],
     [ "atum::ColorSensor::HueField", "structatum_1_1ColorSensor_1_1HueField.html", null ],

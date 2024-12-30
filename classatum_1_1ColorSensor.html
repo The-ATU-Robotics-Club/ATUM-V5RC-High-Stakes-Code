@@ -134,6 +134,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a61bfb8618409f707da827f49dcb40fdf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">getRawHue</a> ()</td></tr>
 <tr class="memdesc:a61bfb8618409f707da827f49dcb40fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning purposes, prefer getColor.  <br /></td></tr>
 <tr class="separator:a61bfb8618409f707da827f49dcb40fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00c5f8f3832cb1e2efbceb07052c4fa9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9">check</a> ()</td></tr>
+<tr class="memdesc:a00c5f8f3832cb1e2efbceb07052c4fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the color sensor is functioning by seeing if it is installed.  <br /></td></tr>
+<tr class="separator:a00c5f8f3832cb1e2efbceb07052c4fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -201,6 +204,7 @@ Static Public Attributes</h2></td></tr>
 
 <p>Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> with the given port. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields. </p>
 <p>Also turns on LED to max brightness and disables gestures.</p>
+<p>By providing a port, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
@@ -251,6 +255,28 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a00c5f8f3832cb1e2efbceb07052c4fa9" name="a00c5f8f3832cb1e2efbceb07052c4fa9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00c5f8f3832cb1e2efbceb07052c4fa9">&#9670;&#160;</a></span>check()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::ColorSensor::check </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the color sensor is functioning by seeing if it is installed. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="a26cb4e38ef4adf2bd6bba32f65aebd44" name="a26cb4e38ef4adf2bd6bba32f65aebd44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a26cb4e38ef4adf2bd6bba32f65aebd44">&#9670;&#160;</a></span>getColor()</h2>
 

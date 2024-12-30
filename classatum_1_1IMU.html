@@ -108,9 +108,9 @@ $(document).ready(function(){initNavTree('classatum_1_1IMU.html',''); initResiza
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aad7dc27607fe1e0d0bfd365e1b14104d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1IMU.html#aad7dc27607fe1e0d0bfd365e1b14104d">IMU</a> (std::vector&lt; std::uint8_t &gt; ports, const bool iReversed=false, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:aad7dc27607fe1e0d0bfd365e1b14104d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> object with port numbers given.  <br /></td></tr>
-<tr class="separator:aad7dc27607fe1e0d0bfd365e1b14104d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91ae4a7de7ecd1c67fb7d9422af7ecb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1IMU.html#ad91ae4a7de7ecd1c67fb7d9422af7ecb">IMU</a> (const <a class="el" href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">PortsList</a> &amp;ports, const bool iReversed=false, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:ad91ae4a7de7ecd1c67fb7d9422af7ecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> object with port numbers given.  <br /></td></tr>
+<tr class="separator:ad91ae4a7de7ecd1c67fb7d9422af7ecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a89d16737954d369b31176969c0bbdb50"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1IMU.html#a89d16737954d369b31176969c0bbdb50">IMU</a> (const std::size_t expectedAmount, const bool iReversed=false, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
 <tr class="memdesc:a89d16737954d369b31176969c0bbdb50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> object with ports dynamically found. Minimum amount refers to the acceptable minimum amount of IMUs to be found to not trigger a warning (zero IMUs will trigger an error).  <br /></td></tr>
 <tr class="separator:a89d16737954d369b31176969c0bbdb50"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,8 +127,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class to wrap around potentially several IMUs and provide some useful methods for common actions. Supports dynamically finding port numbers. Assumes the <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> is flat side down (or bearing side down). </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aad7dc27607fe1e0d0bfd365e1b14104d" name="aad7dc27607fe1e0d0bfd365e1b14104d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad7dc27607fe1e0d0bfd365e1b14104d">&#9670;&#160;</a></span>IMU() <span class="overload">[1/2]</span></h2>
+<a id="ad91ae4a7de7ecd1c67fb7d9422af7ecb" name="ad91ae4a7de7ecd1c67fb7d9422af7ecb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91ae4a7de7ecd1c67fb7d9422af7ecb">&#9670;&#160;</a></span>IMU() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">atum::IMU::IMU </td>
           <td>(</td>
-          <td class="paramtype">std::vector&lt; std::uint8_t &gt;&#160;</td>
+          <td class="paramtype">const <a class="el" href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">PortsList</a> &amp;&#160;</td>
           <td class="paramname"><em>ports</em>, </td>
         </tr>
         <tr>
@@ -160,6 +160,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> object with port numbers given. </p>
+<p>By providing ports, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ports</td><td></td></tr>

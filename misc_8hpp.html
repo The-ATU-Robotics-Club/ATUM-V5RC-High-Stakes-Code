@@ -119,9 +119,15 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:aedc333b8c859b3f9e4ef9439544c5ca8"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8hpp.html#aedc333b8c859b3f9e4ef9439544c5ca8">atum::PortsList</a> = std::vector&lt; std::int8_t &gt;</td></tr>
-<tr class="memdesc:aedc333b8c859b3f9e4ef9439544c5ca8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because make_unique and make_shared seemed to brick the type inference of constructors involving vectors, this alias makes constructed smart pointers to said objects a little nicer looking.  <br /></td></tr>
-<tr class="separator:aedc333b8c859b3f9e4ef9439544c5ca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afab6e4af744f631c3c65831546241abb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8hpp.html#afab6e4af744f631c3c65831546241abb">atum::SmartPort</a> = std::int8_t</td></tr>
+<tr class="memdesc:afab6e4af744f631c3c65831546241abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provided for disambiguation purposes in a few constructors.  <br /></td></tr>
+<tr class="separator:afab6e4af744f631c3c65831546241abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a7b355273288f05264089a9f35493d4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">atum::PortsList</a> = std::vector&lt; std::uint8_t &gt;</td></tr>
+<tr class="memdesc:a6a7b355273288f05264089a9f35493d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Because make_unique and make_shared seemed to brick the type inference of constructors involving vectors, this aliases makes constructed smart pointers to said objects a little nicer looking.  <br /></td></tr>
+<tr class="separator:a6a7b355273288f05264089a9f35493d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20c281f24bce247514f2ccabf0454c5c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8hpp.html#a20c281f24bce247514f2ccabf0454c5c">atum::MotorPortsList</a> = std::vector&lt; std::int8_t &gt;</td></tr>
+<tr class="memdesc:a20c281f24bce247514f2ccabf0454c5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as PortsList, but for the signed integers associated with reversed motors.  <br /></td></tr>
+<tr class="separator:a20c281f24bce247514f2ccabf0454c5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -178,19 +184,51 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="aedc333b8c859b3f9e4ef9439544c5ca8" name="aedc333b8c859b3f9e4ef9439544c5ca8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedc333b8c859b3f9e4ef9439544c5ca8">&#9670;&#160;</a></span>PortsList</h2>
+<a id="a20c281f24bce247514f2ccabf0454c5c" name="a20c281f24bce247514f2ccabf0454c5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20c281f24bce247514f2ccabf0454c5c">&#9670;&#160;</a></span>MotorPortsList</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="misc_8hpp.html#aedc333b8c859b3f9e4ef9439544c5ca8">atum::PortsList</a> = typedef std::vector&lt;std::int8_t&gt;</td>
+          <td class="memname">using <a class="el" href="misc_8hpp.html#a20c281f24bce247514f2ccabf0454c5c">atum::MotorPortsList</a> = typedef std::vector&lt;std::int8_t&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Because make_unique and make_shared seemed to brick the type inference of constructors involving vectors, this alias makes constructed smart pointers to said objects a little nicer looking. </p>
+<p>Same as PortsList, but for the signed integers associated with reversed motors. </p>
+
+</div>
+</div>
+<a id="a6a7b355273288f05264089a9f35493d4" name="a6a7b355273288f05264089a9f35493d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7b355273288f05264089a9f35493d4">&#9670;&#160;</a></span>PortsList</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">atum::PortsList</a> = typedef std::vector&lt;std::uint8_t&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Because make_unique and make_shared seemed to brick the type inference of constructors involving vectors, this aliases makes constructed smart pointers to said objects a little nicer looking. </p>
+
+</div>
+</div>
+<a id="afab6e4af744f631c3c65831546241abb" name="afab6e4af744f631c3c65831546241abb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afab6e4af744f631c3c65831546241abb">&#9670;&#160;</a></span>SmartPort</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="misc_8hpp.html#afab6e4af744f631c3c65831546241abb">atum::SmartPort</a> = typedef std::int8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Provided for disambiguation purposes in a few constructors. </p>
 
 </div>
 </div>
