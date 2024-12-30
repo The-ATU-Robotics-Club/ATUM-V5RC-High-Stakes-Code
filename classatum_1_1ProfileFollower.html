@@ -102,10 +102,16 @@ $(document).ready(function(){initNavTree('classatum_1_1ProfileFollower.html','')
   <div class="headertitle"><div class="title">atum::ProfileFollower&lt; Unit &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This template class supports easily following a motion profile (lateral or angular depending on the template parameter).  
+ <a href="classatum_1_1ProfileFollower.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="profileFollower_8hpp_source.html">profileFollower.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1ProfileFollower_1_1AccelerationConstants.html">AccelerationConstants</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">These constants are multiplied by the acceleration at each point along the profile (accel when accelerating, decel when decelerating) to better tracker the profile.  <a href="structatum_1_1ProfileFollower_1_1AccelerationConstants.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
@@ -125,19 +131,241 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>UnitAcceptable</b> =
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7253234614b20487ea6610b4c6914412"><td class="memItemLeft" align="right" valign="top"><a id="a7253234614b20487ea6610b4c6914412" name="a7253234614b20487ea6610b4c6914412"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>ProfileFollower</b> (const <a class="el" href="classatum_1_1MotionProfile.html">UnitProfile</a> &amp;iProfile, const <a class="el" href="classatum_1_1Acceptable.html">UnitAcceptable</a> &amp;iAcceptable, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iVelocityController, const <a class="el" href="structatum_1_1ProfileFollower_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;iKA, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iPositionController=nullptr, const double iTimeoutScaling=1.0, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memitem:a7253234614b20487ea6610b4c6914412"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ProfileFollower.html#a7253234614b20487ea6610b4c6914412">ProfileFollower</a> (const <a class="el" href="classatum_1_1MotionProfile.html">UnitProfile</a> &amp;iProfile, const <a class="el" href="classatum_1_1Acceptable.html">UnitAcceptable</a> &amp;iAcceptable, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iVelocityController, const <a class="el" href="structatum_1_1ProfileFollower_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;iKA, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iPositionController=nullptr, const double iTimeoutScaling=1.0, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a7253234614b20487ea6610b4c6914412"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ProfileFollower.html" title="This template class supports easily following a motion profile (lateral or angular depending on the t...">ProfileFollower</a> based on the given parameters.  <br /></td></tr>
 <tr class="separator:a7253234614b20487ea6610b4c6914412"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7be1bb2260415646f22e4549bbfc11b7"><td class="memItemLeft" align="right" valign="top"><a id="a7be1bb2260415646f22e4549bbfc11b7" name="a7be1bb2260415646f22e4549bbfc11b7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>startProfile</b> (const Unit start, const Unit iEnd)</td></tr>
+<tr class="memitem:a7be1bb2260415646f22e4549bbfc11b7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ProfileFollower.html#a7be1bb2260415646f22e4549bbfc11b7">startProfile</a> (const Unit start, const Unit iEnd)</td></tr>
+<tr class="memdesc:a7be1bb2260415646f22e4549bbfc11b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare to follow a new profile defined by the start and end positions. Involves reseting the controllers and acceptable object.  <br /></td></tr>
 <tr class="separator:a7be1bb2260415646f22e4549bbfc11b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97881e559789063c7388ecfb503ee5d1"><td class="memItemLeft" align="right" valign="top"><a id="a97881e559789063c7388ecfb503ee5d1" name="a97881e559789063c7388ecfb503ee5d1"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>getOutput</b> (const Unit s, const UnitsPerSecond v)</td></tr>
+<tr class="memitem:a97881e559789063c7388ecfb503ee5d1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ProfileFollower.html#a97881e559789063c7388ecfb503ee5d1">getOutput</a> (const Unit s, const UnitsPerSecond v)</td></tr>
+<tr class="memdesc:a97881e559789063c7388ecfb503ee5d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the output of the follower based on the current position (s) and velocity (v) readings.  <br /></td></tr>
 <tr class="separator:a97881e559789063c7388ecfb503ee5d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a4002bb3eee0fd81397fd4004dcd780"><td class="memItemLeft" align="right" valign="top"><a id="a4a4002bb3eee0fd81397fd4004dcd780" name="a4a4002bb3eee0fd81397fd4004dcd780"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isDone</b> ()</td></tr>
+<tr class="memitem:a4a4002bb3eee0fd81397fd4004dcd780"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ProfileFollower.html#a4a4002bb3eee0fd81397fd4004dcd780">isDone</a> ()</td></tr>
+<tr class="memdesc:a4a4002bb3eee0fd81397fd4004dcd780"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns true if finished following the profile.  <br /></td></tr>
 <tr class="separator:a4a4002bb3eee0fd81397fd4004dcd780"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
+class atum::ProfileFollower&lt; Unit &gt;</div><p>This template class supports easily following a motion profile (lateral or angular depending on the template parameter). </p>
+<p>Start by tuning without polling position, before tuning the feedforward for the velocity controller, moving onto acceleration constants, before adding in velocity and position feedback.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Unit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7253234614b20487ea6610b4c6914412" name="a7253234614b20487ea6610b4c6914412"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7253234614b20487ea6610b4c6914412">&#9670;&#160;</a></span>ProfileFollower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classatum_1_1ProfileFollower.html">atum::ProfileFollower</a>&lt; Unit &gt;::ProfileFollower </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1MotionProfile.html">UnitProfile</a> &amp;&#160;</td>
+          <td class="paramname"><em>iProfile</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1Acceptable.html">UnitAcceptable</a> &amp;&#160;</td>
+          <td class="paramname"><em>iAcceptable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt;&#160;</td>
+          <td class="paramname"><em>iVelocityController</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1ProfileFollower_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;&#160;</td>
+          <td class="paramname"><em>iKA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt;&#160;</td>
+          <td class="paramname"><em>iPositionController</em> = <code>nullptr</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>iTimeoutScaling</em> = <code>1.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classatum_1_1ProfileFollower.html" title="This template class supports easily following a motion profile (lateral or angular depending on the t...">ProfileFollower</a> based on the given parameters. </p>
+<p>The time out scaling parameter will be used to determine the time out on the profile by multiplying the profile's total time by it.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iProfile</td><td></td></tr>
+    <tr><td class="paramname">iAcceptable</td><td></td></tr>
+    <tr><td class="paramname">iVelocityController</td><td></td></tr>
+    <tr><td class="paramname">iKA</td><td></td></tr>
+    <tr><td class="paramname">iPositionController</td><td></td></tr>
+    <tr><td class="paramname">iTimeoutScaling</td><td></td></tr>
+    <tr><td class="paramname">loggerLevel</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a97881e559789063c7388ecfb503ee5d1" name="a97881e559789063c7388ecfb503ee5d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97881e559789063c7388ecfb503ee5d1">&#9670;&#160;</a></span>getOutput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">double <a class="el" href="classatum_1_1ProfileFollower.html">atum::ProfileFollower</a>&lt; Unit &gt;::getOutput </td>
+          <td>(</td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecond&#160;</td>
+          <td class="paramname"><em>v</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Gets the output of the follower based on the current position (s) and velocity (v) readings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">s</td><td></td></tr>
+    <tr><td class="paramname">v</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
+<a id="a4a4002bb3eee0fd81397fd4004dcd780" name="a4a4002bb3eee0fd81397fd4004dcd780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a4002bb3eee0fd81397fd4004dcd780">&#9670;&#160;</a></span>isDone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="classatum_1_1ProfileFollower.html">atum::ProfileFollower</a>&lt; Unit &gt;::isDone </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns true if finished following the profile. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="a7be1bb2260415646f22e4549bbfc11b7" name="a7be1bb2260415646f22e4549bbfc11b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7be1bb2260415646f22e4549bbfc11b7">&#9670;&#160;</a></span>startProfile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classatum_1_1ProfileFollower.html">atum::ProfileFollower</a>&lt; Unit &gt;::startProfile </td>
+          <td>(</td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>iEnd</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prepare to follow a new profile defined by the start and end positions. Involves reseting the controllers and acceptable object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td></td></tr>
+    <tr><td class="paramname">iEnd</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/motion/<a class="el" href="profileFollower_8hpp_source.html">profileFollower.hpp</a></li>
 </ul>

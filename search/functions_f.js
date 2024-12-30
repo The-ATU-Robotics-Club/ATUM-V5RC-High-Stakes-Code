@@ -15,6 +15,7 @@ var searchData=
   ['slewrate_12',['SlewRate',['../classatum_1_1SlewRate.html#a0042e0cee5b1196fed54d8b7d86f8742',1,'atum::SlewRate::SlewRate(const double maxDecRate, const double maxIncRate, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1SlewRate.html#ac8b1ea105aeb42f5551af1fe5dbf1df4',1,'atum::SlewRate::SlewRate(const double rate, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['startbackgroundtasks_13',['startBackgroundTasks',['../classatum_1_1Task.html#aa08bc0810059c4c9b94d3b5767ca5abc',1,'atum::Task']]],
   ['startloading_14',['startLoading',['../classatum_1_1GUI_1_1Manager.html#a61b58560ca0402a713dd063d859f1999',1,'atum::GUI::Manager']]],
-  ['stop_15',['stop',['../classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4',1,'atum::Intake::stop()'],['../classatum_1_1Ladybrown.html#ab5eb901499ba9875edad45246948cf71',1,'atum::Ladybrown::stop()']]],
-  ['stopbackgroundtasks_16',['stopBackgroundTasks',['../classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c',1,'atum::Task']]]
+  ['startprofile_15',['startProfile',['../classatum_1_1ProfileFollower.html#a7be1bb2260415646f22e4549bbfc11b7',1,'atum::ProfileFollower']]],
+  ['stop_16',['stop',['../classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4',1,'atum::Intake::stop()'],['../classatum_1_1Ladybrown.html#ab5eb901499ba9875edad45246948cf71',1,'atum::Ladybrown::stop()']]],
+  ['stopbackgroundtasks_17',['stopBackgroundTasks',['../classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c',1,'atum::Task']]]
 ];

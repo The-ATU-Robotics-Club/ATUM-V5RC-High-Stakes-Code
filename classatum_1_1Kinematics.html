@@ -102,6 +102,11 @@ $(document).ready(function(){initNavTree('classatum_1_1Kinematics.html',''); ini
   <div class="headertitle"><div class="title">atum::Kinematics&lt; Unit &gt; Class Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This template class provides several static methods to support common kinematic calculations. It is a template so the same equations do not have to be redefined for angles.  
+ <a href="classatum_1_1Kinematics.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="kinematics_8hpp_source.html">kinematics.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-types" name="pub-types"></a>
 Public Types</h2></td></tr>
@@ -126,19 +131,270 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ab666af72a80cdac8f615955dd71a27cb"><td class="memItemLeft" align="right" valign="top"><a id="ab666af72a80cdac8f615955dd71a27cb" name="ab666af72a80cdac8f615955dd71a27cb"></a>
-static Unit&#160;</td><td class="memItemRight" valign="bottom"><b>position</b> (const second_t dt, const Unit x0, const UnitsPerSecond v0=UnitsPerSecond{0.0}, const UnitsPerSecondSq a0=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb j=UnitsPerSecondCb{0.0})</td></tr>
+<tr class="memitem:ab666af72a80cdac8f615955dd71a27cb"><td class="memItemLeft" align="right" valign="top">static Unit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Kinematics.html#ab666af72a80cdac8f615955dd71a27cb">position</a> (const second_t dt, const Unit x0, const UnitsPerSecond v0=UnitsPerSecond{0.0}, const UnitsPerSecondSq a0=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb j=UnitsPerSecondCb{0.0})</td></tr>
+<tr class="memdesc:ab666af72a80cdac8f615955dd71a27cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculate the next position based on the given parameters.  <br /></td></tr>
 <tr class="separator:ab666af72a80cdac8f615955dd71a27cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa92f74dfcb51bdc9b108f45aec5a5ce5"><td class="memItemLeft" align="right" valign="top"><a id="aa92f74dfcb51bdc9b108f45aec5a5ce5" name="aa92f74dfcb51bdc9b108f45aec5a5ce5"></a>
-static UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b> (const second_t dt, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb j=UnitsPerSecondCb{0.0})</td></tr>
+<tr class="memitem:aa92f74dfcb51bdc9b108f45aec5a5ce5"><td class="memItemLeft" align="right" valign="top">static UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Kinematics.html#aa92f74dfcb51bdc9b108f45aec5a5ce5">velocity</a> (const second_t dt, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb j=UnitsPerSecondCb{0.0})</td></tr>
+<tr class="memdesc:aa92f74dfcb51bdc9b108f45aec5a5ce5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the next velocity based on the given parameters.  <br /></td></tr>
 <tr class="separator:aa92f74dfcb51bdc9b108f45aec5a5ce5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d2ec0b6700f5c356437bbf82f7440ea"><td class="memItemLeft" align="right" valign="top"><a id="a7d2ec0b6700f5c356437bbf82f7440ea" name="a7d2ec0b6700f5c356437bbf82f7440ea"></a>
-static UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><b>velocity</b> (const Unit dx, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{ 0.0})</td></tr>
+<tr class="memitem:a7d2ec0b6700f5c356437bbf82f7440ea"><td class="memItemLeft" align="right" valign="top">static UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Kinematics.html#a7d2ec0b6700f5c356437bbf82f7440ea">velocity</a> (const Unit dx, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{ 0.0})</td></tr>
+<tr class="memdesc:a7d2ec0b6700f5c356437bbf82f7440ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the next velocity based on the given parameters.  <br /></td></tr>
 <tr class="separator:a7d2ec0b6700f5c356437bbf82f7440ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7a11a6296d61d9d3718001f7dbc62c1"><td class="memItemLeft" align="right" valign="top"><a id="ae7a11a6296d61d9d3718001f7dbc62c1" name="ae7a11a6296d61d9d3718001f7dbc62c1"></a>
-static UnitsPerSecondSq&#160;</td><td class="memItemRight" valign="bottom"><b>accel</b> (const second_t dt, const UnitsPerSecondSq a0, const UnitsPerSecondCb j=UnitsPerSecondCb{ 0.0})</td></tr>
+<tr class="memitem:ae7a11a6296d61d9d3718001f7dbc62c1"><td class="memItemLeft" align="right" valign="top">static UnitsPerSecondSq&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Kinematics.html#ae7a11a6296d61d9d3718001f7dbc62c1">accel</a> (const second_t dt, const UnitsPerSecondSq a0, const UnitsPerSecondCb j=UnitsPerSecondCb{ 0.0})</td></tr>
+<tr class="memdesc:ae7a11a6296d61d9d3718001f7dbc62c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the next acceleration based on the given parameters.  <br /></td></tr>
 <tr class="separator:ae7a11a6296d61d9d3718001f7dbc62c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
+class atum::Kinematics&lt; Unit &gt;</div><p>This template class provides several static methods to support common kinematic calculations. It is a template so the same equations do not have to be redefined for angles. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Unit</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ae7a11a6296d61d9d3718001f7dbc62c1" name="ae7a11a6296d61d9d3718001f7dbc62c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7a11a6296d61d9d3718001f7dbc62c1">&#9670;&#160;</a></span>accel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static UnitsPerSecondSq <a class="el" href="classatum_1_1Kinematics.html">atum::Kinematics</a>&lt; Unit &gt;::accel </td>
+          <td>(</td>
+          <td class="paramtype">const second_t&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondSq&#160;</td>
+          <td class="paramname"><em>a0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondCb&#160;</td>
+          <td class="paramname"><em>j</em> = <code>UnitsPerSecondCb{&#160;0.0}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates the next acceleration based on the given parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td></td></tr>
+    <tr><td class="paramname">a0</td><td></td></tr>
+    <tr><td class="paramname">j</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>UnitsPerSecondSq </dd></dl>
+
+</div>
+</div>
+<a id="ab666af72a80cdac8f615955dd71a27cb" name="ab666af72a80cdac8f615955dd71a27cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab666af72a80cdac8f615955dd71a27cb">&#9670;&#160;</a></span>position()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static Unit <a class="el" href="classatum_1_1Kinematics.html">atum::Kinematics</a>&lt; Unit &gt;::position </td>
+          <td>(</td>
+          <td class="paramtype">const second_t&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>x0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecond&#160;</td>
+          <td class="paramname"><em>v0</em> = <code>UnitsPerSecond{0.0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondSq&#160;</td>
+          <td class="paramname"><em>a0</em> = <code>UnitsPerSecondSq{0.0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondCb&#160;</td>
+          <td class="paramname"><em>j</em> = <code>UnitsPerSecondCb{0.0}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculate the next position based on the given parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td></td></tr>
+    <tr><td class="paramname">x0</td><td></td></tr>
+    <tr><td class="paramname">v0</td><td></td></tr>
+    <tr><td class="paramname">a0</td><td></td></tr>
+    <tr><td class="paramname">j</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Unit </dd></dl>
+
+</div>
+</div>
+<a id="aa92f74dfcb51bdc9b108f45aec5a5ce5" name="aa92f74dfcb51bdc9b108f45aec5a5ce5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa92f74dfcb51bdc9b108f45aec5a5ce5">&#9670;&#160;</a></span>velocity() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static UnitsPerSecond <a class="el" href="classatum_1_1Kinematics.html">atum::Kinematics</a>&lt; Unit &gt;::velocity </td>
+          <td>(</td>
+          <td class="paramtype">const second_t&#160;</td>
+          <td class="paramname"><em>dt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecond&#160;</td>
+          <td class="paramname"><em>v0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondSq&#160;</td>
+          <td class="paramname"><em>a0</em> = <code>UnitsPerSecondSq{0.0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondCb&#160;</td>
+          <td class="paramname"><em>j</em> = <code>UnitsPerSecondCb{0.0}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates the next velocity based on the given parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td></td></tr>
+    <tr><td class="paramname">v0</td><td></td></tr>
+    <tr><td class="paramname">a0</td><td></td></tr>
+    <tr><td class="paramname">j</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>UnitsPerSecond </dd></dl>
+
+</div>
+</div>
+<a id="a7d2ec0b6700f5c356437bbf82f7440ea" name="a7d2ec0b6700f5c356437bbf82f7440ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d2ec0b6700f5c356437bbf82f7440ea">&#9670;&#160;</a></span>velocity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static UnitsPerSecond <a class="el" href="classatum_1_1Kinematics.html">atum::Kinematics</a>&lt; Unit &gt;::velocity </td>
+          <td>(</td>
+          <td class="paramtype">const Unit&#160;</td>
+          <td class="paramname"><em>dx</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecond&#160;</td>
+          <td class="paramname"><em>v0</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondSq&#160;</td>
+          <td class="paramname"><em>a0</em> = <code>UnitsPerSecondSq{&#160;0.0}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Calculates the next velocity based on the given parameters. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dx</td><td></td></tr>
+    <tr><td class="paramname">v0</td><td></td></tr>
+    <tr><td class="paramname">a0</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>UnitsPerSecond </dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/motion/<a class="el" href="kinematics_8hpp_source.html">kinematics.hpp</a></li>
 </ul>

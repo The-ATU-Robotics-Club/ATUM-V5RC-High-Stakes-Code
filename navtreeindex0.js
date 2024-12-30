@@ -157,6 +157,10 @@ var NAVTREEINDEX0 =
 "classatum_1_1Potentiometer.html#a880e89d80f583f77940cc1a2d1f83c3a":[1,0,0,20,2],
 "classatum_1_1Potentiometer.html#ac47916cfa85d8d6593edad3a80ac7ab2":[1,0,0,20,0],
 "classatum_1_1ProfileFollower.html":[1,0,0,21],
+"classatum_1_1ProfileFollower.html#a4a4002bb3eee0fd81397fd4004dcd780":[1,0,0,21,3],
+"classatum_1_1ProfileFollower.html#a7253234614b20487ea6610b4c6914412":[1,0,0,21,1],
+"classatum_1_1ProfileFollower.html#a7be1bb2260415646f22e4549bbfc11b7":[1,0,0,21,4],
+"classatum_1_1ProfileFollower.html#a97881e559789063c7388ecfb503ee5d1":[1,0,0,21,2],
 "classatum_1_1Remote.html":[1,0,0,22],
 "classatum_1_1Remote.html#a0164e292529181e2e23fbf00bd504527":[1,0,0,22,11],
 "classatum_1_1Remote.html#a27903f9a01525e064e73ac9aa89637f3":[1,0,0,22,1],
@@ -245,9 +249,5 @@ var NAVTREEINDEX0 =
 "dir_08e4f34e5757a9a4bec0186f517c23a4.html":[2,0,0,0,1],
 "dir_1732e9565d92c6ba339fd4fffe6281f5.html":[2,0,0,0],
 "dir_21f24c98fefbd3010fbdfb2adbe9602d.html":[2,0,0,1,2],
-"dir_4391aad5b666caa86bd08a5c3f51cc4e.html":[2,0,0,0,6],
-"dir_70d896ce8007cc8302a5768fed59734e.html":[2,0,0,0,0],
-"dir_94010ad16aedcb2a9149365d3e62b963.html":[2,0,0,0,4],
-"dir_98c01ade21989893abaa4aeb26e1ba26.html":[2,0,0,1],
-"dir_a3acc2f368f9b12e0132a198399d370b.html":[2,0,0,0,3]
+"dir_4391aad5b666caa86bd08a5c3f51cc4e.html":[2,0,0,0,6]
 };

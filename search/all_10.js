@@ -26,11 +26,12 @@ var searchData=
   ['start_5ftask_5f2_23',['START_TASK_2',['../task_8hpp.html#a00751aef586d179fb9e0645a99b90736',1,'task.hpp']]],
   ['startbackgroundtasks_24',['startBackgroundTasks',['../classatum_1_1Task.html#aa08bc0810059c4c9b94d3b5767ca5abc',1,'atum::Task']]],
   ['startloading_25',['startLoading',['../classatum_1_1GUI_1_1Manager.html#a61b58560ca0402a713dd063d859f1999',1,'atum::GUI::Manager']]],
-  ['statemachine_26',['StateMachine',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['statemachine_2ehpp_27',['stateMachine.hpp',['../stateMachine_8hpp.html',1,'']]],
-  ['statemachine_3c_20intakestate_20_3e_28',['StateMachine&lt; IntakeState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['statemachine_3c_20ladybrownstate_20_3e_29',['StateMachine&lt; LadybrownState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['stickaxis_30',['StickAxis',['../structatum_1_1Remote_1_1StickAxis.html',1,'atum::Remote']]],
-  ['stop_31',['stop',['../classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4',1,'atum::Intake::stop()'],['../classatum_1_1Ladybrown.html#ab5eb901499ba9875edad45246948cf71',1,'atum::Ladybrown::stop()']]],
-  ['stopbackgroundtasks_32',['stopBackgroundTasks',['../classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c',1,'atum::Task']]]
+  ['startprofile_26',['startProfile',['../classatum_1_1ProfileFollower.html#a7be1bb2260415646f22e4549bbfc11b7',1,'atum::ProfileFollower']]],
+  ['statemachine_27',['StateMachine',['../classatum_1_1StateMachine.html',1,'atum']]],
+  ['statemachine_2ehpp_28',['stateMachine.hpp',['../stateMachine_8hpp.html',1,'']]],
+  ['statemachine_3c_20intakestate_20_3e_29',['StateMachine&lt; IntakeState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
+  ['statemachine_3c_20ladybrownstate_20_3e_30',['StateMachine&lt; LadybrownState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
+  ['stickaxis_31',['StickAxis',['../structatum_1_1Remote_1_1StickAxis.html',1,'atum::Remote']]],
+  ['stop_32',['stop',['../classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4',1,'atum::Intake::stop()'],['../classatum_1_1Ladybrown.html#ab5eb901499ba9875edad45246948cf71',1,'atum::Ladybrown::stop()']]],
+  ['stopbackgroundtasks_33',['stopBackgroundTasks',['../classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c',1,'atum::Task']]]
 ];
