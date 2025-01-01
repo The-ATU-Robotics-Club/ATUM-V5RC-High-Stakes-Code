@@ -16,6 +16,7 @@ void Robot15A::opcontrol() {
   } else {
     intake->setSortOutColor(ColorSensor::Color::Blue);
   }
+  drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
@@ -129,6 +130,14 @@ void Robot15A::configurationControls() {
     const ColorSensor::Color nextColor{(static_cast<int>(currentColor) + 1) %
                                        3};
     intake->setSortOutColor(nextColor);
+  }
+
+  if(remote.getPress(Remote::Button::B)) {
+    if(drive->getBrakeMode() == pros::MotorBrake::coast) {
+      drive->setBrakeMode(pros::MotorBrake::hold);
+    } else {
+      drive->setBrakeMode(pros::MotorBrake::coast);
+    }
   }
 }
 } // namespace atum
