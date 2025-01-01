@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"dir_4391aad5b666caa86bd08a5c3f51cc4e.html":[2,0,0,0,6],
 "dir_70d896ce8007cc8302a5768fed59734e.html":[2,0,0,0,0],
 "dir_94010ad16aedcb2a9149365d3e62b963.html":[2,0,0,0,4],
 "dir_98c01ade21989893abaa4aeb26e1ba26.html":[2,0,0,1],
@@ -14,8 +15,8 @@ var NAVTREEINDEX1 =
 "drive_8hpp.html":[2,0,0,0,5,0],
 "drive_8hpp_source.html":[2,0,0,0,5,0],
 "files.html":[2,0],
-"functions.html":[1,3,0],
 "functions.html":[1,3,0,0],
+"functions.html":[1,3,0],
 "functions_b.html":[1,3,0,1],
 "functions_c.html":[1,3,0,2],
 "functions_d.html":[1,3,0,3],
@@ -168,6 +169,8 @@ var NAVTREEINDEX1 =
 "structatum_1_1Schedule_1_1Item.html":[1,0,0,27,0],
 "structatum_1_1TBH_1_1Parameters.html":[1,0,0,31,0],
 "structatum_1_1Task_1_1TaskParams.html":[1,0,0,30,0],
+"structatum_1_1Trajectory_1_1Parameters.html":[1,0,0,34,0],
+"structatum_1_1Trajectory_1_1TimedPose.html":[1,0,0,34,1],
 "task_8hpp.html":[2,0,0,0,6,1],
 "task_8hpp.html#a00751aef586d179fb9e0645a99b90736":[2,0,0,0,6,1,5],
 "task_8hpp.html#abbee285c8ce4cf43adc528df98c6e5b7":[2,0,0,0,6,1,3],
@@ -188,6 +191,7 @@ var NAVTREEINDEX1 =
 "timer_8hpp_source.html":[2,0,0,0,6,3],
 "tracker_8hpp.html":[2,0,0,0,4,2],
 "tracker_8hpp_source.html":[2,0,0,0,4,2],
+"trajectory_8hpp_source.html":[2,0,0,0,3,3],
 "units_8hpp.html":[2,0,0,0,7,3],
 "units_8hpp.html#a2dc0be4dbad40fc12062a8eb218fdf90":[2,0,0,0,7,3,2],
 "units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1":[2,0,0,0,7,3,0],

@@ -27,6 +27,7 @@ var hierarchy =
     [ "atum::MotionProfile< Unit >::Parameters", "structatum_1_1MotionProfile_1_1Parameters.html", null ],
     [ "atum::PID::Parameters", "structatum_1_1PID_1_1Parameters.html", null ],
     [ "atum::TBH::Parameters", "structatum_1_1TBH_1_1Parameters.html", null ],
+    [ "atum::Trajectory::Parameters", "structatum_1_1Trajectory_1_1Parameters.html", null ],
     [ "atum::Piston", "classatum_1_1Piston.html", null ],
     [ "atum::MotionProfile< Unit >::Point", "structatum_1_1MotionProfile_1_1Point.html", null ],
     [ "atum::Pose", "structatum_1_1Pose.html", null ],
@@ -62,8 +63,10 @@ var hierarchy =
       [ "atum::Schedule", "classatum_1_1Schedule.html", null ]
     ] ],
     [ "atum::Task::TaskParams", "structatum_1_1Task_1_1TaskParams.html", null ],
+    [ "atum::Trajectory::TimedPose", "structatum_1_1Trajectory_1_1TimedPose.html", null ],
     [ "atum::Timer", "classatum_1_1Timer.html", null ],
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
-    ] ]
+    ] ],
+    [ "atum::Trajectory", "classatum_1_1Trajectory.html", null ]
 ];

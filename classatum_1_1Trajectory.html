@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: include/atum/motion Directory Reference</title>
+<title>VURC Team ATUM: atum::Trajectory Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('dir_a3acc2f368f9b12e0132a198399d370b.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classatum_1_1Trajectory.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -94,30 +94,43 @@ $(document).ready(function(){initNavTree('dir_a3acc2f368f9b12e0132a198399d370b.h
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">motion Directory Reference</div></div>
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classatum_1_1Trajectory-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">atum::Trajectory Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="kinematics_8hpp.html">kinematics.hpp</a> <a href="kinematics_8hpp_source.html">[code]</a></td></tr>
-<tr class="memdesc:kinematics_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Includes the Kinematics template class and helpful aliases. <br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="motionProfile_8hpp.html">motionProfile.hpp</a> <a href="motionProfile_8hpp_source.html">[code]</a></td></tr>
-<tr class="memdesc:motionProfile_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Includes the MotionProfile template class and some helpful aliases. <br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Trajectory_1_1TimedPose.html">TimedPose</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="profileFollower_8hpp.html">profileFollower.hpp</a> <a href="profileFollower_8hpp_source.html">[code]</a></td></tr>
-<tr class="memdesc:profileFollower_8hpp"><td class="mdescLeft">&#160;</td><td class="mdescRight">Includes the ProfileFollower template class and some helpful aliases. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><b>trajectory.hpp</b> <a href="trajectory_8hpp_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a097d51e01db26ba3ee4a0106acb90ef7"><td class="memItemLeft" align="right" valign="top"><a id="a097d51e01db26ba3ee4a0106acb90ef7" name="a097d51e01db26ba3ee4a0106acb90ef7"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Trajectory</b> (const std::pair&lt; <a class="el" href="structatum_1_1Pose.html">Pose</a>, <a class="el" href="structatum_1_1Pose.html">Pose</a> &gt; &amp;waypoints, const std::optional&lt; <a class="el" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a> &gt; &amp;specialParams={})</td></tr>
+<tr class="separator:a097d51e01db26ba3ee4a0106acb90ef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a955d33977fde8464d77d3e307ce4a156"><td class="memItemLeft" align="right" valign="top"><a id="a955d33977fde8464d77d3e307ce4a156" name="a955d33977fde8464d77d3e307ce4a156"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>setDefaultParameters</b> (const <a class="el" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a> &amp;newParams)</td></tr>
+<tr class="separator:a955d33977fde8464d77d3e307ce4a156"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/atum/motion/<a class="el" href="trajectory_8hpp_source.html">trajectory.hpp</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_a3acc2f368f9b12e0132a198399d370b.html">motion</a></li>
+    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1Trajectory.html">Trajectory</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -239,6 +239,7 @@ var NAVTREEINDEX0 =
 "classatum_1_1Tracker.html#aa6c8fdba0cf87e8d055530708ab83273":[1,0,0,33,1],
 "classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d":[1,0,0,33,0],
 "classatum_1_1Tracker.html#ad3af8500f4e8b72a2b99794c5e7234c1":[1,0,0,33,2],
+"classatum_1_1Trajectory.html":[1,0,0,34],
 "classes.html":[1,1],
 "colorSensor_8hpp.html":[2,0,0,0,1,1],
 "colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6":[2,0,0,0,1,1,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "dir_0686e71c558aeb9d692ef809e92230fd.html":[2,0,0,0,7],
 "dir_08e4f34e5757a9a4bec0186f517c23a4.html":[2,0,0,0,1],
 "dir_1732e9565d92c6ba339fd4fffe6281f5.html":[2,0,0,0],
-"dir_21f24c98fefbd3010fbdfb2adbe9602d.html":[2,0,0,1,2],
-"dir_4391aad5b666caa86bd08a5c3f51cc4e.html":[2,0,0,0,6]
+"dir_21f24c98fefbd3010fbdfb2adbe9602d.html":[2,0,0,1,2]
 };

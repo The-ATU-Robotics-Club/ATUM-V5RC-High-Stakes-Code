@@ -116,18 +116,20 @@ $(document).ready(function(){initNavTree('misc_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">static</span> <span class="keyword">constexpr</span> std::int8_t errorPort{0};</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">   63</a></span>T <a class="code hl_function" href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">average</a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;items) {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keywordflow">if</span>(items.empty()) {</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keywordflow">return</span> T{0};</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> size{<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(items.size())};</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordflow">return</span> std::reduce(items.begin(), items.end()) / size;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">double</span> infinitesimal{std::numeric_limits&lt;double&gt;::min()};</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">   70</a></span>T <a class="code hl_function" href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">average</a>(<span class="keyword">const</span> std::vector&lt;T&gt; &amp;items) {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordflow">if</span>(items.empty()) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> T{0};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keyword">const</span> <span class="keywordtype">double</span> size{<span class="keyword">static_cast&lt;</span><span class="keywordtype">double</span><span class="keyword">&gt;</span>(items.size())};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordflow">return</span> std::reduce(items.begin(), items.end()) / size;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>}</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="amisc_8hpp_html_a20c281f24bce247514f2ccabf0454c5c"><div class="ttname"><a href="misc_8hpp.html#a20c281f24bce247514f2ccabf0454c5c">atum::MotorPortsList</a></div><div class="ttdeci">std::vector&lt; std::int8_t &gt; MotorPortsList</div><div class="ttdoc">Same as PortsList, but for the signed integers associated with reversed motors.</div><div class="ttdef"><b>Definition:</b> misc.hpp:46</div></div>
 <div class="ttc" id="amisc_8hpp_html_a6a7b355273288f05264089a9f35493d4"><div class="ttname"><a href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">atum::PortsList</a></div><div class="ttdeci">std::vector&lt; std::uint8_t &gt; PortsList</div><div class="ttdoc">Because make_unique and make_shared seemed to brick the type inference of constructors involving vect...</div><div class="ttdef"><b>Definition:</b> misc.hpp:39</div></div>
-<div class="ttc" id="amisc_8hpp_html_ada37e1456ca70441410febb00ad3cf88"><div class="ttname"><a href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">atum::average</a></div><div class="ttdeci">T average(const std::vector&lt; T &gt; &amp;items)</div><div class="ttdoc">A simple templated function to take an average of a vector of items.</div><div class="ttdef"><b>Definition:</b> misc.hpp:63</div></div>
+<div class="ttc" id="amisc_8hpp_html_ada37e1456ca70441410febb00ad3cf88"><div class="ttname"><a href="misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88">atum::average</a></div><div class="ttdeci">T average(const std::vector&lt; T &gt; &amp;items)</div><div class="ttdoc">A simple templated function to take an average of a vector of items.</div><div class="ttdef"><b>Definition:</b> misc.hpp:70</div></div>
 <div class="ttc" id="amisc_8hpp_html_afab6e4af744f631c3c65831546241abb"><div class="ttname"><a href="misc_8hpp.html#afab6e4af744f631c3c65831546241abb">atum::SmartPort</a></div><div class="ttdeci">std::int8_t SmartPort</div><div class="ttdoc">Provided for disambiguation purposes in a few constructors.</div><div class="ttdef"><b>Definition:</b> misc.hpp:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

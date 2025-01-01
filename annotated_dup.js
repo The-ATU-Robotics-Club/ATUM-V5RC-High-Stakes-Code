@@ -41,6 +41,7 @@ var annotated_dup =
       [ "Task", "classatum_1_1Task.html", "classatum_1_1Task" ],
       [ "TBH", "classatum_1_1TBH.html", "classatum_1_1TBH" ],
       [ "Timer", "classatum_1_1Timer.html", "classatum_1_1Timer" ],
-      [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ]
+      [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ],
+      [ "Trajectory", "classatum_1_1Trajectory.html", "classatum_1_1Trajectory" ]
     ] ]
 ];
