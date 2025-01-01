@@ -2,8 +2,7 @@
 
 namespace atum {
 void Robot::autonomous() {
-  // This will later be received from the RoutineSelector.
-  const std::size_t routineIndex{0};
+  const std::size_t routineIndex{GUI::Routines::selectedRoutine()};
   routines[routineIndex]();
 }
 

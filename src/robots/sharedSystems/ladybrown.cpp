@@ -127,7 +127,7 @@ void Ladybrown::moveTo(const LadybrownState targetState) {
     const double followerOutput{
         follower->getOutput(getPosition(), getVelocity())};
     voltage = followerOutput;
-    wait(5_ms);
+    wait();
   }
   stop();
 }
@@ -230,7 +230,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
 
   START_TASK("Ladybrown Control")
   while(true) {
-    wait(5_ms); // At the top because of continue statement below.
+    wait(); // At the top because of continue statement below.
     handlePiston();
     if(maintainMotors()) {
       continue;
