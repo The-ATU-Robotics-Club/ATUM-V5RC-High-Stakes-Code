@@ -53,6 +53,13 @@ using MotorPortsList = std::vector<std::int8_t>;
 static constexpr std::int8_t errorPort{0};
 
 /**
+ * @brief Smallest possible non-zero value for double. Typically used to avoid
+ * division by zero errors.
+ *
+ */
+static constexpr double infinitesimal{std::numeric_limits<double>::min()};
+
+/**
  * @brief A simple templated function to take an average of a vector of items.
  *
  * @tparam T
