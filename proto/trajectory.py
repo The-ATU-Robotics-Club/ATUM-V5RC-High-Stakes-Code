@@ -33,6 +33,8 @@ class CubicHermite:
         self.maxError = maxError
         self.scaling = scaling
         self.path = []
+        self.times = []
+        self.headings = []
         self.curvatures = []
         self.velocity = []
         self.angularVelocity = []
@@ -50,11 +52,33 @@ class CubicHermite:
 
     def generateTrajectory(self):
         self.generatePaths()
-        self.velocity = [min(self.maxVelocity, 2 * self.maxVelocity / (abs(self.curvatures[i]) * self.track)) for i in range(len(self.path))]
+        self.velocity = [
+            min(
+                self.maxVelocity,
+                self.maxVelocity / (abs(self.curvatures[i]) * self.track),
+            )
+            for i in range(len(self.path))
+        ]
         self.velocity[0] = self.velocity[-1] = 0
         for i in range(1, len(self.path) - 2):
+            twoA = 2 * self.acceleration
+            accelerated = self.velocity[i - 1] * self.velocity[
+                i - 1
+            ] + twoA * distance(self.path[i - 1], self.path[i])
+            self.velocity[i] = min(np.sqrt(accelerated), self.velocity[i])
             j = len(self.path) - 1 - i
-        return [self.path, self.velocity, self.curvatures]
+            
+            accelerated = self.velocity[j + 1] * self.velocity[
+                j + 1
+            ] + twoA * distance(self.path[j + 1], self.path[j])
+            self.velocity[j] = min(np.sqrt(accelerated), self.velocity[j])
+        self.times = [0]
+        self.angularVelocity = [0]
+        for i in range(1, len(self.path)):
+            avgV = (self.velocity[i - 1] + self.velocity[i]) / 2
+            self.times.append(self.times[-1] + self.spacing / avgV)
+            self.angularVelocity.append(self.velocity[i] * self.curvatures[i])
+        return [self.path, self.times, self.velocity, self.angularVelocity]
 
     def _addNextPoint(self, t0):
         t2 = 1
@@ -91,7 +115,7 @@ class CubicHermite:
         cross = derivative[0] * derivative2nd[1] - derivative[1] * derivative2nd[0]
         denom = pow(derivative[0] * derivative[0] + derivative[1] * derivative[1], 1.5)
         if cross == 0:
-            cross = 0.00000001 # This is an easy fix for now, don't do this in C++
+            cross = 0.00000001  # This is an easy fix for now, don't do this in C++
         return -cross / denom
 
     def _getDerivative(self, t):
@@ -124,17 +148,21 @@ chSpline = CubicHermite(
     1.94,
 )
 t0 = timeit.default_timer()
-# for i in range(1000):
-path, velocity, angularVelocity = chSpline.generateTrajectory()
+path, times, velocity, angularVelocity = chSpline.generateTrajectory()
 print(timeit.default_timer() - t0)
 xsPath, ysPath = zip(*path)
 fig, ax1 = plt.subplots()
 ax1.scatter(xsPath, ysPath)
 ax1.set_xlim([-1.5, 1.5])
-ax1.set_ylim([-1.5, 1.5])
+ax1.set_ylim([-1.5, 5])
+
 _, ax2 = plt.subplots()
-ax2.scatter(xsPath, velocity)
-ax2.scatter(xsPath, angularVelocity)
-ax2.set_xlim([-1.5, 1.5])
+ax2.scatter(times, velocity)
+ax2.set_xlim([0, 6])
 ax2.set_ylim([-2, 2])
+
+_, ax3 = plt.subplots()
+ax3.scatter(times, angularVelocity)
+ax3.set_xlim([0, 6])
+ax3.set_ylim([-15, 15])
 plt.show()
