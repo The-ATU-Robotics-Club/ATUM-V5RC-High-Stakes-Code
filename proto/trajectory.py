@@ -34,28 +34,18 @@ class CubicHermite:
         self.scaling = scaling
         self.path = []
         self.times = []
+        self.derivatives = []
         self.headings = []
         self.curvatures = []
         self.velocity = []
         self.angularVelocity = []
-
-    def generatePaths(self):
-        self.path = [self.startPosition]
-        self.curvatures = [self._getCurvature(0)]
-        t0 = 0
-        while distance(self.path[-1], self.endPosition) > self.spacing + self.maxError:
-            # Inlining helps, but not done here for readability sake.
-            t0 = self._addNextPoint(t0)
-            self.curvatures.append(self._getCurvature(t0))
-        self.path.append(self.endPosition)
-        self.curvatures.append(self._getCurvature(1))
 
     def generateTrajectory(self):
         self.generatePaths()
         self.velocity = [
             min(
                 self.maxVelocity,
-                self.maxVelocity / (abs(self.curvatures[i]) * self.track),
+                2 * self.maxVelocity / (abs(self.curvatures[i]) * self.track),
             )
             for i in range(len(self.path))
         ]
@@ -67,7 +57,7 @@ class CubicHermite:
             ] + twoA * distance(self.path[i - 1], self.path[i])
             self.velocity[i] = min(np.sqrt(accelerated), self.velocity[i])
             j = len(self.path) - 1 - i
-            
+
             accelerated = self.velocity[j + 1] * self.velocity[
                 j + 1
             ] + twoA * distance(self.path[j + 1], self.path[j])
@@ -78,7 +68,24 @@ class CubicHermite:
             avgV = (self.velocity[i - 1] + self.velocity[i]) / 2
             self.times.append(self.times[-1] + self.spacing / avgV)
             self.angularVelocity.append(self.velocity[i] * self.curvatures[i])
-        return [self.path, self.times, self.velocity, self.angularVelocity]
+        return [self.path, self.headings, self.times, self.velocity, self.angularVelocity]
+
+    def generatePaths(self):
+        self.path = [self.startPosition]
+        self.derivatives = [self._getDerivative(0)]
+        self.headings = [self._getHeading(0)]
+        self.curvatures = [self._getCurvature(0)]
+        t0 = 0
+        while distance(self.path[-1], self.endPosition) > self.spacing + self.maxError:
+            # Inlining helps, but not done here for readability sake.
+            t0 = self._addNextPoint(t0)
+            self.derivatives = [self._getDerivative(t0)]
+            self.headings.append(self._getHeading(t0))
+            self.curvatures.append(self._getCurvature(t0))
+        self.path.append(self.endPosition)
+        self.derivatives = [self._getDerivative(1)]
+        self.headings.append(self._getHeading(1))
+        self.curvatures.append(self._getCurvature(1))
 
     def _addNextPoint(self, t0):
         t2 = 1
@@ -109,11 +116,17 @@ class CubicHermite:
             + (t3 - t2) * self.endVelocity
         )
 
+    def _getHeading(self, t):
+        derivative = self.derivatives[-1]
+        return np.arctan2(derivative[1], derivative[0]) * 180 / np.pi
+
     def _getCurvature(self, t):
-        derivative = self._getDerivative(t)
+        derivative = self.derivatives[-1]
         derivative2nd = self._get2ndDerivative(t)
-        cross = derivative[0] * derivative2nd[1] - derivative[1] * derivative2nd[0]
-        denom = pow(derivative[0] * derivative[0] + derivative[1] * derivative[1], 1.5)
+        cross = derivative[0] * derivative2nd[1] - \
+            derivative[1] * derivative2nd[0]
+        denom = pow(derivative[0] * derivative[0] +
+                    derivative[1] * derivative[1], 1.5)
         if cross == 0:
             cross = 0.00000001  # This is an easy fix for now, don't do this in C++
         return -cross / denom
@@ -148,21 +161,27 @@ chSpline = CubicHermite(
     1.94,
 )
 t0 = timeit.default_timer()
-path, times, velocity, angularVelocity = chSpline.generateTrajectory()
+for i in range(100):
+    path, headings, times, velocity, angularVelocity = chSpline.generateTrajectory()
 print(timeit.default_timer() - t0)
 xsPath, ysPath = zip(*path)
-fig, ax1 = plt.subplots()
+_, ax1 = plt.subplots()
 ax1.scatter(xsPath, ysPath)
 ax1.set_xlim([-1.5, 1.5])
 ax1.set_ylim([-1.5, 5])
 
 _, ax2 = plt.subplots()
-ax2.scatter(times, velocity)
+ax2.scatter(times, headings)
 ax2.set_xlim([0, 6])
-ax2.set_ylim([-2, 2])
+ax2.set_ylim([-180, 180])
 
 _, ax3 = plt.subplots()
-ax3.scatter(times, angularVelocity)
+ax3.scatter(times, velocity)
 ax3.set_xlim([0, 6])
-ax3.set_ylim([-15, 15])
+ax3.set_ylim([-2, 2])
+
+_, ax4 = plt.subplots()
+ax4.scatter(times, angularVelocity)
+ax4.set_xlim([0, 6])
+ax4.set_ylim([-15, 15])
 plt.show()
