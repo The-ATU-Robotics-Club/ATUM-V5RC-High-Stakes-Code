@@ -30,15 +30,28 @@ class Timer {
    *
    * @param iAlarmTime
    */
-  void setAlarmTime(const second_t iAlarmTime);
+  void setAlarm(const second_t iAlarmTime);
 
   /**
    * @brief Resets the timer to a specified time (so that an additional alarm
-   * time must pass before the alarm has gone off); default is 0s.
+   * time must pass before the alarm has gone off, or so timeElapsed returns the
+   * new time immediately after calling this method); default is 0s.
    *
-   * @param resetTime
+   * @param newTime
    */
-  void resetAlarm(const second_t resetTime = 0_s);
+  void setTime(const second_t newTime = 0_s);
+
+  /**
+   * @brief Sets the timer to 0s, but only once (until restart is called).
+   *
+   */
+  void start();
+
+  /**
+   * @brief Allows for the timer to be started again. 
+   * 
+   */
+  void restart();
 
   /**
    * @brief Says if the alarm time has elapsed since last reset is greater
@@ -68,5 +81,6 @@ class Timer {
   private:
   second_t startTime;
   second_t alarmTime;
+  bool started{false};
 };
 } // namespace atum

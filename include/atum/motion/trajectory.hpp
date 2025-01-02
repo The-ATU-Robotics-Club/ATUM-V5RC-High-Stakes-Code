@@ -1,7 +1,9 @@
 #pragma once
 
 #include "../pose/pose.hpp"
+#include "../time/timer.hpp"
 #include "../utility/logger.hpp"
+#include <map>
 
 /**
  * @brief This template specialization is to allow the use of second_t as a key
@@ -21,20 +23,23 @@ class Trajectory {
   public:
   struct Parameters {
     Parameters(double iCurviness = 0.0,
-               meters_per_second_t iMaxV = 0_mps,
-               meters_per_second_squared_t iMaxA = 0_mps_sq,
-               meter_t iTrack = 0_m,
-               meter_t iSpacing = 1_in,
-               meter_t iMaxSpacingError = 0.1_in,
-               double iBinarySearchScaling = 0.75);
-    Parameters(meters_per_second_t iMaxV, // No default value to disambiguate
-                                          // default constructor.
-               double iCurviness = 0.0,
-               meters_per_second_squared_t iMaxA = 0_mps_sq,
-               meter_t iTrack = 0_m,
-               meter_t iSpacing = 1_in,
-               meter_t iMaxSpacingError = 0.1_in,
-               double iBinarySearchScaling = 0.75);
+               const meters_per_second_t iMaxV = 0_mps,
+               const meters_per_second_squared_t iMaxA = 0_mps_sq,
+               const meter_t iTrack = 0_m,
+               const meter_t iSpacing = 1_in,
+               const meter_t iMaxSpacingError = 0.1_in,
+               const bool iUsePosition = true,
+               const double iBinarySearchScaling = 0.75);
+    Parameters(
+        const meters_per_second_t iMaxV, // No default value to disambiguate
+                                         // default constructor.
+        const double iCurviness = 0.0,
+        const meters_per_second_squared_t iMaxA = 0_mps_sq,
+        const meter_t iTrack = 0_m,
+        const meter_t iSpacing = 1_in,
+        const meter_t iMaxSpacingError = 0.1_in,
+        const bool iUsePosition = true,
+        const double iBinarySearchScaling = 0.75);
     Parameters(const Parameters &other);
     Parameters &operator=(const Parameters &other);
     // Decides how "curvy" the path is. Reasonable values from 3 to 15.
@@ -44,12 +49,15 @@ class Trajectory {
     meter_t track{0_m};
     meter_t spacing{1_in};
     meter_t maxSpacingError{0.1_in};
+    bool usePosition{true};
     double binarySearchScaling{0.75};
   };
 
   Trajectory(const std::pair<Pose, Pose> &waypoints,
              const std::optional<Parameters> &specialParams = {},
              const Logger::Level loggerLevel = Logger::Level::Debug);
+
+  Pose getPose(const Pose &state);
 
   second_t getTotalTime();
 
@@ -58,6 +66,8 @@ class Trajectory {
   static void setDefaultParams(const Parameters &newParams);
 
   private:
+  Pose getClosest(const Pose &state);
+  Pose getTimed();
   void generate();
   void parameterize();
   double addNextPoint(double t0);
@@ -76,9 +86,11 @@ class Trajectory {
   Pose endDirection;
   Parameters params;
   Logger logger;
-  std::unordered_map<second_t, Pose> trajectory{};
+  std::map<second_t, Pose> trajectory{};
   second_t totalTime{0_s};
   std::vector<Pose> points;
   std::vector<double> curvatures;
+  int closestIndex{0};
+  Timer timer;
 };
 } // namespace atum

@@ -33,6 +33,7 @@
 #include "gui/screen.hpp"
 #include "motion/kinematics.hpp"
 #include "motion/motionProfile.hpp"
+#include "motion/pathFollower.hpp"
 #include "motion/profileFollower.hpp"
 #include "motion/trajectory.hpp"
 #include "pose/odometry.hpp"

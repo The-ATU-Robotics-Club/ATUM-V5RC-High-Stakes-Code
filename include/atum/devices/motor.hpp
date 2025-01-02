@@ -164,6 +164,21 @@ class Motor {
   void setCurrentLimit(const std::int32_t limit) const;
 
   /**
+   * @brief Resets the position of the motor to the given offset (default is
+   * zero).
+   *
+   * @param iOffset
+   */
+  void resetPosition(const degree_t iOffset = 0_deg);
+
+  /**
+   * @brief Gets the gearing of the motor.
+   *
+   * @return Gearing
+   */
+  Gearing getGearing() const;
+
+  /**
    * @brief Checks if any motors are uninitialized, too hot, or over current. If
    * they are, logs the issue. Runs whenever there is a command to move and
    * upon.
@@ -172,19 +187,6 @@ class Motor {
    * @return false
    */
   bool check();
-
-  /**
-   * @brief Sets the current position of all the motors to 0.
-   *
-   */
-
-  /**
-   * @brief Resets the position of the motor to the given offset (default is
-   * zero).
-   *
-   * @param iOffset
-   */
-  void resetPosition(const degree_t iOffset = 0_deg);
 
   private:
   /**

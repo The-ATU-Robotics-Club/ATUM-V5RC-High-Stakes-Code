@@ -71,7 +71,8 @@ class MotionProfile {
    */
   MotionProfile(const Parameters &iParams,
                 const Logger::Level &loggerLevel = Logger::Level::Info) :
-      params{iParams}, logger{loggerLevel} {
+      params{iParams},
+      logger{loggerLevel} {
     logger.debug("Motion profile has been constructed!");
   }
 
@@ -92,7 +93,7 @@ class MotionProfile {
     prepareGraphing();
     beginProfile();
     finishProfile();
-    timer.resetAlarm();
+    timer.restart();
     logger.debug("Motion profile going from " + to_string(start) + " to " +
                  to_string(end) + " has been generated!");
   }
@@ -112,7 +113,7 @@ class MotionProfile {
     if(params.usePosition) {
       const Point closestPoint{getClosestPoint(s)};
       if(abs(closestPoint.v) > abs(point.v)) {
-        timer.resetAlarm(closestPoint.t);
+        //timer.setTime(closestPoint.t);
         point = closestPoint;
       }
     }
@@ -155,6 +156,7 @@ class MotionProfile {
    * @return Point
    */
   Point getTimedPoint() {
+    timer.start();
     const second_t t{timer.timeElapsed()};
     return getPointAt(t);
   }

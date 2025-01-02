@@ -21,8 +21,8 @@ class PathFollower {
 
   PathFollower(Drive *iDrive,
                const AcceptableDistance &iDefaultAcceptable,
-               std::unique_ptr<Controller> iForward,
-               std::unique_ptr<Controller> iTurn,
+               std::unique_ptr<Controller> iLeft,
+               std::unique_ptr<Controller> iRight,
                const double iBeta = 2.0,
                const double iLambda = 0.7,
                const Logger::Level loggerLevel = Logger::Level::Info);
@@ -37,10 +37,12 @@ class PathFollower {
   UnwrappedPose getError(const UnwrappedPose &state,
                          const UnwrappedPose &target);
 
+  std::pair<double, double> toLRVelocity(const double v, const double w);
+
   Drive *drive;
   AcceptableDistance defaultAcceptable;
-  std::unique_ptr<Controller> forward;
-  std::unique_ptr<Controller> turn;
+  std::unique_ptr<Controller> left;
+  std::unique_ptr<Controller> right;
   const double beta;
   const double lambda;
   Logger logger;

@@ -5,7 +5,7 @@ void Robot15A::opcontrol() {
   Timer fifteenAway{1_min + 15_s};
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
-    fifteenAway.setAlarmTime(45_s);
+    fifteenAway.setAlarm(45_s);
   }
   Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
                                  fifteenAway.checkGoneOff(),

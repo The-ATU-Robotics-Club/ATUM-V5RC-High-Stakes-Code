@@ -87,7 +87,7 @@ class Acceptable {
     accepted = abs(error) <= maxError;
     accepted = accepted && abs(deriv) <= maxDeriv;
     if(!accepted) {
-      minTimer.resetAlarm();
+      minTimer.setTime();
     }
     accepted = accepted && minTimer.goneOff();
     // If given timeout has been passed, accepted should always be true.
@@ -118,7 +118,7 @@ class Acceptable {
    */
   void reset() {
     accepted = false;
-    minTimer.resetAlarm();
+    minTimer.setTime();
     if(timeoutTimer.has_value()) {
       timeoutTimer = {};
     }

@@ -4,10 +4,12 @@ namespace atum {
 Drive::Drive(std::unique_ptr<Motor> iLeft,
              std::unique_ptr<Motor> iRight,
              std::unique_ptr<Tracker> iTracker,
+             const Geometry &iGeometry,
              const Logger::Level loggerLevel) :
     left{std::move(iLeft)},
     right{std::move(iRight)},
     tracker{std::move(iTracker)},
+    geometry{iGeometry},
     logger{loggerLevel} {
   if(!left) {
     logger.error("The left side drive motors were not provided!");
@@ -52,6 +54,11 @@ Pose Drive::getPose() const {
   return tracker->getPose();
 }
 
+std::pair<revolutions_per_minute_t, revolutions_per_minute_t>
+    Drive::getLRVelocity() const {
+  return std::make_pair(left->getVelocity(), right->getVelocity());
+}
+
 void Drive::setBrakeMode(const pros::v5::MotorBrake brakeMode) {
   left->setBrakeMode(brakeMode);
   right->setBrakeMode(brakeMode);
@@ -59,5 +66,9 @@ void Drive::setBrakeMode(const pros::v5::MotorBrake brakeMode) {
 
 pros::v5::MotorBrake Drive::getBrakeMode() const {
   return left->getBrakeMode();
+}
+
+Drive::Geometry Drive::getGeometry() const {
+  return geometry;
 }
 } // namespace atum

@@ -1,10 +1,10 @@
 /**
  * @file drive.hpp
- * @brief Includes the Drive class. 
+ * @brief Includes the Drive class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -25,17 +25,31 @@ namespace atum {
 class Drive {
   public:
   /**
+   * @brief This struct is used to catalog the relevant dimensions of the
+   * drive train.
+   *
+   */
+  struct Geometry {
+    // The distance between the left and right drive wheels.
+    meter_t track{0_m};
+    // The circumference of the drive wheels.
+    meter_t circum{0_m};
+  };
+
+  /**
    * @brief Constructs a new drive. Requires the left, right, and tracker
    * to be provided.
    *
    * @param iLeft
    * @param iRight
    * @param iTracker
+   * @param iGeometry
    * @param loggerLevel
    */
   Drive(std::unique_ptr<Motor> iLeft,
         std::unique_ptr<Motor> iRight,
         std::unique_ptr<Tracker> iTracker,
+        const Geometry &iGeometry,
         const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -71,6 +85,14 @@ class Drive {
   Pose getPose() const;
 
   /**
+   * @brief Gets the current velocity of the left and right sides of the drive.
+   *
+   * @return std::pair<revolutions_per_minute_t, revolutions_per_minute_t>
+   */
+  std::pair<revolutions_per_minute_t, revolutions_per_minute_t>
+      getLRVelocity() const;
+
+  /**
    * @brief Sets the brake mode of the motors on the drive.
    *
    * @param brakeMode
@@ -84,10 +106,18 @@ class Drive {
    */
   pros::v5::MotorBrake getBrakeMode() const;
 
+  /**
+   * @brief Gets the geometry of the drive.
+   *
+   * @return Geometry
+   */
+  Geometry getGeometry() const;
+
   private:
   std::unique_ptr<Motor> left;
   std::unique_ptr<Motor> right;
   std::unique_ptr<Tracker> tracker;
+  const Geometry geometry;
   Logger logger;
 };
 } // namespace atum

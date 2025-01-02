@@ -19,8 +19,10 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
       std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
-  drive = std::make_unique<Drive>(
-      std::move(leftDriveMtr), std::move(rightDriveMtr), std::move(odometry));
+  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
+                                  std::move(rightDriveMtr),
+                                  std::move(odometry),
+                                  Drive::Geometry{11.825_in, 10.21_in});
 
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-15},

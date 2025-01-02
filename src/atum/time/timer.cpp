@@ -2,15 +2,29 @@
 
 namespace atum {
 Timer::Timer(const second_t iAlarmTime) :
-    startTime{time()}, alarmTime{iAlarmTime} {}
+    startTime{time()},
+    alarmTime{iAlarmTime} {}
 
-void Timer::setAlarmTime(const second_t iAlarmTime) {
+void Timer::setAlarm(const second_t iAlarmTime) {
   alarmTime = iAlarmTime;
-  resetAlarm();
+  setTime();
 }
 
-void Timer::resetAlarm(const second_t resetTime) {
-  startTime = time() - resetTime;
+void Timer::setTime(const second_t newTime) {
+  startTime = time() - newTime;
+}
+
+void Timer::start() {
+  if(started) {
+    return;
+  }
+  setTime();
+  started = true;
+}
+
+void Timer::restart() {
+  started = false;
+  setTime();
 }
 
 bool Timer::goneOff() const {

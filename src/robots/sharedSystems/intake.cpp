@@ -56,7 +56,7 @@ ColorSensor::Color Intake::getSortOutColor() const {
 
 void Intake::intaking() {
   if(ladybrown->mayConflictWithIntake()) {
-    params.timerUntilJamChecks.resetAlarm();
+    params.timerUntilJamChecks.setTime();
     if(state != IntakeState::FinishedLoading) {
       finishLoading();
     }
@@ -72,7 +72,7 @@ void Intake::intaking() {
   // If indexing or loading while the ladybrown isn't ready, index.
   if(shouldIndex()) {
     if(colorSensor->getColor() != ColorSensor::Color::None) {
-      params.timerUntilJamChecks.resetAlarm();
+      params.timerUntilJamChecks.setTime();
       mtr->brake();
       return;
     }
@@ -128,7 +128,7 @@ void Intake::forceIntake(const IntakeState newState) {
   if((state != IntakeState::Intaking && state != IntakeState::Indexing &&
       state != IntakeState::Loading) ||
      mtr->getVelocity() < 0_rpm) {
-    params.timerUntilJamChecks.resetAlarm();
+    params.timerUntilJamChecks.setTime();
   }
   state = newState;
   returnState = newState;

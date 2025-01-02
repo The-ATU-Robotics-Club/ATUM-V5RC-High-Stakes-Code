@@ -1,34 +1,38 @@
 #include "trajectory.hpp"
 
 namespace atum {
-Trajectory::Parameters::Parameters(double iCurviness,
-                                   meters_per_second_t iMaxV,
-                                   meters_per_second_squared_t iMaxA,
-                                   meter_t iTrack,
-                                   meter_t iSpacing,
-                                   meter_t iMaxSpacingError,
-                                   double iBinarySearchScaling) :
+Trajectory::Parameters::Parameters(const double iCurviness,
+                                   const meters_per_second_t iMaxV,
+                                   const meters_per_second_squared_t iMaxA,
+                                   const meter_t iTrack,
+                                   const meter_t iSpacing,
+                                   const meter_t iMaxSpacingError,
+                                   const bool iUsePosition,
+                                   const double iBinarySearchScaling) :
     curviness{iCurviness},
     maxV{iMaxV},
     maxA{iMaxA},
     track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
+    usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
-Trajectory::Parameters::Parameters(meters_per_second_t iMaxV,
-                                   double iCurviness,
-                                   meters_per_second_squared_t iMaxA,
-                                   meter_t iTrack,
-                                   meter_t iSpacing,
-                                   meter_t iMaxSpacingError,
-                                   double iBinarySearchScaling) :
+Trajectory::Parameters::Parameters(const meters_per_second_t iMaxV,
+                                   const double iCurviness,
+                                   const meters_per_second_squared_t iMaxA,
+                                   const meter_t iTrack,
+                                   const meter_t iSpacing,
+                                   const meter_t iMaxSpacingError,
+                                   const bool iUsePosition,
+                                   const double iBinarySearchScaling) :
     curviness{iCurviness},
     maxV{iMaxV},
     maxA{iMaxA},
     track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
+    usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
 Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
@@ -89,6 +93,17 @@ Trajectory::Trajectory(const std::pair<Pose, Pose> &waypoints,
   logger.debug("Trajectory has been generated!");
 }
 
+Pose Trajectory::getPose(const Pose &state) {
+  Pose pose{getTimed()};
+  if(params.usePosition) {
+    const Pose closest{getClosest(state)};
+    if(abs(closest.v) > abs(pose.v)) {
+      pose = closest;
+    }
+  }
+  return pose;
+}
+
 second_t Trajectory::getTotalTime() {
   logger.debug("Trajectory total time is: " + to_string(totalTime));
   return totalTime;
@@ -100,6 +115,30 @@ Trajectory::Parameters Trajectory::getParams() const {
 
 void Trajectory::setDefaultParams(const Parameters &newParams) {
   defaultParams = newParams;
+}
+
+Pose Trajectory::getClosest(const Pose &state) {
+  meter_t previousDistance{distance(state, points[closestIndex])};
+  int i{closestIndex};
+  while(i < points.size()) {
+    const meter_t currentDistance{distance(state, points[i])};
+    if(currentDistance > previousDistance) {
+      break;
+    }
+    previousDistance = currentDistance;
+    i++;
+  }
+  closestIndex = i - 1;
+  return points[closestIndex];
+}
+
+Pose Trajectory::getTimed() {
+  timer.start();
+  auto it = trajectory.lower_bound(timer.timeElapsed());
+  if(it == trajectory.end()) {
+    return end;
+  }
+  return it->second;
 }
 
 void Trajectory::generate() {
@@ -211,12 +250,18 @@ void Trajectory::graphTrajectory() {
     return;
   }
   prepareGraph();
-  for(Pose &pose : points) {
-    GUI::Map::addPosition(pose, GUI::SeriesColor::Red);
+  // Can't handle all points on map, so only do those a bit apart from each
+  // other.
+  const int skip{8_in / params.spacing};
+  for(int i{0}; i < points.size(); i++) {
+    Pose &pose{points[i]};
     GUI::Graph::addValue(getValueAs<meters_per_second_t>(pose.v),
                          GUI::SeriesColor::Magenta);
     GUI::Graph::addValue(getValueAs<radians_per_second_t>(pose.w),
                          GUI::SeriesColor::Cyan);
+    if(i % skip == 0) {
+      GUI::Map::addPosition(pose, GUI::SeriesColor::Red);
+    }
   }
 }
 
