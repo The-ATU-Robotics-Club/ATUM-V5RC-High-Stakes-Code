@@ -109,27 +109,45 @@ $(document).ready(function(){initNavTree('pose_8hpp.html',''); initResizable(); 
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1UnwrappedPose.html">atum::UnwrappedPose</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is used to "unwrap" the <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> objects for easier manipulation. Generally, <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> should be used over this.  <a href="structatum_1_1UnwrappedPose.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Pose.html">atum::Pose</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the coordinate system we use, see the GPS documentation from VEX. Also included (not normally in pose, but here for convenience) is linear and angular velocity.  <a href="structatum_1_1Pose.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a18f9e2c51a4adeb95ddecce49931d5db"><td class="memItemLeft" align="right" valign="top">UnwrappedPose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a18f9e2c51a4adeb95ddecce49931d5db">atum::operator*</a> (const double lhs, const UnwrappedPose &amp;rhs)</td></tr>
+<tr class="memdesc:a18f9e2c51a4adeb95ddecce49931d5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unwrapped pose with the x and y values of the right side by the left side. Ignores heading.  <br /></td></tr>
+<tr class="separator:a18f9e2c51a4adeb95ddecce49931d5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c2f1ae255f3f4781b06957ec9d5bfb"><td class="memItemLeft" align="right" valign="top">UnwrappedPose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#af9c2f1ae255f3f4781b06957ec9d5bfb">atum::operator*</a> (const UnwrappedPose &amp;lhs, const double rhs)</td></tr>
+<tr class="memdesc:af9c2f1ae255f3f4781b06957ec9d5bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unwrapped pose with the x and y values of the left side by the right side. Ignores heading.  <br /></td></tr>
+<tr class="separator:af9c2f1ae255f3f4781b06957ec9d5bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac961fe0314b7ba16136aa85facb149a8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ac961fe0314b7ba16136aa85facb149a8">atum::distance</a> (const UnwrappedPose &amp;a, const UnwrappedPose &amp;b)</td></tr>
+<tr class="memdesc:ac961fe0314b7ba16136aa85facb149a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance between two given unwrapped poses.  <br /></td></tr>
+<tr class="separator:ac961fe0314b7ba16136aa85facb149a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4679824937b9a1f3002440c8823e46b6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a4679824937b9a1f3002440c8823e46b6">atum::angle</a> (const UnwrappedPose &amp;state, const UnwrappedPose &amp;reference)</td></tr>
+<tr class="memdesc:a4679824937b9a1f3002440c8823e46b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
+<tr class="separator:a4679824937b9a1f3002440c8823e46b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfd7d943111074dac94ff54503425d5b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#acfd7d943111074dac94ff54503425d5b">atum::toString</a> (const UnwrappedPose &amp;pose)</td></tr>
+<tr class="memdesc:acfd7d943111074dac94ff54503425d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the given unwrapped pose.  <br /></td></tr>
+<tr class="separator:acfd7d943111074dac94ff54503425d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae21223d7edec5e922e8bd4c245bb350b"><td class="memItemLeft" align="right" valign="top">Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ae21223d7edec5e922e8bd4c245bb350b">atum::operator*</a> (const double lhs, const Pose &amp;rhs)</td></tr>
 <tr class="memdesc:ae21223d7edec5e922e8bd4c245bb350b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pose with the x and y values of the right side by the left side. Ignores heading.  <br /></td></tr>
 <tr class="separator:ae21223d7edec5e922e8bd4c245bb350b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af72dcde98eb24c8474189fc391b5d849"><td class="memItemLeft" align="right" valign="top">Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#af72dcde98eb24c8474189fc391b5d849">atum::operator*</a> (const Pose &amp;lhs, const double rhs)</td></tr>
 <tr class="memdesc:af72dcde98eb24c8474189fc391b5d849"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pose with the x and y values of the left side by the right side. Ignores heading.  <br /></td></tr>
 <tr class="separator:af72dcde98eb24c8474189fc391b5d849"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65">atum::toString</a> (const Pose &amp;pose)</td></tr>
-<tr class="memdesc:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the given pose.  <br /></td></tr>
-<tr class="separator:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae0cd0ce034c686b4842535960216307c"><td class="memItemLeft" align="right" valign="top">tile_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ae0cd0ce034c686b4842535960216307c">atum::distance</a> (const Pose &amp;a, const Pose &amp;b)</td></tr>
 <tr class="memdesc:ae0cd0ce034c686b4842535960216307c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance between two given poses.  <br /></td></tr>
 <tr class="separator:ae0cd0ce034c686b4842535960216307c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd14a4bf12c748aadb94673587804c66"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#afd14a4bf12c748aadb94673587804c66">atum::angle</a> (const Pose &amp;state, const Pose &amp;reference)</td></tr>
 <tr class="memdesc:afd14a4bf12c748aadb94673587804c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
 <tr class="separator:afd14a4bf12c748aadb94673587804c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65">atum::toString</a> (const Pose &amp;pose)</td></tr>
+<tr class="memdesc:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the given pose.  <br /></td></tr>
+<tr class="separator:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Includes the Pose struct as well as corresponding functions. </p>
@@ -137,7 +155,7 @@ Functions</h2></td></tr>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="afd14a4bf12c748aadb94673587804c66" name="afd14a4bf12c748aadb94673587804c66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd14a4bf12c748aadb94673587804c66">&#9670;&#160;</a></span>angle()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afd14a4bf12c748aadb94673587804c66">&#9670;&#160;</a></span>angle() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -174,8 +192,46 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a4679824937b9a1f3002440c8823e46b6" name="a4679824937b9a1f3002440c8823e46b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4679824937b9a1f3002440c8823e46b6">&#9670;&#160;</a></span>angle() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double atum::angle </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>state</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>reference</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">state</td><td></td></tr>
+    <tr><td class="paramname">reference</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
 <a id="ae0cd0ce034c686b4842535960216307c" name="ae0cd0ce034c686b4842535960216307c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae0cd0ce034c686b4842535960216307c">&#9670;&#160;</a></span>distance()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0cd0ce034c686b4842535960216307c">&#9670;&#160;</a></span>distance() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -212,8 +268,46 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ac961fe0314b7ba16136aa85facb149a8" name="ac961fe0314b7ba16136aa85facb149a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac961fe0314b7ba16136aa85facb149a8">&#9670;&#160;</a></span>distance() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double atum::distance </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>b</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the distance between two given unwrapped poses. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+    <tr><td class="paramname">b</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
 <a id="ae21223d7edec5e922e8bd4c245bb350b" name="ae21223d7edec5e922e8bd4c245bb350b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae21223d7edec5e922e8bd4c245bb350b">&#9670;&#160;</a></span>operator*() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ae21223d7edec5e922e8bd4c245bb350b">&#9670;&#160;</a></span>operator*() <span class="overload">[1/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -250,8 +344,46 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a18f9e2c51a4adeb95ddecce49931d5db" name="a18f9e2c51a4adeb95ddecce49931d5db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f9e2c51a4adeb95ddecce49931d5db">&#9670;&#160;</a></span>operator*() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UnwrappedPose atum::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a unwrapped pose with the x and y values of the right side by the left side. Ignores heading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td></td></tr>
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>UnwrappedPose </dd></dl>
+
+</div>
+</div>
 <a id="af72dcde98eb24c8474189fc391b5d849" name="af72dcde98eb24c8474189fc391b5d849"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af72dcde98eb24c8474189fc391b5d849">&#9670;&#160;</a></span>operator*() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af72dcde98eb24c8474189fc391b5d849">&#9670;&#160;</a></span>operator*() <span class="overload">[3/4]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -288,8 +420,46 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="af9c2f1ae255f3f4781b06957ec9d5bfb" name="af9c2f1ae255f3f4781b06957ec9d5bfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9c2f1ae255f3f4781b06957ec9d5bfb">&#9670;&#160;</a></span>operator*() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UnwrappedPose atum::operator* </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a unwrapped pose with the x and y values of the left side by the right side. Ignores heading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td></td></tr>
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>UnwrappedPose </dd></dl>
+
+</div>
+</div>
 <a id="a5686b3a5ace12704f9d7722ffbd8fd65" name="a5686b3a5ace12704f9d7722ffbd8fd65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5686b3a5ace12704f9d7722ffbd8fd65">&#9670;&#160;</a></span>toString()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5686b3a5ace12704f9d7722ffbd8fd65">&#9670;&#160;</a></span>toString() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -305,6 +475,33 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns a string representation of the given pose. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pose</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
+
+</div>
+</div>
+<a id="acfd7d943111074dac94ff54503425d5b" name="acfd7d943111074dac94ff54503425d5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfd7d943111074dac94ff54503425d5b">&#9670;&#160;</a></span>toString() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string atum::toString </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>pose</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a string representation of the given unwrapped pose. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pose</td><td></td></tr>

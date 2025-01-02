@@ -113,12 +113,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac81aa783ce2b9632c9a0b78b9d17a217"><td class="memItemLeft" align="right" valign="top"><a id="ac81aa783ce2b9632c9a0b78b9d17a217" name="ac81aa783ce2b9632c9a0b78b9d17a217"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>units::UNIT_ADD</b> (velocity, inches_per_second, inches_per_second, in_per_s, unit&lt; std::ratio&lt; 1, 12 &gt;, feet_per_second &gt;) UNIT_ADD(acceleration</td></tr>
 <tr class="separator:ac81aa783ce2b9632c9a0b78b9d17a217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afabf6daa15ed05d4c7e750ba150a17a3"><td class="memItemLeft" align="right" valign="top"><a id="afabf6daa15ed05d4c7e750ba150a17a3" name="afabf6daa15ed05d4c7e750ba150a17a3"></a>
-compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::UNIT_ADD</b> (jerk, inches_per_second_cubed, inches_per_second_cubed, in_per_s_cb, compound_unit&lt; inch, inverse&lt; cubed&lt; seconds &gt; &gt; &gt;) UNIT_ADD(jerk</td></tr>
-<tr class="separator:afabf6daa15ed05d4c7e750ba150a17a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62e0e6415c0bbf52de2228f886751f86"><td class="memItemLeft" align="right" valign="top"><a id="a62e0e6415c0bbf52de2228f886751f86" name="a62e0e6415c0bbf52de2228f886751f86"></a>
-compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_unit&lt; feet, inverse&lt; cubed&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::UNIT_ADD</b> (acceleration, degrees_per_second_squared, degrees_per_second_squared, deg_per_s_sq, compound_unit&lt; degree, inverse&lt; squared&lt; seconds &gt; &gt; &gt;) UNIT_ADD(jerk</td></tr>
-<tr class="separator:a62e0e6415c0bbf52de2228f886751f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b057f3226ef99272bb676b2295c5141"><td class="memItemLeft" align="right" valign="top"><a id="a7b057f3226ef99272bb676b2295c5141" name="a7b057f3226ef99272bb676b2295c5141"></a>
+compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::UNIT_ADD</b> (jerk, inches_per_second_cubed, inches_per_second_cubed, in_per_s_cb, compound_unit&lt; inch, inverse&lt; cubed&lt; seconds &gt; &gt; &gt;) UNIT_ADD(acceleration</td></tr>
+<tr class="separator:a7b057f3226ef99272bb676b2295c5141"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeac34d4fb84865ae14173383554ea741"><td class="memTemplParams" colspan="2">template&lt;typename T , typename R  = double&gt; </td></tr>
 <tr class="memitem:aeac34d4fb84865ae14173383554ea741"><td class="memTemplItemLeft" align="right" valign="top">R&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">atum::getValueAs</a> (const T &amp;quantity)</td></tr>
 <tr class="memdesc:aeac34d4fb84865ae14173383554ea741"><td class="mdescLeft">&#160;</td><td class="mdescRight">This function allows us to convert units into another form before storing them as a plain floating point value.  <br /></td></tr>
@@ -126,6 +123,9 @@ compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_
 <tr class="memitem:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">atum::constrain180</a> (const degree_t angle)</td></tr>
 <tr class="memdesc:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrains an angle between -180 and 180 degrees.  <br /></td></tr>
 <tr class="separator:a3e54638dfa8d8892e8c6331b9113a3e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee1159569c3996f970fd44e0d814ee6d"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d">atum::constrainPI</a> (const double angle)</td></tr>
+<tr class="memdesc:aee1159569c3996f970fd44e0d814ee6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constrains an angle between -pi and pi radians. Used with <a class="el" href="structatum_1_1UnwrappedPose.html" title="This is used to &quot;unwrap&quot; the Pose objects for easier manipulation. Generally, Pose should be used ove...">UnwrappedPose</a>, prefer constain180.  <br /></td></tr>
+<tr class="separator:aee1159569c3996f970fd44e0d814ee6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7671eeecf3b023e523b78395a5916f98"><td class="memItemLeft" align="right" valign="top">meter_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">atum::difference</a> (const meter_t left, const meter_t right)</td></tr>
 <tr class="memdesc:a7671eeecf3b023e523b78395a5916f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the difference between the left and right values (provided for template purposes).  <br /></td></tr>
 <tr class="separator:a7671eeecf3b023e523b78395a5916f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,18 +141,12 @@ Variables</h2></td></tr>
 <tr class="memitem:ad377100bd9ba3d060a4465e3c8ab29af"><td class="memItemLeft" align="right" valign="top"><a id="ad377100bd9ba3d060a4465e3c8ab29af" name="ad377100bd9ba3d060a4465e3c8ab29af"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>units::in_per_s_sq</b></td></tr>
 <tr class="separator:ad377100bd9ba3d060a4465e3c8ab29af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc41bdb0621d4254be9adad0b445a733"><td class="memItemLeft" align="right" valign="top"><a id="afc41bdb0621d4254be9adad0b445a733" name="afc41bdb0621d4254be9adad0b445a733"></a>
-compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::feet_per_second_cubed</b></td></tr>
-<tr class="separator:afc41bdb0621d4254be9adad0b445a733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2546fda108badd3db70cbf40ed585f6f"><td class="memItemLeft" align="right" valign="top"><a id="a2546fda108badd3db70cbf40ed585f6f" name="a2546fda108badd3db70cbf40ed585f6f"></a>
-compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::ft_per_s_cb</b></td></tr>
-<tr class="separator:a2546fda108badd3db70cbf40ed585f6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81c1367a5eaa0fea44bd8f1e28010057"><td class="memItemLeft" align="right" valign="top"><a id="a81c1367a5eaa0fea44bd8f1e28010057" name="a81c1367a5eaa0fea44bd8f1e28010057"></a>
-compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_unit&lt; feet, inverse&lt; cubed&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::meters_per_second_cubed</b></td></tr>
-<tr class="separator:a81c1367a5eaa0fea44bd8f1e28010057"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01d37c2eaea5879a4d44e8076b239f13"><td class="memItemLeft" align="right" valign="top"><a id="a01d37c2eaea5879a4d44e8076b239f13" name="a01d37c2eaea5879a4d44e8076b239f13"></a>
-compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_unit&lt; feet, inverse&lt; cubed&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::mps_cb</b></td></tr>
-<tr class="separator:a01d37c2eaea5879a4d44e8076b239f13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ab28d8e1bdb7e08aa9fd25c991ae596"><td class="memItemLeft" align="right" valign="top"><a id="a0ab28d8e1bdb7e08aa9fd25c991ae596" name="a0ab28d8e1bdb7e08aa9fd25c991ae596"></a>
+compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::degrees_per_second_squared</b></td></tr>
+<tr class="separator:a0ab28d8e1bdb7e08aa9fd25c991ae596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8083a37d6f6d74ad94b381163c5b264"><td class="memItemLeft" align="right" valign="top"><a id="ad8083a37d6f6d74ad94b381163c5b264" name="ad8083a37d6f6d74ad94b381163c5b264"></a>
+compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>units::deg_per_s_sq</b></td></tr>
+<tr class="separator:ad8083a37d6f6d74ad94b381163c5b264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file deals with with making the use of the nholthaus dimensional unit library more straightforward, involving declaring new units as well. </p>
@@ -183,6 +177,33 @@ compound_unit&lt; inch, inverse&lt; squared&lt; seconds &gt; &gt; &gt; compound_
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
+
+</div>
+</div>
+<a id="aee1159569c3996f970fd44e0d814ee6d" name="aee1159569c3996f970fd44e0d814ee6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee1159569c3996f970fd44e0d814ee6d">&#9670;&#160;</a></span>constrainPI()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double atum::constrainPI </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constrains an angle between -pi and pi radians. Used with UnwrappedPose, prefer constain180. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
 
 </div>
 </div>

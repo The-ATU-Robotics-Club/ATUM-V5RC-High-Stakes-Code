@@ -10,8 +10,9 @@ var searchData=
   ['closeto_7',['closeTo',['../classatum_1_1DistanceSensor.html#a6ece869287aefa7f1e297eaa4579ee39',1,'atum::DistanceSensor']]],
   ['colorsensor_8',['ColorSensor',['../classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189',1,'atum::ColorSensor::ColorSensor(const std::int8_t port, const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488',1,'atum::ColorSensor::ColorSensor(const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['constrain180_9',['constrain180',['../units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1',1,'atum']]],
-  ['controller_10',['Controller',['../classatum_1_1Controller.html#a401558bc2468addd0a7a39eaef73f62f',1,'atum::Controller']]],
-  ['createlabel_11',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
-  ['createscreenchangebutton_12',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],
-  ['createscreens_13',['createScreens',['../classatum_1_1GUI_1_1Screen.html#af3c83a1c8ba658abc30263271a0f38da',1,'atum::GUI::Screen']]]
+  ['constrainpi_10',['constrainPI',['../units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d',1,'atum']]],
+  ['controller_11',['Controller',['../classatum_1_1Controller.html#a401558bc2468addd0a7a39eaef73f62f',1,'atum::Controller']]],
+  ['createlabel_12',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
+  ['createscreenchangebutton_13',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],
+  ['createscreens_14',['createScreens',['../classatum_1_1GUI_1_1Screen.html#af3c83a1c8ba658abc30263271a0f38da',1,'atum::GUI::Screen']]]
 ];

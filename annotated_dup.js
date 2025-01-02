@@ -42,6 +42,10 @@ var annotated_dup =
       [ "TBH", "classatum_1_1TBH.html", "classatum_1_1TBH" ],
       [ "Timer", "classatum_1_1Timer.html", "classatum_1_1Timer" ],
       [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ],
-      [ "Trajectory", "classatum_1_1Trajectory.html", "classatum_1_1Trajectory" ]
+      [ "Trajectory", "classatum_1_1Trajectory.html", "classatum_1_1Trajectory" ],
+      [ "UnwrappedPose", "structatum_1_1UnwrappedPose.html", "structatum_1_1UnwrappedPose" ]
+    ] ],
+    [ "std", null, [
+      [ "hash< second_t >", "structstd_1_1hash_3_01second__t_01_4.html", null ]
     ] ]
 ];

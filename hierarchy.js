@@ -13,6 +13,7 @@ var hierarchy =
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
     [ "atum::GUI::Screen::GUIPosition", "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html", null ],
     [ "atum::GUI::Screen::GUISize", "structatum_1_1GUI_1_1Screen_1_1GUISize.html", null ],
+    [ "std::hash< second_t >", "structstd_1_1hash_3_01second__t_01_4.html", null ],
     [ "atum::ColorSensor::HueField", "structatum_1_1ColorSensor_1_1HueField.html", null ],
     [ "atum::IMU", "classatum_1_1IMU.html", null ],
     [ "atum::Schedule::Item", "structatum_1_1Schedule_1_1Item.html", null ],
@@ -63,10 +64,10 @@ var hierarchy =
       [ "atum::Schedule", "classatum_1_1Schedule.html", null ]
     ] ],
     [ "atum::Task::TaskParams", "structatum_1_1Task_1_1TaskParams.html", null ],
-    [ "atum::Trajectory::TimedPose", "structatum_1_1Trajectory_1_1TimedPose.html", null ],
     [ "atum::Timer", "classatum_1_1Timer.html", null ],
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
     ] ],
-    [ "atum::Trajectory", "classatum_1_1Trajectory.html", null ]
+    [ "atum::Trajectory", "classatum_1_1Trajectory.html", null ],
+    [ "atum::UnwrappedPose", "structatum_1_1UnwrappedPose.html", null ]
 ];

@@ -133,46 +133,39 @@ $(document).ready(function(){initNavTree('units_8hpp_source.html',''); initResiz
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>         inches_per_second_cubed,</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>         in_per_s_cb,</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>         compound_unit&lt;inch, inverse&lt;cubed&lt;seconds&gt;&gt;&gt;)</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>UNIT_ADD(jerk,</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>         feet_per_second_cubed,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>         feet_per_second_cubed,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>         ft_per_s_cb,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>         compound_unit&lt;feet, inverse&lt;cubed&lt;seconds&gt;&gt;&gt;)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>UNIT_ADD(acceleration,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>         degrees_per_second_squared,</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>         degrees_per_second_squared,</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>         deg_per_s_sq,</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>         compound_unit&lt;degree, inverse&lt;squared&lt;seconds&gt;&gt;&gt;)</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>UNIT_ADD(jerk,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>         meters_per_second_cubed,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>         meters_per_second_cubed,</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>         mps_cb,</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>         compound_unit&lt;meter, inverse&lt;cubed&lt;seconds&gt;&gt;&gt;)</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>UNIT_ADD(jerk,</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>         degrees_per_second_cubed,</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>         degrees_per_second_cubed,</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>         deg_per_s_cb,</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>         compound_unit&lt;degree, inverse&lt;cubed&lt;seconds&gt;&gt;&gt;)</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>} <span class="comment">// namespace units</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>using namespace units::jerk;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>namespace atum {</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> R = <span class="keywordtype">double</span>&gt;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">   82</a></span>R <a class="code hl_function" href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">getValueAs</a>(<span class="keyword">const</span> T &amp;quantity) {</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordflow">return</span> unit_cast&lt;R&gt;(T{quantity});</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">   92</a></span>degree_t <a class="code hl_function" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">constrain180</a>(<span class="keyword">const</span> degree_t angle);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">  102</a></span>meter_t <a class="code hl_function" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">difference</a>(<span class="keyword">const</span> meter_t left, <span class="keyword">const</span> meter_t right);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="units_8hpp.html#a2dc0be4dbad40fc12062a8eb218fdf90">  111</a></span>radian_t <a class="code hl_function" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">difference</a>(<span class="keyword">const</span> radian_t left, <span class="keyword">const</span> radian_t right);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>UNIT_ADD(acceleration,</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>         degrees_per_second_squared,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>         degrees_per_second_squared,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>         deg_per_s_sq,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>         compound_unit&lt;degree, inverse&lt;squared&lt;seconds&gt;&gt;&gt;)</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>UNIT_ADD(jerk,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>         degrees_per_second_cubed,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>         degrees_per_second_cubed,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>         deg_per_s_cb,</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>         compound_unit&lt;degree, inverse&lt;cubed&lt;seconds&gt;&gt;&gt;)</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>} <span class="comment">// namespace units</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>using namespace units::jerk;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>namespace atum {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T, <span class="keyword">typename</span> R = <span class="keywordtype">double</span>&gt;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">   72</a></span>R <a class="code hl_function" href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">getValueAs</a>(<span class="keyword">const</span> T &amp;quantity) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  <span class="keywordflow">return</span> unit_cast&lt;R&gt;(T{quantity});</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>}</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">   82</a></span>degree_t <a class="code hl_function" href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">constrain180</a>(<span class="keyword">const</span> degree_t angle);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d">   91</a></span><span class="keywordtype">double</span> <a class="code hl_function" href="units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d">constrainPI</a>(<span class="keyword">const</span> <span class="keywordtype">double</span> angle);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">  101</a></span>meter_t <a class="code hl_function" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">difference</a>(<span class="keyword">const</span> meter_t left, <span class="keyword">const</span> meter_t right);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="units_8hpp.html#a2dc0be4dbad40fc12062a8eb218fdf90">  110</a></span>radian_t <a class="code hl_function" href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">difference</a>(<span class="keyword">const</span> radian_t left, <span class="keyword">const</span> radian_t right);</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="amisc_8hpp_html"><div class="ttname"><a href="misc_8hpp.html">misc.hpp</a></div><div class="ttdoc">Includes various functions, aliases, and macros that are useful but don't categorize well.</div></div>
 <div class="ttc" id="aunits_8hpp_html_a3e54638dfa8d8892e8c6331b9113a3e1"><div class="ttname"><a href="units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1">atum::constrain180</a></div><div class="ttdeci">degree_t constrain180(const degree_t angle)</div><div class="ttdoc">Constrains an angle between -180 and 180 degrees.</div></div>
 <div class="ttc" id="aunits_8hpp_html_a7671eeecf3b023e523b78395a5916f98"><div class="ttname"><a href="units_8hpp.html#a7671eeecf3b023e523b78395a5916f98">atum::difference</a></div><div class="ttdeci">meter_t difference(const meter_t left, const meter_t right)</div><div class="ttdoc">Gets the difference between the left and right values (provided for template purposes).</div></div>
-<div class="ttc" id="aunits_8hpp_html_aeac34d4fb84865ae14173383554ea741"><div class="ttname"><a href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">atum::getValueAs</a></div><div class="ttdeci">R getValueAs(const T &amp;quantity)</div><div class="ttdoc">This function allows us to convert units into another form before storing them as a plain floating po...</div><div class="ttdef"><b>Definition:</b> units.hpp:82</div></div>
+<div class="ttc" id="aunits_8hpp_html_aeac34d4fb84865ae14173383554ea741"><div class="ttname"><a href="units_8hpp.html#aeac34d4fb84865ae14173383554ea741">atum::getValueAs</a></div><div class="ttdeci">R getValueAs(const T &amp;quantity)</div><div class="ttdoc">This function allows us to convert units into another form before storing them as a plain floating po...</div><div class="ttdef"><b>Definition:</b> units.hpp:72</div></div>
+<div class="ttc" id="aunits_8hpp_html_aee1159569c3996f970fd44e0d814ee6d"><div class="ttname"><a href="units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d">atum::constrainPI</a></div><div class="ttdeci">double constrainPI(const double angle)</div><div class="ttdoc">Constrains an angle between -pi and pi radians. Used with UnwrappedPose, prefer constain180.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

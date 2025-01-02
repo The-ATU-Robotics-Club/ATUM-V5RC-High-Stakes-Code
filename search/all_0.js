@@ -11,7 +11,7 @@ var searchData=
   ['addvalue_8',['addValue',['../classatum_1_1GUI_1_1Graph.html#a3ab602a0390342eeac906d697f44586d',1,'atum::GUI::Graph']]],
   ['adi_2ehpp_9',['adi.hpp',['../adi_8hpp.html',1,'']]],
   ['adiextenderport_10',['ADIExtenderPort',['../classatum_1_1ADIExtenderPort.html#a941dfac31c7e588bd7b659a993204016',1,'atum::ADIExtenderPort::ADIExtenderPort(const std::int8_t smartPort, const std::uint8_t adiPort, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1ADIExtenderPort.html#a50577dd5580090971d1925c359c80a5a',1,'atum::ADIExtenderPort::ADIExtenderPort(const std::uint8_t adiPort, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1ADIExtenderPort.html',1,'atum::ADIExtenderPort']]],
-  ['angle_11',['angle',['../pose_8hpp.html#afd14a4bf12c748aadb94673587804c66',1,'atum']]],
+  ['angle_11',['angle',['../pose_8hpp.html#a4679824937b9a1f3002440c8823e46b6',1,'atum::angle(const UnwrappedPose &amp;state, const UnwrappedPose &amp;reference)'],['../pose_8hpp.html#afd14a4bf12c748aadb94673587804c66',1,'atum::angle(const Pose &amp;state, const Pose &amp;reference)']]],
   ['arcade_12',['arcade',['../classatum_1_1Drive.html#a36ebb7dc126b52775dba69466a6f197c',1,'atum::Drive']]],
   ['atum_2ehpp_13',['atum.hpp',['../atum_8hpp.html',1,'']]],
   ['autonomous_14',['autonomous',['../classatum_1_1Robot.html#a721e1155876bf8242337100f7ec26b58',1,'atum::Robot']]],

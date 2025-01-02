@@ -13,9 +13,10 @@ var searchData=
   ['colorsensor_2ehpp_10',['colorSensor.hpp',['../colorSensor_8hpp.html',1,'']]],
   ['condition_11',['Condition',['../time_8hpp.html#a4b814a8c5ed7ddfb7c3a6059117b1af9',1,'atum']]],
   ['constrain180_12',['constrain180',['../units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1',1,'atum']]],
-  ['controller_13',['Controller',['../classatum_1_1Controller.html',1,'atum::Controller'],['../classatum_1_1Controller.html#a401558bc2468addd0a7a39eaef73f62f',1,'atum::Controller::Controller()']]],
-  ['controller_2ehpp_14',['controller.hpp',['../controller_8hpp.html',1,'']]],
-  ['createlabel_15',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
-  ['createscreenchangebutton_16',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],
-  ['createscreens_17',['createScreens',['../classatum_1_1GUI_1_1Screen.html#af3c83a1c8ba658abc30263271a0f38da',1,'atum::GUI::Screen']]]
+  ['constrainpi_13',['constrainPI',['../units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d',1,'atum']]],
+  ['controller_14',['Controller',['../classatum_1_1Controller.html',1,'atum::Controller'],['../classatum_1_1Controller.html#a401558bc2468addd0a7a39eaef73f62f',1,'atum::Controller::Controller()']]],
+  ['controller_2ehpp_15',['controller.hpp',['../controller_8hpp.html',1,'']]],
+  ['createlabel_16',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
+  ['createscreenchangebutton_17',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],
+  ['createscreens_18',['createScreens',['../classatum_1_1GUI_1_1Screen.html#af3c83a1c8ba658abc30263271a0f38da',1,'atum::GUI::Screen']]]
 ];
