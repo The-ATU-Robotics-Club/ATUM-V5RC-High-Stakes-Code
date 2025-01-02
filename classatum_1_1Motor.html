@@ -167,12 +167,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:afd36bc19cee15d7cc1b520b8de99f89e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Motor.html#afd36bc19cee15d7cc1b520b8de99f89e">setCurrentLimit</a> (const std::int32_t limit) const</td></tr>
 <tr class="memdesc:afd36bc19cee15d7cc1b520b8de99f89e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current limit of all the motors in mA.  <br /></td></tr>
 <tr class="separator:afd36bc19cee15d7cc1b520b8de99f89e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af91c17722673ba921d979a25216bbaff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Motor.html#af91c17722673ba921d979a25216bbaff">resetPosition</a> (const degree_t iOffset=0_deg)</td></tr>
+<tr class="memdesc:af91c17722673ba921d979a25216bbaff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the position of the motor to the given offset (default is zero).  <br /></td></tr>
+<tr class="separator:af91c17722673ba921d979a25216bbaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1b1162e909a2cc344ed03a23e592438"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Motor_1_1Gearing.html">Gearing</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Motor.html#ac1b1162e909a2cc344ed03a23e592438">getGearing</a> () const</td></tr>
+<tr class="memdesc:ac1b1162e909a2cc344ed03a23e592438"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the gearing of the motor.  <br /></td></tr>
+<tr class="separator:ac1b1162e909a2cc344ed03a23e592438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2de03a87ec300c3b4aed1c4aa1de0999"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Motor.html#a2de03a87ec300c3b4aed1c4aa1de0999">check</a> ()</td></tr>
 <tr class="memdesc:a2de03a87ec300c3b4aed1c4aa1de0999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if any motors are uninitialized, too hot, or over current. If they are, logs the issue. Runs whenever there is a command to move and upon.  <br /></td></tr>
 <tr class="separator:a2de03a87ec300c3b4aed1c4aa1de0999"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af91c17722673ba921d979a25216bbaff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Motor.html#af91c17722673ba921d979a25216bbaff">resetPosition</a> (const degree_t iOffset=0_deg)</td></tr>
-<tr class="memdesc:af91c17722673ba921d979a25216bbaff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current position of all the motors to 0.  <br /></td></tr>
-<tr class="separator:af91c17722673ba921d979a25216bbaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -353,6 +356,26 @@ false </dd></dl>
 
 <p>Get the average efficiency of all the motors as a percentage. </p>
 <dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
+<a id="ac1b1162e909a2cc344ed03a23e592438" name="ac1b1162e909a2cc344ed03a23e592438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1b1162e909a2cc344ed03a23e592438">&#9670;&#160;</a></span>getGearing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structatum_1_1Motor_1_1Gearing.html">Gearing</a> atum::Motor::getGearing </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the gearing of the motor. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Motor_1_1Gearing.html" title="Information relevant to the gearing of a motor. Ratio should be given as input RPM / output RPM.">Gearing</a> </dd></dl>
 
 </div>
 </div>
@@ -564,8 +587,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Sets the current position of all the motors to 0. </p>
-<p>Resets the position of the motor to the given offset (default is zero).</p>
+<p>Resets the position of the motor to the given offset (default is zero). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iOffset</td><td></td></tr>

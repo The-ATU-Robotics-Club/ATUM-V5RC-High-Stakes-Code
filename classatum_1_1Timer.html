@@ -106,12 +106,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6ee9e7024904d361af2ad854ecf324ff"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a6ee9e7024904d361af2ad854ecf324ff">Timer</a> (const second_t iAlarmTime=forever)</td></tr>
 <tr class="memdesc:a6ee9e7024904d361af2ad854ecf324ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new timer with an alarm time at which it will be considered to have gone off. The default of forever will make it so that the alarm is never considered to have gone off.  <br /></td></tr>
 <tr class="separator:a6ee9e7024904d361af2ad854ecf324ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a842ade31934e347aa627199f243414d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a842ade31934e347aa627199f243414d8">setAlarmTime</a> (const second_t iAlarmTime)</td></tr>
-<tr class="memdesc:a842ade31934e347aa627199f243414d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the alarm time, the time it will take for the alarm to go off after being reset.  <br /></td></tr>
-<tr class="separator:a842ade31934e347aa627199f243414d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0744c166f14250d5fbf3304e698d7098"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a0744c166f14250d5fbf3304e698d7098">resetAlarm</a> (const second_t resetTime=0_s)</td></tr>
-<tr class="memdesc:a0744c166f14250d5fbf3304e698d7098"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the timer to a specified time (so that an additional alarm time must pass before the alarm has gone off); default is 0s.  <br /></td></tr>
-<tr class="separator:a0744c166f14250d5fbf3304e698d7098"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7520efdbe2b2a7e16b3ab09df2fb4ce3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a7520efdbe2b2a7e16b3ab09df2fb4ce3">setAlarm</a> (const second_t iAlarmTime)</td></tr>
+<tr class="memdesc:a7520efdbe2b2a7e16b3ab09df2fb4ce3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the alarm time, the time it will take for the alarm to go off after being reset.  <br /></td></tr>
+<tr class="separator:a7520efdbe2b2a7e16b3ab09df2fb4ce3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0c8e225fcd2d4c9b8c0cf3d8adb6b22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#ad0c8e225fcd2d4c9b8c0cf3d8adb6b22">setTime</a> (const second_t newTime=0_s)</td></tr>
+<tr class="memdesc:ad0c8e225fcd2d4c9b8c0cf3d8adb6b22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the timer to a specified time (so that an additional alarm time must pass before the alarm has gone off, or so timeElapsed returns the new time immediately after calling this method); default is 0s.  <br /></td></tr>
+<tr class="separator:ad0c8e225fcd2d4c9b8c0cf3d8adb6b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b2f88caa26e255cfd6e5b62e8cf513a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a6b2f88caa26e255cfd6e5b62e8cf513a">start</a> ()</td></tr>
+<tr class="memdesc:a6b2f88caa26e255cfd6e5b62e8cf513a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the timer to 0s, but only once (until restart is called).  <br /></td></tr>
+<tr class="separator:a6b2f88caa26e255cfd6e5b62e8cf513a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275d87facc97844285a6f9e83b7dfb3a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a275d87facc97844285a6f9e83b7dfb3a">restart</a> ()</td></tr>
+<tr class="memdesc:a275d87facc97844285a6f9e83b7dfb3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows for the timer to be started again.  <br /></td></tr>
+<tr class="separator:a275d87facc97844285a6f9e83b7dfb3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64b59dcb1eed397de325f17f3718830e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e">goneOff</a> () const</td></tr>
 <tr class="memdesc:a64b59dcb1eed397de325f17f3718830e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Says if the alarm time has elapsed since last reset is greater than the alarm time; never goes off if alarm time is 0s.  <br /></td></tr>
 <tr class="separator:a64b59dcb1eed397de325f17f3718830e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -206,40 +212,33 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="a0744c166f14250d5fbf3304e698d7098" name="a0744c166f14250d5fbf3304e698d7098"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0744c166f14250d5fbf3304e698d7098">&#9670;&#160;</a></span>resetAlarm()</h2>
+<a id="a275d87facc97844285a6f9e83b7dfb3a" name="a275d87facc97844285a6f9e83b7dfb3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a275d87facc97844285a6f9e83b7dfb3a">&#9670;&#160;</a></span>restart()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::Timer::resetAlarm </td>
+          <td class="memname">void atum::Timer::restart </td>
           <td>(</td>
-          <td class="paramtype">const second_t&#160;</td>
-          <td class="paramname"><em>resetTime</em> = <code>0_s</code></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Resets the timer to a specified time (so that an additional alarm time must pass before the alarm has gone off); default is 0s. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">resetTime</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Allows for the timer to be started again. </p>
 
 </div>
 </div>
-<a id="a842ade31934e347aa627199f243414d8" name="a842ade31934e347aa627199f243414d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a842ade31934e347aa627199f243414d8">&#9670;&#160;</a></span>setAlarmTime()</h2>
+<a id="a7520efdbe2b2a7e16b3ab09df2fb4ce3" name="a7520efdbe2b2a7e16b3ab09df2fb4ce3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7520efdbe2b2a7e16b3ab09df2fb4ce3">&#9670;&#160;</a></span>setAlarm()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::Timer::setAlarmTime </td>
+          <td class="memname">void atum::Timer::setAlarm </td>
           <td>(</td>
           <td class="paramtype">const second_t&#160;</td>
           <td class="paramname"><em>iAlarmTime</em></td><td>)</td>
@@ -255,6 +254,51 @@ false </dd></dl>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ad0c8e225fcd2d4c9b8c0cf3d8adb6b22" name="ad0c8e225fcd2d4c9b8c0cf3d8adb6b22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0c8e225fcd2d4c9b8c0cf3d8adb6b22">&#9670;&#160;</a></span>setTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::Timer::setTime </td>
+          <td>(</td>
+          <td class="paramtype">const second_t&#160;</td>
+          <td class="paramname"><em>newTime</em> = <code>0_s</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets the timer to a specified time (so that an additional alarm time must pass before the alarm has gone off, or so timeElapsed returns the new time immediately after calling this method); default is 0s. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">newTime</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a6b2f88caa26e255cfd6e5b62e8cf513a" name="a6b2f88caa26e255cfd6e5b62e8cf513a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b2f88caa26e255cfd6e5b62e8cf513a">&#9670;&#160;</a></span>start()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::Timer::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the timer to 0s, but only once (until restart is called). </p>
 
 </div>
 </div>

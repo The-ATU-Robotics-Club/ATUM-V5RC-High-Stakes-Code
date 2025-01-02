@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classatum_1_1Drive.html',''); initResi
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classatum_1_1Drive-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">atum::Drive Class Reference</div></div>
@@ -106,11 +107,17 @@ $(document).ready(function(){initNavTree('classatum_1_1Drive.html',''); initResi
 
 <p><code>#include &lt;<a class="el" href="drive_8hpp_source.html">drive.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct is used to catalog the relevant dimensions of the drive train.  <a href="structatum_1_1Drive_1_1Geometry.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a8e23afb504d2c159ab8561f37ec82ad7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a8e23afb504d2c159ab8561f37ec82ad7">Drive</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iRight, std::unique_ptr&lt; <a class="el" href="classatum_1_1Tracker.html">Tracker</a> &gt; iTracker, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a8e23afb504d2c159ab8561f37ec82ad7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new drive. Requires the left, right, and tracker to be provided.  <br /></td></tr>
-<tr class="separator:a8e23afb504d2c159ab8561f37ec82ad7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a663811b867a8be8c410f1d64b67d3aab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a663811b867a8be8c410f1d64b67d3aab">Drive</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iRight, std::unique_ptr&lt; <a class="el" href="classatum_1_1Tracker.html">Tracker</a> &gt; iTracker, const <a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a> &amp;iGeometry, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a663811b867a8be8c410f1d64b67d3aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new drive. Requires the left, right, and tracker to be provided.  <br /></td></tr>
+<tr class="separator:a663811b867a8be8c410f1d64b67d3aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223a7b5126a3b46d1576d53a32ed367a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a223a7b5126a3b46d1576d53a32ed367a">tank</a> (const double leftVoltage, const double rightVoltage)</td></tr>
 <tr class="memdesc:a223a7b5126a3b46d1576d53a32ed367a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides tank controls: the left voltage and right voltage are applied directly to the corresponding sides of the drive.  <br /></td></tr>
 <tr class="separator:a223a7b5126a3b46d1576d53a32ed367a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -123,18 +130,24 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5fbfa40771fdbc33fecc5cff6646c72e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a5fbfa40771fdbc33fecc5cff6646c72e">getPose</a> () const</td></tr>
 <tr class="memdesc:a5fbfa40771fdbc33fecc5cff6646c72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current pose of the drive.  <br /></td></tr>
 <tr class="separator:a5fbfa40771fdbc33fecc5cff6646c72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84e04eda057f18c6332890dffaaf6b86"><td class="memItemLeft" align="right" valign="top">std::pair&lt; revolutions_per_minute_t, revolutions_per_minute_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a84e04eda057f18c6332890dffaaf6b86">getLRVelocity</a> () const</td></tr>
+<tr class="memdesc:a84e04eda057f18c6332890dffaaf6b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current velocity of the left and right sides of the drive.  <br /></td></tr>
+<tr class="separator:a84e04eda057f18c6332890dffaaf6b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a79e70a717144ce96f00fc72febc0c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a4a79e70a717144ce96f00fc72febc0c1">setBrakeMode</a> (const pros::v5::MotorBrake brakeMode)</td></tr>
 <tr class="memdesc:a4a79e70a717144ce96f00fc72febc0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the brake mode of the motors on the drive.  <br /></td></tr>
 <tr class="separator:a4a79e70a717144ce96f00fc72febc0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf43f1b97bb419b2d29eb9a7f3495206"><td class="memItemLeft" align="right" valign="top">pros::v5::MotorBrake&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#acf43f1b97bb419b2d29eb9a7f3495206">getBrakeMode</a> () const</td></tr>
 <tr class="memdesc:acf43f1b97bb419b2d29eb9a7f3495206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the brake mode of the motors on the drive.  <br /></td></tr>
 <tr class="separator:acf43f1b97bb419b2d29eb9a7f3495206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb0dff015d122c7438c3fbb00566bc50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#acb0dff015d122c7438c3fbb00566bc50">getGeometry</a> () const</td></tr>
+<tr class="memdesc:acb0dff015d122c7438c3fbb00566bc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the geometry of the drive.  <br /></td></tr>
+<tr class="separator:acb0dff015d122c7438c3fbb00566bc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapsulates all of the logic behind the drive. Including tank and arcade controls, setting brake mode, and tracking pose. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a8e23afb504d2c159ab8561f37ec82ad7" name="a8e23afb504d2c159ab8561f37ec82ad7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e23afb504d2c159ab8561f37ec82ad7">&#9670;&#160;</a></span>Drive()</h2>
+<a id="a663811b867a8be8c410f1d64b67d3aab" name="a663811b867a8be8c410f1d64b67d3aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a663811b867a8be8c410f1d64b67d3aab">&#9670;&#160;</a></span>Drive()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -160,6 +173,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a> &amp;&#160;</td>
+          <td class="paramname"><em>iGeometry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
           <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
         </tr>
@@ -177,6 +196,7 @@ Public Member Functions</h2></td></tr>
     <tr><td class="paramname">iLeft</td><td></td></tr>
     <tr><td class="paramname">iRight</td><td></td></tr>
     <tr><td class="paramname">iTracker</td><td></td></tr>
+    <tr><td class="paramname">iGeometry</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -239,6 +259,46 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the brake mode of the motors on the drive. </p>
 <dl class="section return"><dt>Returns</dt><dd>pros::v5::MotorBrake </dd></dl>
+
+</div>
+</div>
+<a id="acb0dff015d122c7438c3fbb00566bc50" name="acb0dff015d122c7438c3fbb00566bc50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb0dff015d122c7438c3fbb00566bc50">&#9670;&#160;</a></span>getGeometry()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a> atum::Drive::getGeometry </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the geometry of the drive. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Drive_1_1Geometry.html" title="This struct is used to catalog the relevant dimensions of the drive train.">Geometry</a> </dd></dl>
+
+</div>
+</div>
+<a id="a84e04eda057f18c6332890dffaaf6b86" name="a84e04eda057f18c6332890dffaaf6b86"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84e04eda057f18c6332890dffaaf6b86">&#9670;&#160;</a></span>getLRVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; revolutions_per_minute_t, revolutions_per_minute_t &gt; atum::Drive::getLRVelocity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the current velocity of the left and right sides of the drive. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;revolutions_per_minute_t, revolutions_per_minute_t&gt; </dd></dl>
 
 </div>
 </div>

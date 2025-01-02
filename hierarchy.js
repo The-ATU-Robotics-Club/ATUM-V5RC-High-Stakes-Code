@@ -13,6 +13,7 @@ var hierarchy =
     [ "atum::DistanceSensor", "classatum_1_1DistanceSensor.html", null ],
     [ "atum::Drive", "classatum_1_1Drive.html", null ],
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
+    [ "atum::Drive::Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "atum::GUI::Screen::GUIPosition", "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html", null ],
     [ "atum::GUI::Screen::GUISize", "structatum_1_1GUI_1_1Screen_1_1GUISize.html", null ],
     [ "std::hash< second_t >", "structstd_1_1hash_3_01second__t_01_4.html", null ],
