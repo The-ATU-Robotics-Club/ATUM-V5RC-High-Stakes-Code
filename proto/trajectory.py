@@ -136,7 +136,6 @@ class CubicHermite:
 
     def _getDerivative(self, t):
         t2 = t * t
-        t3 = t2 * t
         threeT2 = 3 * t2
         return (
             (6 * t2 - 6 * t) * (self.startPosition - self.endPosition)
@@ -156,9 +155,9 @@ class CubicHermite:
 # 76.5 in / s => 1.94 m/s
 chSpline = CubicHermite(
     np.array([-1, 0]),
-    -np.pi /4,
+    0,
     np.array([1, 0]),
-    -np.pi /2,
+    0,
     15,
     0.35,
     1.94,

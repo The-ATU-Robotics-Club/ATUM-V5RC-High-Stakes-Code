@@ -66,8 +66,7 @@ Robot15A::Robot15A() : Robot{this} {
           std::move(ladybrownVelocityController),
           kA,
           std::move(ladybrownPositionController),
-          1.1,
-          Logger::Level::Debug);
+          1.1);
   ladybrown = std::make_unique<Ladybrown>(std::move(leftLadybrownMotor),
                                           std::move(rightLadybrownMotor),
                                           std::move(ladybrownPiston),

@@ -71,8 +71,7 @@ class MotionProfile {
    */
   MotionProfile(const Parameters &iParams,
                 const Logger::Level &loggerLevel = Logger::Level::Info) :
-      params{iParams},
-      logger{loggerLevel} {
+      params{iParams}, logger{loggerLevel} {
     logger.debug("Motion profile has been constructed!");
   }
 
@@ -90,9 +89,10 @@ class MotionProfile {
     for(Point &p : points) {
       p = Point{};
     }
-    if(logger.getLevel() == Logger::Level::Debug) {
-      prepareGraphing();
+    if(logger.getLevel() != Logger::Level::Debug) {
+      return;
     }
+    prepareGraphing();
     beginProfile();
     finishProfile();
     timer.resetAlarm();
@@ -119,9 +119,7 @@ class MotionProfile {
         point = closestPoint;
       }
     }
-    if(logger.getLevel() == Logger::Level::Debug) {
-      graphPoint(point);
-    }
+    graphPoint(point);
     return point;
   }
 
@@ -446,6 +444,9 @@ class MotionProfile {
    *
    */
   void prepareGraphing() {
+    if(logger.getLevel() != Logger::Level::Debug) {
+      return;
+    }
     GUI::Graph::clearSeries(GUI::SeriesColor::White);
     GUI::Graph::clearSeries(GUI::SeriesColor::Magenta);
     GUI::Graph::clearSeries(GUI::SeriesColor::Red);
@@ -469,6 +470,9 @@ class MotionProfile {
    * @param p
    */
   void graphPoint(const Point &p) {
+    if(logger.getLevel() != Logger::Level::Debug) {
+      return;
+    }
     GUI::Graph::addValue(getValueAs<Unit>(p.s), GUI::SeriesColor::White);
     GUI::Graph::addValue(getValueAs<UnitsPerSecond>(p.v),
                          GUI::SeriesColor::Magenta);

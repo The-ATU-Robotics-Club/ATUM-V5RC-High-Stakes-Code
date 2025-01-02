@@ -15,8 +15,8 @@ void Map::addPositions(const std::vector<Pose> &positions,
 
 void Map::addPosition(const Pose position, const SeriesColor seriesColor) {
   lv_chart_series_t *series{mapSeries[seriesColor]};
-  // From 12 in for the 6 ft in either direction from the origin. 
-  const int maxPossibleCoordinate{72}; 
+  // From 12 in for the 6 ft in either direction from the origin.
+  const int maxPossibleCoordinate{72};
   const int coordAdjustment{mapResolution / maxPossibleCoordinate};
   const lv_coord_t x{getValueAs<inch_t, lv_coord_t>(position.x) *
                      coordAdjustment};
@@ -59,6 +59,7 @@ void Map::setupScreen() {
       mapChart, LV_CHART_AXIS_PRIMARY_X, -mapResolution, mapResolution);
   lv_chart_set_range(
       mapChart, LV_CHART_AXIS_PRIMARY_Y, -mapResolution, mapResolution);
+  lv_chart_set_point_count(mapChart, 30);
   lv_chart_set_div_line_count(mapChart, 7, 7);
   lv_obj_set_style_pad_all(mapChart, 0, LV_PART_MAIN);
   lv_obj_set_style_radius(mapChart, 0, LV_PART_MAIN);

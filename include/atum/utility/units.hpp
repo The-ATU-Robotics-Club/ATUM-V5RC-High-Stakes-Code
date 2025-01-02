@@ -44,21 +44,11 @@ UNIT_ADD(jerk,
          inches_per_second_cubed,
          in_per_s_cb,
          compound_unit<inch, inverse<cubed<seconds>>>)
-UNIT_ADD(jerk,
-         feet_per_second_cubed,
-         feet_per_second_cubed,
-         ft_per_s_cb,
-         compound_unit<feet, inverse<cubed<seconds>>>)
 UNIT_ADD(acceleration,
          degrees_per_second_squared,
          degrees_per_second_squared,
          deg_per_s_sq,
          compound_unit<degree, inverse<squared<seconds>>>)
-UNIT_ADD(jerk,
-         meters_per_second_cubed,
-         meters_per_second_cubed,
-         mps_cb,
-         compound_unit<meter, inverse<cubed<seconds>>>)
 UNIT_ADD(jerk,
          degrees_per_second_cubed,
          degrees_per_second_cubed,
@@ -90,6 +80,15 @@ R getValueAs(const T &quantity) {
  * @return degree_t
  */
 degree_t constrain180(const degree_t angle);
+
+/**
+ * @brief Constrains an angle between -pi and pi radians. Used with
+ * UnwrappedPose, prefer constain180.
+ *
+ * @param angle
+ * @return double
+ */
+double constrainPI(const double angle);
 
 /**
  * @brief Gets the difference between the left and right values (provided for

@@ -3,6 +3,16 @@
 namespace atum {
 ROUTINE_DEFINITIONS_FOR(Robot15A) {
   START_ROUTINE("Skills")
+  Trajectory::setDefaultParameters(
+      {7, 76.5_in_per_s, 76.5_in_per_s_sq, 11.825_in});
+  Trajectory::Parameters testingParams;
+  testingParams.spacing = 1_in;
+  const second_t t0{time()};
+  Trajectory test{{{-1_m, 0_m, 0_deg}, {1_m, 0_m, 0_deg}},
+                  testingParams,
+                  Logger::Level::Debug};
+
+  std::cout << "ELAPSED TIME: " << time() - t0 << '\n';
   END_ROUTINE
   START_ROUTINE("Test 1")
   intake->load();
