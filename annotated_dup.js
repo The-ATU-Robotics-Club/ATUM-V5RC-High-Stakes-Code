@@ -30,6 +30,7 @@ var annotated_dup =
       [ "Pose", "structatum_1_1Pose.html", "structatum_1_1Pose" ],
       [ "Potentiometer", "classatum_1_1Potentiometer.html", "classatum_1_1Potentiometer" ],
       [ "ProfileFollower", "classatum_1_1ProfileFollower.html", "classatum_1_1ProfileFollower" ],
+      [ "RAMSETE", "classatum_1_1RAMSETE.html", "classatum_1_1RAMSETE" ],
       [ "Remote", "classatum_1_1Remote.html", "classatum_1_1Remote" ],
       [ "Robot", "classatum_1_1Robot.html", "classatum_1_1Robot" ],
       [ "Robot15A", "classatum_1_1Robot15A.html", "classatum_1_1Robot15A" ],
