@@ -27,13 +27,21 @@ class Trajectory {
                meter_t iSpacing = 1_in,
                meter_t iMaxSpacingError = 0.1_in,
                double iBinarySearchScaling = 0.75);
+    Parameters(meters_per_second_t iMaxV, // No default value to disambiguate
+                                          // default constructor.
+               double iCurviness = 0.0,
+               meters_per_second_squared_t iMaxA = 0_mps_sq,
+               meter_t iTrack = 0_m,
+               meter_t iSpacing = 1_in,
+               meter_t iMaxSpacingError = 0.1_in,
+               double iBinarySearchScaling = 0.75);
     Parameters(const Parameters &other);
     Parameters &operator=(const Parameters &other);
+    // Decides how "curvy" the path is. Reasonable values from 3 to 15.
     double curviness{0.0};
     meters_per_second_t maxV{0_mps};
     meters_per_second_squared_t maxA{0_mps_sq};
     meter_t track{0_m};
-    meter_t halfTrack{0_m};
     meter_t spacing{1_in};
     meter_t maxSpacingError{0.1_in};
     double binarySearchScaling{0.75};
@@ -45,7 +53,9 @@ class Trajectory {
 
   second_t getTotalTime();
 
-  static void setDefaultParameters(const Parameters &newParams);
+  Parameters getParams() const;
+
+  static void setDefaultParams(const Parameters &newParams);
 
   private:
   void generate();

@@ -12,13 +12,28 @@ Trajectory::Parameters::Parameters(double iCurviness,
     maxV{iMaxV},
     maxA{iMaxA},
     track{iTrack},
-    halfTrack{track / 2.0},
+    spacing{iSpacing},
+    maxSpacingError{iMaxSpacingError},
+    binarySearchScaling{iBinarySearchScaling} {}
+
+Trajectory::Parameters::Parameters(meters_per_second_t iMaxV,
+                                   double iCurviness,
+                                   meters_per_second_squared_t iMaxA,
+                                   meter_t iTrack,
+                                   meter_t iSpacing,
+                                   meter_t iMaxSpacingError,
+                                   double iBinarySearchScaling) :
+    curviness{iCurviness},
+    maxV{iMaxV},
+    maxA{iMaxA},
+    track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
     binarySearchScaling{iBinarySearchScaling} {}
 
 Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
-    spacing{other.spacing}, binarySearchScaling{other.binarySearchScaling} {
+    spacing{other.spacing},
+    binarySearchScaling{other.binarySearchScaling} {
   if(other.curviness) {
     curviness = other.curviness;
   }
@@ -30,12 +45,11 @@ Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
   }
   if(other.track) {
     track = other.track;
-    halfTrack = track / 2.0;
   }
 }
 
-Trajectory::Parameters &
-    Trajectory::Parameters::operator=(const Trajectory::Parameters &other) {
+Trajectory::Parameters &Trajectory::Parameters::
+    operator=(const Trajectory::Parameters &other) {
   if(this == &other) {
     return *this;
   }
@@ -50,7 +64,6 @@ Trajectory::Parameters &
   }
   if(other.track) {
     track = other.track;
-    halfTrack = track / 2.0;
   }
   spacing = other.spacing;
   binarySearchScaling = other.binarySearchScaling;
@@ -81,7 +94,11 @@ second_t Trajectory::getTotalTime() {
   return totalTime;
 }
 
-void Trajectory::setDefaultParameters(const Parameters &newParams) {
+Trajectory::Parameters Trajectory::getParams() const {
+  return params;
+}
+
+void Trajectory::setDefaultParams(const Parameters &newParams) {
   defaultParams = newParams;
 }
 
