@@ -89,9 +89,6 @@ class MotionProfile {
     for(Point &p : points) {
       p = Point{};
     }
-    if(logger.getLevel() != Logger::Level::Debug) {
-      return;
-    }
     prepareGraphing();
     beginProfile();
     finishProfile();
