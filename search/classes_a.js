@@ -1,10 +1,11 @@
 var searchData=
 [
   ['parameters_0',['Parameters',['../structatum_1_1Intake_1_1Parameters.html',1,'atum::Intake::Parameters'],['../structatum_1_1Ladybrown_1_1Parameters.html',1,'atum::Ladybrown::Parameters'],['../structatum_1_1MotionProfile_1_1Parameters.html',1,'atum::MotionProfile&lt; Unit &gt;::Parameters'],['../structatum_1_1PID_1_1Parameters.html',1,'atum::PID::Parameters'],['../structatum_1_1TBH_1_1Parameters.html',1,'atum::TBH::Parameters'],['../structatum_1_1Trajectory_1_1Parameters.html',1,'atum::Trajectory::Parameters']]],
-  ['pid_1',['PID',['../classatum_1_1PID.html',1,'atum']]],
-  ['piston_2',['Piston',['../classatum_1_1Piston.html',1,'atum']]],
-  ['point_3',['Point',['../structatum_1_1MotionProfile_1_1Point.html',1,'atum::MotionProfile']]],
-  ['pose_4',['Pose',['../structatum_1_1Pose.html',1,'atum']]],
-  ['potentiometer_5',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]],
-  ['profilefollower_6',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
+  ['pathfollower_1',['PathFollower',['../classatum_1_1PathFollower.html',1,'atum']]],
+  ['pid_2',['PID',['../classatum_1_1PID.html',1,'atum']]],
+  ['piston_3',['Piston',['../classatum_1_1Piston.html',1,'atum']]],
+  ['point_4',['Point',['../structatum_1_1MotionProfile_1_1Point.html',1,'atum::MotionProfile']]],
+  ['pose_5',['Pose',['../structatum_1_1Pose.html',1,'atum']]],
+  ['potentiometer_6',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]],
+  ['profilefollower_7',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
 ];

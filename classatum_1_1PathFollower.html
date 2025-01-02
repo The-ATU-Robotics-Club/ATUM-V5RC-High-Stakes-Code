@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: Member List</title>
+<title>VURC Team ATUM: atum::PathFollower Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classatum_1_1RAMSETE.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classatum_1_1PathFollower.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -94,21 +94,43 @@ $(document).ready(function(){initNavTree('classatum_1_1RAMSETE.html',''); initRe
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">atum::RAMSETE Member List</div></div>
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="classatum_1_1PathFollower-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">atum::PathFollower Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>follow</b>(const std::vector&lt; Command &gt; &amp;commands) (defined in <a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a>)</td><td class="entry"><a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>follow</b>(Command cmd) (defined in <a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a>)</td><td class="entry"><a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>interrupt</b>() (defined in <a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a>)</td><td class="entry"><a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="odd"><td class="entry"><b>RAMSETE</b>(Drive *iDrive, const AcceptableDistance &amp;iDefaultAcceptable, std::unique_ptr&lt; Controller &gt; iLeft, std::unique_ptr&lt; Controller &gt; iRight, const double iBeta=2.0, const double iLambda=0.7, const Logger::Level loggerLevel=Logger::Level::Info) (defined in <a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a>)</td><td class="entry"><a class="el" href="classatum_1_1RAMSETE.html">atum::RAMSETE</a></td><td class="entry"></td></tr>
-</table></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a6c03ce8e61de7dee4e65374a53ae5885"><td class="memItemLeft" align="right" valign="top"><a id="a6c03ce8e61de7dee4e65374a53ae5885" name="a6c03ce8e61de7dee4e65374a53ae5885"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PathFollower</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;iDefaultAcceptable, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iForward, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iTurn, const double iBeta=2.0, const double iLambda=0.7, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="separator:a6c03ce8e61de7dee4e65374a53ae5885"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2e9d12d0c9ccbe2f2f5aa8bcc4d1d23"><td class="memItemLeft" align="right" valign="top"><a id="ac2e9d12d0c9ccbe2f2f5aa8bcc4d1d23" name="ac2e9d12d0c9ccbe2f2f5aa8bcc4d1d23"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>follow</b> (const std::vector&lt; <a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> &gt; &amp;commands)</td></tr>
+<tr class="separator:ac2e9d12d0c9ccbe2f2f5aa8bcc4d1d23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e7a8a15c61a40ee5ca469c9d9453fd1"><td class="memItemLeft" align="right" valign="top"><a id="a3e7a8a15c61a40ee5ca469c9d9453fd1" name="a3e7a8a15c61a40ee5ca469c9d9453fd1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>follow</b> (<a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> cmd)</td></tr>
+<tr class="separator:a3e7a8a15c61a40ee5ca469c9d9453fd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c6b6c8989ab8c6977a3ab615a772b87"><td class="memItemLeft" align="right" valign="top"><a id="a1c6b6c8989ab8c6977a3ab615a772b87" name="a1c6b6c8989ab8c6977a3ab615a772b87"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>interrupt</b> ()</td></tr>
+<tr class="separator:a1c6b6c8989ab8c6977a3ab615a772b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>include/atum/motion/<a class="el" href="pathFollower_8hpp_source.html">pathFollower.hpp</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1PathFollower.html">PathFollower</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

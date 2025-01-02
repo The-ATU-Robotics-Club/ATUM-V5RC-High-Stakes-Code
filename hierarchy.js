@@ -5,7 +5,7 @@ var hierarchy =
     [ "atum::Acceptable< meter_t >", "classatum_1_1Acceptable.html", null ],
     [ "atum::ADIExtenderPort", "classatum_1_1ADIExtenderPort.html", null ],
     [ "atum::ColorSensor", "classatum_1_1ColorSensor.html", null ],
-    [ "atum::RAMSETE::Command", "structatum_1_1RAMSETE_1_1Command.html", null ],
+    [ "atum::PathFollower::Command", "structatum_1_1PathFollower_1_1Command.html", null ],
     [ "atum::Controller", "classatum_1_1Controller.html", [
       [ "atum::PID", "classatum_1_1PID.html", null ],
       [ "atum::TBH", "classatum_1_1TBH.html", null ]
@@ -31,12 +31,12 @@ var hierarchy =
     [ "atum::PID::Parameters", "structatum_1_1PID_1_1Parameters.html", null ],
     [ "atum::TBH::Parameters", "structatum_1_1TBH_1_1Parameters.html", null ],
     [ "atum::Trajectory::Parameters", "structatum_1_1Trajectory_1_1Parameters.html", null ],
+    [ "atum::PathFollower", "classatum_1_1PathFollower.html", null ],
     [ "atum::Piston", "classatum_1_1Piston.html", null ],
     [ "atum::MotionProfile< Unit >::Point", "structatum_1_1MotionProfile_1_1Point.html", null ],
     [ "atum::Pose", "structatum_1_1Pose.html", null ],
     [ "atum::Potentiometer", "classatum_1_1Potentiometer.html", null ],
     [ "atum::ProfileFollower< Unit >", "classatum_1_1ProfileFollower.html", null ],
-    [ "atum::RAMSETE", "classatum_1_1RAMSETE.html", null ],
     [ "atum::Robot", "classatum_1_1Robot.html", [
       [ "atum::Robot15A", "classatum_1_1Robot15A.html", null ],
       [ "atum::RobotPrototype", "classatum_1_1RobotPrototype.html", null ]
