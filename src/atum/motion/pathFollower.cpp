@@ -30,7 +30,9 @@ PathFollower::PathFollower(Drive *iDrive,
     right{std::move(iRight)},
     beta{iBeta},
     lambda{iLambda},
-    logger{loggerLevel} {}
+    logger{loggerLevel} {
+  prepareGraph();
+}
 
 void PathFollower::follow(const std::vector<Command> &commands) {
   for(int i{0}; i < commands.size() && !interrupted; i++) {
@@ -49,18 +51,13 @@ void PathFollower::follow(Command cmd) {
     cmd.target.h += 180_deg;
   }
   Trajectory traj{{state, cmd.target}, cmd.params, logger.getLevel()};
-  std::cout << __LINE__ << '\n';
-  while(acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
+  while(!acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
         !interrupted) {
-  std::cout << __LINE__ << '\n';
     UnwrappedPose state{drive->getPose()};
-  std::cout << __LINE__ << '\n';
     if(cmd.reversed) {
       state.h += M_PI;
     }
-  std::cout << __LINE__ << '\n';
     const UnwrappedPose target{traj.getPose(drive->getPose())};
-  std::cout << __LINE__ << '\n';
     const UnwrappedPose error{getError(state, target)};
     const double k{2.0 * lambda *
                    sqrt(pow(target.w, 2.0) + beta * pow(target.v, 2.0))};
@@ -68,18 +65,19 @@ void PathFollower::follow(Command cmd) {
     const double sincHError{error.h ? sin(error.h) / error.h : 1.0};
     const double w{target.w + k * error.h +
                    beta * target.v * sincHError * error.y};
-    const auto [refVL, refVR] = toLRVelocity(v, w);
+    const auto [refVL, refVR] = toRPM(v, w);
     const auto [vL, vR] = drive->getLRVelocity();
-    logger.debug(std::to_string(refVL));
     const double stateVL{getValueAs<revolutions_per_minute_t>(vL)};
     const double stateVR{getValueAs<revolutions_per_minute_t>(vR)};
-    if(cmd.reversed)
+    graphPoints(stateVL, refVL, stateVR, refVR);
+    if(cmd.reversed) {
       drive->tank(left->getOutput(stateVL, -refVR),
                   right->getOutput(stateVR, -refVL));
-    else
+    } else {
       drive->tank(left->getOutput(stateVL, refVL),
                   right->getOutput(stateVR, refVR));
-    wait();
+    }
+    wait(5_ms);
   }
   drive->tank(0, 0);
   if(interrupted) {
@@ -103,14 +101,48 @@ UnwrappedPose PathFollower::getError(const UnwrappedPose &state,
   return error;
 }
 
-std::pair<double, double> PathFollower::toLRVelocity(const double v,
-                                                     const double w) {
+std::pair<double, double> PathFollower::toRPM(const double v, const double w) {
   const Drive::Geometry geometry{drive->getGeometry()};
   const double track{getValueAs<meter_t>(geometry.track)};
   const double circum{getValueAs<meter_t>(geometry.circum)};
   const double angularAdjustment{w * track / 2.0};
-  return std::make_pair((v + angularAdjustment) / circum,
-                        (v - angularAdjustment) / circum);
+  double leftV{v + angularAdjustment};
+  double rightV{v - angularAdjustment};
+  const double maxV{getValueAs<meters_per_second_t>(drive->getMaxVelocity())};
+  if(abs(leftV) > maxV) {
+    rightV -= leftV - maxV;
+    leftV = leftV > 0 ? maxV : -maxV;
+  } else if(abs(rightV) > maxV) {
+    leftV -= rightV - maxV;
+    rightV = rightV > 0 ? maxV : -maxV;
+  }
+  const double mpsToRPM{60.0 / circum};
+  return std::make_pair(mpsToRPM * leftV, mpsToRPM * rightV);
 }
 
+void PathFollower::prepareGraph() {
+  if(logger.getLevel() != Logger::Level::Debug) {
+    return;
+  }
+  GUI::Graph::clearSeries(GUI::SeriesColor::Magenta);
+  GUI::Graph::clearSeries(GUI::SeriesColor::Cyan);
+  const double maxV{getValueAs<revolutions_per_minute_t>(drive->getMaxRPM())};
+  GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Red);
+  GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Magenta);
+  GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Blue);
+  GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Cyan);
+}
+
+void PathFollower::graphPoints(const double stateVL,
+                               const double refVL,
+                               const double stateVR,
+                               const double refVR) {
+  if(logger.getLevel() != Logger::Level::Debug) {
+    return;
+  }
+  GUI::Graph::addValue(stateVL, GUI::SeriesColor::Red);
+  GUI::Graph::addValue(refVL, GUI::SeriesColor::Magenta);
+  GUI::Graph::addValue(stateVR, GUI::SeriesColor::Blue);
+  GUI::Graph::addValue(refVR, GUI::SeriesColor::Cyan);
+}
 } // namespace atum

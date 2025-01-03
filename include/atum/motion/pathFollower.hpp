@@ -37,7 +37,14 @@ class PathFollower {
   UnwrappedPose getError(const UnwrappedPose &state,
                          const UnwrappedPose &target);
 
-  std::pair<double, double> toLRVelocity(const double v, const double w);
+  std::pair<double, double> toRPM(const double v, const double w);
+
+  void prepareGraph();
+
+  void graphPoints(const double stateVL,
+                   const double refVL,
+                   const double stateVR,
+                   const double refVR);
 
   Drive *drive;
   AcceptableDistance defaultAcceptable;

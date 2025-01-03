@@ -8,8 +8,9 @@ void Tracker::setPose(const Pose &iPose) {
 }
 
 Pose Tracker::getPose() {
-  Pose current = pose;
-  logger.debug("Current tracker pose is " + toString(pose) + ".");
-  return current;
+  if(logger.getLevel() == Logger::Level::Debug) {
+    GUI::Map::addPosition(pose, GUI::SeriesColor::Green);
+  }
+  return pose;
 }
 } // namespace atum

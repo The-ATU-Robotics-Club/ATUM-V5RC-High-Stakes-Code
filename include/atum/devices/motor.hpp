@@ -172,6 +172,13 @@ class Motor {
   void resetPosition(const degree_t iOffset = 0_deg);
 
   /**
+   * @brief Gets the maximum RPM that the output can spin at.
+   *
+   * @return revolutions_per_minute_t
+   */
+  revolutions_per_minute_t getMaxRPM() const;
+
+  /**
    * @brief Gets the gearing of the motor.
    *
    * @return Gearing

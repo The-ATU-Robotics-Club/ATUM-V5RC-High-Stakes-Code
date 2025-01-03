@@ -113,7 +113,7 @@ class MotionProfile {
     if(params.usePosition) {
       const Point closestPoint{getClosestPoint(s)};
       if(abs(closestPoint.v) > abs(point.v)) {
-        //timer.setTime(closestPoint.t);
+        timer.setTime(closestPoint.t);
         point = closestPoint;
       }
     }

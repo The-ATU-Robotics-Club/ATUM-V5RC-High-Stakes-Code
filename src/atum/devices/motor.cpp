@@ -5,9 +5,7 @@ Motor::Motor(const MotorPortsList &ports,
              const Gearing &iGearing,
              const std::string &iName,
              const Logger::Level loggerLevel) :
-    gearing{iGearing},
-    name{iName},
-    logger{loggerLevel} {
+    gearing{iGearing}, name{iName}, logger{loggerLevel} {
   for(std::int8_t port : ports) {
     motors.push_back(
         std::make_unique<pros::Motor>(std::abs(port),
@@ -186,6 +184,16 @@ void Motor::resetPosition(const degree_t iOffset) {
     // Regardless of enabled, try to change this setting.
     motors[i]->tare_position();
   }
+}
+
+revolutions_per_minute_t Motor::getMaxRPM() const {
+  revolutions_per_minute_t maxRPM;
+  switch(gearing.cartridge) {
+    case pros::MotorGears::red: maxRPM = 100_rpm; break;
+    case pros::MotorGears::blue: maxRPM = 600_rpm; break;
+    default: maxRPM = 200_rpm; break;
+  }
+  return maxRPM / gearing.ratio;
 }
 
 Motor::Gearing Motor::getGearing() const {

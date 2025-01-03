@@ -77,7 +77,6 @@ class Trajectory {
   Pose getDerivative(const double t) const;
   Pose get2ndDerivative(const double t) const;
   void graphTrajectory();
-  void prepareGraph();
 
   static Parameters defaultParams;
   Pose start;
@@ -86,7 +85,8 @@ class Trajectory {
   Pose endDirection;
   Parameters params;
   Logger logger;
-  std::map<second_t, Pose> trajectory{};
+  std::map<second_t, Pose> trajectory;
+  std::vector<second_t> times;
   second_t totalTime{0_s};
   std::vector<Pose> points;
   std::vector<double> curvatures;

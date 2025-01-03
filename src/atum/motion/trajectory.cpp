@@ -36,8 +36,7 @@ Trajectory::Parameters::Parameters(const meters_per_second_t iMaxV,
     binarySearchScaling{iBinarySearchScaling} {}
 
 Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
-    spacing{other.spacing},
-    binarySearchScaling{other.binarySearchScaling} {
+    spacing{other.spacing}, binarySearchScaling{other.binarySearchScaling} {
   if(other.curviness) {
     curviness = other.curviness;
   }
@@ -52,8 +51,8 @@ Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
   }
 }
 
-Trajectory::Parameters &Trajectory::Parameters::
-    operator=(const Trajectory::Parameters &other) {
+Trajectory::Parameters &
+    Trajectory::Parameters::operator=(const Trajectory::Parameters &other) {
   if(this == &other) {
     return *this;
   }
@@ -94,7 +93,7 @@ Trajectory::Trajectory(const std::pair<Pose, Pose> &waypoints,
 }
 
 Pose Trajectory::getPose(const Pose &state) {
-  Pose pose{getTimed()};
+  Pose pose{getClosest(state)};
   if(params.usePosition) {
     const Pose closest{getClosest(state)};
     if(abs(closest.v) > abs(pose.v)) {
@@ -249,32 +248,15 @@ void Trajectory::graphTrajectory() {
   if(logger.getLevel() != Logger::Level::Debug) {
     return;
   }
-  prepareGraph();
+  GUI::Map::clearSeries(GUI::SeriesColor::Red);
   // Can't handle all points on map, so only do those a bit apart from each
   // other.
   const int skip{8_in / params.spacing};
   for(int i{0}; i < points.size(); i++) {
-    Pose &pose{points[i]};
-    GUI::Graph::addValue(getValueAs<meters_per_second_t>(pose.v),
-                         GUI::SeriesColor::Magenta);
-    GUI::Graph::addValue(getValueAs<radians_per_second_t>(pose.w),
-                         GUI::SeriesColor::Cyan);
     if(i % skip == 0) {
-      GUI::Map::addPosition(pose, GUI::SeriesColor::Red);
+      GUI::Map::addPosition(points[i], GUI::SeriesColor::Red);
     }
   }
-}
-
-void Trajectory::prepareGraph() {
-  GUI::Map::clearSeries(GUI::SeriesColor::Red);
-  GUI::Graph::clearSeries(GUI::SeriesColor::Magenta);
-  GUI::Graph::clearSeries(GUI::SeriesColor::Cyan);
-  GUI::Graph::setSeriesRange(getValueAs<meters_per_second_t>(params.maxV),
-                             GUI::SeriesColor::Magenta);
-  GUI::Graph::setSeriesRange(2.0 *
-                                 getValueAs<meters_per_second_t>(params.maxV) /
-                                 getValueAs<meter_t>(params.track),
-                             GUI::SeriesColor::Cyan);
 }
 
 Trajectory::Parameters Trajectory::defaultParams{};

@@ -113,6 +113,20 @@ class Drive {
    */
   Geometry getGeometry() const;
 
+  /**
+   * @brief Gets the maximum wheel RPM possible by the drive.
+   *
+   * @return revolutions_per_minute_t
+   */
+  revolutions_per_minute_t getMaxRPM() const;
+
+  /**
+   * @brief Gets the maximum velocity possible by the drive.
+   *
+   * @return meters_per_second_t
+   */
+  meters_per_second_t getMaxVelocity() const;
+
   private:
   std::unique_ptr<Motor> left;
   std::unique_ptr<Motor> right;

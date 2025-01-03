@@ -71,4 +71,13 @@ pros::v5::MotorBrake Drive::getBrakeMode() const {
 Drive::Geometry Drive::getGeometry() const {
   return geometry;
 }
+
+revolutions_per_minute_t Drive::getMaxRPM() const {
+  return left->getMaxRPM();
+}
+
+meters_per_second_t Drive::getMaxVelocity() const {
+  const double maxRPM{getValueAs<revolutions_per_minute_t>(left->getMaxRPM())};
+  return maxRPM * geometry.circum / 1_min;
+}
 } // namespace atum
