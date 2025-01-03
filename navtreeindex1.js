@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"colorSensor_8hpp.html":[2,0,0,0,1,1],
+"colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6":[2,0,0,0,1,1,2],
+"colorSensor_8hpp_source.html":[2,0,0,0,1,1],
 "controller_8hpp.html":[2,0,0,0,0,0],
 "controller_8hpp_source.html":[2,0,0,0,0,0],
 "dir_0686e71c558aeb9d692ef809e92230fd.html":[2,0,0,0,7],
@@ -29,8 +32,8 @@ var NAVTREEINDEX1 =
 "functions_e.html":[1,3,0,4],
 "functions_enum.html":[1,3,3],
 "functions_f.html":[1,3,0,5],
-"functions_func.html":[1,3,1],
 "functions_func.html":[1,3,1,0],
+"functions_func.html":[1,3,1],
 "functions_func_b.html":[1,3,1,1],
 "functions_func_c.html":[1,3,1,2],
 "functions_func_d.html":[1,3,1,3],

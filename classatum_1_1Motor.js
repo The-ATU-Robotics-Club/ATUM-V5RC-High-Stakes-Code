@@ -9,6 +9,7 @@ var classatum_1_1Motor =
     [ "getCurrentLimit", "classatum_1_1Motor.html#af86422c47beb4212a8b6c13535a248c9", null ],
     [ "getEfficiency", "classatum_1_1Motor.html#a31cf87fb74a4a46f23f5c6bac6431ce3", null ],
     [ "getGearing", "classatum_1_1Motor.html#ac1b1162e909a2cc344ed03a23e592438", null ],
+    [ "getMaxRPM", "classatum_1_1Motor.html#a4d063a8e397966d2933b5e2b4a39553e", null ],
     [ "getPosition", "classatum_1_1Motor.html#a9eba333991a6dd4e9a94825f2bcd74e2", null ],
     [ "getPower", "classatum_1_1Motor.html#a60be5a435be459c6c76eec3a041c965e", null ],
     [ "getTargetVelocity", "classatum_1_1Motor.html#a3602de0489e4aa833b23a67b4bfb8e17", null ],

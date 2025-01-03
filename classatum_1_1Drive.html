@@ -142,6 +142,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:acb0dff015d122c7438c3fbb00566bc50"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#acb0dff015d122c7438c3fbb00566bc50">getGeometry</a> () const</td></tr>
 <tr class="memdesc:acb0dff015d122c7438c3fbb00566bc50"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the geometry of the drive.  <br /></td></tr>
 <tr class="separator:acb0dff015d122c7438c3fbb00566bc50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d6fd1a4535bbb464d42c7d42394981"><td class="memItemLeft" align="right" valign="top">revolutions_per_minute_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#ad7d6fd1a4535bbb464d42c7d42394981">getMaxRPM</a> () const</td></tr>
+<tr class="memdesc:ad7d6fd1a4535bbb464d42c7d42394981"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum wheel RPM possible by the drive.  <br /></td></tr>
+<tr class="separator:ad7d6fd1a4535bbb464d42c7d42394981"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade0a3728a002db943bb77c8580a5f3ea"><td class="memItemLeft" align="right" valign="top">meters_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#ade0a3728a002db943bb77c8580a5f3ea">getMaxVelocity</a> () const</td></tr>
+<tr class="memdesc:ade0a3728a002db943bb77c8580a5f3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum velocity possible by the drive.  <br /></td></tr>
+<tr class="separator:ade0a3728a002db943bb77c8580a5f3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapsulates all of the logic behind the drive. Including tank and arcade controls, setting brake mode, and tracking pose. </p>
@@ -299,6 +305,46 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the current velocity of the left and right sides of the drive. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::pair&lt;revolutions_per_minute_t, revolutions_per_minute_t&gt; </dd></dl>
+
+</div>
+</div>
+<a id="ad7d6fd1a4535bbb464d42c7d42394981" name="ad7d6fd1a4535bbb464d42c7d42394981"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7d6fd1a4535bbb464d42c7d42394981">&#9670;&#160;</a></span>getMaxRPM()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">revolutions_per_minute_t atum::Drive::getMaxRPM </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the maximum wheel RPM possible by the drive. </p>
+<dl class="section return"><dt>Returns</dt><dd>revolutions_per_minute_t </dd></dl>
+
+</div>
+</div>
+<a id="ade0a3728a002db943bb77c8580a5f3ea" name="ade0a3728a002db943bb77c8580a5f3ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade0a3728a002db943bb77c8580a5f3ea">&#9670;&#160;</a></span>getMaxVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">meters_per_second_t atum::Drive::getMaxVelocity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the maximum velocity possible by the drive. </p>
+<dl class="section return"><dt>Returns</dt><dd>meters_per_second_t </dd></dl>
 
 </div>
 </div>
