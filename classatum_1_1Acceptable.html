@@ -115,9 +115,9 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>UnitsPerSecond</b> =
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3edb71117cac257ab98de7e93223f561"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561">Acceptable</a> (const second_t iTimeout, const Unit &amp;iMaxError=Unit{0.0}, const UnitsPerSecond &amp;iMaxDeriv=UnitsPerSecond{std::numeric_limits&lt; double &gt;::max()}, const second_t minTime=0_s, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a3edb71117cac257ab98de7e93223f561"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new acceptable object, checking for the parameters given to see if an action is complete, including timeout (past which the action is considered acceptable), a max error (below which, the action is considered acceptable), a max derivative of error (below which, assuming error is fine, the action is considered acceptable) in order to account for momentum, and a minimum time to meet those conditions for.  <br /></td></tr>
-<tr class="separator:a3edb71117cac257ab98de7e93223f561"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af22a9b39ac3a2bc9c856b9e34de095c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#af22a9b39ac3a2bc9c856b9e34de095c9">Acceptable</a> (const second_t iTimeout, const Unit &amp;iMaxError=Unit{0.0}, const UnitsPerSecond &amp;iMaxDeriv=UnitsPerSecond{infinite}, const second_t minTime=0_s, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:af22a9b39ac3a2bc9c856b9e34de095c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new acceptable object, checking for the parameters given to see if an action is complete, including timeout (past which the action is considered acceptable), a max error (below which, the action is considered acceptable), a max derivative of error (below which, assuming error is fine, the action is considered acceptable) in order to account for momentum, and a minimum time to meet those conditions for.  <br /></td></tr>
+<tr class="separator:af22a9b39ac3a2bc9c856b9e34de095c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5b3b6e75f7316c179429a22b7366165"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165">canAccept</a> (const Unit &amp;state, const Unit &amp;reference)</td></tr>
 <tr class="memdesc:aa5b3b6e75f7316c179429a22b7366165"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if under the current conditions the results can be accepted.  <br /></td></tr>
 <tr class="separator:aa5b3b6e75f7316c179429a22b7366165"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,8 +144,8 @@ class atum::Acceptable&lt; Unit &gt;</div><p>This class template produces encaps
   </dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a3edb71117cac257ab98de7e93223f561" name="a3edb71117cac257ab98de7e93223f561"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3edb71117cac257ab98de7e93223f561">&#9670;&#160;</a></span>Acceptable()</h2>
+<a id="af22a9b39ac3a2bc9c856b9e34de095c9" name="af22a9b39ac3a2bc9c856b9e34de095c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af22a9b39ac3a2bc9c856b9e34de095c9">&#9670;&#160;</a></span>Acceptable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -171,7 +171,7 @@ template&lt;typename Unit &gt; </div>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const UnitsPerSecond &amp;&#160;</td>
-          <td class="paramname"><em>iMaxDeriv</em> = <code>UnitsPerSecond{std::numeric_limits&lt;double&gt;::max()}</code>, </td>
+          <td class="paramname"><em>iMaxDeriv</em> = <code>UnitsPerSecond{infinite}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

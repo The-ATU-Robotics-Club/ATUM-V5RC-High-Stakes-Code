@@ -119,7 +119,7 @@ $(document).ready(function(){initNavTree('motionProfile_8hpp_source.html',''); i
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    UnitsPerSecond maxV;</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    UnitsPerSecondSq maxA;</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// Default to a trapezoidal profile.</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    UnitsPerSecondCb maxJ{std::numeric_limits&lt;double&gt;::max()};</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    UnitsPerSecondCb maxJ{infinite};</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">bool</span> usePosition{<span class="keyword">true</span>};</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// The number of iterations in the binary search for the closest point on</span></div>
 <div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// the motion profile.</span></div>

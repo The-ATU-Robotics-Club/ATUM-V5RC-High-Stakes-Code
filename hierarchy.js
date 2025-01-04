@@ -1,6 +1,6 @@
 var hierarchy =
 [
-    [ "atum::ProfileFollower< Unit >::AccelerationConstants", "structatum_1_1ProfileFollower_1_1AccelerationConstants.html", null ],
+    [ "atum::AccelerationConstants", "structatum_1_1AccelerationConstants.html", null ],
     [ "atum::Acceptable< Unit >", "classatum_1_1Acceptable.html", null ],
     [ "atum::Acceptable< meter_t >", "classatum_1_1Acceptable.html", null ],
     [ "atum::ADIExtenderPort", "classatum_1_1ADIExtenderPort.html", null ],
@@ -12,6 +12,7 @@ var hierarchy =
     ] ],
     [ "atum::DistanceSensor", "classatum_1_1DistanceSensor.html", null ],
     [ "atum::Drive", "classatum_1_1Drive.html", null ],
+    [ "atum::PathFollower::FeedbackParams", "structatum_1_1PathFollower_1_1FeedbackParams.html", null ],
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
     [ "atum::Drive::Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "atum::GUI::Screen::GUIPosition", "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html", null ],
@@ -29,9 +30,10 @@ var hierarchy =
     [ "atum::Intake::Parameters", "structatum_1_1Intake_1_1Parameters.html", null ],
     [ "atum::Ladybrown::Parameters", "structatum_1_1Ladybrown_1_1Parameters.html", null ],
     [ "atum::MotionProfile< Unit >::Parameters", "structatum_1_1MotionProfile_1_1Parameters.html", null ],
+    [ "atum::Path::Parameters", "structatum_1_1Path_1_1Parameters.html", null ],
     [ "atum::PID::Parameters", "structatum_1_1PID_1_1Parameters.html", null ],
     [ "atum::TBH::Parameters", "structatum_1_1TBH_1_1Parameters.html", null ],
-    [ "atum::Trajectory::Parameters", "structatum_1_1Trajectory_1_1Parameters.html", null ],
+    [ "atum::Path", "classatum_1_1Path.html", null ],
     [ "atum::PathFollower", "classatum_1_1PathFollower.html", null ],
     [ "atum::Piston", "classatum_1_1Piston.html", null ],
     [ "atum::MotionProfile< Unit >::Point", "structatum_1_1MotionProfile_1_1Point.html", null ],
@@ -72,6 +74,5 @@ var hierarchy =
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
     ] ],
-    [ "atum::Trajectory", "classatum_1_1Trajectory.html", null ],
     [ "atum::UnwrappedPose", "structatum_1_1UnwrappedPose.html", null ]
 ];

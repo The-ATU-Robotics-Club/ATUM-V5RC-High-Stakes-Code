@@ -109,9 +109,9 @@ $(document).ready(function(){initNavTree('structatum_1_1UnwrappedPose.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab49a1a4f7b795aba569ce2e055912aba"><td class="memItemLeft" align="right" valign="top"><a id="ab49a1a4f7b795aba569ce2e055912aba" name="ab49a1a4f7b795aba569ce2e055912aba"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UnwrappedPose</b> (const double iX=0.0, const double iY=0.0, const double iH=0.0, const double iV=0.0, const double iW=0.0)</td></tr>
-<tr class="separator:ab49a1a4f7b795aba569ce2e055912aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e5e72d674f21febe760bac78127c083"><td class="memItemLeft" align="right" valign="top"><a id="a6e5e72d674f21febe760bac78127c083" name="a6e5e72d674f21febe760bac78127c083"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UnwrappedPose</b> (const double iX=0.0, const double iY=0.0, const double iH=0.0, const double iV=0.0, const double iA=0.0, const double iOmega=0.0, const double iAlpha=0.0, const double iT=0.0)</td></tr>
+<tr class="separator:a6e5e72d674f21febe760bac78127c083"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabdf3771264aa456b619ec39f5863395"><td class="memItemLeft" align="right" valign="top"><a id="aabdf3771264aa456b619ec39f5863395" name="aabdf3771264aa456b619ec39f5863395"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>UnwrappedPose</b> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;pose)</td></tr>
 <tr class="separator:aabdf3771264aa456b619ec39f5863395"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,9 +136,18 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>h</b> {0.0}</td></t
 <tr class="memitem:ac420bc090a2e80a6a870ba2cc407292f"><td class="memItemLeft" align="right" valign="top"><a id="ac420bc090a2e80a6a870ba2cc407292f" name="ac420bc090a2e80a6a870ba2cc407292f"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>v</b> {0.0}</td></tr>
 <tr class="separator:ac420bc090a2e80a6a870ba2cc407292f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae65f512babb4f36d958f9617f6459567"><td class="memItemLeft" align="right" valign="top"><a id="ae65f512babb4f36d958f9617f6459567" name="ae65f512babb4f36d958f9617f6459567"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>w</b> {0.0}</td></tr>
-<tr class="separator:ae65f512babb4f36d958f9617f6459567"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a210694699b1b1a4cd3de8e6d900cd1d2"><td class="memItemLeft" align="right" valign="top"><a id="a210694699b1b1a4cd3de8e6d900cd1d2" name="a210694699b1b1a4cd3de8e6d900cd1d2"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>a</b> {0.0}</td></tr>
+<tr class="separator:a210694699b1b1a4cd3de8e6d900cd1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a804a9806aa01b2cfed7b031eb9072359"><td class="memItemLeft" align="right" valign="top"><a id="a804a9806aa01b2cfed7b031eb9072359" name="a804a9806aa01b2cfed7b031eb9072359"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>omega</b> {0.0}</td></tr>
+<tr class="separator:a804a9806aa01b2cfed7b031eb9072359"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac29bb24fc22b6e9474db6a9311ce1e05"><td class="memItemLeft" align="right" valign="top"><a id="ac29bb24fc22b6e9474db6a9311ce1e05" name="ac29bb24fc22b6e9474db6a9311ce1e05"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>alpha</b> {0.0}</td></tr>
+<tr class="separator:ac29bb24fc22b6e9474db6a9311ce1e05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58fe52397c7eb9a55b2bcbd0a0cd22b4"><td class="memItemLeft" align="right" valign="top"><a id="a58fe52397c7eb9a55b2bcbd0a0cd22b4" name="a58fe52397c7eb9a55b2bcbd0a0cd22b4"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>t</b> {0.0}</td></tr>
+<tr class="separator:a58fe52397c7eb9a55b2bcbd0a0cd22b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is used to "unwrap" the <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> objects for easier manipulation. Generally, <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> should be used over this. </p>

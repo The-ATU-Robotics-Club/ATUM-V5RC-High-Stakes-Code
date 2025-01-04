@@ -17,8 +17,7 @@ var searchData=
   ['tostring_14',['toString',['../colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6',1,'atum::toString(const ColorSensor::Color &amp;color)'],['../pose_8hpp.html#acfd7d943111074dac94ff54503425d5b',1,'atum::toString(const UnwrappedPose &amp;pose)'],['../pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65',1,'atum::toString(const Pose &amp;pose)']]],
   ['tracker_15',['Tracker',['../classatum_1_1Tracker.html',1,'atum::Tracker'],['../classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d',1,'atum::Tracker::Tracker()']]],
   ['tracker_2ehpp_16',['tracker.hpp',['../tracker_8hpp.html',1,'']]],
-  ['trajectory_17',['Trajectory',['../classatum_1_1Trajectory.html',1,'atum']]],
-  ['traveled_18',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer']]],
-  ['triggered_19',['triggered',['../classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63',1,'atum::LineTracker']]],
-  ['type_20',['Type',['../classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40',1,'atum::Remote']]]
+  ['traveled_17',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer']]],
+  ['triggered_18',['triggered',['../classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63',1,'atum::LineTracker']]],
+  ['type_19',['Type',['../classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40',1,'atum::Remote']]]
 ];

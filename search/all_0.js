@@ -1,8 +1,8 @@
 var searchData=
 [
   ['accel_0',['accel',['../classatum_1_1Kinematics.html#ae7a11a6296d61d9d3718001f7dbc62c1',1,'atum::Kinematics']]],
-  ['accelerationconstants_1',['AccelerationConstants',['../structatum_1_1ProfileFollower_1_1AccelerationConstants.html',1,'atum::ProfileFollower']]],
-  ['acceptable_2',['Acceptable',['../classatum_1_1Acceptable.html#a3edb71117cac257ab98de7e93223f561',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
+  ['accelerationconstants_1',['AccelerationConstants',['../structatum_1_1AccelerationConstants.html',1,'atum']]],
+  ['acceptable_2',['Acceptable',['../classatum_1_1Acceptable.html#af22a9b39ac3a2bc9c856b9e34de095c9',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
   ['acceptable_2ehpp_3',['acceptable.hpp',['../acceptable_8hpp.html',1,'']]],
   ['acceptable_3c_20meter_5ft_20_3e_4',['Acceptable&lt; meter_t &gt;',['../classatum_1_1Acceptable.html',1,'atum']]],
   ['acceptabledistance_5',['AcceptableDistance',['../acceptable_8hpp.html#a2ced36be98b215924043da849414aded',1,'atum']]],

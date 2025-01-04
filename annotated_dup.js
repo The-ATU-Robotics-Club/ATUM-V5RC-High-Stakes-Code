@@ -9,6 +9,7 @@ var annotated_dup =
         [ "Routines", "classatum_1_1GUI_1_1Routines.html", null ],
         [ "Screen", "classatum_1_1GUI_1_1Screen.html", "classatum_1_1GUI_1_1Screen" ]
       ] ],
+      [ "AccelerationConstants", "structatum_1_1AccelerationConstants.html", null ],
       [ "Acceptable", "classatum_1_1Acceptable.html", "classatum_1_1Acceptable" ],
       [ "ADIExtenderPort", "classatum_1_1ADIExtenderPort.html", "classatum_1_1ADIExtenderPort" ],
       [ "ColorSensor", "classatum_1_1ColorSensor.html", "classatum_1_1ColorSensor" ],
@@ -25,6 +26,7 @@ var annotated_dup =
       [ "Motor", "classatum_1_1Motor.html", "classatum_1_1Motor" ],
       [ "Odometer", "classatum_1_1Odometer.html", "classatum_1_1Odometer" ],
       [ "Odometry", "classatum_1_1Odometry.html", "classatum_1_1Odometry" ],
+      [ "Path", "classatum_1_1Path.html", "classatum_1_1Path" ],
       [ "PathFollower", "classatum_1_1PathFollower.html", "classatum_1_1PathFollower" ],
       [ "PID", "classatum_1_1PID.html", "classatum_1_1PID" ],
       [ "Piston", "classatum_1_1Piston.html", "classatum_1_1Piston" ],
@@ -43,7 +45,6 @@ var annotated_dup =
       [ "TBH", "classatum_1_1TBH.html", "classatum_1_1TBH" ],
       [ "Timer", "classatum_1_1Timer.html", "classatum_1_1Timer" ],
       [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ],
-      [ "Trajectory", "classatum_1_1Trajectory.html", "classatum_1_1Trajectory" ],
       [ "UnwrappedPose", "structatum_1_1UnwrappedPose.html", "structatum_1_1UnwrappedPose" ]
     ] ],
     [ "std", null, [

@@ -1,11 +1,9 @@
 var searchData=
 [
-  ['schedule_0',['Schedule',['../classatum_1_1Schedule.html',1,'atum']]],
-  ['screen_1',['Screen',['../classatum_1_1GUI_1_1Screen.html',1,'atum::GUI']]],
-  ['seriesrange_2',['SeriesRange',['../structatum_1_1GUI_1_1Graph_1_1SeriesRange.html',1,'atum::GUI::Graph']]],
-  ['slewrate_3',['SlewRate',['../classatum_1_1SlewRate.html',1,'atum']]],
-  ['statemachine_4',['StateMachine',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['statemachine_3c_20intakestate_20_3e_5',['StateMachine&lt; IntakeState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['statemachine_3c_20ladybrownstate_20_3e_6',['StateMachine&lt; LadybrownState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],
-  ['stickaxis_7',['StickAxis',['../structatum_1_1Remote_1_1StickAxis.html',1,'atum::Remote']]]
+  ['remote_0',['Remote',['../classatum_1_1Remote.html',1,'atum']]],
+  ['robot_1',['Robot',['../classatum_1_1Robot.html',1,'atum']]],
+  ['robot15a_2',['Robot15A',['../classatum_1_1Robot15A.html',1,'atum']]],
+  ['robotprototype_3',['RobotPrototype',['../classatum_1_1RobotPrototype.html',1,'atum']]],
+  ['rotationsensor_4',['RotationSensor',['../classatum_1_1RotationSensor.html',1,'atum']]],
+  ['routines_5',['Routines',['../classatum_1_1GUI_1_1Routines.html',1,'atum::GUI']]]
 ];

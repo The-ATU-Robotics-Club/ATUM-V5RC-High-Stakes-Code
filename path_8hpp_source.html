@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: include/atum/motion/trajectory.hpp Source File</title>
+<title>VURC Team ATUM: include/atum/motion/path.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('path_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -94,7 +94,7 @@ $(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); init
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">trajectory.hpp</div></div>
+  <div class="headertitle"><div class="title">path.hpp</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
@@ -112,10 +112,10 @@ $(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); init
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>};</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span>atum {</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classatum_1_1Trajectory.html">   22</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1Trajectory.html">Trajectory</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="classatum_1_1Path.html">   22</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1Path.html">Path</a> {</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structatum_1_1Trajectory_1_1Parameters.html">   24</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a> {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a>(<span class="keywordtype">double</span> iCurviness = 0.0,</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structatum_1_1Path_1_1Parameters.html">   24</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a> {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a>(<span class="keywordtype">double</span> iCurviness = 0.0,</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>               <span class="keyword">const</span> meters_per_second_t iMaxV = 0_mps,</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>               <span class="keyword">const</span> meters_per_second_squared_t iMaxA = 0_mps_sq,</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>               <span class="keyword">const</span> meter_t iTrack = 0_m,</div>
@@ -123,7 +123,7 @@ $(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); init
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>               <span class="keyword">const</span> meter_t iMaxSpacingError = 0.1_in,</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>               <span class="keyword">const</span> <span class="keywordtype">bool</span> iUsePosition = <span class="keyword">true</span>,</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>               <span class="keyword">const</span> <span class="keywordtype">double</span> iBinarySearchScaling = 0.75);</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a>(</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a>(</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="keyword">const</span> meters_per_second_t iMaxV, <span class="comment">// No default value to disambiguate</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>                                         <span class="comment">// default constructor.</span></div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> iCurviness = 0.0,</div>
@@ -133,8 +133,8 @@ $(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); init
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        <span class="keyword">const</span> meter_t iMaxSpacingError = 0.1_in,</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keyword">const</span> <span class="keywordtype">bool</span> iUsePosition = <span class="keyword">true</span>,</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>        <span class="keyword">const</span> <span class="keywordtype">double</span> iBinarySearchScaling = 0.75);</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a> &amp;other);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a> &amp;operator=(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Trajectory_1_1Parameters.html">Parameters</a> &amp;other);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a> &amp;other);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a> &amp;operator=(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Path_1_1Parameters.html">Parameters</a> &amp;other);</div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// Decides how &quot;curvy&quot; the path is. Reasonable values from 3 to 15.</span></div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="keywordtype">double</span> curviness{0.0};</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    meters_per_second_t maxV{0_mps};</div>
@@ -146,9 +146,9 @@ $(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); init
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keywordtype">double</span> binarySearchScaling{0.75};</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  };</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_class" href="classatum_1_1Trajectory.html">Trajectory</a>(<span class="keyword">const</span> std::pair&lt;Pose, Pose&gt; &amp;waypoints,</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>             <span class="keyword">const</span> std::optional&lt;Parameters&gt; &amp;specialParams = {},</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>             <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Debug);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_class" href="classatum_1_1Path.html">Path</a>(<span class="keyword">const</span> std::pair&lt;Pose, Pose&gt; &amp;waypoints,</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>       <span class="keyword">const</span> std::optional&lt;Parameters&gt; &amp;specialParams = {},</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>       <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Debug);</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> getPose(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> &amp;state);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
@@ -178,27 +178,25 @@ $(document).ready(function(){initNavTree('trajectory_8hpp_source.html',''); init
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> endDirection;</div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  Parameters params;</div>
 <div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  std::map&lt;second_t, Pose&gt; trajectory;</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  std::vector&lt;second_t&gt; times;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  second_t totalTime{0_s};</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  std::vector&lt;Pose&gt; points;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  std::vector&lt;double&gt; curvatures;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>  <span class="keywordtype">int</span> closestIndex{0};</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  Timer timer;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>};</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  std::vector&lt;Pose&gt; path;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  std::vector&lt;double&gt; curvatures;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <span class="keywordtype">int</span> closestIndex{0};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  Timer timer;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordtype">int</span> timedIndex{0};</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>};</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aclassatum_1_1Logger_html"><div class="ttname"><a href="classatum_1_1Logger.html">atum::Logger</a></div><div class="ttdoc">This class handles logging to the terminal, SD card, and log screen. Messages are displayed depending...</div><div class="ttdef"><b>Definition:</b> logger.hpp:31</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
-<div class="ttc" id="aclassatum_1_1Trajectory_html"><div class="ttname"><a href="classatum_1_1Trajectory.html">atum::Trajectory</a></div><div class="ttdef"><b>Definition:</b> trajectory.hpp:22</div></div>
-<div class="ttc" id="astructatum_1_1Pose_html"><div class="ttname"><a href="structatum_1_1Pose.html">atum::Pose</a></div><div class="ttdoc">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...</div><div class="ttdef"><b>Definition:</b> pose.hpp:111</div></div>
-<div class="ttc" id="astructatum_1_1Trajectory_1_1Parameters_html"><div class="ttname"><a href="structatum_1_1Trajectory_1_1Parameters.html">atum::Trajectory::Parameters</a></div><div class="ttdef"><b>Definition:</b> trajectory.hpp:24</div></div>
+<div class="ttc" id="aclassatum_1_1Path_html"><div class="ttname"><a href="classatum_1_1Path.html">atum::Path</a></div><div class="ttdef"><b>Definition:</b> path.hpp:22</div></div>
+<div class="ttc" id="astructatum_1_1Path_1_1Parameters_html"><div class="ttname"><a href="structatum_1_1Path_1_1Parameters.html">atum::Path::Parameters</a></div><div class="ttdef"><b>Definition:</b> path.hpp:24</div></div>
+<div class="ttc" id="astructatum_1_1Pose_html"><div class="ttname"><a href="structatum_1_1Pose.html">atum::Pose</a></div><div class="ttdoc">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...</div><div class="ttdef"><b>Definition:</b> pose.hpp:118</div></div>
 <div class="ttc" id="astructatum_1_1UnwrappedPose_html"><div class="ttname"><a href="structatum_1_1UnwrappedPose.html">atum::UnwrappedPose</a></div><div class="ttdoc">This is used to &quot;unwrap&quot; the Pose objects for easier manipulation. Generally, Pose should be used ove...</div><div class="ttdef"><b>Definition:</b> pose.hpp:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_a3acc2f368f9b12e0132a198399d370b.html">motion</a></li><li class="navelem"><b>trajectory.hpp</b></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_a3acc2f368f9b12e0132a198399d370b.html">motion</a></li><li class="navelem"><b>path.hpp</b></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

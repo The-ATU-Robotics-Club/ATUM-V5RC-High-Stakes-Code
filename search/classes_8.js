@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['manager_0',['Manager',['../classatum_1_1GUI_1_1Manager.html',1,'atum::GUI']]],
-  ['map_1',['Map',['../classatum_1_1GUI_1_1Map.html',1,'atum::GUI']]],
-  ['motionprofile_2',['MotionProfile',['../classatum_1_1MotionProfile.html',1,'atum']]],
-  ['motor_3',['Motor',['../classatum_1_1Motor.html',1,'atum']]]
+  ['ladybrown_0',['Ladybrown',['../classatum_1_1Ladybrown.html',1,'atum']]],
+  ['linetracker_1',['LineTracker',['../classatum_1_1LineTracker.html',1,'atum']]],
+  ['log_2',['Log',['../classatum_1_1GUI_1_1Log.html',1,'atum::GUI']]],
+  ['logger_3',['Logger',['../classatum_1_1Logger.html',1,'atum']]]
 ];
