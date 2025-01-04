@@ -5,15 +5,28 @@ UnwrappedPose::UnwrappedPose(const double iX,
                              const double iY,
                              const double iH,
                              const double iV,
-                             const double iW) :
-    x{iX}, y{iY}, h{iH}, v{iV}, w{iW} {}
+                             const double iA,
+                             const double iOmega,
+                             const double iAlpha,
+                             const double iT) :
+    x{iX},
+    y{iY},
+    h{iH},
+    v{iV},
+    a{iA},
+    omega{iOmega},
+    alpha{iAlpha},
+    t{iT} {}
 
 UnwrappedPose::UnwrappedPose(const Pose &pose) :
     x{getValueAs<meter_t>(pose.x)},
     y{getValueAs<meter_t>(pose.y)},
     h{getValueAs<radian_t>(pose.h)},
     v{getValueAs<meters_per_second_t>(pose.v)},
-    w{getValueAs<radians_per_second_t>(pose.w)} {}
+    a{getValueAs<meters_per_second_squared_t>(pose.a)},
+    omega{getValueAs<radians_per_second_t>(pose.omega)},
+    alpha{getValueAs<radians_per_second_squared_t>(pose.alpha)},
+    t{getValueAs<second_t>(pose.t)} {}
 
 UnwrappedPose UnwrappedPose::operator+(const UnwrappedPose &rhs) const {
   return {x + rhs.x, y + rhs.y};
@@ -51,15 +64,28 @@ Pose::Pose(const meter_t iX,
            const meter_t iY,
            const radian_t iH,
            const meters_per_second_t iV,
-           const radians_per_second_t iW) :
-    x{iX}, y{iY}, h{iH}, v{iV}, w{iW} {}
+           const meters_per_second_squared_t iA,
+           const radians_per_second_t iOmega,
+           const radians_per_second_squared_t iAlpha,
+           const second_t iT) :
+    x{iX},
+    y{iY},
+    h{iH},
+    v{iV},
+    a{iA},
+    omega{iOmega},
+    alpha{iAlpha},
+    t{iT} {}
 
 Pose::Pose(const UnwrappedPose &unwrappedPose) :
     x{meter_t{unwrappedPose.x}},
     y{meter_t{unwrappedPose.y}},
     h{radian_t{unwrappedPose.h}},
     v{meters_per_second_t{unwrappedPose.v}},
-    w{radians_per_second_t{unwrappedPose.w}} {}
+    a{meters_per_second_squared_t{unwrappedPose.a}},
+    omega{radians_per_second_t{unwrappedPose.omega}},
+    alpha{radians_per_second_squared_t{unwrappedPose.alpha}},
+    t{second_t{unwrappedPose.t}} {}
 
 Pose Pose::operator+(const Pose &rhs) const {
   return {x + rhs.x, y + rhs.y};

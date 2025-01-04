@@ -3,7 +3,8 @@
 #include "../controllers/controller.hpp"
 #include "../systems/drive.hpp"
 #include "../utility/acceptable.hpp"
-#include "trajectory.hpp"
+#include "path.hpp"
+#include "profileFollower.hpp"
 
 namespace atum {
 class PathFollower {
@@ -11,20 +12,26 @@ class PathFollower {
   struct Command {
     Command(const Pose &iTarget,
             bool iReversed = false,
-            std::optional<Trajectory::Parameters> iParams = {},
+            std::optional<Path::Parameters> iParams = {},
             std::optional<AcceptableDistance> iAcceptable = {});
     Pose target;
     bool reversed{false};
-    std::optional<Trajectory::Parameters> params;
+    std::optional<Path::Parameters> params;
     std::optional<AcceptableDistance> acceptable;
+  };
+
+  struct FeedbackParams {
+    bool useRAMSETE{true};
+    double beta{2.0};
+    double lambda{0.7};
   };
 
   PathFollower(Drive *iDrive,
                const AcceptableDistance &iDefaultAcceptable,
                std::unique_ptr<Controller> iLeft,
                std::unique_ptr<Controller> iRight,
-               const double iBeta = 2.0,
-               const double iLambda = 0.7,
+               const AccelerationConstants &iKA,
+               const FeedbackParams &iFeedbackParams = FeedbackParams{true, 2.0, 0.7},
                const Logger::Level loggerLevel = Logger::Level::Info);
 
   void follow(const std::vector<Command> &commands);
@@ -34,10 +41,18 @@ class PathFollower {
   void interrupt();
 
   private:
+  std::pair<double, double> getReference(const UnwrappedPose &state,
+                                         const UnwrappedPose &target);
+
   UnwrappedPose getError(const UnwrappedPose &state,
                          const UnwrappedPose &target);
 
-  std::pair<double, double> toRPM(const double v, const double w);
+  std::pair<double, double> toRPM(const double v, const double omega);
+
+  std::pair<double, double> getAccelFeedforward(const double a,
+                                                const double alpha);
+
+  std::pair<double, double> toLR(const double lateral, const double angular);
 
   void prepareGraph();
 
@@ -50,8 +65,8 @@ class PathFollower {
   AcceptableDistance defaultAcceptable;
   std::unique_ptr<Controller> left;
   std::unique_ptr<Controller> right;
-  const double beta;
-  const double lambda;
+  AccelerationConstants kA;
+  FeedbackParams feedbackParams;
   Logger logger;
   bool interrupted{false};
 };

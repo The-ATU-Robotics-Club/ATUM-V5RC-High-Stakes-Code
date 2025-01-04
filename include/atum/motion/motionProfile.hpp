@@ -42,7 +42,7 @@ class MotionProfile {
     UnitsPerSecond maxV;
     UnitsPerSecondSq maxA;
     // Default to a trapezoidal profile.
-    UnitsPerSecondCb maxJ{std::numeric_limits<double>::max()};
+    UnitsPerSecondCb maxJ{infinite};
     bool usePosition{true};
     // The number of iterations in the binary search for the closest point on
     // the motion profile.

@@ -19,7 +19,7 @@ struct std::hash<second_t> {
 };
 
 namespace atum {
-class Trajectory {
+class Path {
   public:
   struct Parameters {
     Parameters(double iCurviness = 0.0,
@@ -53,9 +53,9 @@ class Trajectory {
     double binarySearchScaling{0.75};
   };
 
-  Trajectory(const std::pair<Pose, Pose> &waypoints,
-             const std::optional<Parameters> &specialParams = {},
-             const Logger::Level loggerLevel = Logger::Level::Debug);
+  Path(const std::pair<Pose, Pose> &waypoints,
+       const std::optional<Parameters> &specialParams = {},
+       const Logger::Level loggerLevel = Logger::Level::Debug);
 
   Pose getPose(const Pose &state);
 
@@ -85,12 +85,10 @@ class Trajectory {
   Pose endDirection;
   Parameters params;
   Logger logger;
-  std::map<second_t, Pose> trajectory;
-  std::vector<second_t> times;
-  second_t totalTime{0_s};
-  std::vector<Pose> points;
+  std::vector<Pose> path;
   std::vector<double> curvatures;
   int closestIndex{0};
   Timer timer;
+  int timedIndex{0};
 };
 } // namespace atum

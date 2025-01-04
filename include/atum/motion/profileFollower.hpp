@@ -15,6 +15,17 @@
 
 namespace atum {
 /**
+ * @brief These constants are multiplied by the acceleration at each point
+ * along the profile (accel when accelerating, decel when decelerating) to
+ * better track the profile.
+ *
+ */
+struct AccelerationConstants {
+  double accel{0.0};
+  double decel{0.0};
+};
+
+/**
  * @brief This template class supports easily following a motion profile
  * (lateral or angular depending on the template parameter).
  *
@@ -32,17 +43,6 @@ class ProfileFollower {
   using UnitsPerSecondSq = decltype(UnitsPerSecond{1} / 1_s);
   using UnitProfile = MotionProfile<Unit>;
   using UnitAcceptable = Acceptable<Unit>;
-
-  /**
-   * @brief These constants are multiplied by the acceleration at each point
-   * along the profile (accel when accelerating, decel when decelerating) to
-   * better tracker the profile.
-   *
-   */
-  struct AccelerationConstants {
-    double accel;
-    double decel;
-  };
 
   /**
    * @brief Constructs a new ProfileFollower based on the given parameters.

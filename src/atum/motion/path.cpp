@@ -1,14 +1,14 @@
-#include "trajectory.hpp"
+#include "path.hpp"
 
 namespace atum {
-Trajectory::Parameters::Parameters(const double iCurviness,
-                                   const meters_per_second_t iMaxV,
-                                   const meters_per_second_squared_t iMaxA,
-                                   const meter_t iTrack,
-                                   const meter_t iSpacing,
-                                   const meter_t iMaxSpacingError,
-                                   const bool iUsePosition,
-                                   const double iBinarySearchScaling) :
+Path::Parameters::Parameters(const double iCurviness,
+                             const meters_per_second_t iMaxV,
+                             const meters_per_second_squared_t iMaxA,
+                             const meter_t iTrack,
+                             const meter_t iSpacing,
+                             const meter_t iMaxSpacingError,
+                             const bool iUsePosition,
+                             const double iBinarySearchScaling) :
     curviness{iCurviness},
     maxV{iMaxV},
     maxA{iMaxA},
@@ -18,14 +18,14 @@ Trajectory::Parameters::Parameters(const double iCurviness,
     usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
-Trajectory::Parameters::Parameters(const meters_per_second_t iMaxV,
-                                   const double iCurviness,
-                                   const meters_per_second_squared_t iMaxA,
-                                   const meter_t iTrack,
-                                   const meter_t iSpacing,
-                                   const meter_t iMaxSpacingError,
-                                   const bool iUsePosition,
-                                   const double iBinarySearchScaling) :
+Path::Parameters::Parameters(const meters_per_second_t iMaxV,
+                             const double iCurviness,
+                             const meters_per_second_squared_t iMaxA,
+                             const meter_t iTrack,
+                             const meter_t iSpacing,
+                             const meter_t iMaxSpacingError,
+                             const bool iUsePosition,
+                             const double iBinarySearchScaling) :
     curviness{iCurviness},
     maxV{iMaxV},
     maxA{iMaxA},
@@ -35,8 +35,9 @@ Trajectory::Parameters::Parameters(const meters_per_second_t iMaxV,
     usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
-Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
-    spacing{other.spacing}, binarySearchScaling{other.binarySearchScaling} {
+Path::Parameters::Parameters(const Path::Parameters &other) :
+    spacing{other.spacing},
+    binarySearchScaling{other.binarySearchScaling} {
   if(other.curviness) {
     curviness = other.curviness;
   }
@@ -51,8 +52,7 @@ Trajectory::Parameters::Parameters(const Trajectory::Parameters &other) :
   }
 }
 
-Trajectory::Parameters &
-    Trajectory::Parameters::operator=(const Trajectory::Parameters &other) {
+Path::Parameters &Path::Parameters::operator=(const Path::Parameters &other) {
   if(this == &other) {
     return *this;
   }
@@ -73,9 +73,9 @@ Trajectory::Parameters &
   return *this;
 }
 
-Trajectory::Trajectory(const std::pair<Pose, Pose> &waypoints,
-                       const std::optional<Parameters> &specialParams,
-                       const Logger::Level loggerLevel) :
+Path::Path(const std::pair<Pose, Pose> &waypoints,
+           const std::optional<Parameters> &specialParams,
+           const Logger::Level loggerLevel) :
     start{waypoints.first},
     end{waypoints.second},
     params{defaultParams},
@@ -89,97 +89,107 @@ Trajectory::Trajectory(const std::pair<Pose, Pose> &waypoints,
   const degree_t endH{90_deg - end.h};
   endDirection = params.curviness * Pose{1_m * cos(endH), 1_m * sin(endH)};
   generate();
-  logger.debug("Trajectory has been generated!");
+  logger.debug("Path has been generated!");
 }
 
-Pose Trajectory::getPose(const Pose &state) {
+Pose Path::getPose(const Pose &state) {
   Pose pose{getClosest(state)};
   if(params.usePosition) {
     const Pose closest{getClosest(state)};
     if(abs(closest.v) > abs(pose.v)) {
       pose = closest;
+      timedIndex = closestIndex;
+      timer.setTime(path[timedIndex].t);
     }
   }
   return pose;
 }
 
-second_t Trajectory::getTotalTime() {
-  logger.debug("Trajectory total time is: " + to_string(totalTime));
+second_t Path::getTotalTime() {
+  const second_t totalTime{path.back().t};
   return totalTime;
 }
 
-Trajectory::Parameters Trajectory::getParams() const {
+Path::Parameters Path::getParams() const {
   return params;
 }
 
-void Trajectory::setDefaultParams(const Parameters &newParams) {
+void Path::setDefaultParams(const Parameters &newParams) {
   defaultParams = newParams;
 }
 
-Pose Trajectory::getClosest(const Pose &state) {
-  meter_t previousDistance{distance(state, points[closestIndex])};
-  int i{closestIndex};
-  while(i < points.size()) {
-    const meter_t currentDistance{distance(state, points[i])};
+Pose Path::getClosest(const Pose &state) {
+  meter_t previousDistance{distance(state, path[closestIndex])};
+  int i;
+  for(i = closestIndex; i < path.size(); i++) {
+    const meter_t currentDistance{distance(state, path[i])};
     if(currentDistance > previousDistance) {
       break;
     }
     previousDistance = currentDistance;
-    i++;
   }
   closestIndex = i - 1;
-  return points[closestIndex];
+  return path[closestIndex];
 }
 
-Pose Trajectory::getTimed() {
+Pose Path::getTimed() {
   timer.start();
-  auto it = trajectory.lower_bound(timer.timeElapsed());
-  if(it == trajectory.end()) {
-    return end;
+  int i;
+  for(i = timedIndex; i < path.size(); i++) {
+    if(timer.timeElapsed() >= path[i].t) {
+      break;
+    }
   }
-  return it->second;
+  timedIndex = i;
+  if(timedIndex == path.size()) {
+    return path.back();
+  }
+  return path[timedIndex];
 }
 
-void Trajectory::generate() {
-  points.push_back(start);
+void Path::generate() {
+  path.push_back(start);
   curvatures.push_back(getCurvature(0, getDerivative(0)));
   double t0{0.0};
-  while(distance(points.back(), end) >
-        params.spacing + params.maxSpacingError) {
+  while(distance(path.back(), end) > params.spacing + params.maxSpacingError) {
     t0 = addNextPoint(t0);
   }
-  points.push_back(end);
+  path.push_back(end);
   curvatures.push_back(getCurvature(1, getDerivative(1)));
   parameterize();
 }
 
-void Trajectory::parameterize() {
-  for(int i{1}; i < points.size() - 1; i++) {
+void Path::parameterize() {
+  for(int i{1}; i < path.size() - 1; i++) {
     const meters_per_second_squared_t twoA{2.0 * params.maxA};
     const meters_per_second_t accelerated{
-        sqrt(points[i - 1].v * points[i - 1].v + twoA * params.spacing)};
-    points[i].v = units::math::min(accelerated, points[i].v);
-    const int j{points.size() - 1 - i};
+        sqrt(path[i - 1].v * path[i - 1].v + twoA * params.spacing)};
+    path[i].v = units::math::min(accelerated, path[i].v);
+    const int j{path.size() - 1 - i};
     const meters_per_second_t decelerated{
-        sqrt(points[j + 1].v * points[j + 1].v + twoA * params.spacing)};
-    points[j].v = units::math::min(decelerated, points[j].v);
+        sqrt(path[j + 1].v * path[j + 1].v + twoA * params.spacing)};
+    path[j].v = units::math::min(decelerated, path[j].v);
   }
-  trajectory[0_s] = start;
-  for(int i{1}; i < points.size(); i++) {
-    points[i].w = radians_per_second_t{
-        getValueAs<meters_per_second_t>(points[i].v) * curvatures[i]};
-    const meters_per_second_t avgV{(points[i - 1].v + points[i].v) / 2.0};
-    totalTime += params.spacing / avgV;
-    trajectory[totalTime] = points[i];
+  path[0].t = 0_s;
+  for(int i{1}; i < path.size(); i++) {
+    path[i].omega = radians_per_second_t{
+        getValueAs<meters_per_second_t>(path[i].v) * curvatures[i]};
+    const meters_per_second_t avgV{(path[i - 1].v + path[i].v) / 2.0};
+    const second_t dt{params.spacing / avgV};
+    path[i - 1].a = (path[i].v - path[i - 1].v) / dt;
+    path[i - 1].alpha = (path[i].omega - path[i - 1].omega) / dt;
+    path[i].t = path[i - 1].t + dt;
   }
+  path.back().a = 0_mps_sq;
+  path.back().alpha = 0_rad_per_s_sq;
   graphTrajectory();
 }
 
-double Trajectory::addNextPoint(double t0) {
+double Path::addNextPoint(double t0) {
   double t2{1.0};
   double t1{t0 * params.binarySearchScaling +
             t2 * (1.0 - params.binarySearchScaling)};
-  Pose p0{points.back()};
+  Pose p0{path.back()};
   Pose p1{getPoint(t1)};
   meter_t distanceToNext{distance(p0, p1)};
   while(abs(distanceToNext - params.spacing) > params.maxSpacingError) {
@@ -201,11 +211,11 @@ double Trajectory::addNextPoint(double t0) {
       params.maxV /
           (abs(curvatures.back() *
                getValueAs<meter_t>(params.track)))); // Maybe multiply by 2?
-  points.push_back(p1);
+  path.push_back(p1);
   return t1;
 }
 
-Pose Trajectory::getPoint(const double t) const {
+Pose Path::getPoint(const double t) const {
   const double t2{t * t};
   const double t3{t2 * t};
   const double threeT2{3.0 * t2};
@@ -215,12 +225,11 @@ Pose Trajectory::getPoint(const double t) const {
          (t3 - t2) * endDirection;
 }
 
-degree_t Trajectory::getHeading(const Pose &deriv) const {
+degree_t Path::getHeading(const Pose &deriv) const {
   return 90_deg - atan2(deriv.y, deriv.x);
 }
 
-double Trajectory::getCurvature(const double t,
-                                const UnwrappedPose &deriv) const {
+double Path::getCurvature(const double t, const UnwrappedPose &deriv) const {
   const UnwrappedPose deriv2{get2ndDerivative(t)};
   const double cross{deriv.x * deriv2.y - deriv.y * deriv2.x};
   if(!cross) {
@@ -230,7 +239,7 @@ double Trajectory::getCurvature(const double t,
   return -cross / denom;
 }
 
-Pose Trajectory::getDerivative(const double t) const {
+Pose Path::getDerivative(const double t) const {
   const double t2{t * t};
   const double threeT2{3 * t2};
   return (6.0 * t2 - 6.0 * t) * (start - end) +
@@ -238,13 +247,13 @@ Pose Trajectory::getDerivative(const double t) const {
          (threeT2 - 2.0 * t) * endDirection;
 }
 
-Pose Trajectory::get2ndDerivative(const double t) const {
+Pose Path::get2ndDerivative(const double t) const {
   const double sixT{6.0 * t};
   return (12.0 * t - 6.0) * (start - end) + (sixT - 4.0) * startDirection +
          (sixT - 2.0) * endDirection;
 }
 
-void Trajectory::graphTrajectory() {
+void Path::graphTrajectory() {
   if(logger.getLevel() != Logger::Level::Debug) {
     return;
   }
@@ -252,12 +261,12 @@ void Trajectory::graphTrajectory() {
   // Can't handle all points on map, so only do those a bit apart from each
   // other.
   const int skip{8_in / params.spacing};
-  for(int i{0}; i < points.size(); i++) {
+  for(int i{0}; i < path.size(); i++) {
     if(i % skip == 0) {
-      GUI::Map::addPosition(points[i], GUI::SeriesColor::Red);
+      GUI::Map::addPosition(path[i], GUI::SeriesColor::Red);
     }
   }
 }
 
-Trajectory::Parameters Trajectory::defaultParams{};
+Path::Parameters Path::defaultParams{};
 } // namespace atum

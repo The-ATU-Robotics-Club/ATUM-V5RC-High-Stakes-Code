@@ -60,7 +60,7 @@ Robot15A::Robot15A() : Robot{this} {
   ladybrownPIDParams.ffScaling = true;
   std::unique_ptr<Controller> ladybrownVelocityController =
       std::make_unique<PID>(ladybrownPIDParams);
-  const AngularProfileFollower::AccelerationConstants kA{0.44, 0.1};
+  const AccelerationConstants kA{0.44, 0.1};
   AngularProfile ladybrownProfile{ladybrownMotionParams};
   std::unique_ptr<Controller> ladybrownPositionController =
       std::make_unique<PID>(PID::Parameters{0.15});

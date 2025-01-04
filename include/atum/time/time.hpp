@@ -39,7 +39,7 @@ static constexpr second_t standardDelay{10_ms};
  * delays.
  *
  */
-static constexpr hour_t forever{std::numeric_limits<double>::max()};
+static constexpr hour_t forever{infinite};
 
 /**
  * @brief Gets the current time since starting.

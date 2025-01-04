@@ -60,6 +60,13 @@ static constexpr std::int8_t errorPort{0};
 static constexpr double infinitesimal{std::numeric_limits<double>::min()};
 
 /**
+ * @brief Largest possible value for double. Typically used to prevent
+ * conditions from ever being met.
+ *
+ */
+static constexpr double infinite{std::numeric_limits<double>::max()};
+
+/**
  * @brief A simple templated function to take an average of a vector of items.
  *
  * @tparam T

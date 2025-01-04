@@ -27,13 +27,20 @@ struct UnwrappedPose {
                 const double iY = 0.0,
                 const double iH = 0.0,
                 const double iV = 0.0,
-                const double iW = 0.0);
+                const double iA = 0.0,
+                const double iOmega = 0.0,
+                const double iAlpha = 0.0,
+                const double iT = 0.0);
   UnwrappedPose(const Pose &pose);
   double x{0.0};
   double y{0.0};
   double h{0.0};
   double v{0.0};
-  double w{0.0};
+  double a{0.0};
+  double omega{0.0};
+  double alpha{0.0};
+  double t{0.0};
+
   /**
    * @brief Returns a unwrapped pose where the x and y values are the
    * sums of the left and right sides x and y values.
@@ -105,7 +112,7 @@ std::string toString(const UnwrappedPose &pose);
  * @brief This is the struct used to represent poses: x and y coordinates
  * with a heading. For reference on the coordinate system we use, see the
  * GPS documentation from VEX. Also included (not normally in pose, but here
- * for convenience) is linear and angular velocity.
+ * for convenience) are motion properties like velocity and acceleration.
  *
  */
 struct Pose {
@@ -113,13 +120,19 @@ struct Pose {
        const meter_t iY = 0_m,
        const radian_t iH = 0_rad,
        const meters_per_second_t iV = 0_mps,
-       const radians_per_second_t iW = 0_rad_per_s);
+       const meters_per_second_squared_t iA = 0_mps_sq,
+       const radians_per_second_t iOmega = 0_rad_per_s,
+       const radians_per_second_squared_t iAlpha = 0_rad_per_s_sq,
+       const second_t iT = 0_s);
   Pose(const UnwrappedPose &unwrappedPose);
   meter_t x{0_m};
   meter_t y{0_m};
   radian_t h{0_rad};
   meters_per_second_t v{0_mps};
-  radians_per_second_t w{0_rad_per_s};
+  meters_per_second_squared_t a{0_mps_sq};
+  radians_per_second_t omega{0_rad_per_s}; 
+  radians_per_second_squared_t alpha{0_rad_per_s_sq}; 
+  second_t t{0_s};
 
   /**
    * @brief Returns a pose where the x and y values are the

@@ -26,7 +26,7 @@ using namespace units::angular_velocity;
 using namespace units::acceleration;
 using namespace units::time;
 
-// Needed for macro to properly disambigaute length, feet, etcetera.
+// Needed for macro to properly disambiguate length, feet, etcetera.
 namespace units {
 UNIT_ADD(length, tile, tiles, tile, unit<std::ratio<2>, feet>)
 UNIT_ADD(velocity,
@@ -44,6 +44,11 @@ UNIT_ADD(jerk,
          inches_per_second_cubed,
          in_per_s_cb,
          compound_unit<inch, inverse<cubed<seconds>>>)
+UNIT_ADD(acceleration,
+         radians_per_second_squared,
+         radians_per_second_squared,
+         rad_per_s_sq,
+         compound_unit<radian, inverse<squared<seconds>>>)
 UNIT_ADD(acceleration,
          degrees_per_second_squared,
          degrees_per_second_squared,

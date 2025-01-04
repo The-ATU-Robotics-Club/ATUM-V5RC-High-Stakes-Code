@@ -75,7 +75,7 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
   if(state != LadybrownState::Idle) {
     return LadybrownState::Idle;
   }
-  degree_t shortestDistance{std::numeric_limits<double>::max()};
+  degree_t shortestDistance{infinite};
   LadybrownState closestPosition{LadybrownState::Resting};
   for(const auto &[position, angle] : params.statePositions) {
     if(!angle.has_value()) {

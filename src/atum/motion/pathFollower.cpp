@@ -3,7 +3,7 @@
 namespace atum {
 PathFollower::Command::Command(const Pose &iTarget,
                                bool iReversed,
-                               std::optional<Trajectory::Parameters> iParams,
+                               std::optional<Path::Parameters> iParams,
                                std::optional<AcceptableDistance> iAcceptable) :
     target{iTarget},
     reversed{iReversed},
@@ -21,15 +21,15 @@ PathFollower::PathFollower(Drive *iDrive,
                            const AcceptableDistance &iDefaultAcceptable,
                            std::unique_ptr<Controller> iLeft,
                            std::unique_ptr<Controller> iRight,
-                           const double iBeta,
-                           const double iLambda,
+                           const AccelerationConstants &iKA,
+                           const FeedbackParams &iFeedbackParams,
                            const Logger::Level loggerLevel) :
     drive{iDrive},
     defaultAcceptable{iDefaultAcceptable},
     left{std::move(iLeft)},
     right{std::move(iRight)},
-    beta{iBeta},
-    lambda{iLambda},
+    kA{iKA},
+    feedbackParams{iFeedbackParams},
     logger{loggerLevel} {
   prepareGraph();
 }
@@ -50,7 +50,7 @@ void PathFollower::follow(Command cmd) {
     state.h += 180_deg;
     cmd.target.h += 180_deg;
   }
-  Trajectory traj{{state, cmd.target}, cmd.params, logger.getLevel()};
+  Path traj{{state, cmd.target}, cmd.params, logger.getLevel()};
   while(!acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
         !interrupted) {
     UnwrappedPose state{drive->getPose()};
@@ -58,25 +58,20 @@ void PathFollower::follow(Command cmd) {
       state.h += M_PI;
     }
     const UnwrappedPose target{traj.getPose(drive->getPose())};
-    const UnwrappedPose error{getError(state, target)};
-    const double k{2.0 * lambda *
-                   sqrt(pow(target.w, 2.0) + beta * pow(target.v, 2.0))};
-    const double v{target.v * cos(error.h) + k * error.x};
-    const double sincHError{error.h ? sin(error.h) / error.h : 1.0};
-    const double w{target.w + k * error.h +
-                   beta * target.v * sincHError * error.y};
-    const auto [refVL, refVR] = toRPM(v, w);
+    const auto [refV, refOmega] = getReference(state, target);
+    const auto [refVL, refVR] = toRPM(refV, refOmega);
     const auto [vL, vR] = drive->getLRVelocity();
     const double stateVL{getValueAs<revolutions_per_minute_t>(vL)};
     const double stateVR{getValueAs<revolutions_per_minute_t>(vR)};
-    graphPoints(stateVL, refVL, stateVR, refVR);
+    const auto [ffL, ffR] = getAccelFeedforward(refV, refOmega);
     if(cmd.reversed) {
-      drive->tank(left->getOutput(stateVL, -refVR),
-                  right->getOutput(stateVR, -refVL));
+      drive->tank(left->getOutput(stateVL, -refVR) - ffR,
+                  right->getOutput(stateVR, -refVL) - ffL);
     } else {
-      drive->tank(left->getOutput(stateVL, refVL),
-                  right->getOutput(stateVR, refVR));
+      drive->tank(left->getOutput(stateVL, refVL) + ffL,
+                  right->getOutput(stateVR, refVR) + ffR);
     }
+    graphPoints(stateVL, refVL, stateVR, refVR);
     wait(5_ms);
   }
   drive->tank(0, 0);
@@ -90,6 +85,23 @@ void PathFollower::interrupt() {
   interrupted = true;
 }
 
+std::pair<double, double>
+    PathFollower::getReference(const UnwrappedPose &state,
+                               const UnwrappedPose &target) {
+  if(!feedbackParams.useRAMSETE) {
+    return {target.v, target.omega};
+  }
+  const UnwrappedPose error{getError(state, target)};
+  const double k{
+      2.0 * feedbackParams.lambda *
+      sqrt(pow(target.omega, 2.0) + feedbackParams.beta * pow(target.v, 2.0))};
+  const double v{target.v * cos(error.h) + k * error.x};
+  const double sincHError{error.h ? sin(error.h) / error.h : 1.0};
+  const double omega{target.omega + k * error.h +
+                     feedbackParams.beta * target.v * sincHError * error.y};
+  return {v, omega};
+}
+
 UnwrappedPose PathFollower::getError(const UnwrappedPose &state,
                                      const UnwrappedPose &target) {
   UnwrappedPose error{target - state};
@@ -101,13 +113,9 @@ UnwrappedPose PathFollower::getError(const UnwrappedPose &state,
   return error;
 }
 
-std::pair<double, double> PathFollower::toRPM(const double v, const double w) {
-  const Drive::Geometry geometry{drive->getGeometry()};
-  const double track{getValueAs<meter_t>(geometry.track)};
-  const double circum{getValueAs<meter_t>(geometry.circum)};
-  const double angularAdjustment{w * track / 2.0};
-  double leftV{v + angularAdjustment};
-  double rightV{v - angularAdjustment};
+std::pair<double, double> PathFollower::toRPM(const double v,
+                                              const double omega) {
+  auto [leftV, rightV] = toLR(v, omega);
   const double maxV{getValueAs<meters_per_second_t>(drive->getMaxVelocity())};
   if(abs(leftV) > maxV) {
     rightV -= leftV - maxV;
@@ -116,8 +124,25 @@ std::pair<double, double> PathFollower::toRPM(const double v, const double w) {
     leftV -= rightV - maxV;
     rightV = rightV > 0 ? maxV : -maxV;
   }
-  const double mpsToRPM{60.0 / circum};
-  return std::make_pair(mpsToRPM * leftV, mpsToRPM * rightV);
+  const double mpsToRPM{60.0 / drive->getGeometry().circum};
+  return {mpsToRPM * leftV, mpsToRPM * rightV};
+}
+
+std::pair<double, double>
+    PathFollower::getAccelFeedforward(const double a, const double alpha) {
+  auto [ffL, ffR] = toLR(a, alpha);
+  const double multiplier{a > 0.0 ? kA.accel : kA.decel};
+  return {ffL, ffR};
+}
+
+std::pair<double, double> PathFollower::toLR(const double lateral,
+                                             const double angular) {
+  const Drive::Geometry geometry{drive->getGeometry()};
+  const double track{getValueAs<meter_t>(geometry.track)};
+  const double angularAdjustment{angular * track / 2.0};
+  double leftV{lateral + angularAdjustment};
+  double rightV{lateral - angularAdjustment};
+  return {leftV, rightV};
 }
 
 void PathFollower::prepareGraph() {

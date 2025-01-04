@@ -48,7 +48,7 @@ class Acceptable {
   Acceptable(const second_t iTimeout,
              const Unit &iMaxError = Unit{0.0},
              const UnitsPerSecond &iMaxDeriv =
-                 UnitsPerSecond{std::numeric_limits<double>::max()},
+                 UnitsPerSecond{infinite},
              const second_t minTime = 0_s,
              const Logger::Level loggerLevel = Logger::Level::Info) :
       timeout{iTimeout},
