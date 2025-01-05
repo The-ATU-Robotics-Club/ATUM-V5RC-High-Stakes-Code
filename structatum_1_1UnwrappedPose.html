@@ -115,6 +115,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aabdf3771264aa456b619ec39f5863395"><td class="memItemLeft" align="right" valign="top"><a id="aabdf3771264aa456b619ec39f5863395" name="aabdf3771264aa456b619ec39f5863395"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>UnwrappedPose</b> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;pose)</td></tr>
 <tr class="separator:aabdf3771264aa456b619ec39f5863395"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5795f5243a8f573cb3b09da5e0a9017"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1UnwrappedPose.html#ad5795f5243a8f573cb3b09da5e0a9017">operator==</a> (const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:ad5795f5243a8f573cb3b09da5e0a9017"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the two unwrapped poses are equal to each other in x, y, and heading.  <br /></td></tr>
+<tr class="separator:ad5795f5243a8f573cb3b09da5e0a9017"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f52940a4bf073b04f37b502acc90fc6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1UnwrappedPose.html#a4f52940a4bf073b04f37b502acc90fc6">operator!=</a> (const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a4f52940a4bf073b04f37b502acc90fc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the two unwrapped poses are not equal to each other in x, y, or heading.  <br /></td></tr>
+<tr class="separator:a4f52940a4bf073b04f37b502acc90fc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d9ff94c234ffa4e7687e9f10decc04a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1UnwrappedPose.html#a3d9ff94c234ffa4e7687e9f10decc04a">operator+</a> (const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;rhs) const</td></tr>
 <tr class="memdesc:a3d9ff94c234ffa4e7687e9f10decc04a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unwrapped pose where the x and y values are the sums of the left and right sides x and y values.  <br /></td></tr>
 <tr class="separator:a3d9ff94c234ffa4e7687e9f10decc04a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,6 +159,35 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>t</b> {0.0}</td></t
 <div class="textblock"><p>This is used to "unwrap" the <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> objects for easier manipulation. Generally, <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> should be used over this. </p>
 <p>All members should be interpreted as their base metric counterparts (meters, meters per second, radians, etcetera). </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4f52940a4bf073b04f37b502acc90fc6" name="a4f52940a4bf073b04f37b502acc90fc6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f52940a4bf073b04f37b502acc90fc6">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::UnwrappedPose::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the two unwrapped poses are not equal to each other in x, y, or heading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="a3d9ff94c234ffa4e7687e9f10decc04a" name="a3d9ff94c234ffa4e7687e9f10decc04a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3d9ff94c234ffa4e7687e9f10decc04a">&#9670;&#160;</a></span>operator+()</h2>
 
@@ -204,6 +239,35 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>t</b> {0.0}</td></t
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1UnwrappedPose.html" title="This is used to &quot;unwrap&quot; the Pose objects for easier manipulation. Generally, Pose should be used ove...">UnwrappedPose</a> </dd></dl>
+
+</div>
+</div>
+<a id="ad5795f5243a8f573cb3b09da5e0a9017" name="ad5795f5243a8f573cb3b09da5e0a9017"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5795f5243a8f573cb3b09da5e0a9017">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::UnwrappedPose::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the two unwrapped poses are equal to each other in x, y, and heading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
 
 </div>
 </div>

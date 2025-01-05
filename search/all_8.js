@@ -6,13 +6,12 @@ var searchData=
   ['info_3',['info',['../classatum_1_1Logger.html#ab5ee2ca1d00c82acce84d15c3a6a5b39',1,'atum::Logger']]],
   ['initialize_4',['initialize',['../classatum_1_1GUI_1_1Manager.html#ab0b26d3e9c79bb0f8a976074b3826cef',1,'atum::GUI::Manager']]],
   ['initializestyles_5',['initializeStyles',['../classatum_1_1GUI_1_1Screen.html#ab4761245f17269f709fd4cf3aa2c41af',1,'atum::GUI::Screen']]],
-  ['intake_6',['Intake',['../classatum_1_1Intake.html',1,'atum']]],
+  ['intake_6',['Intake',['../classatum_1_1Intake.html',1,'atum::Intake'],['../classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860',1,'atum::Intake::Intake(std::unique_ptr&lt; Motor &gt; iMtr, std::unique_ptr&lt; ColorSensor &gt; iColorSensor, Ladybrown *iLadybrown, const Parameters &amp;iParams, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['intake_7',['intake',['../classatum_1_1Intake.html#a5af3d49793d05ff5133240a0b3367e76',1,'atum::Intake']]],
-  ['intake_8',['Intake',['../classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860',1,'atum::Intake']]],
-  ['intake_2ehpp_9',['intake.hpp',['../intake_8hpp.html',1,'']]],
-  ['intakestate_10',['IntakeState',['../intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f',1,'atum']]],
-  ['isbackwards_11',['isBackwards',['../classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102',1,'atum::MotionProfile']]],
-  ['isdone_12',['isDone',['../classatum_1_1ProfileFollower.html#a4a4002bb3eee0fd81397fd4004dcd780',1,'atum::ProfileFollower']]],
-  ['isextended_13',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]],
-  ['item_14',['Item',['../structatum_1_1Schedule_1_1Item.html',1,'atum::Schedule']]]
+  ['intake_2ehpp_8',['intake.hpp',['../intake_8hpp.html',1,'']]],
+  ['intakestate_9',['IntakeState',['../intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f',1,'atum']]],
+  ['isbackwards_10',['isBackwards',['../classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102',1,'atum::MotionProfile']]],
+  ['isdone_11',['isDone',['../classatum_1_1ProfileFollower.html#a4a4002bb3eee0fd81397fd4004dcd780',1,'atum::ProfileFollower']]],
+  ['isextended_12',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]],
+  ['item_13',['Item',['../structatum_1_1Schedule_1_1Item.html',1,'atum::Schedule']]]
 ];

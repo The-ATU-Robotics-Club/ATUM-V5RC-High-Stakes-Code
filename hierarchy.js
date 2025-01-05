@@ -17,7 +17,6 @@ var hierarchy =
     [ "atum::Drive::Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "atum::GUI::Screen::GUIPosition", "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html", null ],
     [ "atum::GUI::Screen::GUISize", "structatum_1_1GUI_1_1Screen_1_1GUISize.html", null ],
-    [ "std::hash< second_t >", "structstd_1_1hash_3_01second__t_01_4.html", null ],
     [ "atum::ColorSensor::HueField", "structatum_1_1ColorSensor_1_1HueField.html", null ],
     [ "atum::IMU", "classatum_1_1IMU.html", null ],
     [ "atum::Schedule::Item", "structatum_1_1Schedule_1_1Item.html", null ],

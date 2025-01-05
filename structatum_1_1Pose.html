@@ -115,6 +115,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4d8b42f943559a7a2f5202b02e60972e"><td class="memItemLeft" align="right" valign="top"><a id="a4d8b42f943559a7a2f5202b02e60972e" name="a4d8b42f943559a7a2f5202b02e60972e"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Pose</b> (const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;unwrappedPose)</td></tr>
 <tr class="separator:a4d8b42f943559a7a2f5202b02e60972e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dd3b89884c6d569c616a066d8b68022"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Pose.html#a6dd3b89884c6d569c616a066d8b68022">operator==</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a6dd3b89884c6d569c616a066d8b68022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the two poses are equal to each other in x, y, and heading.  <br /></td></tr>
+<tr class="separator:a6dd3b89884c6d569c616a066d8b68022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dab6883dc55618b420ad085517012ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Pose.html#a1dab6883dc55618b420ad085517012ef">operator!=</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;rhs) const</td></tr>
+<tr class="memdesc:a1dab6883dc55618b420ad085517012ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the two poses are not equal to each other in x, y, or heading.  <br /></td></tr>
+<tr class="separator:a1dab6883dc55618b420ad085517012ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8d97f6d993c8ba3e82b9cf50e4a6a57"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Pose.html#ac8d97f6d993c8ba3e82b9cf50e4a6a57">operator+</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;rhs) const</td></tr>
 <tr class="memdesc:ac8d97f6d993c8ba3e82b9cf50e4a6a57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pose where the x and y values are the sums of the left and right sides x and y values.  <br /></td></tr>
 <tr class="separator:ac8d97f6d993c8ba3e82b9cf50e4a6a57"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,6 +158,35 @@ second_t&#160;</td><td class="memItemRight" valign="bottom"><b>t</b> {0_s}</td><
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the struct used to represent poses: x and y coordinates with a heading. For reference on the coordinate system we use, see the GPS documentation from VEX. Also included (not normally in pose, but here for convenience) are motion properties like velocity and acceleration. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1dab6883dc55618b420ad085517012ef" name="a1dab6883dc55618b420ad085517012ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dab6883dc55618b420ad085517012ef">&#9670;&#160;</a></span>operator!=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::Pose::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the two poses are not equal to each other in x, y, or heading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="ac8d97f6d993c8ba3e82b9cf50e4a6a57" name="ac8d97f6d993c8ba3e82b9cf50e4a6a57"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac8d97f6d993c8ba3e82b9cf50e4a6a57">&#9670;&#160;</a></span>operator+()</h2>
 
@@ -203,6 +238,35 @@ second_t&#160;</td><td class="memItemRight" valign="bottom"><b>t</b> {0_s}</td><
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
+
+</div>
+</div>
+<a id="a6dd3b89884c6d569c616a066d8b68022" name="a6dd3b89884c6d569c616a066d8b68022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dd3b89884c6d569c616a066d8b68022">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::Pose::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the two poses are equal to each other in x, y, and heading. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
 
 </div>
 </div>
