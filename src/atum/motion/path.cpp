@@ -36,8 +36,7 @@ Path::Parameters::Parameters(const meters_per_second_t iMaxV,
     binarySearchScaling{iBinarySearchScaling} {}
 
 Path::Parameters::Parameters(const Path::Parameters &other) :
-    spacing{other.spacing},
-    binarySearchScaling{other.binarySearchScaling} {
+    spacing{other.spacing}, binarySearchScaling{other.binarySearchScaling} {
   if(other.curviness) {
     curviness = other.curviness;
   }
@@ -93,7 +92,7 @@ Path::Path(const std::pair<Pose, Pose> &waypoints,
 }
 
 Pose Path::getPose(const Pose &state) {
-  Pose pose{getClosest(state)};
+  Pose pose{getTimed()};
   if(params.usePosition) {
     const Pose closest{getClosest(state)};
     if(abs(closest.v) > abs(pose.v)) {
@@ -136,12 +135,12 @@ Pose Path::getTimed() {
   timer.start();
   int i;
   for(i = timedIndex; i < path.size(); i++) {
-    if(timer.timeElapsed() >= path[i].t) {
+    if(timer.timeElapsed() < path[i].t) {
       break;
     }
   }
   timedIndex = i;
-  if(timedIndex == path.size()) {
+  if(timedIndex >= path.size()) {
     return path.back();
   }
   return path[timedIndex];

@@ -3,11 +3,11 @@
 namespace atum {
 ROUTINE_DEFINITIONS_FOR(Robot15A) {
   START_ROUTINE("Skills")
-  drive->setPose({-2.5_tile, 2.5_tile, 90_deg});
+  drive->setPose({-2.5_tile, 2.5_tile, -90_deg});
   Path::setDefaultParams(
-      {1, 76.5_in_per_s, 60_in_per_s_sq, drive->getGeometry().track, 1_in});
-  AcceptableDistance acceptable{5_s, 1_in};
-  PID::Parameters pathFollowerPIDParams{0.0305, 0, 0, 0.0305};
+      {1, 76.5_in_per_s, 76.5_in_per_s_sq, drive->getGeometry().track, 1_in});
+  AcceptableDistance acceptable{10_s, 1_in};
+  PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
   std::unique_ptr<Controller> left{
       std::make_unique<PID>(pathFollowerPIDParams)};
@@ -18,14 +18,21 @@ ROUTINE_DEFINITIONS_FOR(Robot15A) {
                                      acceptable,
                                      std::move(left),
                                      std::move(right),
-                                     AccelerationConstants{},
-                                     PathFollower::FeedbackParams{false},
+                                     AccelerationConstants{0.0, 1.85},
+                                     PathFollower::FeedbackParams{},
                                      Logger::Level::Debug)};
-  Path::Parameters testParams{3};
-  testParams.usePosition = false;
-  pathFollower->follow({{-0.5_tile, 2.5_tile, 90_deg}, false, testParams});
-//   pathFollower->follow({{{-0.5_tile, 0.5_tile, 90_deg}, false, testParams},
-//                         {{-2.5_tile, 2.5_tile, 90_deg}, true, testParams}});
+  Path::Parameters testParams{2, 0_in_per_s, 38.25_in_per_s_sq};
+  testParams.usePosition = true;
+  //   pathFollower->follow({{-0.5_tile, 2.5_tile, 90_deg}, false, testParams});
+  //   pathFollower->follow({{-1.5_tile, 1.5_tile, 0_deg}, true, testParams});
+  pathFollower->follow(
+      {{{-1.5_tile, 1.5_tile, 0_deg, 38.25_in_per_s}, true, testParams},
+       {{-0.5_tile, 0.5_tile, -90_deg}, true, testParams}});
+  pathFollower->follow(
+      {{{-1.5_tile, 1.5_tile, 0_deg, 38.25_in_per_s}, false, testParams},
+       {{-2.5_tile, 2.5_tile, -90_deg}, false, testParams}});
+  //   pathFollower->follow({{-2.5_tile, 2.5_tile, -90_deg}, false,
+  //   testParams});
   END_ROUTINE
   START_ROUTINE("Test 1")
   intake->load();

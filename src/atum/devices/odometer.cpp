@@ -11,6 +11,7 @@ Odometer::Odometer(const std::uint8_t topPort,
     wheelCircum{iWheelCircum},
     fromCenter{iFromCenter},
     logger{loggerLevel} {
+  encoder.get_value(); // Clear readings. 
   logger.debug("Odometer on ports " + std::to_string(topPort) + " and " +
                std::to_string(botPort) + " has been constructed.");
 }

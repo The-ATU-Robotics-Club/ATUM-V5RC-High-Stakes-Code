@@ -9,14 +9,7 @@ UnwrappedPose::UnwrappedPose(const double iX,
                              const double iOmega,
                              const double iAlpha,
                              const double iT) :
-    x{iX},
-    y{iY},
-    h{iH},
-    v{iV},
-    a{iA},
-    omega{iOmega},
-    alpha{iAlpha},
-    t{iT} {}
+    x{iX}, y{iY}, h{iH}, v{iV}, a{iA}, omega{iOmega}, alpha{iAlpha}, t{iT} {}
 
 UnwrappedPose::UnwrappedPose(const Pose &pose) :
     x{getValueAs<meter_t>(pose.x)},
@@ -27,6 +20,15 @@ UnwrappedPose::UnwrappedPose(const Pose &pose) :
     omega{getValueAs<radians_per_second_t>(pose.omega)},
     alpha{getValueAs<radians_per_second_squared_t>(pose.alpha)},
     t{getValueAs<second_t>(pose.t)} {}
+
+
+bool UnwrappedPose::operator==(const UnwrappedPose &rhs) const {
+  return x == rhs.x && y == rhs.y && h == rhs.h;
+}
+
+bool UnwrappedPose::operator!=(const UnwrappedPose &rhs) const {
+  return !(*this == rhs);
+}
 
 UnwrappedPose UnwrappedPose::operator+(const UnwrappedPose &rhs) const {
   return {x + rhs.x, y + rhs.y};
@@ -68,14 +70,7 @@ Pose::Pose(const meter_t iX,
            const radians_per_second_t iOmega,
            const radians_per_second_squared_t iAlpha,
            const second_t iT) :
-    x{iX},
-    y{iY},
-    h{iH},
-    v{iV},
-    a{iA},
-    omega{iOmega},
-    alpha{iAlpha},
-    t{iT} {}
+    x{iX}, y{iY}, h{iH}, v{iV}, a{iA}, omega{iOmega}, alpha{iAlpha}, t{iT} {}
 
 Pose::Pose(const UnwrappedPose &unwrappedPose) :
     x{meter_t{unwrappedPose.x}},
@@ -86,6 +81,14 @@ Pose::Pose(const UnwrappedPose &unwrappedPose) :
     omega{radians_per_second_t{unwrappedPose.omega}},
     alpha{radians_per_second_squared_t{unwrappedPose.alpha}},
     t{second_t{unwrappedPose.t}} {}
+
+bool Pose::operator==(const Pose &rhs) const {
+  return x == rhs.x && y == rhs.y && h == rhs.h;
+}
+
+bool Pose::operator!=(const Pose &rhs) const {
+  return !(*this == rhs);
+}
 
 Pose Pose::operator+(const Pose &rhs) const {
   return {x + rhs.x, y + rhs.y};

@@ -38,6 +38,7 @@ void PathFollower::follow(const std::vector<Command> &commands) {
   for(int i{0}; i < commands.size() && !interrupted; i++) {
     follow(commands[i]);
   }
+  drive->tank(0, 0);
 }
 
 void PathFollower::follow(Command cmd) {
@@ -45,36 +46,36 @@ void PathFollower::follow(Command cmd) {
   acceptable.reset();
   left->reset();
   right->reset();
-  Pose state{drive->getPose()};
+  Pose start{drive->getPose()};
   if(cmd.reversed) {
-    state.h += 180_deg;
+    start.h += 180_deg;
     cmd.target.h += 180_deg;
   }
-  Path traj{{state, cmd.target}, cmd.params, logger.getLevel()};
-  while(!acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
+  Path traj{{start, cmd.target}, cmd.params, logger.getLevel()};
+  while(traj.getPose(drive->getPose()) != cmd.target &&
+        !acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
         !interrupted) {
     UnwrappedPose state{drive->getPose()};
     if(cmd.reversed) {
       state.h += M_PI;
     }
-    const UnwrappedPose target{traj.getPose(drive->getPose())};
+    UnwrappedPose target{traj.getPose(drive->getPose())};
     const auto [refV, refOmega] = getReference(state, target);
-    const auto [refVL, refVR] = toRPM(refV, refOmega);
-    const auto [vL, vR] = drive->getLRVelocity();
+    auto [refVL, refVR] = toRPM(refV, refOmega);
+    if(cmd.reversed) {
+      refVL *= -1;
+      refVR *= -1;
+      std::swap(refVL, refVR);
+    }
+    auto [vL, vR] = drive->getLRVelocity();
     const double stateVL{getValueAs<revolutions_per_minute_t>(vL)};
     const double stateVR{getValueAs<revolutions_per_minute_t>(vR)};
-    const auto [ffL, ffR] = getAccelFeedforward(refV, refOmega);
-    if(cmd.reversed) {
-      drive->tank(left->getOutput(stateVL, -refVR) - ffR,
-                  right->getOutput(stateVR, -refVL) - ffL);
-    } else {
-      drive->tank(left->getOutput(stateVL, refVL) + ffL,
-                  right->getOutput(stateVR, refVR) + ffR);
-    }
+    const double aFF = getAccelFeedforward(target.a, cmd.reversed);
+    drive->tank(left->getOutput(stateVL, refVL) + aFF,
+                right->getOutput(stateVR, refVR) + aFF);
     graphPoints(stateVL, refVL, stateVR, refVR);
     wait(5_ms);
   }
-  drive->tank(0, 0);
   if(interrupted) {
     logger.debug("Path following was interrupted!");
     interrupted = false;
@@ -105,8 +106,9 @@ std::pair<double, double>
 UnwrappedPose PathFollower::getError(const UnwrappedPose &state,
                                      const UnwrappedPose &target) {
   UnwrappedPose error{target - state};
-  const double globalXError{error.x * sin(state.h) + error.y * cos(state.h)};
-  const double globalYError{error.x * cos(state.h) - error.y * sin(state.h)};
+  const double h{M_PI_2 - state.h};
+  const double globalXError{error.x * cos(h) + error.y * sin(h)};
+  const double globalYError{error.x * -sin(h) + error.y * cos(h)};
   error.x = globalXError;
   error.y = globalYError;
   error.h = constrainPI(target.h - state.h);
@@ -128,18 +130,19 @@ std::pair<double, double> PathFollower::toRPM(const double v,
   return {mpsToRPM * leftV, mpsToRPM * rightV};
 }
 
-std::pair<double, double>
-    PathFollower::getAccelFeedforward(const double a, const double alpha) {
-  auto [ffL, ffR] = toLR(a, alpha);
-  const double multiplier{a > 0.0 ? kA.accel : kA.decel};
-  return {ffL, ffR};
+double PathFollower::getAccelFeedforward(const double a, const bool reversed) {
+  double coeff{a > 0.0 ? kA.accel : kA.decel};
+  if(reversed) {
+    coeff *= -1;
+  }
+  return coeff * a;
 }
 
 std::pair<double, double> PathFollower::toLR(const double lateral,
                                              const double angular) {
   const Drive::Geometry geometry{drive->getGeometry()};
   const double track{getValueAs<meter_t>(geometry.track)};
-  const double angularAdjustment{angular * track / 2.0};
+  double angularAdjustment{angular * (track / 2.0)};
   double leftV{lateral + angularAdjustment};
   double rightV{lateral - angularAdjustment};
   return {leftV, rightV};

@@ -12,9 +12,9 @@ Robot15A::Robot15A() : Robot{this} {
       "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
   std::unique_ptr<Odometer> forwardOdometer{
-      std::make_unique<Odometer>('C', 'D', wheelCircumference, -1.8625_in)};
+      std::make_unique<Odometer>('C', 'D', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
-      std::make_unique<Odometer>('E', 'F', wheelCircumference, 0.25_in)};
+      std::make_unique<Odometer>('E', 'F', wheelCircumference, 1.791_in)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{11, 18})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
@@ -25,7 +25,7 @@ Robot15A::Robot15A() : Robot{this} {
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
-                                  Drive::Geometry{11.825_in, 10.21_in});
+                                  Drive::Geometry{11.862_in, 10.21_in});
 
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-15},

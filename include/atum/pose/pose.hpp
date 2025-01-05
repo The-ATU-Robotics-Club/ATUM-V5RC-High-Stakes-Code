@@ -42,6 +42,26 @@ struct UnwrappedPose {
   double t{0.0};
 
   /**
+   * @brief Returns if the two unwrapped poses are equal to each other in x, y,
+   * and heading.
+   *
+   * @param rhs
+   * @return true
+   * @return false
+   */
+  bool operator==(const UnwrappedPose &rhs) const;
+
+  /**
+   * @brief Returns if the two unwrapped poses are not equal to each other in x,
+   * y, or heading.
+   *
+   * @param rhs
+   * @return true
+   * @return false
+   */
+  bool operator!=(const UnwrappedPose &rhs) const;
+
+  /**
    * @brief Returns a unwrapped pose where the x and y values are the
    * sums of the left and right sides x and y values.
    *
@@ -130,9 +150,29 @@ struct Pose {
   radian_t h{0_rad};
   meters_per_second_t v{0_mps};
   meters_per_second_squared_t a{0_mps_sq};
-  radians_per_second_t omega{0_rad_per_s}; 
-  radians_per_second_squared_t alpha{0_rad_per_s_sq}; 
+  radians_per_second_t omega{0_rad_per_s};
+  radians_per_second_squared_t alpha{0_rad_per_s_sq};
   second_t t{0_s};
+
+  /**
+   * @brief Returns if the two poses are equal to each other in x, y,
+   * and heading.
+   *
+   * @param rhs
+   * @return true
+   * @return false
+   */
+  bool operator==(const Pose &rhs) const;
+
+  /**
+   * @brief Returns if the two poses are not equal to each other in x, y,
+   * or heading.
+   *
+   * @param rhs
+   * @return true
+   * @return false
+   */
+  bool operator!=(const Pose &rhs) const;
 
   /**
    * @brief Returns a pose where the x and y values are the

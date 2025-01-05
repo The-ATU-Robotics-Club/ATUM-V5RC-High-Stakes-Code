@@ -14,7 +14,7 @@ class CubicHermite:
         startDirection,
         endPosition,
         endDirection,
-        curve, 
+        curve,
         track,
         maxVelocity,
         acceleration,
@@ -24,10 +24,12 @@ class CubicHermite:
     ):
         self.startPosition = startPosition
         startDirection = np.pi / 2 - startDirection
-        self.startDirection = curve * np.array([np.cos(startDirection), np.sin(startDirection)])
+        self.startDirection = curve * \
+            np.array([np.cos(startDirection), np.sin(startDirection)])
         self.endPosition = endPosition
-        endDirection = np.pi / 2 - endDirection
-        self.endDirection = curve * np.array([np.cos(endDirection), np.sin(endDirection)])
+        endDirection = -np.pi / 2 + endDirection
+        self.endDirection = curve * \
+            np.array([np.cos(endDirection), np.sin(endDirection)])
         self.track = track
         self.halfTrack = track / 2
         self.maxVelocity = maxVelocity
@@ -48,7 +50,8 @@ class CubicHermite:
         self.velocity = [
             min(
                 self.maxVelocity,
-                self.maxVelocity / (abs(self.curvatures[i]) * self.track), # Maybe multiply by 2?
+                # Maybe multiply by 2?
+                self.maxVelocity / (abs(self.curvatures[i]) * self.track),
             )
             for i in range(len(self.path))
         ]
@@ -69,8 +72,10 @@ class CubicHermite:
         self.angularVelocity = [0]
         for i in range(1, len(self.path)):
             avgV = (self.velocity[i - 1] + self.velocity[i]) / 2
-            self.times.append(self.times[-1] + self.spacing / avgV)
-            self.angularVelocity.append(self.velocity[i] * self.curvatures[i])
+            dt = self.spacing / avgV
+            self.times.append(self.times[-1] + dt)
+            self.angularVelocity.append(
+                np.pi / 180 * (self.headings[i] - self.headings[i - 1]) / dt)
         return [self.path, self.headings, self.times, self.velocity, self.angularVelocity]
 
     def generatePaths(self):
@@ -154,11 +159,11 @@ class CubicHermite:
 
 # 76.5 in / s => 1.94 m/s
 chSpline = CubicHermite(
-    np.array([-1, 0]),
-    0,
-    np.array([1, 0]),
-    0,
-    15,
+    np.array([-2.5, 2.5]),
+    np.pi / 2,
+    np.array([-0.5, 0.5]),
+    np.pi / 2,
+    5,
     0.35,
     1.94,
     1.94,
@@ -170,8 +175,8 @@ print(timeit.default_timer() - t0)
 xsPath, ysPath = zip(*path)
 _, ax1 = plt.subplots()
 ax1.scatter(xsPath, ysPath)
-ax1.set_xlim([-1.5, 1.5])
-ax1.set_ylim([-1.5, 5])
+ax1.set_xlim([-3, 3])
+ax1.set_ylim([-3, 3])
 
 _, ax2 = plt.subplots()
 ax2.scatter(times, headings)

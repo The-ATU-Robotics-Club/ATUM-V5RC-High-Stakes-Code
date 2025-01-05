@@ -31,16 +31,18 @@ class PathFollower {
                std::unique_ptr<Controller> iLeft,
                std::unique_ptr<Controller> iRight,
                const AccelerationConstants &iKA,
-               const FeedbackParams &iFeedbackParams = FeedbackParams{true, 2.0, 0.7},
+               const FeedbackParams &iFeedbackParams = FeedbackParams{true,
+                                                                      2.0,
+                                                                      0.7},
                const Logger::Level loggerLevel = Logger::Level::Info);
 
   void follow(const std::vector<Command> &commands);
 
-  void follow(Command cmd);
-
   void interrupt();
 
   private:
+  void follow(Command cmd);
+
   std::pair<double, double> getReference(const UnwrappedPose &state,
                                          const UnwrappedPose &target);
 
@@ -49,8 +51,7 @@ class PathFollower {
 
   std::pair<double, double> toRPM(const double v, const double omega);
 
-  std::pair<double, double> getAccelFeedforward(const double a,
-                                                const double alpha);
+  double getAccelFeedforward(const double a, const bool reversed);
 
   std::pair<double, double> toLR(const double lateral, const double angular);
 

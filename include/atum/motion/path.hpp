@@ -5,19 +5,6 @@
 #include "../utility/logger.hpp"
 #include <map>
 
-/**
- * @brief This template specialization is to allow the use of second_t as a key
- * in maps.
- *
- * @tparam
- */
-template <>
-struct std::hash<second_t> {
-  std::size_t operator()(const second_t &k) const {
-    return std::hash<double>()(atum::getValueAs<second_t>(k));
-  }
-};
-
 namespace atum {
 class Path {
   public:
@@ -42,7 +29,7 @@ class Path {
         const double iBinarySearchScaling = 0.75);
     Parameters(const Parameters &other);
     Parameters &operator=(const Parameters &other);
-    // Decides how "curvy" the path is. Reasonable values from 3 to 15.
+    // Decides how "curvy" the path is. Experiment with values from 0.5 to 10.
     double curviness{0.0};
     meters_per_second_t maxV{0_mps};
     meters_per_second_squared_t maxA{0_mps_sq};
