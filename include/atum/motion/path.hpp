@@ -40,6 +40,7 @@ class Path {
     double binarySearchScaling{0.75};
   };
 
+  // Remember to write about end point velocity.
   Path(const std::pair<Pose, Pose> &waypoints,
        const std::optional<Parameters> &specialParams = {},
        const Logger::Level loggerLevel = Logger::Level::Debug);
@@ -57,6 +58,8 @@ class Path {
   Pose getTimed();
   void generate();
   void parameterize();
+  void beginParameterize();
+  void endParameterize();
   double addNextPoint(double t0);
   Pose getPoint(const double t) const;
   degree_t getHeading(const Pose &deriv) const;

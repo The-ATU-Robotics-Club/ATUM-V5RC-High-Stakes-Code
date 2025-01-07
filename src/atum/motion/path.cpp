@@ -79,6 +79,9 @@ Path::Path(const std::pair<Pose, Pose> &waypoints,
     end{waypoints.second},
     params{defaultParams},
     logger{loggerLevel} {
+  if(end.v != 0_mps) {
+    params.maxV = end.v;
+  }
   if(specialParams.has_value()) {
     params = specialParams.value();
   }
@@ -159,6 +162,12 @@ void Path::generate() {
 }
 
 void Path::parameterize() {
+  beginParameterize();
+  endParameterize();
+  graphTrajectory();
+}
+
+void Path::beginParameterize() {
   for(int i{1}; i < path.size() - 1; i++) {
     const meters_per_second_squared_t twoA{2.0 * params.maxA};
     const meters_per_second_t accelerated{
@@ -169,6 +178,9 @@ void Path::parameterize() {
         sqrt(path[j + 1].v * path[j + 1].v + twoA * params.spacing)};
     path[j].v = units::math::min(decelerated, path[j].v);
   }
+}
+
+void Path::endParameterize() {
   path[0].t = 0_s;
   for(int i{1}; i < path.size(); i++) {
     path[i].omega = radians_per_second_t{
@@ -181,7 +193,6 @@ void Path::parameterize() {
   }
   path.back().a = 0_mps_sq;
   path.back().alpha = 0_rad_per_s_sq;
-  graphTrajectory();
 }
 
 double Path::addNextPoint(double t0) {
@@ -207,9 +218,8 @@ double Path::addNextPoint(double t0) {
   curvatures.push_back(getCurvature(t1, deriv));
   p1.v = units::math::min(
       params.maxV,
-      params.maxV /
-          (abs(curvatures.back() *
-               getValueAs<meter_t>(params.track)))); // Maybe multiply by 2?
+      params.maxV / abs(curvatures.back()) /
+          getValueAs<meter_t>(params.track)); // Maybe multiply by 2?
   path.push_back(p1);
   return t1;
 }

@@ -19,7 +19,7 @@ ROUTINE_DEFINITIONS_FOR(Robot15A) {
                                      std::move(left),
                                      std::move(right),
                                      AccelerationConstants{0.0, 1.85},
-                                     PathFollower::FeedbackParams{},
+                                     PathFollower::FeedbackParameters{},
                                      Logger::Level::Debug)};
   Path::Parameters testParams{2, 0_in_per_s, 38.25_in_per_s_sq};
   testParams.usePosition = true;

@@ -22,7 +22,7 @@ PathFollower::PathFollower(Drive *iDrive,
                            std::unique_ptr<Controller> iLeft,
                            std::unique_ptr<Controller> iRight,
                            const AccelerationConstants &iKA,
-                           const FeedbackParams &iFeedbackParams,
+                           const FeedbackParameters &iFeedbackParams,
                            const Logger::Level loggerLevel) :
     drive{iDrive},
     defaultAcceptable{iDefaultAcceptable},
@@ -34,24 +34,34 @@ PathFollower::PathFollower(Drive *iDrive,
   prepareGraph();
 }
 
-void PathFollower::follow(const std::vector<Command> &commands) {
+void PathFollower::follow(const std::vector<Command> &commands,
+                          const std::string &name) {
+  if(name.empty()) {
+    logger.debug("Following a path.");
+  } else {
+    logger.debug("Following a path, \"" + name + ".\"");
+  }
   for(int i{0}; i < commands.size() && !interrupted; i++) {
     follow(commands[i]);
   }
   drive->tank(0, 0);
+  if(interrupted) {
+    logger.debug("Path following was interrupted!");
+    interrupted = false;
+  }
 }
 
 void PathFollower::follow(Command cmd) {
-  Acceptable acceptable{cmd.acceptable.value_or(defaultAcceptable)};
-  acceptable.reset();
-  left->reset();
-  right->reset();
   Pose start{drive->getPose()};
   if(cmd.reversed) {
     start.h += 180_deg;
     cmd.target.h += 180_deg;
   }
   Path traj{{start, cmd.target}, cmd.params, logger.getLevel()};
+  Acceptable acceptable{cmd.acceptable.value_or(defaultAcceptable)};
+  acceptable.reset(cmd.timeoutScaling * traj.getTotalTime());
+  left->reset();
+  right->reset();
   while(traj.getPose(drive->getPose()) != cmd.target &&
         !acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
         !interrupted) {
@@ -60,13 +70,7 @@ void PathFollower::follow(Command cmd) {
       state.h += M_PI;
     }
     UnwrappedPose target{traj.getPose(drive->getPose())};
-    const auto [refV, refOmega] = getReference(state, target);
-    auto [refVL, refVR] = toRPM(refV, refOmega);
-    if(cmd.reversed) {
-      refVL *= -1;
-      refVR *= -1;
-      std::swap(refVL, refVR);
-    }
+    auto [refVL, refVR] = getLRReference(state, target, cmd.reversed);
     auto [vL, vR] = drive->getLRVelocity();
     const double stateVL{getValueAs<revolutions_per_minute_t>(vL)};
     const double stateVR{getValueAs<revolutions_per_minute_t>(vR)};
@@ -76,14 +80,22 @@ void PathFollower::follow(Command cmd) {
     graphPoints(stateVL, refVL, stateVR, refVR);
     wait(5_ms);
   }
-  if(interrupted) {
-    logger.debug("Path following was interrupted!");
-    interrupted = false;
-  }
 }
 
 void PathFollower::interrupt() {
   interrupted = true;
+}
+
+std::pair<double, double>
+    PathFollower::getLRReference(const UnwrappedPose &state,
+                                 const UnwrappedPose &target,
+                                 const bool reversed) {
+  const auto [refV, refOmega] = getReference(state, target);
+  const auto [refVL, refVR] = toRPM(refV, refOmega);
+  if(reversed) {
+    return {-refVR, -refVL};
+  }
+  return {refVL, refVR};
 }
 
 std::pair<double, double>
