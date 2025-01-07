@@ -201,7 +201,7 @@ var NAVTREEINDEX1 =
 "structatum_1_1Motor_1_1Gearing.html":[1,0,0,15,0],
 "structatum_1_1PID_1_1Parameters.html":[1,0,0,20,0],
 "structatum_1_1PathFollower_1_1Command.html":[1,0,0,19,0],
-"structatum_1_1PathFollower_1_1FeedbackParams.html":[1,0,0,19,1],
+"structatum_1_1PathFollower_1_1FeedbackParameters.html":[1,0,0,19,1],
 "structatum_1_1Path_1_1Parameters.html":[1,0,0,18,0],
 "structatum_1_1Pose.html":[1,0,0,22],
 "structatum_1_1Pose.html#a1dab6883dc55618b420ad085517012ef":[1,0,0,22,0],
