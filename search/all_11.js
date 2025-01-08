@@ -19,5 +19,6 @@ var searchData=
   ['tracker_2ehpp_16',['tracker.hpp',['../tracker_8hpp.html',1,'']]],
   ['traveled_17',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer']]],
   ['triggered_18',['triggered',['../classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63',1,'atum::LineTracker']]],
-  ['type_19',['Type',['../classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40',1,'atum::Remote']]]
+  ['turn_19',['Turn',['../classatum_1_1Turn.html',1,'atum']]],
+  ['type_20',['Type',['../classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40',1,'atum::Remote']]]
 ];

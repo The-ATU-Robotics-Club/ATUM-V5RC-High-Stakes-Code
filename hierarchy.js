@@ -73,5 +73,6 @@ var hierarchy =
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
     ] ],
+    [ "atum::Turn", "classatum_1_1Turn.html", null ],
     [ "atum::UnwrappedPose", "structatum_1_1UnwrappedPose.html", null ]
 ];

@@ -45,6 +45,7 @@ var annotated_dup =
       [ "TBH", "classatum_1_1TBH.html", "classatum_1_1TBH" ],
       [ "Timer", "classatum_1_1Timer.html", "classatum_1_1Timer" ],
       [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ],
+      [ "Turn", "classatum_1_1Turn.html", null ],
       [ "UnwrappedPose", "structatum_1_1UnwrappedPose.html", "structatum_1_1UnwrappedPose" ]
     ] ]
 ];

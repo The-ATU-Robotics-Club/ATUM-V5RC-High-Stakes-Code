@@ -50,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acceptable_8hpp.html",
-"colorSensor_8hpp.html"
+"classatum_1_1Turn.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

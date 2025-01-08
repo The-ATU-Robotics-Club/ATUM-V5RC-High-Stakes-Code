@@ -128,7 +128,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a96f341ecfc31542b64f0dc0a42702744"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ProfileFollower.html" title="This template class supports easily following a motion profile (lateral or angular depending on the t...">ProfileFollower</a> based on the given parameters.  <br /></td></tr>
 <tr class="separator:a96f341ecfc31542b64f0dc0a42702744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c71165cbf75a89532f477e6e6fb54ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ProfileFollower.html#a0c71165cbf75a89532f477e6e6fb54ac">startProfile</a> (const Unit start, const Unit iEnd, const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">UnitProfile::Parameters</a> specialParams={})</td></tr>
-<tr class="memdesc:a0c71165cbf75a89532f477e6e6fb54ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare to follow a new profile defined by the start and end positions. Involves reseting the controllers and acceptable object.  <br /></td></tr>
+<tr class="memdesc:a0c71165cbf75a89532f477e6e6fb54ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prepare to follow a new profile defined by the start and end positions. Involves reseting the controllers and acceptable object. Special parameters allow generating the profile with constraints different than the defaults.  <br /></td></tr>
 <tr class="separator:a0c71165cbf75a89532f477e6e6fb54ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a97881e559789063c7388ecfb503ee5d1"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ProfileFollower.html#a97881e559789063c7388ecfb503ee5d1">getOutput</a> (const Unit s, const UnitsPerSecond v)</td></tr>
 <tr class="memdesc:a97881e559789063c7388ecfb503ee5d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the output of the follower based on the current position (s) and velocity (v) readings.  <br /></td></tr>
@@ -354,11 +354,12 @@ template&lt;typename Unit &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Prepare to follow a new profile defined by the start and end positions. Involves reseting the controllers and acceptable object. </p>
+<p>Prepare to follow a new profile defined by the start and end positions. Involves reseting the controllers and acceptable object. Special parameters allow generating the profile with constraints different than the defaults. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">start</td><td></td></tr>
     <tr><td class="paramname">iEnd</td><td></td></tr>
+    <tr><td class="paramname">specialParams</td><td></td></tr>
   </table>
   </dd>
 </dl>

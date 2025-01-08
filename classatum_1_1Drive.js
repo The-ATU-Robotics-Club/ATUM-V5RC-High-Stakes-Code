@@ -3,6 +3,7 @@ var classatum_1_1Drive =
     [ "Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "Drive", "classatum_1_1Drive.html#a663811b867a8be8c410f1d64b67d3aab", null ],
     [ "arcade", "classatum_1_1Drive.html#a36ebb7dc126b52775dba69466a6f197c", null ],
+    [ "brake", "classatum_1_1Drive.html#ad5c6a11cd5e284b5482f7f2b0158ef30", null ],
     [ "getBrakeMode", "classatum_1_1Drive.html#acf43f1b97bb419b2d29eb9a7f3495206", null ],
     [ "getGeometry", "classatum_1_1Drive.html#acb0dff015d122c7438c3fbb00566bc50", null ],
     [ "getLRVelocity", "classatum_1_1Drive.html#a84e04eda057f18c6332890dffaaf6b86", null ],
