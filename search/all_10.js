@@ -28,7 +28,7 @@ var searchData=
   ['start_5ftask_5f2_25',['START_TASK_2',['../task_8hpp.html#a00751aef586d179fb9e0645a99b90736',1,'task.hpp']]],
   ['startbackgroundtasks_26',['startBackgroundTasks',['../classatum_1_1Task.html#aa08bc0810059c4c9b94d3b5767ca5abc',1,'atum::Task']]],
   ['startloading_27',['startLoading',['../classatum_1_1GUI_1_1Manager.html#a61b58560ca0402a713dd063d859f1999',1,'atum::GUI::Manager']]],
-  ['startprofile_28',['startProfile',['../classatum_1_1ProfileFollower.html#a7be1bb2260415646f22e4549bbfc11b7',1,'atum::ProfileFollower']]],
+  ['startprofile_28',['startProfile',['../classatum_1_1ProfileFollower.html#a0c71165cbf75a89532f477e6e6fb54ac',1,'atum::ProfileFollower']]],
   ['statemachine_29',['StateMachine',['../classatum_1_1StateMachine.html',1,'atum']]],
   ['statemachine_2ehpp_30',['stateMachine.hpp',['../stateMachine_8hpp.html',1,'']]],
   ['statemachine_3c_20intakestate_20_3e_31',['StateMachine&lt; IntakeState &gt;',['../classatum_1_1StateMachine.html',1,'atum']]],

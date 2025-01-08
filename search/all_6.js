@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gearing_0',['Gearing',['../structatum_1_1Motor_1_1Gearing.html',1,'atum::Motor']]],
-  ['generate_1',['generate',['../classatum_1_1MotionProfile.html#ab9817fb36f0a19e9977275dd8b0de1b0',1,'atum::MotionProfile']]],
+  ['generate_1',['generate',['../classatum_1_1MotionProfile.html#a846784e4b335ccae2465df1c558cf968',1,'atum::MotionProfile']]],
   ['geometry_2',['Geometry',['../structatum_1_1Drive_1_1Geometry.html',1,'atum::Drive']]],
   ['get_5fmacro_3',['GET_MACRO',['../misc_8hpp.html#a84890a00d8c73dde4e766ef13c716e10',1,'misc.hpp']]],
   ['getbrakemode_4',['getBrakeMode',['../classatum_1_1Motor.html#a2535c2a9f3779ed9deafd7a74603ee0c',1,'atum::Motor::getBrakeMode()'],['../classatum_1_1Drive.html#acf43f1b97bb419b2d29eb9a7f3495206',1,'atum::Drive::getBrakeMode()']]],

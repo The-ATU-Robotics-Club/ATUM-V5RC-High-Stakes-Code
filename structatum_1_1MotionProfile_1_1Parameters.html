@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('structatum_1_1MotionProfile_1_1Paramet
 
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structatum_1_1MotionProfile_1_1Parameters-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">atum::MotionProfile&lt; Unit &gt;::Parameters Struct Reference</div></div>
@@ -106,16 +107,28 @@ $(document).ready(function(){initNavTree('structatum_1_1MotionProfile_1_1Paramet
 
 <p><code>#include &lt;<a class="el" href="motionProfile_8hpp_source.html">motionProfile.hpp</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a88a521b22e2696c18b18006ec69bc070"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#a88a521b22e2696c18b18006ec69bc070">Parameters</a> (const UnitsPerSecond iMaxV=UnitsPerSecond{0.0}, const UnitsPerSecondSq iMaxA=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb iMaxJ=UnitsPerSecondCb{0.0}, const bool iUsePosition=true, const std::size_t iSearchIterations=25)</td></tr>
+<tr class="memdesc:a88a521b22e2696c18b18006ec69bc070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> object. Defaults are zero to prevent unwanted overwriting when assigning.  <br /></td></tr>
+<tr class="separator:a88a521b22e2696c18b18006ec69bc070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b970f0baf4ce5ac77cd35edf1f24ad1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#a3b970f0baf4ce5ac77cd35edf1f24ad1">Parameters</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;other)</td></tr>
+<tr class="memdesc:a3b970f0baf4ce5ac77cd35edf1f24ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> object with only those parameters that are being given non-zero values (with the exception of usePosition and searchIterations).  <br /></td></tr>
+<tr class="separator:a3b970f0baf4ce5ac77cd35edf1f24ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76c73645b2284dbd2dce9fff15096f0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#a76c73645b2284dbd2dce9fff15096f0d">operator=</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;other)</td></tr>
+<tr class="memdesc:a76c73645b2284dbd2dce9fff15096f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets only those parameters that are being given non-zero values (with the exception of usePosition and searchIterations).  <br /></td></tr>
+<tr class="separator:a76c73645b2284dbd2dce9fff15096f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ad32cbe874f0a70b0522ff8a23dd51f4b"><td class="memItemLeft" align="right" valign="top"><a id="ad32cbe874f0a70b0522ff8a23dd51f4b" name="ad32cbe874f0a70b0522ff8a23dd51f4b"></a>
-UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><b>maxV</b></td></tr>
+UnitsPerSecond&#160;</td><td class="memItemRight" valign="bottom"><b>maxV</b> {0.0}</td></tr>
 <tr class="separator:ad32cbe874f0a70b0522ff8a23dd51f4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af5b00555ad5562e98f16ee04e97d2fd5"><td class="memItemLeft" align="right" valign="top"><a id="af5b00555ad5562e98f16ee04e97d2fd5" name="af5b00555ad5562e98f16ee04e97d2fd5"></a>
-UnitsPerSecondSq&#160;</td><td class="memItemRight" valign="bottom"><b>maxA</b></td></tr>
+UnitsPerSecondSq&#160;</td><td class="memItemRight" valign="bottom"><b>maxA</b> {0.0}</td></tr>
 <tr class="separator:af5b00555ad5562e98f16ee04e97d2fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30583773220fd0e1043b76d258fc1343"><td class="memItemLeft" align="right" valign="top"><a id="a30583773220fd0e1043b76d258fc1343" name="a30583773220fd0e1043b76d258fc1343"></a>
-UnitsPerSecondCb&#160;</td><td class="memItemRight" valign="bottom"><b>maxJ</b> {infinite}</td></tr>
+UnitsPerSecondCb&#160;</td><td class="memItemRight" valign="bottom"><b>maxJ</b> {0.0}</td></tr>
 <tr class="separator:a30583773220fd0e1043b76d258fc1343"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af909aa67c2f70e0e0c8f1689fec65c45"><td class="memItemLeft" align="right" valign="top"><a id="af909aa67c2f70e0e0c8f1689fec65c45" name="af909aa67c2f70e0e0c8f1689fec65c45"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>usePosition</b> {true}</td></tr>
@@ -127,7 +140,150 @@ std::size_t&#160;</td><td class="memItemRight" valign="bottom"><b>searchIteratio
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><div class="compoundTemplParams">template&lt;typename Unit&gt;<br />
 struct atum::MotionProfile&lt; Unit &gt;::Parameters</div><p>The parameters involved in creating the motion profile. </p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a88a521b22e2696c18b18006ec69bc070" name="a88a521b22e2696c18b18006ec69bc070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88a521b22e2696c18b18006ec69bc070">&#9670;&#160;</a></span>Parameters() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::Parameters::Parameters </td>
+          <td>(</td>
+          <td class="paramtype">const UnitsPerSecond&#160;</td>
+          <td class="paramname"><em>iMaxV</em> = <code>UnitsPerSecond{0.0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondSq&#160;</td>
+          <td class="paramname"><em>iMaxA</em> = <code>UnitsPerSecondSq{0.0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const UnitsPerSecondCb&#160;</td>
+          <td class="paramname"><em>iMaxJ</em> = <code>UnitsPerSecondCb{0.0}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>iUsePosition</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>iSearchIterations</em> = <code>25</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> object. Defaults are zero to prevent unwanted overwriting when assigning. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iMaxV</td><td></td></tr>
+    <tr><td class="paramname">iMaxA</td><td></td></tr>
+    <tr><td class="paramname">iMaxJ</td><td></td></tr>
+    <tr><td class="paramname">iUsePosition</td><td></td></tr>
+    <tr><td class="paramname">iSearchIterations</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3b970f0baf4ce5ac77cd35edf1f24ad1" name="a3b970f0baf4ce5ac77cd35edf1f24ad1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b970f0baf4ce5ac77cd35edf1f24ad1">&#9670;&#160;</a></span>Parameters() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::Parameters::Parameters </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> object with only those parameters that are being given non-zero values (with the exception of usePosition and searchIterations). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a76c73645b2284dbd2dce9fff15096f0d" name="a76c73645b2284dbd2dce9fff15096f0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76c73645b2284dbd2dce9fff15096f0d">&#9670;&#160;</a></span>operator=()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp; <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::Parameters::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets only those parameters that are being given non-zero values (with the exception of usePosition and searchIterations). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a>&amp; </dd></dl>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/atum/motion/<a class="el" href="motionProfile_8hpp_source.html">motionProfile.hpp</a></li>
 </ul>
 </div><!-- contents -->

@@ -8,7 +8,7 @@ var searchData=
   ['maxvoltage_5',['maxVoltage',['../classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4',1,'atum::Motor']]],
   ['mayconflictwithintake_6',['mayConflictWithIntake',['../classatum_1_1Ladybrown.html#a5d1fe46e01b0cae54359cd6aa8d0f0ec',1,'atum::Ladybrown']]],
   ['misc_2ehpp_7',['misc.hpp',['../misc_8hpp.html',1,'']]],
-  ['motionprofile_8',['MotionProfile',['../classatum_1_1MotionProfile.html',1,'atum::MotionProfile&lt; Unit &gt;'],['../classatum_1_1MotionProfile.html#a790db94b58199fc2766d8cae32263ef9',1,'atum::MotionProfile::MotionProfile()']]],
+  ['motionprofile_8',['MotionProfile',['../classatum_1_1MotionProfile.html',1,'atum::MotionProfile&lt; Unit &gt;'],['../classatum_1_1MotionProfile.html#a8ac2d00122b0e41e0eb5bb67516ceda3',1,'atum::MotionProfile::MotionProfile()']]],
   ['motionprofile_2ehpp_9',['motionProfile.hpp',['../motionProfile_8hpp.html',1,'']]],
   ['motor_10',['Motor',['../classatum_1_1Motor.html',1,'atum::Motor'],['../classatum_1_1Motor.html#a6d36804f19f6a63c03f4eb8a879e4123',1,'atum::Motor::Motor()']]],
   ['motor_2ehpp_11',['motor.hpp',['../motor_8hpp.html',1,'']]],

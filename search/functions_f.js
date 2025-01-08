@@ -17,7 +17,7 @@ var searchData=
   ['start_14',['start',['../classatum_1_1Timer.html#a6b2f88caa26e255cfd6e5b62e8cf513a',1,'atum::Timer']]],
   ['startbackgroundtasks_15',['startBackgroundTasks',['../classatum_1_1Task.html#aa08bc0810059c4c9b94d3b5767ca5abc',1,'atum::Task']]],
   ['startloading_16',['startLoading',['../classatum_1_1GUI_1_1Manager.html#a61b58560ca0402a713dd063d859f1999',1,'atum::GUI::Manager']]],
-  ['startprofile_17',['startProfile',['../classatum_1_1ProfileFollower.html#a7be1bb2260415646f22e4549bbfc11b7',1,'atum::ProfileFollower']]],
+  ['startprofile_17',['startProfile',['../classatum_1_1ProfileFollower.html#a0c71165cbf75a89532f477e6e6fb54ac',1,'atum::ProfileFollower']]],
   ['stop_18',['stop',['../classatum_1_1Intake.html#a665af9b1bffa104f86ddb87ece1c40e4',1,'atum::Intake::stop()'],['../classatum_1_1Ladybrown.html#ab5eb901499ba9875edad45246948cf71',1,'atum::Ladybrown::stop()']]],
   ['stopbackgroundtasks_19',['stopBackgroundTasks',['../classatum_1_1Task.html#ac5708c2fe12711f73576f2cff10d537c',1,'atum::Task']]]
 ];
