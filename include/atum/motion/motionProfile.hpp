@@ -39,10 +39,77 @@ class MotionProfile {
    *
    */
   struct Parameters {
-    UnitsPerSecond maxV;
-    UnitsPerSecondSq maxA;
+    /**
+     * @brief Constructs a new Parameters object. Defaults are zero to prevent
+     * unwanted overwriting when assigning.
+     *
+     * @param iMaxV
+     * @param iMaxA
+     * @param iMaxJ
+     * @param iUsePosition
+     * @param iSearchIterations
+     */
+    Parameters(const UnitsPerSecond iMaxV = UnitsPerSecond{0.0},
+               const UnitsPerSecondSq iMaxA = UnitsPerSecondSq{0.0},
+               const UnitsPerSecondCb iMaxJ = UnitsPerSecondCb{0.0},
+               const bool iUsePosition = true,
+               const std::size_t iSearchIterations = 25) :
+        maxV{iMaxV},
+        maxA{iMaxA},
+        maxJ{iMaxJ},
+        usePosition{iUsePosition},
+        searchIterations{iSearchIterations} {}
+
+    /**
+     * @brief Constructs a new Parameters object with only those parameters that
+     * are being given non-zero values (with the exception of usePosition and
+     * searchIterations).
+     *
+     * @param other
+     */
+    Parameters(const Parameters &other) {
+      if(other.maxV) {
+        maxV = other.maxV;
+      }
+      if(other.maxA) {
+        maxA = other.maxA;
+      }
+      if(other.maxJ) {
+        maxJ = other.maxJ;
+      }
+      usePosition = other.usePosition;
+      searchIterations = other.searchIterations;
+    }
+
+    /**
+     * @brief Sets only those parameters that are being given non-zero values
+     * (with the exception of usePosition and searchIterations).
+     *
+     * @param other
+     * @return Parameters&
+     */
+    Parameters &operator=(const Parameters &other) {
+      if(this == &other) {
+        return *this;
+      }
+      if(other.maxV) {
+        maxV = other.maxV;
+      }
+      if(other.maxA) {
+        maxA = other.maxA;
+      }
+      if(other.maxJ) {
+        maxJ = other.maxJ;
+      }
+      usePosition = other.usePosition;
+      searchIterations = other.searchIterations;
+      return *this;
+    }
+
+    UnitsPerSecond maxV{0.0};
+    UnitsPerSecondSq maxA{0.0};
     // Default to a trapezoidal profile.
-    UnitsPerSecondCb maxJ{infinite};
+    UnitsPerSecondCb maxJ{0.0};
     bool usePosition{true};
     // The number of iterations in the binary search for the closest point on
     // the motion profile.
@@ -66,24 +133,33 @@ class MotionProfile {
    * @brief Constructs a motion profile with the given parameters. Need to call
    * generate before getting points.
    *
-   * @param iParams
+   * @param iDefaultParams
    * @param loggerLevel
    */
-  MotionProfile(const Parameters &iParams,
+  MotionProfile(const Parameters &iDefaultParams,
                 const Logger::Level &loggerLevel = Logger::Level::Info) :
-      params{iParams},
+      defaultParams{iDefaultParams},
+      params{iDefaultParams},
       logger{loggerLevel} {
     logger.debug("Motion profile has been constructed!");
   }
 
   /**
    * @brief Generates the relevant points of the motion profile based on the
-   * given start and end position.
+   * given start and end position, as well as any special parameters (0 values
+   * will use the default parameters).
    *
    * @param iStart
    * @param iEnd
+   * @param specialParameters
    */
-  void generate(const Unit iStart, const Unit iEnd) {
+  void generate(const Unit iStart,
+                const Unit iEnd,
+                const Parameters &specialParameters = {}) {
+    // Set params to defaults to reset from potential
+    // previous special parameters.
+    params = defaultParams;
+    params = specialParameters;
     start = iStart;
     end = iEnd;
     target = end - start;
@@ -484,6 +560,7 @@ class MotionProfile {
   Unit start;
   Unit end;
   Unit target;
+  const Parameters defaultParams;
   Parameters params;
   std::array<Point, 7> points;
   Logger logger;

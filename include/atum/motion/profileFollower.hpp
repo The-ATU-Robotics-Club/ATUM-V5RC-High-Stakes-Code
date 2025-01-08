@@ -48,7 +48,8 @@ class ProfileFollower {
    * @brief Constructs a new ProfileFollower based on the given parameters.
    *
    * The time out scaling parameter will be used to determine the time out on
-   * the profile by multiplying the profile's total time by it.
+   * the profile by multiplying the profile's total time by it. Default is 10%
+   * longer than expected.
    *
    * @param iProfile
    * @param iAcceptable
@@ -63,7 +64,7 @@ class ProfileFollower {
                   std::unique_ptr<Controller> iVelocityController,
                   const AccelerationConstants &iKA,
                   std::unique_ptr<Controller> iPositionController = nullptr,
-                  const double iTimeoutScaling = 1.0,
+                  const double iTimeoutScaling = 1.1,
                   const Logger::Level loggerLevel = Logger::Level::Info) :
       profile{iProfile},
       acceptable{iAcceptable},
@@ -85,9 +86,11 @@ class ProfileFollower {
    * @param start
    * @param iEnd
    */
-  void startProfile(const Unit start, const Unit iEnd) {
+  void startProfile(const Unit start,
+                    const Unit iEnd,
+                    const UnitProfile::Parameters specialParams = {}) {
     end = iEnd;
-    profile.generate(start, end);
+    profile.generate(start, end, specialParams);
     acceptable.reset(timeoutScaling * profile.getTotalTime());
     velocityController->reset();
     if(positionController) {
