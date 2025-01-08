@@ -21,14 +21,14 @@ bool LineTracker::triggered() {
 
 std::int32_t LineTracker::getReading() {
   check();
-  const std::int32_t reading{lineTracker.get_value_calibrated()};
+  const std::int32_t reading{lineTracker.get_value()};
   logger.debug("Line tracker is reading " + std::to_string(reading) + ".");
   return reading;
 }
 
 bool LineTracker::check() {
   // Don't use getReading to avoid infinite loop.
-  const std::int32_t reading{lineTracker.get_value_calibrated()};
+  const std::int32_t reading{lineTracker.get_value()};
   const bool normalReading{reading > errorThreshold};
   if(!normalReading) {
     logger.error("Detected issue with line tracker.");
@@ -37,11 +37,11 @@ bool LineTracker::check() {
 }
 
 void LineTracker::initializeLineTracker() {
-  lineTracker.calibrate();
   // Give time to calibrate the sensor to different lighting conditions.
   wait(adiCalibrationTime);
   logger.debug("Line tracker has been constructed.");
-  lineTracker.get_value_calibrated(); // Clear readings. 
+  lineTracker.get_value(); // Clear readings.
+  wait(adiCalibrationTime);
   check();
 }
 } // namespace atum

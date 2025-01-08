@@ -81,6 +81,7 @@ degree_t IMU::getTraveled() {
 void IMU::initializeIMUs() {
   for(const auto &imu : imus) {
     imu->set_data_rate(5); // Increase refresh rate of IMUs.
+    imu->reset();
   }
   logger.info("IMU is constructed!");
   while(imus.size() && imus.back()->is_calibrating()) {

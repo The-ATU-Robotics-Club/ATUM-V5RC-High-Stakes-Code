@@ -34,7 +34,7 @@ void Robot15A::opcontrol() {
 
     configurationControls();
 
-    if(remote.getPress(Remote::Button::A)) {
+    if(remote.getPress(Remote::Button::Y)) {
       goalClamp.toggle();
     }
 
@@ -121,11 +121,11 @@ void Robot15A::configurationControls() {
     useManualControls = !useManualControls;
   }
 
-  if(remote.getPress(Remote::Button::Y)) {
+  if(remote.getPress(Remote::Button::Right)) {
     useLadybrownControls = !useLadybrownControls;
   }
 
-  if(remote.getPress(Remote::Button::Right)) {
+  if(remote.getPress(Remote::Button::Down)) {
     const ColorSensor::Color currentColor{intake->getSortOutColor()};
     const ColorSensor::Color nextColor{(static_cast<int>(currentColor) + 1) %
                                        3};
