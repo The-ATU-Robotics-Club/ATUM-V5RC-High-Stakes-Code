@@ -37,18 +37,10 @@ Path::Parameters::Parameters(const meters_per_second_t iMaxV,
 
 Path::Parameters::Parameters(const Path::Parameters &other) :
     spacing{other.spacing}, binarySearchScaling{other.binarySearchScaling} {
-  if(other.curviness) {
-    curviness = other.curviness;
-  }
-  if(other.maxV) {
-    maxV = other.maxV;
-  }
-  if(other.maxA) {
-    maxA = other.maxA;
-  }
-  if(other.track) {
-    track = other.track;
-  }
+  curviness = other.curviness;
+  maxV = other.maxV;
+  maxA = other.maxA;
+  track = other.track;
 }
 
 Path::Parameters &Path::Parameters::operator=(const Path::Parameters &other) {
@@ -64,11 +56,6 @@ Path::Parameters &Path::Parameters::operator=(const Path::Parameters &other) {
   if(other.maxA) {
     maxA = other.maxA;
   }
-  if(other.track) {
-    track = other.track;
-  }
-  spacing = other.spacing;
-  binarySearchScaling = other.binarySearchScaling;
   return *this;
 }
 
@@ -218,7 +205,7 @@ double Path::addNextPoint(double t0) {
   curvatures.push_back(getCurvature(t1, deriv));
   p1.v = units::math::min(
       params.maxV,
-      params.maxV / abs(curvatures.back()) /
+      params.maxV / std::abs(curvatures.back()) /
           getValueAs<meter_t>(params.track)); // Maybe multiply by 2?
   path.push_back(p1);
   return t1;

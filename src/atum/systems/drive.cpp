@@ -25,13 +25,12 @@ Drive::Drive(std::unique_ptr<Motor> iLeft,
 }
 
 void Drive::tank(const double leftVoltage, const double rightVoltage) {
-  if(abs(leftVoltage) > Motor::maxVoltage ||
-     abs(rightVoltage) > Motor::maxVoltage) {
+  if(std::abs(leftVoltage) > Motor::maxVoltage ||
+     std::abs(rightVoltage) > Motor::maxVoltage) {
     logger.warn("Input voltage exceeds motor range (>12V).");
   }
   if(!leftVoltage && !rightVoltage) {
-    left->brake();
-    right->brake();
+    brake();
   } else {
     left->moveVoltage(leftVoltage);
     right->moveVoltage(rightVoltage);
@@ -44,6 +43,11 @@ void Drive::arcade(const double forwardVoltage, const double turnVoltage) {
   const double right{std::clamp(
       forwardVoltage - turnVoltage, -Motor::maxVoltage, Motor::maxVoltage)};
   tank(left, right);
+}
+
+void Drive::brake() {
+  left->brake();
+  right->brake();
 }
 
 void Drive::setPose(const Pose &iPose) {

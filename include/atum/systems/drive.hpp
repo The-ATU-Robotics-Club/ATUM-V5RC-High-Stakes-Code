@@ -71,6 +71,12 @@ class Drive {
   void arcade(const double forwardVoltage, const double turnVoltage);
 
   /**
+   * @brief Stops both sides of the drive. 
+   *
+   */
+  void brake();
+
+  /**
    * @brief Sets the current pose of the drive.
    *
    * @param iPose

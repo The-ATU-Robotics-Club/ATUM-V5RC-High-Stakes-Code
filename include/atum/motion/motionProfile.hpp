@@ -61,29 +61,22 @@ class MotionProfile {
         searchIterations{iSearchIterations} {}
 
     /**
-     * @brief Constructs a new Parameters object with only those parameters that
-     * are being given non-zero values (with the exception of usePosition and
-     * searchIterations).
+     * @brief Constructs a new Parameters object with another Parameters object.
      *
      * @param other
      */
     Parameters(const Parameters &other) {
-      if(other.maxV) {
-        maxV = other.maxV;
-      }
-      if(other.maxA) {
-        maxA = other.maxA;
-      }
-      if(other.maxJ) {
-        maxJ = other.maxJ;
-      }
+      maxV = other.maxV;
+      maxA = other.maxA;
+      maxJ = other.maxJ;
       usePosition = other.usePosition;
       searchIterations = other.searchIterations;
     }
 
     /**
      * @brief Sets only those parameters that are being given non-zero values
-     * (with the exception of usePosition and searchIterations).
+     * (with the exception of usePosition and searchIterations which are not
+     * set).
      *
      * @param other
      * @return Parameters&
@@ -101,8 +94,6 @@ class MotionProfile {
       if(other.maxJ) {
         maxJ = other.maxJ;
       }
-      usePosition = other.usePosition;
-      searchIterations = other.searchIterations;
       return *this;
     }
 

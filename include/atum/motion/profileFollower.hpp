@@ -82,9 +82,12 @@ class ProfileFollower {
   /**
    * @brief Prepare to follow a new profile defined by the start and end
    * positions. Involves reseting the controllers and acceptable object.
+   * Special parameters allow generating the profile with constraints different
+   * than the defaults
    *
    * @param start
    * @param iEnd
+   * @param specialParams
    */
   void startProfile(const Unit start,
                     const Unit iEnd,

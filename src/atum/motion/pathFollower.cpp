@@ -44,10 +44,12 @@ void PathFollower::follow(const std::vector<Command> &commands,
   for(int i{0}; i < commands.size() && !interrupted; i++) {
     follow(commands[i]);
   }
-  drive->tank(0, 0);
+  drive->brake();
   if(interrupted) {
     logger.debug("Path following was interrupted!");
     interrupted = false;
+  } else {
+    logger.debug("Path following complete!");
   }
 }
 
@@ -78,7 +80,7 @@ void PathFollower::follow(Command cmd) {
     drive->tank(left->getOutput(stateVL, refVL) + aFF,
                 right->getOutput(stateVR, refVR) + aFF);
     graphPoints(stateVL, refVL, stateVR, refVR);
-    wait(5_ms);
+    wait();
   }
 }
 

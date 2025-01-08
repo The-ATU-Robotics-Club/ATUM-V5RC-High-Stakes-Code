@@ -54,6 +54,7 @@ Robot15A::Robot15A() : Robot{this} {
   AngularProfile::Parameters ladybrownMotionParams{
       240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;
+  AngularProfile ladybrownProfile{ladybrownMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableAngle ladybrownAcceptable{forever, 3_deg};
   PID::Parameters ladybrownPIDParams{0.15, 0, 0, 1.65};
@@ -61,7 +62,6 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<Controller> ladybrownVelocityController =
       std::make_unique<PID>(ladybrownPIDParams);
   const AccelerationConstants kA{0.44, 0.1};
-  AngularProfile ladybrownProfile{ladybrownMotionParams};
   std::unique_ptr<Controller> ladybrownPositionController =
       std::make_unique<PID>(PID::Parameters{0.15});
   std::unique_ptr<AngularProfileFollower> profileFollower =
@@ -70,8 +70,7 @@ Robot15A::Robot15A() : Robot{this} {
           ladybrownAcceptable,
           std::move(ladybrownVelocityController),
           kA,
-          std::move(ladybrownPositionController),
-          1.1);
+          std::move(ladybrownPositionController));
   ladybrown = std::make_unique<Ladybrown>(std::move(leftLadybrownMotor),
                                           std::move(rightLadybrownMotor),
                                           std::move(ladybrownPiston),

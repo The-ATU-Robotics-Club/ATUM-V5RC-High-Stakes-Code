@@ -36,6 +36,7 @@
 #include "motion/path.hpp"
 #include "motion/pathFollower.hpp"
 #include "motion/profileFollower.hpp"
+#include "motion/turn.hpp"
 #include "pose/odometry.hpp"
 #include "pose/tracker.hpp"
 #include "systems/drive.hpp"
@@ -50,3 +51,4 @@
 #include "utility/logger.hpp"
 #include "utility/misc.hpp"
 #include "utility/units.hpp"
+
