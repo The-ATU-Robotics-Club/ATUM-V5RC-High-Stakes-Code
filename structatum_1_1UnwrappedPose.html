@@ -127,6 +127,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a10b53bd40d43bc05a33185313c7bd05c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1UnwrappedPose.html#a10b53bd40d43bc05a33185313c7bd05c">operator-</a> (const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;rhs) const</td></tr>
 <tr class="memdesc:a10b53bd40d43bc05a33185313c7bd05c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a unwrapped pose where the x and y values are the differences between the left and right sides x and y values.  <br /></td></tr>
 <tr class="separator:a10b53bd40d43bc05a33185313c7bd05c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f71d38e0dd95237aeeee088e0585bfb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1UnwrappedPose.html#a3f71d38e0dd95237aeeee088e0585bfb">flip</a> ()</td></tr>
+<tr class="memdesc:a3f71d38e0dd95237aeeee088e0585bfb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flips the unwrapped pose around the x-axis for changing colors.  <br /></td></tr>
+<tr class="separator:a3f71d38e0dd95237aeeee088e0585bfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -159,6 +162,25 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>t</b> {0.0}</td></t
 <div class="textblock"><p>This is used to "unwrap" the <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> objects for easier manipulation. Generally, <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> should be used over this. </p>
 <p>All members should be interpreted as their base metric counterparts (meters, meters per second, radians, etcetera). </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3f71d38e0dd95237aeeee088e0585bfb" name="a3f71d38e0dd95237aeeee088e0585bfb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f71d38e0dd95237aeeee088e0585bfb">&#9670;&#160;</a></span>flip()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::UnwrappedPose::flip </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Flips the unwrapped pose around the x-axis for changing colors. </p>
+
+</div>
+</div>
 <a id="a4f52940a4bf073b04f37b502acc90fc6" name="a4f52940a4bf073b04f37b502acc90fc6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f52940a4bf073b04f37b502acc90fc6">&#9670;&#160;</a></span>operator!=()</h2>
 

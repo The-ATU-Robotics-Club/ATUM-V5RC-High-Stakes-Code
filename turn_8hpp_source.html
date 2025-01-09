@@ -123,20 +123,23 @@ $(document).ready(function(){initNavTree('turn_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">void</span> interrupt();</div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <a class="code hl_class" href="classatum_1_1Drive.html">Drive</a> *drive;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  std::unique_ptr&lt;AngularProfileFollower&gt; follower;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordtype">bool</span> interrupted{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordtype">void</span> setFlipped(<span class="keyword">const</span> <span class="keywordtype">bool</span> iFlipped);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <a class="code hl_class" href="classatum_1_1Drive.html">Drive</a> *drive;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  std::unique_ptr&lt;AngularProfileFollower&gt; follower;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">bool</span> interrupted{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordtype">bool</span> flipped{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>};</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aclassatum_1_1Drive_html"><div class="ttname"><a href="classatum_1_1Drive.html">atum::Drive</a></div><div class="ttdoc">This class encapsulates all of the logic behind the drive. Including tank and arcade controls,...</div><div class="ttdef"><b>Definition:</b> drive.hpp:25</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html"><div class="ttname"><a href="classatum_1_1Logger.html">atum::Logger</a></div><div class="ttdoc">This class handles logging to the terminal, SD card, and log screen. Messages are displayed depending...</div><div class="ttdef"><b>Definition:</b> logger.hpp:31</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
 <div class="ttc" id="aclassatum_1_1Turn_html"><div class="ttname"><a href="classatum_1_1Turn.html">atum::Turn</a></div><div class="ttdef"><b>Definition:</b> turn.hpp:7</div></div>
 <div class="ttc" id="aprofileFollower_8hpp_html"><div class="ttname"><a href="profileFollower_8hpp.html">profileFollower.hpp</a></div><div class="ttdoc">Includes the ProfileFollower template class and some helpful aliases.</div></div>
 <div class="ttc" id="astructatum_1_1MotionProfile_1_1Parameters_html"><div class="ttname"><a href="structatum_1_1MotionProfile_1_1Parameters.html">atum::MotionProfile::Parameters</a></div><div class="ttdoc">The parameters involved in creating the motion profile.</div><div class="ttdef"><b>Definition:</b> motionProfile.hpp:41</div></div>
-<div class="ttc" id="astructatum_1_1Pose_html"><div class="ttname"><a href="structatum_1_1Pose.html">atum::Pose</a></div><div class="ttdoc">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...</div><div class="ttdef"><b>Definition:</b> pose.hpp:138</div></div>
+<div class="ttc" id="astructatum_1_1Pose_html"><div class="ttname"><a href="structatum_1_1Pose.html">atum::Pose</a></div><div class="ttdoc">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...</div><div class="ttdef"><b>Definition:</b> pose.hpp:144</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
