@@ -38,8 +38,8 @@ void Robot15A::opcontrol() {
       goalClamp.toggle();
     }
 
-    if(remote.getPress(Remote::Button::Up) &&
-       remote.getPress(Remote::Button::Down)) {
+    if(remote.getHold(Remote::Button::Up) &&
+       remote.getHold(Remote::Button::Down)) {
       GUI::Manager::easteregg();
     }
 

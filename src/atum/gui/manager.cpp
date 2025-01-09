@@ -1,9 +1,5 @@
 #include "manager.hpp"
 
-LV_IMG_DECLARE(atumlogo);
-LV_IMG_DECLARE(atumerror);
-LV_IMG_DECLARE(kelly);
-
 namespace atum {
 namespace GUI {
 void Manager::initialize() {

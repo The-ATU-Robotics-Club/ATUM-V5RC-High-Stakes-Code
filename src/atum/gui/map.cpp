@@ -1,7 +1,5 @@
 #include "map.hpp"
 
-LV_IMG_DECLARE(field);
-
 namespace atum {
 namespace GUI {
 const int Map::mapResolution{6000};
