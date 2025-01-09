@@ -18,7 +18,7 @@ class PathFollower {
     bool reversed{false};
     std::optional<Path::Parameters> params;
     std::optional<AcceptableDistance> acceptable;
-    // By default, time out after path takes 10% longer than expected.
+    // By default, time out after path takes 20% longer than expected.
     double timeoutScaling{1.1};
   };
 
@@ -41,6 +41,8 @@ class PathFollower {
               const std::string &name = "");
 
   void interrupt();
+
+  void setFlipped(const bool iFlipped);
 
   private:
   void follow(Command cmd);
@@ -76,5 +78,6 @@ class PathFollower {
   FeedbackParameters feedbackParams;
   Logger logger;
   bool interrupted{false};
+  bool flipped{false};
 };
 } // namespace atum

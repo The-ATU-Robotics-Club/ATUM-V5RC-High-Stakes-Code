@@ -78,6 +78,12 @@ struct UnwrappedPose {
    * @return UnwrappedPose
    */
   UnwrappedPose operator-(const UnwrappedPose &rhs) const;
+
+  /**
+   * @brief Flips the unwrapped pose around the x-axis for changing colors.
+   *
+   */
+  void flip();
 };
 
 /**
@@ -191,6 +197,12 @@ struct Pose {
    * @return Pose
    */
   Pose operator-(const Pose &rhs) const;
+
+  /**
+   * @brief Flips the pose around the x-axis for changing colors.
+   *
+   */
+  void flip();
 };
 
 /**

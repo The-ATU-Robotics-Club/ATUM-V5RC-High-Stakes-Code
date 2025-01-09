@@ -24,10 +24,13 @@ class Turn {
 
   void interrupt();
 
+  void setFlipped(const bool iFlipped);
+
   private:
   Drive *drive;
   std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;
   bool interrupted{false};
+  bool flipped{false};
 };
 } // namespace atum

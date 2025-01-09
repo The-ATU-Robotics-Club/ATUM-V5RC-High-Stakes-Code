@@ -38,6 +38,11 @@ UnwrappedPose UnwrappedPose::operator-(const UnwrappedPose &rhs) const {
   return {x - rhs.x, y - rhs.y};
 }
 
+void UnwrappedPose::flip() {
+  x *= -1;
+  h *= -1;
+}
+
 UnwrappedPose operator*(const double lhs, const UnwrappedPose &rhs) {
   return {lhs * rhs.x, lhs * rhs.y};
 }
@@ -96,6 +101,11 @@ Pose Pose::operator+(const Pose &rhs) const {
 
 Pose Pose::operator-(const Pose &rhs) const {
   return {x - rhs.x, y - rhs.y};
+}
+
+void Pose::flip() {
+  x *= -1;
+  h *= -1;
 }
 
 Pose operator*(const double lhs, const Pose &rhs) {

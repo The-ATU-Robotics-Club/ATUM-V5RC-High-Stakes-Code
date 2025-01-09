@@ -25,7 +25,7 @@ Robot15A::Robot15A() : Robot{this} {
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
-                                  Drive::Geometry{11.862_in, 10.21_in});
+                                  Drive::Geometry{15_in, 10.21_in});
 
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-15},

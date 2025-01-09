@@ -8,13 +8,19 @@ Turn::Turn(Drive *iDrive,
 
 void Turn::toward(const Pose &target,
                   const AngularProfile::Parameters &specialParams) {
-  const Pose state{drive->getPose()};
+  Pose state{drive->getPose()};
+  if(flipped) {
+    state.flip();
+  }
   const degree_t targetAngle{angle(state, target)};
   toward(targetAngle, specialParams);
 }
 
-void Turn::toward(const degree_t target,
+void Turn::toward(degree_t target,
                   const AngularProfile::Parameters &specialParams) {
+  if(flipped) {
+    target *= -1;
+  }
   logger.debug("Turning to " + to_string(target) + ".");
   const degree_t initialHeading{drive->getPose().h};
   const degree_t shortestAngle{constrain180(target - initialHeading)};
@@ -37,7 +43,10 @@ void Turn::toward(const degree_t target,
 
 void Turn::awayFrom(const Pose &target,
                     const AngularProfile::Parameters &specialParams) {
-  const Pose state{drive->getPose()};
+  Pose state{drive->getPose()};
+  if(flipped) {
+    state.flip();
+  }
   const degree_t targetAngle{angle(state, target)};
   awayFrom(targetAngle, specialParams);
 }
@@ -49,5 +58,9 @@ void Turn::awayFrom(const degree_t target,
 
 void Turn::interrupt() {
   interrupted = true;
+}
+
+void Turn::setFlipped(const bool iFlipped) {
+  flipped = iFlipped;
 }
 } // namespace atum

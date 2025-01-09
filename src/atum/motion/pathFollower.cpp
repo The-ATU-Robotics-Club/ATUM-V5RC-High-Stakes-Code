@@ -8,14 +8,7 @@ PathFollower::Command::Command(const Pose &iTarget,
     target{iTarget},
     reversed{iReversed},
     params{iParams},
-    acceptable{iAcceptable} {
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-    target.x *= -1;
-    const scalar_t sinH{sin(target.h)};
-    const scalar_t cosH{cos(target.h)};
-    target.h = atan2(sinH, -cosH);
-  }
-}
+    acceptable{iAcceptable} {}
 
 PathFollower::PathFollower(Drive *iDrive,
                            const AcceptableDistance &iDefaultAcceptable,
@@ -55,6 +48,9 @@ void PathFollower::follow(const std::vector<Command> &commands,
 
 void PathFollower::follow(Command cmd) {
   Pose start{drive->getPose()};
+  if(flipped) {
+    cmd.target.flip();
+  }
   if(cmd.reversed) {
     start.h += 180_deg;
     cmd.target.h += 180_deg;
@@ -86,6 +82,10 @@ void PathFollower::follow(Command cmd) {
 
 void PathFollower::interrupt() {
   interrupted = true;
+}
+
+void PathFollower::setFlipped(const bool iFlipped) {
+  flipped = iFlipped;
 }
 
 std::pair<double, double>
