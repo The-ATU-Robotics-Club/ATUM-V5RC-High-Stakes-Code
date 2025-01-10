@@ -151,6 +151,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ade0a3728a002db943bb77c8580a5f3ea"><td class="memItemLeft" align="right" valign="top">meters_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#ade0a3728a002db943bb77c8580a5f3ea">getMaxVelocity</a> () const</td></tr>
 <tr class="memdesc:ade0a3728a002db943bb77c8580a5f3ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the maximum velocity possible by the drive.  <br /></td></tr>
 <tr class="separator:ade0a3728a002db943bb77c8580a5f3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8c881251daf4630ded8b096f6e6f056"><td class="memItemLeft" align="right" valign="top"><a class="el" href="time_8hpp.html#a4b814a8c5ed7ddfb7c3a6059117b1af9">Condition</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#aa8c881251daf4630ded8b096f6e6f056">checkIsNear</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> pose, const meter_t threshold)</td></tr>
+<tr class="memdesc:aa8c881251daf4630ded8b096f6e6f056"><td class="mdescLeft">&#160;</td><td class="mdescRight">A condition to be used for scheduling or waiting. Returns a function that, when called, returns true if the drive is within the threshold of the given pose.  <br /></td></tr>
+<tr class="separator:aa8c881251daf4630ded8b096f6e6f056"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapsulates all of the logic behind the drive. Including tank and arcade controls, setting brake mode, and tracking pose. </p>
@@ -267,6 +270,44 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stops both sides of the drive. </p>
+
+</div>
+</div>
+<a id="aa8c881251daf4630ded8b096f6e6f056" name="aa8c881251daf4630ded8b096f6e6f056"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8c881251daf4630ded8b096f6e6f056">&#9670;&#160;</a></span>checkIsNear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="time_8hpp.html#a4b814a8c5ed7ddfb7c3a6059117b1af9">Condition</a> atum::Drive::checkIsNear </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td>
+          <td class="paramname"><em>pose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const meter_t&#160;</td>
+          <td class="paramname"><em>threshold</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A condition to be used for scheduling or waiting. Returns a function that, when called, returns true if the drive is within the threshold of the given pose. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pose</td><td></td></tr>
+    <tr><td class="paramname">within</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Condition </dd></dl>
 
 </div>
 </div>

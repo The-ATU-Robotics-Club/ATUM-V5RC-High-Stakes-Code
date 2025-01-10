@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"structatum_1_1PathFollower_1_1Command.html":[1,0,0,21,0],
+"structatum_1_1PathFollower_1_1Command.html#a092a14ec5dc96029f9d57af048dbf2c0":[1,0,0,21,0,0],
 "structatum_1_1PathFollower_1_1FeedbackParameters.html":[1,0,0,21,1],
 "structatum_1_1Path_1_1Parameters.html":[1,0,0,20,0],
 "structatum_1_1Path_1_1Parameters.html#aacecb84019fff952a13c675ed1aeb58f":[1,0,0,20,0,0],

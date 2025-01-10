@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1StateMachine.html":[1,0,0,34],
+"classatum_1_1StateMachine.html#a528bc101f8771596bb12802c81fc91b9":[1,0,0,34,0],
 "classatum_1_1StateMachine.html#a84e111dfe64fa129fb6f282b2388a89d":[1,0,0,34,1],
 "classatum_1_1TBH.html":[1,0,0,36],
 "classatum_1_1TBH.html#a44ceab9d0a539b7854601211615ab7c9":[1,0,0,36,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "structatum_1_1MotionProfile_1_1Parameters.html#a88a521b22e2696c18b18006ec69bc070":[1,0,0,16,0,0],
 "structatum_1_1MotionProfile_1_1Point.html":[1,0,0,16,1],
 "structatum_1_1Motor_1_1Gearing.html":[1,0,0,17,0],
-"structatum_1_1PID_1_1Parameters.html":[1,0,0,22,0],
-"structatum_1_1PathFollower_1_1Command.html":[1,0,0,21,0],
-"structatum_1_1PathFollower_1_1Command.html#a092a14ec5dc96029f9d57af048dbf2c0":[1,0,0,21,0,0]
+"structatum_1_1PID_1_1Parameters.html":[1,0,0,22,0]
 };
