@@ -64,7 +64,7 @@ class ProfileFollower {
                   std::unique_ptr<Controller> iVelocityController,
                   const AccelerationConstants &iKA,
                   std::unique_ptr<Controller> iPositionController = nullptr,
-                  const double iTimeoutScaling = 1.2,
+                  const double iTimeoutScaling = 1.1,
                   const Logger::Level loggerLevel = Logger::Level::Info) :
       profile{iProfile},
       acceptable{iAcceptable},

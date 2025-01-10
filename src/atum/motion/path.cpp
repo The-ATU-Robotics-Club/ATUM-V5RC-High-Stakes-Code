@@ -151,7 +151,7 @@ void Path::generate() {
 void Path::parameterize() {
   beginParameterize();
   endParameterize();
-  graphTrajectory();
+  graphPath();
 }
 
 void Path::beginParameterize() {
@@ -249,7 +249,7 @@ Pose Path::get2ndDerivative(const double t) const {
          (sixT - 2.0) * endDirection;
 }
 
-void Path::graphTrajectory() {
+void Path::graphPath() {
   if(logger.getLevel() != Logger::Level::Debug) {
     return;
   }
