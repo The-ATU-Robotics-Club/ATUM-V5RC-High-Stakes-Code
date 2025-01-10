@@ -10,7 +10,6 @@
 #pragma once
 
 #include "../../pros/adi.hpp"
-#include "../../pros/device.hpp"
 #include "../utility/logger.hpp"
 
 namespace atum {

@@ -15,7 +15,7 @@
 namespace atum {
 /**
  * @brief A wrapper around the VEX line sensor to support dynamic
- * port initialization and to encapsulate detection logic. WIll also
+ * port initialization and to encapsulate detection logic. Will also
  * calibrate the sensor, so there should be no major reading changes when this
  * is constructed.
  *

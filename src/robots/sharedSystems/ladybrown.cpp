@@ -32,6 +32,8 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
   params.statePositions[LadybrownState::FinishScoring] =
       params.statePositions[LadybrownState::Preparing];
   stop();
+  
+  logger.info("Ladybrown is constructed!");
 }
 
 void Ladybrown::stop() {

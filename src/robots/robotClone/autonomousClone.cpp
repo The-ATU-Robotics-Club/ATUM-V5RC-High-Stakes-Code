@@ -97,15 +97,15 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   std::unique_ptr<Turn> turn{std::make_unique<Turn>(
       drive.get(), std::move(profileFollower), Logger::Level::Debug)};
 
-  turn->toward(90_deg);              // Right
-  turn->toward(180_deg);             // Right
-  turn->toward(-90_deg);             // Right
-  turn->awayFrom(0_deg);             // Left
-  turn->awayFrom(180_deg);           // About
-  turn->toward({1_tile, 0_tile});    // Right
-  turn->toward({-1_tile, 0_tile});   // About
-  turn->awayFrom({0_tile, 1_tile});  // Left
-  turn->awayFrom({0_tile, -1_tile}); // About
+  turn->toward(90_deg);    // Right
+  turn->toward(180_deg);   // Right
+  turn->toward(-90_deg);   // Right
+  turn->awayFrom(0_deg);   // Left
+  turn->awayFrom(180_deg); // About
+  turn->toward(90_deg);    // Right
+  turn->toward(-90_deg);   // About
+  turn->awayFrom(0_deg);   // Left
+  turn->awayFrom(180_deg); // About
   END_ROUTINE
 
   START_ROUTINE("Ladybrown Test")
