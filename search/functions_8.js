@@ -10,5 +10,7 @@ var searchData=
   ['interrupt_7',['interrupt',['../classatum_1_1PathFollower.html#a1c6b6c8989ab8c6977a3ab615a772b87',1,'atum::PathFollower::interrupt()'],['../classatum_1_1Turn.html#a4cc424c3965f42cda0aa07c16aca6896',1,'atum::Turn::interrupt()']]],
   ['isbackwards_8',['isBackwards',['../classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102',1,'atum::MotionProfile']]],
   ['isdone_9',['isDone',['../classatum_1_1ProfileFollower.html#a4a4002bb3eee0fd81397fd4004dcd780',1,'atum::ProfileFollower']]],
-  ['isextended_10',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]]
+  ['isextended_10',['isExtended',['../classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4',1,'atum::Piston']]],
+  ['isnewlypressed_11',['isNewlyPressed',['../classatum_1_1LimitSwitch.html#a0d337857217579bfb2eaff4cf4543d54',1,'atum::LimitSwitch']]],
+  ['ispressed_12',['isPressed',['../classatum_1_1LimitSwitch.html#aa2e93cc97029444a846809c64ebc6415',1,'atum::LimitSwitch']]]
 ];

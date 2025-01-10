@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: atum::LineTracker Class Reference</title>
+<title>VURC Team ATUM: atum::LimitSwitch Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classatum_1_1LineTracker.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classatum_1_1LimitSwitch.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -96,45 +96,45 @@ $(document).ready(function(){initNavTree('classatum_1_1LineTracker.html',''); in
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classatum_1_1LineTracker-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">atum::LineTracker Class Reference</div></div>
+<a href="classatum_1_1LimitSwitch-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">atum::LimitSwitch Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>A wrapper around the VEX line sensor to support dynamic port initialization and to encapsulate detection logic. Will also calibrate the sensor, so there should be no major reading changes when this is constructed.  
- <a href="classatum_1_1LineTracker.html#details">More...</a></p>
+<p>A wrapper around the VEX limit switch to support dynamic port initialization and to provide a way to check the sensor is working at the beginning of a match.  
+ <a href="classatum_1_1LimitSwitch.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="lineTracker_8hpp_source.html">lineTracker.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="limitSwitch_8hpp_source.html">limitSwitch.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a84e3198afc32b7d1a68a96d3e0c43e06"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#a84e3198afc32b7d1a68a96d3e0c43e06">LineTracker</a> (const std::uint8_t port, const std::int32_t iThreshold, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a84e3198afc32b7d1a68a96d3e0c43e06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new line tracker based on the given port and a threshold for which the sensor will be considered "triggered.".  <br /></td></tr>
-<tr class="separator:a84e3198afc32b7d1a68a96d3e0c43e06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a987edcdda7b3d10cf19de91c1f6a28e4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#a987edcdda7b3d10cf19de91c1f6a28e4">LineTracker</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const std::int32_t iThreshold, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a987edcdda7b3d10cf19de91c1f6a28e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new line tracker by detecting the port for the sensor and with a threshold for which the sensor will be considered "triggered.".  <br /></td></tr>
-<tr class="separator:a987edcdda7b3d10cf19de91c1f6a28e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6c2077261f93ad1af01386fb35d9b63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63">triggered</a> ()</td></tr>
-<tr class="memdesc:aa6c2077261f93ad1af01386fb35d9b63"><td class="mdescLeft">&#160;</td><td class="mdescRight">This will return if the line tracker reading is below the threshold given for it to be considered "triggered." I.e., when an object or line passes in front of it.  <br /></td></tr>
-<tr class="separator:aa6c2077261f93ad1af01386fb35d9b63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef031eabc247e13b155d11546ff8a905"><td class="memItemLeft" align="right" valign="top">std::int32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#aef031eabc247e13b155d11546ff8a905">getReading</a> ()</td></tr>
-<tr class="memdesc:aef031eabc247e13b155d11546ff8a905"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current reading of the line tracker and perform logging. Mostly made public for the purposes of tuning.  <br /></td></tr>
-<tr class="separator:aef031eabc247e13b155d11546ff8a905"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1abd38487289272836146e377018d77e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LineTracker.html#a1abd38487289272836146e377018d77e">check</a> ()</td></tr>
-<tr class="memdesc:a1abd38487289272836146e377018d77e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the distance sensor is functioning by seeing if it is reading a normal value.  <br /></td></tr>
-<tr class="separator:a1abd38487289272836146e377018d77e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71a70b26d2a16246f5ea83914833a94f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a71a70b26d2a16246f5ea83914833a94f">LimitSwitch</a> (const std::uint8_t port, const bool performCheck=true, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a71a70b26d2a16246f5ea83914833a94f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch based on the given port. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction.  <br /></td></tr>
+<tr class="separator:a71a70b26d2a16246f5ea83914833a94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a588353679b7282060a788ea6eebb61b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a588353679b7282060a788ea6eebb61b5">LimitSwitch</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const bool performCheck=true, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a588353679b7282060a788ea6eebb61b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch by detecting the port for the sensor. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction.  <br /></td></tr>
+<tr class="separator:a588353679b7282060a788ea6eebb61b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e93cc97029444a846809c64ebc6415"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#aa2e93cc97029444a846809c64ebc6415">isPressed</a> ()</td></tr>
+<tr class="memdesc:aa2e93cc97029444a846809c64ebc6415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the limit switch is pressed.  <br /></td></tr>
+<tr class="separator:aa2e93cc97029444a846809c64ebc6415"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d337857217579bfb2eaff4cf4543d54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a0d337857217579bfb2eaff4cf4543d54">isNewlyPressed</a> ()</td></tr>
+<tr class="memdesc:a0d337857217579bfb2eaff4cf4543d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the limit switch has been newly pressed.  <br /></td></tr>
+<tr class="separator:a0d337857217579bfb2eaff4cf4543d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acede9244db605592a30c3f6911e003ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#acede9244db605592a30c3f6911e003ea">check</a> () const</td></tr>
+<tr class="memdesc:acede9244db605592a30c3f6911e003ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the test at construction passed or not.  <br /></td></tr>
+<tr class="separator:acede9244db605592a30c3f6911e003ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A wrapper around the VEX line sensor to support dynamic port initialization and to encapsulate detection logic. Will also calibrate the sensor, so there should be no major reading changes when this is constructed. </p>
+<div class="textblock"><p>A wrapper around the VEX limit switch to support dynamic port initialization and to provide a way to check the sensor is working at the beginning of a match. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a84e3198afc32b7d1a68a96d3e0c43e06" name="a84e3198afc32b7d1a68a96d3e0c43e06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84e3198afc32b7d1a68a96d3e0c43e06">&#9670;&#160;</a></span>LineTracker() <span class="overload">[1/2]</span></h2>
+<a id="a71a70b26d2a16246f5ea83914833a94f" name="a71a70b26d2a16246f5ea83914833a94f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71a70b26d2a16246f5ea83914833a94f">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">atum::LineTracker::LineTracker </td>
+          <td class="memname">atum::LimitSwitch::LimitSwitch </td>
           <td>(</td>
           <td class="paramtype">const std::uint8_t&#160;</td>
           <td class="paramname"><em>port</em>, </td>
@@ -142,8 +142,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::int32_t&#160;</td>
-          <td class="paramname"><em>iThreshold</em>, </td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>performCheck</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -159,11 +159,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new line tracker based on the given port and a threshold for which the sensor will be considered "triggered.". </p>
+<p>Constructs a new limit switch based on the given port. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
-    <tr><td class="paramname">iThreshold</td><td></td></tr>
+    <tr><td class="paramname">expectPress</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -171,14 +171,14 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a987edcdda7b3d10cf19de91c1f6a28e4" name="a987edcdda7b3d10cf19de91c1f6a28e4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a987edcdda7b3d10cf19de91c1f6a28e4">&#9670;&#160;</a></span>LineTracker() <span class="overload">[2/2]</span></h2>
+<a id="a588353679b7282060a788ea6eebb61b5" name="a588353679b7282060a788ea6eebb61b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a588353679b7282060a788ea6eebb61b5">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">atum::LineTracker::LineTracker </td>
+          <td class="memname">atum::LimitSwitch::LimitSwitch </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;&#160;</td>
           <td class="paramname"><em>port</em>, </td>
@@ -186,8 +186,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::int32_t&#160;</td>
-          <td class="paramname"><em>iThreshold</em>, </td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>performCheck</em> = <code>true</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -203,11 +203,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new line tracker by detecting the port for the sensor and with a threshold for which the sensor will be considered "triggered.". </p>
+<p>Constructs a new limit switch by detecting the port for the sensor. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
-    <tr><td class="paramname">iThreshold</td><td></td></tr>
+    <tr><td class="paramname">expectPress</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -216,36 +216,36 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a1abd38487289272836146e377018d77e" name="a1abd38487289272836146e377018d77e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1abd38487289272836146e377018d77e">&#9670;&#160;</a></span>check()</h2>
+<a id="acede9244db605592a30c3f6911e003ea" name="acede9244db605592a30c3f6911e003ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acede9244db605592a30c3f6911e003ea">&#9670;&#160;</a></span>check()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool atum::LineTracker::check </td>
+          <td class="memname">bool atum::LimitSwitch::check </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Checks if the distance sensor is functioning by seeing if it is reading a normal value. </p>
+<p>Returns if the test at construction passed or not. </p>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
 
 </div>
 </div>
-<a id="aef031eabc247e13b155d11546ff8a905" name="aef031eabc247e13b155d11546ff8a905"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef031eabc247e13b155d11546ff8a905">&#9670;&#160;</a></span>getReading()</h2>
+<a id="a0d337857217579bfb2eaff4cf4543d54" name="a0d337857217579bfb2eaff4cf4543d54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d337857217579bfb2eaff4cf4543d54">&#9670;&#160;</a></span>isNewlyPressed()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::int32_t atum::LineTracker::getReading </td>
+          <td class="memname">bool atum::LimitSwitch::isNewlyPressed </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -253,19 +253,21 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the current reading of the line tracker and perform logging. Mostly made public for the purposes of tuning. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::int32_t </dd></dl>
+<p>Returns if the limit switch has been newly pressed. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
 
 </div>
 </div>
-<a id="aa6c2077261f93ad1af01386fb35d9b63" name="aa6c2077261f93ad1af01386fb35d9b63"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6c2077261f93ad1af01386fb35d9b63">&#9670;&#160;</a></span>triggered()</h2>
+<a id="aa2e93cc97029444a846809c64ebc6415" name="aa2e93cc97029444a846809c64ebc6415"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2e93cc97029444a846809c64ebc6415">&#9670;&#160;</a></span>isPressed()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool atum::LineTracker::triggered </td>
+          <td class="memname">bool atum::LimitSwitch::isPressed </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -273,7 +275,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>This will return if the line tracker reading is below the threshold given for it to be considered "triggered." I.e., when an object or line passes in front of it. </p>
+<p>Returns if the limit switch is pressed. </p>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
@@ -281,14 +283,14 @@ false </dd></dl>
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/atum/devices/<a class="el" href="lineTracker_8hpp_source.html">lineTracker.hpp</a></li>
+<li>include/atum/devices/<a class="el" href="limitSwitch_8hpp_source.html">limitSwitch.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1LineTracker.html">LineTracker</a></li>
+    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
