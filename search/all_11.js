@@ -15,10 +15,12 @@ var searchData=
   ['timer_2ehpp_12',['timer.hpp',['../timer_8hpp.html',1,'']]],
   ['toggle_13',['toggle',['../classatum_1_1Piston.html#a93b5f050315efa7145b80d1f3f790356',1,'atum::Piston']]],
   ['tostring_14',['toString',['../colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6',1,'atum::toString(const ColorSensor::Color &amp;color)'],['../pose_8hpp.html#acfd7d943111074dac94ff54503425d5b',1,'atum::toString(const UnwrappedPose &amp;pose)'],['../pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65',1,'atum::toString(const Pose &amp;pose)']]],
-  ['tracker_15',['Tracker',['../classatum_1_1Tracker.html',1,'atum::Tracker'],['../classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d',1,'atum::Tracker::Tracker()']]],
-  ['tracker_2ehpp_16',['tracker.hpp',['../tracker_8hpp.html',1,'']]],
-  ['traveled_17',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer']]],
-  ['triggered_18',['triggered',['../classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63',1,'atum::LineTracker']]],
-  ['turn_19',['Turn',['../classatum_1_1Turn.html',1,'atum']]],
-  ['type_20',['Type',['../classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40',1,'atum::Remote']]]
+  ['toward_15',['toward',['../classatum_1_1Turn.html#a1d1eb3094a9c03b185b017ffe95fc1da',1,'atum::Turn::toward(const Pose &amp;target, const AngularProfile::Parameters &amp;specialParams={})'],['../classatum_1_1Turn.html#abda35649f18952e33457f6cfdce891ce',1,'atum::Turn::toward(const degree_t target, const AngularProfile::Parameters &amp;specialParams={})']]],
+  ['tracker_16',['Tracker',['../classatum_1_1Tracker.html',1,'atum::Tracker'],['../classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d',1,'atum::Tracker::Tracker()']]],
+  ['tracker_2ehpp_17',['tracker.hpp',['../tracker_8hpp.html',1,'']]],
+  ['traveled_18',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer']]],
+  ['triggered_19',['triggered',['../classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63',1,'atum::LineTracker']]],
+  ['turn_20',['Turn',['../classatum_1_1Turn.html',1,'atum::Turn'],['../classatum_1_1Turn.html#a54d06437ed2fe5f89dc14ab9ba7b6f1d',1,'atum::Turn::Turn()']]],
+  ['turn_2ehpp_21',['turn.hpp',['../turn_8hpp.html',1,'']]],
+  ['type_22',['Type',['../classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40',1,'atum::Remote']]]
 ];

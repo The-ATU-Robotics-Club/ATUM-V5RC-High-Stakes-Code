@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['maxvoltage_0',['maxVoltage',['../classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4',1,'atum::Motor']]]
+  ['id15_0',['ID15',['../classatum_1_1RobotClone.html#ae34b167c48d6b3f8d039359de6baa84f',1,'atum::RobotClone']]]
 ];

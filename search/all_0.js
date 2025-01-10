@@ -16,5 +16,6 @@ var searchData=
   ['arcade_13',['arcade',['../classatum_1_1Drive.html#a36ebb7dc126b52775dba69466a6f197c',1,'atum::Drive']]],
   ['atum_2ehpp_14',['atum.hpp',['../atum_8hpp.html',1,'']]],
   ['autonomous_15',['autonomous',['../classatum_1_1Robot.html#a721e1155876bf8242337100f7ec26b58',1,'atum::Robot']]],
-  ['average_16',['average',['../misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88',1,'atum']]]
+  ['average_16',['average',['../misc_8hpp.html#ada37e1456ca70441410febb00ad3cf88',1,'atum']]],
+  ['awayfrom_17',['awayFrom',['../classatum_1_1Turn.html#a324922158bc27f9506cfe5070076ad97',1,'atum::Turn::awayFrom(const Pose &amp;target, const AngularProfile::Parameters &amp;specialParams={})'],['../classatum_1_1Turn.html#a13166e945a2bdd297895bd66381b6203',1,'atum::Turn::awayFrom(const degree_t target, const AngularProfile::Parameters &amp;specialParams={})']]]
 ];

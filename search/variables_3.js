@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['refreshrate_0',['refreshRate',['../classatum_1_1ColorSensor.html#ac9df7e8b4f7f2fb69ac3a989e4981e83',1,'atum::ColorSensor']]]
+  ['nevermet_0',['neverMet',['../classatum_1_1Schedule.html#a2eb40f58f9d01df1b2e826a3cb320a08',1,'atum::Schedule']]]
 ];

@@ -35,7 +35,7 @@ var annotated_dup =
       [ "ProfileFollower", "classatum_1_1ProfileFollower.html", "classatum_1_1ProfileFollower" ],
       [ "Remote", "classatum_1_1Remote.html", "classatum_1_1Remote" ],
       [ "Robot", "classatum_1_1Robot.html", "classatum_1_1Robot" ],
-      [ "Robot15A", "classatum_1_1Robot15A.html", "classatum_1_1Robot15A" ],
+      [ "RobotClone", "classatum_1_1RobotClone.html", "classatum_1_1RobotClone" ],
       [ "RobotPrototype", "classatum_1_1RobotPrototype.html", "classatum_1_1RobotPrototype" ],
       [ "RotationSensor", "classatum_1_1RotationSensor.html", "classatum_1_1RotationSensor" ],
       [ "Schedule", "classatum_1_1Schedule.html", "classatum_1_1Schedule" ],
@@ -45,7 +45,7 @@ var annotated_dup =
       [ "TBH", "classatum_1_1TBH.html", "classatum_1_1TBH" ],
       [ "Timer", "classatum_1_1Timer.html", "classatum_1_1Timer" ],
       [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ],
-      [ "Turn", "classatum_1_1Turn.html", null ],
+      [ "Turn", "classatum_1_1Turn.html", "classatum_1_1Turn" ],
       [ "UnwrappedPose", "structatum_1_1UnwrappedPose.html", "structatum_1_1UnwrappedPose" ]
     ] ]
 ];

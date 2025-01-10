@@ -11,7 +11,7 @@ var searchData=
   ['color_8',['Color',['../classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97',1,'atum::ColorSensor']]],
   ['colorsensor_9',['ColorSensor',['../classatum_1_1ColorSensor.html',1,'atum::ColorSensor'],['../classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189',1,'atum::ColorSensor::ColorSensor(const std::int8_t port, const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488',1,'atum::ColorSensor::ColorSensor(const std::vector&lt; HueField &gt; iHueFields, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['colorsensor_2ehpp_10',['colorSensor.hpp',['../colorSensor_8hpp.html',1,'']]],
-  ['command_11',['Command',['../structatum_1_1PathFollower_1_1Command.html',1,'atum::PathFollower']]],
+  ['command_11',['Command',['../structatum_1_1PathFollower_1_1Command.html',1,'atum::PathFollower::Command'],['../structatum_1_1PathFollower_1_1Command.html#a092a14ec5dc96029f9d57af048dbf2c0',1,'atum::PathFollower::Command::Command()']]],
   ['condition_12',['Condition',['../time_8hpp.html#a4b814a8c5ed7ddfb7c3a6059117b1af9',1,'atum']]],
   ['constrain180_13',['constrain180',['../units_8hpp.html#a3e54638dfa8d8892e8c6331b9113a3e1',1,'atum']]],
   ['constrainpi_14',['constrainPI',['../units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d',1,'atum']]],

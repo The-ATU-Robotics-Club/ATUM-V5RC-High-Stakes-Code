@@ -40,7 +40,7 @@ var hierarchy =
     [ "atum::Potentiometer", "classatum_1_1Potentiometer.html", null ],
     [ "atum::ProfileFollower< Unit >", "classatum_1_1ProfileFollower.html", null ],
     [ "atum::Robot", "classatum_1_1Robot.html", [
-      [ "atum::Robot15A", "classatum_1_1Robot15A.html", null ],
+      [ "atum::RobotClone", "classatum_1_1RobotClone.html", null ],
       [ "atum::RobotPrototype", "classatum_1_1RobotPrototype.html", null ]
     ] ],
     [ "atum::RotationSensor", "classatum_1_1RotationSensor.html", null ],

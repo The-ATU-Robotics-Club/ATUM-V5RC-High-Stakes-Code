@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: atum::Robot15A Class Reference</title>
+<title>VURC Team ATUM: atum::RobotClone Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classatum_1_1Robot15A.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classatum_1_1RobotClone.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -97,28 +97,36 @@ $(document).ready(function(){initNavTree('classatum_1_1Robot15A.html',''); initR
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
-<a href="classatum_1_1Robot15A-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">atum::Robot15A Class Reference</div></div>
+<a href="classatum_1_1RobotClone-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">atum::RobotClone Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This encapsulates all of the behaviors related to the clone bots, differing only in setup where ports (and some parameters) may be changed.  
+ <a href="classatum_1_1RobotClone.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="robotClone_8hpp_source.html">robotClone.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for atum::Robot15A:</div>
+Inheritance diagram for atum::RobotClone:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classatum_1_1Robot15A.png" usemap="#atum::Robot15A_map" alt=""/>
-  <map id="atum::Robot15A_map" name="atum::Robot15A_map">
-<area href="classatum_1_1Robot.html" alt="atum::Robot" shape="rect" coords="0,0,99,24"/>
+  <img src="classatum_1_1RobotClone.png" usemap="#atum::RobotClone_map" alt=""/>
+  <map id="atum::RobotClone_map" name="atum::RobotClone_map">
+<area href="classatum_1_1Robot.html" alt="atum::Robot" shape="rect" coords="0,0,109,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a03974f10a74cdb95e4f2f877a0b4b911"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Robot15A.html#a03974f10a74cdb95e4f2f877a0b4b911">disabled</a> () override</td></tr>
-<tr class="memdesc:a03974f10a74cdb95e4f2f877a0b4b911"><td class="mdescLeft">&#160;</td><td class="mdescRight">The behavior of the robot during the disabled period.  <br /></td></tr>
-<tr class="separator:a03974f10a74cdb95e4f2f877a0b4b911"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1196884afc78f1762b920e753a9adecb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Robot15A.html#a1196884afc78f1762b920e753a9adecb">opcontrol</a> () override</td></tr>
-<tr class="memdesc:a1196884afc78f1762b920e753a9adecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">The behavior of the robot during the operator control period.  <br /></td></tr>
-<tr class="separator:a1196884afc78f1762b920e753a9adecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fe43f48ac6c918f810a1b06c5ec48f0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0">RobotClone</a> (const int iID)</td></tr>
+<tr class="memdesc:a4fe43f48ac6c918f810a1b06c5ec48f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setups the robot, changing the setup depending on what ID is provided.  <br /></td></tr>
+<tr class="separator:a4fe43f48ac6c918f810a1b06c5ec48f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62a04c67e7118f963fea67848caf734d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RobotClone.html#a62a04c67e7118f963fea67848caf734d">disabled</a> () override</td></tr>
+<tr class="memdesc:a62a04c67e7118f963fea67848caf734d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The behavior of the clone bots when disabled. Also starts the background tasks for the intake and the ladybrown.  <br /></td></tr>
+<tr class="separator:a62a04c67e7118f963fea67848caf734d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae170bbc2cce6d8388da255fab5eb66de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RobotClone.html#ae170bbc2cce6d8388da255fab5eb66de">opcontrol</a> () override</td></tr>
+<tr class="memdesc:ae170bbc2cce6d8388da255fab5eb66de"><td class="mdescLeft">&#160;</td><td class="mdescRight">The behavior of the robot during the operator control period.  <br /></td></tr>
+<tr class="separator:ae170bbc2cce6d8388da255fab5eb66de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Robot"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Robot')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Robot.html">atum::Robot</a></td></tr>
 <tr class="memitem:a64612cec375cbbcbd4db77c1f2ece11d inherit pub_methods_classatum_1_1Robot"><td class="memItemLeft" align="right" valign="top"><a id="a64612cec375cbbcbd4db77c1f2ece11d" name="a64612cec375cbbcbd4db77c1f2ece11d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Robot</b> (const <a class="el" href="classatum_1_1Robot.html">Robot</a> &amp;)=delete</td></tr>
@@ -145,9 +153,12 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a687abaa0b823098143f6a5187805afb9"><td class="memItemLeft" align="right" valign="top"><a id="a687abaa0b823098143f6a5187805afb9" name="a687abaa0b823098143f6a5187805afb9"></a>
-static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>ID</b> {0x64824900}</td></tr>
-<tr class="separator:a687abaa0b823098143f6a5187805afb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae34b167c48d6b3f8d039359de6baa84f"><td class="memItemLeft" align="right" valign="top">static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RobotClone.html#ae34b167c48d6b3f8d039359de6baa84f">ID15</a> {0x64824900}</td></tr>
+<tr class="memdesc:ae34b167c48d6b3f8d039359de6baa84f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constants storing the brain IDs for the 15" and 24" bots.  <br /></td></tr>
+<tr class="separator:ae34b167c48d6b3f8d039359de6baa84f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167993c02e2b19c855c49d2070e441bf"><td class="memItemLeft" align="right" valign="top"><a id="a167993c02e2b19c855c49d2070e441bf" name="a167993c02e2b19c855c49d2070e441bf"></a>
+static constexpr int&#160;</td><td class="memItemRight" valign="bottom"><b>ID24</b> {0x00000000}</td></tr>
+<tr class="separator:a167993c02e2b19c855c49d2070e441bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -159,9 +170,38 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><b>routineNames</
 std::vector&lt; <a class="el" href="robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fceebb258">Routine</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>routines</b></td></tr>
 <tr class="separator:a5b6a47bceb958bebe80bae06f916ed27 inherit pro_attribs_classatum_1_1Robot"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This encapsulates all of the behaviors related to the clone bots, differing only in setup where ports (and some parameters) may be changed. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4fe43f48ac6c918f810a1b06c5ec48f0" name="a4fe43f48ac6c918f810a1b06c5ec48f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fe43f48ac6c918f810a1b06c5ec48f0">&#9670;&#160;</a></span>RobotClone()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">atum::RobotClone::RobotClone </td>
+          <td>(</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>iID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Setups the robot, changing the setup depending on what ID is provided. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iID</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a03974f10a74cdb95e4f2f877a0b4b911" name="a03974f10a74cdb95e4f2f877a0b4b911"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03974f10a74cdb95e4f2f877a0b4b911">&#9670;&#160;</a></span>disabled()</h2>
+<a id="a62a04c67e7118f963fea67848caf734d" name="a62a04c67e7118f963fea67848caf734d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62a04c67e7118f963fea67848caf734d">&#9670;&#160;</a></span>disabled()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,7 +210,7 @@ std::vector&lt; <a class="el" href="robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fcee
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::Robot15A::disabled </td>
+          <td class="memname">void atum::RobotClone::disabled </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -183,14 +223,14 @@ std::vector&lt; <a class="el" href="robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fcee
 </table>
 </div><div class="memdoc">
 
-<p>The behavior of the robot during the disabled period. </p>
+<p>The behavior of the clone bots when disabled. Also starts the background tasks for the intake and the ladybrown. </p>
 
 <p>Implements <a class="el" href="classatum_1_1Robot.html#abc3667642b5afcf3961fabd2c21e9c1f">atum::Robot</a>.</p>
 
 </div>
 </div>
-<a id="a1196884afc78f1762b920e753a9adecb" name="a1196884afc78f1762b920e753a9adecb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1196884afc78f1762b920e753a9adecb">&#9670;&#160;</a></span>opcontrol()</h2>
+<a id="ae170bbc2cce6d8388da255fab5eb66de" name="ae170bbc2cce6d8388da255fab5eb66de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae170bbc2cce6d8388da255fab5eb66de">&#9670;&#160;</a></span>opcontrol()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -199,7 +239,7 @@ std::vector&lt; <a class="el" href="robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fcee
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::Robot15A::opcontrol </td>
+          <td class="memname">void atum::RobotClone::opcontrol </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -218,15 +258,40 @@ std::vector&lt; <a class="el" href="robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fcee
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae34b167c48d6b3f8d039359de6baa84f" name="ae34b167c48d6b3f8d039359de6baa84f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae34b167c48d6b3f8d039359de6baa84f">&#9670;&#160;</a></span>ID15</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr int atum::RobotClone::ID15 {0x64824900}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constants storing the brain IDs for the 15" and 24" bots. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/robots/robot15A/<a class="el" href="robot15A_8hpp_source.html">robot15A.hpp</a></li>
+<li>include/robots/robotClone/<a class="el" href="robotClone_8hpp_source.html">robotClone.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1Robot15A.html">Robot15A</a></li>
+    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1RobotClone.html">RobotClone</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

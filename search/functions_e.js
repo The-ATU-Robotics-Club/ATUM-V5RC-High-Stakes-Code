@@ -9,6 +9,8 @@ var searchData=
   ['restart_6',['restart',['../classatum_1_1Timer.html#a275d87facc97844285a6f9e83b7dfb3a',1,'atum::Timer']]],
   ['retract_7',['retract',['../classatum_1_1Piston.html#a1db6c21109da8a3745864c018bdfc19b',1,'atum::Piston::retract()'],['../classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3',1,'atum::Ladybrown::retract()']]],
   ['robot_8',['Robot',['../classatum_1_1Robot.html#ac5f63ac7b8a265cf8b275531e79a85ce',1,'atum::Robot']]],
-  ['rotationsensor_9',['RotationSensor',['../classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db',1,'atum::RotationSensor::RotationSensor(const std::int8_t port, const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd',1,'atum::RotationSensor::RotationSensor(const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
-  ['rumble_10',['rumble',['../classatum_1_1Remote.html#a0164e292529181e2e23fbf00bd504527',1,'atum::Remote']]]
+  ['robotclone_9',['RobotClone',['../classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0',1,'atum::RobotClone']]],
+  ['robotprototype_10',['RobotPrototype',['../classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f',1,'atum::RobotPrototype']]],
+  ['rotationsensor_11',['RotationSensor',['../classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db',1,'atum::RotationSensor::RotationSensor(const std::int8_t port, const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd',1,'atum::RotationSensor::RotationSensor(const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['rumble_12',['rumble',['../classatum_1_1Remote.html#a0164e292529181e2e23fbf00bd504527',1,'atum::Remote']]]
 ];

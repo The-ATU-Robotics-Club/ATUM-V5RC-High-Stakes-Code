@@ -101,29 +101,194 @@ $(document).ready(function(){initNavTree('classatum_1_1PathFollower.html',''); i
   <div class="headertitle"><div class="title">atum::PathFollower Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled movements.  
+ <a href="classatum_1_1PathFollower.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="pathFollower_8hpp_source.html">pathFollower.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The commands that the path follower executes.  <a href="structatum_1_1PathFollower_1_1Command.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parameters for the feedback component of path following. Can enable/disabled RAMSETE and change its beta and lambda values.  <a href="structatum_1_1PathFollower_1_1FeedbackParameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a824d9f1e47572a95942b0d3d935a75c3"><td class="memItemLeft" align="right" valign="top"><a id="a824d9f1e47572a95942b0d3d935a75c3" name="a824d9f1e47572a95942b0d3d935a75c3"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PathFollower</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;iDefaultAcceptable, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iRight, const <a class="el" href="structatum_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;iKA, const <a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a> &amp;iFeedbackParams=<a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a>{true, 2.0, 0.7}, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memitem:a824d9f1e47572a95942b0d3d935a75c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html#a824d9f1e47572a95942b0d3d935a75c3">PathFollower</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;iDefaultAcceptable, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iRight, const <a class="el" href="structatum_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;iKA, const <a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a> &amp;iFeedbackParams=<a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a>{true, 2.0, 0.7}, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a824d9f1e47572a95942b0d3d935a75c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1PathFollower.html" title="Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled...">PathFollower</a> object.  <br /></td></tr>
 <tr class="separator:a824d9f1e47572a95942b0d3d935a75c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4747e17db1207d1f5b58678882a3e61d"><td class="memItemLeft" align="right" valign="top"><a id="a4747e17db1207d1f5b58678882a3e61d" name="a4747e17db1207d1f5b58678882a3e61d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>follow</b> (const std::vector&lt; <a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> &gt; &amp;commands, const std::string &amp;name=&quot;&quot;)</td></tr>
+<tr class="memitem:a4747e17db1207d1f5b58678882a3e61d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html#a4747e17db1207d1f5b58678882a3e61d">follow</a> (const std::vector&lt; <a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> &gt; &amp;commands, const std::string &amp;name=&quot;&quot;)</td></tr>
+<tr class="memdesc:a4747e17db1207d1f5b58678882a3e61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follows a list of given commands. Can provide a name for debugging purposes.  <br /></td></tr>
 <tr class="separator:a4747e17db1207d1f5b58678882a3e61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c6b6c8989ab8c6977a3ab615a772b87"><td class="memItemLeft" align="right" valign="top"><a id="a1c6b6c8989ab8c6977a3ab615a772b87" name="a1c6b6c8989ab8c6977a3ab615a772b87"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>interrupt</b> ()</td></tr>
+<tr class="memitem:a1c6b6c8989ab8c6977a3ab615a772b87"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html#a1c6b6c8989ab8c6977a3ab615a772b87">interrupt</a> ()</td></tr>
+<tr class="memdesc:a1c6b6c8989ab8c6977a3ab615a772b87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the current command(s).  <br /></td></tr>
 <tr class="separator:a1c6b6c8989ab8c6977a3ab615a772b87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4027f8ce1d956073f553b7cedcf7d7b1"><td class="memItemLeft" align="right" valign="top"><a id="a4027f8ce1d956073f553b7cedcf7d7b1" name="a4027f8ce1d956073f553b7cedcf7d7b1"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setFlipped</b> (const bool iFlipped)</td></tr>
+<tr class="memitem:a4027f8ce1d956073f553b7cedcf7d7b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html#a4027f8ce1d956073f553b7cedcf7d7b1">setFlipped</a> (const bool iFlipped)</td></tr>
+<tr class="memdesc:a4027f8ce1d956073f553b7cedcf7d7b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether the commands should be flipped across the x-axis (if the color is changed).  <br /></td></tr>
 <tr class="separator:a4027f8ce1d956073f553b7cedcf7d7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled movements. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a824d9f1e47572a95942b0d3d935a75c3" name="a824d9f1e47572a95942b0d3d935a75c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a824d9f1e47572a95942b0d3d935a75c3">&#9670;&#160;</a></span>PathFollower()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">atum::PathFollower::PathFollower </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Drive.html">Drive</a> *&#160;</td>
+          <td class="paramname"><em>iDrive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;&#160;</td>
+          <td class="paramname"><em>iDefaultAcceptable</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt;&#160;</td>
+          <td class="paramname"><em>iLeft</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt;&#160;</td>
+          <td class="paramname"><em>iRight</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;&#160;</td>
+          <td class="paramname"><em>iKA</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>iFeedbackParams</em> = <code><a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a>{true,&#160;2.0,&#160;0.7}</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classatum_1_1PathFollower.html" title="Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled...">PathFollower</a> object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iDrive</td><td></td></tr>
+    <tr><td class="paramname">iDefaultAcceptable</td><td></td></tr>
+    <tr><td class="paramname">iLeft</td><td></td></tr>
+    <tr><td class="paramname">iRight</td><td></td></tr>
+    <tr><td class="paramname">iKA</td><td></td></tr>
+    <tr><td class="paramname">iFeedbackParams</td><td></td></tr>
+    <tr><td class="paramname">loggerLevel</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a4747e17db1207d1f5b58678882a3e61d" name="a4747e17db1207d1f5b58678882a3e61d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4747e17db1207d1f5b58678882a3e61d">&#9670;&#160;</a></span>follow()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::PathFollower::follow </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>commands</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Follows a list of given commands. Can provide a name for debugging purposes. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">commands</td><td></td></tr>
+    <tr><td class="paramname">name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a1c6b6c8989ab8c6977a3ab615a772b87" name="a1c6b6c8989ab8c6977a3ab615a772b87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c6b6c8989ab8c6977a3ab615a772b87">&#9670;&#160;</a></span>interrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::PathFollower::interrupt </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Interrupts the current command(s). </p>
+
+</div>
+</div>
+<a id="a4027f8ce1d956073f553b7cedcf7d7b1" name="a4027f8ce1d956073f553b7cedcf7d7b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4027f8ce1d956073f553b7cedcf7d7b1">&#9670;&#160;</a></span>setFlipped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::PathFollower::setFlipped </td>
+          <td>(</td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>iFlipped</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets whether the commands should be flipped across the x-axis (if the color is changed). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iFlipped</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/motion/<a class="el" href="pathFollower_8hpp_source.html">pathFollower.hpp</a></li>
 </ul>
