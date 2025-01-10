@@ -84,4 +84,8 @@ meters_per_second_t Drive::getMaxVelocity() const {
   const double maxRPM{getValueAs<revolutions_per_minute_t>(left->getMaxRPM())};
   return maxRPM * geometry.circum / 1_min;
 }
+
+Condition Drive::checkIsNear(const Pose pose, const meter_t threshold) {
+  return [=]() { return distance(getPose(), pose) <= threshold; };
+}
 } // namespace atum

@@ -60,6 +60,15 @@ class GoalClamp {
    */
   void toggleClamp();
 
+  /**
+   * @brief A condition to be used for scheduling or waiting. Returns a function
+   * that, when called, returns true if the clamp has a goal.
+   *
+   * @param desired
+   * @return Condition
+   */
+  Condition checkHasGoal();
+
   private:
   std::unique_ptr<Piston> piston;
   std::unique_ptr<LimitSwitch> limitSwitch1;

@@ -71,7 +71,7 @@ class Drive {
   void arcade(const double forwardVoltage, const double turnVoltage);
 
   /**
-   * @brief Stops both sides of the drive. 
+   * @brief Stops both sides of the drive.
    *
    */
   void brake();
@@ -132,6 +132,17 @@ class Drive {
    * @return meters_per_second_t
    */
   meters_per_second_t getMaxVelocity() const;
+
+  /**
+   * @brief A condition to be used for scheduling or waiting. Returns a function
+   * that, when called, returns true if the drive is within the threshold of the
+   * given pose.
+   *
+   * @param pose
+   * @param within
+   * @return Condition
+   */
+  Condition checkIsNear(const Pose pose, const meter_t threshold);
 
   private:
   std::unique_ptr<Motor> left;

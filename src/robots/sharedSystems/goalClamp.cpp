@@ -9,8 +9,8 @@ GoalClamp::GoalClamp(std::unique_ptr<Piston> iPiston,
     limitSwitch1{std::move(iLimitSwitch1)},
     limitSwitch2{std::move(iLimitSwitch2)},
     logger{loggerLevel} {
-        logger.info("Goal clamp is constructed!");
-    }
+  logger.info("Goal clamp is constructed!");
+}
 
 bool GoalClamp::hasGoal() {
   if(limitSwitch1 && limitSwitch1->check() && limitSwitch2 &&
@@ -34,5 +34,9 @@ void GoalClamp::unclamp() {
 
 void GoalClamp::toggleClamp() {
   piston->toggle();
+}
+
+Condition GoalClamp::checkHasGoal() {
+  return [=]() { return hasGoal(); };
 }
 } // namespace atum
