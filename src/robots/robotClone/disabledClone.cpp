@@ -1,7 +1,18 @@
-#include "robot15A.hpp"
+#include "robotClone.hpp"
 
 namespace atum {
-Robot15A::Robot15A() : Robot{this} {
+RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
+  driveSetup();
+  ladybrownSetup();
+  intakeSetup();
+}
+
+void RobotClone::disabled() {
+  intake->startBackgroundTasks();
+  ladybrown->startBackgroundTasks();
+}
+
+void RobotClone::driveSetup() {
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
       MotorPortsList{-7, -8, -9, 10},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
@@ -26,7 +37,9 @@ Robot15A::Robot15A() : Robot{this} {
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
                                   Drive::Geometry{15_in, 10.21_in});
+}
 
+void RobotClone::ladybrownSetup() {
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-15},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
@@ -78,7 +91,9 @@ Robot15A::Robot15A() : Robot{this} {
                                           std::move(ladybrownLineTracker),
                                           ladybrownParameters,
                                           std::move(profileFollower));
+}
 
+void RobotClone::intakeSetup() {
   std::unique_ptr<Motor> intakeMtr{std::make_unique<Motor>(
       MotorPortsList{-5, 6}, Motor::Gearing{pros::v5::MotorGears::blue})};
   std::vector<ColorSensor::HueField> hueFields{
@@ -86,7 +101,7 @@ Robot15A::Robot15A() : Robot{this} {
   std::unique_ptr<ColorSensor> colorSensor{
       std::make_unique<ColorSensor>(17, hueFields)};
   Intake::Parameters intakeParams;
-  intakeParams.jamVelocity = 30_rpm;
+  intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
@@ -96,10 +111,5 @@ Robot15A::Robot15A() : Robot{this} {
                                     std::move(colorSensor),
                                     ladybrown.get(),
                                     intakeParams);
-}
-
-void Robot15A::disabled() {
-  intake->startBackgroundTasks();
-  ladybrown->startBackgroundTasks();
 }
 } // namespace atum

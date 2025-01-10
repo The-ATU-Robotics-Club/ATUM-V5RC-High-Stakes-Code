@@ -5,7 +5,7 @@
 #include "api.h"
 #include "atum/atum.hpp"
 #include "pros/apix.h"
-#include "robots/robot15A/robot15A.hpp"
+#include "robots/robotClone/robotClone.hpp"
 #include "robots/robotPrototype/robotPrototype.hpp"
 
 #ifdef __cplusplus

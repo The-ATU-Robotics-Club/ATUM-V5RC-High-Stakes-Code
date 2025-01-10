@@ -1,7 +1,7 @@
-#include "robot15A.hpp"
+#include "robotClone.hpp"
 
 namespace atum {
-void Robot15A::opcontrol() {
+void RobotClone::opcontrol() {
   Timer fifteenAway{1_min + 15_s};
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
@@ -47,7 +47,7 @@ void Robot15A::opcontrol() {
   }
 }
 
-void Robot15A::remotePrinting() {
+void RobotClone::remotePrinting() {
   remote.print(
       0,
       "BRAIN: " +
@@ -56,7 +56,7 @@ void Robot15A::remotePrinting() {
   remote.print(1, "SORT: " + toString(intake->getSortOutColor()));
 }
 
-void Robot15A::manualControls() {
+void RobotClone::manualControls() {
   remote.print(2, "MODE: Manual");
 
   switch(remote.getLTrigger()) {
@@ -72,7 +72,7 @@ void Robot15A::manualControls() {
   }
 }
 
-void Robot15A::ladybrownControls() {
+void RobotClone::ladybrownControls() {
   remote.print(2, "MODE: Ladybrown");
 
   switch(remote.getLTrigger()) {
@@ -95,7 +95,7 @@ void Robot15A::ladybrownControls() {
   }
 }
 
-void Robot15A::intakeControls() {
+void RobotClone::intakeControls() {
   remote.print(2, "MODE: Intake");
 
   // Only go down if you know it's okay to go down.
@@ -116,7 +116,7 @@ void Robot15A::intakeControls() {
   }
 }
 
-void Robot15A::configurationControls() {
+void RobotClone::configurationControls() {
   if(remote.getPress(Remote::Button::X)) {
     useManualControls = !useManualControls;
   }

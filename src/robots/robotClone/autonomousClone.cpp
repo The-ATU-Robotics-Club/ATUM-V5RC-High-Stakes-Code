@@ -1,8 +1,7 @@
-#include "atum/gui/routines.hpp"
-#include "robot15A.hpp"
+#include "robotClone.hpp"
 
 namespace atum {
-ROUTINE_DEFINITIONS_FOR(Robot15A) {
+ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Skills")
   // Path follower setup.
   Path::setDefaultParams(
