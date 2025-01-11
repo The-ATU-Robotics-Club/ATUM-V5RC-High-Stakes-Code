@@ -18,6 +18,6 @@ var searchData=
   ['potentiometer_2ehpp_15',['potentiometer.hpp',['../potentiometer_8hpp.html',1,'']]],
   ['prepare_16',['prepare',['../classatum_1_1Ladybrown.html#a73fd580e8e076475689a027ee08b9921',1,'atum::Ladybrown']]],
   ['print_17',['print',['../classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2',1,'atum::Remote']]],
-  ['profilefollower_18',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum::ProfileFollower&lt; Unit &gt;'],['../classatum_1_1ProfileFollower.html#a96f341ecfc31542b64f0dc0a42702744',1,'atum::ProfileFollower::ProfileFollower()']]],
+  ['profilefollower_18',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum::ProfileFollower&lt; Unit &gt;'],['../classatum_1_1ProfileFollower.html#a66f7b236272d66e048b57c060a6d3fad',1,'atum::ProfileFollower::ProfileFollower()']]],
   ['profilefollower_2ehpp_19',['profileFollower.hpp',['../profileFollower_8hpp.html',1,'']]]
 ];
