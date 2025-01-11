@@ -30,8 +30,11 @@ class IMU {
    * By providing ports, reconnecting is supported whenever the device isn't
    * connected at the beginning of the match.
    *
+   * The GPS, if provided, will be used to provide better estimates of heading.
+   *
    * @param ports
    * @param iReversed
+   * @param iGPS
    * @param loggerLevel
    */
   IMU(const PortsList &ports,
@@ -44,8 +47,11 @@ class IMU {
    * Minimum amount refers to the acceptable minimum amount of IMUs to be
    * found to not trigger a warning (zero IMUs will trigger an error).
    *
+   * The GPS, if provided, will be used to provide better estimates of heading.
+   *
    * @param expectedAmount
    * @param iReversed
+   * @param iGPS
    * @param loggerLevel
    */
   IMU(const std::size_t expectedAmount,
