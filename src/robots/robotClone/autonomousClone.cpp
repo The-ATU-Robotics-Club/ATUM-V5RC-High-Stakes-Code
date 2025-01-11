@@ -26,7 +26,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   AngularProfile::Parameters turnMotionParams{
       720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
   turnMotionParams.usePosition = true;
-  AngularProfile turnProfile{turnMotionParams, Logger::Level::Debug};
+  AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableAngle turnAcceptable{forever, 1_deg};
   PID::Parameters turnPIDParams{1.0, 0, 0, 0.85};
@@ -35,16 +35,17 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants kA{0.7, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{4.0});
+      std::make_unique<PID>(PID::Parameters{48.0});
   std::unique_ptr<AngularProfileFollower> profileFollower =
       std::make_unique<AngularProfileFollower>(
           turnProfile,
           turnAcceptable,
           std::move(turnVelocityController),
           kA,
-          std::move(turnPositionController));
-  std::unique_ptr<Turn> turn{std::make_unique<Turn>(
-      drive.get(), std::move(profileFollower), Logger::Level::Debug)};
+          std::move(turnPositionController),
+          5_deg);
+  std::unique_ptr<Turn> turn{
+      std::make_unique<Turn>(drive.get(), std::move(profileFollower))};
 
   // Testing setup
   Pose startingPose{-5_ft, -3_ft, 180_deg};
@@ -75,7 +76,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   AngularProfile::Parameters turnMotionParams{
       720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
   turnMotionParams.usePosition = true;
-  AngularProfile turnProfile{turnMotionParams, Logger::Level::Debug};
+  AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableAngle turnAcceptable{forever, 1_deg};
   PID::Parameters turnPIDParams{1.0, 0, 0, 0.85};
@@ -84,7 +85,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants kA{0.7, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{4.0});
+      std::make_unique<PID>(PID::Parameters{48.0, 0.0, 0.0, 0.0, 0.0});
   std::unique_ptr<AngularProfileFollower> profileFollower =
       std::make_unique<AngularProfileFollower>(
           turnProfile,
@@ -92,10 +93,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
           std::move(turnVelocityController),
           kA,
           std::move(turnPositionController),
-          1.1,
-          Logger::Level::Debug);
-  std::unique_ptr<Turn> turn{std::make_unique<Turn>(
-      drive.get(), std::move(profileFollower), Logger::Level::Debug)};
+          5_deg);
+  std::unique_ptr<Turn> turn{
+      std::make_unique<Turn>(drive.get(), std::move(profileFollower))};
 
   turn->toward(90_deg);    // Right
   turn->toward(180_deg);   // Right
@@ -106,6 +106,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   turn->toward(-90_deg);   // About
   turn->awayFrom(0_deg);   // Left
   turn->awayFrom(180_deg); // About
+  turn->toward(45_deg);
+  turn->toward(90_deg);
+  turn->toward(135_deg);
+  turn->toward(180_deg);
+  turn->toward(225_deg);
+  turn->toward(270_deg);
+  turn->toward(315_deg);
+  turn->toward(360_deg);
   END_ROUTINE
 
   START_ROUTINE("Ladybrown Test")

@@ -51,11 +51,17 @@ class ProfileFollower {
    * the profile by multiplying the profile's total time by it. Default is 10%
    * longer than expected.
    *
+   * The position control threshold determines how far away from the end of the
+   * profile position control is employed. The default will use position control
+   * for the entire profile and base it off the current reference rather than
+   * the end.
+   *
    * @param iProfile
    * @param iAcceptable
    * @param iVelocityController
    * @param iKA
    * @param iPositionController
+   * @param iPositionControlThreshold
    * @param iTimeoutScaling
    * @param loggerLevel
    */
@@ -64,6 +70,7 @@ class ProfileFollower {
                   std::unique_ptr<Controller> iVelocityController,
                   const AccelerationConstants &iKA,
                   std::unique_ptr<Controller> iPositionController = nullptr,
+                  const Unit iPositionControlThreshold = Unit{infinite},
                   const double iTimeoutScaling = 1.1,
                   const Logger::Level loggerLevel = Logger::Level::Info) :
       profile{iProfile},
@@ -71,6 +78,7 @@ class ProfileFollower {
       velocityController{std::move(iVelocityController)},
       kA{iKA},
       positionController{std::move(iPositionController)},
+      positionControlThreshold{iPositionControlThreshold},
       timeoutScaling{iTimeoutScaling},
       logger{loggerLevel} {
     if(!velocityController) {
@@ -140,17 +148,20 @@ class ProfileFollower {
 
   private:
   /**
-   * @brief Gets the output of the position controller if it is provided.
+   * @brief Gets the output of the position controller if it is provided. If
+   * position control threshold is infinite (default) uses the current
+   * reference, otherwise uses the end of the profile.
    *
    * @param state
-   * @param reference
    * @return double
    */
   double getPositionOutput(const Unit state, const Unit reference) const {
-    if(!positionController) {
+    if(!positionController || abs(end - state) >= positionControlThreshold) {
       return 0.0;
     }
-    const double positionError{difference(reference, state)};
+    const double positionError{positionControlThreshold == Unit{infinite} ?
+                                   difference(reference, state) :
+                                   difference(end, state)};
     return positionController->getOutput(positionError);
   }
 
@@ -204,6 +215,7 @@ class ProfileFollower {
   std::unique_ptr<Controller> velocityController;
   AccelerationConstants kA;
   std::unique_ptr<Controller> positionController;
+  Unit positionControlThreshold;
   const double timeoutScaling;
   Logger logger;
   Unit end;
