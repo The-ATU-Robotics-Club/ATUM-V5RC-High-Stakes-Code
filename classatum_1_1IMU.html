@@ -167,10 +167,12 @@ Public Member Functions</h2></td></tr>
 
 <p>Constructs a new <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> object with port numbers given. </p>
 <p>By providing ports, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
+<p>The <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a>, if provided, will be used to provide better estimates of heading.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ports</td><td></td></tr>
     <tr><td class="paramname">iReversed</td><td></td></tr>
+    <tr><td class="paramname">iGPS</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -217,10 +219,12 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a> object with ports dynamically found. Minimum amount refers to the acceptable minimum amount of IMUs to be found to not trigger a warning (zero IMUs will trigger an error). </p>
+<p>The <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a>, if provided, will be used to provide better estimates of heading.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">expectedAmount</td><td></td></tr>
     <tr><td class="paramname">iReversed</td><td></td></tr>
+    <tr><td class="paramname">iGPS</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
