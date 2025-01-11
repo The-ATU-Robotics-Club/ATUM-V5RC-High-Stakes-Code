@@ -17,6 +17,7 @@ var annotated_dup =
       [ "DistanceSensor", "classatum_1_1DistanceSensor.html", "classatum_1_1DistanceSensor" ],
       [ "Drive", "classatum_1_1Drive.html", "classatum_1_1Drive" ],
       [ "GoalClamp", "classatum_1_1GoalClamp.html", "classatum_1_1GoalClamp" ],
+      [ "GPS", "classatum_1_1GPS.html", "classatum_1_1GPS" ],
       [ "IMU", "classatum_1_1IMU.html", "classatum_1_1IMU" ],
       [ "Intake", "classatum_1_1Intake.html", "classatum_1_1Intake" ],
       [ "Kinematics", "classatum_1_1Kinematics.html", null ],

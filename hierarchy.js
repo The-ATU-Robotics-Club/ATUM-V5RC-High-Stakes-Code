@@ -16,6 +16,7 @@ var hierarchy =
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
     [ "atum::Drive::Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "atum::GoalClamp", "classatum_1_1GoalClamp.html", null ],
+    [ "atum::GPS", "classatum_1_1GPS.html", null ],
     [ "atum::GUI::Screen::GUIPosition", "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html", null ],
     [ "atum::GUI::Screen::GUISize", "structatum_1_1GUI_1_1Screen_1_1GUISize.html", null ],
     [ "atum::ColorSensor::HueField", "structatum_1_1ColorSensor_1_1HueField.html", null ],

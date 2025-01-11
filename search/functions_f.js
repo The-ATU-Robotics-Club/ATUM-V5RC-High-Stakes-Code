@@ -10,7 +10,7 @@ var searchData=
   ['setdefaultparams_7',['setDefaultParams',['../classatum_1_1Path.html#a3e455323aee900447386078039feee7d',1,'atum::Path']]],
   ['setflipped_8',['setFlipped',['../classatum_1_1PathFollower.html#a4027f8ce1d956073f553b7cedcf7d7b1',1,'atum::PathFollower::setFlipped()'],['../classatum_1_1Turn.html#a479fc39720f2492321b42d59451e3a63',1,'atum::Turn::setFlipped()']]],
   ['setheading_9',['setHeading',['../classatum_1_1IMU.html#ab2c7de112a484d12704dda215a1864c2',1,'atum::IMU']]],
-  ['setpose_10',['setPose',['../classatum_1_1Tracker.html#ad3af8500f4e8b72a2b99794c5e7234c1',1,'atum::Tracker::setPose()'],['../classatum_1_1Drive.html#a1b21296734df5a8105b52342b6a7f456',1,'atum::Drive::setPose()']]],
+  ['setpose_10',['setPose',['../classatum_1_1Drive.html#a1b21296734df5a8105b52342b6a7f456',1,'atum::Drive::setPose()'],['../classatum_1_1Tracker.html#ad3af8500f4e8b72a2b99794c5e7234c1',1,'atum::Tracker::setPose()'],['../classatum_1_1GPS.html#a15aab0a3104f728f65fdab27eaa41743',1,'atum::GPS::setPose()']]],
   ['setseriesrange_11',['setSeriesRange',['../classatum_1_1GUI_1_1Graph.html#a62a671f215aae393d61a322d14e0f180',1,'atum::GUI::Graph::setSeriesRange(const SeriesRange &amp;range, const SeriesColor seriesColor)'],['../classatum_1_1GUI_1_1Graph.html#affee93a149cdbef0f3a25cd80d103216',1,'atum::GUI::Graph::setSeriesRange(double range, const SeriesColor seriesColor)']]],
   ['setsortoutcolor_12',['setSortOutColor',['../classatum_1_1Intake.html#a6a4ceedb6d9002bbcc69c245bb8d6879',1,'atum::Intake']]],
   ['settime_13',['setTime',['../classatum_1_1Timer.html#ad0c8e225fcd2d4c9b8c0cf3d8adb6b22',1,'atum::Timer']]],
