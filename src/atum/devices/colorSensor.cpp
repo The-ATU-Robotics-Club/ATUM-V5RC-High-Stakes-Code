@@ -71,7 +71,7 @@ void ColorSensor::initializeColorSensor() {
   wait(100_ms);
   colorSensor->disable_gesture();
   wait(100_ms);
-  logger.info("Color sensor contructed with port " +
+  logger.info("Color sensor constructed with port " +
               std::to_string(colorSensor->get_port()) + ".");
 }
 

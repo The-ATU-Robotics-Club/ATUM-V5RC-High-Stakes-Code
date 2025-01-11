@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "../pose/gps.hpp"
 #include "../time/time.hpp"
 #include "../utility/logger.hpp"
 #include "../utility/units.hpp"
@@ -35,6 +36,7 @@ class IMU {
    */
   IMU(const PortsList &ports,
       const bool iReversed = false,
+      GPS *iGPS = nullptr,
       Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -48,6 +50,7 @@ class IMU {
    */
   IMU(const std::size_t expectedAmount,
       const bool iReversed = false,
+      GPS *iGPS = nullptr,
       Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -82,6 +85,7 @@ class IMU {
 
   std::vector<std::unique_ptr<pros::IMU>> imus;
   const bool reversed;
+  GPS *gps;
   Logger logger;
   degree_t previous{0_deg};
 };
