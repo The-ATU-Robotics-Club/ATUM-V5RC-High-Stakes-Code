@@ -66,9 +66,6 @@ Path::Path(const std::pair<Pose, Pose> &waypoints,
     end{waypoints.second},
     params{defaultParams},
     logger{loggerLevel} {
-  if(end.v != 0_mps) {
-    params.maxV = end.v;
-  }
   if(specialParams.has_value()) {
     params = specialParams.value();
   }
@@ -173,10 +170,12 @@ void Path::endParameterize() {
     path[i].omega = radians_per_second_t{
         getValueAs<meters_per_second_t>(path[i].v) * curvatures[i]};
     const meters_per_second_t avgV{(path[i - 1].v + path[i].v) / 2.0};
-    const second_t dt{params.spacing / avgV};
-    path[i - 1].a = (path[i].v - path[i - 1].v) / dt;
-    path[i - 1].alpha = (path[i].omega - path[i - 1].omega) / dt;
-    path[i].t = path[i - 1].t + dt;
+    path[i - 1].a = (path[i].v * path[i].v - path[i - 1].v * path[i - 1].v) /
+                    (2.0 * params.spacing);
+    path[i - 1].alpha = (path[i].omega * path[i].omega -
+                         path[i - 1].omega * path[i - 1].omega) /
+                        (2.0 * abs(difference(path[i].h, path[i - 1].h)));
+    path[i].t = path[i - 1].t + params.spacing / avgV;
   }
   path.back().a = 0_mps_sq;
   path.back().alpha = 0_rad_per_s_sq;

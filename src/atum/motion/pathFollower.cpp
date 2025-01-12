@@ -133,12 +133,10 @@ std::pair<double, double> PathFollower::toRPM(const double v,
                                               const double omega) {
   auto [leftV, rightV] = toLR(v, omega);
   const double maxV{getValueAs<meters_per_second_t>(drive->getMaxVelocity())};
-  if(abs(leftV) > maxV) {
-    rightV -= leftV - maxV;
-    leftV = leftV > 0 ? maxV : -maxV;
-  } else if(abs(rightV) > maxV) {
-    leftV -= rightV - maxV;
-    rightV = rightV > 0 ? maxV : -maxV;
+  const double scalar{max(std::abs(leftV), std::abs(rightV)) / maxV};
+  if(scalar > 1.0) {
+    leftV /= scalar;
+    rightV /= scalar;
   }
   const double mpsToRPM{60.0 / drive->getGeometry().circum};
   return {mpsToRPM * leftV, mpsToRPM * rightV};

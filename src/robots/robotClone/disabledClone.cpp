@@ -36,7 +36,7 @@ void RobotClone::driveSetup() {
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
-                                  Drive::Geometry{15_in, 10.21_in});
+                                  Drive::Geometry{11.862_in, 10.21_in});
 }
 
 void RobotClone::ladybrownSetup() {

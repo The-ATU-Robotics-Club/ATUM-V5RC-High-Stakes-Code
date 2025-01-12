@@ -100,8 +100,7 @@ class Path {
   };
 
   /**
-   * @brief Constructs a new Path based on the given waypoints. If a velocity is
-   * given for the end waypoint, it will be treated as the max velocity.
+   * @brief Constructs a new Path based on the given waypoints.
    *
    * @param waypoints
    * @param specialParams

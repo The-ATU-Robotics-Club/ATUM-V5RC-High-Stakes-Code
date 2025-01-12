@@ -5,8 +5,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Skills")
   // Path follower setup.
   Path::setDefaultParams(
-      {1.5, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track, 1_in});
-  AcceptableDistance acceptable{10_s, 1_in};
+      {1, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track});
+  AcceptableDistance acceptable{forever, 1_in};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
   std::unique_ptr<Controller> left{
@@ -18,7 +18,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
                                      acceptable,
                                      std::move(left),
                                      std::move(right),
-                                     AccelerationConstants{0.0, 1.85},
+                                     AccelerationConstants{0.5, 1.6},
                                      PathFollower::FeedbackParameters{},
                                      Logger::Level::Debug)};
 
@@ -35,7 +35,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants kA{0.7, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{48.0});
+      std::make_unique<PID>(PID::Parameters{48.0, 0.0, 0.0, 0.0, 0.0});
   std::unique_ptr<AngularProfileFollower> profileFollower =
       std::make_unique<AngularProfileFollower>(
           turnProfile,
@@ -60,13 +60,13 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   // Testing
   pathFollower->follow(
-      {{{-3_ft, -5_ft, 90_deg, 40_in_per_s}}, {{-1_ft, -5_ft, 90_deg}}},
+      {{{-1_ft, -4.625_ft, 90_deg}, false, Path::Parameters{2.8, 25_in_per_s}}},
       "Test Curve");
   turn->toward(-15_deg);
-  pathFollower->follow({{{0_tile, 0_tile, 45_deg}}});
+  pathFollower->follow({{{0_tile, 0_tile, 45_deg}, false, {3.5}}});
   turn->awayFrom(135_deg);
-  pathFollower->follow(
-      {{{1.5_tile, -2.5_tile, 0_deg}, true}, {{1.5_tile, -1.5_tile, 0_deg}}});
+  pathFollower->follow({{{1.5_tile, -2.5_tile, 0_deg}, true, {4}},
+                        {{1.5_tile, -1.5_tile, 0_deg}, false}});
 
   END_ROUTINE
 
@@ -123,9 +123,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   END_ROUTINE
 
   START_ROUTINE("Pathing Test")
-  drive->setPose({-2.5_tile, 2.5_tile, -90_deg});
   Path::setDefaultParams(
-      {1, 76.5_in_per_s, 76.5_in_per_s_sq, drive->getGeometry().track, 1_in});
+      {1.5, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track, 1_in});
   AcceptableDistance acceptable{10_s, 1_in};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
@@ -138,21 +137,16 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
                                      acceptable,
                                      std::move(left),
                                      std::move(right),
-                                     AccelerationConstants{0.0, 1.85},
+                                     AccelerationConstants{0.5, 1.6},
                                      PathFollower::FeedbackParameters{},
                                      Logger::Level::Debug)};
-  Path::Parameters testParams{2, 0_in_per_s, 38.25_in_per_s_sq};
+
+  drive->setPose({-2.5_tile, -1.5_tile, 90_deg});
+  Path::Parameters testParams{2, 76.5_in_per_s, 40_in_per_s_sq};
   testParams.usePosition = true;
-  //   pathFollower->follow({{-0.5_tile, 2.5_tile, 90_deg}, false, testParams});
-  //   pathFollower->follow({{-1.5_tile, 1.5_tile, 0_deg}, true, testParams});
-  pathFollower->follow(
-      {{{-1.5_tile, 1.5_tile, 0_deg, 38.25_in_per_s}, true, testParams},
-       {{-0.5_tile, 0.5_tile, -90_deg}, true, testParams}});
-  pathFollower->follow(
-      {{{-1.5_tile, 1.5_tile, 0_deg, 38.25_in_per_s}, false, testParams},
-       {{-2.5_tile, 2.5_tile, -90_deg}, false, testParams}});
-  //   pathFollower->follow({{-2.5_tile, 2.5_tile, -90_deg}, false,
-  //   testParams});
+  pathFollower->follow({{{-0.5_tile, -1.5_tile, 90_deg}, false, testParams}});
+  wait(2_s);
+  pathFollower->follow({{{-2.5_tile, -1.5_tile, 90_deg}, true, testParams}});
   END_ROUTINE
 
   START_ROUTINE("Test 3")
