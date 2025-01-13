@@ -121,12 +121,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b5554152d6be6d6759180da6e7af796"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GPS.html#a3b5554152d6be6d6759180da6e7af796">getPose</a> ()</td></tr>
 <tr class="memdesc:a3b5554152d6be6d6759180da6e7af796"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current pose reading of the <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a>, provided mostly for debugging purposes.  <br /></td></tr>
 <tr class="separator:a3b5554152d6be6d6759180da6e7af796"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf65ba0f457a7676d041da2fdc273d76"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GPS.html#adf65ba0f457a7676d041da2fdc273d76">getHeading</a> (const degree_t other)</td></tr>
-<tr class="memdesc:adf65ba0f457a7676d041da2fdc273d76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current heading according to the <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a> by taking a weighted average with some other reading.  <br /></td></tr>
-<tr class="separator:adf65ba0f457a7676d041da2fdc273d76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cc390b0bfef85bba83598cfa300e94d"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GPS.html#a4cc390b0bfef85bba83598cfa300e94d">getHeading</a> ()</td></tr>
-<tr class="memdesc:a4cc390b0bfef85bba83598cfa300e94d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current heading according to the <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a>.  <br /></td></tr>
-<tr class="separator:a4cc390b0bfef85bba83598cfa300e94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3bbba48ba57953dbc31bcf78a8bd16d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GPS.html#a3bbba48ba57953dbc31bcf78a8bd16d8">resetTracker</a> (<a class="el" href="classatum_1_1Tracker.html">Tracker</a> *tracker)</td></tr>
 <tr class="memdesc:a3bbba48ba57953dbc31bcf78a8bd16d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets a given tracker by taking a weighted average with its current measured pose.  <br /></td></tr>
 <tr class="separator:a3bbba48ba57953dbc31bcf78a8bd16d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,60 +268,6 @@ Static Public Attributes</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
-
-</div>
-</div>
-<a id="a4cc390b0bfef85bba83598cfa300e94d" name="a4cc390b0bfef85bba83598cfa300e94d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cc390b0bfef85bba83598cfa300e94d">&#9670;&#160;</a></span>getHeading() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">degree_t atum::GPS::getHeading </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the current heading according to the <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">other</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
-
-</div>
-</div>
-<a id="adf65ba0f457a7676d041da2fdc273d76" name="adf65ba0f457a7676d041da2fdc273d76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf65ba0f457a7676d041da2fdc273d76">&#9670;&#160;</a></span>getHeading() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">degree_t atum::GPS::getHeading </td>
-          <td>(</td>
-          <td class="paramtype">const degree_t&#160;</td>
-          <td class="paramname"><em>other</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the current heading according to the <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a> by taking a weighted average with some other reading. </p>
-<p>Will rely entirely on the other reading if the <a class="el" href="classatum_1_1GPS.html" title="This acts as a wrapper around the GPS sensor to support integration with the IMUs and resetting other...">GPS</a> check fails.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">other</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
 
 </div>
 </div>
