@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1Schedule.html":[1,0,0,33],
 "classatum_1_1Schedule.html#a07c386fac9d9a6cca0de9f6d49b4b722":[1,0,0,33,2],
 "classatum_1_1Schedule.html#a2312d2e485462eb49ac91f10d75a1793":[1,0,0,33,1],
 "classatum_1_1SlewRate.html":[1,0,0,34],
@@ -148,6 +149,7 @@ var NAVTREEINDEX1 =
 "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a04ef591d0f3f79dfafcae27152a0424d":[2,0,0,1,2,2,2,3],
 "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a16bfbf9c462762cf1cba4134ec53c504":[2,0,0,1,2,2,2,4],
 "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a6b5562906aeff1314514b42b3951e99a":[2,0,0,1,2,2,2,2],
+"ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a8904f959eecbf925caa3419952de3b5f":[2,0,0,1,2,2,2,8],
 "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a983f54421cac095b304bb72361ae1e38":[2,0,0,1,2,2,2,6],
 "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807aad866f19a13c5386d2ec6df246dcbfac":[2,0,0,1,2,2,2,5],
 "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807abb86995d10fda5ca6dc50c8cf9c64bd9":[2,0,0,1,2,2,2,7],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "structatum_1_1AccelerationConstants.html":[1,0,0,1],
 "structatum_1_1ColorSensor_1_1HueField.html":[1,0,0,4,0],
 "structatum_1_1Drive_1_1Geometry.html":[1,0,0,7,0],
-"structatum_1_1GUI_1_1Graph_1_1SeriesRange.html":[1,0,0,0,0,0],
-"structatum_1_1GUI_1_1Screen_1_1GUIPosition.html":[1,0,0,0,5,0],
-"structatum_1_1GUI_1_1Screen_1_1GUISize.html":[1,0,0,0,5,1]
+"structatum_1_1GUI_1_1Graph_1_1SeriesRange.html":[1,0,0,0,0,0]
 };

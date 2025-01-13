@@ -10,6 +10,7 @@ var ladybrown_8hpp =
       [ "Loading", "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a16bfbf9c462762cf1cba4134ec53c504", null ],
       [ "Preparing", "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807aad866f19a13c5386d2ec6df246dcbfac", null ],
       [ "Scoring", "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a983f54421cac095b304bb72361ae1e38", null ],
-      [ "FinishScoring", "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807abb86995d10fda5ca6dc50c8cf9c64bd9", null ]
+      [ "FinishScoring", "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807abb86995d10fda5ca6dc50c8cf9c64bd9", null ],
+      [ "FullyExtending", "ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807a8904f959eecbf925caa3419952de3b5f", null ]
     ] ]
 ];
