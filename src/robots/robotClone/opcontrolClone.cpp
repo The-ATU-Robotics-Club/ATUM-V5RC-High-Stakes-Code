@@ -19,7 +19,7 @@ void RobotClone::opcontrol() {
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     gps->getPose();
-    
+
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
     drive->arcade(forward, turn);
@@ -28,6 +28,8 @@ void RobotClone::opcontrol() {
 
     if(useManualControls) {
       manualControls();
+    } else if(useHangControls) {
+      hangControls();
     } else if(useLadybrownControls) {
       ladybrownControls();
     } else {
@@ -118,13 +120,33 @@ void RobotClone::intakeControls() {
   }
 }
 
+void RobotClone::hangControls() {
+  remote.print(2, "MODE: Hang");
+  if(remote.getHold(Remote::Button::L1)) {
+    ladybrown->prepare();
+  } else {
+    ladybrown->fullyExtend();
+  }
+  switch(remote.getRTrigger()) {
+    case -1: intake->outtake(); break;
+    case 1: intake->intake(); break;
+    default: intake->stop(); break;
+  }
+}
+
 void RobotClone::configurationControls() {
   if(remote.getPress(Remote::Button::X)) {
     useManualControls = !useManualControls;
+    useHangControls = false; // Hang controls have the lowest precedence.
   }
 
   if(remote.getPress(Remote::Button::Right)) {
     useLadybrownControls = !useLadybrownControls;
+    useHangControls = false; // Hang controls have the lowest precedence.
+  }
+
+  if(remote.getPress(Remote::Button::Up)) {
+    useHangControls = !useHangControls;
   }
 
   if(remote.getPress(Remote::Button::Down)) {

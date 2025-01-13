@@ -112,6 +112,12 @@ class RobotClone : public Robot {
   void intakeControls();
 
   /**
+   * @brief Deals with controls in hang mode.
+   *
+   */
+  void hangControls();
+
+  /**
    * @brief Deals with the various shift keys and buttons to change the state of
    * the robot (going to ladybrown/intake/manual mode, changing brake mode,
    * etcetera).
@@ -125,8 +131,9 @@ class RobotClone : public Robot {
   std::unique_ptr<GPS> gps;
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
-  Piston goalClamp{'A'};
+  Piston goalClamp{'H'};
   bool useManualControls{false};
   bool useLadybrownControls{false};
+  bool useHangControls{false};
 };
 } // namespace atum

@@ -31,8 +31,10 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
   params.statePositions[LadybrownState::Retracting] = {};
   params.statePositions[LadybrownState::FinishScoring] =
       params.statePositions[LadybrownState::Preparing];
+  params.statePositions[LadybrownState::FullyExtending] =
+      params.statePositions[LadybrownState::Scoring];
   stop();
-  
+
   logger.info("Ladybrown is constructed!");
 }
 
@@ -70,6 +72,10 @@ void Ladybrown::score() {
     return;
   }
   changeState(LadybrownState::Scoring, false);
+}
+
+void Ladybrown::fullyExtend() {
+  changeState(LadybrownState::FullyExtending, false);
 }
 
 LadybrownState Ladybrown::getClosestNamedPosition() const {
@@ -219,7 +225,8 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       case LadybrownState::Resting:
       case LadybrownState::Loading:
       case LadybrownState::Preparing:
-      case LadybrownState::FinishScoring: moveTo(state); break;
+      case LadybrownState::FinishScoring:
+      case LadybrownState::FullyExtending: moveTo(state); break;
       case LadybrownState::Scoring:
         moveTo(state);
         finishScore();

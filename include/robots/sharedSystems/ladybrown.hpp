@@ -29,7 +29,8 @@ enum class LadybrownState {
   // Moving to the completely extended position before going to the preparing
   // position.
   Scoring, // Associated with a position!
-  FinishScoring
+  FinishScoring,
+  FullyExtending
 };
 
 /**
@@ -138,6 +139,13 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    *
    */
   void score();
+
+  /**
+   * @brief Tells the ladybrown to extend all the way out (to its scoring
+   * position).
+   *
+   */
+  void fullyExtend();
 
   /**
    * @brief Gets the name state of the closest important position (Resting,
