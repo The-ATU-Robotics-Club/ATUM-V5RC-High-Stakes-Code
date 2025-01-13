@@ -30,16 +30,12 @@ class IMU {
    * By providing ports, reconnecting is supported whenever the device isn't
    * connected at the beginning of the match.
    *
-   * The GPS, if provided, will be used to provide better estimates of heading.
-   *
    * @param ports
    * @param iReversed
-   * @param iGPS
    * @param loggerLevel
    */
   IMU(const PortsList &ports,
       const bool iReversed = false,
-      GPS *iGPS = nullptr,
       Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -47,16 +43,12 @@ class IMU {
    * Minimum amount refers to the acceptable minimum amount of IMUs to be
    * found to not trigger a warning (zero IMUs will trigger an error).
    *
-   * The GPS, if provided, will be used to provide better estimates of heading.
-   *
    * @param expectedAmount
    * @param iReversed
-   * @param iGPS
    * @param loggerLevel
    */
   IMU(const std::size_t expectedAmount,
       const bool iReversed = false,
-      GPS *iGPS = nullptr,
       Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -91,7 +83,6 @@ class IMU {
 
   std::vector<std::unique_ptr<pros::IMU>> imus;
   const bool reversed;
-  GPS *gps;
   Logger logger;
   degree_t previous{0_deg};
 };

@@ -81,25 +81,6 @@ class GPS {
   Pose getPose();
 
   /**
-   * @brief Gets the current heading according to the GPS by taking a weighted
-   * average with some other reading.
-   *
-   * Will rely entirely on the other reading if the GPS check fails.
-   *
-   * @param other
-   * @return degree_t
-   */
-  degree_t getHeading(const degree_t other);
-
-  /**
-   * @brief Gets the current heading according to the GPS.
-   *
-   * @param other
-   * @return degree_t
-   */
-  degree_t getHeading();
-
-  /**
    * @brief Resets a given tracker by taking a weighted average with its current
    * measured pose.
    *
@@ -125,6 +106,17 @@ class GPS {
    *
    */
   static constexpr double maxError{0.5};
+
+  /**
+   * @brief Gets the current heading according to the GPS by taking a weighted
+   * average with some other reading.
+   *
+   * Will rely entirely on the other reading if the GPS check fails.
+   *
+   * @param other
+   * @return degree_t
+   */
+  degree_t getHeading(const degree_t other);
 
   /**
    * @brief Initializes the GPS by setting its offset and setting its data rate.

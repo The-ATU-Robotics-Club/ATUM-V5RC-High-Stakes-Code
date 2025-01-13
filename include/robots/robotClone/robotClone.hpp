@@ -28,8 +28,8 @@ class RobotClone : public Robot {
    * @brief Constants storing the brain IDs for the 15" and 24" bots.
    *
    */
-  static constexpr int ID15{0x64824900};
-  static constexpr int ID24{0x00000000};
+  static constexpr int ID15{0x9e344900};
+  static constexpr int ID24{0x64824900};
 
   /**
    * @brief Setups the robot, changing the setup depending on what ID is
@@ -51,22 +51,40 @@ class RobotClone : public Robot {
   private:
   // Setup helpers.
   /**
-   * @brief Sets up the drive.
+   * @brief Sets up the drive for the 15 inch.
    *
    */
-  void driveSetup();
+  void driveSetup15();
 
   /**
-   * @brief Sets up the ladybrown.
+   * @brief Sets up the ladybrown for the 15 inch.
    *
    */
-  void ladybrownSetup();
+  void ladybrownSetup15();
 
   /**
-   * @brief Sets up the intake.
+   * @brief Sets up the intake for the 15 inch.
    *
    */
-  void intakeSetup();
+  void intakeSetup15();
+
+  /**
+   * @brief Sets up the drive for the 24 inch.
+   *
+   */
+  void driveSetup24();
+
+  /**
+   * @brief Sets up the ladybrown for the 24 inch.
+   *
+   */
+  void ladybrownSetup24();
+
+  /**
+   * @brief Sets up the intake for the 24 inch.
+   *
+   */
+  void intakeSetup24();
 
   // Opcontrol helpers.
   /**
@@ -104,10 +122,10 @@ class RobotClone : public Robot {
   const int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
+  std::unique_ptr<GPS> gps;
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   Piston goalClamp{'A'};
-  std::unique_ptr<Odometry> odometry;
   bool useManualControls{false};
   bool useLadybrownControls{false};
 };

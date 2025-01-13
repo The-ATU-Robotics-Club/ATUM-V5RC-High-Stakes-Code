@@ -11,7 +11,6 @@ GPS::GPS(const std::int8_t port,
     fullPoseTrust{iFullPoseTrust},
     logger{loggerLevel} {
   gps = std::make_unique<pros::GPS>(port);
-  check();
   initializeGPS(offset);
 }
 
@@ -46,20 +45,12 @@ void GPS::setPose(const Pose &pose) {
 Pose GPS::getPose() {
   const meter_t x{gps->get_position_x()};
   const meter_t y{gps->get_position_y()};
+  const degree_t reading{gps->get_yaw()};
+  const degree_t h{reading - headingOffset};
   if(logger.getLevel() == Logger::Level::Debug) {
     GUI::Map::addPosition({x, y}, GUI::SeriesColor::Yellow);
   }
-  return {x, y};
-}
-
-degree_t GPS::getHeading(const degree_t otherHeading) {
-  if(!check()) {
-    return otherHeading;
-  }
-  const degree_t reading{gps->get_yaw()};
-  logger.debug("GPS heading reading is " + to_string(reading) + ".");
-  const degree_t gpsHeading{reading - headingOffset};
-  return headingTrust * gpsHeading + (1.0 - headingTrust) * otherHeading;
+  return {x, y, h};
 }
 
 void GPS::resetTracker(Tracker *tracker) {
@@ -69,8 +60,8 @@ void GPS::resetTracker(Tracker *tracker) {
   const Pose currentPose{getPose()};
   Pose newPose{fullPoseTrust * currentPose +
                (1.0 - fullPoseTrust) * tracker->getPose()};
-  // Don't reset anything but x and y coordinates.
-  newPose.h = currentPose.h;
+  newPose.h = getHeading(currentPose.h);
+  // Don't reset anything but x, y, and h.
   newPose.v = currentPose.v;
   newPose.a = currentPose.a;
   newPose.omega = currentPose.omega;
@@ -88,8 +79,18 @@ bool GPS::check() {
   return installed;
 }
 
+degree_t GPS::getHeading(const degree_t otherHeading) {
+  if(!check()) {
+    return otherHeading;
+  }
+  const degree_t reading{gps->get_yaw()};
+  const degree_t gpsHeading{reading - headingOffset};
+  return headingTrust * gpsHeading + (1.0 - headingTrust) * otherHeading;
+}
+
 void GPS::initializeGPS(const UnwrappedPose &offset) {
   gps->set_data_rate(5);
   gps->set_offset(offset.x, offset.y);
+  check();
 }
 } // namespace atum

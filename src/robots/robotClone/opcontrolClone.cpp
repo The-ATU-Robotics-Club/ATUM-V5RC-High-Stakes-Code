@@ -18,6 +18,8 @@ void RobotClone::opcontrol() {
   }
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
+    gps->getPose();
+    
     const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
     drive->arcade(forward, turn);

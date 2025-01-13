@@ -57,6 +57,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   turn->setFlipped(flipped);
 
   drive->setPose(startingPose);
+  gps->setPose(startingPose);
 
   // Testing
   pathFollower->follow(

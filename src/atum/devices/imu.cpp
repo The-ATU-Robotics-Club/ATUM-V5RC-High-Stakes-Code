@@ -3,9 +3,8 @@
 namespace atum {
 IMU::IMU(const PortsList &ports,
          const bool iReversed,
-         GPS *iGPS,
          Logger::Level loggerLevel) :
-    reversed{iReversed}, gps{iGPS}, logger{loggerLevel} {
+    reversed{iReversed}, logger{loggerLevel} {
   for(const std::uint8_t port : ports) {
     pros::v5::Device device{port};
     if(device.get_plugged_type() == pros::DeviceType::imu) {
@@ -25,9 +24,8 @@ IMU::IMU(const PortsList &ports,
 
 IMU::IMU(const std::size_t expectedAmount,
          const bool iReversed,
-         GPS *iGPS,
          Logger::Level loggerLevel) :
-    reversed{iReversed}, gps{iGPS}, logger{loggerLevel} {
+    reversed{iReversed}, logger{loggerLevel} {
   const auto rawIMUs{pros::IMU::get_all_devices()};
   if(!rawIMUs.size()) {
     logger.error("No IMUs found!");
@@ -67,9 +65,6 @@ degree_t IMU::getHeading() {
     heading *= -1;
   }
   logger.debug("IMU is reading " + to_string(heading) + ".");
-  if(gps) {
-    return gps->getHeading(heading);
-  }
   return heading;
 }
 
