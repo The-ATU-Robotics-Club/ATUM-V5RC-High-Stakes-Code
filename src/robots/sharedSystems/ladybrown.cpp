@@ -74,8 +74,16 @@ void Ladybrown::score() {
   changeState(LadybrownState::Scoring, false);
 }
 
+void Ladybrown::finishScore() {
+  // Don't bother with motion profiled movements if nearby.
+  if(getClosestNamedPosition() == LadybrownState::Preparing) {
+    return;
+  }
+  changeState(LadybrownState::FinishScoring, false);
+}
+
 void Ladybrown::fullyExtend() {
-  // Don't bother with motion profiled movements if nearby. 
+  // Don't bother with motion profiled movements if nearby.
   if(getClosestNamedPosition() == LadybrownState::Scoring) {
     return;
   }
@@ -120,17 +128,9 @@ bool Ladybrown::mayConflictWithIntake() {
   return getClosestNamedPosition() == LadybrownState::Loading && hasRing();
 }
 
-void Ladybrown::finishScore() {
-  // Don't bother with motion profiled movements if nearby. 
-  if(getClosestNamedPosition() == LadybrownState::Preparing) {
-    return;
-  }
-  changeState(LadybrownState::FinishScoring, false);
-}
-
 void Ladybrown::changeState(const LadybrownState newState,
                             const bool iEnableSlew) {
-                              // Don't bother with motion profiled movements if nearby. 
+  // Don't bother with motion profiled movements if nearby.
   if(getClosestNamedPosition() == newState) {
     return;
   }
@@ -234,16 +234,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       case LadybrownState::Idle: voltage = 0; break;
       case LadybrownState::Extending: voltage = params.manualVoltage; break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
-      case LadybrownState::Resting:
-      case LadybrownState::Loading:
-      case LadybrownState::Preparing:
-      case LadybrownState::FinishScoring:
-      case LadybrownState::FullyExtending: moveTo(state); break;
-      case LadybrownState::Scoring:
-        moveTo(state);
-        finishScore();
-        break;
-      default: break;
+      default: moveTo(state); break;
     }
     wait();
   }

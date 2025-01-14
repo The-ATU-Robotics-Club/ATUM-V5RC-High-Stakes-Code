@@ -113,7 +113,7 @@ void RobotClone::intakeSetup15() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.finishLoadingTime = 0.0125_s;
+  intakeParams.finishLoadingTime = 0.125_s;
   intakeParams.generalTimeout = 1_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),

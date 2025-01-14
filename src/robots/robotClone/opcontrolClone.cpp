@@ -1,4 +1,5 @@
 #include "robotClone.hpp"
+#include "robots/sharedSystems/ladybrown.hpp"
 
 namespace atum {
 void RobotClone::opcontrol() {
@@ -87,7 +88,14 @@ void RobotClone::ladybrownControls() {
       break;
     case 1:
       if(ladybrown->readyToScore()) {
+        scored = true;
         ladybrown->score();
+      }
+      break;
+    default:
+      if(scored) {
+        scored = false;
+        ladybrown->finishScore();
       }
       break;
   }
@@ -122,7 +130,7 @@ void RobotClone::intakeControls() {
 
 void RobotClone::hangControls() {
   remote.print(2, "MODE: Hang");
-  
+
   if(remote.getHold(Remote::Button::L1)) {
     speedMultiplier = 0.45;
     ladybrown->prepare();

@@ -139,6 +139,13 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    *
    */
   void score();
+  
+  /**
+   * @brief Tells the ladybrown to back up after scoring. Moves to the Preparing
+   * position.
+   *
+   */
+  void finishScore();
 
   /**
    * @brief Tells the ladybrown to extend all the way out (to its scoring
@@ -191,13 +198,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   bool mayConflictWithIntake();
 
   private:
-  /**
-   * @brief Tells the ladybrown to back up after scoring. Moves to the Preparing
-   * position.
-   *
-   */
-  void finishScore();
-
   /**
    * @brief Changes the state, sets if the slew rate is enabled, and sets the
    * current hold position based on the new state.
