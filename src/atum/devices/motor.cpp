@@ -202,7 +202,7 @@ Motor::Gearing Motor::getGearing() const {
 
 bool Motor::check() {
   bool goodEnough{true};
-  for(int i{motors.size() - 1}; i >= 0; i--) {
+  for(int i{0}; i < motors.size(); i++) {
     std::int8_t port{motors[i]->get_port()};
     enabled[i] = motors[i]->is_installed();
     goodEnough = goodEnough && enabled[i];

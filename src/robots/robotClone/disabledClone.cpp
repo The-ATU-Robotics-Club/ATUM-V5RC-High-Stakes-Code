@@ -49,25 +49,25 @@ void RobotClone::driveSetup15() {
 
 void RobotClone::ladybrownSetup15() {
   std::unique_ptr<Motor> leftLadybrownMotor{
-      std::make_unique<Motor>(MotorPortsList{-19},
+      std::make_unique<Motor>(MotorPortsList{-18},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "left ladybrown")};
   std::unique_ptr<Motor> rightLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{11},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "right ladybrown")};
-  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('H', false)};
+  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('E')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>(18, true)};
+      std::make_unique<RotationSensor>(15, true)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>('F', 2750)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 15_deg},
+                         {LadybrownState::Loading, 10_deg},
                          {LadybrownState::Preparing, 60_deg},
-                         {LadybrownState::Scoring, 125_deg}};
+                         {LadybrownState::Scoring, 135_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      6, -5_deg, 50_deg, ladybrownPositions, 0.375_s};
+      6, -5_deg, 50_deg, ladybrownPositions, 0_s};
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};
@@ -107,7 +107,7 @@ void RobotClone::intakeSetup15() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(17, hueFields)};
+      std::make_unique<ColorSensor>(19, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};

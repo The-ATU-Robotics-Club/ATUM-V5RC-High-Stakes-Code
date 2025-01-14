@@ -75,6 +75,10 @@ void Ladybrown::score() {
 }
 
 void Ladybrown::fullyExtend() {
+  // Don't bother with motion profiled movements if nearby. 
+  if(getClosestNamedPosition() == LadybrownState::Scoring) {
+    return;
+  }
   changeState(LadybrownState::FullyExtending, false);
 }
 
@@ -117,11 +121,19 @@ bool Ladybrown::mayConflictWithIntake() {
 }
 
 void Ladybrown::finishScore() {
+  // Don't bother with motion profiled movements if nearby. 
+  if(getClosestNamedPosition() == LadybrownState::Preparing) {
+    return;
+  }
   changeState(LadybrownState::FinishScoring, false);
 }
 
 void Ladybrown::changeState(const LadybrownState newState,
                             const bool iEnableSlew) {
+                              // Don't bother with motion profiled movements if nearby. 
+  if(getClosestNamedPosition() == newState) {
+    return;
+  }
   enableSlew = iEnableSlew;
   state = newState;
   holdPosition = params.statePositions[state];

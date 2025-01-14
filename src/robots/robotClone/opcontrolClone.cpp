@@ -9,27 +9,27 @@ void RobotClone::opcontrol() {
   }
   Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
                                  fifteenAway.checkGoneOff(),
-                                 [=]() { remote.rumble("---"); }},
-                                Logger::Level::Debug};
+                                 [=]() { remote.rumble("---"); }}};
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    intake->setSortOutColor(ColorSensor::Color::Red);
-  } else {
     intake->setSortOutColor(ColorSensor::Color::Blue);
+  } else {
+    intake->setSortOutColor(ColorSensor::Color::Red);
   }
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     gps->getPose();
 
-    const double forward{remote.getLStick().y};
+    const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
     drive->arcade(forward, turn);
 
     remotePrinting();
 
-    if(useManualControls) {
-      manualControls();
-    } else if(useHangControls) {
+    speedMultiplier = 1.0;
+    if(useHangControls) {
       hangControls();
+    } else if(useManualControls) {
+      manualControls();
     } else if(useLadybrownControls) {
       ladybrownControls();
     } else {
@@ -122,7 +122,9 @@ void RobotClone::intakeControls() {
 
 void RobotClone::hangControls() {
   remote.print(2, "MODE: Hang");
+  
   if(remote.getHold(Remote::Button::L1)) {
+    speedMultiplier = 0.45;
     ladybrown->prepare();
   } else {
     ladybrown->fullyExtend();

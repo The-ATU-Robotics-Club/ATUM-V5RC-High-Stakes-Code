@@ -135,5 +135,6 @@ class RobotClone : public Robot {
   bool useManualControls{false};
   bool useLadybrownControls{false};
   bool useHangControls{false};
+  double speedMultiplier{1.0};
 };
 } // namespace atum

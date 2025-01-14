@@ -69,7 +69,6 @@ void Intake::intaking() {
     state = IntakeState::Sorting;
     return;
   }
-  // If indexing or loading while the ladybrown isn't ready, index.
   if(shouldIndex()) {
     if(colorSensor->getColor() != ColorSensor::Color::None) {
       params.timerUntilJamChecks.setTime();
@@ -138,6 +137,7 @@ bool Intake::shouldIndex() const {
   bool ladybrownNotInPosition{state == IntakeState::Loading &&
                               ladybrown->getClosestNamedPosition() !=
                                   LadybrownState::Loading};
+  // If indexing or loading while the ladybrown isn't ready, index.
   return colorSensor->check() &&
          (state == IntakeState::Indexing || ladybrownNotInPosition);
 }
