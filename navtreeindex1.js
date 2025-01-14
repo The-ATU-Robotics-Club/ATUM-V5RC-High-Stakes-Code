@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd":[1,0,0,32,1],
 "classatum_1_1Schedule.html":[1,0,0,33],
 "classatum_1_1Schedule.html#a07c386fac9d9a6cca0de9f6d49b4b722":[1,0,0,33,2],
 "classatum_1_1Schedule.html#a2312d2e485462eb49ac91f10d75a1793":[1,0,0,33,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "stateMachine_8hpp_source.html":[2,0,0,0,5,3],
 "structatum_1_1AccelerationConstants.html":[1,0,0,1],
 "structatum_1_1ColorSensor_1_1HueField.html":[1,0,0,4,0],
-"structatum_1_1Drive_1_1Geometry.html":[1,0,0,7,0],
-"structatum_1_1GUI_1_1Graph_1_1SeriesRange.html":[1,0,0,0,0,0]
+"structatum_1_1Drive_1_1Geometry.html":[1,0,0,7,0]
 };

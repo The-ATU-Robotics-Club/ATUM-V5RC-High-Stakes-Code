@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"structatum_1_1GUI_1_1Graph_1_1SeriesRange.html":[1,0,0,0,0,0],
 "structatum_1_1GUI_1_1Screen_1_1GUIPosition.html":[1,0,0,0,5,0],
 "structatum_1_1GUI_1_1Screen_1_1GUISize.html":[1,0,0,0,5,1],
 "structatum_1_1Intake_1_1Parameters.html":[1,0,0,11,0],

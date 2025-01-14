@@ -3,6 +3,7 @@ var classatum_1_1Ladybrown =
     [ "Parameters", "structatum_1_1Ladybrown_1_1Parameters.html", null ],
     [ "Ladybrown", "classatum_1_1Ladybrown.html#a2cbbdf7be4c636d46c0868c0d48c811e", null ],
     [ "extend", "classatum_1_1Ladybrown.html#aef9a36a0bf316bbcda55b782097e0008", null ],
+    [ "finishScore", "classatum_1_1Ladybrown.html#ac47ff2bb34e764fb5eae8ffbed4cb87e", null ],
     [ "fullyExtend", "classatum_1_1Ladybrown.html#adab362ef06cbe156266955583efa3a9f", null ],
     [ "getClosestNamedPosition", "classatum_1_1Ladybrown.html#a5ba7e632647e487901f8e6d2ba4c1650", null ],
     [ "hasRing", "classatum_1_1Ladybrown.html#ab1f25b77e6d72d040e3d4dbb70f6b284", null ],
