@@ -54,7 +54,16 @@ ColorSensor::Color Intake::getSortOutColor() const {
   return sortOutColor;
 }
 
+int Intake::getCount() {
+  return colorSensor->getCount();
+}
+
+void Intake::resetCount() {
+  colorSensor->resetCount();
+}
+
 void Intake::intaking() {
+  colorSensor->tallyCount();
   if(ladybrown->mayConflictWithIntake()) {
     params.timerUntilJamChecks.setTime();
     if(state != IntakeState::FinishedLoading) {

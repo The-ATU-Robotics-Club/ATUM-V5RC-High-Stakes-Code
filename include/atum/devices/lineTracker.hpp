@@ -79,7 +79,7 @@ class LineTracker {
    * otherwise having issues.
    *
    */
-  static constexpr std::int32_t errorThreshold{20};
+  static constexpr std::int32_t errorThreshold{100};
 
   /**
    * @brief Calibrates the line tracker and blocks for an appropriate amount

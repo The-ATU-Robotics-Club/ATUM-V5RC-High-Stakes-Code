@@ -5,8 +5,7 @@ namespace atum {
 ColorSensor::ColorSensor(const std::int8_t port,
                          const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields},
-    logger{loggerLevel} {
+    hueFields{iHueFields}, logger{loggerLevel} {
   colorSensor = std::make_unique<pros::Optical>(port);
   check();
   initializeColorSensor();
@@ -14,8 +13,7 @@ ColorSensor::ColorSensor(const std::int8_t port,
 
 ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
                          const Logger::Level loggerLevel) :
-    hueFields{iHueFields},
-    logger{loggerLevel} {
+    hueFields{iHueFields}, logger{loggerLevel} {
   const auto colorSensors{pros::Optical::get_all_devices()};
   if(!colorSensors.size()) {
     logger.error("Color sensor not found!");
@@ -30,6 +28,7 @@ ColorSensor::ColorSensor(const std::vector<HueField> iHueFields,
 }
 
 ColorSensor::Color ColorSensor::getColor() {
+  tallyCount();
   if(colorSensor->get_proximity() < nearProximity) {
     return Color::None;
   }
@@ -42,6 +41,25 @@ ColorSensor::Color ColorSensor::getColor() {
     }
   }
   return Color::None;
+}
+
+int ColorSensor::tallyCount() {
+  if(colorSensor->get_proximity() < nearProximity) {
+    previousNearby = false;
+  } else if(!previousNearby) {
+    previousNearby = true;
+    count++;
+  }
+  return getCount();
+}
+
+int ColorSensor::getCount() {
+  logger.debug("Color sensor counts " + std::to_string(count) + ".");
+  return count;
+}
+
+void ColorSensor::resetCount() {
+  count = 0;
 }
 
 double ColorSensor::getRawHue() {

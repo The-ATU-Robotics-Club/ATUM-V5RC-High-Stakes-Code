@@ -107,13 +107,13 @@ void RobotClone::intakeSetup15() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(19, hueFields)};
+      std::make_unique<ColorSensor>(19, hueFields, Logger::Level::Debug)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
-  intakeParams.timeUntilUnjammed = 0.25_s;
+  intakeParams.timeUntilUnjammed = 0.2_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.finishLoadingTime = 0.125_s;
+  intakeParams.finishLoadingTime = 0.2_s;
   intakeParams.generalTimeout = 1_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),

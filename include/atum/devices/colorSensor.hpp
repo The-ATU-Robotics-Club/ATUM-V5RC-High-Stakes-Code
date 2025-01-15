@@ -81,9 +81,31 @@ class ColorSensor {
    * @brief Gets the detected color. Will return None if outside of proximity
    * threshold given (unless 0). Turns LED on if something is nearby.
    *
+   * Also keeps track of the number of objects that have passed by the sensor.
+   *
    * @return Color
    */
   Color getColor();
+
+  /**
+   * @brief Keeps track of the number of objects that have passed by the sensor.
+   *
+   */
+  int tallyCount();
+
+  /**
+   * @brief Gets the number of objects that have passed by the sensor.
+   *
+   * @return int
+   */
+  int getCount();
+
+  /**
+   * @brief Resets the count for the number of objects that have passed by the
+   * sensor.
+   *
+   */
+  void resetCount();
 
   /**
    * @brief Returns the raw value for hue given by the sensor and logs the
@@ -119,6 +141,8 @@ class ColorSensor {
   std::unique_ptr<pros::v5::Optical> colorSensor;
   std::vector<HueField> hueFields;
   Logger logger;
+  int count{0};
+  bool previousNearby{false};
 };
 
 /**
