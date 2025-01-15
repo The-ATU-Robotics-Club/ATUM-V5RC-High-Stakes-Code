@@ -10,5 +10,8 @@ var classatum_1_1ColorSensor =
     [ "ColorSensor", "classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488", null ],
     [ "check", "classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9", null ],
     [ "getColor", "classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44", null ],
-    [ "getRawHue", "classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf", null ]
+    [ "getCount", "classatum_1_1ColorSensor.html#a7565ac2cfb43e800caee1d6638b5ffbb", null ],
+    [ "getRawHue", "classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf", null ],
+    [ "resetCount", "classatum_1_1ColorSensor.html#a2bde5b21f0490af0ead152e6d57bcf59", null ],
+    [ "tallyCount", "classatum_1_1ColorSensor.html#a28144eecf7f75efaee6a902a98bbf0fa", null ]
 ];

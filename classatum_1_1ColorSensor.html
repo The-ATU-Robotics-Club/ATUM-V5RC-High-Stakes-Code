@@ -130,6 +130,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">getColor</a> ()</td></tr>
 <tr class="memdesc:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns LED on if something is nearby.  <br /></td></tr>
 <tr class="separator:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28144eecf7f75efaee6a902a98bbf0fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a28144eecf7f75efaee6a902a98bbf0fa">tallyCount</a> ()</td></tr>
+<tr class="memdesc:a28144eecf7f75efaee6a902a98bbf0fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of the number of objects that have passed by the sensor.  <br /></td></tr>
+<tr class="separator:a28144eecf7f75efaee6a902a98bbf0fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7565ac2cfb43e800caee1d6638b5ffbb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a7565ac2cfb43e800caee1d6638b5ffbb">getCount</a> ()</td></tr>
+<tr class="memdesc:a7565ac2cfb43e800caee1d6638b5ffbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of objects that have passed by the sensor.  <br /></td></tr>
+<tr class="separator:a7565ac2cfb43e800caee1d6638b5ffbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bde5b21f0490af0ead152e6d57bcf59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a2bde5b21f0490af0ead152e6d57bcf59">resetCount</a> ()</td></tr>
+<tr class="memdesc:a2bde5b21f0490af0ead152e6d57bcf59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the count for the number of objects that have passed by the sensor.  <br /></td></tr>
+<tr class="separator:a2bde5b21f0490af0ead152e6d57bcf59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61bfb8618409f707da827f49dcb40fdf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">getRawHue</a> ()</td></tr>
 <tr class="memdesc:a61bfb8618409f707da827f49dcb40fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning purposes, prefer getColor.  <br /></td></tr>
 <tr class="separator:a61bfb8618409f707da827f49dcb40fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -292,7 +301,28 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns LED on if something is nearby. </p>
+<p>Also keeps track of the number of objects that have passed by the sensor.</p>
 <dl class="section return"><dt>Returns</dt><dd>Color </dd></dl>
+
+</div>
+</div>
+<a id="a7565ac2cfb43e800caee1d6638b5ffbb" name="a7565ac2cfb43e800caee1d6638b5ffbb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7565ac2cfb43e800caee1d6638b5ffbb">&#9670;&#160;</a></span>getCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int atum::ColorSensor::getCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the number of objects that have passed by the sensor. </p>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>
@@ -313,6 +343,44 @@ false </dd></dl>
 
 <p>Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning purposes, prefer getColor. </p>
 <dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
+<a id="a2bde5b21f0490af0ead152e6d57bcf59" name="a2bde5b21f0490af0ead152e6d57bcf59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bde5b21f0490af0ead152e6d57bcf59">&#9670;&#160;</a></span>resetCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::ColorSensor::resetCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Resets the count for the number of objects that have passed by the sensor. </p>
+
+</div>
+</div>
+<a id="a28144eecf7f75efaee6a902a98bbf0fa" name="a28144eecf7f75efaee6a902a98bbf0fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28144eecf7f75efaee6a902a98bbf0fa">&#9670;&#160;</a></span>tallyCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int atum::ColorSensor::tallyCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Keeps track of the number of objects that have passed by the sensor. </p>
 
 </div>
 </div>

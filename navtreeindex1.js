@@ -1,5 +1,10 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62":[1,0,0,32,4],
+"classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db":[1,0,0,32,0],
+"classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d":[1,0,0,32,5],
+"classatum_1_1RotationSensor.html#ac956db731262b4aba4c38ef549d6865f":[1,0,0,32,6],
+"classatum_1_1RotationSensor.html#ade9e475ad0bcdfce697bc7f87cdc3aeb":[1,0,0,32,2],
 "classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd":[1,0,0,32,1],
 "classatum_1_1Schedule.html":[1,0,0,33],
 "classatum_1_1Schedule.html#a07c386fac9d9a6cca0de9f6d49b4b722":[1,0,0,33,2],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41afa7a336e85b65168c064c2988b8d719d":[2,0,0,0,2,6,3,2],
 "screen_8hpp_source.html":[2,0,0,0,2,6],
 "slewRate_8hpp.html":[2,0,0,0,0,2],
-"slewRate_8hpp_source.html":[2,0,0,0,0,2],
-"stateMachine_8hpp.html":[2,0,0,0,5,3],
-"stateMachine_8hpp_source.html":[2,0,0,0,5,3],
-"structatum_1_1AccelerationConstants.html":[1,0,0,1],
-"structatum_1_1ColorSensor_1_1HueField.html":[1,0,0,4,0],
-"structatum_1_1Drive_1_1Geometry.html":[1,0,0,7,0]
+"slewRate_8hpp_source.html":[2,0,0,0,0,2]
 };
