@@ -6,10 +6,12 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     driveSetup15();
     ladybrownSetup15();
     intakeSetup15();
+    autonSetup15();
   } else if(id == ID24) {
     driveSetup24();
     ladybrownSetup24();
     intakeSetup24();
+    autonSetup24();
   }
 }
 
@@ -121,6 +123,51 @@ void RobotClone::intakeSetup15() {
                                     intakeParams);
 }
 
+void RobotClone::autonSetup15() {
+  // Path follower setup.
+  Path::setDefaultParams(
+      {1, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track});
+  AcceptableDistance acceptable{forever, 1_in};
+  PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
+  pathFollowerPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> left{
+      std::make_unique<PID>(pathFollowerPIDParams)};
+  std::unique_ptr<Controller> right{
+      std::make_unique<PID>(pathFollowerPIDParams)};
+  pathFollower =
+      std::make_unique<PathFollower>(drive.get(),
+                                     acceptable,
+                                     std::move(left),
+                                     std::move(right),
+                                     AccelerationConstants{0.5, 1.6},
+                                     PathFollower::FeedbackParameters{},
+                                     Logger::Level::Debug);
+
+  // Turn setup.
+  AngularProfile::Parameters turnMotionParams{
+      720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
+  turnMotionParams.usePosition = true;
+  AngularProfile turnProfile{turnMotionParams};
+  // Timeout here gets set by the follower, so don't worry about the "forever."
+  AcceptableAngle turnAcceptable{forever, 1_deg};
+  PID::Parameters turnPIDParams{1.0, 0, 0, 0.85};
+  turnPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> turnVelocityController =
+      std::make_unique<PID>(turnPIDParams);
+  const AccelerationConstants kA{0.7, 0.1};
+  std::unique_ptr<Controller> turnPositionController =
+      std::make_unique<PID>(PID::Parameters{48.0, 0.0, 0.0, 0.0, 0.0});
+  std::unique_ptr<AngularProfileFollower> profileFollower{
+      std::make_unique<AngularProfileFollower>(
+          turnProfile,
+          turnAcceptable,
+          std::move(turnVelocityController),
+          kA,
+          std::move(turnPositionController),
+          5_deg)};
+  turn = std::make_unique<Turn>(drive.get(), std::move(profileFollower));
+}
+
 void RobotClone::driveSetup24() {
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
       MotorPortsList{-7, -8, -9, 10},
@@ -220,5 +267,50 @@ void RobotClone::intakeSetup24() {
                                     std::move(colorSensor),
                                     ladybrown.get(),
                                     intakeParams);
+}
+
+void RobotClone::autonSetup24() {
+  // Path follower setup.
+  Path::setDefaultParams(
+      {1, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track});
+  AcceptableDistance acceptable{forever, 1_in};
+  PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
+  pathFollowerPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> left{
+      std::make_unique<PID>(pathFollowerPIDParams)};
+  std::unique_ptr<Controller> right{
+      std::make_unique<PID>(pathFollowerPIDParams)};
+  pathFollower =
+      std::make_unique<PathFollower>(drive.get(),
+                                     acceptable,
+                                     std::move(left),
+                                     std::move(right),
+                                     AccelerationConstants{0.5, 1.6},
+                                     PathFollower::FeedbackParameters{},
+                                     Logger::Level::Debug);
+
+  // Turn setup.
+  AngularProfile::Parameters turnMotionParams{
+      720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
+  turnMotionParams.usePosition = true;
+  AngularProfile turnProfile{turnMotionParams};
+  // Timeout here gets set by the follower, so don't worry about the "forever."
+  AcceptableAngle turnAcceptable{forever, 1_deg};
+  PID::Parameters turnPIDParams{1.0, 0, 0, 0.85};
+  turnPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> turnVelocityController =
+      std::make_unique<PID>(turnPIDParams);
+  const AccelerationConstants kA{0.7, 0.1};
+  std::unique_ptr<Controller> turnPositionController =
+      std::make_unique<PID>(PID::Parameters{48.0, 0.0, 0.0, 0.0, 0.0});
+  std::unique_ptr<AngularProfileFollower> profileFollower{
+      std::make_unique<AngularProfileFollower>(
+          turnProfile,
+          turnAcceptable,
+          std::move(turnVelocityController),
+          kA,
+          std::move(turnPositionController),
+          5_deg)};
+  turn = std::make_unique<Turn>(drive.get(), std::move(profileFollower));
 }
 } // namespace atum

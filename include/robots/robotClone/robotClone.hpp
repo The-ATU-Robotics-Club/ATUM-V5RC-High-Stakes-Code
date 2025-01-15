@@ -69,6 +69,12 @@ class RobotClone : public Robot {
   void intakeSetup15();
 
   /**
+   * @brief Sets up the objects for autonomous routine usage for the 15 inch.
+   *
+   */
+  void autonSetup15();
+
+  /**
    * @brief Sets up the drive for the 24 inch.
    *
    */
@@ -85,6 +91,12 @@ class RobotClone : public Robot {
    *
    */
   void intakeSetup24();
+
+  /**
+   * @brief Sets up the objects for autonomous routine usage for the 24 inch.
+   *
+   */
+  void autonSetup24();
 
   // Opcontrol helpers.
   /**
@@ -125,6 +137,14 @@ class RobotClone : public Robot {
    */
   void configurationControls();
 
+  /**
+   * @brief Sets up the robot with the appropriate starting pose and flips poses
+   * if necessary.
+   *
+   * @param startingPose
+   */
+  void setupRoutine(Pose startingPose);
+
   const int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
@@ -132,6 +152,8 @@ class RobotClone : public Robot {
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   Piston goalClamp{'H'};
+  std::unique_ptr<PathFollower> pathFollower;
+  std::unique_ptr<Turn> turn;
   bool useManualControls{false};
   bool useLadybrownControls{false};
   bool useHangControls{false};
