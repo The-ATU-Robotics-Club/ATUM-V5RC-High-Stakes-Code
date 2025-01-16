@@ -3,8 +3,212 @@
 #include "robotClone.hpp"
 
 namespace atum {
+// Max drive velocity: 76.5 in. / s.
+// Max drive acceleration: 76.5 in. / s^2.
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Skills")
+  //24 in code
+setupRoutine({-5_ft, 0_ft, 90_deg});
+intake->intake();
+pathFollower->follow(
+  {{{-4_ft, 0_ft, 90_deg}, false, Path::Parameters{}}}
+);
+intake->load();
+pathFollower->follow(
+  {{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}}
+);
+// LADY BROWN
+intake->intake();
+pathFollower->follow(
+  {{{-4_ft, -4_ft, 155_deg}, false, Path::Parameters{}}}
+);
+turn->awayFrom(90_deg);
+pathFollower->follow(
+  {{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{}}}
+);
+// Clamp mogo
+pathFollower->follow(
+  {{{-6_ft, -6_ft, -135_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{-0.5_ft, -0.5_ft, 90_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{-6_ft, -6_ft, -135_deg}, true, Path::Parameters{}}}
+);
+// Unclamp mogo
+pathFollower->follow(
+  {{{0_ft, -5_ft, 90_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{0_ft, -4_ft, 45_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}}
+);
+// LADY BROWN 2 RINGS
+pathFollower->follow(
+  {{{.5_ft, -5_ft, 90_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}}
+);
+// LADY BROWN 1 MORE RING
+pathFollower->follow(
+  {{{2_ft, -2_ft, 45_deg}, true, Path::Parameters{}}}
+);
+// CLAMP MOGO
+pathFollower->follow(
+  {{{2_ft, -4_ft, 180_deg}, false, Path::Parameters{}}}
+);
+//INTAKE ONLY RED RING
+pathFollower->follow(
+  {{{4_ft, -4_ft, 90_deg}, false, Path::Parameters{}}}
+);
+//INTAKE ONLY RED RING
+pathFollower->follow(
+  {{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}}
+);
+//INTAKE ONLY RED RING
+pathFollower->follow(
+  {{{2_ft, -4_ft, -45_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{4.5_ft, -4_ft, 90_deg}, false, Path::Parameters{}}}
+);
+pathFollower->follow(
+  {{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}}
+);
+turn->toward(-45_deg);
+//RELEASE GOAL CLAMP
+
+//RAISE HANG MECH
+pathFollower->follow(
+  {{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}}
+);
+//HANG
+
+
+
+
+
+
+
+
+  //15 in code
+setupRoutine({-5_ft, 5_ft, -45_deg});
+
+pathFollower->follow(
+  {{{-6_ft, 6_ft, -45_deg}, false, Path::Parameters{}}});
+
+//ring 1
+intake->intake();
+
+intake->stop();
+
+pathFollower->follow(
+  {{{-5.5_ft, 5.5_ft, -45_deg}, true, Path::Parameters{}}});
+
+turn->toward(90_deg);
+
+pathFollower->follow(
+  {{{-2_ft, 4_ft, 135_deg}, false, Path::Parameters{}}});
+
+//grab mogo
+
+turn->toward(-90_deg);
+
+pathFollower->follow(
+  {{{-4_ft, 4_ft, -90_deg}, false, Path::Parameters{}}});
+
+//ring 2
+intake->intake();
+
+intake->stop();
+
+turn->toward(135_deg);
+
+pathFollower->follow(
+  {{{-2_ft, 2_ft, 135_deg}, false, Path::Parameters{}}});
+
+//ring 3
+intake->intake();
+
+intake->stop();
+
+pathFollower->follow(
+  {{{-0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
+
+//ring 4
+intake->intake();
+
+intake->stop();
+
+pathFollower->follow(
+  {{{0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
+
+//ring 5
+intake->intake();
+
+intake->stop();
+
+turn->toward(-45_deg);
+
+pathFollower->follow(
+  {{{-6_ft, 6_ft, -45_deg}, true, Path::Parameters{}}});
+
+//ungrab mogo
+
+turn->toward(90_deg);
+
+pathFollower->follow(
+  {{{0_ft, 5_ft, 90_deg}, false, Path::Parameters{}}});
+
+//ring 6
+intake->intake();
+
+intake->stop();
+
+turn->toward(180_deg);
+
+pathFollower->follow(
+  {{{0_ft, 4_ft, 180_deg}, false, Path::Parameters{}}});
+  
+//ring 7
+intake->intake();
+
+intake->stop();
+
+turn->toward(0_deg);
+
+pathFollower->follow(
+  {{{0_ft, 6_ft, 0_deg}, false, Path::Parameters{}}});
+
+//LB things
+
+turn->toward(90_deg);
+
+pathFollower->follow(
+  {{{2_ft, 5_ft, 90_deg}, false, Path::Parameters{}}});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
   END_ROUTINE
 
   START_ROUTINE("Positive Double Goal")
