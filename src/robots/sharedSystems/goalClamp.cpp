@@ -21,7 +21,7 @@ bool GoalClamp::hasGoal() {
   } else if(limitSwitch2 && limitSwitch2->check()) {
     return limitSwitch2->isPressed();
   }
-  return false;
+  return piston->isExtended();
 }
 
 void GoalClamp::clamp() {

@@ -40,7 +40,7 @@ void RobotClone::opcontrol() {
     configurationControls();
 
     if(remote.getPress(Remote::Button::Y)) {
-      goalClamp.toggle();
+      goalClamp->toggleClamp();
     }
 
     if(remote.getHold(Remote::Button::Up) &&
@@ -118,7 +118,7 @@ void RobotClone::intakeControls() {
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1:
-      if(remote.getHold(Remote::Button::L1) || goalClamp.isExtended()) {
+      if(remote.getHold(Remote::Button::L1) || goalClamp->hasGoal()) {
         intake->intake();
       } else {
         intake->index();

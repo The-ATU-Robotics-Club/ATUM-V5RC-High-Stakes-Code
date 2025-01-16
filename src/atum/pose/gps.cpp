@@ -47,9 +47,10 @@ Pose GPS::getPose() {
   const meter_t y{gps->get_position_y()};
   const degree_t reading{gps->get_yaw()};
   const degree_t h{reading - headingOffset};
-  if(logger.getLevel() == Logger::Level::Debug) {
+  if(logger.getLevel() >= Logger::Level::Info) {
     GUI::Map::addPosition({x, y}, GUI::SeriesColor::Yellow);
   }
+  logger.debug("GPS pose: " + toString({x, y, h}) + ".");
   return {x, y, h};
 }
 

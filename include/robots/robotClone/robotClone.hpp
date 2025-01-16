@@ -9,10 +9,12 @@
 
 #pragma once
 
+#include "../sharedSystems/goalClamp.hpp"
 #include "../sharedSystems/intake.hpp"
 #include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
 #include "atum/depend/units.h"
+
 
 namespace atum {
 /**
@@ -69,6 +71,12 @@ class RobotClone : public Robot {
   void intakeSetup15();
 
   /**
+   * @brief Sets up the goal clamp for the 15 inch.
+   * 
+   */
+  void goalClampSetup15();
+
+  /**
    * @brief Sets up the objects for autonomous routine usage for the 15 inch.
    *
    */
@@ -91,6 +99,12 @@ class RobotClone : public Robot {
    *
    */
   void intakeSetup24();
+
+  /**
+   * @brief Sets up the goal clamp for the 24 inch. 
+   * 
+   */
+  void goalClampSetup24();
 
   /**
    * @brief Sets up the objects for autonomous routine usage for the 24 inch.
@@ -151,7 +165,7 @@ class RobotClone : public Robot {
   std::unique_ptr<GPS> gps;
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
-  Piston goalClamp{'H'};
+  std::unique_ptr<GoalClamp> goalClamp;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<Turn> turn;
   bool useManualControls{false};

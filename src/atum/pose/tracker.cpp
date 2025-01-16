@@ -8,9 +8,10 @@ void Tracker::setPose(const Pose &iPose) {
 }
 
 Pose Tracker::getPose() {
-  if(logger.getLevel() == Logger::Level::Debug) {
+  if(logger.getLevel() >= Logger::Level::Info) {
     GUI::Map::addPosition(pose, GUI::SeriesColor::Green);
   }
+  logger.debug("Tracker pose: " + toString(pose) + ".");
   return pose;
 }
 } // namespace atum

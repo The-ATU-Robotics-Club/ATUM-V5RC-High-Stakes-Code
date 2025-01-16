@@ -1,4 +1,5 @@
 #include "robotClone.hpp"
+#include <memory>
 
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
@@ -6,11 +7,13 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     driveSetup15();
     ladybrownSetup15();
     intakeSetup15();
+    goalClampSetup15();
     autonSetup15();
   } else if(id == ID24) {
     driveSetup24();
     ladybrownSetup24();
     intakeSetup24();
+    goalClampSetup24();
     autonSetup24();
   }
 }
@@ -109,7 +112,7 @@ void RobotClone::intakeSetup15() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(19, hueFields, Logger::Level::Debug)};
+      std::make_unique<ColorSensor>(19, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
@@ -123,11 +126,16 @@ void RobotClone::intakeSetup15() {
                                     intakeParams);
 }
 
+void RobotClone::goalClampSetup15() {
+  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('G', true)};
+  goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
+}
+
 void RobotClone::autonSetup15() {
   // Path follower setup.
   Path::setDefaultParams(
       {1, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track});
-  AcceptableDistance acceptable{forever, 1_in};
+  AcceptableDistance acceptable{forever};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
   std::unique_ptr<Controller> left{
@@ -267,6 +275,11 @@ void RobotClone::intakeSetup24() {
                                     std::move(colorSensor),
                                     ladybrown.get(),
                                     intakeParams);
+}
+
+void RobotClone::goalClampSetup24() {
+  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('H', true)};
+  goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
 }
 
 void RobotClone::autonSetup24() {

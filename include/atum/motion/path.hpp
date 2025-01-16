@@ -46,8 +46,8 @@ class Path {
                const meters_per_second_t iMaxV = 0_mps,
                const meters_per_second_squared_t iMaxA = 0_mps_sq,
                const meter_t iTrack = 0_m,
-               const meter_t iSpacing = 1_in,
-               const meter_t iMaxSpacingError = 0.1_in,
+               const meter_t iSpacing = 0.5_in,
+               const meter_t iMaxSpacingError = 0.05_in,
                const bool iUsePosition = true,
                const double iBinarySearchScaling = 0.75);
 
@@ -69,8 +69,8 @@ class Path {
         const double iCurviness = 0.0,
         const meters_per_second_squared_t iMaxA = 0_mps_sq,
         const meter_t iTrack = 0_m,
-        const meter_t iSpacing = 1_in,
-        const meter_t iMaxSpacingError = 0.1_in,
+        const meter_t iSpacing = 0.5_in,
+        const meter_t iMaxSpacingError = 0.05_in,
         const bool iUsePosition = true,
         const double iBinarySearchScaling = 0.75);
     Parameters(const Parameters &other);
@@ -90,9 +90,9 @@ class Path {
     meters_per_second_squared_t maxA{0_mps_sq};
     meter_t track{0_m};
     // The spacing between each point.
-    meter_t spacing{1_in};
+    meter_t spacing{0.5_in};
     // Maximum allowed deviation for the spacing between a point.
-    meter_t maxSpacingError{0.1_in};
+    meter_t maxSpacingError{0.05_in};
     bool usePosition{true};
     // Controls where the binary search is partitioned at when spacing points
     // (0.75 seems to generally converge quickly, probably shouldn't change).
