@@ -134,7 +134,7 @@ void RobotClone::goalClampSetup15() {
 void RobotClone::autonSetup15() {
   // Path follower setup.
   Path::setDefaultParams(
-      {1, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track});
+      {1, 76.5_in_per_s, 76.5_in_per_s_sq, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
@@ -223,7 +223,7 @@ void RobotClone::ladybrownSetup24() {
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      6, -5_deg, 50_deg, ladybrownPositions, 0.375_s};
+      6, -10_deg, 50_deg, ladybrownPositions, 0.375_s};
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};

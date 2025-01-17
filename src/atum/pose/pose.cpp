@@ -21,7 +21,6 @@ UnwrappedPose::UnwrappedPose(const Pose &pose) :
     alpha{getValueAs<radians_per_second_squared_t>(pose.alpha)},
     t{getValueAs<second_t>(pose.t)} {}
 
-
 bool UnwrappedPose::operator==(const UnwrappedPose &rhs) const {
   return x == rhs.x && y == rhs.y && h == rhs.h;
 }
@@ -55,10 +54,17 @@ double distance(const UnwrappedPose &a, const UnwrappedPose &b) {
   return std::sqrt(std::pow(a.x - b.x, 2.0) + std::pow(a.y - b.y, 2.0));
 }
 
-double angle(const UnwrappedPose &state, const UnwrappedPose &reference) {
+double angle(const UnwrappedPose &state,
+             UnwrappedPose reference,
+             const bool flipOnBlue) {
+  if(flipOnBlue) {
+    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+      reference.flip();
+    }
+  }
   const double dx{reference.x - state.x};
   const double dy{reference.y - state.y};
-  const double dh{M_PI / 2 - std::atan2(dy, dx)};
+  double dh{M_PI / 2 - std::atan2(dy, dx)};
   return constrainPI(dh);
 }
 
@@ -120,10 +126,15 @@ tile_t distance(const Pose &a, const Pose &b) {
   return sqrt(pow<2>(a.x - b.x) + pow<2>(a.y - b.y));
 }
 
-degree_t angle(const Pose &state, const Pose &reference) {
+degree_t angle(const Pose &state, Pose reference, const bool flipOnBlue) {
+  if(flipOnBlue) {
+    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+      reference.flip();
+    }
+  }
   const inch_t dx{reference.x - state.x};
   const inch_t dy{reference.y - state.y};
-  const degree_t dh{90_deg - atan2(dy, dx)};
+  degree_t dh{90_deg - atan2(dy, dx)};
   return constrain180(dh);
 }
 

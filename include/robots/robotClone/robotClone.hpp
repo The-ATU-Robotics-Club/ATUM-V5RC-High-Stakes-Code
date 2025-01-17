@@ -168,6 +168,7 @@ class RobotClone : public Robot {
   std::unique_ptr<GoalClamp> goalClamp;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<Turn> turn;
+  Timer matchTimer;
   bool useManualControls{false};
   bool useLadybrownControls{false};
   bool useHangControls{false};

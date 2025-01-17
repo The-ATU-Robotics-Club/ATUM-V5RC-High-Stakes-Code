@@ -65,8 +65,8 @@ void Intake::resetCount() {
 void Intake::intaking() {
   colorSensor->tallyCount();
   if(ladybrown->mayConflictWithIntake()) {
-    mtr->moveVoltage(7.0);
-    if(mtr->getVelocity() < params.jamVelocity) {
+    params.timerUntilJamChecks.setTime();
+    if(state != IntakeState::FinishedLoading) {
       finishLoading();
     }
     return;

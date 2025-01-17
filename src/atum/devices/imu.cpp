@@ -82,7 +82,12 @@ void IMU::initializeIMUs() {
     imu->reset();
   }
   logger.info("IMU is constructed!");
-  while(imus.size() && imus.back()->is_calibrating()) {
+  bool stillCalibrating{true};
+  while(stillCalibrating) {
+    stillCalibrating = false;
+    for(const auto &imu : imus) {
+      stillCalibrating = stillCalibrating || imu->is_calibrating();
+    }
     wait(10_ms);
   }
   logger.info("IMU is calibrated!");

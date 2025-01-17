@@ -3,13 +3,14 @@
 
 namespace atum {
 void RobotClone::opcontrol() {
-  Timer fifteenAway{1_min + 15_s};
+  matchTimer.setTime();
+  matchTimer.setAlarm(1_min + 15_s);
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
-    fifteenAway.setAlarm(45_s);
+    matchTimer.setAlarm(45_s);
   }
   Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
-                                 fifteenAway.checkGoneOff(),
+                                 matchTimer.checkGoneOff(),
                                  [=]() { remote.rumble("---"); }}};
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
     intake->setSortOutColor(ColorSensor::Color::Blue);
