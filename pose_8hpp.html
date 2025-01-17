@@ -103,7 +103,8 @@ $(document).ready(function(){initNavTree('pose_8hpp.html',''); initResizable(); 
 
 <p>Includes the Pose struct as well as corresponding functions.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="units_8hpp_source.html">../utility/units.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="routines_8hpp_source.html">../gui/routines.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="units_8hpp_source.html">../utility/units.hpp</a>&quot;</code><br />
 </div>
 <p><a href="pose_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -127,9 +128,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ac961fe0314b7ba16136aa85facb149a8"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ac961fe0314b7ba16136aa85facb149a8">atum::distance</a> (const UnwrappedPose &amp;a, const UnwrappedPose &amp;b)</td></tr>
 <tr class="memdesc:ac961fe0314b7ba16136aa85facb149a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance between two given unwrapped poses.  <br /></td></tr>
 <tr class="separator:ac961fe0314b7ba16136aa85facb149a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4679824937b9a1f3002440c8823e46b6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a4679824937b9a1f3002440c8823e46b6">atum::angle</a> (const UnwrappedPose &amp;state, const UnwrappedPose &amp;reference)</td></tr>
-<tr class="memdesc:a4679824937b9a1f3002440c8823e46b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
-<tr class="separator:a4679824937b9a1f3002440c8823e46b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab49f88c0b90de7a956fcd4eefe4bcfac"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ab49f88c0b90de7a956fcd4eefe4bcfac">atum::angle</a> (const UnwrappedPose &amp;state, UnwrappedPose reference, const bool flipOnBlue=false)</td></tr>
+<tr class="memdesc:ab49f88c0b90de7a956fcd4eefe4bcfac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
+<tr class="separator:ab49f88c0b90de7a956fcd4eefe4bcfac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acfd7d943111074dac94ff54503425d5b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#acfd7d943111074dac94ff54503425d5b">atum::toString</a> (const UnwrappedPose &amp;pose)</td></tr>
 <tr class="memdesc:acfd7d943111074dac94ff54503425d5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the given unwrapped pose.  <br /></td></tr>
 <tr class="separator:acfd7d943111074dac94ff54503425d5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,9 +143,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae0cd0ce034c686b4842535960216307c"><td class="memItemLeft" align="right" valign="top">tile_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ae0cd0ce034c686b4842535960216307c">atum::distance</a> (const Pose &amp;a, const Pose &amp;b)</td></tr>
 <tr class="memdesc:ae0cd0ce034c686b4842535960216307c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the distance between two given poses.  <br /></td></tr>
 <tr class="separator:ae0cd0ce034c686b4842535960216307c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd14a4bf12c748aadb94673587804c66"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#afd14a4bf12c748aadb94673587804c66">atum::angle</a> (const Pose &amp;state, const Pose &amp;reference)</td></tr>
-<tr class="memdesc:afd14a4bf12c748aadb94673587804c66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
-<tr class="separator:afd14a4bf12c748aadb94673587804c66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56c8d38a58c5b1b1ecef2e3f35d94155"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a56c8d38a58c5b1b1ecef2e3f35d94155">atum::angle</a> (const Pose &amp;state, Pose reference, const bool flipOnBlue=false)</td></tr>
+<tr class="memdesc:a56c8d38a58c5b1b1ecef2e3f35d94155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
+<tr class="separator:a56c8d38a58c5b1b1ecef2e3f35d94155"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65">atum::toString</a> (const Pose &amp;pose)</td></tr>
 <tr class="memdesc:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the given pose.  <br /></td></tr>
 <tr class="separator:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -154,8 +155,8 @@ Functions</h2></td></tr>
 <dl class="section date"><dt>Date</dt><dd>2024-12-23</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="afd14a4bf12c748aadb94673587804c66" name="afd14a4bf12c748aadb94673587804c66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd14a4bf12c748aadb94673587804c66">&#9670;&#160;</a></span>angle() <span class="overload">[1/2]</span></h2>
+<a id="a56c8d38a58c5b1b1ecef2e3f35d94155" name="a56c8d38a58c5b1b1ecef2e3f35d94155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56c8d38a58c5b1b1ecef2e3f35d94155">&#9670;&#160;</a></span>angle() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -169,8 +170,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;&#160;</td>
-          <td class="paramname"><em>reference</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td>
+          <td class="paramname"><em>reference</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>flipOnBlue</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -181,10 +188,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's. </p>
+<p>If flip on blue is enabled, will flip the reference if the GUI selects blue.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td></td></tr>
     <tr><td class="paramname">reference</td><td></td></tr>
+    <tr><td class="paramname">flipOnBlue</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -192,8 +201,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a4679824937b9a1f3002440c8823e46b6" name="a4679824937b9a1f3002440c8823e46b6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4679824937b9a1f3002440c8823e46b6">&#9670;&#160;</a></span>angle() <span class="overload">[2/2]</span></h2>
+<a id="ab49f88c0b90de7a956fcd4eefe4bcfac" name="ab49f88c0b90de7a956fcd4eefe4bcfac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab49f88c0b90de7a956fcd4eefe4bcfac">&#9670;&#160;</a></span>angle() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,8 +216,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;&#160;</td>
-          <td class="paramname"><em>reference</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a>&#160;</td>
+          <td class="paramname"><em>reference</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>flipOnBlue</em> = <code>false</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -219,10 +234,12 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's. </p>
+<p>If flip on blue is enabled, will flip the reference if the GUI selects blue.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td></td></tr>
     <tr><td class="paramname">reference</td><td></td></tr>
+    <tr><td class="paramname">flipOnBlue</td><td></td></tr>
   </table>
   </dd>
 </dl>
