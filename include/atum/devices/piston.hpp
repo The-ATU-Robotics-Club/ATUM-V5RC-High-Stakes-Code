@@ -1,10 +1,10 @@
 /**
  * @file piston.hpp
- * @brief Includes the Piston class. 
+ * @brief Includes the Piston class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -20,24 +20,30 @@ namespace atum {
 class Piston {
   public:
   /**
-   * @brief Constructs a new piston based on the given port.
+   * @brief Constructs a new piston based on the given port. Reversed refers to
+   * if the tubing is "reversed."
    *
    * @param port
+   * @param reversed
    * @param startExtended
    * @param loggerLevel
    */
   Piston(const std::uint8_t port,
+         const bool iReversed = false,
          const bool startExtended = false,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
-   * @brief Constructs a new piston based on the given extender port.
+   * @brief Constructs a new piston based on the given extender port. Reversed
+   * refers to if the tubing is "reversed."
    *
    * @param port
+   * @param reversed
    * @param startExtended
    * @param loggerLevel
    */
   Piston(const ADIExtenderPort &port,
+         const bool iReversed = false,
          const bool startExtended = false,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
@@ -69,6 +75,7 @@ class Piston {
 
   private:
   pros::adi::Pneumatics piston;
+  const bool reversed;
   Logger logger;
 };
 } // namespace atum

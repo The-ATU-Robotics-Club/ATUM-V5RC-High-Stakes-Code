@@ -124,6 +124,8 @@ void Intake::sorting() {
 }
 
 void Intake::finishLoading() {
+  mtr->moveVoltage(12);
+  wait(params.pressLoadTime);
   mtr->moveVoltage(-12);
   wait(params.finishLoadingTime);
   state = IntakeState::FinishedLoading;

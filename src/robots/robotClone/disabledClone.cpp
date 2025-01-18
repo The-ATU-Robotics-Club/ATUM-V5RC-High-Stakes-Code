@@ -65,10 +65,10 @@ void RobotClone::ladybrownSetup15() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, true)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('F', 2750)};
+      std::make_unique<LineTracker>('F', 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 10_deg},
+                         {LadybrownState::Loading, 7_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 135_deg}};
   Ladybrown::Parameters ladybrownParameters{
@@ -76,7 +76,7 @@ void RobotClone::ladybrownSetup15() {
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};
-  ladybrownParameters.manualSlew = SlewRate{0.2};
+  ladybrownParameters.manualSlew = SlewRate{0.3};
   AngularProfile::Parameters ladybrownMotionParams{
       240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;
@@ -116,9 +116,10 @@ void RobotClone::intakeSetup15() {
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
-  intakeParams.timeUntilUnjammed = 0.2_s;
+  intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.finishLoadingTime = 0.2_s;
+  intakeParams.pressLoadTime = 0.1_s;
+  intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
@@ -127,7 +128,7 @@ void RobotClone::intakeSetup15() {
 }
 
 void RobotClone::goalClampSetup15() {
-  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('G', true)};
+  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('G', true, true)};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
 }
 
@@ -212,14 +213,14 @@ void RobotClone::ladybrownSetup24() {
       std::make_unique<Motor>(MotorPortsList{16},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "right ladybrown")};
-  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B', false)};
+  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>()};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('H', 2750)};
+      std::make_unique<LineTracker>('H', 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 15_deg},
+                         {LadybrownState::Loading, 7_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
@@ -227,7 +228,7 @@ void RobotClone::ladybrownSetup24() {
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};
-  ladybrownParameters.manualSlew = SlewRate{0.2};
+  ladybrownParameters.manualSlew = SlewRate{0.3};
   AngularProfile::Parameters ladybrownMotionParams{
       240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;
@@ -269,7 +270,8 @@ void RobotClone::intakeSetup24() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.finishLoadingTime = 0.0125_s;
+  intakeParams.pressLoadTime = 0.1_s;
+  intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
@@ -278,7 +280,7 @@ void RobotClone::intakeSetup24() {
 }
 
 void RobotClone::goalClampSetup24() {
-  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('H', true)};
+  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('H', true, true)};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
 }
 

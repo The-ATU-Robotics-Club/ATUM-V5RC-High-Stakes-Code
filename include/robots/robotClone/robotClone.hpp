@@ -15,7 +15,6 @@
 #include "atum/atum.hpp"
 #include "atum/depend/units.h"
 
-
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -72,7 +71,7 @@ class RobotClone : public Robot {
 
   /**
    * @brief Sets up the goal clamp for the 15 inch.
-   * 
+   *
    */
   void goalClampSetup15();
 
@@ -101,8 +100,8 @@ class RobotClone : public Robot {
   void intakeSetup24();
 
   /**
-   * @brief Sets up the goal clamp for the 24 inch. 
-   * 
+   * @brief Sets up the goal clamp for the 24 inch.
+   *
    */
   void goalClampSetup24();
 
@@ -152,12 +151,32 @@ class RobotClone : public Robot {
   void configurationControls();
 
   /**
+   * @brief The actions associated with the end of the double goal rush,
+   * regardless of which goal was grabbed first.
+   *
+   */
+  void endDoubleGoalRush();
+
+  /**
    * @brief Sets up the robot with the appropriate starting pose and flips poses
    * if necessary.
    *
    * @param startingPose
    */
   void setupRoutine(Pose startingPose);
+
+  /**
+   * @brief Clamps down whenever a goal is aligned. If the given timeout is
+   * exceeded before a goal is found, does nothing (so you should place a manual
+   * clamp at the point you expect the goal to be there).
+   *
+   * This is done to allow dynamic routines depending on if the robot managed to
+   * receive a goal or not.
+   *
+   * @param timeout
+   * @return Schedule
+   */
+  Schedule clampWhenReady(const second_t timeout = 2_s);
 
   const int id;
   Remote remote;

@@ -51,6 +51,8 @@ class Intake : public Task, public StateMachine<IntakeState> {
     second_t timeUntilUnjammed;
     // The time the intake will run outward when throwing while sorting.
     second_t sortThrowTime;
+    // The time the intake will continue turning when it sees a ring and is loading. 
+    second_t pressLoadTime;
     // The time the intake will run outward when throwing while finishing
     // loading.
     second_t finishLoadingTime;
