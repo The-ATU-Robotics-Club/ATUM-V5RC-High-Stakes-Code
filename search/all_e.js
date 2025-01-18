@@ -7,7 +7,7 @@ var searchData=
   ['pathfollower_2ehpp_4',['pathFollower.hpp',['../pathFollower_8hpp.html',1,'']]],
   ['pid_5',['PID',['../classatum_1_1PID.html',1,'atum::PID'],['../classatum_1_1PID.html#ade7488d1ab76448ee23bd58b73a647b7',1,'atum::PID::PID()']]],
   ['pid_2ehpp_6',['pid.hpp',['../pid_8hpp.html',1,'']]],
-  ['piston_7',['Piston',['../classatum_1_1Piston.html',1,'atum::Piston'],['../classatum_1_1Piston.html#aeefd7cf9455280a327b212336c31eac7',1,'atum::Piston::Piston(const ADIExtenderPort &amp;port, const bool startExtended=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1Piston.html#a10269cb00c582bc894ccd0898dc1786a',1,'atum::Piston::Piston(const std::uint8_t port, const bool startExtended=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['piston_7',['Piston',['../classatum_1_1Piston.html',1,'atum::Piston'],['../classatum_1_1Piston.html#a712cea64261f3968234e648108e37026',1,'atum::Piston::Piston(const ADIExtenderPort &amp;port, const bool iReversed=false, const bool startExtended=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1Piston.html#adfe6feb46339310b7ad6c606fb84a506',1,'atum::Piston::Piston(const std::uint8_t port, const bool iReversed=false, const bool startExtended=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['piston_2ehpp_8',['piston.hpp',['../piston_8hpp.html',1,'']]],
   ['point_9',['Point',['../structatum_1_1MotionProfile_1_1Point.html',1,'atum::MotionProfile']]],
   ['portslist_10',['PortsList',['../misc_8hpp.html#a6a7b355273288f05264089a9f35493d4',1,'atum']]],

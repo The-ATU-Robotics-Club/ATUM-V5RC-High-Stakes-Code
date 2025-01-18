@@ -108,12 +108,12 @@ $(document).ready(function(){initNavTree('classatum_1_1Piston.html',''); initRes
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a10269cb00c582bc894ccd0898dc1786a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Piston.html#a10269cb00c582bc894ccd0898dc1786a">Piston</a> (const std::uint8_t port, const bool startExtended=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a10269cb00c582bc894ccd0898dc1786a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new piston based on the given port.  <br /></td></tr>
-<tr class="separator:a10269cb00c582bc894ccd0898dc1786a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeefd7cf9455280a327b212336c31eac7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Piston.html#aeefd7cf9455280a327b212336c31eac7">Piston</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const bool startExtended=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:aeefd7cf9455280a327b212336c31eac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new piston based on the given extender port.  <br /></td></tr>
-<tr class="separator:aeefd7cf9455280a327b212336c31eac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfe6feb46339310b7ad6c606fb84a506"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Piston.html#adfe6feb46339310b7ad6c606fb84a506">Piston</a> (const std::uint8_t port, const bool iReversed=false, const bool startExtended=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:adfe6feb46339310b7ad6c606fb84a506"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new piston based on the given port. Reversed refers to if the tubing is "reversed.".  <br /></td></tr>
+<tr class="separator:adfe6feb46339310b7ad6c606fb84a506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a712cea64261f3968234e648108e37026"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Piston.html#a712cea64261f3968234e648108e37026">Piston</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const bool iReversed=false, const bool startExtended=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a712cea64261f3968234e648108e37026"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new piston based on the given extender port. Reversed refers to if the tubing is "reversed.".  <br /></td></tr>
+<tr class="separator:a712cea64261f3968234e648108e37026"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ff4a1293ce0222a815fee5a3fd942dd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Piston.html#a2ff4a1293ce0222a815fee5a3fd942dd">extend</a> ()</td></tr>
 <tr class="memdesc:a2ff4a1293ce0222a815fee5a3fd942dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends the piston.  <br /></td></tr>
 <tr class="separator:a2ff4a1293ce0222a815fee5a3fd942dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Straightforward wrapper around the PROS pneumatics class to support dynamically finding ADI extenders and logging. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a10269cb00c582bc894ccd0898dc1786a" name="a10269cb00c582bc894ccd0898dc1786a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10269cb00c582bc894ccd0898dc1786a">&#9670;&#160;</a></span>Piston() <span class="overload">[1/2]</span></h2>
+<a id="adfe6feb46339310b7ad6c606fb84a506" name="adfe6feb46339310b7ad6c606fb84a506"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfe6feb46339310b7ad6c606fb84a506">&#9670;&#160;</a></span>Piston() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -146,45 +146,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>startExtended</em> = <code>false</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
-          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Constructs a new piston based on the given port. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">port</td><td></td></tr>
-    <tr><td class="paramname">startExtended</td><td></td></tr>
-    <tr><td class="paramname">loggerLevel</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aeefd7cf9455280a327b212336c31eac7" name="aeefd7cf9455280a327b212336c31eac7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeefd7cf9455280a327b212336c31eac7">&#9670;&#160;</a></span>Piston() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">atum::Piston::Piston </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;&#160;</td>
-          <td class="paramname"><em>port</em>, </td>
+          <td class="paramname"><em>iReversed</em> = <code>false</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -206,10 +168,62 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new piston based on the given extender port. </p>
+<p>Constructs a new piston based on the given port. Reversed refers to if the tubing is "reversed.". </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
+    <tr><td class="paramname">reversed</td><td></td></tr>
+    <tr><td class="paramname">startExtended</td><td></td></tr>
+    <tr><td class="paramname">loggerLevel</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a712cea64261f3968234e648108e37026" name="a712cea64261f3968234e648108e37026"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a712cea64261f3968234e648108e37026">&#9670;&#160;</a></span>Piston() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">atum::Piston::Piston </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>iReversed</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>startExtended</em> = <code>false</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new piston based on the given extender port. Reversed refers to if the tubing is "reversed.". </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">port</td><td></td></tr>
+    <tr><td class="paramname">reversed</td><td></td></tr>
     <tr><td class="paramname">startExtended</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
