@@ -2,6 +2,7 @@
 #include "atum/systems/robot.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 76.5 in. / s^2.
@@ -12,101 +13,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
    \__ \ / / | | (_-<
    |___/_\_\_|_|_/__/
   */
-  START_ROUTINE("Skills")
-<<<<<<< Updated upstream
-  // 24 in code
-  setupRoutine({-5_ft, 0_ft, 90_deg});
-  intake->intake();
-  pathFollower->follow({{{-4_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
-=======
-  
-  END_ROUTINE
 
-  START_ROUTINE("Full Test")
-  setupRoutine({-5_ft, -3_ft, 180_deg});
+  START_ROUTINE("Skills") 
 
-  pathFollower->follow(
-      {{{-1_ft, -4.625_ft, 90_deg}, false, Path::Parameters{2.8, 25_in_per_s}}},
-      "Test Curve");
-  turn->toward(-15_deg);
-  pathFollower->follow(
-      {{{0_tile, 0_tile, 45_deg}, false, Path::Parameters{3.5}}});
-  turn->awayFrom(135_deg);
-  pathFollower->follow(
-      {{{1.5_tile, -2.5_tile, 0_deg}, true, Path::Parameters{4}},
-       {{1.5_tile, -1.5_tile, 0_deg}, false}});
-  turn->toward({0_in, 0_in});
-
-  END_ROUTINE
-
-  START_ROUTINE("Turning Test")
-  setupRoutine({0_in, 0_in, 0_deg});
-
-  turn->toward(90_deg);    // Right
-  turn->toward(180_deg);   // Right
-  turn->toward(-90_deg);   // Right
-  turn->awayFrom(0_deg);   // Left
-  turn->awayFrom(180_deg); // About
-  turn->toward(90_deg);    // Right
-  turn->toward(-90_deg);   // About
-  turn->awayFrom(0_deg);   // Left
-  turn->awayFrom(180_deg); // About
-  turn->toward(45_deg);
-  turn->toward(90_deg);
-  turn->toward(135_deg);
-  turn->toward(180_deg);
-  turn->toward(225_deg);
-  turn->toward(270_deg);
-  turn->toward(315_deg);
-  turn->toward(360_deg);
-  END_ROUTINE
-
-  START_ROUTINE("Ladybrown Test")
->>>>>>> Stashed changes
-  intake->load();
-  pathFollower->follow({{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
-  // LADY BROWN
-  intake->intake();
-  pathFollower->follow({{{-4_ft, -4_ft, 155_deg}, false, Path::Parameters{}}});
-  turn->awayFrom(90_deg);
-  pathFollower->follow({{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{}}});
-  // Clamp mogo
-  pathFollower->follow({{{-6_ft, -6_ft, -135_deg}, false, Path::Parameters{}}});
-  pathFollower->follow(
-      {{{-0.5_ft, -0.5_ft, 90_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{-6_ft, -6_ft, -135_deg}, true, Path::Parameters{}}});
-  // Unclamp mogo
-  pathFollower->follow({{{0_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{0_ft, -4_ft, 45_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}});
-  // LADY BROWN 2 RINGS
-  pathFollower->follow({{{.5_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}});
-  // LADY BROWN 1 MORE RING
-  pathFollower->follow({{{2_ft, -2_ft, 45_deg}, true, Path::Parameters{}}});
-  // CLAMP MOGO
-  pathFollower->follow({{{2_ft, -4_ft, 180_deg}, false, Path::Parameters{}}});
-  // INTAKE ONLY RED RING
-  pathFollower->follow({{{4_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
-  // INTAKE ONLY RED RING
-  pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}});
-  // INTAKE ONLY RED RING
-  pathFollower->follow({{{2_ft, -4_ft, -45_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{4.5_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
-  pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}});
-  turn->toward(-45_deg);
-  // RELEASE GOAL CLAMP
-
-  // RAISE HANG MECH
-  pathFollower->follow({{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}});
-  // HANG
-
-  // 15 in code
+  if(id == ID15) {
   setupRoutine({-5_ft, 5_ft, -45_deg});
 
   pathFollower->follow({{{-6_ft, 6_ft, -45_deg}, false, Path::Parameters{}}});
-
+  
   // ring 1
   intake->intake();
 
@@ -188,7 +102,111 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   pathFollower->follow({{{2_ft, 5_ft, 90_deg}, false, Path::Parameters{}}});
 
+  //ring 8
+
+  intake->intake();
+
+  intake->stop();
+
+  pathFollower->follow({{{0_ft, 5_ft, -90_deg}, true, Path::Parameters{}}});
+
+  turn->toward(0_deg);
+
+  // LB things
+  
+  } else if(id == ID24) {
+
+    intake->load();
+  pathFollower->follow({{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
+  // LADY BROWN
+  intake->intake();
+  pathFollower->follow({{{-4_ft, -4_ft, 155_deg}, false, Path::Parameters{}}});
+  turn->awayFrom(90_deg);
+  pathFollower->follow({{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{}}});
+  // Clamp mogo
+  pathFollower->follow({{{-6_ft, -6_ft, -135_deg}, false, Path::Parameters{}}});
+  pathFollower->follow(
+      {{{-0.5_ft, -0.5_ft, 90_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{-6_ft, -6_ft, -135_deg}, true, Path::Parameters{}}});
+  // Unclamp mogo
+  pathFollower->follow({{{0_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{0_ft, -4_ft, 45_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}});
+  // LADY BROWN 2 RINGS
+  pathFollower->follow({{{.5_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}});
+  // LADY BROWN 1 MORE RING
+  pathFollower->follow({{{2_ft, -2_ft, 45_deg}, true, Path::Parameters{}}});
+  // CLAMP MOGO
+  pathFollower->follow({{{2_ft, -4_ft, 180_deg}, false, Path::Parameters{}}});
+  // INTAKE ONLY RED RING
+  pathFollower->follow({{{4_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
+  // INTAKE ONLY RED RING
+  pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}});
+  // INTAKE ONLY RED RING
+  pathFollower->follow({{{2_ft, -4_ft, -45_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{4.5_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}});
+  turn->toward(-45_deg);
+  // RELEASE GOAL CLAMP
+
+  // RAISE HANG MECH
+  pathFollower->follow({{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}});
+  // HANG
+    
+  }
+
   END_ROUTINE
+
+
+
+  START_ROUTINE("Full Test")
+  setupRoutine({-5_ft, -3_ft, 180_deg});
+
+  pathFollower->follow(
+      {{{-1_ft, -4.625_ft, 90_deg}, false, Path::Parameters{2.8, 25_in_per_s}}},
+      "Test Curve");
+  turn->toward(-15_deg);
+  pathFollower->follow(
+      {{{0_tile, 0_tile, 45_deg}, false, Path::Parameters{3.5}}});
+  turn->awayFrom(135_deg);
+  pathFollower->follow(
+      {{{1.5_tile, -2.5_tile, 0_deg}, true, Path::Parameters{4}},
+       {{1.5_tile, -1.5_tile, 0_deg}, false}});
+  turn->toward({0_in, 0_in});
+
+  END_ROUTINE
+
+  START_ROUTINE("Turning Test")
+  setupRoutine({0_in, 0_in, 0_deg});
+
+  turn->toward(90_deg);    // Right
+  turn->toward(180_deg);   // Right
+  turn->toward(-90_deg);   // Right
+  turn->awayFrom(0_deg);   // Left
+  turn->awayFrom(180_deg); // About
+  turn->toward(90_deg);    // Right
+  turn->toward(-90_deg);   // About
+  turn->awayFrom(0_deg);   // Left
+  turn->awayFrom(180_deg); // About
+  turn->toward(45_deg);
+  turn->toward(90_deg);
+  turn->toward(135_deg);
+  turn->toward(180_deg);
+  turn->toward(225_deg);
+  turn->toward(270_deg);
+  turn->toward(315_deg);
+  turn->toward(360_deg);
+  END_ROUTINE
+
+
+
+
+
+
+
+
 
   /*
     __  __ _    _      __ _        _     ___           _    _
