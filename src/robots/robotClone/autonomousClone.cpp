@@ -17,30 +17,34 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Skills") 
 
   if(id == ID15) {
-  setupRoutine({-5_ft, 5_ft, -45_deg});
+  setupRoutine({-5.3_ft, 5.3_ft, -45_deg});
 
-  pathFollower->follow({{{-6_ft, 6_ft, -45_deg}, false, Path::Parameters{}}});
-  
-  // ring 1
   intake->intake();
+
+  pathFollower->follow({{{-5.6_ft, 5.6_ft, -45_deg}, false, Path::Parameters{}}});
+  
 
   intake->stop();
 
+  // ring 1
+
   pathFollower->follow(
-      {{{-5.5_ft, 5.5_ft, -45_deg}, true, Path::Parameters{}}});
+      {{{-4.5_ft, 4.5_ft, 135_deg}, true, Path::Parameters{}}});
 
-  turn->toward(90_deg);
+  turn->awayFrom(90_deg);
 
-  pathFollower->follow({{{-2_ft, 4_ft, 135_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{-2_ft, 4_ft, 90_deg}, true, Path::Parameters{}}});
 
   // grab mogo
 
-  turn->toward(-90_deg);
+  goalClamp->clamp();
 
-  pathFollower->follow({{{-4_ft, 4_ft, -90_deg}, false, Path::Parameters{}}});
+  turn->toward(-90_deg);
 
   // ring 2
   intake->intake();
+
+  pathFollower->follow({{{-4_ft, 4_ft, -90_deg}, false, Path::Parameters{}}});
 
   intake->stop();
 
@@ -54,14 +58,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->stop();
 
   pathFollower->follow(
-      {{{-0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
+      {{{-0.25_ft, 0.25_ft, 90_deg}, false, Path::Parameters{3, 30_in_per_s}}});
 
   // ring 4
   intake->intake();
 
   intake->stop();
 
-  pathFollower->follow({{{0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{0.25_ft, 0.25_ft, 90_deg}, false, Path::Parameters{4, 10_in_per_s}}});
 
   // ring 5
   intake->intake();
