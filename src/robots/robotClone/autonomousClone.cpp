@@ -35,7 +35,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   pathFollower->follow({{{-2_ft, 4_ft, 90_deg}, true, Path::Parameters{}}});
 
-  // grab mogo
+  goalClamp->clamp();
 
   goalClamp->clamp();
 
@@ -76,7 +76,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   pathFollower->follow({{{-6_ft, 6_ft, -45_deg}, true, Path::Parameters{}}});
 
-  // ungrab mogo
+  goalClamp->unclamp();
 
   turn->toward(90_deg);
 
@@ -117,6 +117,43 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   turn->toward(0_deg);
 
   // LB things
+  
+  turn->toward(135_deg);
+
+  pathFollower->follow({{{2_ft, 2_ft, 135_deg}, false, Path::Parameters{}}});
+
+  goalClamp->clamp();
+
+  turn->toward(0_deg);
+
+  intake->intake();
+
+  pathFollower->follow({{{2_ft, 4_ft, 0_deg}, false, Path::Parameters{}}});
+
+  turn->toward(90_deg);
+
+  pathFollower->follow({{{4_ft, 4_ft, 90_deg}, false, Path::Parameters{}}});
+
+  intake->stop();
+
+  turn->toward(45_deg);
+
+  intake->intake();
+
+  pathFollower->follow({{{5.8_ft, 5.8_ft, 45_deg}, false, Path::Parameters{}}});
+
+  pathFollower->follow({{{5_ft, 5_ft, -135_deg}, true, Path::Parameters{}}});
+
+  pathFollower->follow({{{5.8_ft, 5.8_ft, 45_deg}, false, Path::Parameters{}}});
+
+  intake->stop();
+
+  pathFollower->follow({{{2_ft, 2_ft, -135_deg}, false, Path::Parameters{}}});
+
+  turn->toward(0_deg);
+
+  pathFollower->follow({{{2_ft, 5.5_ft, 0_deg}, false, Path::Parameters{}}});
+
   
   } else if(id == ID24) {
 
