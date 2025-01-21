@@ -13,12 +13,10 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
    |___/_\_\_|_|_/__/
   */
   START_ROUTINE("Skills")
-<<<<<<< Updated upstream
   // 24 in code
   setupRoutine({-5_ft, 0_ft, 90_deg});
   intake->intake();
   pathFollower->follow({{{-4_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
-=======
   
   END_ROUTINE
 
@@ -62,7 +60,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   END_ROUTINE
 
   START_ROUTINE("Ladybrown Test")
->>>>>>> Stashed changes
   intake->load();
   pathFollower->follow({{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
   // LADY BROWN

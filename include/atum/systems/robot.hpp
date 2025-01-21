@@ -52,7 +52,7 @@ using Routine = std::function<void()>;
         routines.push_back( \
             [this]() {
 /**
- * @brief Ends an autonomous routine defintion.
+ * @brief Ends an autonomous routine definition.
  *
  */
 #define END_ROUTINE                                                            \
