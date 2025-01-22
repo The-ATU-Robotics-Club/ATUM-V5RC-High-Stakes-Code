@@ -9,12 +9,13 @@
 
 #pragma once
 
-#include "../sharedSystems/goalrush.hpp"
 #include "../sharedSystems/goalClamp.hpp"
+#include "../sharedSystems/goalRush.hpp"
 #include "../sharedSystems/intake.hpp"
 #include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
 #include "atum/depend/units.h"
+
 
 namespace atum {
 /**
@@ -71,10 +72,10 @@ class RobotClone : public Robot {
   void intakeSetup15();
 
   /**
-   * @brief Sets up the goal clamp for the 15 inch.
+   * @brief Sets up the goal clamp and goal rush for the 15 inch.
    *
    */
-  void goalClampSetup15();
+  void goalSetup15();
 
   /**
    * @brief Sets up the objects for autonomous routine usage for the 15 inch.
@@ -101,10 +102,10 @@ class RobotClone : public Robot {
   void intakeSetup24();
 
   /**
-   * @brief Sets up the goal clamp for the 24 inch.
+   * @brief Sets up the goal clamp and goal rush for the 24 inch.
    *
    */
-  void goalClampSetup24();
+  void goalSetup24();
 
   /**
    * @brief Sets up the objects for autonomous routine usage for the 24 inch.
@@ -186,8 +187,7 @@ class RobotClone : public Robot {
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
-  std::unique_ptr<Piston> goalRush;
-  std::unique_ptr<Piston> goalRushClamp;
+  std::unique_ptr<GoalRush> goalRush;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<Turn> turn;
   Timer matchTimer;

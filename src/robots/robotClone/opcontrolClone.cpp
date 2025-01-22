@@ -1,6 +1,4 @@
 #include "robotClone.hpp"
-#include "robots/sharedSystems/ladybrown.hpp"
-#include "robots/sharedSystems/goalrush.hpp"
 
 namespace atum {
 void RobotClone::opcontrol() {
@@ -46,11 +44,11 @@ void RobotClone::opcontrol() {
     }
 
     if(remote.getPress(Remote::Button::Left)) {
-      goalRush->toggle();
+      goalRush->toggleArm();
     }
 
     if(remote.getPress(Remote::Button::A)) {
-      goalRushClamp->toggle();
+      goalRush->toggleClamp();
     }
 
     if(remote.getHold(Remote::Button::Up) &&

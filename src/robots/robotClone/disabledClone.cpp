@@ -1,3 +1,4 @@
+#include "atum/devices/adi.hpp"
 #include "robotClone.hpp"
 #include <memory>
 
@@ -7,13 +8,13 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     driveSetup15();
     ladybrownSetup15();
     intakeSetup15();
-    goalClampSetup15();
+    goalSetup15();
     autonSetup15();
   } else if(id == ID24) {
     driveSetup24();
     ladybrownSetup24();
     intakeSetup24();
-    goalClampSetup24();
+    goalSetup24();
     autonSetup24();
   }
 }
@@ -44,8 +45,7 @@ void RobotClone::driveSetup15() {
                                  std::move(imu),
                                  Logger::Level::Debug)};
   odometry->startBackgroundTasks();
-  gps = std::make_unique<GPS>(
-      17, Pose{0.224_in, 6.46_in, -90_deg});
+  gps = std::make_unique<GPS>(17, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -127,11 +127,17 @@ void RobotClone::intakeSetup15() {
                                     intakeParams);
 }
 
-void RobotClone::goalClampSetup15() {
-  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('G', true, true)};
-  goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
-  goalRush = std::make_unique<Piston>('B');
-  goalRushClamp = std::make_unique<Piston>('A');
+void RobotClone::goalSetup15() {
+  // Setup goal clamp.
+  std::unique_ptr<Piston> goalClampPiston{
+      std::make_unique<Piston>('G', true, true)};
+  goalClamp =
+      std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
+  // Setup goal rush.
+  std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>(ADIExtenderPort{21, 'B'})};
+  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>(ADIExtenderPort{21,'A'})};
+  goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
+                                        std::move(goalRushClamp));
 }
 
 void RobotClone::autonSetup15() {
@@ -200,8 +206,7 @@ void RobotClone::driveSetup24() {
                                  std::move(imu),
                                  Logger::Level::Debug)};
   odometry->startBackgroundTasks();
-  gps = std::make_unique<GPS>(
-      19, Pose{0.224_in, 6.46_in, -90_deg});
+  gps = std::make_unique<GPS>(19, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -209,7 +214,7 @@ void RobotClone::driveSetup24() {
 }
 
 void RobotClone::ladybrownSetup24() {
-    //17 port expander
+  // 17 port expander
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-20},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
@@ -284,11 +289,17 @@ void RobotClone::intakeSetup24() {
                                     intakeParams);
 }
 
-void RobotClone::goalClampSetup24() {
-  std::unique_ptr<Piston> goalClampPiston{std::make_unique<Piston>('H', true, true)};
-  goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
-  goalRush = std::make_unique<Piston>('B');
-  goalRushClamp = std::make_unique<Piston>('A');
+void RobotClone::goalSetup24() {
+  // Setup goal clamp.
+  std::unique_ptr<Piston> goalClampPiston{
+      std::make_unique<Piston>('H', true, true)};
+  goalClamp =
+      std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
+  // Setup goal rush.
+  std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
+  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('A')};
+  goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
+                                        std::move(goalRushClamp));
 }
 
 void RobotClone::autonSetup24() {

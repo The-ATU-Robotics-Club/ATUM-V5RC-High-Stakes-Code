@@ -1,41 +1,38 @@
 /**
- * @file goalrush.hpp
- * @brief Includes the goalrush class.
+ * @file goalRush.hpp
+ * @brief Includes the GoalRush class.
  * @date 2025-01-21
  *
  * @copyright Copyright (c) 2025
  *
  */
- 
+
 #pragma once
 
 #include "atum/atum.hpp"
 
+namespace atum {
+class GoalRush {
+  public:
+  GoalRush(std::unique_ptr<Piston> iArm,
+           std::unique_ptr<Piston> iClamp,
+           const Logger::Level loggerLevel = Logger::Level::Info);
 
-namespace atum{
+  void extendArm();
 
-class goalrush{
-public:
+  void retractArm();
 
+  void grab();
 
-void armExtend();
+  void release();
 
-void armRetract();
+  void toggleArm();
 
-void grab();
+  void toggleClamp();
 
-void release();
-
-void armToggle();
-
-void rushClampToggle();
-
-bool armExtended();
-
-private:
-
- std::unique_ptr<Piston> goalRush;
- std::unique_ptr<Piston> goalRushClamp;
-Logger logger;
+  private:
+  std::unique_ptr<Piston> arm;
+  std::unique_ptr<Piston> clamp;
+  Logger logger;
 };
-}
+} // namespace atum
