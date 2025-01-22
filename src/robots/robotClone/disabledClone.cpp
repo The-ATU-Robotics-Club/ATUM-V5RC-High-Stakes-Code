@@ -33,8 +33,6 @@ void RobotClone::driveSetup15() {
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
-  gps = std::make_unique<GPS>(
-      17, Pose{0.224_in, 6.46_in, -90_deg}, 0.5, 1.0, Logger::Level::Debug);
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('A', 'B', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
@@ -46,6 +44,8 @@ void RobotClone::driveSetup15() {
                                  std::move(imu),
                                  Logger::Level::Debug)};
   odometry->startBackgroundTasks();
+  gps = std::make_unique<GPS>(
+      17, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -181,11 +181,11 @@ void RobotClone::autonSetup15() {
 
 void RobotClone::driveSetup24() {
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
-      MotorPortsList{-7, -8, -9, 10},
+      MotorPortsList{-6, 7, -8, -9},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "left drive")};
   std::unique_ptr<Motor> rightDriveMtr{std::make_unique<Motor>(
-      MotorPortsList{1, 2, 3, -4},
+      MotorPortsList{-1, 2, 3, 5},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
@@ -200,6 +200,8 @@ void RobotClone::driveSetup24() {
                                  std::move(imu),
                                  Logger::Level::Debug)};
   odometry->startBackgroundTasks();
+  gps = std::make_unique<GPS>(
+      19, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -207,6 +209,7 @@ void RobotClone::driveSetup24() {
 }
 
 void RobotClone::ladybrownSetup24() {
+    //17 port expander
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-20},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
@@ -217,7 +220,7 @@ void RobotClone::ladybrownSetup24() {
                               "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>()};
+      std::make_unique<RotationSensor>(16, true)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>('H', 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
@@ -262,11 +265,11 @@ void RobotClone::ladybrownSetup24() {
 
 void RobotClone::intakeSetup24() {
   std::unique_ptr<Motor> intakeMtr{std::make_unique<Motor>(
-      MotorPortsList{-5, 6}, Motor::Gearing{pros::v5::MotorGears::blue})};
+      MotorPortsList{-10, 11}, Motor::Gearing{pros::v5::MotorGears::blue})};
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(17, hueFields)};
+      std::make_unique<ColorSensor>(18, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
