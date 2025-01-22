@@ -131,8 +131,7 @@ void RobotClone::goalSetup15() {
   // Setup goal clamp.
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('G', true, true)};
-  goalClamp =
-      std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
+  goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
   // Setup goal rush.
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>(ADIExtenderPort{21, 'B'})};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>(ADIExtenderPort{21,'A'})};
