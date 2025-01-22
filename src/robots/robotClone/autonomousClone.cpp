@@ -17,25 +17,27 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Skills") 
 
   if(id == ID15) {
-  setupRoutine({-5.3_ft, 5.3_ft, -45_deg});
+  //setupRoutine({-5.3_ft, 5.3_ft, -45_deg});
+  setupRoutine({-2_ft, -4_ft, -90_deg});
+
+  intake->outtake();
+
+  wait(50000000_ms);
+
 
   intake->intake();
-
+/*
   pathFollower->follow({{{-5.6_ft, 5.6_ft, -45_deg}, false, Path::Parameters{}}});
   
-
   intake->stop();
 
   // ring 1
 
-  pathFollower->follow(
-      {{{-4.5_ft, 4.5_ft, 135_deg}, true, Path::Parameters{}}});
+  pathFollower->follow({{{-4.8_ft, 4.8_ft, 135_deg}, true, Path::Parameters{}}});
 
   turn->awayFrom(90_deg);
 
   pathFollower->follow({{{-2_ft, 4_ft, 90_deg}, true, Path::Parameters{}}});
-
-  goalClamp->clamp();
 
   goalClamp->clamp();
 
@@ -251,9 +253,10 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   ladybrown->fullyExtend();
 
   pathFollower->follow({{{1.5_ft,1.5_ft, -135_deg}, true, Path::Parameters{}}});
+  */
   
   } else if(id == ID24) {
-
+/*
     intake->load();
   pathFollower->follow({{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
   // LADY BROWN
@@ -292,13 +295,13 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   // RAISE HANG MECH
   pathFollower->follow({{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}});
   // HANG
-    
+    */
   }
 
   END_ROUTINE
 
 
-
+/*
   START_ROUTINE("Full Test")
   setupRoutine({-5_ft, -3_ft, 180_deg});
 
@@ -352,6 +355,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
    | |\/| | / _` |___|  _| | '_(_-<  _| | |) / _ \ || | '_ \ / -_)
    |_|  |_|_\__,_|   |_| |_|_| /__/\__| |___/\___/\_,_|_.__/_\___|
   */
+ /*
   START_ROUTINE("Mid-first Double Goal")
   setupRoutine({-2_tile - 4_in, -0.5_tile, 90_deg});
   intake->index();
@@ -397,6 +401,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      \__ \ / _` / -_)___|  _| | '_(_-<  _| | |) / _ \ || | '_ \ / -_)
      |___/_\__,_\___|   |_| |_|_| /__/\__| |___/\___/\_,_|_.__/_\___|
   */
+
+ /*
   START_ROUTINE("Side-first Double Goal")
   setupRoutine({-2_tile - 4_in, -1.5_tile, 90_deg});
   intake->index();
@@ -503,3 +509,6 @@ Schedule RobotClone::clampWhenReady(const second_t timeout) {
                                  timeout}};
 }
 } // namespace atum
+
+
+*/
