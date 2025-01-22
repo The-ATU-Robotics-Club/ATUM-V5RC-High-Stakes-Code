@@ -126,11 +126,15 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   turn->toward(0_deg);
 
+  //ring 9
+
   intake->intake();
 
   pathFollower->follow({{{2_ft, 4_ft, 0_deg}, false, Path::Parameters{}}});
 
   turn->toward(90_deg);
+
+  //ring 10
 
   pathFollower->follow({{{4_ft, 4_ft, 90_deg}, false, Path::Parameters{}}});
 
@@ -138,21 +142,33 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   turn->toward(45_deg);
 
+  //ring 11
+
   intake->intake();
 
   pathFollower->follow({{{5.8_ft, 5.8_ft, 45_deg}, false, Path::Parameters{}}});
 
   pathFollower->follow({{{5_ft, 5_ft, -135_deg}, true, Path::Parameters{}}});
 
+  //ring 12
+
   pathFollower->follow({{{5.8_ft, 5.8_ft, 45_deg}, false, Path::Parameters{}}});
 
   intake->stop();
 
-  pathFollower->follow({{{2_ft, 2_ft, -135_deg}, false, Path::Parameters{}}});
+  pathFollower->follow({{{2_ft, 2_ft, -135_deg}, true, Path::Parameters{}}});
 
   turn->toward(0_deg);
 
+  intake->intake();
+
   pathFollower->follow({{{2_ft, 5.5_ft, 0_deg}, false, Path::Parameters{}}});
+
+  turn->toward(90_deg);
+
+  pathFollower->follow({{{5_ft, 5_ft, 90_deg}, false, Path::Parameters{}}});
+
+  
 
   
   } else if(id == ID24) {
