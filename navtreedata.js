@@ -51,7 +51,7 @@ var NAVTREEINDEX =
 [
 "acceptable_8hpp.html",
 "classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62",
-"stateMachine_8hpp.html"
+"screen_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
