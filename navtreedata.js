@@ -50,8 +50,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "acceptable_8hpp.html",
-"classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62",
-"screen_8hpp_source.html"
+"classatum_1_1RotationSensor.html#a3983094568445e65911be457823c024d",
+"slewRate_8hpp.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

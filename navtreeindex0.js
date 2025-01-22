@@ -80,6 +80,7 @@ var NAVTREEINDEX0 =
 "classatum_1_1GoalClamp.html#aa4106d707f8fd97e0dcbe8e4130c5310":[1,0,0,8,0],
 "classatum_1_1GoalClamp.html#abdee71986e38923c72c74ca76064802c":[1,0,0,8,4],
 "classatum_1_1GoalClamp.html#af6ddfcc3a78ff2fb9967a9a5a24a6bf8":[1,0,0,8,1],
+"classatum_1_1GoalRush.html":[1,0,0,9],
 "classatum_1_1IMU.html":[1,0,0,11],
 "classatum_1_1IMU.html#a5ec35c1eec0b5747180ffe30dee1ccfb":[1,0,0,11,2],
 "classatum_1_1IMU.html#a89d16737954d369b31176969c0bbdb50":[1,0,0,11,1],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classatum_1_1RobotPrototype.html#a2a7ee5e0fe656d6f9e8e3d13643ce01e":[1,0,0,32,2],
 "classatum_1_1RobotPrototype.html#a69beaa427ac592ab102ee17202e6ac2b":[1,0,0,32,1],
 "classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f":[1,0,0,32,0],
-"classatum_1_1RotationSensor.html":[1,0,0,33],
-"classatum_1_1RotationSensor.html#a3983094568445e65911be457823c024d":[1,0,0,33,3]
+"classatum_1_1RotationSensor.html":[1,0,0,33]
 };
