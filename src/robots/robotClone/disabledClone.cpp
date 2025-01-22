@@ -193,7 +193,7 @@ void RobotClone::driveSetup24() {
       std::make_unique<Odometer>('C', 'D', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('E', 'F', wheelCircumference, 1.791_in)};
-  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{11, 18})};
+  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 14})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
                                  std::move(sideOdometer),
@@ -208,11 +208,11 @@ void RobotClone::driveSetup24() {
 
 void RobotClone::ladybrownSetup24() {
   std::unique_ptr<Motor> leftLadybrownMotor{
-      std::make_unique<Motor>(MotorPortsList{-15},
+      std::make_unique<Motor>(MotorPortsList{-20},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "left ladybrown")};
   std::unique_ptr<Motor> rightLadybrownMotor{
-      std::make_unique<Motor>(MotorPortsList{16},
+      std::make_unique<Motor>(MotorPortsList{12},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B')};
