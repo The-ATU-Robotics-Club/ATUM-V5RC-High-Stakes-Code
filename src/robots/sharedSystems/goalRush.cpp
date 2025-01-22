@@ -9,7 +9,7 @@ goalrush::goalrush(std::unique_ptr<Piston> goalRush,
  goalRushClamp{std::move(goalRushClamp)},
  logger{loggerLevel} {
  logger.info("Goal rush is constructed!");
-
+ }
 
 
 void goalrush::armExtend() {
