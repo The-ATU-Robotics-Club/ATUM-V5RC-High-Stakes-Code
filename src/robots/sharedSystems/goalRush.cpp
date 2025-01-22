@@ -1,3 +1,4 @@
+/*
 #include "goalRush.hpp"
 
 namespace atum {
@@ -33,3 +34,5 @@ void GoalRush::toggleClamp() {
   clamp->toggle();
 }
 } // namespace atum
+
+*/

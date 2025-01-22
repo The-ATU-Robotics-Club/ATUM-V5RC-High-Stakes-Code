@@ -23,10 +23,13 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->outtake();
 
   wait(50000000_ms);
-
+ 
+  intake->stop();
+ 
+  wait(5000_ms);
 
   intake->intake();
-/*
+
   pathFollower->follow({{{-5.6_ft, 5.6_ft, -45_deg}, false, Path::Parameters{}}});
   
   intake->stop();
@@ -253,10 +256,10 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   ladybrown->fullyExtend();
 
   pathFollower->follow({{{1.5_ft,1.5_ft, -135_deg}, true, Path::Parameters{}}});
-  */
   
-  } else if(id == ID24) {
-/*
+  
+  } /*else if(id == ID24) {
+
     intake->load();
   pathFollower->follow({{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
   // LADY BROWN
@@ -295,8 +298,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   // RAISE HANG MECH
   pathFollower->follow({{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}});
   // HANG
-    */
-  }
+    
+  }*/
 
   END_ROUTINE
 
