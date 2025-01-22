@@ -100,7 +100,11 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   pathFollower->follow({{{0_ft, 6_ft, 0_deg}, false, Path::Parameters{}}});
 
-  // LB things
+  ladybrown->load();
+
+  ladybrown->score();
+
+  ladybrown->finishScore();
 
   turn->toward(90_deg);
 
@@ -116,7 +120,11 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   turn->toward(0_deg);
 
-  // LB things
+  ladybrown->load();
+
+  ladybrown->score();
+
+  ladybrown->finishScore();
   
   turn->toward(135_deg);
 
@@ -232,12 +240,17 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   goalClamp->unclamp();
 
-  turn->toward(-135_deg);
+  turn->awayFrom(-135_deg);
 
-  //raise LB?
+  //change to half speed
 
-  pathFollower->follow({{{1_ft, 1_ft, -135_deg}, false, Path::Parameters{}}});
+  ladybrown->prepare();
 
+  pathFollower->follow({{{1_ft, 1_ft, -135_deg}, true, Path::Parameters{}}});
+
+  ladybrown->fullyExtend();
+
+  pathFollower->follow({{{1.5_ft,1.5_ft, -135_deg}, true, Path::Parameters{}}});
   
   } else if(id == ID24) {
 
