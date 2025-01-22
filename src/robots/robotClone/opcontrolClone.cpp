@@ -1,5 +1,6 @@
 #include "robotClone.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
+#include "robots/sharedSystems/goalrush.hpp"
 
 namespace atum {
 void RobotClone::opcontrol() {

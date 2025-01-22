@@ -9,6 +9,7 @@
 
 #pragma once
 
+#include "../sharedSystems/goalrush.hpp"
 #include "../sharedSystems/goalClamp.hpp"
 #include "../sharedSystems/intake.hpp"
 #include "../sharedSystems/ladybrown.hpp"

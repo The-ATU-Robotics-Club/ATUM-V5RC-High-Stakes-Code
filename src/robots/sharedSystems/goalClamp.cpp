@@ -26,7 +26,7 @@ bool GoalClamp::hasGoal() {
 
 void GoalClamp::clamp() {
   piston->extend();
-}
+} 
 
 void GoalClamp::unclamp() {
   piston->retract();
