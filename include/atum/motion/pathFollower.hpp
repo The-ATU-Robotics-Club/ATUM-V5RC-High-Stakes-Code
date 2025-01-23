@@ -45,8 +45,8 @@ class PathFollower {
     bool reversed{false};
     std::optional<Path::Parameters> params;
     std::optional<AcceptableDistance> acceptable;
-    // By default, time out after path takes 10% longer than expected.
-    double timeoutScaling{1.1};
+    // By default, time out after path takes 5% longer than expected.
+    double timeoutScaling{1.05};
   };
 
   /**

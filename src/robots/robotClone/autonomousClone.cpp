@@ -1,5 +1,3 @@
-#include "atum/pose/pose.hpp"
-#include "atum/systems/robot.hpp"
 #include "robotClone.hpp"
 
 namespace atum {
@@ -333,45 +331,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   END_ROUTINE
 
-  START_ROUTINE("Full Test")
-  setupRoutine({-5_ft, -3_ft, 180_deg});
-
-  pathFollower->follow(
-      {{{-1_ft, -4.625_ft, 90_deg}, false, Path::Parameters{2.8, 25_in_per_s}}},
-      "Test Curve");
-  turn->toward(-15_deg);
-  pathFollower->follow(
-      {{{0_tile, 0_tile, 45_deg}, false, Path::Parameters{3.5}}});
-  turn->awayFrom(135_deg);
-  pathFollower->follow(
-      {{{1.5_tile, -2.5_tile, 0_deg}, true, Path::Parameters{4}},
-       {{1.5_tile, -1.5_tile, 0_deg}, false}});
-  turn->toward({0_in, 0_in});
-
-  END_ROUTINE
-
-  START_ROUTINE("Turning Test")
-  setupRoutine({0_in, 0_in, 0_deg});
-
-  turn->toward(90_deg);    // Right
-  turn->toward(180_deg);   // Right
-  turn->toward(-90_deg);   // Right
-  turn->awayFrom(0_deg);   // Left
-  turn->awayFrom(180_deg); // About
-  turn->toward(90_deg);    // Right
-  turn->toward(-90_deg);   // About
-  turn->awayFrom(0_deg);   // Left
-  turn->awayFrom(180_deg); // About
-  turn->toward(45_deg);
-  turn->toward(90_deg);
-  turn->toward(135_deg);
-  turn->toward(180_deg);
-  turn->toward(225_deg);
-  turn->toward(270_deg);
-  turn->toward(315_deg);
-  turn->toward(360_deg);
-  END_ROUTINE
-
   /*
     __  __ _    _      __ _        _     ___           _    _
    |  \/  (_)__| |___ / _(_)_ _ __| |_  |   \ ___ _  _| |__| |___
@@ -380,39 +339,64 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   */
 
   START_ROUTINE("Mid-first Double Goal")
-  setupRoutine({-2_tile - 4_in, -0.5_tile, 90_deg});
+  setupRoutine({-2_tile + 3.75_in, -0.5_tile, 90_deg});
   intake->index();
+  goalRush->extendArm();
+  Pose middleGoal{-0.5_tile, -0.5_tile, 45_deg};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    middleGoal.h = 65_deg;
+  } 
   pathFollower->follow(
       {{{-1.375_tile, -0.55_tile, 90_deg, 76.5_in_per_s},
         false,
-        Path::Parameters{1, 76.5_in_per_s, 76.5_in_per_s_sq}},
-       {{-0.5_tile, -0.5_tile, 45_deg},
+        Path::Parameters{0.5}},
+       {middleGoal,
         false,
-        Path::Parameters{0.75, 76.5_in_per_s, 76.5_in_per_s_sq}}});
-  wait(0.1_s); // Time for goal rush mech to clamp.
+        Path::Parameters{0.9, 76.5_in_per_s, 38.25_in_per_s_sq}}});
+    if(GUI::Routines::selectedColor() == MatchColor::Red) {
+        turn->toward(30_deg);
+    }
+  goalRush->grab();
+  wait(0.25_s); // Time for goal rush mech to clamp.
+  turn->toward(45_deg);
   pathFollower->follow(
       {{{-1.1_tile, -1.1_tile, 45_deg},
         true,
         Path::Parameters{1, 76.5_in_per_s, 76.5_in_per_s_sq}}});
-  turn->toward({0_tile, -2_tile});
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+  turn->toward(85_deg);
+  } else {
+    turn->toward(35_deg);
+  }
+  goalRush->release();
+  wait(0.25_s); // Time for goal rush mech to un-clamp.
+  turn->toward(135_deg);
   pathFollower->follow(
-      {{{-0.4_tile, -1.6_tile, 135_deg},
+      {{{-0.5_tile, -1.5_tile, 135_deg},
         false,
-        Path::Parameters{1, 76.5_in_per_s, 76.5_in_per_s_sq}}});
-  wait(0.1_s); // Time for goal rush mech to clamp.
+        Path::Parameters{0.75, 76.5_in_per_s, 76.5_in_per_s_sq}}});
+
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    turn->toward(160_deg);
+  }else {
+    turn->toward(120_deg);
+  }
+  goalRush->grab();
+  wait(0.25_s); // Time for goal rush mech to clamp.
+  turn->toward(135_deg);
   pathFollower->follow(
       {{{-1.1_tile, -1.1_tile, 135_deg},
         true,
-        Path::Parameters{1, 76.5_in_per_s, 76.5_in_per_s_sq}}});
+        Path::Parameters{0.75, 76.5_in_per_s, 76.5_in_per_s_sq}}});
+  goalRush->release();
+  wait(0.25_s); // Time for goal rush mech to un-clamp.
   turn->toward(-135_deg);
+  goalRush->retractArm();
   clampWhenReady();
   pathFollower->follow(
-      {{{-0.9_tile, -0.9_tile, -135_deg}, true, Path::Parameters{0.25}}});
-
+      {{{-0.5_tile, -0.5_tile, -135_deg}, true, Path::Parameters{0.25}}});
   goalClamp->clamp();
   wait(0.1_s); // Time for goal clamp mech to clamp.
-  intake->intake();
-  wait(0.25_s);
   pathFollower->follow(
       {{{-1_tile, -1_tile, -135_deg}, false, Path::Parameters{0.25}}});
   endDoubleGoalRush();
@@ -447,8 +431,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
       {{{-0.9_tile, -1.1_tile, -45_deg}, true, Path::Parameters{0.25}}});
   goalClamp->clamp();
   wait(0.1_s); // Time for goal clamp mech to clamp.
-  intake->intake();
-  wait(0.25_s);
   pathFollower->follow(
       {{{-1_tile, -1_tile, -45_deg}, false, Path::Parameters{0.25}}});
   endDoubleGoalRush();
@@ -456,6 +438,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 }
 
 void RobotClone::endDoubleGoalRush() {
+  intake->intake();
   // Score first stack of rings.
   turn->toward({-1_tile, -2.5_tile});
   pathFollower->follow({{{-1_tile,
@@ -469,19 +452,18 @@ void RobotClone::endDoubleGoalRush() {
   pathFollower->follow(
       {{{-2_tile, -2_tile, angle(drive->getPose(), {-2_tile, -2_tile}, true)},
         false,
-        Path::Parameters{0.15}}});
+        Path::Parameters{0.1}}});
 
   // Score the rings in the corner.
   turn->toward(-135_deg);
   intake->resetCount();
-  while(matchTimer.timeElapsed() <= 23_s) {
+  while(matchTimer.timeElapsed() <= 23.5_s) {
     turn->toward(-135_deg);
+    pathFollower->follow({{{-2.575_tile, -2.575_tile, -135_deg},
+                           false,
+                           Path::Parameters{0.375, 20_in_per_s}}});
     pathFollower->follow(
-        {{{-2.575_tile, -2.575_tile, -135_deg},
-          false,
-          Path::Parameters{0.15, 15_in_per_s, 15_in_per_s_sq}}});
-    pathFollower->follow(
-        {{{-2_tile, -2_tile, -135_deg}, true, Path::Parameters{0.25}}});
+        {{{-2_tile, -2_tile, -135_deg}, true, Path::Parameters{0.375}}});
     wait(0.15_s);
   }
 
@@ -491,9 +473,8 @@ void RobotClone::endDoubleGoalRush() {
       {{{-2.5_tile, -2.5_tile, 45_deg}, true, Path::Parameters{0.15}}});
   intake->stop();
   goalClamp->unclamp();
-  pathFollower->follow({{{-0.15_tile, -0.95_tile, 30_deg},
-                         false,
-                         Path::Parameters{2.5, 50_in_per_s}}});
+  pathFollower->follow(
+      {{{-1.375_tile, 0_tile, 0_deg}, false, Path::Parameters{3}}});
 }
 
 void RobotClone::setupRoutine(Pose startingPose) {
@@ -516,6 +497,12 @@ void RobotClone::setupRoutine(Pose startingPose) {
   }
 
   goalClamp->unclamp();
+
+  if(id == ID15) {
+    intake->outtake();
+    wait(0.1_s);
+    intake->stop();
+  }
 }
 
 Schedule RobotClone::clampWhenReady(const second_t timeout) {

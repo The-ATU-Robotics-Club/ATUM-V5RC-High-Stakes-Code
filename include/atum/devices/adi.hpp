@@ -36,7 +36,10 @@ class ADIExtenderPort {
    */
   ADIExtenderPort(const std::int8_t smartPort,
                   const std::uint8_t adiPort,
-                  const Logger::Level loggerLevel = Logger::Level::Info);
+                  const Logger::Level loggerLevel =
+                      Logger::Level::Off); // Seems in the current PROS version,
+                                           // the ADI extender has several
+                                           // issues that lead to false errors.
 
   /**
    * @brief Constructs a new ADIExtenderPort object by dynamically finding the

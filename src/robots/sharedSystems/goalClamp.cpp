@@ -21,12 +21,16 @@ bool GoalClamp::hasGoal() {
   } else if(limitSwitch2 && limitSwitch2->check()) {
     return limitSwitch2->isPressed();
   }
+  return false;
+}
+
+bool GoalClamp::isClamped() {
   return piston->isExtended();
 }
 
 void GoalClamp::clamp() {
   piston->extend();
-} 
+}
 
 void GoalClamp::unclamp() {
   piston->retract();

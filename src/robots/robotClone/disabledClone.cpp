@@ -1,7 +1,4 @@
-#include "atum/devices/adi.hpp"
-#include "atum/devices/limitSwitch.hpp"
 #include "robotClone.hpp"
-#include <memory>
 
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
@@ -65,10 +62,10 @@ void RobotClone::ladybrownSetup15() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, true)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('F', 2700)};
+      std::make_unique<LineTracker>(ADIExtenderPort{21, 'A'}, 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 7_deg},
+                         {LadybrownState::Loading, 9_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 135_deg}};
   Ladybrown::Parameters ladybrownParameters{
@@ -132,17 +129,15 @@ void RobotClone::goalSetup15() {
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('G', true, true)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'}, false)};
   std::unique_ptr<LimitSwitch> limitSwitch2{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'H'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'H'}, false)};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));
   //  Setup goal rush.
-  std::unique_ptr<Piston> goalRushArm{
-      std::make_unique<Piston>(ADIExtenderPort{21, 'B'})};
-  std::unique_ptr<Piston> goalRushClamp{
-      std::make_unique<Piston>(ADIExtenderPort{21, 'A'})};
+  std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('F')};
+  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('H')};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
                                         std::move(goalRushClamp));
 }

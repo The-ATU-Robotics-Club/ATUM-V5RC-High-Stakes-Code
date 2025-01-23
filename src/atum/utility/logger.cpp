@@ -12,6 +12,9 @@ Logger::Logger(Level iLevel) : level{iLevel} {
 }
 
 void Logger::debug(const std::string &msg) {
+  if(level == Logger::Level::Off) {
+    return;
+  }
   log("DEBUG", msg, Level::Debug);
 }
 
@@ -59,6 +62,9 @@ void Logger::log(const std::string &prefix,
 }
 
 bool Logger::alreadyLogged(const std::string &msg) {
+  if(level == Logger::Level::Off) {
+    return true;
+  }
   if(std::find(logs.begin(), logs.end(), msg) != logs.end()) {
     return true;
   }

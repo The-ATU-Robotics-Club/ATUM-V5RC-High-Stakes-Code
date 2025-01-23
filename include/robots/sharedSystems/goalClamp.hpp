@@ -43,6 +43,14 @@ class GoalClamp {
   bool hasGoal();
 
   /**
+   * @brief Returns true whenever the goal clamp is down.
+   *
+   * @return true
+   * @return false
+   */
+  bool isClamped();
+
+  /**
    * @brief Extends the clamp piston.
    *
    */
