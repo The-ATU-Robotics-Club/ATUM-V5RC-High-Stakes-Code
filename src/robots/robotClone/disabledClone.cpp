@@ -229,16 +229,16 @@ void RobotClone::ladybrownSetup24() {
       std::make_unique<Motor>(MotorPortsList{12},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "right ladybrown")};
-  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B')};
+  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('A')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, false)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>('H', 2700)};
+      std::make_unique<LineTracker>((ADIExtenderPort{17, 'C'}), 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
-      ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 7_deg},
+      ladybrownPositions{{LadybrownState::Resting, -2_deg},
+                         {LadybrownState::Loading, 28.5_deg}, 
                          {LadybrownState::Preparing, 60_deg},
-                         {LadybrownState::Scoring, 125_deg}};
+                         {LadybrownState::Scoring, 125_deg}}; 
   Ladybrown::Parameters ladybrownParameters{
       6, -10_deg, 50_deg, ladybrownPositions, 0.375_s};
   ladybrownParameters.kG = 0.2;
@@ -303,7 +303,7 @@ void RobotClone::goalSetup24() {
       std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
   // Setup goal rush.
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
-  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('A')};
+  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('G')};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
                                         std::move(goalRushClamp));
 }
