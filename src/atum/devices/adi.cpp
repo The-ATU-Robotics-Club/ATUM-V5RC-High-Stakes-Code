@@ -6,15 +6,11 @@ ADIExtenderPort::ADIExtenderPort(const std::int8_t smartPort,
                                  const Logger::Level loggerLevel) :
     port{smartPort, adiPort}, logger{loggerLevel} {
   pros::Device extender{smartPort};
-  if(extender.is_installed()) {
-    logger.debug("ADI extender found on port " +
-                 std::to_string(extender.get_port()) + ".");
-  } else {
+  if(!extender.is_installed()) {
     logger.error("ADI extender at port " + std::to_string(extender.get_port()) +
                  " could not be initialized!");
+   
   }
-  logger.info("ADI extender contructed with port " +
-              std::to_string(extender.get_port()) + ".");
 }
 
 ADIExtenderPort::ADIExtenderPort(const std::uint8_t adiPort,
@@ -30,8 +26,6 @@ ADIExtenderPort::ADIExtenderPort(const std::uint8_t adiPort,
     logger.warn("Multiple ADI extenders found! Using first port found.");
   }
   port.first = extenders.front().get_port();
-  logger.debug("ADI extender found on port " + std::to_string(port.first) +
-               ".");
 }
 
 pros::adi::ext_adi_port_pair_t ADIExtenderPort::operator()() const {

@@ -113,13 +113,6 @@ void RobotClone::ladybrownControls() {
     case 1: intake->load(); break;
     default: intake->stop(); break;
   }
-
-  /*switch(remote.getTrigger()) {
-    case -1: rusharm->retract(); break;
-    case 1: rusharm->extend(); break;
-    default: rusharm->stop(); break;
-  }*/
-
 }
 
 void RobotClone::intakeControls() {
