@@ -1,3 +1,5 @@
+#include "atum/pose/pose.hpp"
+#include "atum/systems/robot.hpp"
 #include "robotClone.hpp"
 
 namespace atum {
@@ -16,7 +18,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   if(id == ID15) {
     // setupRoutine({-5.3_ft, 5.3_ft, -45_deg});
     setupRoutine({-2_ft, -4_ft, -90_deg});
-
+    // outake to allow the intake to drop of the rubber band
     intake->outtake();
 
     wait(50000000_ms);
@@ -264,54 +266,71 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         {{{1.5_ft, 1.5_ft, -135_deg}, true, Path::Parameters{}}});
 
   } else if(id == ID24) {
-    intake->load();
+    setupRoutine({-5_ft, 0_ft, 90_deg});
+
+    intake->index();
     pathFollower->follow(
-        {{{-5.5_ft, 0_ft, 90_deg}, false, Path::Parameters{}}});
+        {{{-4_ft, 0_ft, 90_deg}, false, Path::Parameters{0.1}}});
+
+    pathFollower->follow(
+        {{{-5_ft, 0_ft, 90_deg}, true, Path::Parameters{0.1}}});
     // LADY BROWN
     intake->intake();
+
+    wait(500_ms);
+
+    
+    turn->toward({-4_ft, -4_ft});
     pathFollower->follow(
-        {{{-4_ft, -4_ft, 155_deg}, false, Path::Parameters{}}});
-    turn->awayFrom(90_deg);
-    pathFollower->follow({{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{}}});
-    // Clamp mogo
-    pathFollower->follow(
-        {{{-6_ft, -6_ft, -135_deg}, false, Path::Parameters{}}});
-    pathFollower->follow(
-        {{{-0.5_ft, -0.5_ft, 90_deg}, false, Path::Parameters{}}});
-    pathFollower->follow(
-        {{{0.5_ft, 0.5_ft, 90_deg}, false, Path::Parameters{}}});
-    pathFollower->follow(
-        {{{-6_ft, -6_ft, -135_deg}, true, Path::Parameters{}}});
-    // Unclamp mogo
-    pathFollower->follow({{{0_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
-    pathFollower->follow({{{0_ft, -4_ft, 45_deg}, false, Path::Parameters{}}});
-    pathFollower->follow(
-        {{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}});
-    // LADY BROWN 2 RINGS
-    pathFollower->follow({{{.5_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
-    pathFollower->follow(
-        {{{0_ft, -5.5_ft, 180_deg}, false, Path::Parameters{}}});
-    // LADY BROWN 1 MORE RING
-    pathFollower->follow({{{2_ft, -2_ft, 45_deg}, true, Path::Parameters{}}});
-    // CLAMP MOGO
-    pathFollower->follow({{{2_ft, -4_ft, 180_deg}, false, Path::Parameters{}}});
-    // INTAKE ONLY RED RING
-    pathFollower->follow({{{4_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
-    // INTAKE ONLY RED RING
-    pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}});
-    // INTAKE ONLY RED RING
-    pathFollower->follow({{{2_ft, -4_ft, -45_deg}, false, Path::Parameters{}}});
-    pathFollower->follow(
-        {{{4.5_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
-    pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false, Path::Parameters{}}});
-    turn->toward(-45_deg);
+      {{{-3.75_ft, -4_ft, 165_deg}, false, Path::Parameters{0.1}}});
+    intake->index();
+    turn->toward({-6_ft, -4_ft});
+
+    pathFollower->follow({{{-5_ft, -4_ft, 180_deg}, false, Path::Parameters{0.1}}});
+
+    pathFollower->follow({{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{0.01}}});
+    /**pathFollower->follow({{{-4_ft, -4_ft, 155_deg}, false,
+     Path::Parameters{}}}); turn->awayFrom(90_deg);
+     pathFollower->follow({{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{}}});
+     // Clamp mogo
+     pathFollower->follow({{{-6_ft, -6_ft, -135_deg}, false,
+     Path::Parameters{}}}); pathFollower->follow(
+         {{{-0.5_ft, -0.5_ft, 90_deg}, false, Path::Parameters{}}});
+     pathFollower->follow({{{0.5_ft, 0.5_ft, 90_deg}, false,
+     Path::Parameters{}}}); pathFollower->follow({{{-6_ft, -6_ft, -135_deg},
+     true, Path::Parameters{}}});
+     // Unclamp mogo
+     pathFollower->follow({{{0_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
+     pathFollower->follow({{{0_ft, -4_ft, 45_deg}, false, Path::Parameters{}}});
+     pathFollower->follow({{{0_ft, -5.5_ft, 180_deg}, false,
+     Path::Parameters{}}});
+     // LADY BROWN 2 RINGS
+     pathFollower->follow({{{.5_ft, -5_ft, 90_deg}, false,
+     Path::Parameters{}}}); pathFollower->follow({{{0_ft, -5.5_ft, 180_deg},
+     false, Path::Parameters{}}});
+     // LADY BROWN 1 MORE RING
+     pathFollower->follow({{{2_ft, -2_ft, 45_deg}, true, Path::Parameters{}}});
+     // CLAMP MOGO
+     pathFollower->follow({{{2_ft, -4_ft, 180_deg}, false,
+     Path::Parameters{}}});
+     // INTAKE ONLY RED RING
+     pathFollower->follow({{{4_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
+     // INTAKE ONLY RED RING
+     pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false,
+     Path::Parameters{}}});
+     // INTAKE ONLY RED RING
+     pathFollower->follow({{{2_ft, -4_ft, -45_deg}, false,
+     Path::Parameters{}}}); pathFollower->follow({{{4.5_ft, -4_ft, 90_deg},
+     false, Path::Parameters{}}}); pathFollower->follow({{{6_ft, -6_ft,
+     135_deg}, false, Path::Parameters{}}}); turn->toward(-45_deg); 
     // RELEASE GOAL CLAMP
 
     // RAISE HANG MECH
     pathFollower->follow(
         {{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}});
-    // HANG
+    // HANG */
   }
+
   END_ROUTINE
 
   START_ROUTINE("Full Test")
@@ -359,6 +378,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
    | |\/| | / _` |___|  _| | '_(_-<  _| | |) / _ \ || | '_ \ / -_)
    |_|  |_|_\__,_|   |_| |_|_| /__/\__| |___/\___/\_,_|_.__/_\___|
   */
+
   START_ROUTINE("Mid-first Double Goal")
   setupRoutine({-2_tile - 4_in, -0.5_tile, 90_deg});
   intake->index();
@@ -404,6 +424,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      \__ \ / _` / -_)___|  _| | '_(_-<  _| | |) / _ \ || | '_ \ / -_)
      |___/_\__,_\___|   |_| |_|_| /__/\__| |___/\___/\_,_|_.__/_\___|
   */
+
   START_ROUTINE("Side-first Double Goal")
   setupRoutine({-2_tile - 4_in, -1.5_tile, 90_deg});
   intake->index();
@@ -478,8 +499,6 @@ void RobotClone::endDoubleGoalRush() {
 void RobotClone::setupRoutine(Pose startingPose) {
   matchTimer.setTime();
 
-  const inch_t extension{6.5_in};
-  startingPose.x += extension;
   const bool flipped{GUI::Routines::selectedColor() == MatchColor::Blue};
   if(flipped) {
     startingPose.flip();

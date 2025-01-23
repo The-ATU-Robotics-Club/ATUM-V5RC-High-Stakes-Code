@@ -13,7 +13,7 @@ void initialize() {
   atum::GUI::Manager::initialize();
   logger.info("Initialization has started.");
   if constexpr(BRAIN_ID == IDPROTO) {
-    robot = std::make_unique<atum::RobotPrototype>(); 
+    robot = std::make_unique<atum::RobotPrototype>();
   } else {
     robot = std::make_unique<atum::RobotClone>(BRAIN_ID);
   }

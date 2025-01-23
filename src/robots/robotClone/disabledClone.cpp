@@ -43,8 +43,7 @@ void RobotClone::driveSetup15() {
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
                                  std::move(sideOdometer),
-                                 std::move(imu),
-                                 Logger::Level::Debug)};
+                                 std::move(imu))};
   odometry->startBackgroundTasks();
   gps = std::make_unique<GPS>(17, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
@@ -204,15 +203,14 @@ void RobotClone::driveSetup24() {
       "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
   std::unique_ptr<Odometer> forwardOdometer{
-      std::make_unique<Odometer>('C', 'D', wheelCircumference, -0.209_in)};
+      std::make_unique<Odometer>('E', 'F', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
-      std::make_unique<Odometer>('E', 'F', wheelCircumference, 1.791_in)};
+      std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 14})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
                                  std::move(sideOdometer),
-                                 std::move(imu),
-                                 Logger::Level::Debug)};
+                                 std::move(imu))};
   odometry->startBackgroundTasks();
   gps = std::make_unique<GPS>(19, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
@@ -233,7 +231,7 @@ void RobotClone::ladybrownSetup24() {
                               "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>(16, true)};
+      std::make_unique<RotationSensor>(16, false)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>('H', 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
