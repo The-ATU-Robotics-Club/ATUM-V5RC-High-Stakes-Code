@@ -37,10 +37,8 @@ void RobotClone::driveSetup15() {
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 16})};
-  std::unique_ptr<Odometry> odometry{
-      std::make_unique<Odometry>(std::move(forwardOdometer),
-                                 std::move(sideOdometer),
-                                 std::move(imu))};
+  std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
+      std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
   gps = std::make_unique<GPS>(17, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
@@ -202,10 +200,8 @@ void RobotClone::driveSetup24() {
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 14})};
-  std::unique_ptr<Odometry> odometry{
-      std::make_unique<Odometry>(std::move(forwardOdometer),
-                                 std::move(sideOdometer),
-                                 std::move(imu))};
+  std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
+      std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
   gps = std::make_unique<GPS>(19, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
@@ -215,7 +211,6 @@ void RobotClone::driveSetup24() {
 }
 
 void RobotClone::ladybrownSetup24() {
-  // 17 port expander
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-20},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
@@ -228,14 +223,14 @@ void RobotClone::ladybrownSetup24() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, false)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>((ADIExtenderPort{17, 'C'}), 2700)};
+      std::make_unique<LineTracker>((ADIExtenderPort{17, 'C'}), 2800)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
-      ladybrownPositions{{LadybrownState::Resting, -2_deg},
-                         {LadybrownState::Loading, 28.5_deg}, 
+      ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
+                         {LadybrownState::Loading, 18.5_deg},
                          {LadybrownState::Preparing, 60_deg},
-                         {LadybrownState::Scoring, 125_deg}}; 
+                         {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      6, -10_deg, 50_deg, ladybrownPositions, 0.375_s};
+      6, -5_deg, 50_deg, ladybrownPositions, 0.0_s};
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};
@@ -282,7 +277,7 @@ void RobotClone::intakeSetup24() {
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 0.1_s;
-  intakeParams.finishLoadingTime = 0.1_s;
+  intakeParams.finishLoadingTime = 0.2_s;
   intakeParams.generalTimeout = 1_s;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
@@ -293,9 +288,14 @@ void RobotClone::intakeSetup24() {
 void RobotClone::goalSetup24() {
   // Setup goal clamp.
   std::unique_ptr<Piston> goalClampPiston{
-      std::make_unique<Piston>('H', true, true)};
-  goalClamp =
-      std::make_unique<GoalClamp>(std::move(goalClampPiston), nullptr, nullptr);
+      std::make_unique<Piston>('H', false, false)};
+  std::unique_ptr<LimitSwitch> limitSwitch1{
+      std::make_unique<LimitSwitch>(ADIExtenderPort{17, 'A'}, false)};
+  std::unique_ptr<LimitSwitch> limitSwitch2{
+      std::make_unique<LimitSwitch>(ADIExtenderPort{17, 'B'}, false)};
+  goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
+                                          std::move(limitSwitch1),
+                                          std::move(limitSwitch2));
   // Setup goal rush.
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('G')};
@@ -306,8 +306,8 @@ void RobotClone::goalSetup24() {
 void RobotClone::autonSetup24() {
   // Path follower setup.
   Path::setDefaultParams(
-      {1, 40_in_per_s, 40_in_per_s_sq, drive->getGeometry().track});
-  AcceptableDistance acceptable{forever, 1_in};
+      {1, 76.5_in_per_s, 76.5_in_per_s_sq, drive->getGeometry().track});
+  AcceptableDistance acceptable{forever};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
   std::unique_ptr<Controller> left{
