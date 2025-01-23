@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1RotationSensor.html":[1,0,0,33],
 "classatum_1_1RotationSensor.html#a3983094568445e65911be457823c024d":[1,0,0,33,3],
 "classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62":[1,0,0,33,4],
 "classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db":[1,0,0,33,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41a63a4853ae307122eea9d93eb4809e05d":[2,0,0,0,2,6,3,5],
 "screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41a8eaecda0ed3ad336aab030c8ef58d4c2":[2,0,0,0,2,6,3,4],
 "screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41ae9ad7c218e9253c743369b67ca6e02b9":[2,0,0,0,2,6,3,6],
-"screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41afa7a336e85b65168c064c2988b8d719d":[2,0,0,0,2,6,3,2],
-"screen_8hpp_source.html":[2,0,0,0,2,6]
+"screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41afa7a336e85b65168c064c2988b8d719d":[2,0,0,0,2,6,3,2]
 };

@@ -114,9 +114,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a6a5f722c197dd2c9a87a95e98ff39a58"><td class="memItemLeft" align="right" valign="top"><a id="a6a5f722c197dd2c9a87a95e98ff39a58" name="a6a5f722c197dd2c9a87a95e98ff39a58"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>ADIExtenderPort</b> (<a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;&amp;)=delete</td></tr>
 <tr class="separator:a6a5f722c197dd2c9a87a95e98ff39a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a941dfac31c7e588bd7b659a993204016"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ADIExtenderPort.html#a941dfac31c7e588bd7b659a993204016">ADIExtenderPort</a> (const std::int8_t smartPort, const std::uint8_t adiPort, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a941dfac31c7e588bd7b659a993204016"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ADIExtenderPort.html" title="This class acts as a functor to support dynamically initializing ADI devices on an extender and loggi...">ADIExtenderPort</a> object with the given ports and logging. Provided in the unfortunate case that two or more ADI extenders are required.  <br /></td></tr>
-<tr class="separator:a941dfac31c7e588bd7b659a993204016"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2773c0a62fb5167847c6f3423f26c1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ADIExtenderPort.html#abe2773c0a62fb5167847c6f3423f26c1">ADIExtenderPort</a> (const std::int8_t smartPort, const std::uint8_t adiPort, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Off)</td></tr>
+<tr class="memdesc:abe2773c0a62fb5167847c6f3423f26c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ADIExtenderPort.html" title="This class acts as a functor to support dynamically initializing ADI devices on an extender and loggi...">ADIExtenderPort</a> object with the given ports and logging. Provided in the unfortunate case that two or more ADI extenders are required.  <br /></td></tr>
+<tr class="separator:abe2773c0a62fb5167847c6f3423f26c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50577dd5580090971d1925c359c80a5a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ADIExtenderPort.html#a50577dd5580090971d1925c359c80a5a">ADIExtenderPort</a> (const std::uint8_t adiPort, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
 <tr class="memdesc:a50577dd5580090971d1925c359c80a5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ADIExtenderPort.html" title="This class acts as a functor to support dynamically initializing ADI devices on an extender and loggi...">ADIExtenderPort</a> object by dynamically finding the smart port for the extender. Also does logging.  <br /></td></tr>
 <tr class="separator:a50577dd5580090971d1925c359c80a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -127,8 +127,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class acts as a functor to support dynamically initializing ADI devices on an extender and logging. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a941dfac31c7e588bd7b659a993204016" name="a941dfac31c7e588bd7b659a993204016"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a941dfac31c7e588bd7b659a993204016">&#9670;&#160;</a></span>ADIExtenderPort() <span class="overload">[1/2]</span></h2>
+<a id="abe2773c0a62fb5167847c6f3423f26c1" name="abe2773c0a62fb5167847c6f3423f26c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2773c0a62fb5167847c6f3423f26c1">&#9670;&#160;</a></span>ADIExtenderPort() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +149,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
-          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Off</code>&#160;</td>
         </tr>
         <tr>
           <td></td>

@@ -13,7 +13,7 @@ var NAVTREEINDEX0 =
 "classatum_1_1ADIExtenderPort.html":[1,0,0,3],
 "classatum_1_1ADIExtenderPort.html#a50577dd5580090971d1925c359c80a5a":[1,0,0,3,1],
 "classatum_1_1ADIExtenderPort.html#a65391f673542e5711cdf0402148d9bec":[1,0,0,3,2],
-"classatum_1_1ADIExtenderPort.html#a941dfac31c7e588bd7b659a993204016":[1,0,0,3,0],
+"classatum_1_1ADIExtenderPort.html#abe2773c0a62fb5167847c6f3423f26c1":[1,0,0,3,0],
 "classatum_1_1Acceptable.html":[1,0,0,2],
 "classatum_1_1Acceptable.html#a275bdfa48b6f5f18d69de566b4b490df":[1,0,0,2,1],
 "classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165":[1,0,0,2,3],
@@ -76,9 +76,10 @@ var NAVTREEINDEX0 =
 "classatum_1_1GoalClamp.html":[1,0,0,8],
 "classatum_1_1GoalClamp.html#a193e378cbd3cab744d5d6c6c7e63c9b6":[1,0,0,8,2],
 "classatum_1_1GoalClamp.html#a53a0a8052767ee361fe132293dca9a82":[1,0,0,8,3],
-"classatum_1_1GoalClamp.html#a6ddd302625aa07e3f3ce8c8224dbb0ca":[1,0,0,8,5],
+"classatum_1_1GoalClamp.html#a6ddd302625aa07e3f3ce8c8224dbb0ca":[1,0,0,8,6],
 "classatum_1_1GoalClamp.html#aa4106d707f8fd97e0dcbe8e4130c5310":[1,0,0,8,0],
-"classatum_1_1GoalClamp.html#abdee71986e38923c72c74ca76064802c":[1,0,0,8,4],
+"classatum_1_1GoalClamp.html#abdee71986e38923c72c74ca76064802c":[1,0,0,8,5],
+"classatum_1_1GoalClamp.html#adde4a7faf5cd8b928e8b04cfcbb82d3d":[1,0,0,8,4],
 "classatum_1_1GoalClamp.html#af6ddfcc3a78ff2fb9967a9a5a24a6bf8":[1,0,0,8,1],
 "classatum_1_1GoalRush.html":[1,0,0,9],
 "classatum_1_1IMU.html":[1,0,0,11],
@@ -248,6 +249,5 @@ var NAVTREEINDEX0 =
 "classatum_1_1RobotPrototype.html":[1,0,0,32],
 "classatum_1_1RobotPrototype.html#a2a7ee5e0fe656d6f9e8e3d13643ce01e":[1,0,0,32,2],
 "classatum_1_1RobotPrototype.html#a69beaa427ac592ab102ee17202e6ac2b":[1,0,0,32,1],
-"classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f":[1,0,0,32,0],
-"classatum_1_1RotationSensor.html":[1,0,0,33]
+"classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f":[1,0,0,32,0]
 };

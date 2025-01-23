@@ -118,8 +118,8 @@ $(document).ready(function(){initNavTree('pathFollower_8hpp_source.html',''); in
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">bool</span> reversed{<span class="keyword">false</span>};</div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    std::optional&lt;Path::Parameters&gt; params;</div>
 <div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    std::optional&lt;AcceptableDistance&gt; acceptable;</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// By default, time out after path takes 10% longer than expected.</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">double</span> timeoutScaling{1.1};</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="comment">// By default, time out after path takes 5% longer than expected.</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">double</span> timeoutScaling{1.05};</div>
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">   57</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a> {</div>
