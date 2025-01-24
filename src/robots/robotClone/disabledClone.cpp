@@ -24,7 +24,7 @@ void RobotClone::disabled() {
 
 void RobotClone::driveSetup15() {
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
-      MotorPortsList{-7, -8, 9, -10},
+      MotorPortsList{-7, 8, -9, -10},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "left drive")};
   std::unique_ptr<Motor> rightDriveMtr{std::make_unique<Motor>(
