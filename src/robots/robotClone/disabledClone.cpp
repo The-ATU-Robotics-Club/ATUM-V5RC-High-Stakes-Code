@@ -36,11 +36,11 @@ void RobotClone::driveSetup15() {
       std::make_unique<Odometer>('A', 'B', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
-  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 16})};
+  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{14, 17})};
   std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
       std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
-  gps = std::make_unique<GPS>(17, Pose{0.224_in, 6.46_in, -90_deg});
+  gps = std::make_unique<GPS>(18, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -49,7 +49,7 @@ void RobotClone::driveSetup15() {
 
 void RobotClone::ladybrownSetup15() {
   std::unique_ptr<Motor> leftLadybrownMotor{
-      std::make_unique<Motor>(MotorPortsList{-18},
+      std::make_unique<Motor>(MotorPortsList{-19},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "left ladybrown")};
   std::unique_ptr<Motor> rightLadybrownMotor{
@@ -58,7 +58,7 @@ void RobotClone::ladybrownSetup15() {
                               "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('E')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>(15, true)};
+      std::make_unique<RotationSensor>(16, true)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
       std::make_unique<LineTracker>(ADIExtenderPort{21, 'A'}, 2700)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
@@ -107,7 +107,7 @@ void RobotClone::intakeSetup15() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(19, hueFields)};
+      std::make_unique<ColorSensor>(20, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};

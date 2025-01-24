@@ -1,5 +1,6 @@
 #include "schedule.hpp"
 
+
 namespace atum {
 #define SCHEDULE()
 
@@ -23,11 +24,15 @@ TASK_DEFINITIONS_FOR(Schedule) {
   START_TASK("Scheduled Item")
   const uint8_t initialStatus{pros::competition::get_status()};
   Timer timer{item.timeout};
-  while(pros::competition::get_status() == initialStatus && !item.condition() &&
-        !timer.goneOff()) {
-    // Higher than standard delay to allow several scheduled items at once with
-    // little impact.
-    wait(100_ms);
+  try {
+    while(pros::competition::get_status() == initialStatus &&
+          !timer.goneOff() && !item.condition()) {
+      // Higher than standard delay to allow several scheduled items at once
+      // with little impact.
+      wait(100_ms);
+    }
+  } catch(...) {
+    logger.warn("Scheduled item reference out of scope!");
   }
   if(pros::competition::get_status() != initialStatus) {
     logger.debug("Scheduled item was interrupted (status change).");

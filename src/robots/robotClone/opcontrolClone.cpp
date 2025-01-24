@@ -1,6 +1,5 @@
 #include "robotClone.hpp"
 
-
 namespace atum {
 void RobotClone::opcontrol() {
   matchTimer.setTime();
@@ -150,14 +149,10 @@ void RobotClone::hangControls() {
   if(remote.getHold(Remote::Button::L1)) {
     speedMultiplier = 0.45;
     ladybrown->prepare();
-    if(id == ID15) {
-      goalRush->retractArm();
-    }
+    goalRush->retractArm();
   } else {
     ladybrown->fullyExtend();
-    if(id == ID15) {
-      goalRush->extendArm();
-    }
+    goalRush->extendArm();
   }
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;

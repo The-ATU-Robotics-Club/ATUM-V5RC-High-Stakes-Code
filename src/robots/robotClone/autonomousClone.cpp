@@ -20,11 +20,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
     // outake to allow the intake to drop of the rubber band
     intake->outtake();
 
-    wait(50000000_ms);
+    wait();
 
     intake->stop();
-
-    wait(5000_ms);
 
     intake->intake();
 
@@ -339,21 +337,21 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
    | |\/| | / _` |___|  _| | '_(_-<  _| | |) / _ \ || | '_ \ / -_)
    |_|  |_|_\__,_|   |_| |_|_| /__/\__| |___/\___/\_,_|_.__/_\___|
   */
-
-  START_ROUTINE("Mid-first Double Goal")
+  START_ROUTINE("24\" Auto")
   setupRoutine({-2_tile + 3.75_in, -0.5_tile, 90_deg});
+
+  // Goal rush middle goal.
   intake->index();
   goalRush->extendArm();
-  Pose middleGoal{-0.5_tile, -0.5_tile, 65_deg};
   pathFollower->follow(
       {{{-1.375_tile, -0.55_tile, 90_deg, 76.5_in_per_s},
         false,
         Path::Parameters{0.5}},
-       {middleGoal,
+       {{-0.5_tile, -0.5_tile, 65_deg},
         false,
         Path::Parameters{0.9, 76.5_in_per_s, 38.25_in_per_s_sq}}});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(27.5_deg);
+    turn->toward(20_deg);
   }
   goalRush->grab();
   wait(0.25_s); // Time for goal rush mech to clamp.
@@ -369,6 +367,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   }
   goalRush->release();
   wait(0.25_s); // Time for goal rush mech to un-clamp.
+
+  // Goal rush side goal.
   turn->toward(135_deg);
   pathFollower->follow(
       {{{-0.5_tile, -1.5_tile, 135_deg},
@@ -387,26 +387,23 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         true,
         Path::Parameters{0.75, 76.5_in_per_s, 76.5_in_per_s_sq}}});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(90_deg);
+    turn->toward(70_deg);
   }
   goalRush->release();
   wait(0.25_s); // Time for goal rush mech to un-clamp.
+
+  // Clamp on to goal.
   turn->toward(-135_deg);
   goalRush->retractArm();
-  clampWhenReady();
   pathFollower->follow(
       {{{-0.5_tile, -0.5_tile, -135_deg}, true, Path::Parameters{0.25}}});
   goalClamp->clamp();
   wait(0.1_s); // Time for goal clamp mech to clamp.
   pathFollower->follow(
       {{{-1_tile, -1_tile, -135_deg}, false, Path::Parameters{0.25}}});
-  endDoubleGoalRush();
-  END_ROUTINE
-}
 
-void RobotClone::endDoubleGoalRush() {
-  intake->intake();
   // Score first stack of rings.
+  intake->intake();
   turn->toward({-1_tile, -2.5_tile});
   pathFollower->follow({{{-1_tile,
                           -2.5_tile,
@@ -424,7 +421,7 @@ void RobotClone::endDoubleGoalRush() {
   // Score the rings in the corner.
   turn->toward(-135_deg);
   intake->resetCount();
-  while(matchTimer.timeElapsed() <= 23.5_s) {
+  while(matchTimer.timeElapsed() <= 24_s) {
     turn->toward(-135_deg);
     pathFollower->follow({{{-2.575_tile, -2.575_tile, -135_deg},
                            false,
@@ -442,6 +439,102 @@ void RobotClone::endDoubleGoalRush() {
   goalClamp->unclamp();
   pathFollower->follow(
       {{{-1.375_tile, 0_tile, 0_deg}, false, Path::Parameters{3}}});
+  END_ROUTINE
+
+  START_ROUTINE("15\" Auto")
+  setupRoutine({-2_tile - 4_in, 1.5_tile, 90_deg});
+
+  // Goal rush side goal.
+  intake->index();
+  goalRush->extendArm();
+  pathFollower->follow(
+      {{{-0.5_tile, 1.5_tile, 65_deg}, false, Path::Parameters{1}}});
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    turn->toward(27.5_deg);
+  }
+  goalRush->grab();
+  wait(0.25_s); // Time for goal rush mech to clamp.
+
+  // Clamp on to goal.
+  turn->toward(45_deg);
+  pathFollower->follow(
+      {{{-1.1_tile, 0.9_tile, 45_deg}, true, Path::Parameters{0.5}}});
+  turn->toward(0_deg);
+  goalRush->release();
+  wait(0.25_s); // Time for goal rush mech to un-clamp.
+  turn->toward(-135_deg);
+  goalRush->retractArm();
+  pathFollower->follow(
+      {{{-0.4_tile, 1.6_tile, -135_deg}, true, Path::Parameters{0.5}}});
+  goalClamp->clamp();
+  wait(0.1_s); // Time for goal clamp mech to clamp.
+  pathFollower->follow(
+      {{{-0.5_tile, 1.5_tile, -135_deg}, false, Path::Parameters{0.1}}});
+
+  // Score first stack of rings.
+  intake->intake();
+  turn->toward({-1.5_tile, 2.5_tile});
+  pathFollower->follow({{{-1.5_tile,
+                          2.5_tile,
+                          angle(drive->getPose(), {-1.5_tile, 2.5_tile}, true)},
+                         false,
+                         Path::Parameters{0.5}}});
+
+  // Score second stack of rings.
+  turn->toward({-2_tile, 2_tile});
+  pathFollower->follow(
+      {{{-2_tile, 2_tile, angle(drive->getPose(), {-2_tile, 2_tile}, true)},
+        false,
+        Path::Parameters{0.1}}});
+
+  // Score the rings in the corner.
+  turn->toward(-45_deg);
+  intake->resetCount();
+  while(matchTimer.timeElapsed() <= 20_s) {
+    turn->toward(-45_deg);
+    pathFollower->follow({{{-2.575_tile, 2.575_tile, -45_deg},
+                           false,
+                           Path::Parameters{0.375, 20_in_per_s}}});
+    pathFollower->follow(
+        {{{-2_tile, 2_tile, -45_deg}, true, Path::Parameters{0.375}}});
+    wait(0.15_s);
+  }
+
+  // Get other ring.
+  turn->toward(180_deg);
+  Schedule dropGoal{
+      Schedule::Item{"Drop Goal at Position",
+                     drive->checkIsNear({-2.5_tile, 1_tile}, 0.5_tile),
+                     [=]() {
+                       intake->index();
+                       goalClamp->unclamp();
+                     },
+                     1.5_s,
+                     [=]() {
+                       intake->index();
+                       goalClamp->unclamp();
+                     }}};
+  pathFollower->follow({{{-2.4_tile, 0.5_tile, 180_deg},
+                         false,
+                         Path::Parameters{2, 30_in_per_s}}});
+  turn->toward(180_deg);
+  pathFollower->follow({{{-2.4_tile, -0.5_tile, 180_deg},
+                         false,
+                         Path::Parameters{0.5, 30_in_per_s}}});
+
+  // Clamp on to other goal.
+  turn->awayFrom({-1.5_tile, 0_tile});
+  pathFollower->follow(
+      {{{-1.5_tile,
+         0_tile,
+         180_deg + angle(drive->getPose(), {-1.5_tile, 0_tile}, true)},
+        true,
+        Path::Parameters{0.1}}});
+  goalClamp->clamp();
+  wait(0.1_s); // Time for goal clamp mech to clamp.
+  intake->intake();
+  wait(1_s);
+  END_ROUTINE
 }
 
 void RobotClone::setupRoutine(Pose startingPose) {
