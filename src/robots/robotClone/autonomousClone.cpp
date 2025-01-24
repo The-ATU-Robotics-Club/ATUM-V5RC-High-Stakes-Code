@@ -33,7 +33,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
     turn->awayFrom(90_deg);
 
-    pathFollower->follow({{{-2_ft, 4_ft, -45_deg}, true, Path::Parameters{0.75, 38_in_per_s}}});
+    pathFollower->follow({{{-2_ft, 4_ft, -45_deg}, true, Path::Parameters{1, 38_in_per_s}}});
 
     goalClamp->clamp();
 
@@ -67,12 +67,21 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
      pathFollower->follow({{{0_ft, 4_ft, 45_deg}, false, Path::Parameters{.1, 50_in_per_s}}});
 
-    pathFollower->follow({{{-5.7_ft, 5.7_ft, 135_deg}, true, Path::Parameters{1, 76.5_in_per_s}}});
+    pathFollower->follow({{{-5.8_ft, 5.8_ft, 135_deg}, true, Path::Parameters{3, 76.5_in_per_s}}});
 
     goalClamp->unclamp();
 
-    intake->index();
+    ladybrown->prepare();
 
+pathFollower->follow(
+        {{{1.5_ft, -1.5_ft, 135_deg}, true, Path::Parameters{.1, 76.5_in_per_s}}});
+
+        ladybrown->fullyExtend();
+
+    pathFollower->follow({{{-1_ft, 1_ft, 135_deg}, true, Path::Parameters{.1, 30_in_per_s}}});
+
+
+/*
     pathFollower->follow({{{0_ft, 5.2_ft, 90_deg}, false, Path::Parameters{.1, 76.5_in_per_s}}});
 
     turn->awayFrom(135_deg);
@@ -98,8 +107,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
     
 
     turn->toward(-45_deg);
-
-    /*
 
     pathFollower->follow({{{-6_ft, 6_ft, -45_deg}, true, Path::Parameters{}}});
 
@@ -292,7 +299,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
     pathFollower->follow(
         {{{1.5_ft, 1.5_ft, -135_deg}, true, Path::Parameters{}}});
-
+*/
   } else if(id == ID24) {
     setupRoutine({-5_ft, 0_ft, 90_deg});
 
