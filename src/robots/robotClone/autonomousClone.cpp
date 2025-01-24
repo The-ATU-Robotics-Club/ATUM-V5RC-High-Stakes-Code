@@ -1,7 +1,6 @@
 #include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 76.5 in. / s^2.
@@ -364,10 +363,11 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   END_ROUTINE
 
   /*
-    __  __ _    _      __ _        _     ___           _    _
-   |  \/  (_)__| |___ / _(_)_ _ __| |_  |   \ ___ _  _| |__| |___
-   | |\/| | / _` |___|  _| | '_(_-<  _| | |) / _ \ || | '_ \ / -_)
-   |_|  |_|_\__,_|   |_| |_|_| /__/\__| |___/\___/\_,_|_.__/_\___|
+    ___ _ _  _ _     _       _
+   |_  ) | |( | )   /_\ _  _| |_ ___
+    / /|_  _|V V   / _ \ || |  _/ _ \
+   /___| |_|      /_/ \_\_,_|\__\___/
+
   */
   START_ROUTINE("24\" Auto")
   setupRoutine({-2_tile + 3.75_in, -0.5_tile, 90_deg});
@@ -437,16 +437,21 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   // Score first stack of rings.
   intake->intake();
   turn->toward({-1_tile, -2.5_tile});
-  pathFollower->follow({{{-1_tile,
-                          -2.5_tile,
-                          angle(drive->getPose(), {-1_tile, -2.5_tile}, true)},
-                         false,
-                         Path::Parameters{2, 35_in_per_s}}});
+  pathFollower->follow(
+      {{{-1_tile,
+         -2.5_tile,
+         (GUI::Routines::selectedColor() == MatchColor::Blue ? -1 : 1) *
+             angle(drive->getPose(), {-1_tile, -2.5_tile}, true)},
+        false,
+        Path::Parameters{2, 35_in_per_s}}});
 
   // Score second stack of rings.
   turn->toward({-2_tile, -2_tile});
   pathFollower->follow(
-      {{{-2_tile, -2_tile, angle(drive->getPose(), {-2_tile, -2_tile}, true)},
+      {{{-2_tile,
+         -2_tile,
+         (GUI::Routines::selectedColor() == MatchColor::Blue ? -1 : 1) *
+             angle(drive->getPose(), {-2_tile, -2_tile}, true)},
         false,
         Path::Parameters{0.1}}});
 
@@ -473,8 +478,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
       {{{-1.375_tile, 0_tile, 0_deg}, false, Path::Parameters{3}}});
   END_ROUTINE
 
-  START_ROUTINE("15\" Auto")
-  setupRoutine({-2_tile - 4_in, 1.5_tile, 90_deg});
+  /*
+      _ ___ _ _     _       _
+     / | __( | )   /_\ _  _| |_ ___
+     | |__ \V V   / _ \ || |  _/ _ \
+     |_|___/     /_/ \_\_,_|\__\___/
+
+  */
+  START_ROUTINE("15\" Auto") setupRoutine({-2_tile - 4_in, 1.5_tile, 90_deg});
 
   // Goal rush side goal.
   intake->index();
@@ -491,7 +502,11 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   turn->toward(45_deg);
   pathFollower->follow(
       {{{-1.1_tile, 0.9_tile, 45_deg}, true, Path::Parameters{0.5}}});
-  turn->toward(0_deg);
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    turn->toward(0_deg);
+  } else {
+    turn->toward(90_deg);
+  }
   goalRush->release();
   wait(0.25_s); // Time for goal rush mech to un-clamp.
   turn->toward(-135_deg);
@@ -506,18 +521,23 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   // Score first stack of rings.
   intake->intake();
   turn->toward({-1.5_tile, 2.5_tile});
-  pathFollower->follow({{{-1.5_tile,
-                          2.5_tile,
-                          angle(drive->getPose(), {-1.5_tile, 2.5_tile}, true)},
-                         false,
-                         Path::Parameters{0.5}}});
+  pathFollower->follow(
+      {{{-1.5_tile,
+         2.5_tile,
+         (GUI::Routines::selectedColor() == MatchColor::Blue ? -1 : 1) *
+             angle(drive->getPose(), {-1.5_tile, 2.5_tile}, true)},
+        false,
+        Path::Parameters{0.5}}});
 
   // Score second stack of rings.
   turn->toward({-2_tile, 2_tile});
   pathFollower->follow(
-      {{{-2_tile, 2_tile, angle(drive->getPose(), {-2_tile, 2_tile}, true)},
+      {{{-2_tile,
+         2_tile,
+         (GUI::Routines::selectedColor() == MatchColor::Blue ? -1 : 1) *
+             angle(drive->getPose(), {-2_tile, 2_tile}, true)},
         false,
-        Path::Parameters{0.1}}});
+        Path::Parameters{0.5}}});
 
   // Score the rings in the corner.
   turn->toward(-45_deg);
@@ -534,22 +554,12 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   // Get other ring.
   turn->toward(180_deg);
-  Schedule dropGoal{
-      Schedule::Item{"Drop Goal at Position",
-                     drive->checkIsNear({-2.5_tile, 1_tile}, 0.5_tile),
-                     [=]() {
-                       intake->index();
-                       goalClamp->unclamp();
-                     },
-                     1.5_s,
-                     [=]() {
-                       intake->index();
-                       goalClamp->unclamp();
-                     }}};
   pathFollower->follow({{{-2.4_tile, 0.5_tile, 180_deg},
                          false,
                          Path::Parameters{2, 30_in_per_s}}});
   turn->toward(180_deg);
+  intake->index();
+  goalClamp->unclamp();
   pathFollower->follow({{{-2.4_tile, -0.5_tile, 180_deg},
                          false,
                          Path::Parameters{0.5, 30_in_per_s}}});
@@ -557,9 +567,10 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   // Clamp on to other goal.
   turn->awayFrom({-1.5_tile, 0_tile});
   pathFollower->follow(
-      {{{-1.5_tile,
+      {{{-2_tile,
          0_tile,
-         180_deg + angle(drive->getPose(), {-1.5_tile, 0_tile}, true)},
+             (GUI::Routines::selectedColor() == MatchColor::Blue ? -1 : 1) *
+                 angle(drive->getPose(), {-2_tile, 0_tile}, true)},
         true,
         Path::Parameters{0.1}}});
   goalClamp->clamp();
