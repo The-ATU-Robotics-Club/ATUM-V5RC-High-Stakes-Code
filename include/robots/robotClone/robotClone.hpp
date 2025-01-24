@@ -31,7 +31,7 @@ class RobotClone : public Robot {
    * @brief Constants storing the brain IDs for the 15" and 24" bots.
    *
    */
-  static constexpr int ID15{0x9e344900};
+  static constexpr int ID15{0xe6ad4800};
   static constexpr int ID24{0x64824900};
 
   /**
@@ -151,13 +151,6 @@ class RobotClone : public Robot {
    *
    */
   void configurationControls();
-
-  /**
-   * @brief The actions associated with the end of the double goal rush,
-   * regardless of which goal was grabbed first.
-   *
-   */
-  void endDoubleGoalRush();
 
   /**
    * @brief Sets up the robot with the appropriate starting pose and flips poses
