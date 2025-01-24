@@ -1,6 +1,5 @@
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 76.5 in. / s^2.
@@ -263,70 +262,206 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         {{{1.5_ft, 1.5_ft, -135_deg}, true, Path::Parameters{}}});
 
   } else if(id == ID24) {
-    setupRoutine({-5_ft, 0_ft, 90_deg});
+    setupRoutine({-5_ft - 1_in, 0_ft, 90_deg});
 
     intake->index();
     pathFollower->follow(
         {{{-4_ft, 0_ft, 90_deg}, false, Path::Parameters{0.1}}});
 
     pathFollower->follow(
-        {{{-5_ft, 0_ft, 90_deg}, true, Path::Parameters{0.1}}});
-    // LADY BROWN
+        {{{-5_ft - 1_in, 0_ft, 90_deg}, true, Path::Parameters{0.1}}});
+
     intake->intake();
 
     wait(500_ms);
 
+    intake->index();
     turn->toward({-4_ft, -4_ft});
     pathFollower->follow(
-        {{{-3.75_ft, -4_ft, 165_deg}, false, Path::Parameters{0.1}}});
+        {{{-4_ft, -4_ft, angle(drive->getPose(), {-4_ft, -4_ft})},
+          false,
+          Path::Parameters{}}});
+
+    turn->awayFrom({-2_ft, -4_ft});
+
+    pathFollower->follow(
+        {{{-2_ft, -4_ft, -90_deg}, true, Path::Parameters{0.5, 30_in_per_s}}});
+
+    goalClamp->clamp();
+
+    wait(0.1_s);
+
+    intake->intake();
+
+    wait(0.25_s);
+
+    turn->toward({-2_ft, -2_ft});
+
+    pathFollower->follow(
+        {{{-2_ft, -2_ft, 0_deg}, false, Path::Parameters{0.1}}});
+
+    wait(0.25_s);
+
+    turn->toward({0_ft, -1.8_tile});
+
+    pathFollower->follow(
+        {{{0_tile, -1.8_tile, angle(drive->getPose(), {0_tile, -1.8_tile})},
+          false,
+          Path::Parameters{1, 40_in_per_s}}});
+
+    turn->toward({0_ft, -2.5_tile});
+
+    pathFollower->follow(
+        {{{0_tile, -2.5_tile, angle(drive->getPose(), {0_tile, -2.5_tile})},
+          false,
+          Path::Parameters{0.25}}});
+
+    pathFollower->follow(
+        {{{0_tile, -2_tile, 180_deg}, true, Path::Parameters{0.1}}});
+
+    turn->toward({1_tile, -2_tile});
+
+    pathFollower->follow(
+        {{{1_tile, -2_tile, angle(drive->getPose(), {1_tile, -2_tile})},
+          false,
+          Path::Parameters{0.5}}});
+
+    pathFollower->follow(
+        {{{-2_tile, -2_tile, 90_deg}, true, Path::Parameters{}}});
+
+    turn->toward(-135_deg);
+
+    pathFollower->follow(
+        {{{-2.6_tile, -2.6_tile, -135_deg}, false, Path::Parameters{0.1}}});
+
+    pathFollower->follow(
+        {{{-2_tile, -2_tile, -135_deg}, true, Path::Parameters{0.1}}});
+
+    turn->toward(45_deg);
+
+    pathFollower->follow(
+        {{{-2.5_tile, -2.5_tile, 45_deg}, true, Path::Parameters{0.1}}});
+
+    goalClamp->unclamp();
+
+    pathFollower->follow(
+        {{{-2_tile, -2_tile, 45_deg}, false, Path::Parameters{0.1}}});
+
+    turn->toward(90_deg);
+
     intake->index();
-    turn->toward({-6_ft, -4_ft});
 
     pathFollower->follow(
-        {{{-5_ft, -4_ft, 180_deg}, false, Path::Parameters{0.1}}});
+        {{{0_tile, -2_tile, 90_deg, 40_in_per_s},
+          false,
+          Path::Parameters{1, 40_in_per_s}},
+         {{2_tile, -2_tile, 90_deg}, false, Path::Parameters{1, 40_in_per_s}}});
+
+    turn->awayFrom({1_tile, -1_tile});
 
     pathFollower->follow(
-        {{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{0.01}}});
-    /**pathFollower->follow({{{-4_ft, -4_ft, 155_deg}, false,
-     Path::Parameters{}}}); turn->awayFrom(90_deg);
-     pathFollower->follow({{{-2_ft, -4_ft, 90_deg}, true, Path::Parameters{}}});
-     // Clamp mogo
-     pathFollower->follow({{{-6_ft, -6_ft, -135_deg}, false,
-     Path::Parameters{}}}); pathFollower->follow(
-         {{{-0.5_ft, -0.5_ft, 90_deg}, false, Path::Parameters{}}});
-     pathFollower->follow({{{0.5_ft, 0.5_ft, 90_deg}, false,
-     Path::Parameters{}}}); pathFollower->follow({{{-6_ft, -6_ft, -135_deg},
-     true, Path::Parameters{}}});
-     // Unclamp mogo
-     pathFollower->follow({{{0_ft, -5_ft, 90_deg}, false, Path::Parameters{}}});
-     pathFollower->follow({{{0_ft, -4_ft, 45_deg}, false, Path::Parameters{}}});
-     pathFollower->follow({{{0_ft, -5.5_ft, 180_deg}, false,
-     Path::Parameters{}}});
-     // LADY BROWN 2 RINGS
-     pathFollower->follow({{{.5_ft, -5_ft, 90_deg}, false,
-     Path::Parameters{}}}); pathFollower->follow({{{0_ft, -5.5_ft, 180_deg},
-     false, Path::Parameters{}}});
-     // LADY BROWN 1 MORE RING
-     pathFollower->follow({{{2_ft, -2_ft, 45_deg}, true, Path::Parameters{}}});
-     // CLAMP MOGO
-     pathFollower->follow({{{2_ft, -4_ft, 180_deg}, false,
-     Path::Parameters{}}});
-     // INTAKE ONLY RED RING
-     pathFollower->follow({{{4_ft, -4_ft, 90_deg}, false, Path::Parameters{}}});
-     // INTAKE ONLY RED RING
-     pathFollower->follow({{{6_ft, -6_ft, 135_deg}, false,
-     Path::Parameters{}}});
-     // INTAKE ONLY RED RING
-     pathFollower->follow({{{2_ft, -4_ft, -45_deg}, false,
-     Path::Parameters{}}}); pathFollower->follow({{{4.5_ft, -4_ft, 90_deg},
-     false, Path::Parameters{}}}); pathFollower->follow({{{6_ft, -6_ft,
-     135_deg}, false, Path::Parameters{}}}); turn->toward(-45_deg);
-    // RELEASE GOAL CLAMP
+        {{{1_tile, -1_tile, 135_deg}, true, Path::Parameters{}}});
 
-    // RAISE HANG MECH
+    goalClamp->clamp();
+    wait(0.1_s);
+    intake->intake();
+
+    turn->toward(90_deg);
+
     pathFollower->follow(
-        {{{.5_ft, -.5_ft, -45_deg}, true, Path::Parameters{}}});
-    // HANG */
+        {{{2_tile, -1_tile, 90_deg}, false, Path::Parameters{}}});
+
+    pathFollower->follow(
+        {{{1_tile, -1_tile, 90_deg}, true, Path::Parameters{}}});
+
+    turn->toward(135_deg);
+
+    pathFollower->follow(
+        {{{2.6_tile, -2.6_tile, 135_deg},
+          false,
+          Path::Parameters{1, 40_in_per_s}},
+         {{2_tile, -2_tile, 135_deg}, true, Path::Parameters{0.1}},
+         {{2.6_tile, -2.6_tile, 135_deg}, false, Path::Parameters{0.1}},
+         {{2_tile, -2_tile, 135_deg}, true, Path::Parameters{0.1}}});
+    wait(1_s);
+
+    turn->toward(-45_deg);
+
+    pathFollower->follow(
+        {{{2.5_tile, -2.5_tile, -45_deg}, true, Path::Parameters{0.1}}});
+
+    goalClamp->unclamp();
+
+    pathFollower->follow(
+        {{{2_tile, -2_tile, -45_deg}, false, Path::Parameters{0.1}}});
+
+    turn->toward(180_deg);
+
+    pathFollower->follow({{{2_tile, 0_tile, 180_deg, 40_in_per_s},
+                           true,
+                           Path::Parameters{1, 40_in_per_s}},
+                          {{2_tile, 0.5_tile, 180_deg},
+                           true,
+                           Path::Parameters{1, 20_in_per_s}}});
+
+    goalClamp->clamp();
+    wait(0.1_s);
+
+    turn->toward({2.5_tile, 0_tile});
+
+    pathFollower->follow(
+        {{{2.5_tile, 0_tile, angle(drive->getPose(), {2.5_tile, 0_tile})},
+          false,
+          Path::Parameters{1, 40_in_per_s}}});
+
+    wait(1_s);
+
+    turn->toward(180_deg);
+
+    goalClamp->unclamp();
+
+    pathFollower->follow({{{2_tile, -2_tile, 180_deg},
+                           false,
+                           Path::Parameters{1, 40_in_per_s}}});
+
+    turn->awayFrom({0_tile, 0_tile});
+
+    ladybrown->prepare();
+
+    pathFollower->follow(
+        {{{0_tile, 0_tile, 135_deg}, true, Path::Parameters{1, 30_in_per_s}}});
+
+    /*wait(500_ms);
+
+    turn->toward({-0_ft, -.5_ft});
+
+    pathFollower->follow({{{-.25_ft, -.5_ft, 90_deg}, false,
+    Path::Parameters{0.1, 15_in_per_s}}});
+
+    intake->index();
+
+    pathFollower->follow({{{.25_ft, -.5_ft, 90_deg}, false,
+    Path::Parameters{0.1, 15_in_per_s}}});
+
+    pathFollower->follow({{{1_ft, -.5_ft, -90_deg}, true, Path::Parameters{0.2,
+    15_in_per_s}}});
+
+    turn->toward({-6_ft, -6_ft});
+
+    pathFollower->follow({{{-6_ft, -6_ft, -45_deg}, false, Path::Parameters{0.1,
+    30_in_per_s}}});
+
+    intake->intake();
+
+    pathFollower->follow({{{-5_ft, -5_ft, 45_deg}, true, Path::Parameters{0.1,
+    30_in_per_s}}});
+
+    turn->toward({6_ft, 6_ft});
+
+    pathFollower->follow({{{-6_ft, -6_ft, -45_deg}, true, Path::Parameters{0.1,
+    30_in_per_s}}});
+
+    goalClamp->unclamp();*/
   }
 
   END_ROUTINE
@@ -351,7 +486,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         false,
         Path::Parameters{0.9, 76.5_in_per_s, 38.25_in_per_s_sq}}});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(20_deg);
+    turn->toward(15_deg);
   }
   goalRush->grab();
   wait(0.25_s); // Time for goal rush mech to clamp.
