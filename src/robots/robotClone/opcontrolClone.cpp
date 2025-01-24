@@ -20,6 +20,7 @@ void RobotClone::opcontrol() {
   while(true) {
     gps->getPose();
 
+
     const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
     drive->arcade(forward, turn);

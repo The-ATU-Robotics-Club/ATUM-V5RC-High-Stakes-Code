@@ -1,3 +1,4 @@
+#include "atum/utility/logger.hpp"
 #include "robotClone.hpp"
 
 namespace atum {
