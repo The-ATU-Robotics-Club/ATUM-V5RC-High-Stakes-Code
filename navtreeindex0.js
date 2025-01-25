@@ -82,6 +82,13 @@ var NAVTREEINDEX0 =
 "classatum_1_1GoalClamp.html#adde4a7faf5cd8b928e8b04cfcbb82d3d":[1,0,0,8,4],
 "classatum_1_1GoalClamp.html#af6ddfcc3a78ff2fb9967a9a5a24a6bf8":[1,0,0,8,1],
 "classatum_1_1GoalRush.html":[1,0,0,9],
+"classatum_1_1GoalRush.html#a30acb3cba7c8cc5d3501d467e793b155":[1,0,0,9,1],
+"classatum_1_1GoalRush.html#a35c198fdd8b678d8eca392c1d514f3cb":[1,0,0,9,3],
+"classatum_1_1GoalRush.html#a5b64b073a329108919d14ed207983383":[1,0,0,9,4],
+"classatum_1_1GoalRush.html#a625bb958c72092e377c1a590d0803f99":[1,0,0,9,2],
+"classatum_1_1GoalRush.html#a6e60915241a2ce045283c56b8ce05c8d":[1,0,0,9,5],
+"classatum_1_1GoalRush.html#aa3bbbcc0b0b675f0f0fdc26f950b4293":[1,0,0,9,6],
+"classatum_1_1GoalRush.html#ac2bf6d24f7ca05d377d3036e6f106962":[1,0,0,9,0],
 "classatum_1_1IMU.html":[1,0,0,11],
 "classatum_1_1IMU.html#a5ec35c1eec0b5747180ffe30dee1ccfb":[1,0,0,11,2],
 "classatum_1_1IMU.html#a89d16737954d369b31176969c0bbdb50":[1,0,0,11,1],
@@ -242,12 +249,5 @@ var NAVTREEINDEX0 =
 "classatum_1_1Robot.html#a721e1155876bf8242337100f7ec26b58":[1,0,0,30,1],
 "classatum_1_1Robot.html#abc3667642b5afcf3961fabd2c21e9c1f":[1,0,0,30,2],
 "classatum_1_1Robot.html#ac5f63ac7b8a265cf8b275531e79a85ce":[1,0,0,30,0],
-"classatum_1_1RobotClone.html":[1,0,0,31],
-"classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0":[1,0,0,31,0],
-"classatum_1_1RobotClone.html#a62a04c67e7118f963fea67848caf734d":[1,0,0,31,1],
-"classatum_1_1RobotClone.html#ae170bbc2cce6d8388da255fab5eb66de":[1,0,0,31,2],
-"classatum_1_1RobotPrototype.html":[1,0,0,32],
-"classatum_1_1RobotPrototype.html#a2a7ee5e0fe656d6f9e8e3d13643ce01e":[1,0,0,32,2],
-"classatum_1_1RobotPrototype.html#a69beaa427ac592ab102ee17202e6ac2b":[1,0,0,32,1],
-"classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f":[1,0,0,32,0]
+"classatum_1_1RobotClone.html":[1,0,0,31]
 };
