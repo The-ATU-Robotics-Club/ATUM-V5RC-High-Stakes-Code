@@ -127,7 +127,7 @@ void RobotClone::intakeControls() {
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1:
-      if(remote.getHold(Remote::Button::L1) || goalClamp->hasGoal()) {
+      if(remote.getHold(Remote::Button::L1) || goalClamp->isClamped()) {
         intake->intake();
       } else {
         intake->index();

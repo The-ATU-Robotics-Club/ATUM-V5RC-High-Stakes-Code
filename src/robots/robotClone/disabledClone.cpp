@@ -68,7 +68,7 @@ void RobotClone::ladybrownSetup15() {
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 135_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      6, -5_deg, 50_deg, ladybrownPositions, 0_s};
+      6, -5_deg, 50_deg, ladybrownPositions, 0.125_s};
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};
@@ -231,7 +231,7 @@ void RobotClone::ladybrownSetup24() {
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
-      6, -5_deg, 50_deg, ladybrownPositions, 0.0_s};
+      6, -5_deg, 50_deg, ladybrownPositions, 0.125_s};
   ladybrownParameters.kG = 0.2;
   ladybrownParameters.holdController = PID{{0.3}};
   ladybrownParameters.balanceController = PID{{0.2}};
