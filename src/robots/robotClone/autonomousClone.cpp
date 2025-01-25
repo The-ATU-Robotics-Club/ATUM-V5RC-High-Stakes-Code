@@ -20,33 +20,33 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   
     // outake to allow the intake to drop of the rubber band
  
-    intake->intake();
+    intake->index();
 
     pathFollower->follow({{{-5.6_ft, 5.6_ft, -45_deg}, false, Path::Parameters{0.1}}});
-
-    intake->stop();
 
     // ring 1
 
 
-    pathFollower->follow({{{-5_ft, 5_ft, 135_deg}, true, Path::Parameters{0.1, 38_in_per_s}}});
+    pathFollower->follow({{{-5_ft, 5_ft, -45_deg}, true, Path::Parameters{0.1, 38_in_per_s}}});
 
     turn->awayFrom(90_deg);
 
-    pathFollower->follow({{{-2_ft, 4_ft, -45_deg}, true, Path::Parameters{1, 38_in_per_s}}});
+    pathFollower->follow({{{-1_ft, 3_ft, -45_deg}, true, Path::Parameters{1.5, 38_in_per_s}}});
 
     goalClamp->clamp();
 
     wait(100_ms);
 
-    turn->toward(-90_deg);
+    turn->toward({-4_ft, 4.5_ft});
 
     // ring 2
     intake->intake();
 
-    pathFollower->follow({{{-4_ft, 4_ft, -90_deg}, false, Path::Parameters{1, 38_in_per_s}}});
+    pathFollower->follow({{{-4_ft, 4.5_ft, -70_deg}, false, Path::Parameters{.5, 38_in_per_s}}});
 
     turn->toward(120_deg);
+
+    intake->index();
 
     pathFollower->follow({{{-2_ft, 2_ft, 120_deg}, false, Path::Parameters{.1, 38_in_per_s}}});
 
@@ -56,29 +56,82 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
     // ring 3
 
+    pathFollower->follow({{{-0.2_ft, 0.2_ft, 110_deg}, false, Path::Parameters{.1, 30_in_per_s}}});
+
+    intake->intake();
 
     pathFollower->follow({{{0.2_ft, -0.2_ft, 110_deg}, false, Path::Parameters{.1, 30_in_per_s}}});
 
     wait(2000_ms);
 
-    pathFollower->follow({{{-2_ft, 2_ft, -45_deg}, true, Path::Parameters{.1, 50_in_per_s}}});
+    intake->stop();
 
-    turn->toward(30_deg);
+    turn->awayFrom({-2_ft, 2_ft});
+
+    pathFollower->follow({{{-2_ft, 2_ft, 135_deg}, true, Path::Parameters{.1, 50_in_per_s}}});
+
+    turn->toward({0_ft, 4_ft});
+
+    intake->intake();
 
      pathFollower->follow({{{0_ft, 4_ft, 45_deg}, false, Path::Parameters{.1, 50_in_per_s}}});
 
-    pathFollower->follow({{{-5.8_ft, 5.8_ft, 135_deg}, true, Path::Parameters{3, 76.5_in_per_s}}});
+     turn->toward(90_deg);
+
+    pathFollower->follow({{{-5.8_ft, 5.8_ft, 135_deg}, true, Path::Parameters{1.5, 50_in_per_s}}});
 
     goalClamp->unclamp();
+
+turn->toward(90_deg);
+
+    intake->index();
+
+    pathFollower->follow({{{0_ft, 5.5_ft, 90_deg}, false, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    turn->awayFrom({2_ft, 2_ft});
+
+    pathFollower->follow({{{2_ft, 2_ft, -45_deg}, true, Path::Parameters{1.5, 76.5_in_per_s}}});
+
+    goalClamp->clamp();
+
+    turn->toward({2_ft, 4_ft});
+
+    intake->intake();
+
+    pathFollower->follow({{{2_ft, 4_ft, 25_deg}, false, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    wait(100_ms);
+
+    turn->toward(90_deg);
+
+    pathFollower->follow({{{4_ft, 4_ft, 90_deg}, false, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    wait(100_ms);
+
+    turn->toward({6_ft, 6_ft});
+
+    pathFollower->follow({{{5.8_ft, 5.8_ft, 45_deg}, false, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    pathFollower->follow({{{5_ft, 5_ft, 45_deg}, true, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    pathFollower->follow({{{5.8_ft, 5.8_ft, 45_deg}, false, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    pathFollower->follow({{{5.2_ft, 5.2_ft, 45_deg}, true, Path::Parameters{.1, 76.5_in_per_s}}});
+
+    turn->awayFrom(45_deg);
+
+    goalClamp->unclamp();
+
+    turn->toward(45_deg);
 
     ladybrown->prepare();
 
 pathFollower->follow(
-        {{{1.5_ft, -1.5_ft, 135_deg}, true, Path::Parameters{.1, 76.5_in_per_s}}});
+        {{{1.75_ft, 1.75_ft, 45_deg}, true, Path::Parameters{1, 76.5_in_per_s}}});
 
         ladybrown->fullyExtend();
 
-    pathFollower->follow({{{-1_ft, 1_ft, 135_deg}, true, Path::Parameters{.1, 30_in_per_s}}});
+    pathFollower->follow({{{.5_ft, .5_ft, 45_deg}, true, Path::Parameters{.1, 30_in_per_s}}});
 
 
 /*
