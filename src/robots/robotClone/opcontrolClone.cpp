@@ -1,25 +1,27 @@
 #include "robotClone.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
-  matchTimer.setTime();
-  matchTimer.setAlarm(1_min + 15_s);
-  // Where the first routine should be skills.
-  if(GUI::Routines::selectedRoutine() == 0) {
-    matchTimer.setAlarm(45_s);
-  }
-  Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
-                                 matchTimer.checkGoneOff(),
-                                 [=]() { remote.rumble("---"); }}};
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
     intake->setSortOutColor(ColorSensor::Color::Blue);
   } else {
     intake->setSortOutColor(ColorSensor::Color::Red);
   }
+  matchTimer.setTime();
+  matchTimer.setAlarm(1_min + 15_s);
+  // Where the first routine should be skills.
+  if(GUI::Routines::selectedRoutine() == 0) {
+    matchTimer.setAlarm(45_s);
+    intake->setSortOutColor(ColorSensor::Color::None);
+    goalClamp->unclamp();
+  }
+  Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
+                                 matchTimer.checkGoneOff(),
+                                 [=]() { remote.rumble("---"); }}};
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     gps->getPose();
-
 
     const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
