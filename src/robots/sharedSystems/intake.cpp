@@ -89,7 +89,7 @@ void Intake::intaking() {
      mtr->getVelocity() < params.jamVelocity) {
     state = IntakeState::Jammed;
   }
-  mtr->moveVoltage(12.0);
+  mtr->moveVoltage(params.intakingVoltage);
 }
 
 void Intake::unjamming() {
@@ -124,7 +124,7 @@ void Intake::sorting() {
 }
 
 void Intake::finishLoading() {
-  mtr->moveVoltage(12);
+  mtr->moveVoltage(params.intakingVoltage);
   wait(params.pressLoadTime);
   mtr->moveVoltage(-12);
   wait(params.finishLoadingTime);

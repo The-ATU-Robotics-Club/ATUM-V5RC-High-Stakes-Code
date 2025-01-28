@@ -58,6 +58,7 @@ class Intake : public Task, public StateMachine<IntakeState> {
     second_t finishLoadingTime;
     // The time the intake will attempt to perform an action before giving up.
     second_t generalTimeout;
+    double intakingVoltage{12.0};
   };
 
   /**

@@ -117,6 +117,7 @@ void RobotClone::intakeSetup15() {
   intakeParams.pressLoadTime = 0.1_s;
   intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
+  intakeParams.intakingVoltage = 12.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),
@@ -222,12 +223,12 @@ void RobotClone::ladybrownSetup24() {
                               "right ladybrown")};
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('A')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>(16, false)};
+      std::make_unique<RotationSensor>(15, false)};
   std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>((ADIExtenderPort{17, 'C'}), 2800)};
+      std::make_unique<LineTracker>((ADIExtenderPort{16, 'C'}), 2800)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 18.5_deg},
+                         {LadybrownState::Loading, 20_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
@@ -271,7 +272,7 @@ void RobotClone::intakeSetup24() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(18, hueFields)};
+      std::make_unique<ColorSensor>(17, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
@@ -280,6 +281,7 @@ void RobotClone::intakeSetup24() {
   intakeParams.pressLoadTime = 0.1_s;
   intakeParams.finishLoadingTime = 0.2_s;
   intakeParams.generalTimeout = 1_s;
+  intakeParams.intakingVoltage = 10.5;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),
@@ -291,9 +293,9 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('H', false, false)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{17, 'A'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'A'}, false)};
   std::unique_ptr<LimitSwitch> limitSwitch2{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{17, 'B'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'B'}, false)};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));

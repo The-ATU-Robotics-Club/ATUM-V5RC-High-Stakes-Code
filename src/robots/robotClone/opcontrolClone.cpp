@@ -9,10 +9,10 @@ void RobotClone::opcontrol() {
     intake->setSortOutColor(ColorSensor::Color::Red);
   }
   matchTimer.setTime();
-  matchTimer.setAlarm(1_min + 15_s);
+  matchTimer.setAlarm(1_min + 10_s);
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
-    matchTimer.setAlarm(45_s);
+    matchTimer.setAlarm(40_s);
     intake->setSortOutColor(ColorSensor::Color::None);
     goalClamp->unclamp();
   }

@@ -1,6 +1,5 @@
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 76.5 in. / s^2.
@@ -29,7 +28,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
     turn->awayFrom(90_deg);
 
     pathFollower->follow(
-        {{{-1_ft, 3_ft, -45_deg}, true, Path::Parameters{1.5, 38_in_per_s}}});
+        {{{-0.8_ft, 2.8_ft, -45_deg}, true, Path::Parameters{1.5, 38_in_per_s}}});
 
     goalClamp->clamp();
 
@@ -51,29 +50,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         {{{-2_ft, 2_ft, 120_deg}, false, Path::Parameters{0.5, 38_in_per_s}}});
 
     wait(100_ms);
-
-    turn->toward(110_deg);
-
-    // ring 3
-
-    pathFollower->follow({{{-0.75_ft, 0.75_ft, 110_deg},
-                           false,
-                           Path::Parameters{.5, 30_in_per_s}}});
-
-    intake->intake();
-
-    pathFollower->follow({{{0.2_ft, -0.2_ft, 110_deg},
-                           false,
-                           Path::Parameters{.1, 30_in_per_s}}});
-
-    wait(2000_ms);
-
-    intake->stop();
-
-    turn->awayFrom({-2_ft, 2_ft});
-
-    pathFollower->follow(
-        {{{-2_ft, 2_ft, 135_deg}, true, Path::Parameters{.5, 50_in_per_s}}});
 
     turn->toward({0_ft, 4_ft});
 
@@ -139,22 +115,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
     goalClamp->unclamp();
 
     turn->toward(45_deg);
-
-    ladybrown->prepare();
-
-    pathFollower->follow(
-        {{{1.75_ft, 1.75_ft, 45_deg}, true, Path::Parameters{1}}});
-
-    ladybrown->fullyExtend();
-
-    intake->stop();
-
-    pathFollower->follow(
-        {{{.5_ft, .5_ft, 45_deg}, true, Path::Parameters{.1, 30_in_per_s}}});
-
-    drive->arcade(-12, 0);
-
-    wait(0.25_s);
   } else if(id == ID24) {
     setupRoutine({-5_ft - 1_in, 0_ft, 90_deg});
 
@@ -251,8 +211,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         {{{0_tile, -2_tile, 90_deg, 40_in_per_s},
           false,
           Path::Parameters{1, 40_in_per_s}},
-         {{2.4_tile, -2_tile, 90_deg}, false, Path::Parameters{1, 40_in_per_s}},
-         {{2_tile, -2_tile, 90_deg}, true, Path::Parameters{1, 40_in_per_s}}});
+         {{2_tile, -2_tile, 90_deg}, false, Path::Parameters{1, 40_in_per_s}}});
 
     turn->awayFrom({1_tile, -1_tile});
 
@@ -343,7 +302,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
         false,
         Path::Parameters{0.9, 76.5_in_per_s, 38.25_in_per_s_sq}}});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(15_deg);
+    turn->toward(10_deg);
   }
   goalRush->grab();
   wait(0.25_s); // Time for goal rush mech to clamp.
@@ -437,7 +396,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->stop();
   goalClamp->unclamp();
   pathFollower->follow(
-      {{{-1.375_tile, 0_tile, 0_deg}, false, Path::Parameters{3}}});
+      {{{-2_tile, -2_tile, 45_deg}, false, Path::Parameters{0.5}}});
+  // pathFollower->follow(
+  //     {{{-1.375_tile, 0_tile, 0_deg}, false, Path::Parameters{3}}});
   END_ROUTINE
 
   /*
@@ -474,7 +435,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   turn->toward(-135_deg);
   goalRush->retractArm();
   pathFollower->follow(
-      {{{-0.4_tile, 1.6_tile, -135_deg}, true, Path::Parameters{0.5}}});
+      {{{-0.4_tile, 1.6_tile, -135_deg}, true, Path::Parameters{0.5, 40_in_per_s}}});
   goalClamp->clamp();
   wait(0.1_s); // Time for goal clamp mech to clamp.
   pathFollower->follow(
@@ -539,6 +500,10 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   wait(0.1_s); // Time for goal clamp mech to clamp.
   intake->intake();
   wait(1_s);
+  END_ROUTINE
+
+  START_ROUTINE("Do Nothing")
+  setupRoutine({});
   END_ROUTINE
 }
 
