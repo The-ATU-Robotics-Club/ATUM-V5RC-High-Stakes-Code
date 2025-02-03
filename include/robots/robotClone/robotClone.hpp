@@ -165,13 +165,9 @@ class RobotClone : public Robot {
    * exceeded before a goal is found, does nothing (so you should place a manual
    * clamp at the point you expect the goal to be there).
    *
-   * This is done to allow dynamic routines depending on if the robot managed to
-   * receive a goal or not.
-   *
    * @param timeout
-   * @return Schedule
    */
-  Schedule clampWhenReady(const second_t timeout = 2_s);
+  void clampWhenReady(const second_t timeout = 2_s);
 
   const int id;
   Remote remote;
@@ -181,6 +177,7 @@ class RobotClone : public Robot {
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
   std::unique_ptr<GoalRush> goalRush;
+  Scheduler scheduler;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<Turn> turn;
   Timer matchTimer;

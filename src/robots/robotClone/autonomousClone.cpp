@@ -27,8 +27,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
     turn->awayFrom(90_deg);
 
-    pathFollower->follow(
-        {{{-0.8_ft, 2.8_ft, -45_deg}, true, Path::Parameters{1.5, 38_in_per_s}}});
+    pathFollower->follow({{{-0.8_ft, 2.8_ft, -45_deg},
+                           true,
+                           Path::Parameters{1.5, 38_in_per_s}}});
 
     goalClamp->clamp();
 
@@ -434,8 +435,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   wait(0.25_s); // Time for goal rush mech to un-clamp.
   turn->toward(-135_deg);
   goalRush->retractArm();
-  pathFollower->follow(
-      {{{-0.4_tile, 1.6_tile, -135_deg}, true, Path::Parameters{0.5, 40_in_per_s}}});
+  pathFollower->follow({{{-0.4_tile, 1.6_tile, -135_deg},
+                         true,
+                         Path::Parameters{0.5, 40_in_per_s}}});
   goalClamp->clamp();
   wait(0.1_s); // Time for goal clamp mech to clamp.
   pathFollower->follow(
@@ -535,14 +537,15 @@ void RobotClone::setupRoutine(Pose startingPose) {
   }
 }
 
-Schedule RobotClone::clampWhenReady(const second_t timeout) {
-  return Schedule{Schedule::Item{"Clamp When Ready",
-                                 [=]() {
-                                   pathFollower->interrupt();
-                                   turn->interrupt();
-                                   return goalClamp->hasGoal();
-                                 },
-                                 [=]() { goalClamp->clamp(); },
-                                 timeout}};
+void RobotClone::clampWhenReady(const second_t timeout) {
+  scheduler.schedule({"Clamp When Ready",
+                      [=]() {
+                        pathFollower->interrupt();
+                        turn->interrupt();
+                        return goalClamp->hasGoal();
+                      },
+                      [=]() { goalClamp->clamp(); },
+                      timeout,
+                      Scheduler::doNothing});
 }
 } // namespace atum

@@ -44,7 +44,7 @@
 #include "systems/remote.hpp"
 #include "systems/robot.hpp"
 #include "systems/stateMachine.hpp"
-#include "time/schedule.hpp"
+#include "time/scheduler.hpp"
 #include "time/task.hpp"
 #include "time/time.hpp"
 #include "time/timer.hpp"

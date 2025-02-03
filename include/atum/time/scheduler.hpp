@@ -1,29 +1,27 @@
 /**
  * @file schedule.hpp
- * @brief Includes the Schedule class.
+ * @brief Includes the Scheduler class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
 
-#include "../../pros/misc.hpp"
 #include "task.hpp"
 #include "timer.hpp"
 #include <queue>
 
+
 namespace atum {
 /**
  * @brief This class serves as a way to perform actions once certain conditions
- * are met. Construct an object with the necessary parameters for a schedule
- * item (e.g., Schedule someAction{{...}}; ). Will be interrupted if competition
- * state changes or the object goes out of scope. Actions should be fairly
- * simple.
+ * are met. Items will be interrupted if the competition state changes or the
+ * object goes out of scope. Actions should be fairly simple.
  *
  */
-class Schedule : public Task {
+class Scheduler : public Task {
   TASK_BOILERPLATE(); // Included in all task derivatives for setup.
 
   public:
@@ -47,34 +45,45 @@ class Schedule : public Task {
    *
    */
   struct Item {
-    const std::string name;
-    const Condition condition;
-    const std::function<void()> todo;
-    // The time before the scheduler gives up and runs timeout action. Zero
-    // seconds indicates it will never gives up.
-    const second_t timeout{forever};
-    // Default timeout action to be nothing.
-    const std::function<void()> todoTimeout{doNothing};
+    std::string name;
+    Condition condition;
+    std::function<void()> todo;
+    // The time before the scheduler gives up and runs timeout action.
+    second_t timeout{forever};
+    // Unless provided, the default timeout action is the todo action.
+    std::optional<std::function<void()>> todoTimeout{};
   };
 
   /**
-   * @brief Schedules an item with an action to perform once a condition is met.
+   * @brief Constructs a new Scheduler object.
    *
-   * @param iItem
    * @param loggerLevel
    */
-  Schedule(const Item &iItem,
-           const Logger::Level loggerLevel = Logger::Level::Info);
+  Scheduler(const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Cleans up the scheduled action and stops the background task
    * associated with it.
    *
    */
-  ~Schedule();
+  ~Scheduler();
+
+  /**
+   * @brief Schedules an item to be performed when its criteria are met.
+   *
+   * @param toSchedule
+   */
+  void schedule(const Scheduler::Item &toSchedule);
 
   private:
-  Item item;
+  /**
+   * @brief Higher than standard delay to allow several scheduled items at once
+   * with little impact.
+   *
+   */
+  static constexpr second_t schedulerLoopDelay{100_ms};
+
+  std::queue<Item> scheduled;
   Logger logger;
 };
 } // namespace atum
