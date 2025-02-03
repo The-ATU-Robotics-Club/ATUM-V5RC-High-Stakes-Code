@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['donothing_0',['doNothing',['../classatum_1_1Schedule.html#a63675958bf46e4906758b0d6269e8b94',1,'atum::Schedule']]]
+  ['donothing_0',['doNothing',['../classatum_1_1Scheduler.html#a498bc1fbaa4ca396589968cd475e9d5d',1,'atum::Scheduler']]]
 ];

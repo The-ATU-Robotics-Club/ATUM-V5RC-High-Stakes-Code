@@ -6,7 +6,7 @@ var searchData=
   ['distance_3',['distance',['../pose_8hpp.html#ac961fe0314b7ba16136aa85facb149a8',1,'atum::distance(const UnwrappedPose &amp;a, const UnwrappedPose &amp;b)'],['../pose_8hpp.html#ae0cd0ce034c686b4842535960216307c',1,'atum::distance(const Pose &amp;a, const Pose &amp;b)']]],
   ['distancesensor_4',['DistanceSensor',['../classatum_1_1DistanceSensor.html',1,'atum::DistanceSensor'],['../classatum_1_1DistanceSensor.html#ae19cf59eed4ec7769790d4d8cb921bcf',1,'atum::DistanceSensor::DistanceSensor(const std::int8_t port, const millimeter_t iThreshold=0_mm, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1DistanceSensor.html#a8d791dbf7758b25c66b19195d660cd85',1,'atum::DistanceSensor::DistanceSensor(const millimeter_t iThreshold=0_mm, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['distancesensor_2ehpp_5',['distanceSensor.hpp',['../distanceSensor_8hpp.html',1,'']]],
-  ['donothing_6',['doNothing',['../classatum_1_1Schedule.html#a63675958bf46e4906758b0d6269e8b94',1,'atum::Schedule']]],
+  ['donothing_6',['doNothing',['../classatum_1_1Scheduler.html#a498bc1fbaa4ca396589968cd475e9d5d',1,'atum::Scheduler']]],
   ['drive_7',['Drive',['../classatum_1_1Drive.html',1,'atum::Drive'],['../classatum_1_1Drive.html#a663811b867a8be8c410f1d64b67d3aab',1,'atum::Drive::Drive()']]],
   ['drive_2ehpp_8',['drive.hpp',['../drive_8hpp.html',1,'']]]
 ];

@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['schedule_0',['Schedule',['../classatum_1_1Schedule.html',1,'atum::Schedule'],['../classatum_1_1Schedule.html#a2312d2e485462eb49ac91f10d75a1793',1,'atum::Schedule::Schedule()']]],
-  ['schedule_2ehpp_1',['schedule.hpp',['../schedule_8hpp.html',1,'']]],
+  ['schedule_0',['schedule',['../classatum_1_1Scheduler.html#a2416d1a11bf2011c1e853671d50718e0',1,'atum::Scheduler']]],
+  ['scheduler_1',['Scheduler',['../classatum_1_1Scheduler.html',1,'atum::Scheduler'],['../classatum_1_1Scheduler.html#a4338b959e324bf7870ab55e3e75e67a6',1,'atum::Scheduler::Scheduler()']]],
   ['score_2',['score',['../classatum_1_1Ladybrown.html#aab77cc33b8cf72bc9fd6abdd9741dbe9',1,'atum::Ladybrown']]],
   ['screen_3',['Screen',['../classatum_1_1GUI_1_1Screen.html',1,'atum::GUI']]],
   ['screen_2ehpp_4',['screen.hpp',['../screen_8hpp.html',1,'']]],

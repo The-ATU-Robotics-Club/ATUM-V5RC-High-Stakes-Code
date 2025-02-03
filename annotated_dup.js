@@ -42,7 +42,7 @@ var annotated_dup =
       [ "RobotClone", "classatum_1_1RobotClone.html", "classatum_1_1RobotClone" ],
       [ "RobotPrototype", "classatum_1_1RobotPrototype.html", "classatum_1_1RobotPrototype" ],
       [ "RotationSensor", "classatum_1_1RotationSensor.html", "classatum_1_1RotationSensor" ],
-      [ "Schedule", "classatum_1_1Schedule.html", "classatum_1_1Schedule" ],
+      [ "Scheduler", "classatum_1_1Scheduler.html", "classatum_1_1Scheduler" ],
       [ "SlewRate", "classatum_1_1SlewRate.html", "classatum_1_1SlewRate" ],
       [ "StateMachine", "classatum_1_1StateMachine.html", "classatum_1_1StateMachine" ],
       [ "Task", "classatum_1_1Task.html", "classatum_1_1Task" ],

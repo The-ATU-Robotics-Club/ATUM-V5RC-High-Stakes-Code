@@ -15,9 +15,10 @@ var NAVTREEINDEX1 =
 "classatum_1_1RotationSensor.html#ac956db731262b4aba4c38ef549d6865f":[1,0,0,33,6],
 "classatum_1_1RotationSensor.html#ade9e475ad0bcdfce697bc7f87cdc3aeb":[1,0,0,33,2],
 "classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd":[1,0,0,33,1],
-"classatum_1_1Schedule.html":[1,0,0,34],
-"classatum_1_1Schedule.html#a07c386fac9d9a6cca0de9f6d49b4b722":[1,0,0,34,2],
-"classatum_1_1Schedule.html#a2312d2e485462eb49ac91f10d75a1793":[1,0,0,34,1],
+"classatum_1_1Scheduler.html":[1,0,0,34],
+"classatum_1_1Scheduler.html#a2416d1a11bf2011c1e853671d50718e0":[1,0,0,34,3],
+"classatum_1_1Scheduler.html#a4338b959e324bf7870ab55e3e75e67a6":[1,0,0,34,1],
+"classatum_1_1Scheduler.html#ac5aba0f85e0885d81e556d2d84a2f4cf":[1,0,0,34,2],
 "classatum_1_1SlewRate.html":[1,0,0,35],
 "classatum_1_1SlewRate.html#a0042e0cee5b1196fed54d8b7d86f8742":[1,0,0,35,0],
 "classatum_1_1SlewRate.html#a965b258aa217f096205233a8e99b83e3":[1,0,0,35,3],
@@ -246,8 +247,7 @@ var NAVTREEINDEX1 =
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63a9594eec95be70e7b1710f730fdda33d9":[2,0,0,0,2,5,1,1],
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63aee38e4d5dd68c4e440825018d549cb47":[2,0,0,0,2,5,1,0],
 "routines_8hpp_source.html":[2,0,0,0,2,5],
-"schedule_8hpp.html":[2,0,0,0,6,0],
-"schedule_8hpp_source.html":[2,0,0,0,6,0],
+"scheduler_8hpp_source.html":[2,0,0,0,6,0],
 "screen_8hpp.html":[2,0,0,0,2,6],
 "screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41":[2,0,0,0,2,6,3]
 };

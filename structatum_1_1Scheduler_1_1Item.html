@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: atum::Schedule::Item Struct Reference</title>
+<title>VURC Team ATUM: atum::Scheduler::Item Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structatum_1_1Schedule_1_1Item.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structatum_1_1Scheduler_1_1Item.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -96,45 +96,45 @@ $(document).ready(function(){initNavTree('structatum_1_1Schedule_1_1Item.html','
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="structatum_1_1Schedule_1_1Item-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">atum::Schedule::Item Struct Reference</div></div>
+<a href="structatum_1_1Scheduler_1_1Item-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">atum::Scheduler::Item Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>The necessary parameters for a schedule item. Once the condition is true, the todo method will be ran.  
- <a href="structatum_1_1Schedule_1_1Item.html#details">More...</a></p>
+ <a href="structatum_1_1Scheduler_1_1Item.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="schedule_8hpp_source.html">schedule.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="scheduler_8hpp_source.html">scheduler.hpp</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4f0874ae9baae84dcf66e0b85e28c8b0"><td class="memItemLeft" align="right" valign="top"><a id="a4f0874ae9baae84dcf66e0b85e28c8b0" name="a4f0874ae9baae84dcf66e0b85e28c8b0"></a>
-const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
-<tr class="separator:a4f0874ae9baae84dcf66e0b85e28c8b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59cf7532b07cc2ee56f71b2c1a9c16b4"><td class="memItemLeft" align="right" valign="top"><a id="a59cf7532b07cc2ee56f71b2c1a9c16b4" name="a59cf7532b07cc2ee56f71b2c1a9c16b4"></a>
-const <a class="el" href="time_8hpp.html#a4b814a8c5ed7ddfb7c3a6059117b1af9">Condition</a>&#160;</td><td class="memItemRight" valign="bottom"><b>condition</b></td></tr>
-<tr class="separator:a59cf7532b07cc2ee56f71b2c1a9c16b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e77aeba885a989f754ac7f38699bae7"><td class="memItemLeft" align="right" valign="top"><a id="a9e77aeba885a989f754ac7f38699bae7" name="a9e77aeba885a989f754ac7f38699bae7"></a>
-const std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>todo</b></td></tr>
-<tr class="separator:a9e77aeba885a989f754ac7f38699bae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7783f4567a5fef53692832e80ad1829b"><td class="memItemLeft" align="right" valign="top"><a id="a7783f4567a5fef53692832e80ad1829b" name="a7783f4567a5fef53692832e80ad1829b"></a>
-const second_t&#160;</td><td class="memItemRight" valign="bottom"><b>timeout</b> {forever}</td></tr>
-<tr class="separator:a7783f4567a5fef53692832e80ad1829b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfcb85647050b736a83c585878b3d466"><td class="memItemLeft" align="right" valign="top"><a id="abfcb85647050b736a83c585878b3d466" name="abfcb85647050b736a83c585878b3d466"></a>
-const std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>todoTimeout</b> {<a class="el" href="classatum_1_1Schedule.html#a63675958bf46e4906758b0d6269e8b94">doNothing</a>}</td></tr>
-<tr class="separator:abfcb85647050b736a83c585878b3d466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b59b25ae10f3b3d479f5160269ce35"><td class="memItemLeft" align="right" valign="top"><a id="a59b59b25ae10f3b3d479f5160269ce35" name="a59b59b25ae10f3b3d479f5160269ce35"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
+<tr class="separator:a59b59b25ae10f3b3d479f5160269ce35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f007ce7f838ef171b510e7852999cb4"><td class="memItemLeft" align="right" valign="top"><a id="a7f007ce7f838ef171b510e7852999cb4" name="a7f007ce7f838ef171b510e7852999cb4"></a>
+<a class="el" href="time_8hpp.html#a4b814a8c5ed7ddfb7c3a6059117b1af9">Condition</a>&#160;</td><td class="memItemRight" valign="bottom"><b>condition</b></td></tr>
+<tr class="separator:a7f007ce7f838ef171b510e7852999cb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd0adf0e8ae8d8bc21863a202dc20ed2"><td class="memItemLeft" align="right" valign="top"><a id="abd0adf0e8ae8d8bc21863a202dc20ed2" name="abd0adf0e8ae8d8bc21863a202dc20ed2"></a>
+std::function&lt; void()&gt;&#160;</td><td class="memItemRight" valign="bottom"><b>todo</b></td></tr>
+<tr class="separator:abd0adf0e8ae8d8bc21863a202dc20ed2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5d977d91e1ce57eba5c46495407e2ce"><td class="memItemLeft" align="right" valign="top"><a id="ac5d977d91e1ce57eba5c46495407e2ce" name="ac5d977d91e1ce57eba5c46495407e2ce"></a>
+second_t&#160;</td><td class="memItemRight" valign="bottom"><b>timeout</b> {forever}</td></tr>
+<tr class="separator:ac5d977d91e1ce57eba5c46495407e2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebd7866b0e60d708db8c1dff2c5e7ecd"><td class="memItemLeft" align="right" valign="top"><a id="aebd7866b0e60d708db8c1dff2c5e7ecd" name="aebd7866b0e60d708db8c1dff2c5e7ecd"></a>
+std::optional&lt; std::function&lt; void()&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>todoTimeout</b> {}</td></tr>
+<tr class="separator:aebd7866b0e60d708db8c1dff2c5e7ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The necessary parameters for a schedule item. Once the condition is true, the todo method will be ran. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>include/atum/time/<a class="el" href="schedule_8hpp_source.html">schedule.hpp</a></li>
+<li>include/atum/time/<a class="el" href="scheduler_8hpp_source.html">scheduler.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1Schedule.html">Schedule</a></li><li class="navelem"><a class="el" href="structatum_1_1Schedule_1_1Item.html">Item</a></li>
+    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1Scheduler.html">Scheduler</a></li><li class="navelem"><a class="el" href="structatum_1_1Scheduler_1_1Item.html">Item</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -41,7 +41,7 @@ var NAVTREEINDEX2 =
 "structatum_1_1Pose.html#ac8d97f6d993c8ba3e82b9cf50e4a6a57":[1,0,0,26,2],
 "structatum_1_1Pose.html#ae14c2c652d3044550f0c5b0df8d69f9e":[1,0,0,26,0],
 "structatum_1_1Remote_1_1StickAxis.html":[1,0,0,29,0],
-"structatum_1_1Schedule_1_1Item.html":[1,0,0,34,0],
+"structatum_1_1Scheduler_1_1Item.html":[1,0,0,34,0],
 "structatum_1_1TBH_1_1Parameters.html":[1,0,0,38,0],
 "structatum_1_1Task_1_1TaskParams.html":[1,0,0,37,0],
 "structatum_1_1UnwrappedPose.html":[1,0,0,42],

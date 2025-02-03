@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['schedule_0',['Schedule',['../classatum_1_1Schedule.html',1,'atum']]],
+  ['scheduler_0',['Scheduler',['../classatum_1_1Scheduler.html',1,'atum']]],
   ['screen_1',['Screen',['../classatum_1_1GUI_1_1Screen.html',1,'atum::GUI']]],
   ['seriesrange_2',['SeriesRange',['../structatum_1_1GUI_1_1Graph_1_1SeriesRange.html',1,'atum::GUI::Graph']]],
   ['slewrate_3',['SlewRate',['../classatum_1_1SlewRate.html',1,'atum']]],

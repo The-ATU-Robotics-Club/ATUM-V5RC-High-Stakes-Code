@@ -22,7 +22,7 @@ var hierarchy =
     [ "atum::GUI::Screen::GUISize", "structatum_1_1GUI_1_1Screen_1_1GUISize.html", null ],
     [ "atum::ColorSensor::HueField", "structatum_1_1ColorSensor_1_1HueField.html", null ],
     [ "atum::IMU", "classatum_1_1IMU.html", null ],
-    [ "atum::Schedule::Item", "structatum_1_1Schedule_1_1Item.html", null ],
+    [ "atum::Scheduler::Item", "structatum_1_1Scheduler_1_1Item.html", null ],
     [ "atum::Kinematics< Unit >", "classatum_1_1Kinematics.html", null ],
     [ "atum::LimitSwitch", "classatum_1_1LimitSwitch.html", null ],
     [ "atum::LineTracker", "classatum_1_1LineTracker.html", null ],
@@ -70,7 +70,7 @@ var hierarchy =
       [ "atum::Ladybrown", "classatum_1_1Ladybrown.html", null ],
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ],
       [ "atum::Remote", "classatum_1_1Remote.html", null ],
-      [ "atum::Schedule", "classatum_1_1Schedule.html", null ]
+      [ "atum::Scheduler", "classatum_1_1Scheduler.html", null ]
     ] ],
     [ "atum::Task::TaskParams", "structatum_1_1Task_1_1TaskParams.html", null ],
     [ "atum::Timer", "classatum_1_1Timer.html", null ],
