@@ -24,6 +24,7 @@ var hierarchy =
     [ "atum::IMU", "classatum_1_1IMU.html", null ],
     [ "atum::Scheduler::Item", "structatum_1_1Scheduler_1_1Item.html", null ],
     [ "atum::Kinematics< Unit >", "classatum_1_1Kinematics.html", null ],
+    [ "atum::LED", "classatum_1_1LED.html", null ],
     [ "atum::LimitSwitch", "classatum_1_1LimitSwitch.html", null ],
     [ "atum::LineTracker", "classatum_1_1LineTracker.html", null ],
     [ "atum::Logger", "classatum_1_1Logger.html", null ],

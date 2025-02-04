@@ -23,6 +23,7 @@ var annotated_dup =
       [ "Intake", "classatum_1_1Intake.html", "classatum_1_1Intake" ],
       [ "Kinematics", "classatum_1_1Kinematics.html", null ],
       [ "Ladybrown", "classatum_1_1Ladybrown.html", "classatum_1_1Ladybrown" ],
+      [ "LED", "classatum_1_1LED.html", "classatum_1_1LED" ],
       [ "LimitSwitch", "classatum_1_1LimitSwitch.html", "classatum_1_1LimitSwitch" ],
       [ "LineTracker", "classatum_1_1LineTracker.html", "classatum_1_1LineTracker" ],
       [ "Logger", "classatum_1_1Logger.html", "classatum_1_1Logger" ],

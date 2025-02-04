@@ -128,7 +128,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0392263b382eee7453186d46a9a1f488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> by finding the port dynamically. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields.  <br /></td></tr>
 <tr class="separator:a0392263b382eee7453186d46a9a1f488"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">getColor</a> ()</td></tr>
-<tr class="memdesc:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns LED on if something is nearby.  <br /></td></tr>
+<tr class="memdesc:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> on if something is nearby.  <br /></td></tr>
 <tr class="separator:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28144eecf7f75efaee6a902a98bbf0fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a28144eecf7f75efaee6a902a98bbf0fa">tallyCount</a> ()</td></tr>
 <tr class="memdesc:a28144eecf7f75efaee6a902a98bbf0fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Keeps track of the number of objects that have passed by the sensor.  <br /></td></tr>
@@ -211,7 +211,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> with the given port. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields. </p>
-<p>Also turns on LED to max brightness and disables gestures.</p>
+<p>Also turns on <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> to max brightness and disables gestures.</p>
 <p>By providing a port, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -251,7 +251,7 @@ Static Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> by finding the port dynamically. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields. </p>
-<p>Also turns on LED to max brightness and disables gestures.</p>
+<p>Also turns on <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> to max brightness and disables gestures.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iHueFields</td><td></td></tr>
@@ -300,7 +300,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns LED on if something is nearby. </p>
+<p>Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> on if something is nearby. </p>
 <p>Also keeps track of the number of objects that have passed by the sensor.</p>
 <dl class="section return"><dt>Returns</dt><dd>Color </dd></dl>
 
