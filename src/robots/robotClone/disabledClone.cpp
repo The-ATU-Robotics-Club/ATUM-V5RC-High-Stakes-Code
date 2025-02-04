@@ -1,4 +1,3 @@
-#include "atum/utility/logger.hpp"
 #include "robotClone.hpp"
 
 namespace atum {
@@ -9,18 +8,28 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     intakeSetup15();
     goalSetup15();
     autonSetup15();
+    led = std::make_unique<LED>(ADIExtenderPort{21, 'F'}, 8);
   } else if(id == ID24) {
     driveSetup24();
     ladybrownSetup24();
     intakeSetup24();
     goalSetup24();
     autonSetup24();
+    led = std::make_unique<LED>(ADIExtenderPort{16, 'H'}, 8);
   }
+  intake->startBackgroundTasks();
+  ladybrown->startBackgroundTasks();
 }
 
 void RobotClone::disabled() {
-  intake->startBackgroundTasks();
-  ladybrown->startBackgroundTasks();
+  while(true) {
+    if(GUI::Routines::selectedColor() == MatchColor::Red) {
+      led->setColor(LED::red);
+    } else {
+      led->setColor(LED::blue);
+    }
+    wait(100_ms);
+  }
 }
 
 void RobotClone::driveSetup15() {

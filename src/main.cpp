@@ -17,8 +17,6 @@ void initialize() {
   } else {
     robot = std::make_unique<atum::RobotClone>(BRAIN_ID);
   }
-  atum::wait(0.5_s); // Basic wait for VEX OS to start up.
-  robot->disabled(); // Make sure disabled has atleast ran once.
   logger.info("Initialization finished.");
   atum::GUI::Manager::finishLoading();
 }

@@ -1,6 +1,5 @@
 #include "robotClone.hpp"
 
-
 namespace atum {
 void RobotClone::opcontrol() {
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
@@ -16,9 +15,10 @@ void RobotClone::opcontrol() {
     intake->setSortOutColor(ColorSensor::Color::None);
     goalClamp->unclamp();
   }
-  Schedule fifteenAwayScheduled{{"Rumble at 15s Away",
-                                 matchTimer.checkGoneOff(),
-                                 [=]() { remote.rumble("---"); }}};
+  Scheduler rumbleScheduler{};
+  rumbleScheduler.schedule({"Rumble at 15s Away",
+                            matchTimer.checkGoneOff(),
+                            [=]() { remote.rumble("---"); }});
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     gps->getPose();
@@ -27,7 +27,7 @@ void RobotClone::opcontrol() {
     const double turn{remote.getRStick().x};
     drive->arcade(forward, turn);
 
-    remotePrinting();
+    visualFeedback();
 
     speedMultiplier = 1.0;
     if(useHangControls) {
@@ -63,13 +63,15 @@ void RobotClone::opcontrol() {
   }
 }
 
-void RobotClone::remotePrinting() {
+void RobotClone::visualFeedback() {
   remote.print(
-      0,
-      "BRAIN: " +
-          std::to_string(static_cast<int>(pros::battery::get_capacity())) +
-          "%");
+      0, std::string{"CLAMP: "} + (goalClamp->isClamped() ? "Down" : "Up"));
   remote.print(1, "SORT: " + toString(intake->getSortOutColor()));
+  if(goalClamp->isClamped()) {
+    led->setColor(LED::green);
+  } else {
+    led->off();
+  }
 }
 
 void RobotClone::manualControls() {

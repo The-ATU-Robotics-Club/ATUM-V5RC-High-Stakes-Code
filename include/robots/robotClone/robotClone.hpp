@@ -16,7 +16,6 @@
 #include "atum/atum.hpp"
 #include "atum/depend/units.h"
 
-
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -43,12 +42,15 @@ class RobotClone : public Robot {
   RobotClone(const int iID);
 
   /**
-   * @brief The behavior of the clone bots when disabled. Also starts the
-   * background tasks for the intake and the ladybrown.
+   * @brief The behavior of the clone bots when disabled. 
    *
    */
   void disabled() override;
 
+  /**
+   * @brief The behavior of the clone bots when in operator control.
+   * 
+   */
   void opcontrol() override;
 
   private:
@@ -115,10 +117,11 @@ class RobotClone : public Robot {
 
   // Opcontrol helpers.
   /**
-   * @brief Deals with printing to the remote.
+   * @brief Deals with printing to the remote and setting the LEDs in accordance
+   * with the clamp.
    *
    */
-  void remotePrinting();
+  void visualFeedback();
 
   /**
    * @brief Deals with controls in manual mode.
@@ -177,6 +180,7 @@ class RobotClone : public Robot {
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
   std::unique_ptr<GoalRush> goalRush;
+  std::unique_ptr<LED> led;
   Scheduler scheduler;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<Turn> turn;

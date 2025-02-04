@@ -19,6 +19,7 @@
 #include "devices/colorSensor.hpp"
 #include "devices/distanceSensor.hpp"
 #include "devices/imu.hpp"
+#include "devices/led.hpp"
 #include "devices/limitSwitch.hpp"
 #include "devices/lineTracker.hpp"
 #include "devices/motor.hpp"
@@ -52,3 +53,4 @@
 #include "utility/logger.hpp"
 #include "utility/misc.hpp"
 #include "utility/units.hpp"
+
