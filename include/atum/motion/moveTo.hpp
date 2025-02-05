@@ -14,6 +14,7 @@
 #include "profileFollower.hpp"
 #include "turn.hpp"
 
+
 namespace atum {
 /**
  * @brief Encapsulates the logic behind point-to-point movements. Mostly
@@ -63,6 +64,18 @@ class MoveTo : public Movement {
                const LateralProfile::Parameters &specialParams = {});
 
   private:
+  /**
+   * @brief Contains the basic behavior for moving to a position on the field,
+   * accounting for if we are reversing or not.
+   *
+   * @param target
+   * @param specialParams
+   * @param reversed
+   */
+  void moveToPoint(Pose target,
+                   const LateralProfile::Parameters &specialParams,
+                   const bool reversed);
+
   Drive *drive;
   Turn *turn;
   std::unique_ptr<LateralProfileFollower> follower;

@@ -126,12 +126,7 @@ tile_t distance(const Pose &a, const Pose &b) {
   return sqrt(pow<2>(a.x - b.x) + pow<2>(a.y - b.y));
 }
 
-degree_t angle(const Pose &state, Pose reference, const bool flipOnBlue) {
-  if(flipOnBlue) {
-    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-      reference.flip();
-    }
-  }
+degree_t angle(const Pose &state, Pose reference) {
   const inch_t dx{reference.x - state.x};
   const inch_t dy{reference.y - state.y};
   degree_t dh{90_deg - atan2(dy, dx)};

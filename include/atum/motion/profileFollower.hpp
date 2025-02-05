@@ -48,7 +48,7 @@ class ProfileFollower {
    * @brief Constructs a new ProfileFollower based on the given parameters.
    *
    * The time out scaling parameter will be used to determine the time out on
-   * the profile by multiplying the profile's total time by it. Default is 10%
+   * the profile by multiplying the profile's total time by it. Default is 5%
    * longer than expected.
    *
    * The position control threshold determines how far away from the end of the
@@ -71,7 +71,7 @@ class ProfileFollower {
                   const AccelerationConstants &iKA,
                   std::unique_ptr<Controller> iPositionController = nullptr,
                   const Unit iPositionControlThreshold = Unit{infinite},
-                  const double iTimeoutScaling = 1.1,
+                  const double iTimeoutScaling = 1.05,
                   const Logger::Level loggerLevel = Logger::Level::Info) :
       profile{iProfile},
       acceptable{iAcceptable},
@@ -159,7 +159,7 @@ class ProfileFollower {
     if(!positionController || abs(end - state) >= positionControlThreshold) {
       return 0.0;
     }
-    const double positionError{positionControlThreshold == Unit{infinite} ?
+    const double positionError{positionControlThreshold >= Unit{infinite} ?
                                    difference(reference, state) :
                                    difference(end, state)};
     return positionController->getOutput(positionError);

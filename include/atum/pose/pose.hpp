@@ -121,16 +121,12 @@ double distance(const UnwrappedPose &a, const UnwrappedPose &b);
  * the inverse tangent of the differences of their y's over the
  * difference of their x's.
  *
- * If flip on blue is enabled, will flip the reference if the GUI selects blue.
- *
  * @param state
  * @param reference
- * @param flipOnBlue
  * @return double
  */
 double angle(const UnwrappedPose &state,
-             UnwrappedPose reference,
-             const bool flipOnBlue = false);
+             UnwrappedPose reference);
 
 /**
  * @brief Returns a string representation of the given unwrapped pose.

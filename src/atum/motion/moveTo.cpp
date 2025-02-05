@@ -17,18 +17,40 @@ MoveTo::MoveTo(Drive *iDrive,
 void MoveTo::forward(Pose target,
                      const LateralProfile::Parameters &specialParams) {
   turn->toward(target);
+  moveToPoint(target, specialParams, false);
+}
+
+void MoveTo::reverse(Pose target,
+                     const LateralProfile::Parameters &specialParams) {
+  turn->awayFrom(target);
+  moveToPoint(target, specialParams, true);
+}
+
+void MoveTo::moveToPoint(Pose target,
+                         const LateralProfile::Parameters &specialParams,
+                         const bool reversed) {
+  directionController->reset();
   if(flipped) {
     target.flip();
   }
   logger.debug("Moving to " + toString(target) + ".");
-  const degree_t initialHeading{drive->getPose().h};
-  const degree_t shortestAngle{constrain180(target - initialHeading)};
-  follower->startProfile(
-      initialHeading, initialHeading + shortestAngle, specialParams);
+  const Pose initialPose{drive->getPose()};
+  const degree_t linearH{angle(initialPose, target)};
+  follower->startProfile(0_m, distance(initialPose, target), specialParams);
   while(!follower->isDone() && !interrupted) {
-    const Pose state{drive->getPose()};
-    const double output{follower->getOutput(state.h, state.omega)};
-    drive->arcade(0, output);
+    const Pose pose{drive->getPose()};
+    const meter_t traveled{distance(initialPose, pose)};
+    double moveOutput{follower->getOutput(traveled, abs(pose.v))};
+    degree_t targetH{(distance(pose, target) < turnToThreshold) ?
+                         linearH :
+                         angle(pose, target)};
+    if(reversed) {
+      moveOutput *= -1;
+      targetH += 180_deg;
+    }
+    const double hError{getValueAs<degree_t>(constrain180(targetH - pose.h))};
+    const double directionOutput{directionController->getOutput(hError)};
+    drive->arcade(moveOutput, directionOutput);
     wait();
   }
   drive->brake();
@@ -39,7 +61,4 @@ void MoveTo::forward(Pose target,
     logger.debug("Move to complete!");
   }
 }
-
-void MoveTo::reverse(Pose target,
-                     const LateralProfile::Parameters &specialParams) {}
 } // namespace atum
