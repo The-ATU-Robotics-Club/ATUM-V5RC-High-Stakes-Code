@@ -12,9 +12,10 @@ var searchData=
   ['restart_9',['restart',['../classatum_1_1Timer.html#a275d87facc97844285a6f9e83b7dfb3a',1,'atum::Timer']]],
   ['retract_10',['retract',['../classatum_1_1Piston.html#a1db6c21109da8a3745864c018bdfc19b',1,'atum::Piston::retract()'],['../classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3',1,'atum::Ladybrown::retract()']]],
   ['retractarm_11',['retractArm',['../classatum_1_1GoalRush.html#a5b64b073a329108919d14ed207983383',1,'atum::GoalRush']]],
-  ['robot_12',['Robot',['../classatum_1_1Robot.html#ac5f63ac7b8a265cf8b275531e79a85ce',1,'atum::Robot']]],
-  ['robotclone_13',['RobotClone',['../classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0',1,'atum::RobotClone']]],
-  ['robotprototype_14',['RobotPrototype',['../classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f',1,'atum::RobotPrototype']]],
-  ['rotationsensor_15',['RotationSensor',['../classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db',1,'atum::RotationSensor::RotationSensor(const std::int8_t port, const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd',1,'atum::RotationSensor::RotationSensor(const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
-  ['rumble_16',['rumble',['../classatum_1_1Remote.html#a0164e292529181e2e23fbf00bd504527',1,'atum::Remote']]]
+  ['reverse_12',['reverse',['../classatum_1_1MoveTo.html#aa6fb1b4ad2686d9a62ad712a81870aeb',1,'atum::MoveTo']]],
+  ['robot_13',['Robot',['../classatum_1_1Robot.html#ac5f63ac7b8a265cf8b275531e79a85ce',1,'atum::Robot']]],
+  ['robotclone_14',['RobotClone',['../classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0',1,'atum::RobotClone']]],
+  ['robotprototype_15',['RobotPrototype',['../classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f',1,'atum::RobotPrototype']]],
+  ['rotationsensor_16',['RotationSensor',['../classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db',1,'atum::RotationSensor::RotationSensor(const std::int8_t port, const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd',1,'atum::RotationSensor::RotationSensor(const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['rumble_17',['rumble',['../classatum_1_1Remote.html#a0164e292529181e2e23fbf00bd504527',1,'atum::Remote']]]
 ];

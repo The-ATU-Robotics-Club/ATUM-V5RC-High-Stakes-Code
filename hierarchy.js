@@ -30,6 +30,11 @@ var hierarchy =
     [ "atum::Logger", "classatum_1_1Logger.html", null ],
     [ "atum::MotionProfile< Unit >", "classatum_1_1MotionProfile.html", null ],
     [ "atum::Motor", "classatum_1_1Motor.html", null ],
+    [ "atum::Movement", "classatum_1_1Movement.html", [
+      [ "atum::MoveTo", "classatum_1_1MoveTo.html", null ],
+      [ "atum::PathFollower", "classatum_1_1PathFollower.html", null ],
+      [ "atum::Turn", "classatum_1_1Turn.html", null ]
+    ] ],
     [ "atum::Odometer", "classatum_1_1Odometer.html", null ],
     [ "atum::Intake::Parameters", "structatum_1_1Intake_1_1Parameters.html", null ],
     [ "atum::Ladybrown::Parameters", "structatum_1_1Ladybrown_1_1Parameters.html", null ],
@@ -38,7 +43,6 @@ var hierarchy =
     [ "atum::PID::Parameters", "structatum_1_1PID_1_1Parameters.html", null ],
     [ "atum::TBH::Parameters", "structatum_1_1TBH_1_1Parameters.html", null ],
     [ "atum::Path", "classatum_1_1Path.html", null ],
-    [ "atum::PathFollower", "classatum_1_1PathFollower.html", null ],
     [ "atum::Piston", "classatum_1_1Piston.html", null ],
     [ "atum::MotionProfile< Unit >::Point", "structatum_1_1MotionProfile_1_1Point.html", null ],
     [ "atum::Pose", "structatum_1_1Pose.html", null ],
@@ -78,6 +82,5 @@ var hierarchy =
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
     ] ],
-    [ "atum::Turn", "classatum_1_1Turn.html", null ],
     [ "atum::UnwrappedPose", "structatum_1_1UnwrappedPose.html", null ]
 ];

@@ -12,7 +12,7 @@ var searchData=
   ['intake_9',['Intake',['../classatum_1_1Intake.html#a179b403fb64d615adc5aa1c71417d860',1,'atum::Intake']]],
   ['intake_2ehpp_10',['intake.hpp',['../intake_8hpp.html',1,'']]],
   ['intakestate_11',['IntakeState',['../intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044f',1,'atum']]],
-  ['interrupt_12',['interrupt',['../classatum_1_1PathFollower.html#a1c6b6c8989ab8c6977a3ab615a772b87',1,'atum::PathFollower::interrupt()'],['../classatum_1_1Turn.html#a4cc424c3965f42cda0aa07c16aca6896',1,'atum::Turn::interrupt()']]],
+  ['interrupt_12',['interrupt',['../classatum_1_1Movement.html#a893ace5b2be17a29a85ac67aefd305a3',1,'atum::Movement']]],
   ['isbackwards_13',['isBackwards',['../classatum_1_1MotionProfile.html#a4ceb41275df910bede783e75ec019102',1,'atum::MotionProfile']]],
   ['isclamped_14',['isClamped',['../classatum_1_1GoalClamp.html#adde4a7faf5cd8b928e8b04cfcbb82d3d',1,'atum::GoalClamp']]],
   ['isdone_15',['isDone',['../classatum_1_1ProfileFollower.html#a4a4002bb3eee0fd81397fd4004dcd780',1,'atum::ProfileFollower']]],

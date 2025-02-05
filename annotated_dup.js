@@ -29,6 +29,8 @@ var annotated_dup =
       [ "Logger", "classatum_1_1Logger.html", "classatum_1_1Logger" ],
       [ "MotionProfile", "classatum_1_1MotionProfile.html", "classatum_1_1MotionProfile" ],
       [ "Motor", "classatum_1_1Motor.html", "classatum_1_1Motor" ],
+      [ "Movement", "classatum_1_1Movement.html", "classatum_1_1Movement" ],
+      [ "MoveTo", "classatum_1_1MoveTo.html", "classatum_1_1MoveTo" ],
       [ "Odometer", "classatum_1_1Odometer.html", "classatum_1_1Odometer" ],
       [ "Odometry", "classatum_1_1Odometry.html", "classatum_1_1Odometry" ],
       [ "Path", "classatum_1_1Path.html", "classatum_1_1Path" ],

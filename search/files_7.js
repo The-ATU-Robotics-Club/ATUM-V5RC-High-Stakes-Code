@@ -4,5 +4,7 @@ var searchData=
   ['map_2ehpp_1',['map.hpp',['../map_8hpp.html',1,'']]],
   ['misc_2ehpp_2',['misc.hpp',['../misc_8hpp.html',1,'']]],
   ['motionprofile_2ehpp_3',['motionProfile.hpp',['../motionProfile_8hpp.html',1,'']]],
-  ['motor_2ehpp_4',['motor.hpp',['../motor_8hpp.html',1,'']]]
+  ['motor_2ehpp_4',['motor.hpp',['../motor_8hpp.html',1,'']]],
+  ['movement_2ehpp_5',['movement.hpp',['../movement_8hpp.html',1,'']]],
+  ['moveto_2ehpp_6',['moveTo.hpp',['../moveTo_8hpp.html',1,'']]]
 ];

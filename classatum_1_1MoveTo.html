@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: atum::PathFollower Class Reference</title>
+<title>VURC Team ATUM: atum::MoveTo Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('classatum_1_1PathFollower.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('classatum_1_1MoveTo.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -95,44 +95,37 @@ $(document).ready(function(){initNavTree('classatum_1_1PathFollower.html',''); i
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="classatum_1_1PathFollower-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">atum::PathFollower Class Reference</div></div>
+<a href="classatum_1_1MoveTo-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">atum::MoveTo Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled movements.  
- <a href="classatum_1_1PathFollower.html#details">More...</a></p>
+<p>Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile follower class.  
+ <a href="classatum_1_1MoveTo.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="pathFollower_8hpp_source.html">pathFollower.hpp</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="moveTo_8hpp_source.html">moveTo.hpp</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for atum::PathFollower:</div>
+Inheritance diagram for atum::MoveTo:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classatum_1_1PathFollower.png" usemap="#atum::PathFollower_map" alt=""/>
-  <map id="atum::PathFollower_map" name="atum::PathFollower_map">
-<area href="classatum_1_1Movement.html" title="Provides common functionality between drive movements." alt="atum::Movement" shape="rect" coords="0,0,118,24"/>
+  <img src="classatum_1_1MoveTo.png" usemap="#atum::MoveTo_map" alt=""/>
+  <map id="atum::MoveTo_map" name="atum::MoveTo_map">
+<area href="classatum_1_1Movement.html" title="Provides common functionality between drive movements." alt="atum::Movement" shape="rect" coords="0,0,102,24"/>
   </map>
 </div></div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The commands that the path follower executes.  <a href="structatum_1_1PathFollower_1_1Command.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parameters for the feedback component of path following. Can enable/disabled RAMSETE and change its beta and lambda values.  <a href="structatum_1_1PathFollower_1_1FeedbackParameters.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a824d9f1e47572a95942b0d3d935a75c3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html#a824d9f1e47572a95942b0d3d935a75c3">PathFollower</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;iDefaultAcceptable, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt; iRight, const <a class="el" href="structatum_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;iKA, const <a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a> &amp;iFeedbackParams=<a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a>{true, 2.0, 0.7}, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a824d9f1e47572a95942b0d3d935a75c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1PathFollower.html" title="Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled...">PathFollower</a> object.  <br /></td></tr>
-<tr class="separator:a824d9f1e47572a95942b0d3d935a75c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4747e17db1207d1f5b58678882a3e61d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html#a4747e17db1207d1f5b58678882a3e61d">follow</a> (const std::vector&lt; <a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> &gt; &amp;commands, const std::string &amp;name=&quot;&quot;)</td></tr>
-<tr class="memdesc:a4747e17db1207d1f5b58678882a3e61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Follows a list of given commands. Can provide a name for debugging purposes.  <br /></td></tr>
-<tr class="separator:a4747e17db1207d1f5b58678882a3e61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af790ede7fe5de9e140d071a345bec762"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#af790ede7fe5de9e140d071a345bec762">MoveTo</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, <a class="el" href="classatum_1_1Turn.html">Turn</a> *iTurn, std::unique_ptr&lt; <a class="el" href="profileFollower_8hpp.html#a2bd4ee01721625f47226b5fc5cda189f">LateralProfileFollower</a> &gt; iFollower, std::unique_ptr&lt; <a class="el" href="classatum_1_1PID.html">PID</a> &gt; iDirectionController, const meter_t iTurnToThreshold=1_tile, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:af790ede7fe5de9e140d071a345bec762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1MoveTo.html" title="Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile fo...">MoveTo</a> object.  <br /></td></tr>
+<tr class="separator:af790ede7fe5de9e140d071a345bec762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afee365bfcf37b1cca93f56c5dd42f99d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#afee365bfcf37b1cca93f56c5dd42f99d">forward</a> (<a class="el" href="structatum_1_1Pose.html">Pose</a> target, const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">LateralProfile::Parameters</a> &amp;specialParams={})</td></tr>
+<tr class="memdesc:afee365bfcf37b1cca93f56c5dd42f99d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going forward.  <br /></td></tr>
+<tr class="separator:afee365bfcf37b1cca93f56c5dd42f99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6fb1b4ad2686d9a62ad712a81870aeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#aa6fb1b4ad2686d9a62ad712a81870aeb">reverse</a> (<a class="el" href="structatum_1_1Pose.html">Pose</a> target, const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">LateralProfile::Parameters</a> &amp;specialParams={})</td></tr>
+<tr class="memdesc:aa6fb1b4ad2686d9a62ad712a81870aeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going in reverse.  <br /></td></tr>
+<tr class="separator:aa6fb1b4ad2686d9a62ad712a81870aeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Movement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Movement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Movement.html">atum::Movement</a></td></tr>
 <tr class="memitem:a893ace5b2be17a29a85ac67aefd305a3 inherit pub_methods_classatum_1_1Movement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Movement.html#a893ace5b2be17a29a85ac67aefd305a3">interrupt</a> ()</td></tr>
 <tr class="memdesc:a893ace5b2be17a29a85ac67aefd305a3 inherit pub_methods_classatum_1_1Movement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the current movement. Up to children to reset the interrupted variable.  <br /></td></tr>
@@ -154,16 +147,16 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
 <tr class="separator:ad2ab9c84f9f1048ef5dce25f9a8ca6d3 inherit pro_static_attribs_classatum_1_1Movement"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled movements. </p>
+<div class="textblock"><p>Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile follower class. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a824d9f1e47572a95942b0d3d935a75c3" name="a824d9f1e47572a95942b0d3d935a75c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a824d9f1e47572a95942b0d3d935a75c3">&#9670;&#160;</a></span>PathFollower()</h2>
+<a id="af790ede7fe5de9e140d071a345bec762" name="af790ede7fe5de9e140d071a345bec762"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af790ede7fe5de9e140d071a345bec762">&#9670;&#160;</a></span>MoveTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">atum::PathFollower::PathFollower </td>
+          <td class="memname">atum::MoveTo::MoveTo </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classatum_1_1Drive.html">Drive</a> *&#160;</td>
           <td class="paramname"><em>iDrive</em>, </td>
@@ -171,32 +164,26 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;&#160;</td>
-          <td class="paramname"><em>iDefaultAcceptable</em>, </td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Turn.html">Turn</a> *&#160;</td>
+          <td class="paramname"><em>iTurn</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt;&#160;</td>
-          <td class="paramname"><em>iLeft</em>, </td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="profileFollower_8hpp.html#a2bd4ee01721625f47226b5fc5cda189f">LateralProfileFollower</a> &gt;&#160;</td>
+          <td class="paramname"><em>iFollower</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Controller.html">Controller</a> &gt;&#160;</td>
-          <td class="paramname"><em>iRight</em>, </td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1PID.html">PID</a> &gt;&#160;</td>
+          <td class="paramname"><em>iDirectionController</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structatum_1_1AccelerationConstants.html">AccelerationConstants</a> &amp;&#160;</td>
-          <td class="paramname"><em>iKA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a> &amp;&#160;</td>
-          <td class="paramname"><em>iFeedbackParams</em> = <code><a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">FeedbackParameters</a>{true,&#160;2.0,&#160;0.7}</code>, </td>
+          <td class="paramtype">const meter_t&#160;</td>
+          <td class="paramname"><em>iTurnToThreshold</em> = <code>1_tile</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -212,15 +199,15 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classatum_1_1PathFollower.html" title="Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled...">PathFollower</a> object. </p>
+<p>Constructs a new <a class="el" href="classatum_1_1MoveTo.html" title="Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile fo...">MoveTo</a> object. </p>
+<p><a class="el" href="classatum_1_1Turn.html" title="Encapsulates the logic behind turns. Mostly combines the drive with the profile follower class.">Turn</a> is used for the initial turn toward the target. The direction controller is used to steer the drive while moving to the target position. <a class="el" href="classatum_1_1Turn.html" title="Encapsulates the logic behind turns. Mostly combines the drive with the profile follower class.">Turn</a> to threshold refers to how close the drive has to be to the target to no longer turn toward it.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iDrive</td><td></td></tr>
-    <tr><td class="paramname">iDefaultAcceptable</td><td></td></tr>
-    <tr><td class="paramname">iLeft</td><td></td></tr>
-    <tr><td class="paramname">iRight</td><td></td></tr>
-    <tr><td class="paramname">iKA</td><td></td></tr>
-    <tr><td class="paramname">iFeedbackParams</td><td></td></tr>
+    <tr><td class="paramname">iTurn</td><td></td></tr>
+    <tr><td class="paramname">iFollower</td><td></td></tr>
+    <tr><td class="paramname">iDirectionController</td><td></td></tr>
+    <tr><td class="paramname">iTurnToThreshold</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -229,23 +216,23 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a4747e17db1207d1f5b58678882a3e61d" name="a4747e17db1207d1f5b58678882a3e61d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4747e17db1207d1f5b58678882a3e61d">&#9670;&#160;</a></span>follow()</h2>
+<a id="afee365bfcf37b1cca93f56c5dd42f99d" name="afee365bfcf37b1cca93f56c5dd42f99d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afee365bfcf37b1cca93f56c5dd42f99d">&#9670;&#160;</a></span>forward()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::PathFollower::follow </td>
+          <td class="memname">void atum::MoveTo::forward </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structatum_1_1PathFollower_1_1Command.html">Command</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>commands</em>, </td>
+          <td class="paramtype"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>name</em> = <code>&quot;&quot;</code>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">LateralProfile::Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>specialParams</em> = <code>{}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -255,11 +242,48 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
       </table>
 </div><div class="memdoc">
 
-<p>Follows a list of given commands. Can provide a name for debugging purposes. </p>
+<p>Moves towards the given target position, going forward. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">commands</td><td></td></tr>
-    <tr><td class="paramname">name</td><td></td></tr>
+    <tr><td class="paramname">target</td><td></td></tr>
+    <tr><td class="paramname">specialParams</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa6fb1b4ad2686d9a62ad712a81870aeb" name="aa6fb1b4ad2686d9a62ad712a81870aeb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6fb1b4ad2686d9a62ad712a81870aeb">&#9670;&#160;</a></span>reverse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::MoveTo::reverse </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td>
+          <td class="paramname"><em>target</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">LateralProfile::Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>specialParams</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Moves towards the given target position, going in reverse. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">target</td><td></td></tr>
+    <tr><td class="paramname">specialParams</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -267,14 +291,14 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>include/atum/motion/<a class="el" href="pathFollower_8hpp_source.html">pathFollower.hpp</a></li>
+<li>include/atum/motion/<a class="el" href="moveTo_8hpp_source.html">moveTo.hpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1PathFollower.html">PathFollower</a></li>
+    <li class="navelem"><b>atum</b></li><li class="navelem"><a class="el" href="classatum_1_1MoveTo.html">MoveTo</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
