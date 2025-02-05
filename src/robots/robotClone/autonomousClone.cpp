@@ -516,8 +516,7 @@ void RobotClone::setupRoutine(Pose startingPose) {
   if(flipped) {
     startingPose.flip();
   }
-  pathFollower->setFlipped(flipped);
-  turn->setFlipped(flipped);
+  Movement::setFlipped(flipped);
 
   drive->setPose(startingPose);
   gps->setPose(startingPose);

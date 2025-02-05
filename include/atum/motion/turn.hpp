@@ -10,6 +10,7 @@
 #pragma once
 
 #include "../systems/drive.hpp"
+#include "movement.hpp"
 #include "profileFollower.hpp"
 
 namespace atum {
@@ -18,7 +19,7 @@ namespace atum {
  * the profile follower class.
  *
  */
-class Turn {
+class Turn : public Movement {
   public:
   /**
    * @brief Constructs a new Turn object.
@@ -67,25 +68,9 @@ class Turn {
   void awayFrom(const degree_t target,
                 const AngularProfile::Parameters &specialParams = {});
 
-  /**
-   * @brief Interrupts the current turn.
-   *
-   */
-  void interrupt();
-
-  /**
-   * @brief Sets whether the turns should be flipped across the x-axis (if
-   * the color is changed).
-   *
-   * @param iFlipped
-   */
-  void setFlipped(const bool iFlipped);
-
   private:
   Drive *drive;
   std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;
-  bool interrupted{false};
-  bool flipped{false};
 };
 } // namespace atum

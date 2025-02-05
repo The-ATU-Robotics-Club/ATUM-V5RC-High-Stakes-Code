@@ -80,14 +80,6 @@ void PathFollower::follow(Command cmd) {
   }
 }
 
-void PathFollower::interrupt() {
-  interrupted = true;
-}
-
-void PathFollower::setFlipped(const bool iFlipped) {
-  flipped = iFlipped;
-}
-
 std::pair<double, double>
     PathFollower::getLRReference(const UnwrappedPose &state,
                                  const UnwrappedPose &target,

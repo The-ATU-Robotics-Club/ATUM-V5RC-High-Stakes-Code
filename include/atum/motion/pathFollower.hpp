@@ -14,6 +14,7 @@
 #include "../utility/acceptable.hpp"
 #include "path.hpp"
 #include "profileFollower.hpp"
+#include "movement.hpp"
 
 namespace atum {
 /**
@@ -21,7 +22,7 @@ namespace atum {
  * feedback control or motion-profiled movements.
  *
  */
-class PathFollower {
+class PathFollower : public Movement {
   public:
   /**
    * @brief The commands that the path follower executes.
@@ -89,20 +90,6 @@ class PathFollower {
    */
   void follow(const std::vector<Command> &commands,
               const std::string &name = "");
-
-  /**
-   * @brief Interrupts the current command(s).
-   *
-   */
-  void interrupt();
-
-  /**
-   * @brief Sets whether the commands should be flipped across the x-axis (if
-   * the color is changed).
-   *
-   * @param iFlipped
-   */
-  void setFlipped(const bool iFlipped);
 
   private:
   /**
@@ -202,7 +189,5 @@ class PathFollower {
   AccelerationConstants kA;
   FeedbackParameters feedbackParams;
   Logger logger;
-  bool interrupted{false};
-  bool flipped{false};
 };
 } // namespace atum

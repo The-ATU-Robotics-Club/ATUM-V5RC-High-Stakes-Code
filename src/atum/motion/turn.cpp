@@ -55,12 +55,4 @@ void Turn::awayFrom(const degree_t target,
                     const AngularProfile::Parameters &specialParams) {
   toward(target + 180_deg, specialParams);
 }
-
-void Turn::interrupt() {
-  interrupted = true;
-}
-
-void Turn::setFlipped(const bool iFlipped) {
-  flipped = iFlipped;
-}
 } // namespace atum

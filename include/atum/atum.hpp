@@ -35,6 +35,8 @@
 #include "gui/screen.hpp"
 #include "motion/kinematics.hpp"
 #include "motion/motionProfile.hpp"
+#include "motion/moveTo.hpp"
+#include "motion/movement.hpp"
 #include "motion/path.hpp"
 #include "motion/pathFollower.hpp"
 #include "motion/profileFollower.hpp"
@@ -53,4 +55,3 @@
 #include "utility/logger.hpp"
 #include "utility/misc.hpp"
 #include "utility/units.hpp"
-
