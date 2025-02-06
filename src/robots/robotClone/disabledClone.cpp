@@ -1,4 +1,7 @@
+#include "atum/depend/units.h"
+#include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
+
 
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
@@ -152,9 +155,11 @@ void RobotClone::goalSetup15() {
 }
 
 void RobotClone::autonSetup15() {
+  meters_per_second_t maxV{76.5_in_per_s};
+  meters_per_second_squared_t maxA{153_in_per_s_sq};
+
   // Path follower setup.
-  Path::setDefaultParams(
-      {1, 76.5_in_per_s, 76.5_in_per_s_sq, drive->getGeometry().track});
+  Path::setDefaultParams({1_m, maxV, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;
@@ -177,23 +182,50 @@ void RobotClone::autonSetup15() {
   turnMotionParams.usePosition = true;
   AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle turnAcceptable{forever, 1_deg};
+  AcceptableAngle turnAcceptable{forever, 1_deg, 5_deg_per_s};
   PID::Parameters turnPIDParams{1.0, 0, 0, 0.85};
   turnPIDParams.ffScaling = true;
   std::unique_ptr<Controller> turnVelocityController =
       std::make_unique<PID>(turnPIDParams);
-  const AccelerationConstants kA{0.7, 0.1};
+  const AccelerationConstants turnKA{0.7, 0.1};
   std::unique_ptr<Controller> turnPositionController =
       std::make_unique<PID>(PID::Parameters{48.0, 0.0, 0.0, 0.0, 0.0});
-  std::unique_ptr<AngularProfileFollower> profileFollower{
+  std::unique_ptr<AngularProfileFollower> angularProfileFollower{
       std::make_unique<AngularProfileFollower>(
           turnProfile,
           turnAcceptable,
           std::move(turnVelocityController),
-          kA,
+          turnKA,
           std::move(turnPositionController),
           5_deg)};
-  turn = std::make_unique<Turn>(drive.get(), std::move(profileFollower));
+  turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
+
+  // Move to setup.
+  LateralProfile::Parameters moveToMotionParams{maxV, maxA, 1530_in_per_s_cb};
+  moveToMotionParams.usePosition = true;
+  LateralProfile moveToProfile{moveToMotionParams};
+  // Timeout here gets set by the follower, so don't worry about the "forever."
+  AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
+  std::unique_ptr<PID> directionController =
+      std::make_unique<PID>(PID::Parameters{48.0});
+  PID::Parameters moveToVelocityPIDParams{0.031, 0, 0, 0.031};
+  moveToVelocityPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> moveToVelocityPID{
+      std::make_unique<PID>(moveToVelocityPIDParams)};
+  const AccelerationConstants moveToKA{0.7, 0.1};
+  std::unique_ptr<PID> moveToPositionPID =
+      std::make_unique<PID>(PID::Parameters{200.0});
+  std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
+      std::make_unique<LateralProfileFollower>(moveToProfile,
+                                               moveToAcceptable,
+                                               std::move(moveToVelocityPID),
+                                               moveToKA,
+                                               std::move(moveToPositionPID),
+                                               3_in)};
+  moveTo = std::make_unique<MoveTo>(drive.get(),
+                                    turn.get(),
+                                    std::move(lateralProfileFollower),
+                                    std::move(directionController));
 }
 
 void RobotClone::driveSetup24() {
@@ -316,9 +348,11 @@ void RobotClone::goalSetup24() {
 }
 
 void RobotClone::autonSetup24() {
+  meters_per_second_t maxV{76.5_in_per_s};
+  meters_per_second_squared_t maxA{153_in_per_s_sq};
+
   // Path follower setup.
-  Path::setDefaultParams(
-      {1, 76.5_in_per_s, 76.5_in_per_s_sq, drive->getGeometry().track});
+  Path::setDefaultParams({1_m, maxV, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
   PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
   pathFollowerPIDParams.ffScaling = true;

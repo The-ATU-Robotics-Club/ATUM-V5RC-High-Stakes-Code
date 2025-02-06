@@ -1,7 +1,8 @@
 #include "path.hpp"
 
 namespace atum {
-Path::Parameters::Parameters(const double iCurviness,
+Path::Parameters::Parameters(const meter_t iOnRamp,
+                             const meter_t iOffRamp,
                              const meters_per_second_t iMaxV,
                              const meters_per_second_squared_t iMaxA,
                              const meter_t iTrack,
@@ -9,7 +10,8 @@ Path::Parameters::Parameters(const double iCurviness,
                              const meter_t iMaxSpacingError,
                              const bool iUsePosition,
                              const double iBinarySearchScaling) :
-    curviness{iCurviness},
+    onRamp{iOnRamp},
+    offRamp{iOffRamp},
     maxV{iMaxV},
     maxA{iMaxA},
     track{iTrack},
@@ -18,15 +20,16 @@ Path::Parameters::Parameters(const double iCurviness,
     usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
-Path::Parameters::Parameters(const meters_per_second_t iMaxV,
-                             const double iCurviness,
+Path::Parameters::Parameters(const meter_t ramp,
+                             const meters_per_second_t iMaxV,
                              const meters_per_second_squared_t iMaxA,
                              const meter_t iTrack,
                              const meter_t iSpacing,
                              const meter_t iMaxSpacingError,
                              const bool iUsePosition,
                              const double iBinarySearchScaling) :
-    curviness{iCurviness},
+    onRamp{ramp},
+    offRamp{ramp},
     maxV{iMaxV},
     maxA{iMaxA},
     track{iTrack},
@@ -36,8 +39,10 @@ Path::Parameters::Parameters(const meters_per_second_t iMaxV,
     binarySearchScaling{iBinarySearchScaling} {}
 
 Path::Parameters::Parameters(const Path::Parameters &other) :
-    spacing{other.spacing}, binarySearchScaling{other.binarySearchScaling} {
-  curviness = other.curviness;
+    spacing{other.spacing},
+    binarySearchScaling{other.binarySearchScaling} {
+  onRamp = other.onRamp;
+  offRamp = other.offRamp;
   maxV = other.maxV;
   maxA = other.maxA;
   track = other.track;
@@ -47,8 +52,11 @@ Path::Parameters &Path::Parameters::operator=(const Path::Parameters &other) {
   if(this == &other) {
     return *this;
   }
-  if(other.curviness) {
-    curviness = other.curviness;
+  if(other.onRamp) {
+    onRamp = other.onRamp;
+  }
+  if(other.offRamp) {
+    offRamp = other.offRamp;
   }
   if(other.maxV) {
     maxV = other.maxV;
@@ -71,9 +79,9 @@ Path::Path(const std::pair<Pose, Pose> &waypoints,
   }
   const degree_t startH{90_deg - start.h};
   startDirection =
-      params.curviness * Pose{1_m * cos(startH), 1_m * sin(startH)};
+      Pose{params.onRamp * cos(startH), params.onRamp * sin(startH)};
   const degree_t endH{90_deg - end.h};
-  endDirection = params.curviness * Pose{1_m * cos(endH), 1_m * sin(endH)};
+  endDirection = Pose{params.offRamp * cos(endH), params.offRamp * sin(endH)};
   generate();
   logger.debug("Path has been generated!");
 }
@@ -263,5 +271,5 @@ void Path::graphPath() {
   }
 }
 
-Path::Parameters Path::defaultParams{};
+Path::Parameters Path::defaultParams{1_m};
 } // namespace atum

@@ -13,6 +13,7 @@
 #include "../time/timer.hpp"
 #include "../utility/logger.hpp"
 
+
 namespace atum {
 /**
  * @brief This class encapsulates the generation and sampling of paths (or,
@@ -42,7 +43,8 @@ class Path {
      * @param iUsePosition
      * @param iBinarySearchScaling
      */
-    Parameters(double iCurviness = 0.0,
+    Parameters(const meter_t iOnRamp,
+               const meter_t iOffRamp,
                const meters_per_second_t iMaxV = 0_mps,
                const meters_per_second_squared_t iMaxA = 0_mps_sq,
                const meter_t iTrack = 0_m,
@@ -54,8 +56,8 @@ class Path {
     /**
      * @brief Constructs a new Parameters object.
      *
+     * @param ramp
      * @param iMaxV
-     * @param iCurviness
      * @param iMaxA
      * @param iTrack
      * @param iSpacing
@@ -64,9 +66,8 @@ class Path {
      * @param iBinarySearchScaling
      */
     Parameters(
-        const meters_per_second_t iMaxV, // No default value to disambiguate
-                                         // default constructor.
-        const double iCurviness = 0.0,
+        const meter_t ramp,
+        const meters_per_second_t iMaxV = 0_mps,
         const meters_per_second_squared_t iMaxA = 0_mps_sq,
         const meter_t iTrack = 0_m,
         const meter_t iSpacing = 0.5_in,
@@ -84,8 +85,10 @@ class Path {
      */
     Parameters &operator=(const Parameters &other);
 
-    // Decides how "curvy" the path is. Experiment with values from 0.5 to 10.
-    double curviness{0.0};
+    // The amount the starting points are curved toward the starting direction.
+    meter_t onRamp{1_m};
+    // The amount the end points are curved toward the end direction.
+    meter_t offRamp{1_m};
     meters_per_second_t maxV{0_mps};
     meters_per_second_squared_t maxA{0_mps_sq};
     meter_t track{0_m};

@@ -183,6 +183,7 @@ class RobotClone : public Robot {
   std::unique_ptr<LED> led;
   Scheduler scheduler;
   std::unique_ptr<PathFollower> pathFollower;
+  std::unique_ptr<MoveTo> moveTo;
   std::unique_ptr<Turn> turn;
   Timer matchTimer;
   bool useManualControls{false};
