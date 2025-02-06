@@ -140,12 +140,17 @@ void RobotClone::intakeControls() {
     default: intake->stop(); break;
   }
 
-  static bool previousHeldL2{false};
-  const bool heldL2{remote.getHold(Remote::Button::L2)};
-  if((heldL2 && goalClamp->hasGoal()) || (!heldL2 && previousHeldL2)) {
-    goalClamp->clamp();
+  if(remote.getPress(Remote::Button::L2)) {
+    goalClamp->toggleClamp();
   }
-  previousHeldL2 = heldL2;
+
+  static bool recentlyUnclamped{false};
+  if(goalClamp->hasGoal() && !recentlyUnclamped) {
+    goalClamp->clamp();
+    recentlyUnclamped = true;
+  } else if(!goalClamp->hasGoal()) {
+    recentlyUnclamped = false;
+  }
 }
 
 void RobotClone::hangControls() {
