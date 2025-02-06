@@ -1,5 +1,6 @@
 #include "robotClone.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
@@ -140,12 +141,10 @@ void RobotClone::intakeControls() {
     default: intake->stop(); break;
   }
 
-  if(remote.getPress(Remote::Button::L2)) {
-    goalClamp->toggleClamp();
-  }
-
   static bool recentlyUnclamped{false};
-  if(goalClamp->hasGoal() && !recentlyUnclamped) {
+  if(remote.getHold(Remote::Button::L2)) {
+    goalClamp->unclamp();
+  } else if(goalClamp->hasGoal() && !recentlyUnclamped) {
     goalClamp->clamp();
     recentlyUnclamped = true;
   } else if(!goalClamp->hasGoal()) {
