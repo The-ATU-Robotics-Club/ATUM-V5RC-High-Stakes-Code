@@ -1,6 +1,5 @@
 #include "robotClone.hpp"
 
-
 namespace atum {
 void RobotClone::opcontrol() {
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
@@ -15,9 +14,13 @@ void RobotClone::opcontrol() {
     matchTimer.setAlarm(40_s);
     intake->setSortOutColor(ColorSensor::Color::None);
     goalClamp->unclamp();
+    if(id == ID15) {
+      intake->outtake();
+      wait(0.1_s);
+      intake->stop();
+    }
   }
-  Scheduler rumbleScheduler{};
-  rumbleScheduler.schedule({"Rumble at 15s Away",
+  scheduler.schedule({"Rumble at 15s Away",
                             matchTimer.checkGoneOff(),
                             [=]() { remote.rumble("---"); }});
   drive->setBrakeMode(pros::MotorBrake::coast);

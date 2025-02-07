@@ -1,6 +1,5 @@
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 76.5 in. / s^2.
@@ -21,8 +20,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      |_|___/     |___/_\_\_|_|_/__/
 
     */
-    setupRoutine({});
 
+    setupRoutine({0_tile, 0_tile, 0_deg});
+    moveTo->forward({0_tile, 2_tile});
   } else if(id == ID24) {
     /*
           ___ _ _  _ _   ___ _   _ _ _

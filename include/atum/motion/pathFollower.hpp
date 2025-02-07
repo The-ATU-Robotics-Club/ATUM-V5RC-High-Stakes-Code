@@ -12,9 +12,10 @@
 #include "../controllers/controller.hpp"
 #include "../systems/drive.hpp"
 #include "../utility/acceptable.hpp"
+#include "movement.hpp"
 #include "path.hpp"
 #include "profileFollower.hpp"
-#include "movement.hpp"
+
 
 namespace atum {
 /**
@@ -31,6 +32,22 @@ class PathFollower : public Movement {
   struct Command {
     /**
      * @brief Constructs a new Command object. A path is generated from the
+     * given starting pose to the given target pose. This is the generally
+     * preferred method. 
+     *
+     * @param iTarget
+     * @param iReversed
+     * @param iParams
+     * @param iAcceptable
+     */
+    Command(const Pose &iStart,
+            const Pose &iTarget,
+            bool iReversed = false,
+            std::optional<Path::Parameters> iParams = {},
+            std::optional<AcceptableDistance> iAcceptable = {});
+
+    /**
+     * @brief Constructs a new Command object. A path is generated from the
      * current pose of the drive to the given target pose.
      *
      * @param iTarget
@@ -42,6 +59,8 @@ class PathFollower : public Movement {
             bool iReversed = false,
             std::optional<Path::Parameters> iParams = {},
             std::optional<AcceptableDistance> iAcceptable = {});
+
+    std::optional<Pose> start{};
     Pose target;
     bool reversed{false};
     std::optional<Path::Parameters> params;

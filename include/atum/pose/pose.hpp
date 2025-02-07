@@ -241,15 +241,12 @@ tile_t distance(const Pose &a, const Pose &b);
  * the inverse tangent of the differences of their y's over the
  * difference of their x's.
  *
- * If flip on blue is enabled, will flip the reference if the GUI selects blue.
- *
  * @param state
  * @param reference
- * @param flipOnBlue
  * @return degree_t
  */
 degree_t
-    angle(const Pose &state, Pose reference, const bool flipOnBlue = false);
+    angle(const Pose &state, Pose reference);
 
 /**
  * @brief Returns a string representation of the given pose.

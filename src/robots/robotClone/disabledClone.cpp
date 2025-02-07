@@ -207,12 +207,12 @@ void RobotClone::autonSetup15() {
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{48.0});
-  PID::Parameters moveToVelocityPIDParams{0.031, 0, 0, 0.031};
+      std::make_unique<PID>(PID::Parameters{20.0});
+  PID::Parameters moveToVelocityPIDParams{0.1825, 0, 0, 0.1825};
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
-  const AccelerationConstants moveToKA{0.7, 0.1};
+  const AccelerationConstants moveToKA{4.125, 0.5875};
   std::unique_ptr<PID> moveToPositionPID =
       std::make_unique<PID>(PID::Parameters{200.0});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{

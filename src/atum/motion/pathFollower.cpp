@@ -1,6 +1,17 @@
 #include "pathFollower.hpp"
 
 namespace atum {
+PathFollower::Command::Command(const Pose &iStart,
+                               const Pose &iTarget,
+                               bool iReversed,
+                               std::optional<Path::Parameters> iParams,
+                               std::optional<AcceptableDistance> iAcceptable) :
+    start{iStart},
+    target{iTarget},
+    reversed{iReversed},
+    params{iParams},
+    acceptable{iAcceptable} {}
+
 PathFollower::Command::Command(const Pose &iTarget,
                                bool iReversed,
                                std::optional<Path::Parameters> iParams,
@@ -47,7 +58,7 @@ void PathFollower::follow(const std::vector<Command> &commands,
 }
 
 void PathFollower::follow(Command cmd) {
-  Pose start{drive->getPose()};
+  Pose start{cmd.start.value_or(drive->getPose())};
   if(flipped) {
     cmd.target.flip();
   }
@@ -130,7 +141,8 @@ std::pair<double, double> PathFollower::toRPM(const double v,
     leftV /= scalar;
     rightV /= scalar;
   }
-  const double mpsToRPM{60.0 / drive->getGeometry().circum};
+  const double mpsToRPM{60.0 /
+                        getValueAs<meter_t>(drive->getGeometry().circum)};
   return {mpsToRPM * leftV, mpsToRPM * rightV};
 }
 

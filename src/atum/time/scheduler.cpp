@@ -18,7 +18,6 @@ Scheduler::~Scheduler() {
   while(scheduled.size()) {
     scheduled.pop();
   }
-  stopBackgroundTasks();
   logger.debug("Scheduler was interrupted (out of scope).");
 }
 
