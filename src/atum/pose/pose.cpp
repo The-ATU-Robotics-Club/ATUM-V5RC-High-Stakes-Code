@@ -1,5 +1,6 @@
 #include "pose.hpp"
 
+
 namespace atum {
 UnwrappedPose::UnwrappedPose(const double iX,
                              const double iY,
@@ -9,7 +10,14 @@ UnwrappedPose::UnwrappedPose(const double iX,
                              const double iOmega,
                              const double iAlpha,
                              const double iT) :
-    x{iX}, y{iY}, h{iH}, v{iV}, a{iA}, omega{iOmega}, alpha{iAlpha}, t{iT} {}
+    x{iX},
+    y{iY},
+    h{iH},
+    v{iV},
+    a{iA},
+    omega{iOmega},
+    alpha{iAlpha},
+    t{iT} {}
 
 UnwrappedPose::UnwrappedPose(const Pose &pose) :
     x{getValueAs<meter_t>(pose.x)},
@@ -81,7 +89,14 @@ Pose::Pose(const meter_t iX,
            const radians_per_second_t iOmega,
            const radians_per_second_squared_t iAlpha,
            const second_t iT) :
-    x{iX}, y{iY}, h{iH}, v{iV}, a{iA}, omega{iOmega}, alpha{iAlpha}, t{iT} {}
+    x{iX},
+    y{iY},
+    h{iH},
+    v{iV},
+    a{iA},
+    omega{iOmega},
+    alpha{iAlpha},
+    t{iT} {}
 
 Pose::Pose(const UnwrappedPose &unwrappedPose) :
     x{meter_t{unwrappedPose.x}},
@@ -131,6 +146,17 @@ degree_t angle(const Pose &state, Pose reference) {
   const inch_t dy{reference.y - state.y};
   degree_t dh{90_deg - atan2(dy, dx)};
   return constrain180(dh);
+}
+
+Pose offsetPose(const Pose &pose,
+                const tile_t offset,
+                const degree_t entryHeading) {
+  const degree_t adjHeading{-90_deg - entryHeading};
+  const tile_t xOffset{cos(adjHeading) * offset};
+  const tile_t yOffset{sin(adjHeading) * offset};
+  Pose resultPose{pose + Pose{xOffset, yOffset}};
+  resultPose.h = entryHeading;
+  return resultPose;
 }
 
 std::string toString(const Pose &pose) {

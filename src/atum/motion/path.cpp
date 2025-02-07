@@ -1,8 +1,7 @@
 #include "path.hpp"
 
 namespace atum {
-Path::Parameters::Parameters(const meter_t iOnRamp,
-                             const meter_t iOffRamp,
+Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                              const meters_per_second_t iMaxV,
                              const meters_per_second_squared_t iMaxA,
                              const meter_t iTrack,
@@ -10,8 +9,8 @@ Path::Parameters::Parameters(const meter_t iOnRamp,
                              const meter_t iMaxSpacingError,
                              const bool iUsePosition,
                              const double iBinarySearchScaling) :
-    onRamp{iOnRamp},
-    offRamp{iOffRamp},
+    onRamp{onAndOffRamps.first},
+    offRamp{onAndOffRamps.second},
     maxV{iMaxV},
     maxA{iMaxA},
     track{iTrack},

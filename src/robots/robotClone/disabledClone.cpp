@@ -2,7 +2,6 @@
 #include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
@@ -158,29 +157,11 @@ void RobotClone::autonSetup15() {
   meters_per_second_t maxV{76.5_in_per_s};
   meters_per_second_squared_t maxA{153_in_per_s_sq};
 
-  // Path follower setup.
-  Path::setDefaultParams({1_m, maxV, maxA, drive->getGeometry().track});
-  AcceptableDistance acceptable{forever};
-  PID::Parameters pathFollowerPIDParams{0.031, 0, 0, 0.031};
-  pathFollowerPIDParams.ffScaling = true;
-  std::unique_ptr<Controller> left{
-      std::make_unique<PID>(pathFollowerPIDParams)};
-  std::unique_ptr<Controller> right{
-      std::make_unique<PID>(pathFollowerPIDParams)};
-  pathFollower =
-      std::make_unique<PathFollower>(drive.get(),
-                                     acceptable,
-                                     std::move(left),
-                                     std::move(right),
-                                     AccelerationConstants{0.5, 1.6},
-                                     PathFollower::FeedbackParameters{},
-                                     Logger::Level::Debug);
-
   // Turn setup.
   AngularProfile::Parameters turnMotionParams{
       720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
   turnMotionParams.usePosition = true;
-  AngularProfile turnProfile{turnMotionParams, Logger::Level::Debug};
+  AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableAngle turnAcceptable{forever, 1_deg, 5_deg_per_s};
   PID::Parameters turnPIDParams{2.0, 0, 0, 0.875};
@@ -197,13 +178,13 @@ void RobotClone::autonSetup15() {
           std::move(turnVelocityController),
           turnKA,
           std::move(turnPositionController),
-          10_deg, 1.05, Logger::Level::Debug)};
+          10_deg)};
   turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
 
   // Move to setup.
   LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
   moveToMotionParams.usePosition = true;
-  LateralProfile moveToProfile{moveToMotionParams, Logger::Level::Debug};
+  LateralProfile moveToProfile{moveToMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   std::unique_ptr<PID> directionController =
@@ -212,14 +193,14 @@ void RobotClone::autonSetup15() {
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
-  const AccelerationConstants moveToKA{2.5, 1.25};
+  const AccelerationConstants kA{2.5, 1.25};
   std::unique_ptr<PID> moveToPositionPID =
       std::make_unique<PID>(PID::Parameters{35});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
       std::make_unique<LateralProfileFollower>(moveToProfile,
                                                moveToAcceptable,
                                                std::move(moveToVelocityPID),
-                                               moveToKA,
+                                               kA,
                                                std::move(moveToPositionPID),
                                                3_in)};
   moveTo = std::make_unique<MoveTo>(drive.get(),
@@ -227,7 +208,24 @@ void RobotClone::autonSetup15() {
                                     std::move(lateralProfileFollower),
                                     std::move(directionController));
 
-    // Convert constants by dividing by 231.361873106
+  // Convert constants by dividing by 231.361873106
+  // Path follower setup.
+  Path::setDefaultParams({1_tile, maxV, maxA, drive->getGeometry().track});
+  AcceptableDistance acceptable{forever};
+  PID::Parameters pathFollowerPIDParams{0.013, 0, 0, 0.026};
+  pathFollowerPIDParams.ffScaling = true;
+  std::unique_ptr<Controller> left{
+      std::make_unique<PID>(pathFollowerPIDParams)};
+  std::unique_ptr<Controller> right{
+      std::make_unique<PID>(pathFollowerPIDParams)};
+  pathFollower =
+      std::make_unique<PathFollower>(drive.get(),
+                                     acceptable,
+                                     std::move(left),
+                                     std::move(right),
+                                     kA,
+                                     PathFollower::FeedbackParameters{},
+                                     Logger::Level::Debug);
 }
 
 void RobotClone::driveSetup24() {

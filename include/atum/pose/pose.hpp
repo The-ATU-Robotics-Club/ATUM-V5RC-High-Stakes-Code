@@ -125,8 +125,7 @@ double distance(const UnwrappedPose &a, const UnwrappedPose &b);
  * @param reference
  * @return double
  */
-double angle(const UnwrappedPose &state,
-             UnwrappedPose reference);
+double angle(const UnwrappedPose &state, UnwrappedPose reference);
 
 /**
  * @brief Returns a string representation of the given unwrapped pose.
@@ -245,8 +244,22 @@ tile_t distance(const Pose &a, const Pose &b);
  * @param reference
  * @return degree_t
  */
-degree_t
-    angle(const Pose &state, Pose reference);
+degree_t angle(const Pose &state, Pose reference);
+
+/**
+ * @brief Given a pose, an offset, and an entry heading, returns a pose offset
+ * by the amount given in the opposite direction of the entry angle.
+ *
+ * The heading of the returned pose will be equal to the entry heading.
+ *
+ * @param pose
+ * @param distance
+ * @param entryHeading
+ * @return Pose
+ */
+Pose offsetPose(const Pose &pose,
+                const tile_t offset,
+                const degree_t entryHeading);
 
 /**
  * @brief Returns a string representation of the given pose.

@@ -34,7 +34,7 @@ class Path {
     /**
      * @brief Constructs a new Parameters object.
      *
-     * @param iCurviness
+     * @param onAndOffRamps
      * @param iMaxV
      * @param iMaxA
      * @param iTrack
@@ -43,8 +43,7 @@ class Path {
      * @param iUsePosition
      * @param iBinarySearchScaling
      */
-    Parameters(const meter_t iOnRamp,
-               const meter_t iOffRamp,
+    Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                const meters_per_second_t iMaxV = 0_mps,
                const meters_per_second_squared_t iMaxA = 0_mps_sq,
                const meter_t iTrack = 0_m,
@@ -74,6 +73,12 @@ class Path {
         const meter_t iMaxSpacingError = 0.05_in,
         const bool iUsePosition = true,
         const double iBinarySearchScaling = 0.75);
+
+    /**
+     * @brief Constructs a new Parameters object.
+     * 
+     * @param other 
+     */
     Parameters(const Parameters &other);
 
     /**
@@ -86,9 +91,9 @@ class Path {
     Parameters &operator=(const Parameters &other);
 
     // The amount the starting points are curved toward the starting direction.
-    meter_t onRamp{1_m};
+    meter_t onRamp;
     // The amount the end points are curved toward the end direction.
-    meter_t offRamp{1_m};
+    meter_t offRamp;
     meters_per_second_t maxV{0_mps};
     meters_per_second_squared_t maxA{0_mps_sq};
     meter_t track{0_m};

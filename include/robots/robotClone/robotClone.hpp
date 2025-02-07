@@ -16,6 +16,7 @@
 #include "atum/atum.hpp"
 #include "atum/depend/units.h"
 
+
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -42,14 +43,14 @@ class RobotClone : public Robot {
   RobotClone(const int iID);
 
   /**
-   * @brief The behavior of the clone bots when disabled. 
+   * @brief The behavior of the clone bots when disabled.
    *
    */
   void disabled() override;
 
   /**
    * @brief The behavior of the clone bots when in operator control.
-   * 
+   *
    */
   void opcontrol() override;
 
@@ -170,7 +171,14 @@ class RobotClone : public Robot {
    *
    * @param timeout
    */
-  void clampWhenReady(const second_t timeout = 2_s);
+  void clampWhenReady(const second_t timeout = 4_s);
+
+  /**
+   * @brief Sets the sort out color of the intake to the opposite color
+   * selected.
+   *
+   */
+  void setSortToOpposite();
 
   const int id;
   Remote remote;
