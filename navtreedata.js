@@ -51,7 +51,7 @@ var NAVTREEINDEX =
 [
 "acceptable_8hpp.html",
 "classatum_1_1Remote.html#ad18f73598b108eecc4893559bf47de59",
-"robot_8hpp.html#a85f4d8fe87af7e40a6b588febc446223"
+"robot_8hpp.html#a59075617124f921f77ec12a1b57ced6e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"robot_8hpp.html#a59075617124f921f77ec12a1b57ced6e":[2,0,0,0,5,2,2],
 "robot_8hpp.html#a85f4d8fe87af7e40a6b588febc446223":[2,0,0,0,5,2,3],
 "robot_8hpp.html#a923969c94a209631c9147d6871ee1c8b":[2,0,0,0,5,2,1],
 "robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fceebb258":[2,0,0,0,5,2,5],
@@ -46,9 +47,10 @@ var NAVTREEINDEX2 =
 "structatum_1_1PathFollower_1_1Command.html#a961c358be3a0e9ae650584b4da7b374a":[1,0,0,26,0,0],
 "structatum_1_1PathFollower_1_1FeedbackParameters.html":[1,0,0,26,1],
 "structatum_1_1Path_1_1Parameters.html":[1,0,0,25,0],
-"structatum_1_1Path_1_1Parameters.html#a8ace5a524b9f319602b8e25259086c9f":[1,0,0,25,0,0],
+"structatum_1_1Path_1_1Parameters.html#a760ab11418618557d37c1206784d2952":[1,0,0,25,0,2],
 "structatum_1_1Path_1_1Parameters.html#abc0478a7a8e24ae0fe3122bf9f6a0d66":[1,0,0,25,0,1],
-"structatum_1_1Path_1_1Parameters.html#ae84aca3117b9de71198ed8b657acce36":[1,0,0,25,0,2],
+"structatum_1_1Path_1_1Parameters.html#ad5e345d5012907722b058291f94abf6b":[1,0,0,25,0,0],
+"structatum_1_1Path_1_1Parameters.html#ae84aca3117b9de71198ed8b657acce36":[1,0,0,25,0,3],
 "structatum_1_1Pose.html":[1,0,0,29],
 "structatum_1_1Pose.html#a1dab6883dc55618b420ad085517012ef":[1,0,0,29,1],
 "structatum_1_1Pose.html#a6dd3b89884c6d569c616a066d8b68022":[1,0,0,29,4],

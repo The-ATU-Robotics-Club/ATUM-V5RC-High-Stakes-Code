@@ -146,6 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ab39668767e7a639578e332acb465e156"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ab39668767e7a639578e332acb465e156">atum::angle</a> (const Pose &amp;state, Pose reference)</td></tr>
 <tr class="memdesc:ab39668767e7a639578e332acb465e156"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the angle between the state and reference state as the inverse tangent of the differences of their y's over the difference of their x's.  <br /></td></tr>
 <tr class="separator:ab39668767e7a639578e332acb465e156"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac903695ff3ff4f06b184b347189eb33c"><td class="memItemLeft" align="right" valign="top">Pose&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#ac903695ff3ff4f06b184b347189eb33c">atum::offsetPose</a> (const Pose &amp;pose, const tile_t offset, const degree_t entryHeading)</td></tr>
+<tr class="memdesc:ac903695ff3ff4f06b184b347189eb33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a pose, an offset, and an entry heading, returns a pose offset by the amount given in the opposite direction of the entry angle.  <br /></td></tr>
+<tr class="separator:ac903695ff3ff4f06b184b347189eb33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65">atum::toString</a> (const Pose &amp;pose)</td></tr>
 <tr class="memdesc:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of the given pose.  <br /></td></tr>
 <tr class="separator:a5686b3a5ace12704f9d7722ffbd8fd65"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -304,6 +307,52 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
+
+</div>
+</div>
+<a id="ac903695ff3ff4f06b184b347189eb33c" name="ac903695ff3ff4f06b184b347189eb33c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac903695ff3ff4f06b184b347189eb33c">&#9670;&#160;</a></span>offsetPose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Pose atum::offsetPose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;&#160;</td>
+          <td class="paramname"><em>pose</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const tile_t&#160;</td>
+          <td class="paramname"><em>offset</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const degree_t&#160;</td>
+          <td class="paramname"><em>entryHeading</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given a pose, an offset, and an entry heading, returns a pose offset by the amount given in the opposite direction of the entry angle. </p>
+<p>The heading of the returned pose will be equal to the entry heading.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pose</td><td></td></tr>
+    <tr><td class="paramname">distance</td><td></td></tr>
+    <tr><td class="paramname">entryHeading</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Pose </dd></dl>
 
 </div>
 </div>
