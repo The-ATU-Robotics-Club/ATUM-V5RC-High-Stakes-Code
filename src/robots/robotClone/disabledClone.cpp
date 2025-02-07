@@ -180,16 +180,16 @@ void RobotClone::autonSetup15() {
   AngularProfile::Parameters turnMotionParams{
       720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
   turnMotionParams.usePosition = true;
-  AngularProfile turnProfile{turnMotionParams};
+  AngularProfile turnProfile{turnMotionParams, Logger::Level::Debug};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableAngle turnAcceptable{forever, 1_deg, 5_deg_per_s};
-  PID::Parameters turnPIDParams{1.0, 0, 0, 0.85};
+  PID::Parameters turnPIDParams{2.0, 0, 0, 0.875};
   turnPIDParams.ffScaling = true;
   std::unique_ptr<Controller> turnVelocityController =
       std::make_unique<PID>(turnPIDParams);
-  const AccelerationConstants turnKA{0.7, 0.1};
+  const AccelerationConstants turnKA{0.75, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{48.0, 0.0, 0.0, 0.0, 0.0});
+      std::make_unique<PID>(PID::Parameters{30.0, 0.0, 60.0});
   std::unique_ptr<AngularProfileFollower> angularProfileFollower{
       std::make_unique<AngularProfileFollower>(
           turnProfile,
@@ -197,24 +197,24 @@ void RobotClone::autonSetup15() {
           std::move(turnVelocityController),
           turnKA,
           std::move(turnPositionController),
-          5_deg)};
+          10_deg, 1.05, Logger::Level::Debug)};
   turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
 
   // Move to setup.
-  LateralProfile::Parameters moveToMotionParams{maxV, maxA, 1530_in_per_s_cb};
+  LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
   moveToMotionParams.usePosition = true;
-  LateralProfile moveToProfile{moveToMotionParams};
+  LateralProfile moveToProfile{moveToMotionParams, Logger::Level::Debug};
   // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{20.0});
-  PID::Parameters moveToVelocityPIDParams{0.1825, 0, 0, 0.1825};
+      std::make_unique<PID>(PID::Parameters{0.25});
+  PID::Parameters moveToVelocityPIDParams{3, 0, 0, 6};
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
-  const AccelerationConstants moveToKA{4.125, 0.5875};
+  const AccelerationConstants moveToKA{2.5, 1.25};
   std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{200.0});
+      std::make_unique<PID>(PID::Parameters{35});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
       std::make_unique<LateralProfileFollower>(moveToProfile,
                                                moveToAcceptable,
@@ -226,6 +226,8 @@ void RobotClone::autonSetup15() {
                                     turn.get(),
                                     std::move(lateralProfileFollower),
                                     std::move(directionController));
+
+    // Convert constants by dividing by 231.361873106
 }
 
 void RobotClone::driveSetup24() {

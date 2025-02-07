@@ -1,5 +1,6 @@
 #include "robotClone.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 76.5 in. / s^2.
@@ -20,9 +21,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      |_|___/     |___/_\_\_|_|_/__/
 
     */
-
-    setupRoutine({0_tile, 0_tile, 0_deg});
-    moveTo->forward({0_tile, 2_tile});
+    setupRoutine({});
   } else if(id == ID24) {
     /*
           ___ _ _  _ _   ___ _   _ _ _
@@ -92,12 +91,13 @@ void RobotClone::setupRoutine(Pose startingPose) {
 
 void RobotClone::clampWhenReady(const second_t timeout) {
   scheduler.schedule({"Clamp When Ready",
+                      [=]() { return goalClamp->hasGoal(); },
                       [=]() {
-                        pathFollower->interrupt();
                         turn->interrupt();
-                        return goalClamp->hasGoal();
+                        moveTo->interrupt();
+                        pathFollower->interrupt();
+                        goalClamp->clamp();
                       },
-                      [=]() { goalClamp->clamp(); },
                       timeout,
                       Scheduler::doNothing});
 }
