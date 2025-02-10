@@ -21,10 +21,12 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      |_|___/     |___/_\_\_|_|_/__/
 
     */
-    setupRoutine({-2.5_tile + 7.5_in, 1_tile, 90_deg});
-    pathFollower->follow({{{-0.5_tile, 2_tile, 0_deg},
-                           false,
-                           Path::Parameters{2_tile, 30_in_per_s}}});
+    setupRoutine({});
+    pathFollower->follow(
+        {
+         {3_s, {0.5_tile, 2_tile, 30_deg}, false, Path::Parameters{0.5_tile}},
+         {forever, {0_tile, 0_tile, 0_deg}, true, Path::Parameters{0.5_tile}}});
+    // setupRoutine({-2.5_tile + 7.5_in, 1_tile, 90_deg});
     // intake->setSortOutColor(ColorSensor::Color::None);
     // intake->index();
     // goalRush->extendArm();

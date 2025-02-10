@@ -10,17 +10,16 @@
 #pragma once
 
 #include "../controllers/controller.hpp"
+#include "../controllers/slewRate.hpp"
 #include "../systems/drive.hpp"
 #include "../utility/acceptable.hpp"
 #include "movement.hpp"
 #include "path.hpp"
 #include "profileFollower.hpp"
 
-
 namespace atum {
 /**
- * @brief Encapsulates the logic behind path following. Can use RAMSETE for
- * feedback control or motion-profiled movements.
+ * @brief Encapsulates the logic behind path following, using pure pursuit.
  *
  */
 class PathFollower : public Movement {
@@ -33,16 +32,19 @@ class PathFollower : public Movement {
     /**
      * @brief Constructs a new Command object. A path is generated from the
      * given starting pose to the given target pose. This is the generally
-     * preferred method. 
+     * preferred method.
      *
+     * @param iTimeout
+     * @param iStart
      * @param iTarget
      * @param iReversed
      * @param iParams
      * @param iAcceptable
      */
-    Command(const Pose &iStart,
+    Command(const second_t iTimeout,
+            const Pose &iStart,
             const Pose &iTarget,
-            bool iReversed = false,
+            const bool iReversed = false,
             std::optional<Path::Parameters> iParams = {},
             std::optional<AcceptableDistance> iAcceptable = {});
 
@@ -50,34 +52,24 @@ class PathFollower : public Movement {
      * @brief Constructs a new Command object. A path is generated from the
      * current pose of the drive to the given target pose.
      *
+     * @param iTimeout
      * @param iTarget
      * @param iReversed
      * @param iParams
      * @param iAcceptable
      */
-    Command(const Pose &iTarget,
-            bool iReversed = false,
+    Command(const second_t iTimeout,
+            const Pose &iTarget,
+            const bool iReversed = false,
             std::optional<Path::Parameters> iParams = {},
             std::optional<AcceptableDistance> iAcceptable = {});
 
+    second_t timeout;
     std::optional<Pose> start{};
     Pose target;
     bool reversed{false};
     std::optional<Path::Parameters> params;
     std::optional<AcceptableDistance> acceptable;
-    // By default, time out after path takes 5% longer than expected.
-    double timeoutScaling{1.05};
-  };
-
-  /**
-   * @brief The parameters for the feedback component of path following. Can
-   * enable/disabled RAMSETE and change its beta and lambda values.
-   *
-   */
-  struct FeedbackParameters {
-    bool useRAMSETE{true};
-    double beta{2.0};
-    double lambda{0.7};
   };
 
   /**
@@ -85,19 +77,17 @@ class PathFollower : public Movement {
    *
    * @param iDrive
    * @param iDefaultAcceptable
-   * @param iLeft
-   * @param iRight
+   * @param iForward
+   * @param iTurn
    * @param iKA
-   * @param iFeedbackParams
    * @param loggerLevel
    */
   PathFollower(Drive *iDrive,
                const AcceptableDistance &iDefaultAcceptable,
-               std::unique_ptr<Controller> iLeft,
-               std::unique_ptr<Controller> iRight,
+               std::unique_ptr<Controller> iForward,
+               std::unique_ptr<Controller> iTurn,
                const AccelerationConstants &iKA,
-               const FeedbackParameters &iFeedbackParams =
-                   FeedbackParameters{true, 2.0, 0.7},
+               const meter_t iLookaheadDistance = 1_ft,
                const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -119,68 +109,60 @@ class PathFollower : public Movement {
   void follow(Command cmd);
 
   /**
-   * @brief Gets the current reference for the left and right sides of the drive
-   * train.
+   * @brief Resets the controllers and internal state of the path follower
+   * before following another path.
+   *
+   * Mutable reference is to allow the flipping and reversing of the target if
+   * necessary.
+   *
+   * @param cmd
+   */
+  void reset(PathFollower::Command &cmd);
+
+  /**
+   * @brief Gets the references velocity and heading.
    *
    * @param state
-   * @param target
-   * @param reversed
    * @return std::pair<double, double>
    */
-  std::pair<double, double> getLRReference(const UnwrappedPose &state,
-                                           const UnwrappedPose &target,
-                                           const bool reversed);
+  std::pair<double, double> getVHReference(const Pose &state);
 
   /**
-   * @brief Gets the current reference velocity and angular velocity (first and
-   * second members of the returned pair, respectively).
+   * @brief Gets the feedforward for acceleration based on the change in the
+   * reference.
    *
-   * @param state
-   * @param target
-   * @return std::pair<double, double>
-   */
-  std::pair<double, double> getReference(const UnwrappedPose &state,
-                                         const UnwrappedPose &target);
-
-  /**
-   * @brief Gets the error between the state and the target.
-   *
-   * @param state
-   * @param target
-   * @return UnwrappedPose
-   */
-  UnwrappedPose getError(const UnwrappedPose &state,
-                         const UnwrappedPose &target);
-
-  /**
-   * @brief Converts a given velocity and angular velocity to left and right
-   * side RPMs.
-   *
-   * @param v
-   * @param omega
-   * @return std::pair<double, double>
-   */
-  std::pair<double, double> toRPM(const double v, const double omega);
-
-  /**
-   * @brief Gets the feedforward for acceleration based on the acceleration of
-   * the target and if the path is reversed.
-   *
-   * @param a
-   * @param reversed
+   * @param refVL
    * @return double
    */
-  double getAccelFeedforward(const double a, const bool reversed);
+  double getAccelFeedforward(const double refV, const bool reversed);
 
   /**
-   * @brief Converts a lateral and angular quantity into corresponding
-   * quantities on the left and right side of the drive.
+   * @brief Updates the current index of the lookahead and returns the pose at
+   * that index.
    *
-   * @param lateral
-   * @param angular
-   * @return std::pair<double, double>
+   * @param state
+   * @return Pose
    */
-  std::pair<double, double> toLR(const double lateral, const double angular);
+  Pose getLookahead(const Pose &state);
+
+  /**
+   * @brief Updates the current index of the closest pose on the path and
+   * returns the pose at that index.
+   *
+   * @param state
+   * @return Pose
+   */
+  Pose getClosest(const Pose &state);
+
+  /**
+   * @brief Returns the squared distance between the points to avoid calling
+   * sqrt.
+   *
+   * @param p0
+   * @param p1
+   * @return double
+   */
+  double proximity(const UnwrappedPose &p0, const UnwrappedPose &p1) const;
 
   /**
    * @brief Prepare the graph screen.
@@ -191,22 +173,24 @@ class PathFollower : public Movement {
   /**
    * @brief Graphs a point.
    *
-   * @param stateVL
-   * @param refVL
-   * @param stateVR
-   * @param refVR
+   * @param stateV
+   * @param refV
    */
-  void graphPoints(const double stateVL,
-                   const double refVL,
-                   const double stateVR,
-                   const double refVR);
+  void graphPoints(const double stateV, const double refV);
 
   Drive *drive;
   AcceptableDistance defaultAcceptable;
-  std::unique_ptr<Controller> left;
-  std::unique_ptr<Controller> right;
+  std::unique_ptr<Controller> forward;
+  std::unique_ptr<Controller> turn;
   AccelerationConstants kA;
-  FeedbackParameters feedbackParams;
+  const double lookaheadDistance; // In meters.
   Logger logger;
+  std::unique_ptr<Path> path;
+  std::unique_ptr<SlewRate> accelLimiter;
+  Pose closest;
+  int closestIndex{0};
+  Pose lookahead;
+  int lookaheadIndex{0};
+  double prevRefV{0.0};
 };
 } // namespace atum

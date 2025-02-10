@@ -11,6 +11,7 @@
 
 #include "time.hpp"
 
+
 namespace atum {
 class Timer {
   public:
@@ -48,8 +49,8 @@ class Timer {
   void start();
 
   /**
-   * @brief Allows for the timer to be started again. 
-   * 
+   * @brief Allows for the timer to be started again.
+   *
    */
   void restart();
 
@@ -70,6 +71,14 @@ class Timer {
   second_t timeElapsed() const;
 
   /**
+   * @brief Gets the time that has passed since getDT was last called (or timer
+   * was created).
+   *
+   * @return second_t
+   */
+  second_t getDT();
+
+  /**
    * @brief A condition to be used for scheduling or waiting. Returns a function
    * that, when called, returns true if the alarm has gone off.
    *
@@ -81,6 +90,7 @@ class Timer {
   private:
   second_t startTime;
   second_t alarmTime;
+  second_t previousTime;
   bool started{false};
 };
 } // namespace atum

@@ -1,21 +1,31 @@
+#include "atum/depend/units.h"
+#include "atum/gui/screen.hpp"
+#include "atum/pose/pose.hpp"
+#include "atum/utility/units.hpp"
+#include "path.hpp"
 #include "pathFollower.hpp"
 
+
 namespace atum {
-PathFollower::Command::Command(const Pose &iStart,
+PathFollower::Command::Command(const second_t iTimeout,
+                               const Pose &iStart,
                                const Pose &iTarget,
-                               bool iReversed,
+                               const bool iReversed,
                                std::optional<Path::Parameters> iParams,
                                std::optional<AcceptableDistance> iAcceptable) :
+    timeout{iTimeout},
     start{iStart},
     target{iTarget},
     reversed{iReversed},
     params{iParams},
     acceptable{iAcceptable} {}
 
-PathFollower::Command::Command(const Pose &iTarget,
-                               bool iReversed,
+PathFollower::Command::Command(const second_t iTimeout,
+                               const Pose &iTarget,
+                               const bool iReversed,
                                std::optional<Path::Parameters> iParams,
                                std::optional<AcceptableDistance> iAcceptable) :
+    timeout{iTimeout},
     target{iTarget},
     reversed{iReversed},
     params{iParams},
@@ -23,17 +33,17 @@ PathFollower::Command::Command(const Pose &iTarget,
 
 PathFollower::PathFollower(Drive *iDrive,
                            const AcceptableDistance &iDefaultAcceptable,
-                           std::unique_ptr<Controller> iLeft,
-                           std::unique_ptr<Controller> iRight,
+                           std::unique_ptr<Controller> iForward,
+                           std::unique_ptr<Controller> iTurn,
                            const AccelerationConstants &iKA,
-                           const FeedbackParameters &iFeedbackParams,
+                           const meter_t iLookaheadDistance,
                            const Logger::Level loggerLevel) :
     drive{iDrive},
     defaultAcceptable{iDefaultAcceptable},
-    left{std::move(iLeft)},
-    right{std::move(iRight)},
+    forward{std::move(iForward)},
+    turn{std::move(iTurn)},
     kA{iKA},
-    feedbackParams{iFeedbackParams},
+    lookaheadDistance{getValueAs<meter_t>(iLookaheadDistance)},
     logger{loggerLevel} {
   prepareGraph();
 }
@@ -58,135 +68,141 @@ void PathFollower::follow(const std::vector<Command> &commands,
 }
 
 void PathFollower::follow(Command cmd) {
-  Pose start{cmd.start.value_or(drive->getPose())};
-  if(flipped) {
-    cmd.target.flip();
-  }
-  if(cmd.reversed) {
-    start.h += 180_deg;
-    cmd.target.h += 180_deg;
-  }
-  Path traj{{start, cmd.target}, cmd.params, logger.getLevel()};
+  reset(cmd);
   Acceptable acceptable{cmd.acceptable.value_or(defaultAcceptable)};
-  acceptable.reset(cmd.timeoutScaling * traj.getTotalTime());
-  left->reset();
-  right->reset();
-  while(traj.getPose(drive->getPose()) != cmd.target &&
+  acceptable.reset(cmd.timeout);
+  UnwrappedPose state{drive->getPose()};
+  while(getClosest(state) != path->getPose(path->getSize() - 1) &&
         !acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
         !interrupted) {
-    UnwrappedPose state{drive->getPose()};
+    state = drive->getPose();
+    auto [refV, refH] = getVHReference(state);
+    const double aFF = getAccelFeedforward(refV, cmd.reversed);
     if(cmd.reversed) {
-      state.h += M_PI;
+      refV *= -1.0;
+      refH += M_PI;
     }
-    UnwrappedPose target{traj.getPose(drive->getPose())};
-    auto [refVL, refVR] = getLRReference(state, target, cmd.reversed);
-    auto [vL, vR] = drive->getLRVelocity();
-    const double stateVL{getValueAs<revolutions_per_minute_t>(vL)};
-    const double stateVR{getValueAs<revolutions_per_minute_t>(vR)};
-    const double aFF = getAccelFeedforward(target.a, cmd.reversed);
-    drive->tank(left->getOutput(stateVL, refVL) + aFF,
-                right->getOutput(stateVR, refVR) + aFF);
-    graphPoints(stateVL, refVL, stateVR, refVR);
+    double hError{constrainPI(refH - state.h)};
+    refV *= std::abs(std::cos(hError));
+    const double forwardOutput{forward->getOutput(state.v, refV)};
+    const double turnOutput{turn->getOutput(hError)};
+    drive->tank(forwardOutput + turnOutput + aFF,
+                forwardOutput - turnOutput + aFF);
+    graphPoints(state.v, refV);
     wait();
   }
 }
 
-std::pair<double, double>
-    PathFollower::getLRReference(const UnwrappedPose &state,
-                                 const UnwrappedPose &target,
-                                 const bool reversed) {
-  const auto [refV, refOmega] = getReference(state, target);
-  const auto [refVL, refVR] = toRPM(refV, refOmega);
-  if(reversed) {
-    return {-refVR, -refVL};
+void PathFollower::reset(PathFollower::Command &cmd) {
+  if(flipped) {
+    cmd.target.flip();
   }
-  return {refVL, refVR};
-}
-
-std::pair<double, double>
-    PathFollower::getReference(const UnwrappedPose &state,
-                               const UnwrappedPose &target) {
-  if(!feedbackParams.useRAMSETE) {
-    return {target.v, target.omega};
+  Pose start{cmd.start.value_or(drive->getPose())};
+  if(cmd.reversed) {
+    start.h += 180_deg;
+    cmd.target.h += 180_deg;
   }
-  const UnwrappedPose error{getError(state, target)};
-  const double k{
-      2.0 * feedbackParams.lambda *
-      sqrt(pow(target.omega, 2.0) + feedbackParams.beta * pow(target.v, 2.0))};
-  const double v{target.v * cos(error.h) + k * error.x};
-  const double sincHError{error.h ? sin(error.h) / error.h : 1.0};
-  const double omega{target.omega + k * error.h +
-                     feedbackParams.beta * target.v * sincHError * error.y};
-  return {v, omega};
+  path = std::make_unique<Path>(
+      std::make_pair(start, cmd.target), cmd.params, logger.getLevel());
+  const double maxVelChange{
+      getValueAs<meters_per_second_t>(path->getParams().maxA * standardDelay)};
+  accelLimiter =
+      std::make_unique<SlewRate>(std::make_pair(infinite, maxVelChange),
+                                 getValueAs<meters_per_second_t>(start.v));
+  forward->reset();
+  turn->reset();
+  closestIndex = 0;
+  lookahead = path->getPose(0);
+  lookaheadIndex = 0;
+  prevRefV = 0.0;
 }
 
-UnwrappedPose PathFollower::getError(const UnwrappedPose &state,
-                                     const UnwrappedPose &target) {
-  UnwrappedPose error{target - state};
-  const double h{M_PI_2 - state.h};
-  const double globalXError{error.x * cos(h) + error.y * sin(h)};
-  const double globalYError{error.x * -sin(h) + error.y * cos(h)};
-  error.x = globalXError;
-  error.y = globalYError;
-  error.h = constrainPI(target.h - state.h);
-  return error;
-}
-
-std::pair<double, double> PathFollower::toRPM(const double v,
-                                              const double omega) {
-  auto [leftV, rightV] = toLR(v, omega);
-  const double maxV{getValueAs<meters_per_second_t>(drive->getMaxVelocity())};
-  const double scalar{max(std::abs(leftV), std::abs(rightV)) / maxV};
-  if(scalar > 1.0) {
-    leftV /= scalar;
-    rightV /= scalar;
+std::pair<double, double> PathFollower::getVHReference(const Pose &state) {
+  radian_t lookaheadAngle;
+  if(lookaheadIndex / static_cast<double>(path->getSize()) >= 0.90) {
+    lookaheadAngle = path->getPose(path->getSize() - 1).h;
+  } else {
+    lookaheadAngle = angle(state, getLookahead(state));
   }
-  const double mpsToRPM{60.0 /
-                        getValueAs<meter_t>(drive->getGeometry().circum)};
-  return {mpsToRPM * leftV, mpsToRPM * rightV};
+  return {getValueAs<meters_per_second_t>(closest.v),
+          getValueAs<radian_t>(lookaheadAngle)};
 }
 
-double PathFollower::getAccelFeedforward(const double a, const bool reversed) {
+double PathFollower::getAccelFeedforward(const double refV,
+                                         const bool reversed) {
+  const double dt{getValueAs<second_t>(standardDelay)};
+  const double a{(refV - prevRefV) / dt};
+  prevRefV = refV;
   double coeff{a > 0.0 ? kA.accel : kA.decel};
   if(reversed) {
-    coeff *= -1;
+    coeff *= -1.0;
   }
   return coeff * a;
 }
 
-std::pair<double, double> PathFollower::toLR(const double lateral,
-                                             const double angular) {
-  const Drive::Geometry geometry{drive->getGeometry()};
-  const double track{getValueAs<meter_t>(geometry.track)};
-  double angularAdjustment{angular * (track / 2.0)};
-  double leftV{lateral + angularAdjustment};
-  double rightV{lateral - angularAdjustment};
-  return {leftV, rightV};
+Pose PathFollower::getLookahead(const Pose &state) {
+  const double lookaheadProximity{lookaheadDistance * lookaheadDistance};
+  for(int i{lookaheadIndex}; i < path->getSize() - 1; i++) {
+    const double firstProximity{proximity(state, path->getPose(i))};
+    const double firstDiff{lookaheadProximity - firstProximity};
+    const double secondProximity{proximity(state, path->getPose(i + 1))};
+    const double secondDiff{lookaheadProximity - secondProximity};
+    // If one is within the lookahead sphere and the other isn't.
+    if(firstDiff * secondDiff < 0.0) {
+      lookaheadIndex = i + 1;
+      lookahead = path->getPose(lookaheadIndex);
+      break;
+    }
+  }
+  return lookahead;
+}
+
+Pose PathFollower::getClosest(const Pose &state) {
+  double nearestProximity{proximity(state, path->getPose(closestIndex))};
+  double lastProximity{nearestProximity};
+  for(int i{closestIndex}; i < path->getSize(); i++) {
+    const double maybeCloserProximity{proximity(state, path->getPose(i))};
+    if(maybeCloserProximity < nearestProximity) {
+      nearestProximity = maybeCloserProximity;
+      closestIndex = i;
+    } else if(maybeCloserProximity > lastProximity) {
+      break;
+    }
+    lastProximity = maybeCloserProximity;
+  }
+  Pose closestPose{path->getPose(closestIndex)};
+  const meters_per_second_t adjV{
+      accelLimiter->slew(getValueAs<meters_per_second_t>(closestPose.v))};
+  closestPose.v = adjV;
+  closest = closestPose;
+  return closestPose;
+}
+
+double PathFollower::proximity(const UnwrappedPose &p0,
+                               const UnwrappedPose &p1) const {
+  const double dx{p1.x - p0.x};
+  const double dy{p1.y - p0.y};
+  return dx * dx + dy * dy;
 }
 
 void PathFollower::prepareGraph() {
   if(logger.getLevel() != Logger::Level::Debug) {
     return;
   }
+  GUI::Graph::clearSeries(GUI::SeriesColor::Red);
   GUI::Graph::clearSeries(GUI::SeriesColor::Magenta);
-  GUI::Graph::clearSeries(GUI::SeriesColor::Cyan);
-  const double maxV{getValueAs<revolutions_per_minute_t>(drive->getMaxRPM())};
+  const double maxV{getValueAs<meters_per_second_t>(drive->getMaxVelocity())};
   GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Red);
   GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Magenta);
-  GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Blue);
-  GUI::Graph::setSeriesRange(maxV, GUI::SeriesColor::Cyan);
 }
 
-void PathFollower::graphPoints(const double stateVL,
-                               const double refVL,
-                               const double stateVR,
-                               const double refVR) {
+void PathFollower::graphPoints(const double stateV, const double refV) {
   if(logger.getLevel() != Logger::Level::Debug) {
     return;
   }
-  GUI::Graph::addValue(stateVL, GUI::SeriesColor::Red);
-  GUI::Graph::addValue(refVL, GUI::SeriesColor::Magenta);
-  GUI::Graph::addValue(stateVR, GUI::SeriesColor::Blue);
-  GUI::Graph::addValue(refVR, GUI::SeriesColor::Cyan);
+  GUI::Graph::addValue(stateV, GUI::SeriesColor::Red);
+  GUI::Graph::addValue(refV, GUI::SeriesColor::Magenta);
+  GUI::Map::addPosition(path->getPose(closestIndex), GUI::SeriesColor::Blue);
+  GUI::Map::addPosition(lookahead, GUI::SeriesColor::White);
 }
 } // namespace atum

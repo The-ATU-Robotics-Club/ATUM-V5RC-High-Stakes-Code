@@ -1,5 +1,6 @@
 #include "path.hpp"
 
+
 namespace atum {
 Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                              const meters_per_second_t iMaxV,
@@ -7,7 +8,6 @@ Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                              const meter_t iTrack,
                              const meter_t iSpacing,
                              const meter_t iMaxSpacingError,
-                             const bool iUsePosition,
                              const double iBinarySearchScaling) :
     onRamp{onAndOffRamps.first},
     offRamp{onAndOffRamps.second},
@@ -16,7 +16,6 @@ Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
     track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
-    usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
 Path::Parameters::Parameters(const meter_t ramp,
@@ -25,7 +24,6 @@ Path::Parameters::Parameters(const meter_t ramp,
                              const meter_t iTrack,
                              const meter_t iSpacing,
                              const meter_t iMaxSpacingError,
-                             const bool iUsePosition,
                              const double iBinarySearchScaling) :
     onRamp{ramp},
     offRamp{ramp},
@@ -34,7 +32,6 @@ Path::Parameters::Parameters(const meter_t ramp,
     track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
-    usePosition{iUsePosition},
     binarySearchScaling{iBinarySearchScaling} {}
 
 Path::Parameters::Parameters(const Path::Parameters &other) :
@@ -85,22 +82,12 @@ Path::Path(const std::pair<Pose, Pose> &waypoints,
   logger.debug("Path has been generated!");
 }
 
-Pose Path::getPose(const Pose &state) {
-  Pose pose{getTimed()};
-  if(params.usePosition) {
-    const Pose closest{getClosest(state)};
-    if(abs(closest.v) > abs(pose.v)) {
-      pose = closest;
-      timedIndex = closestIndex;
-      timer.setTime(path[timedIndex].t);
-    }
-  }
-  return pose;
+Pose Path::getPose(const int i) {
+  return path[i];
 }
 
-second_t Path::getTotalTime() {
-  const second_t totalTime{path.back().t};
-  return totalTime;
+int Path::getSize() const {
+  return path.size();
 }
 
 Path::Parameters Path::getParams() const {
@@ -111,81 +98,25 @@ void Path::setDefaultParams(const Parameters &newParams) {
   defaultParams = newParams;
 }
 
-Pose Path::getClosest(const Pose &state) {
-  meter_t previousDistance{distance(state, path[closestIndex])};
-  int i;
-  for(i = closestIndex; i < path.size(); i++) {
-    const meter_t currentDistance{distance(state, path[i])};
-    if(currentDistance > previousDistance) {
-      break;
-    }
-    previousDistance = currentDistance;
-  }
-  closestIndex = i - 1;
-  return path[closestIndex];
-}
-
-Pose Path::getTimed() {
-  timer.start();
-  int i;
-  for(i = timedIndex; i < path.size(); i++) {
-    if(timer.timeElapsed() < path[i].t) {
-      break;
-    }
-  }
-  timedIndex = i;
-  if(timedIndex >= path.size()) {
-    return path.back();
-  }
-  return path[timedIndex];
-}
-
 void Path::generate() {
   path.push_back(start);
-  curvatures.push_back(getCurvature(0, getDerivative(0)));
   double t0{0.0};
   while(distance(path.back(), end) > params.spacing + params.maxSpacingError) {
     t0 = addNextPoint(t0);
   }
   path.push_back(end);
-  curvatures.push_back(getCurvature(1, getDerivative(1)));
   parameterize();
 }
 
 void Path::parameterize() {
-  beginParameterize();
-  endParameterize();
-  graphPath();
-}
-
-void Path::beginParameterize() {
-  for(int i{1}; i < path.size() - 1; i++) {
+  path[0].v = params.maxV;
+  for(int i{path.size() - 2}; i >= 0; i--) {
     const meters_per_second_squared_t twoA{2.0 * params.maxA};
-    const meters_per_second_t accelerated{
-        sqrt(path[i - 1].v * path[i - 1].v + twoA * params.spacing)};
-    path[i].v = units::math::min(accelerated, path[i].v);
-    const int j{path.size() - 1 - i};
     const meters_per_second_t decelerated{
-        sqrt(path[j + 1].v * path[j + 1].v + twoA * params.spacing)};
-    path[j].v = units::math::min(decelerated, path[j].v);
+        sqrt(path[i + 1].v * path[i + 1].v + twoA * params.spacing)};
+    path[i].v = units::math::min(decelerated, path[i].v);
   }
-}
-
-void Path::endParameterize() {
-  path[0].t = 0_s;
-  for(int i{1}; i < path.size(); i++) {
-    path[i].omega = radians_per_second_t{
-        getValueAs<meters_per_second_t>(path[i].v) * curvatures[i]};
-    const meters_per_second_t avgV{(path[i - 1].v + path[i].v) / 2.0};
-    path[i - 1].a = (path[i].v * path[i].v - path[i - 1].v * path[i - 1].v) /
-                    (2.0 * params.spacing);
-    path[i - 1].alpha = (path[i].omega * path[i].omega -
-                         path[i - 1].omega * path[i - 1].omega) /
-                        (2.0 * abs(difference(path[i].h, path[i - 1].h)));
-    path[i].t = path[i - 1].t + params.spacing / avgV;
-  }
-  path.back().a = 0_mps_sq;
-  path.back().alpha = 0_rad_per_s_sq;
+  graphPath();
 }
 
 double Path::addNextPoint(double t0) {
@@ -206,12 +137,10 @@ double Path::addNextPoint(double t0) {
     p1 = getPoint(t1);
     distanceToNext = distance(p0, p1);
   }
-  const Pose deriv{getDerivative(t1)};
-  p1.h = getHeading(deriv);
-  curvatures.push_back(getCurvature(t1, deriv));
+  const double k{4.0 * params.curveVelocityScalar + 1.0};
   p1.v = units::math::min(
       params.maxV,
-      params.maxV / std::abs(curvatures.back()) /
+      params.maxV / std::abs(getCurvature(t1)) /
           getValueAs<meter_t>(params.track)); // Maybe multiply by 2?
   path.push_back(p1);
   return t1;
@@ -227,18 +156,15 @@ Pose Path::getPoint(const double t) const {
          (t3 - t2) * endDirection;
 }
 
-degree_t Path::getHeading(const Pose &deriv) const {
-  return 90_deg - atan2(deriv.y, deriv.x);
-}
-
-double Path::getCurvature(const double t, const UnwrappedPose &deriv) const {
+double Path::getCurvature(const double t) const {
+  const UnwrappedPose deriv{getDerivative(t)};
   const UnwrappedPose deriv2{get2ndDerivative(t)};
   const double cross{deriv.x * deriv2.y - deriv.y * deriv2.x};
   if(!cross) {
     return infinitesimal;
   }
   const double denom{pow(deriv.x * deriv.x + deriv.y * deriv.y, 1.5)};
-  return -cross / denom;
+  return std::abs(cross / denom);
 }
 
 Pose Path::getDerivative(const double t) const {

@@ -3,7 +3,8 @@
 namespace atum {
 Timer::Timer(const second_t iAlarmTime) :
     startTime{time()},
-    alarmTime{iAlarmTime} {}
+    alarmTime{iAlarmTime},
+    previousTime{time()} {}
 
 void Timer::setAlarm(const second_t iAlarmTime) {
   alarmTime = iAlarmTime;
@@ -12,6 +13,7 @@ void Timer::setAlarm(const second_t iAlarmTime) {
 
 void Timer::setTime(const second_t newTime) {
   startTime = time() - newTime;
+  previousTime = time();
 }
 
 void Timer::start() {
@@ -33,6 +35,13 @@ bool Timer::goneOff() const {
 
 second_t Timer::timeElapsed() const {
   return time() - startTime;
+}
+
+second_t Timer::getDT() {
+  const second_t currentTime{time()};
+  const second_t dt{currentTime - previousTime};
+  previousTime = currentTime;
+  return dt;
 }
 
 Condition Timer::checkGoneOff() const {

@@ -1,10 +1,10 @@
 /**
  * @file slewRate.hpp
- * @brief Includes the SlewRate class. 
+ * @brief Includes the SlewRate class.
  * @date 2024-12-23
- * 
+ *
  * @copyright Copyright (c) 2024
- * 
+ *
  */
 
 #pragma once
@@ -12,6 +12,7 @@
 #include "../utility/logger.hpp"
 #include <algorithm>
 #include <utility>
+
 
 namespace atum {
 /**
@@ -24,24 +25,28 @@ class SlewRate {
   public:
   /**
    * @brief Constructs a new SlewRate object, with a separate max allowed
-   * decrease and increase in output.
+   * decrease and increase in output. The initial value is where the slew rate's
+   * output starts from .
    *
-   * @param maxDecRate
-   * @param maxIncRate
+   * @param maxDecIncRates
+   * @param initialValue
    * @param loggerLevel
    */
-  SlewRate(const double maxDecRate,
-           const double maxIncRate,
+  SlewRate(const std::pair<double, double> &rates,
+           const double initialValue = 0.0,
            const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Constructs a new SlewRate object, with both the max increase and
-   * decrease in output set the same.
+   * decrease in output set the same. The initial value is where the slew rate's
+   * output starts from .
    *
    * @param rate
+   * @param initialValue
    * @param loggerLevel
    */
   SlewRate(const double rate,
+           const double initialValue = 0.0,
            const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -63,7 +68,7 @@ class SlewRate {
   private:
   double decRate;
   double incRate;
+  double output;
   Logger logger;
-  double output{0};
 };
 } // namespace atum

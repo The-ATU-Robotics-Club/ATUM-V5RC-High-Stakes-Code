@@ -13,7 +13,6 @@
 #include "../time/timer.hpp"
 #include "../utility/logger.hpp"
 
-
 namespace atum {
 /**
  * @brief This class encapsulates the generation and sampling of paths (or,
@@ -40,16 +39,14 @@ class Path {
      * @param iTrack
      * @param iSpacing
      * @param iMaxSpacingError
-     * @param iUsePosition
      * @param iBinarySearchScaling
      */
     Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                const meters_per_second_t iMaxV = 0_mps,
                const meters_per_second_squared_t iMaxA = 0_mps_sq,
                const meter_t iTrack = 0_m,
-               const meter_t iSpacing = 0.5_in,
-               const meter_t iMaxSpacingError = 0.05_in,
-               const bool iUsePosition = true,
+               const meter_t iSpacing = 1_in,
+               const meter_t iMaxSpacingError = 0.1_in,
                const double iBinarySearchScaling = 0.75);
 
     /**
@@ -61,23 +58,20 @@ class Path {
      * @param iTrack
      * @param iSpacing
      * @param iMaxSpacingError
-     * @param iUsePosition
      * @param iBinarySearchScaling
      */
-    Parameters(
-        const meter_t ramp,
-        const meters_per_second_t iMaxV = 0_mps,
-        const meters_per_second_squared_t iMaxA = 0_mps_sq,
-        const meter_t iTrack = 0_m,
-        const meter_t iSpacing = 0.5_in,
-        const meter_t iMaxSpacingError = 0.05_in,
-        const bool iUsePosition = true,
-        const double iBinarySearchScaling = 0.75);
+    Parameters(const meter_t ramp,
+               const meters_per_second_t iMaxV = 0_mps,
+               const meters_per_second_squared_t iMaxA = 0_mps_sq,
+               const meter_t iTrack = 0_m,
+               const meter_t iSpacing = 1_in,
+               const meter_t iMaxSpacingError = 0.1_in,
+               const double iBinarySearchScaling = 0.75);
 
     /**
      * @brief Constructs a new Parameters object.
-     * 
-     * @param other 
+     *
+     * @param other
      */
     Parameters(const Parameters &other);
 
@@ -96,12 +90,15 @@ class Path {
     meter_t offRamp;
     meters_per_second_t maxV{0_mps};
     meters_per_second_squared_t maxA{0_mps_sq};
-    meter_t track{0_m};
+    // The distance between the left side of the drivetrain and the right side.
+    meter_t track;
+    // A value between 0 to 1 that scales velocity around curves, with 0 being
+    // slowest and 1 being fastest.
+    double curveVelocityScalar{0.5};
     // The spacing between each point.
-    meter_t spacing{0.5_in};
+    meter_t spacing{1_in};
     // Maximum allowed deviation for the spacing between a point.
-    meter_t maxSpacingError{0.05_in};
-    bool usePosition{true};
+    meter_t maxSpacingError{0.1_in};
     // Controls where the binary search is partitioned at when spacing points
     // (0.75 seems to generally converge quickly, probably shouldn't change).
     double binarySearchScaling{0.75};
@@ -119,20 +116,19 @@ class Path {
        const Logger::Level loggerLevel = Logger::Level::Debug);
 
   /**
-   * @brief Gets the target Pose along the path based on the current state
-   * and time (assuming usePosition is true, otherwise entirely based on time).
+   * @brief Gets the pose at index i of the path.
    *
-   * @param state
+   * @param i
    * @return Pose
    */
-  Pose getPose(const Pose &state);
+  Pose getPose(const int i);
 
   /**
-   * @brief Gets the total time the path should take to complete following.
+   * @brief Gets the number of poses composing the path.
    *
-   * @return second_t
+   * @return int
    */
-  second_t getTotalTime();
+  int getSize() const;
 
   /**
    * @brief Gets the Parameters used in generating the previous Path.
@@ -149,21 +145,6 @@ class Path {
   static void setDefaultParams(const Parameters &newParams);
 
   private:
-  /**
-   * @brief Gets the closest Pose along the path to the current state.
-   *
-   * @param state
-   * @return Pose
-   */
-  Pose getClosest(const Pose &state);
-
-  /**
-   * @brief Gets the Pose associated with the current time along the path.
-   *
-   * @return Pose
-   */
-  Pose getTimed();
-
   /**
    * @brief Generates the points along the path and parameterizes them.
    *
@@ -210,23 +191,13 @@ class Path {
   Pose getPoint(const double t) const;
 
   /**
-   * @brief Gets the heading at a point along the path by converting the
-   * derivative of the spline to an angle.
-   *
-   * @param deriv
-   * @return degree_t
-   */
-  degree_t getHeading(const Pose &deriv) const;
-
-  /**
    * @brief Gets the curvature at a point along the path based on the given
-   * parameter, t, and the derivative there.
+   * parameter, t.
    *
    * @param t
-   * @param deriv
    * @return double
    */
-  double getCurvature(const double t, const UnwrappedPose &deriv) const;
+  double getCurvature(const double t) const;
 
   /**
    * @brief Gets the derivative at a point along the path based on the given
@@ -260,9 +231,5 @@ class Path {
   Parameters params;
   Logger logger;
   std::vector<Pose> path;
-  std::vector<double> curvatures;
-  int closestIndex{0};
-  Timer timer;
-  int timedIndex{0};
 };
 } // namespace atum
