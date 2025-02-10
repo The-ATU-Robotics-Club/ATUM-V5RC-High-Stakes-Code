@@ -12,7 +12,6 @@ var hierarchy =
     ] ],
     [ "atum::DistanceSensor", "classatum_1_1DistanceSensor.html", null ],
     [ "atum::Drive", "classatum_1_1Drive.html", null ],
-    [ "atum::PathFollower::FeedbackParameters", "structatum_1_1PathFollower_1_1FeedbackParameters.html", null ],
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
     [ "atum::Drive::Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "atum::GoalClamp", "classatum_1_1GoalClamp.html", null ],

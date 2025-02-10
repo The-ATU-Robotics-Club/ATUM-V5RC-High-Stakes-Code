@@ -17,7 +17,7 @@ var searchData=
   ['setsortoutcolor_14',['setSortOutColor',['../classatum_1_1Intake.html#a6a4ceedb6d9002bbcc69c245bb8d6879',1,'atum::Intake']]],
   ['settime_15',['setTime',['../classatum_1_1Timer.html#ad0c8e225fcd2d4c9b8c0cf3d8adb6b22',1,'atum::Timer']]],
   ['slew_16',['slew',['../classatum_1_1SlewRate.html#a965b258aa217f096205233a8e99b83e3',1,'atum::SlewRate']]],
-  ['slewrate_17',['SlewRate',['../classatum_1_1SlewRate.html#a0042e0cee5b1196fed54d8b7d86f8742',1,'atum::SlewRate::SlewRate(const double maxDecRate, const double maxIncRate, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1SlewRate.html#ac8b1ea105aeb42f5551af1fe5dbf1df4',1,'atum::SlewRate::SlewRate(const double rate, const Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['slewrate_17',['SlewRate',['../classatum_1_1SlewRate.html#a7ae2229184adc5a5dd6cd657b6b3090d',1,'atum::SlewRate::SlewRate(const std::pair&lt; double, double &gt; &amp;rates, const double initialValue=0.0, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1SlewRate.html#a03ec24d90b5c2127a08f4da8f0d8ef65',1,'atum::SlewRate::SlewRate(const double rate, const double initialValue=0.0, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['start_18',['start',['../classatum_1_1Timer.html#a6b2f88caa26e255cfd6e5b62e8cf513a',1,'atum::Timer']]],
   ['startbackgroundtasks_19',['startBackgroundTasks',['../classatum_1_1Task.html#aa08bc0810059c4c9b94d3b5767ca5abc',1,'atum::Task']]],
   ['startloading_20',['startLoading',['../classatum_1_1GUI_1_1Manager.html#a61b58560ca0402a713dd063d859f1999',1,'atum::GUI::Manager']]],

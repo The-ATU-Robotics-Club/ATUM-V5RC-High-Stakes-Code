@@ -21,7 +21,7 @@ var searchData=
   ['setsortoutcolor_18',['setSortOutColor',['../classatum_1_1Intake.html#a6a4ceedb6d9002bbcc69c245bb8d6879',1,'atum::Intake']]],
   ['settime_19',['setTime',['../classatum_1_1Timer.html#ad0c8e225fcd2d4c9b8c0cf3d8adb6b22',1,'atum::Timer']]],
   ['slew_20',['slew',['../classatum_1_1SlewRate.html#a965b258aa217f096205233a8e99b83e3',1,'atum::SlewRate']]],
-  ['slewrate_21',['SlewRate',['../classatum_1_1SlewRate.html',1,'atum::SlewRate'],['../classatum_1_1SlewRate.html#ac8b1ea105aeb42f5551af1fe5dbf1df4',1,'atum::SlewRate::SlewRate(const double rate, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1SlewRate.html#a0042e0cee5b1196fed54d8b7d86f8742',1,'atum::SlewRate::SlewRate(const double maxDecRate, const double maxIncRate, const Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['slewrate_21',['SlewRate',['../classatum_1_1SlewRate.html',1,'atum::SlewRate'],['../classatum_1_1SlewRate.html#a03ec24d90b5c2127a08f4da8f0d8ef65',1,'atum::SlewRate::SlewRate(const double rate, const double initialValue=0.0, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1SlewRate.html#a7ae2229184adc5a5dd6cd657b6b3090d',1,'atum::SlewRate::SlewRate(const std::pair&lt; double, double &gt; &amp;rates, const double initialValue=0.0, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['slewrate_2ehpp_22',['slewRate.hpp',['../slewRate_8hpp.html',1,'']]],
   ['smartport_23',['SmartPort',['../misc_8hpp.html#afab6e4af744f631c3c65831546241abb',1,'atum']]],
   ['standstillresettime_24',['standstillResetTime',['../classatum_1_1GPS.html#a6eae3c19965d1512f3ca9bf857241596',1,'atum::GPS']]],

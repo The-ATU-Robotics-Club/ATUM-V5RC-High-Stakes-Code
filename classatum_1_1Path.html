@@ -119,12 +119,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2bbfd22958f1e908ff9477fdfb7e59a1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Path.html#a2bbfd22958f1e908ff9477fdfb7e59a1">Path</a> (const std::pair&lt; <a class="el" href="structatum_1_1Pose.html">Pose</a>, <a class="el" href="structatum_1_1Pose.html">Pose</a> &gt; &amp;waypoints, const std::optional&lt; <a class="el" href="structatum_1_1Path_1_1Parameters.html">Parameters</a> &gt; &amp;specialParams={}, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Debug)</td></tr>
 <tr class="memdesc:a2bbfd22958f1e908ff9477fdfb7e59a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Path.html" title="This class encapsulates the generation and sampling of paths (or, technically trajectories,...">Path</a> based on the given waypoints.  <br /></td></tr>
 <tr class="separator:a2bbfd22958f1e908ff9477fdfb7e59a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af80b65beb66308b22817f0d01b4461f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Path.html#af80b65beb66308b22817f0d01b4461f9">getPose</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;state)</td></tr>
-<tr class="memdesc:af80b65beb66308b22817f0d01b4461f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the target <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> along the path based on the current state and time (assuming usePosition is true, otherwise entirely based on time).  <br /></td></tr>
-<tr class="separator:af80b65beb66308b22817f0d01b4461f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabbb875e7b91ceff4e171c252a9348b9"><td class="memItemLeft" align="right" valign="top">second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Path.html#aabbb875e7b91ceff4e171c252a9348b9">getTotalTime</a> ()</td></tr>
-<tr class="memdesc:aabbb875e7b91ceff4e171c252a9348b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the total time the path should take to complete following.  <br /></td></tr>
-<tr class="separator:aabbb875e7b91ceff4e171c252a9348b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dadee41de7769fa312708847c579385"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Path.html#a1dadee41de7769fa312708847c579385">getPose</a> (const int i)</td></tr>
+<tr class="memdesc:a1dadee41de7769fa312708847c579385"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the pose at index i of the path.  <br /></td></tr>
+<tr class="separator:a1dadee41de7769fa312708847c579385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41d3afc2b3026defb208c55da37e42d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Path.html#a41d3afc2b3026defb208c55da37e42d9">getSize</a> () const</td></tr>
+<tr class="memdesc:a41d3afc2b3026defb208c55da37e42d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the number of poses composing the path.  <br /></td></tr>
+<tr class="separator:a41d3afc2b3026defb208c55da37e42d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc108811f79c40ec5d5fa62439829112"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Path_1_1Parameters.html">Parameters</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Path.html#acc108811f79c40ec5d5fa62439829112">getParams</a> () const</td></tr>
 <tr class="memdesc:acc108811f79c40ec5d5fa62439829112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the <a class="el" href="structatum_1_1Path_1_1Parameters.html" title="The various parameters that are needed to generate and sample a path.">Parameters</a> used in generating the previous <a class="el" href="classatum_1_1Path.html" title="This class encapsulates the generation and sampling of paths (or, technically trajectories,...">Path</a>.  <br /></td></tr>
 <tr class="separator:acc108811f79c40ec5d5fa62439829112"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -204,8 +204,8 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af80b65beb66308b22817f0d01b4461f9" name="af80b65beb66308b22817f0d01b4461f9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af80b65beb66308b22817f0d01b4461f9">&#9670;&#160;</a></span>getPose()</h2>
+<a id="a1dadee41de7769fa312708847c579385" name="a1dadee41de7769fa312708847c579385"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dadee41de7769fa312708847c579385">&#9670;&#160;</a></span>getPose()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -213,17 +213,17 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structatum_1_1Pose.html">Pose</a> atum::Path::getPose </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;&#160;</td>
-          <td class="paramname"><em>state</em></td><td>)</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the target <a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> along the path based on the current state and time (assuming usePosition is true, otherwise entirely based on time). </p>
+<p>Gets the pose at index i of the path. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">state</td><td></td></tr>
+    <tr><td class="paramname">i</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -231,23 +231,23 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aabbb875e7b91ceff4e171c252a9348b9" name="aabbb875e7b91ceff4e171c252a9348b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabbb875e7b91ceff4e171c252a9348b9">&#9670;&#160;</a></span>getTotalTime()</h2>
+<a id="a41d3afc2b3026defb208c55da37e42d9" name="a41d3afc2b3026defb208c55da37e42d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41d3afc2b3026defb208c55da37e42d9">&#9670;&#160;</a></span>getSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">second_t atum::Path::getTotalTime </td>
+          <td class="memname">int atum::Path::getSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets the total time the path should take to complete following. </p>
-<dl class="section return"><dt>Returns</dt><dd>second_t </dd></dl>
+<p>Gets the number of poses composing the path. </p>
+<dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
 
 </div>
 </div>

@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['parameters_0',['Parameters',['../structatum_1_1Intake_1_1Parameters.html',1,'atum::Intake::Parameters'],['../structatum_1_1Ladybrown_1_1Parameters.html',1,'atum::Ladybrown::Parameters'],['../structatum_1_1MotionProfile_1_1Parameters.html',1,'atum::MotionProfile&lt; Unit &gt;::Parameters'],['../structatum_1_1Path_1_1Parameters.html',1,'atum::Path::Parameters'],['../structatum_1_1PID_1_1Parameters.html',1,'atum::PID::Parameters'],['../structatum_1_1TBH_1_1Parameters.html',1,'atum::TBH::Parameters']]],
-  ['path_1',['Path',['../classatum_1_1Path.html',1,'atum']]],
-  ['pathfollower_2',['PathFollower',['../classatum_1_1PathFollower.html',1,'atum']]],
-  ['pid_3',['PID',['../classatum_1_1PID.html',1,'atum']]],
-  ['piston_4',['Piston',['../classatum_1_1Piston.html',1,'atum']]],
-  ['point_5',['Point',['../structatum_1_1MotionProfile_1_1Point.html',1,'atum::MotionProfile']]],
-  ['pose_6',['Pose',['../structatum_1_1Pose.html',1,'atum']]],
-  ['potentiometer_7',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]],
-  ['profilefollower_8',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
+  ['remote_0',['Remote',['../classatum_1_1Remote.html',1,'atum']]],
+  ['robot_1',['Robot',['../classatum_1_1Robot.html',1,'atum']]],
+  ['robotclone_2',['RobotClone',['../classatum_1_1RobotClone.html',1,'atum']]],
+  ['robotprototype_3',['RobotPrototype',['../classatum_1_1RobotPrototype.html',1,'atum']]],
+  ['rotationsensor_4',['RotationSensor',['../classatum_1_1RotationSensor.html',1,'atum']]],
+  ['routines_5',['Routines',['../classatum_1_1GUI_1_1Routines.html',1,'atum::GUI']]]
 ];

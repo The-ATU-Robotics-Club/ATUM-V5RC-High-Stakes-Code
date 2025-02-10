@@ -2,6 +2,7 @@ var classatum_1_1Timer =
 [
     [ "Timer", "classatum_1_1Timer.html#a6ee9e7024904d361af2ad854ecf324ff", null ],
     [ "checkGoneOff", "classatum_1_1Timer.html#a89a2d01b5771f6bc8d58e43f509dc438", null ],
+    [ "getDT", "classatum_1_1Timer.html#a22035e53d0b7268a9a9e63d5c5e050fd", null ],
     [ "goneOff", "classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e", null ],
     [ "restart", "classatum_1_1Timer.html#a275d87facc97844285a6f9e83b7dfb3a", null ],
     [ "setAlarm", "classatum_1_1Timer.html#a7520efdbe2b2a7e16b3ab09df2fb4ce3", null ],

@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('pathFollower_8hpp.html',''); initResiz
 <p>Includes the PathFollower class.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="controller_8hpp_source.html">../controllers/controller.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="slewRate_8hpp_source.html">../controllers/slewRate.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="drive_8hpp_source.html">../systems/drive.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="acceptable_8hpp_source.html">../utility/acceptable.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="movement_8hpp_source.html">movement.hpp</a>&quot;</code><br />
@@ -114,13 +115,10 @@ $(document).ready(function(){initNavTree('pathFollower_8hpp.html',''); initResiz
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PathFollower.html">atum::PathFollower</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the logic behind path following. Can use RAMSETE for feedback control or motion-profiled movements.  <a href="classatum_1_1PathFollower.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Encapsulates the logic behind path following, using pure pursuit.  <a href="classatum_1_1PathFollower.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1Command.html">atum::PathFollower::Command</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The commands that the path follower executes.  <a href="structatum_1_1PathFollower_1_1Command.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1PathFollower_1_1FeedbackParameters.html">atum::PathFollower::FeedbackParameters</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The parameters for the feedback component of path following. Can enable/disabled RAMSETE and change its beta and lambda values.  <a href="structatum_1_1PathFollower_1_1FeedbackParameters.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
