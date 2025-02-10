@@ -5,31 +5,26 @@
 #include "path.hpp"
 #include "pathFollower.hpp"
 
-
 namespace atum {
-PathFollower::Command::Command(const second_t iTimeout,
+PathFollower::Command::Command(std::optional<AcceptableDistance> iAcceptable,
                                const Pose &iStart,
                                const Pose &iTarget,
                                const bool iReversed,
-                               std::optional<Path::Parameters> iParams,
-                               std::optional<AcceptableDistance> iAcceptable) :
-    timeout{iTimeout},
+                               std::optional<Path::Parameters> iParams) :
+    acceptable{iAcceptable},
     start{iStart},
     target{iTarget},
     reversed{iReversed},
-    params{iParams},
-    acceptable{iAcceptable} {}
+    params{iParams} {}
 
-PathFollower::Command::Command(const second_t iTimeout,
+PathFollower::Command::Command(std::optional<AcceptableDistance> iAcceptable,
                                const Pose &iTarget,
                                const bool iReversed,
-                               std::optional<Path::Parameters> iParams,
-                               std::optional<AcceptableDistance> iAcceptable) :
-    timeout{iTimeout},
+                               std::optional<Path::Parameters> iParams) :
+    acceptable{iAcceptable},
     target{iTarget},
     reversed{iReversed},
-    params{iParams},
-    acceptable{iAcceptable} {}
+    params{iParams} {}
 
 PathFollower::PathFollower(Drive *iDrive,
                            const AcceptableDistance &iDefaultAcceptable,
@@ -70,7 +65,6 @@ void PathFollower::follow(const std::vector<Command> &commands,
 void PathFollower::follow(Command cmd) {
   reset(cmd);
   Acceptable acceptable{cmd.acceptable.value_or(defaultAcceptable)};
-  acceptable.reset(cmd.timeout);
   UnwrappedPose state{drive->getPose()};
   while(getClosest(state) != path->getPose(path->getSize() - 1) &&
         !acceptable.canAccept(distance(drive->getPose(), cmd.target)) &&
@@ -95,6 +89,9 @@ void PathFollower::follow(Command cmd) {
 
 void PathFollower::reset(PathFollower::Command &cmd) {
   if(flipped) {
+    if(cmd.start.has_value()) {
+      cmd.start.value().flip();
+    }
     cmd.target.flip();
   }
   Pose start{cmd.start.value_or(drive->getPose())};

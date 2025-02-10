@@ -208,7 +208,7 @@ void RobotClone::autonSetup15() {
                                     std::move(directionController));
 
   // Path follower setup.
-  Path::setDefaultParams({1_tile, maxV, maxA, drive->getGeometry().track});
+  Path::setDefaultParams({1_tile, maxV, maxA, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
@@ -374,7 +374,6 @@ void RobotClone::autonSetup24() {
   LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
   moveToMotionParams.usePosition = true;
   LateralProfile moveToProfile{moveToMotionParams};
-  // Timeout here gets set by the follower, so don't worry about the "forever."
   AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   std::unique_ptr<PID> directionController =
       std::make_unique<PID>(PID::Parameters{0.25});
@@ -398,16 +397,16 @@ void RobotClone::autonSetup24() {
                                     std::move(directionController));
 
   // Path follower setup.
-  Path::setDefaultParams({1_tile, maxV, maxA, drive->getGeometry().track});
+  Path::setDefaultParams({1_tile, maxV, maxA, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
-  std::unique_ptr<Controller> left{
+  std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
-  std::unique_ptr<Controller> right{
-      std::make_unique<PID>(moveToVelocityPIDParams)};
+  std::unique_ptr<Controller> turnController =
+      std::make_unique<PID>(PID::Parameters{14});
   pathFollower = std::make_unique<PathFollower>(drive.get(),
                                                 acceptable,
-                                                std::move(left),
-                                                std::move(right),
+                                                std::move(forwardController),
+                                                std::move(turnController),
                                                 kA,
                                                 1_ft,
                                                 Logger::Level::Debug);

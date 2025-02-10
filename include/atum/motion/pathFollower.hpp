@@ -17,6 +17,7 @@
 #include "path.hpp"
 #include "profileFollower.hpp"
 
+
 namespace atum {
 /**
  * @brief Encapsulates the logic behind path following, using pure pursuit.
@@ -34,42 +35,37 @@ class PathFollower : public Movement {
      * given starting pose to the given target pose. This is the generally
      * preferred method.
      *
-     * @param iTimeout
+     * @param iAcceptable
      * @param iStart
      * @param iTarget
      * @param iReversed
      * @param iParams
-     * @param iAcceptable
      */
-    Command(const second_t iTimeout,
+    Command(std::optional<AcceptableDistance> iAcceptable,
             const Pose &iStart,
             const Pose &iTarget,
             const bool iReversed = false,
-            std::optional<Path::Parameters> iParams = {},
-            std::optional<AcceptableDistance> iAcceptable = {});
+            std::optional<Path::Parameters> iParams = {});
 
     /**
      * @brief Constructs a new Command object. A path is generated from the
      * current pose of the drive to the given target pose.
      *
-     * @param iTimeout
+     * @param iAcceptable
      * @param iTarget
      * @param iReversed
      * @param iParams
-     * @param iAcceptable
      */
-    Command(const second_t iTimeout,
+    Command(std::optional<AcceptableDistance> iAcceptable,
             const Pose &iTarget,
             const bool iReversed = false,
-            std::optional<Path::Parameters> iParams = {},
-            std::optional<AcceptableDistance> iAcceptable = {});
+            std::optional<Path::Parameters> iParams = {});
 
-    second_t timeout;
+    std::optional<AcceptableDistance> acceptable;
     std::optional<Pose> start{};
     Pose target;
     bool reversed{false};
     std::optional<Path::Parameters> params;
-    std::optional<AcceptableDistance> acceptable;
   };
 
   /**

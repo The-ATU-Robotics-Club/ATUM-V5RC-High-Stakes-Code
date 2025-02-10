@@ -22,11 +22,11 @@ void GoalRush::toggleArm() {
 }
 
 void GoalRush::grab() {
-  clamp->extend();
+  clamp->retract();
 }
 
 void GoalRush::release() {
-  clamp->retract();
+  clamp->extend();
 }
 
 void GoalRush::toggleClamp() {

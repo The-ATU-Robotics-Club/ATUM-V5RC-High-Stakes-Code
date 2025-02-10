@@ -5,6 +5,7 @@ namespace atum {
 Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                              const meters_per_second_t iMaxV,
                              const meters_per_second_squared_t iMaxA,
+                             const meters_per_second_squared_t iMaxD,
                              const meter_t iTrack,
                              const meter_t iSpacing,
                              const meter_t iMaxSpacingError,
@@ -13,6 +14,7 @@ Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
     offRamp{onAndOffRamps.second},
     maxV{iMaxV},
     maxA{iMaxA},
+    maxD{iMaxD},
     track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
@@ -21,6 +23,7 @@ Path::Parameters::Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
 Path::Parameters::Parameters(const meter_t ramp,
                              const meters_per_second_t iMaxV,
                              const meters_per_second_squared_t iMaxA,
+                             const meters_per_second_squared_t iMaxD,
                              const meter_t iTrack,
                              const meter_t iSpacing,
                              const meter_t iMaxSpacingError,
@@ -29,6 +32,7 @@ Path::Parameters::Parameters(const meter_t ramp,
     offRamp{ramp},
     maxV{iMaxV},
     maxA{iMaxA},
+    maxD{iMaxD},
     track{iTrack},
     spacing{iSpacing},
     maxSpacingError{iMaxSpacingError},
@@ -41,6 +45,7 @@ Path::Parameters::Parameters(const Path::Parameters &other) :
   offRamp = other.offRamp;
   maxV = other.maxV;
   maxA = other.maxA;
+  maxD = other.maxD;
   track = other.track;
 }
 
@@ -59,6 +64,9 @@ Path::Parameters &Path::Parameters::operator=(const Path::Parameters &other) {
   }
   if(other.maxA) {
     maxA = other.maxA;
+  }
+  if(other.maxD) {
+    maxD = other.maxD;
   }
   return *this;
 }
@@ -111,9 +119,9 @@ void Path::generate() {
 void Path::parameterize() {
   path[0].v = params.maxV;
   for(int i{path.size() - 2}; i >= 0; i--) {
-    const meters_per_second_squared_t twoA{2.0 * params.maxA};
+    const meters_per_second_squared_t twoD{2.0 * params.maxD};
     const meters_per_second_t decelerated{
-        sqrt(path[i + 1].v * path[i + 1].v + twoA * params.spacing)};
+        sqrt(path[i + 1].v * path[i + 1].v + twoD * params.spacing)};
     path[i].v = units::math::min(decelerated, path[i].v);
   }
   graphPath();
@@ -137,7 +145,6 @@ double Path::addNextPoint(double t0) {
     p1 = getPoint(t1);
     distanceToNext = distance(p0, p1);
   }
-  const double k{4.0 * params.curveVelocityScalar + 1.0};
   p1.v = units::math::min(
       params.maxV,
       params.maxV / std::abs(getCurvature(t1)) /

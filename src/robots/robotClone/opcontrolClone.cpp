@@ -2,11 +2,7 @@
 
 namespace atum {
 void RobotClone::opcontrol() {
-  if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    intake->setSortOutColor(ColorSensor::Color::Blue);
-  } else {
-    intake->setSortOutColor(ColorSensor::Color::Red);
-  }
+  setSortToOpposite();
   matchTimer.setTime();
   matchTimer.setAlarm(1_min + 10_s);
   // Where the first routine should be skills.
@@ -20,9 +16,9 @@ void RobotClone::opcontrol() {
       intake->stop();
     }
   }
-  scheduler.schedule({"Rumble at 15s Away",
-                            matchTimer.checkGoneOff(),
-                            [=]() { remote.rumble("---"); }});
+  scheduler.schedule({"Rumble at 15s Away", matchTimer.checkGoneOff(), [=]() {
+                        remote.rumble("---");
+                      }});
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     gps->getPose();

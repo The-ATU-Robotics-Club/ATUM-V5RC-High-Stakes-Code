@@ -36,6 +36,7 @@ class Path {
      * @param onAndOffRamps
      * @param iMaxV
      * @param iMaxA
+     * @param iMaxD
      * @param iTrack
      * @param iSpacing
      * @param iMaxSpacingError
@@ -44,6 +45,7 @@ class Path {
     Parameters(const std::pair<meter_t, meter_t> &onAndOffRamps,
                const meters_per_second_t iMaxV = 0_mps,
                const meters_per_second_squared_t iMaxA = 0_mps_sq,
+               const meters_per_second_squared_t iMaxD = 0_mps_sq,
                const meter_t iTrack = 0_m,
                const meter_t iSpacing = 1_in,
                const meter_t iMaxSpacingError = 0.1_in,
@@ -55,6 +57,7 @@ class Path {
      * @param ramp
      * @param iMaxV
      * @param iMaxA
+     * @param iMaxD
      * @param iTrack
      * @param iSpacing
      * @param iMaxSpacingError
@@ -63,7 +66,7 @@ class Path {
     Parameters(const meter_t ramp,
                const meters_per_second_t iMaxV = 0_mps,
                const meters_per_second_squared_t iMaxA = 0_mps_sq,
-               const meter_t iTrack = 0_m,
+               const meters_per_second_squared_t iMaxD = 0_mps_sq,               const meter_t iTrack = 0_m,
                const meter_t iSpacing = 1_in,
                const meter_t iMaxSpacingError = 0.1_in,
                const double iBinarySearchScaling = 0.75);
@@ -90,11 +93,10 @@ class Path {
     meter_t offRamp;
     meters_per_second_t maxV{0_mps};
     meters_per_second_squared_t maxA{0_mps_sq};
+    // Max deceleration (should usually be the same as maxA).
+    meters_per_second_squared_t maxD{0_mps_sq};
     // The distance between the left side of the drivetrain and the right side.
     meter_t track;
-    // A value between 0 to 1 that scales velocity around curves, with 0 being
-    // slowest and 1 being fastest.
-    double curveVelocityScalar{0.5};
     // The spacing between each point.
     meter_t spacing{1_in};
     // Maximum allowed deviation for the spacing between a point.

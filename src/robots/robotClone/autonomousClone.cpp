@@ -1,6 +1,7 @@
 #include "atum/devices/colorSensor.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -21,32 +22,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      |_|___/     |___/_\_\_|_|_/__/
 
     */
-    setupRoutine({});
-    pathFollower->follow(
-        {
-         {3_s, {0.5_tile, 2_tile, 30_deg}, false, Path::Parameters{0.5_tile}},
-         {forever, {0_tile, 0_tile, 0_deg}, true, Path::Parameters{0.5_tile}}});
-    // setupRoutine({-2.5_tile + 7.5_in, 1_tile, 90_deg});
-    // intake->setSortOutColor(ColorSensor::Color::None);
-    // intake->index();
-    // goalRush->extendArm();
-    // pathFollower->follow({{{-0.45_tile, 1.625_tile, 10_deg},
-    //                        false,
-    //                        Path::Parameters{{0.1_tile, 3_tile}}}});
-    // goalRush->grab();
-    // intake->stop();
-    // setSortToOpposite();
-    // moveTo->reverse({-1_tile, 1_tile});
-    // if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    //   turn->toward(20_deg);
-    // } else {
-    //   turn->toward(90_deg);
-    // }
-    // goalRush->release();
-    // wait(200_ms);
-    // clampWhenReady();
-    // moveTo->reverse({-0.5_tile, 1.5_tile});
-    // intake->intake();
   } else if(id == ID24) {
     /*
           ___ _ _  _ _   ___ _   _ _ _
@@ -55,29 +30,41 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
          /___| |_|      |___/_\_\_|_|_/__/
 
     */
-    setupRoutine({});
   }
 
   END_ROUTINE
 
-  /*
-    ___ _ _  _ _     _       _
-   |_  ) | |( | )   /_\ _  _| |_ ___
-    / /|_  _|V V   / _ \ || |  _/ _ \
-   /___| |_|      /_/ \_\_,_|\__\___/
+  START_ROUTINE("Negative Side")
+  setupRoutine({-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 0_in), 1_tile, 90_deg});
+  intake->setSortOutColor(ColorSensor::Color::None);
+  goalRush->extendArm();
+  goalRush->release();
+  intake->outtake();
+  const meter_t rushOffRamp{id == ID15 ? 1_tile : 1_tile - 0_in};
+  pathFollower->follow(
+      {{AcceptableDistance{3_s},
+        {-0.45_tile, 1.55_tile, 30_deg},
+        false,
+        Path::Parameters{
+            rushOffRamp, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+  goalRush->grab();
+  wait(200_ms);
+  moveTo->reverse({-1.25_tile, 0.75_tile});
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    turn->toward(0_deg);
+  } else {
+    turn->toward(110_deg);
+  }
+  goalRush->release();
+  wait(200_ms);
+  setSortToOpposite();
+  intake->stop();
+  clampWhenReady();
+  moveTo->reverse({-0.45_tile, 1.55_tile},
+                  LateralProfile::Parameters{30_in_per_s});
+  intake->intake();
+  goalClamp->clamp();  END_ROUTINE
 
-  */
-  START_ROUTINE("24\" Auto")
-  setupRoutine({});
-  END_ROUTINE
-
-  /*
-      _ ___ _ _     _       _
-     / | __( | )   /_\ _  _| |_ ___
-     | |__ \V V   / _ \ || |  _/ _ \
-     |_|___/     /_/ \_\_,_|\__\___/
-
-  */
   START_ROUTINE("15\" Auto")
   setupRoutine({});
   END_ROUTINE
