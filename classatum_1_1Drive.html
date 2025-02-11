@@ -133,9 +133,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5fbfa40771fdbc33fecc5cff6646c72e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a5fbfa40771fdbc33fecc5cff6646c72e">getPose</a> () const</td></tr>
 <tr class="memdesc:a5fbfa40771fdbc33fecc5cff6646c72e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current pose of the drive.  <br /></td></tr>
 <tr class="separator:a5fbfa40771fdbc33fecc5cff6646c72e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84e04eda057f18c6332890dffaaf6b86"><td class="memItemLeft" align="right" valign="top">std::pair&lt; revolutions_per_minute_t, revolutions_per_minute_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a84e04eda057f18c6332890dffaaf6b86">getLRVelocity</a> () const</td></tr>
-<tr class="memdesc:a84e04eda057f18c6332890dffaaf6b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current velocity of the left and right sides of the drive.  <br /></td></tr>
-<tr class="separator:a84e04eda057f18c6332890dffaaf6b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2f99853184f4ef5118e31f34f390993"><td class="memItemLeft" align="right" valign="top">meters_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#aa2f99853184f4ef5118e31f34f390993">getVelocity</a> () const</td></tr>
+<tr class="memdesc:aa2f99853184f4ef5118e31f34f390993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current velocity of the drive.  <br /></td></tr>
+<tr class="separator:aa2f99853184f4ef5118e31f34f390993"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4a79e70a717144ce96f00fc72febc0c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a4a79e70a717144ce96f00fc72febc0c1">setBrakeMode</a> (const pros::v5::MotorBrake brakeMode)</td></tr>
 <tr class="memdesc:a4a79e70a717144ce96f00fc72febc0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the brake mode of the motors on the drive.  <br /></td></tr>
 <tr class="separator:a4a79e70a717144ce96f00fc72febc0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -351,26 +351,6 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a84e04eda057f18c6332890dffaaf6b86" name="a84e04eda057f18c6332890dffaaf6b86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84e04eda057f18c6332890dffaaf6b86">&#9670;&#160;</a></span>getLRVelocity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::pair&lt; revolutions_per_minute_t, revolutions_per_minute_t &gt; atum::Drive::getLRVelocity </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the current velocity of the left and right sides of the drive. </p>
-<dl class="section return"><dt>Returns</dt><dd>std::pair&lt;revolutions_per_minute_t, revolutions_per_minute_t&gt; </dd></dl>
-
-</div>
-</div>
 <a id="ad7d6fd1a4535bbb464d42c7d42394981" name="ad7d6fd1a4535bbb464d42c7d42394981"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad7d6fd1a4535bbb464d42c7d42394981">&#9670;&#160;</a></span>getMaxRPM()</h2>
 
@@ -428,6 +408,26 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets the current pose of the drive. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
+
+</div>
+</div>
+<a id="aa2f99853184f4ef5118e31f34f390993" name="aa2f99853184f4ef5118e31f34f390993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2f99853184f4ef5118e31f34f390993">&#9670;&#160;</a></span>getVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">meters_per_second_t atum::Drive::getVelocity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the current velocity of the drive. </p>
+<dl class="section return"><dt>Returns</dt><dd>meters_per_second_t </dd></dl>
 
 </div>
 </div>

@@ -115,9 +115,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3b970f0baf4ce5ac77cd35edf1f24ad1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#a3b970f0baf4ce5ac77cd35edf1f24ad1">Parameters</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;other)</td></tr>
 <tr class="memdesc:a3b970f0baf4ce5ac77cd35edf1f24ad1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> object with another <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a> object.  <br /></td></tr>
 <tr class="separator:a3b970f0baf4ce5ac77cd35edf1f24ad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76c73645b2284dbd2dce9fff15096f0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#a76c73645b2284dbd2dce9fff15096f0d">operator=</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;other)</td></tr>
-<tr class="memdesc:a76c73645b2284dbd2dce9fff15096f0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets only those parameters that are being given non-zero values (with the exception of usePosition and searchIterations which are not set).  <br /></td></tr>
-<tr class="separator:a76c73645b2284dbd2dce9fff15096f0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9be616998b2e5267b120b69b7fef6bbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#a9be616998b2e5267b120b69b7fef6bbe">reset</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;other)</td></tr>
+<tr class="memdesc:a9be616998b2e5267b120b69b7fef6bbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for reseting parameters to default values.  <br /></td></tr>
+<tr class="separator:a9be616998b2e5267b120b69b7fef6bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1f35567038302dcc536bd829969c238"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html#af1f35567038302dcc536bd829969c238">setSpecial</a> (const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;other)</td></tr>
+<tr class="memdesc:af1f35567038302dcc536bd829969c238"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for reseting parameters to special values.  <br /></td></tr>
+<tr class="separator:af1f35567038302dcc536bd829969c238"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -246,8 +249,8 @@ template&lt;typename Unit &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a76c73645b2284dbd2dce9fff15096f0d" name="a76c73645b2284dbd2dce9fff15096f0d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a76c73645b2284dbd2dce9fff15096f0d">&#9670;&#160;</a></span>operator=()</h2>
+<a id="a9be616998b2e5267b120b69b7fef6bbe" name="a9be616998b2e5267b120b69b7fef6bbe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9be616998b2e5267b120b69b7fef6bbe">&#9670;&#160;</a></span>reset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,7 +261,7 @@ template&lt;typename Unit &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp; <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::Parameters::operator= </td>
+          <td class="memname">void <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::Parameters::reset </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td>
           <td class="paramname"><em>other</em></td><td>)</td>
@@ -272,14 +275,49 @@ template&lt;typename Unit &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Sets only those parameters that are being given non-zero values (with the exception of usePosition and searchIterations which are not set). </p>
+<p>Used for reseting parameters to default values. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">other</td><td></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html" title="The parameters involved in creating the motion profile.">Parameters</a>&amp; </dd></dl>
+
+</div>
+</div>
+<a id="af1f35567038302dcc536bd829969c238" name="af1f35567038302dcc536bd829969c238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1f35567038302dcc536bd829969c238">&#9670;&#160;</a></span>setSpecial()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Unit &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classatum_1_1MotionProfile.html">atum::MotionProfile</a>&lt; Unit &gt;::Parameters::setSpecial </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">Parameters</a> &amp;&#160;</td>
+          <td class="paramname"><em>other</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Used for reseting parameters to special values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">other</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
