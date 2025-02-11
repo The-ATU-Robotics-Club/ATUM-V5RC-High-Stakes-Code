@@ -78,6 +78,8 @@ void PathFollower::follow(Command cmd) {
     }
     double hError{constrainPI(refH - state.h)};
     refV *= std::abs(std::cos(hError));
+    const meters_per_second_t v{
+        std::abs(getValueAs<meters_per_second_t>(drive->getVelocity()))};
     const double forwardOutput{forward->getOutput(state.v, refV)};
     const double turnOutput{turn->getOutput(hError)};
     drive->tank(forwardOutput + turnOutput + aFF,
