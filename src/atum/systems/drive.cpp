@@ -59,6 +59,10 @@ Pose Drive::getPose() const {
   return tracker->getPose();
 }
 
+meter_t Drive::traveled() {
+
+}
+
 meters_per_second_t
     Drive::getVelocity() const {
   const double rpm{getValueAs<revolutions_per_minute_t>(left->getVelocity() + right->getVelocity()) / 2.0};

@@ -1,7 +1,6 @@
 #include "atum/devices/colorSensor.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -62,12 +61,12 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   const meter_t rushOffRamp{id == ID15 ? 1_tile : 1_tile - 7.5_in};
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {-0.45_tile, 1.55_tile, 25_deg},
+        {-0.45_tile, 1.55_tile, 24_deg},
         false,
         Path::Parameters{
             rushOffRamp, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
   goalRush->grab();
-  wait(2000_ms);
+  wait(200_ms);
   moveTo->reverse({-1.25_tile, 0.75_tile});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
     turn->toward(0_deg);
@@ -75,7 +74,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
     turn->toward(110_deg);
   }
   goalRush->release();
-  wait(2000_ms);
+  wait(200_ms);
   intake->stop();
   setSortToOpposite();
   clampWhenReady();
@@ -87,8 +86,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveTo->forward({-1_tile, 1_tile});
   intake->intake();
 
-  moveTo->forward({-1_tile, 2.45_tile},
-                  LateralProfile::Parameters{40_in_per_s});
+  moveTo->forward({-1_tile, 2.4625_tile},
+                  LateralProfile::Parameters{45_in_per_s});
 
   moveTo->reverse({-1_tile, 1_tile});
   turn->awayFrom({0_tile, 0_tile});
@@ -100,19 +99,37 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   goalClamp->clamp();
   wait(200_ms);
 
-  moveTo->forward({-2_tile, 2_tile}, LateralProfile::Parameters{40_in_per_s});
+  moveTo->forward({-2_tile, 2_tile}, LateralProfile::Parameters{45_in_per_s});
+  wait(1_s);
   intake->stop();
-  moveTo->forward({-2.4375_tile, 2.4375_tile},
+  moveTo->forward({-2.4625_tile, 2.4625_tile},
                   LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
   intake->intake();
+  wait(0.25_s);
+  moveTo->forward({-3_tile, 3_tile},
+                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
   moveTo->reverse({-2_tile, 2_tile});
   wait(0.15_s);
-  for(int i{0}; i < 4; i++) {
-    moveTo->forward({-2.4375_tile, 2.4375_tile},
+  for(int i{0}; i < 3; i++) {
+    moveTo->forward({-2.4625_tile, 2.4625_tile},
                     LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-    moveTo->reverse({-2_tile, 2_tile});
+    moveTo->reverse({-1.85_tile, 1.85_tile});
     wait(0.15_s);
   }
+
+  turn->toward(-135_deg);
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {-2.45_tile, 0_tile, 180_deg, 45_in_per_s},
+                         false,
+                         Path::Parameters{2.5_tile, 45_in_per_s}},
+                        {AcceptableDistance{3_s},
+                         {-2_tile, -2_tile, 135_deg},
+                         false,
+                         Path::Parameters{2.5_tile, 45_in_per_s}}});
+  moveTo->reverse({-2.45_tile, -2.45_tile});
+  goalClamp->unclamp();
+  intake->stop();
+  moveTo->forward({-2_tile, -2_tile});
 
   END_ROUTINE
 
@@ -135,7 +152,6 @@ void RobotClone::setupRoutine(Pose startingPose) {
   Movement::setFlipped(flipped);
 
   drive->setPose(startingPose);
-  gps->setPose(startingPose);
 
   setSortToOpposite();
 
@@ -161,6 +177,22 @@ void RobotClone::clampWhenReady(const second_t timeout) {
                         moveTo->interrupt();
                         pathFollower->interrupt();
                         goalClamp->clamp();
+                      },
+                      timeout,
+                      Scheduler::doNothing});
+}
+
+void RobotClone::goalRushWhenReady(const second_t timeout) {
+  scheduler.schedule({"Goal Rush Grab When Ready",
+                      [=]() { return goalRush->hasGoal(); },
+                      [=]() {
+                        if(goalRush->isClamped()) {
+                          return;
+                        }
+                        turn->interrupt();
+                        moveTo->interrupt();
+                        pathFollower->interrupt();
+                        goalRush->grab();
                       },
                       timeout,
                       Scheduler::doNothing});

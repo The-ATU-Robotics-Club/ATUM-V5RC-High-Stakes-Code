@@ -15,7 +15,6 @@
 #include "../utility/misc.hpp"
 #include "api.h"
 
-
 namespace atum {
 /**
  * @brief This class encapsulates all of the logic behind the drive.
@@ -90,6 +89,13 @@ class Drive {
    * @return Pose
    */
   Pose getPose() const;
+
+  /**
+   * @brief Gets the distance traveled by the drive since last called.
+   *
+   * @return meter_t
+   */
+  meter_t traveled();
 
   /**
    * @brief Gets the current velocity of the drive.

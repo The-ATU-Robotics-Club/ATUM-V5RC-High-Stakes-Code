@@ -23,10 +23,12 @@ class GoalRush {
    *
    * @param iArm
    * @param iClamp
+   * @param iLimitSwitch
    * @param loggerLevel
    */
   GoalRush(std::unique_ptr<Piston> iArm,
            std::unique_ptr<Piston> iClamp,
+           std::unique_ptr<LimitSwitch> iLimitSwitch,
            const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -65,9 +67,26 @@ class GoalRush {
    */
   void toggleClamp();
 
+  /**
+   * @brief 
+   * 
+   * @return true 
+   * @return false 
+   */
+  bool isClamped() const;
+
+  /**
+   * @brief Returns whether a goal is detected in the rush or not. 
+   * 
+   * @return true 
+   * @return false 
+   */
+  bool hasGoal() const;
+
   private:
   std::unique_ptr<Piston> arm;
   std::unique_ptr<Piston> clamp;
+  std::unique_ptr<LimitSwitch> limitSwitch;
   Logger logger;
 };
 } // namespace atum

@@ -42,7 +42,7 @@ class MoveTo : public Movement {
          Turn *iTurn,
          std::unique_ptr<LateralProfileFollower> iFollower,
          std::unique_ptr<PID> iDirectionController,
-         const meter_t iTurnToThreshold = 1_tile,
+         const meter_t iTurnToThreshold = 0.5_tile,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**

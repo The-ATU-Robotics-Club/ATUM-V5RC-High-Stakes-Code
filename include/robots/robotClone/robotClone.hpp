@@ -14,7 +14,6 @@
 #include "../sharedSystems/intake.hpp"
 #include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
-#include "atum/depend/units.h"
 
 
 namespace atum {
@@ -172,6 +171,15 @@ class RobotClone : public Robot {
    * @param timeout
    */
   void clampWhenReady(const second_t timeout = 4_s);
+
+  /**
+   * @brief Grabs a goal with the goal rush when one is detected. If the given
+   * timeout is exceeded before a goal is found, does nothing (so you should
+   * place a manual grab at the point you expect the goal to be there).
+   *
+   * @param timeout
+   */
+  void goalRushWhenReady(const second_t timeout = 4_s);
 
   /**
    * @brief Sets the sort out color of the intake to the opposite color
