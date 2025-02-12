@@ -1,5 +1,8 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40af03bde11d261f185cbacfa32c1c6538c":[1,0,0,32,2,0],
+"classatum_1_1Remote.html#a9ffd0c323b48688b33550b30098b243f":[1,0,0,32,9],
+"classatum_1_1Remote.html#acb026dbb81e8e2b1347d2e0cdc0b3d13":[1,0,0,32,7],
 "classatum_1_1Remote.html#ad18f73598b108eecc4893559bf47de59":[1,0,0,32,3],
 "classatum_1_1Remote.html#aec730cc4838514302d75df3a02280702":[1,0,0,32,4],
 "classatum_1_1Remote.html#af0e91b5532a129c0c64a8b60309c7de8":[1,0,0,32,5],
@@ -246,8 +249,5 @@ var NAVTREEINDEX1 =
 "remote_8hpp.html":[2,0,0,0,5,1],
 "remote_8hpp_source.html":[2,0,0,0,5,1],
 "robotClone_8hpp.html":[2,0,0,1,0,0],
-"robotClone_8hpp_source.html":[2,0,0,1,0,0],
-"robotPrototype_8hpp.html":[2,0,0,1,1,0],
-"robotPrototype_8hpp_source.html":[2,0,0,1,1,0],
-"robot_8hpp.html":[2,0,0,0,5,2]
+"robotClone_8hpp_source.html":[2,0,0,1,0,0]
 };

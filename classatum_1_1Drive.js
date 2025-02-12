@@ -13,5 +13,6 @@ var classatum_1_1Drive =
     [ "getVelocity", "classatum_1_1Drive.html#aa2f99853184f4ef5118e31f34f390993", null ],
     [ "setBrakeMode", "classatum_1_1Drive.html#a4a79e70a717144ce96f00fc72febc0c1", null ],
     [ "setPose", "classatum_1_1Drive.html#a1b21296734df5a8105b52342b6a7f456", null ],
-    [ "tank", "classatum_1_1Drive.html#a223a7b5126a3b46d1576d53a32ed367a", null ]
+    [ "tank", "classatum_1_1Drive.html#a223a7b5126a3b46d1576d53a32ed367a", null ],
+    [ "traveled", "classatum_1_1Drive.html#ab24ecfbda89df0d6a24c2f4ad6d149b8", null ]
 ];

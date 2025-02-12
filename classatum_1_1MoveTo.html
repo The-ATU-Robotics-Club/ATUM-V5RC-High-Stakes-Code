@@ -117,9 +117,9 @@ Inheritance diagram for atum::MoveTo:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af790ede7fe5de9e140d071a345bec762"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#af790ede7fe5de9e140d071a345bec762">MoveTo</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, <a class="el" href="classatum_1_1Turn.html">Turn</a> *iTurn, std::unique_ptr&lt; <a class="el" href="profileFollower_8hpp.html#a2bd4ee01721625f47226b5fc5cda189f">LateralProfileFollower</a> &gt; iFollower, std::unique_ptr&lt; <a class="el" href="classatum_1_1PID.html">PID</a> &gt; iDirectionController, const meter_t iTurnToThreshold=1_tile, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:af790ede7fe5de9e140d071a345bec762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1MoveTo.html" title="Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile fo...">MoveTo</a> object.  <br /></td></tr>
-<tr class="separator:af790ede7fe5de9e140d071a345bec762"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bcef324300f46aff0c201a26320ebc3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#a6bcef324300f46aff0c201a26320ebc3">MoveTo</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, <a class="el" href="classatum_1_1Turn.html">Turn</a> *iTurn, std::unique_ptr&lt; <a class="el" href="profileFollower_8hpp.html#a2bd4ee01721625f47226b5fc5cda189f">LateralProfileFollower</a> &gt; iFollower, std::unique_ptr&lt; <a class="el" href="classatum_1_1PID.html">PID</a> &gt; iDirectionController, const meter_t iTurnToThreshold=0.5_tile, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a6bcef324300f46aff0c201a26320ebc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1MoveTo.html" title="Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile fo...">MoveTo</a> object.  <br /></td></tr>
+<tr class="separator:a6bcef324300f46aff0c201a26320ebc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afee365bfcf37b1cca93f56c5dd42f99d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#afee365bfcf37b1cca93f56c5dd42f99d">forward</a> (<a class="el" href="structatum_1_1Pose.html">Pose</a> target, const <a class="el" href="structatum_1_1MotionProfile_1_1Parameters.html">LateralProfile::Parameters</a> &amp;specialParams={})</td></tr>
 <tr class="memdesc:afee365bfcf37b1cca93f56c5dd42f99d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going forward.  <br /></td></tr>
 <tr class="separator:afee365bfcf37b1cca93f56c5dd42f99d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,8 +149,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Encapsulates the logic behind point-to-point movements. Mostly combines the drive with the profile follower class. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af790ede7fe5de9e140d071a345bec762" name="af790ede7fe5de9e140d071a345bec762"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af790ede7fe5de9e140d071a345bec762">&#9670;&#160;</a></span>MoveTo()</h2>
+<a id="a6bcef324300f46aff0c201a26320ebc3" name="a6bcef324300f46aff0c201a26320ebc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bcef324300f46aff0c201a26320ebc3">&#9670;&#160;</a></span>MoveTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const meter_t&#160;</td>
-          <td class="paramname"><em>iTurnToThreshold</em> = <code>1_tile</code>, </td>
+          <td class="paramname"><em>iTurnToThreshold</em> = <code>0.5_tile</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

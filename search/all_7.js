@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['hasgoal_0',['hasGoal',['../classatum_1_1GoalClamp.html#a53a0a8052767ee361fe132293dca9a82',1,'atum::GoalClamp']]],
+  ['hasgoal_0',['hasGoal',['../classatum_1_1GoalClamp.html#a53a0a8052767ee361fe132293dca9a82',1,'atum::GoalClamp::hasGoal()'],['../classatum_1_1GoalRush.html#a1dc4bd40b080c1230b4ce783dc4c4633',1,'atum::GoalRush::hasGoal()']]],
   ['hasring_1',['hasRing',['../classatum_1_1Ladybrown.html#ab1f25b77e6d72d040e3d4dbb70f6b284',1,'atum::Ladybrown']]],
   ['huefield_2',['HueField',['../structatum_1_1ColorSensor_1_1HueField.html',1,'atum::ColorSensor']]]
 ];

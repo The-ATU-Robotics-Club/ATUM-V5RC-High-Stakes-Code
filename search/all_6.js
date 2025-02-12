@@ -51,7 +51,7 @@ var searchData=
   ['getvoltage_48',['getVoltage',['../classatum_1_1Motor.html#ab52a3589c274b9d92fef6153af1a04cc',1,'atum::Motor']]],
   ['goalclamp_49',['GoalClamp',['../classatum_1_1GoalClamp.html',1,'atum::GoalClamp'],['../classatum_1_1GoalClamp.html#aa4106d707f8fd97e0dcbe8e4130c5310',1,'atum::GoalClamp::GoalClamp()']]],
   ['goalclamp_2ehpp_50',['goalClamp.hpp',['../goalClamp_8hpp.html',1,'']]],
-  ['goalrush_51',['GoalRush',['../classatum_1_1GoalRush.html',1,'atum::GoalRush'],['../classatum_1_1GoalRush.html#ac2bf6d24f7ca05d377d3036e6f106962',1,'atum::GoalRush::GoalRush()']]],
+  ['goalrush_51',['GoalRush',['../classatum_1_1GoalRush.html',1,'atum::GoalRush'],['../classatum_1_1GoalRush.html#aa09c44f1ad7c2f771bd3b0146757315f',1,'atum::GoalRush::GoalRush()']]],
   ['goneoff_52',['goneOff',['../classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e',1,'atum::Timer']]],
   ['gps_53',['GPS',['../classatum_1_1GPS.html',1,'atum::GPS'],['../classatum_1_1GPS.html#a12ead31c25884d23b2b59c71b4c04f05',1,'atum::GPS::GPS(const std::int8_t port, const Pose &amp;offset, const double iHeadingTrust=0.5, const double iFullPoseTrust=1.0, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1GPS.html#ac25f9a0c527216a486d8ef8d3fe2287a',1,'atum::GPS::GPS(const Pose &amp;offset, const double iHeadingTrust=0.5, const double iFullPoseTrust=1.0, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['gps_2ehpp_54',['gps.hpp',['../gps_8hpp.html',1,'']]],

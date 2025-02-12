@@ -108,9 +108,9 @@ $(document).ready(function(){initNavTree('classatum_1_1GoalRush.html',''); initR
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac2bf6d24f7ca05d377d3036e6f106962"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#ac2bf6d24f7ca05d377d3036e6f106962">GoalRush</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iArm, std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iClamp, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:ac2bf6d24f7ca05d377d3036e6f106962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1GoalRush.html" title="This class encapsulates the logic behind the goal rush mechanism.">GoalRush</a> object.  <br /></td></tr>
-<tr class="separator:ac2bf6d24f7ca05d377d3036e6f106962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa09c44f1ad7c2f771bd3b0146757315f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aa09c44f1ad7c2f771bd3b0146757315f">GoalRush</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iArm, std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iClamp, std::unique_ptr&lt; <a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a> &gt; iLimitSwitch, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:aa09c44f1ad7c2f771bd3b0146757315f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1GoalRush.html" title="This class encapsulates the logic behind the goal rush mechanism.">GoalRush</a> object.  <br /></td></tr>
+<tr class="separator:aa09c44f1ad7c2f771bd3b0146757315f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a30acb3cba7c8cc5d3501d467e793b155"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a30acb3cba7c8cc5d3501d467e793b155">extendArm</a> ()</td></tr>
 <tr class="memdesc:a30acb3cba7c8cc5d3501d467e793b155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends the arm of the goal rush.  <br /></td></tr>
 <tr class="separator:a30acb3cba7c8cc5d3501d467e793b155"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -129,12 +129,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa3bbbcc0b0b675f0f0fdc26f950b4293"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aa3bbbcc0b0b675f0f0fdc26f950b4293">toggleClamp</a> ()</td></tr>
 <tr class="memdesc:aa3bbbcc0b0b675f0f0fdc26f950b4293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles whether the goal is grabbed or not.  <br /></td></tr>
 <tr class="separator:aa3bbbcc0b0b675f0f0fdc26f950b4293"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec0a724753c41a9eb469b23cf5f40374"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aec0a724753c41a9eb469b23cf5f40374">isClamped</a> () const</td></tr>
+<tr class="separator:aec0a724753c41a9eb469b23cf5f40374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc4bd40b080c1230b4ce783dc4c4633"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a1dc4bd40b080c1230b4ce783dc4c4633">hasGoal</a> () const</td></tr>
+<tr class="memdesc:a1dc4bd40b080c1230b4ce783dc4c4633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a goal is detected in the rush or not.  <br /></td></tr>
+<tr class="separator:a1dc4bd40b080c1230b4ce783dc4c4633"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapsulates the logic behind the goal rush mechanism. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac2bf6d24f7ca05d377d3036e6f106962" name="ac2bf6d24f7ca05d377d3036e6f106962"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2bf6d24f7ca05d377d3036e6f106962">&#9670;&#160;</a></span>GoalRush()</h2>
+<a id="aa09c44f1ad7c2f771bd3b0146757315f" name="aa09c44f1ad7c2f771bd3b0146757315f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa09c44f1ad7c2f771bd3b0146757315f">&#9670;&#160;</a></span>GoalRush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -150,6 +155,12 @@ Public Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt;&#160;</td>
           <td class="paramname"><em>iClamp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a> &gt;&#160;</td>
+          <td class="paramname"><em>iLimitSwitch</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -170,6 +181,7 @@ Public Member Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">iArm</td><td></td></tr>
     <tr><td class="paramname">iClamp</td><td></td></tr>
+    <tr><td class="paramname">iLimitSwitch</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -213,6 +225,48 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Grabs a goal. </p>
+
+</div>
+</div>
+<a id="a1dc4bd40b080c1230b4ce783dc4c4633" name="a1dc4bd40b080c1230b4ce783dc4c4633"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc4bd40b080c1230b4ce783dc4c4633">&#9670;&#160;</a></span>hasGoal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::GoalRush::hasGoal </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether a goal is detected in the rush or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="aec0a724753c41a9eb469b23cf5f40374" name="aec0a724753c41a9eb469b23cf5f40374"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec0a724753c41a9eb469b23cf5f40374">&#9670;&#160;</a></span>isClamped()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::GoalRush::isClamped </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
 
 </div>
 </div>
