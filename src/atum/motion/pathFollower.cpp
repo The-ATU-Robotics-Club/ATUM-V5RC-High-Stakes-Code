@@ -1,9 +1,10 @@
+#include "pathFollower.hpp"
 #include "atum/depend/units.h"
 #include "atum/gui/screen.hpp"
 #include "atum/pose/pose.hpp"
 #include "atum/utility/units.hpp"
 #include "path.hpp"
-#include "pathFollower.hpp"
+
 
 namespace atum {
 PathFollower::Command::Command(std::optional<AcceptableDistance> iAcceptable,
@@ -45,6 +46,7 @@ PathFollower::PathFollower(Drive *iDrive,
 
 void PathFollower::follow(const std::vector<Command> &commands,
                           const std::string &name) {
+  interrupted = false;
   if(name.empty()) {
     logger.debug("Following a path.");
   } else {

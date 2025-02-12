@@ -57,14 +57,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->setSortOutColor(ColorSensor::Color::None);
   goalRush->extendArm();
   goalRush->release();
+  goalRushWhenReady();
   intake->index();
-  const meter_t rushOffRamp{id == ID15 ? 1_tile : 1_tile - 7.5_in};
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {-0.45_tile, 1.55_tile, 24_deg},
+        {-0.45_tile, 1.55_tile, (id == ID15 ? 25_deg : 30_deg)},
         false,
         Path::Parameters{
-            rushOffRamp, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+            1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
   goalRush->grab();
   wait(200_ms);
   moveTo->reverse({-1.25_tile, 0.75_tile});
@@ -102,16 +102,16 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveTo->forward({-2_tile, 2_tile}, LateralProfile::Parameters{45_in_per_s});
   wait(1_s);
   intake->stop();
-  moveTo->forward({-2.4625_tile, 2.4625_tile},
+  moveTo->forward({-2.5_tile, 2.5_tile},
                   LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
   intake->intake();
   wait(0.25_s);
   moveTo->forward({-3_tile, 3_tile},
                   LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  moveTo->reverse({-2_tile, 2_tile});
+  moveTo->reverse({-1.85_tile, 1.85_tile});
   wait(0.15_s);
   for(int i{0}; i < 3; i++) {
-    moveTo->forward({-2.4625_tile, 2.4625_tile},
+    moveTo->forward({-2.5_tile, 2.5_tile},
                     LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
     moveTo->reverse({-1.85_tile, 1.85_tile});
     wait(0.15_s);
@@ -133,8 +133,66 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   END_ROUTINE
 
-  START_ROUTINE("15\" Auto")
-  setupRoutine({});
+  START_ROUTINE("Positive Mid")
+  setupRoutine(
+  {-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 7.5_in), -1_tile, 90_deg});
+  intake->setSortOutColor(ColorSensor::Color::None);
+  goalRush->extendArm();
+  goalRush->release();
+  intake->index();
+  goalRushWhenReady();
+  pathFollower->follow(
+      {{AcceptableDistance{3_s},
+        {-0.45_tile, -0.45_tile, (id == ID15 ? 25_deg : 30_deg)},
+        false,
+        Path::Parameters{
+            1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+  goalRush->grab();
+  wait(2000_ms);
+  moveTo->reverse({-1.25_tile, -1.25_tile});
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    turn->toward(0_deg);
+  } else {
+    turn->toward(110_deg);
+  }
+  goalRush->release();
+  wait(2000_ms);
+  intake->stop();
+  setSortToOpposite();
+  clampWhenReady();
+  moveTo->reverse({-0.45_tile, -0.45_tile},
+                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
+  goalRush->retractArm();
+  goalClamp->clamp();
+  wait(400_ms);
+  moveTo->forward({-1_tile, -1_tile});
+  intake->intake();
+
+  moveTo->forward({-1_tile, -2.4625_tile},
+                  LateralProfile::Parameters{40_in_per_s});
+
+  wait(1_s);
+  moveTo->forward({-2_tile, -2_tile},
+                  LateralProfile::Parameters{40_in_per_s});
+                  wait(1.5_s);
+  
+  intake->stop();
+  moveTo->forward({-2.5_tile, -2.5_tile},
+                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
+                  wait(500_ms);
+  intake->intake();
+  moveTo->reverse({-1.85_tile, -1.85_tile});
+  wait(0.15_s);
+  for(int i{0}; i < 4; i++) {
+    moveTo->forward({-2.5_tile, -2.5_tile},
+                    LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
+    moveTo->reverse({-1.85_tile, -1.85_tile});
+    wait(0.15_s);
+  }
+  wait(1_s);
+  moveTo->forward({-1_tile, 0_tile},
+                    LateralProfile::Parameters{40.5_in_per_s});
+
   END_ROUTINE
 
   START_ROUTINE("Do Nothing")

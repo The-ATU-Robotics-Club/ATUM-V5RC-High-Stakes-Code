@@ -30,6 +30,7 @@ void MoveTo::reverse(Pose target,
 void MoveTo::moveToPoint(Pose target,
                          const LateralProfile::Parameters &specialParams,
                          const bool reversed) {
+                          interrupted = false;
   directionController->reset();
   if(flipped) {
     target.flip();

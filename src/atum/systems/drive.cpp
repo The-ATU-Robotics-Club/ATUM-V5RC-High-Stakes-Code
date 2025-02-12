@@ -59,7 +59,7 @@ Pose Drive::getPose() const {
 
 meter_t Drive::traveled() {
  const degree_t totalTraveled{(left->getPosition() + right->getPosition()) / 2.0};
- const degree_t deltaTraveled{previousTraveled - totalTraveled};
+ const degree_t deltaTraveled{totalTraveled - previousTraveled};
  previousTraveled = totalTraveled;
  const scalar_t revolutions{deltaTraveled / 360_deg};
  return revolutions * geometry.circum;

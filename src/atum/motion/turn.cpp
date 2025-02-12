@@ -18,6 +18,7 @@ void Turn::toward(const Pose &target,
 
 void Turn::toward(degree_t target,
                   const AngularProfile::Parameters &specialParams) {
+  interrupted = false;
   if(flipped) {
     target *= -1;
   }
