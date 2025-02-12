@@ -29,24 +29,41 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
          /___| |_|      |___/_\_\_|_|_/__/
 
     */
-    setupRoutine({-2_tile, 2_tile, 90_deg});
-    goalClamp->clamp();
+   setupRoutine(
+    { -2.5_tile, 0_tile, 90_deg});
     intake->setSortOutColor(ColorSensor::Color::None);
-    intake->stop();
-    moveTo->forward({-2.5_tile, 2.5_tile},
-                    LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
+    goalRushWhenReady();
+    intake->index();
+    moveTo->forward({-2_tile, 0_tile});
+    moveTo->reverse({-2.5_tile, 0_tile});
     intake->intake();
-    wait(0.25_s);
-    moveTo->forward({-3_tile, 3_tile},
-                    LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-    moveTo->reverse({-2_tile, 2_tile});
-    wait(0.15_s);
-    for(int i{0}; i < 4; i++) {
-      moveTo->forward({-2.5_tile, 2.5_tile},
-                      LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-      moveTo->reverse({-1.85_tile, 1.85_tile});
-      wait(0.15_s);
-    }
+    wait(1000_ms);
+    turn->toward(155_deg);
+    moveTo->forward({-2_tile, -2_tile});
+    intake->index();
+    wait(100_ms);
+    turn->toward(270_deg);
+    moveTo->reverse({-1_tile, -2_tile},
+                    LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
+    wait(100_ms);
+    goalClamp->clamp();
+    wait(100_ms);
+    turn->toward(0_deg);
+    intake->intake(); 
+    moveTo->forward({-1_tile, -.75_tile});
+    wait(100_ms);
+    turn->toward(135_deg);
+    intake->intake();
+    moveTo->forward({-2_tile, -2_tile});
+    turn->toward(270_deg);
+    moveTo->forward({-2_tile, -2_tile});
+    turn->toward(225_deg);
+    intake->intake();
+    moveTo->forward({-2.75_tile, -2.75_tile});
+    moveTo->reverse({-2_tile, -2_tile});
+    turn->toward(45_deg);
+    moveTo->reverse({-2.75_tile, -2.75_tile});
+    goalClamp->unclamp();
   }
 
   END_ROUTINE
