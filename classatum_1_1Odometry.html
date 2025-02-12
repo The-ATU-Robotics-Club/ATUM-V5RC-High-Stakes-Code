@@ -118,9 +118,9 @@ Inheritance diagram for atum::Odometry:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0e57504d1d22260b724a3533d362c17d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Odometry.html#a0e57504d1d22260b724a3533d362c17d">Odometry</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometer.html">Odometer</a> &gt; iForward, std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometer.html">Odometer</a> &gt; iSide, std::unique_ptr&lt; <a class="el" href="classatum_1_1IMU.html">IMU</a> &gt; iImu, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a0e57504d1d22260b724a3533d362c17d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Odometry.html" title="Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for ...">Odometry</a> object. Expects an odometer parallel to the direction of travel, an odometer perpendicular to the direction of travel, and an <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a>.  <br /></td></tr>
-<tr class="separator:a0e57504d1d22260b724a3533d362c17d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad28d93c8003cfec933d9a39e25be2f8a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Odometry.html#ad28d93c8003cfec933d9a39e25be2f8a">Odometry</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometer.html">Odometer</a> &gt; iForward, std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometer.html">Odometer</a> &gt; iSide, std::unique_ptr&lt; <a class="el" href="classatum_1_1IMU.html">IMU</a> &gt; iImu, <a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:ad28d93c8003cfec933d9a39e25be2f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Odometry.html" title="Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for ...">Odometry</a> object. Expects an odometer parallel to the direction of travel, an odometer perpendicular to the direction of travel, and an <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a>. If the drive is provided, it will be used to estimate dy.  <br /></td></tr>
+<tr class="separator:ad28d93c8003cfec933d9a39e25be2f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0173e9ac58dcef215df4888831d0dde5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5">update</a> () override</td></tr>
 <tr class="memdesc:a0173e9ac58dcef215df4888831d0dde5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current pose as tracked by the odometers. Typically called in the background, but could be manually called.  <br /></td></tr>
 <tr class="separator:a0173e9ac58dcef215df4888831d0dde5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,8 +175,8 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for improved accuracy. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a0e57504d1d22260b724a3533d362c17d" name="a0e57504d1d22260b724a3533d362c17d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e57504d1d22260b724a3533d362c17d">&#9670;&#160;</a></span>Odometry()</h2>
+<a id="ad28d93c8003cfec933d9a39e25be2f8a" name="ad28d93c8003cfec933d9a39e25be2f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad28d93c8003cfec933d9a39e25be2f8a">&#9670;&#160;</a></span>Odometry()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -202,6 +202,12 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
         <tr>
           <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Drive.html">Drive</a> *&#160;</td>
+          <td class="paramname"><em>iDrive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype"><a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
           <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
         </tr>
@@ -213,13 +219,14 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classatum_1_1Odometry.html" title="Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for ...">Odometry</a> object. Expects an odometer parallel to the direction of travel, an odometer perpendicular to the direction of travel, and an <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a>. </p>
+<p>Constructs a new <a class="el" href="classatum_1_1Odometry.html" title="Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for ...">Odometry</a> object. Expects an odometer parallel to the direction of travel, an odometer perpendicular to the direction of travel, and an <a class="el" href="classatum_1_1IMU.html" title="A class to wrap around potentially several IMUs and provide some useful methods for common actions....">IMU</a>. If the drive is provided, it will be used to estimate dy. </p>
 <p>The <a class="el" href="classatum_1_1Task.html#aa08bc0810059c4c9b94d3b5767ca5abc" title="Start the background tasks if they haven&#39;t already started.">startBackgroundTasks()</a> method will have to be called if you expect tracking to be performed in the background.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iForward</td><td></td></tr>
     <tr><td class="paramname">iSide</td><td></td></tr>
     <tr><td class="paramname">iImu</td><td></td></tr>
+    <tr><td class="paramname">iDrive</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>

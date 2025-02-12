@@ -115,9 +115,12 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a663811b867a8be8c410f1d64b67d3aab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a663811b867a8be8c410f1d64b67d3aab">Drive</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iRight, std::unique_ptr&lt; <a class="el" href="classatum_1_1Tracker.html">Tracker</a> &gt; iTracker, const <a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a> &amp;iGeometry, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a663811b867a8be8c410f1d64b67d3aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new drive. Requires the left, right, and tracker to be provided.  <br /></td></tr>
-<tr class="separator:a663811b867a8be8c410f1d64b67d3aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5324e65dd90d601d646a01ec192ac070"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a5324e65dd90d601d646a01ec192ac070">Drive</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iRight, const <a class="el" href="structatum_1_1Drive_1_1Geometry.html">Geometry</a> &amp;iGeometry, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a5324e65dd90d601d646a01ec192ac070"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new drive. Requires the left and right tracker to be provided.  <br /></td></tr>
+<tr class="separator:a5324e65dd90d601d646a01ec192ac070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83f6ca5f747c4015776c11d8287de86d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a83f6ca5f747c4015776c11d8287de86d">setTracker</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Tracker.html">Tracker</a> &gt; iTracker)</td></tr>
+<tr class="memdesc:a83f6ca5f747c4015776c11d8287de86d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the tracker for the drive. Should be ran before performing motions.  <br /></td></tr>
+<tr class="separator:a83f6ca5f747c4015776c11d8287de86d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a223a7b5126a3b46d1576d53a32ed367a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Drive.html#a223a7b5126a3b46d1576d53a32ed367a">tank</a> (const double leftVoltage, const double rightVoltage)</td></tr>
 <tr class="memdesc:a223a7b5126a3b46d1576d53a32ed367a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides tank controls: the left voltage and right voltage are applied directly to the corresponding sides of the drive.  <br /></td></tr>
 <tr class="separator:a223a7b5126a3b46d1576d53a32ed367a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,8 +164,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapsulates all of the logic behind the drive. Including tank and arcade controls, setting brake mode, and tracking pose. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a663811b867a8be8c410f1d64b67d3aab" name="a663811b867a8be8c410f1d64b67d3aab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a663811b867a8be8c410f1d64b67d3aab">&#9670;&#160;</a></span>Drive()</h2>
+<a id="a5324e65dd90d601d646a01ec192ac070" name="a5324e65dd90d601d646a01ec192ac070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5324e65dd90d601d646a01ec192ac070">&#9670;&#160;</a></span>Drive()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,12 +181,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt;&#160;</td>
           <td class="paramname"><em>iRight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Tracker.html">Tracker</a> &gt;&#160;</td>
-          <td class="paramname"><em>iTracker</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -205,12 +202,12 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new drive. Requires the left, right, and tracker to be provided. </p>
+<p>Constructs a new drive. Requires the left and right tracker to be provided. </p>
+<p>Make sure to set tracker before performing motions!</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iLeft</td><td></td></tr>
     <tr><td class="paramname">iRight</td><td></td></tr>
-    <tr><td class="paramname">iTracker</td><td></td></tr>
     <tr><td class="paramname">iGeometry</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
@@ -480,6 +477,32 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iPose</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a83f6ca5f747c4015776c11d8287de86d" name="a83f6ca5f747c4015776c11d8287de86d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f6ca5f747c4015776c11d8287de86d">&#9670;&#160;</a></span>setTracker()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::Drive::setTracker </td>
+          <td>(</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Tracker.html">Tracker</a> &gt;&#160;</td>
+          <td class="paramname"><em>iTracker</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the tracker for the drive. Should be ran before performing motions. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iTracker</td><td></td></tr>
   </table>
   </dd>
 </dl>

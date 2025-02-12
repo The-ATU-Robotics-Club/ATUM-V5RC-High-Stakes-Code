@@ -1,7 +1,7 @@
 var classatum_1_1Drive =
 [
     [ "Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
-    [ "Drive", "classatum_1_1Drive.html#a663811b867a8be8c410f1d64b67d3aab", null ],
+    [ "Drive", "classatum_1_1Drive.html#a5324e65dd90d601d646a01ec192ac070", null ],
     [ "arcade", "classatum_1_1Drive.html#a36ebb7dc126b52775dba69466a6f197c", null ],
     [ "brake", "classatum_1_1Drive.html#ad5c6a11cd5e284b5482f7f2b0158ef30", null ],
     [ "checkIsNear", "classatum_1_1Drive.html#aa8c881251daf4630ded8b096f6e6f056", null ],
@@ -13,6 +13,7 @@ var classatum_1_1Drive =
     [ "getVelocity", "classatum_1_1Drive.html#aa2f99853184f4ef5118e31f34f390993", null ],
     [ "setBrakeMode", "classatum_1_1Drive.html#a4a79e70a717144ce96f00fc72febc0c1", null ],
     [ "setPose", "classatum_1_1Drive.html#a1b21296734df5a8105b52342b6a7f456", null ],
+    [ "setTracker", "classatum_1_1Drive.html#a83f6ca5f747c4015776c11d8287de86d", null ],
     [ "tank", "classatum_1_1Drive.html#a223a7b5126a3b46d1576d53a32ed367a", null ],
     [ "traveled", "classatum_1_1Drive.html#ab24ecfbda89df0d6a24c2f4ad6d149b8", null ]
 ];

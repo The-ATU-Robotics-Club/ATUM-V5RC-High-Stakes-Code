@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40a6f041af43be87a195bd3f075922f344a":[1,0,0,32,2,1],
 "classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40af03bde11d261f185cbacfa32c1c6538c":[1,0,0,32,2,0],
 "classatum_1_1Remote.html#a9ffd0c323b48688b33550b30098b243f":[1,0,0,32,9],
 "classatum_1_1Remote.html#acb026dbb81e8e2b1347d2e0cdc0b3d13":[1,0,0,32,7],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "profileFollower_8hpp_source.html":[2,0,0,0,3,6],
 "remote_8hpp.html":[2,0,0,0,5,1],
 "remote_8hpp_source.html":[2,0,0,0,5,1],
-"robotClone_8hpp.html":[2,0,0,1,0,0],
-"robotClone_8hpp_source.html":[2,0,0,1,0,0]
+"robotClone_8hpp.html":[2,0,0,1,0,0]
 };

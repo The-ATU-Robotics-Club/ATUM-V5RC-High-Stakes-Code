@@ -2,7 +2,7 @@ var searchData=
 [
   ['odometer_0',['Odometer',['../classatum_1_1Odometer.html',1,'atum::Odometer'],['../classatum_1_1Odometer.html#a9441684efe2017056c385fcb5bd4f9fc',1,'atum::Odometer::Odometer()']]],
   ['odometer_2ehpp_1',['odometer.hpp',['../odometer_8hpp.html',1,'']]],
-  ['odometry_2',['Odometry',['../classatum_1_1Odometry.html',1,'atum::Odometry'],['../classatum_1_1Odometry.html#a0e57504d1d22260b724a3533d362c17d',1,'atum::Odometry::Odometry()']]],
+  ['odometry_2',['Odometry',['../classatum_1_1Odometry.html',1,'atum::Odometry'],['../classatum_1_1Odometry.html#ad28d93c8003cfec933d9a39e25be2f8a',1,'atum::Odometry::Odometry()']]],
   ['odometry_2ehpp_3',['odometry.hpp',['../odometry_8hpp.html',1,'']]],
   ['off_4',['off',['../classatum_1_1LED.html#acbdb6b928c20c2715cb64f5df6b75c44',1,'atum::LED']]],
   ['offsetpose_5',['offsetPose',['../pose_8hpp.html#ac903695ff3ff4f06b184b347189eb33c',1,'atum']]],

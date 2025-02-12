@@ -1,7 +1,7 @@
 var searchData=
 [
   ['odometer_0',['Odometer',['../classatum_1_1Odometer.html#a9441684efe2017056c385fcb5bd4f9fc',1,'atum::Odometer']]],
-  ['odometry_1',['Odometry',['../classatum_1_1Odometry.html#a0e57504d1d22260b724a3533d362c17d',1,'atum::Odometry']]],
+  ['odometry_1',['Odometry',['../classatum_1_1Odometry.html#ad28d93c8003cfec933d9a39e25be2f8a',1,'atum::Odometry']]],
   ['off_2',['off',['../classatum_1_1LED.html#acbdb6b928c20c2715cb64f5df6b75c44',1,'atum::LED']]],
   ['offsetpose_3',['offsetPose',['../pose_8hpp.html#ac903695ff3ff4f06b184b347189eb33c',1,'atum']]],
   ['on_4',['on',['../classatum_1_1LED.html#a2053970041aeb4b0a6f9c1fc70d1d616',1,'atum::LED']]],

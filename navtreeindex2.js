@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"robotClone_8hpp_source.html":[2,0,0,1,0,0],
 "robotPrototype_8hpp.html":[2,0,0,1,1,0],
 "robotPrototype_8hpp_source.html":[2,0,0,1,1,0],
 "robot_8hpp.html":[2,0,0,0,5,2],
