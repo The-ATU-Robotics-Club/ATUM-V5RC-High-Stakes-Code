@@ -11,6 +11,7 @@
 
 #include "../devices/imu.hpp"
 #include "../devices/odometer.hpp"
+#include "../systems/drive.hpp"
 #include "../time/task.hpp"
 #include "../utility/units.hpp"
 #include "tracker.hpp"
@@ -28,7 +29,7 @@ class Odometry : public Tracker, public Task {
   /**
    * @brief Constructs a new Odometry object. Expects an odometer parallel to
    * the direction of travel, an odometer perpendicular to the direction of
-   * travel, and an IMU.
+   * travel, and an IMU. If the drive is provided, it will be used to estimate dy. 
    *
    * The startBackgroundTasks() method will have to be called if you expect
    * tracking to be performed in the background.
@@ -36,11 +37,13 @@ class Odometry : public Tracker, public Task {
    * @param iForward
    * @param iSide
    * @param iImu
+   * @param iDrive
    * @param loggerLevel
    */
   Odometry(std::unique_ptr<Odometer> iForward,
            std::unique_ptr<Odometer> iSide,
            std::unique_ptr<IMU> iImu,
+           Drive *iDrive,
            Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -67,6 +70,7 @@ class Odometry : public Tracker, public Task {
   std::unique_ptr<Odometer> forward;
   std::unique_ptr<Odometer> side;
   std::unique_ptr<IMU> imu;
+  Drive* drive;
   Timer timer;
 };
 } // namespace atum

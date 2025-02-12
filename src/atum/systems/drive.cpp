@@ -4,12 +4,10 @@
 namespace atum {
 Drive::Drive(std::unique_ptr<Motor> iLeft,
              std::unique_ptr<Motor> iRight,
-             std::unique_ptr<Tracker> iTracker,
              const Geometry &iGeometry,
              const Logger::Level loggerLevel) :
     left{std::move(iLeft)},
     right{std::move(iRight)},
-    tracker{std::move(iTracker)},
     geometry{iGeometry},
     logger{loggerLevel} {
   if(!left) {
@@ -18,11 +16,11 @@ Drive::Drive(std::unique_ptr<Motor> iLeft,
   if(!right) {
     logger.error("The right side drive motors were not provided!");
   }
-  if(!tracker) {
-    logger.error("No tracker provided for the drive!");
-    return;
-  }
   logger.info("Drive constructed!");
+}
+
+void Drive::setTracker(std::unique_ptr<Tracker> iTracker) {
+  tracker = std::move(iTracker);
 }
 
 void Drive::tank(const double leftVoltage, const double rightVoltage) {
@@ -60,7 +58,11 @@ Pose Drive::getPose() const {
 }
 
 meter_t Drive::traveled() {
-
+ const degree_t totalTraveled{(left->getPosition() + right->getPosition()) / 2.0};
+ const degree_t deltaTraveled{previousTraveled - totalTraveled};
+ previousTraveled = totalTraveled;
+ const scalar_t revolutions{deltaTraveled / 360_deg};
+ return revolutions * geometry.circum;
 }
 
 meters_per_second_t

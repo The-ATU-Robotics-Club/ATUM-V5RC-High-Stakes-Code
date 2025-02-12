@@ -2,7 +2,6 @@
 #include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
@@ -44,19 +43,23 @@ void RobotClone::driveSetup15() {
       MotorPortsList{1, -2, 3, 4},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "right drive")};
+  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
+                                  std::move(rightDriveMtr),
+                                  Drive::Geometry{11.862_in, 10.21_in});
+
   const inch_t wheelCircumference{203.724231788_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('A', 'B', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{14, 17})};
-  std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
-      std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
+  std::unique_ptr<Odometry> odometry{
+      std::make_unique<Odometry>(std::move(forwardOdometer),
+                                 std::move(sideOdometer),
+                                 std::move(imu),
+                                 drive.get())};
   odometry->startBackgroundTasks();
-  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
-                                  std::move(rightDriveMtr),
-                                  std::move(odometry),
-                                  Drive::Geometry{11.862_in, 10.21_in});
+  drive->setTracker(std::move(odometry));
 }
 
 void RobotClone::ladybrownSetup15() {
@@ -237,18 +240,22 @@ void RobotClone::driveSetup24() {
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "right drive")};
   const inch_t wheelCircumference{203.724231788_mm};
+  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
+                                  std::move(rightDriveMtr),
+                                  Drive::Geometry{11.862_in, 10.21_in});
+
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('E', 'F', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 14})};
-  std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
-      std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
+  std::unique_ptr<Odometry> odometry{
+      std::make_unique<Odometry>(std::move(forwardOdometer),
+                                 std::move(sideOdometer),
+                                 std::move(imu),
+                                 drive.get())};
   odometry->startBackgroundTasks();
-  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
-                                  std::move(rightDriveMtr),
-                                  std::move(odometry),
-                                  Drive::Geometry{11.862_in, 10.21_in});
+  drive->setTracker(std::move(odometry));
 }
 
 void RobotClone::ladybrownSetup24() {

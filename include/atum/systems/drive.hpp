@@ -37,21 +37,29 @@ class Drive {
   };
 
   /**
-   * @brief Constructs a new drive. Requires the left, right, and tracker
-   * to be provided.
+   * @brief Constructs a new drive. Requires the left and right tracker to be
+   * provided.
+   *
+   * Make sure to set tracker before performing motions!
    *
    * @param iLeft
    * @param iRight
-   * @param iTracker
    * @param iGeometry
    * @param loggerLevel
    */
   Drive(std::unique_ptr<Motor> iLeft,
         std::unique_ptr<Motor> iRight,
-        std::unique_ptr<Tracker> iTracker,
         const Geometry &iGeometry,
         const Logger::Level loggerLevel = Logger::Level::Info);
 
+  /**
+   * @brief Sets the tracker for the drive. Should be ran before performing
+   * motions.
+   *
+   * @param iTracker
+   */
+  void setTracker(std::unique_ptr<Tracker> iTracker);
+  
   /**
    * @brief Provides tank controls: the left voltage and right voltage are
    * applied directly to the corresponding sides of the drive.
@@ -155,6 +163,7 @@ class Drive {
   std::unique_ptr<Motor> right;
   std::unique_ptr<Tracker> tracker;
   const Geometry geometry;
+  degree_t previousTraveled{0_deg};
   Logger logger;
 };
 } // namespace atum

@@ -4,12 +4,14 @@ namespace atum {
 Odometry::Odometry(std::unique_ptr<Odometer> iForward,
                    std::unique_ptr<Odometer> iSide,
                    std::unique_ptr<IMU> iImu,
+                   Drive *iDrive,
                    Logger::Level loggerLevel) :
     Tracker(loggerLevel),
     Task(this, loggerLevel),
     forward{std::move(iForward)},
     side{std::move(iSide)},
-    imu{std::move(iImu)} {
+    imu{std::move(iImu)},
+    drive{iDrive} {
   if(!forward) {
     logger.error("The forward odometer must be provided.");
   }
@@ -37,6 +39,12 @@ Pose Odometry::update() {
     dyR = 2.0 * sin(dh / 2.0) * (dyR / dhScalar + forward->getFromCenter());
     sinDHOverDH = sin(dh) / dhScalar;
     cosDHMinusOneOverDH = (cos(dh) - 1.0) / dhScalar;
+  }
+  if(drive) {
+    const inch_t dyRDrive {drive->traveled()};
+    if(abs(dyRDrive) < abs(dyR)) {
+      dyR = dyRDrive;
+    }
   }
   // Accounting for angular velocity.
   const inch_t dxRAdj{sinDHOverDH * dxR + cosDHMinusOneOverDH * dyR};
