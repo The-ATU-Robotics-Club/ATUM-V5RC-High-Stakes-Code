@@ -5,7 +5,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
                      std::unique_ptr<Motor> iRight,
                      std::unique_ptr<Piston> iPiston,
                      std::unique_ptr<RotationSensor> iRotation,
-                     std::unique_ptr<LineTracker> iLine,
+                     std::unique_ptr<LimitSwitch> iLimitSwitch,
                      const Parameters &iParams,
                      std::unique_ptr<AngularProfileFollower> iFollower,
                      const Logger::Level loggerLevel) :
@@ -14,7 +14,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iLeft,
     right{std::move(iRight)},
     piston{std::move(iPiston)},
     rotation{std::move(iRotation)},
-    line{std::move(iLine)},
+    limitSwitch{std::move(iLimitSwitch)},
     params{iParams},
     follower{std::move(iFollower)},
     logger{loggerLevel} {
@@ -112,7 +112,7 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
 
 bool Ladybrown::hasRing() const {
   return getClosestNamedPosition() != LadybrownState::Resting &&
-         line->check() && line->triggered();
+         limitSwitch->check() && limitSwitch->isPressed();
 }
 
 bool Ladybrown::readyToScore() {
@@ -121,7 +121,7 @@ bool Ladybrown::readyToScore() {
 }
 
 bool Ladybrown::noRingDetection() {
-  return !line->check();
+  return !limitSwitch->check();
 }
 
 bool Ladybrown::mayConflictWithIntake() {
@@ -196,7 +196,7 @@ void Ladybrown::handlePiston() {
 
 bool Ladybrown::maintainMotors() {
   // If one is still working, reset the position of the others so everything
-  // works if it comes back online.
+  // works if it comes back on.
   if(!left->check()) {
     left->resetPosition(getPosition());
   }

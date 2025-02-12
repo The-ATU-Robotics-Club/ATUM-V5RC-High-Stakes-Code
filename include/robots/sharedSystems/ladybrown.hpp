@@ -81,7 +81,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    * @param iRight
    * @param iPiston
    * @param iRotation
-   * @param iLine
+   * @param iLimitSwitch
    * @param iParams
    * @param iFollower
    * @param loggerLevel
@@ -90,7 +90,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
             std::unique_ptr<Motor> iRight,
             std::unique_ptr<Piston> iPiston,
             std::unique_ptr<RotationSensor> iRotation,
-            std::unique_ptr<LineTracker> iLine,
+            std::unique_ptr<LimitSwitch> iLimitSwitch,
             const Parameters &iParams,
             std::unique_ptr<AngularProfileFollower> iFollower,
             const Logger::Level loggerLevel = Logger::Level::Info);
@@ -262,7 +262,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   std::unique_ptr<Motor> right;
   std::unique_ptr<Piston> piston;
   std::unique_ptr<RotationSensor> rotation;
-  std::unique_ptr<LineTracker> line;
+  std::unique_ptr<LimitSwitch> limitSwitch;
   Parameters params;
   std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;

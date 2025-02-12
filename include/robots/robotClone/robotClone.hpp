@@ -183,7 +183,6 @@ class RobotClone : public Robot {
   const int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
-  std::unique_ptr<GPS> gps;
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;

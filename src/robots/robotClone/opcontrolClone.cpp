@@ -21,8 +21,6 @@ void RobotClone::opcontrol() {
                       }});
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
-    gps->getPose();
-
     const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
     drive->arcade(forward, turn);
@@ -120,9 +118,7 @@ void RobotClone::ladybrownControls() {
   }
 
   static bool recentlyUnclamped{false};
-  if(remote.getHold(Remote::Button::L2)) {
-    goalClamp->unclamp();
-  } else if(goalClamp->hasGoal() && !recentlyUnclamped) {
+  if(goalClamp->hasGoal() && !recentlyUnclamped) {
     goalClamp->clamp();
     recentlyUnclamped = true;
   } else if(!goalClamp->hasGoal()) {

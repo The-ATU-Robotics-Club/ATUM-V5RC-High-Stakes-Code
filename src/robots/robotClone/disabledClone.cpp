@@ -2,6 +2,7 @@
 #include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
@@ -52,7 +53,6 @@ void RobotClone::driveSetup15() {
   std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
       std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
-  gps = std::make_unique<GPS>(18, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -71,8 +71,8 @@ void RobotClone::ladybrownSetup15() {
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('E')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, true)};
-  std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>(ADIExtenderPort{21, 'A'}, 2700)};
+      std::unique_ptr<LimitSwitch> ladybrownSwitch{
+          std::make_unique<LimitSwitch>((ADIExtenderPort{16, 'A'}))};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 9_deg},
@@ -108,7 +108,7 @@ void RobotClone::ladybrownSetup15() {
                                           std::move(rightLadybrownMotor),
                                           std::move(ladybrownPiston),
                                           std::move(ladybrownRotation),
-                                          std::move(ladybrownLineTracker),
+                                          std::move(ladybrownSwitch),
                                           ladybrownParameters,
                                           std::move(profileFollower));
 }
@@ -208,12 +208,13 @@ void RobotClone::autonSetup15() {
                                     std::move(directionController));
 
   // Path follower setup.
-  Path::setDefaultParams({1_tile, maxV, maxA, maxA, drive->getGeometry().track});
+  Path::setDefaultParams(
+      {1_tile, maxV, maxA, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   std::unique_ptr<Controller> turnController =
-      std::make_unique<PID>(PID::Parameters{14});
+      std::make_unique<PID>(PID::Parameters{15});
   pathFollower = std::make_unique<PathFollower>(drive.get(),
                                                 acceptable,
                                                 std::move(forwardController),
@@ -241,7 +242,6 @@ void RobotClone::driveSetup24() {
   std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
       std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   odometry->startBackgroundTasks();
-  gps = std::make_unique<GPS>(19, Pose{0.224_in, 6.46_in, -90_deg});
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
                                   std::move(odometry),
@@ -260,8 +260,8 @@ void RobotClone::ladybrownSetup24() {
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('A')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, false)};
-  std::unique_ptr<LineTracker> ladybrownLineTracker{
-      std::make_unique<LineTracker>((ADIExtenderPort{16, 'C'}), 2800)};
+  std::unique_ptr<LimitSwitch> ladybrownSwitch{
+      std::make_unique<LimitSwitch>((ADIExtenderPort{16, 'G'}))};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 20_deg},
@@ -297,7 +297,7 @@ void RobotClone::ladybrownSetup24() {
                                           std::move(rightLadybrownMotor),
                                           std::move(ladybrownPiston),
                                           std::move(ladybrownRotation),
-                                          std::move(ladybrownLineTracker),
+                                          std::move(ladybrownSwitch),
                                           ladybrownParameters,
                                           std::move(profileFollower));
 }
@@ -397,7 +397,8 @@ void RobotClone::autonSetup24() {
                                     std::move(directionController));
 
   // Path follower setup.
-  Path::setDefaultParams({1_tile, maxV, maxA, maxA, drive->getGeometry().track});
+  Path::setDefaultParams(
+      {1_tile, maxV, maxA, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
