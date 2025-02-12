@@ -14,6 +14,7 @@
 #include "kinematics.hpp"
 #include <limits>
 
+
 namespace atum {
 /**
  * @brief This class supports the efficient creation of S and trapezoidal motion
@@ -74,17 +75,24 @@ class MotionProfile {
     }
 
     /**
-     * @brief Sets only those parameters that are being given non-zero values
-     * (with the exception of usePosition and searchIterations which are not
-     * set).
+     * @brief Used for reseting parameters to default values.
      *
      * @param other
-     * @return Parameters&
      */
-    Parameters &operator=(const Parameters &other) {
-      if(this == &other) {
-        return *this;
-      }
+    void reset(const Parameters &other) {
+      maxV = other.maxV;
+      maxA = other.maxA;
+      maxJ = other.maxJ;
+      usePosition = other.usePosition;
+      searchIterations = other.searchIterations;
+    }
+
+    /**
+     * @brief Used for reseting parameters to special values.
+     *
+     * @param other
+     */
+    void setSpecial(const Parameters &other) {
       if(other.maxV) {
         maxV = other.maxV;
       }
@@ -94,7 +102,6 @@ class MotionProfile {
       if(other.maxJ) {
         maxJ = other.maxJ;
       }
-      return *this;
     }
 
     UnitsPerSecond maxV{0.0};
@@ -113,11 +120,11 @@ class MotionProfile {
    *
    */
   struct Point {
-    Unit s;
-    UnitsPerSecond v;
-    UnitsPerSecondSq a;
-    UnitsPerSecondCb j;
-    second_t t;
+    Unit s{0.0};
+    UnitsPerSecond v{0.0};
+    UnitsPerSecondSq a{0.0};
+    UnitsPerSecondCb j{0.0};
+    second_t t{0.0};
   };
 
   /**
@@ -149,14 +156,14 @@ class MotionProfile {
                 const Parameters &specialParameters = {}) {
     // Set params to defaults to reset from potential
     // previous special parameters.
-    params = defaultParams;
-    params = specialParameters;
+    params.reset(defaultParams);
     start = iStart;
     end = iEnd;
     target = end - start;
     for(Point &p : points) {
       p = Point{};
     }
+    params.setSpecial(specialParameters);
     prepareGraphing();
     beginProfile();
     finishProfile();

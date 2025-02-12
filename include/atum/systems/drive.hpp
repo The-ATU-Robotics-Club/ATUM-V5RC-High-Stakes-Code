@@ -15,6 +15,7 @@
 #include "../utility/misc.hpp"
 #include "api.h"
 
+
 namespace atum {
 /**
  * @brief This class encapsulates all of the logic behind the drive.
@@ -91,12 +92,11 @@ class Drive {
   Pose getPose() const;
 
   /**
-   * @brief Gets the current velocity of the left and right sides of the drive.
+   * @brief Gets the current velocity of the drive.
    *
-   * @return std::pair<revolutions_per_minute_t, revolutions_per_minute_t>
+   * @return meters_per_second_t
    */
-  std::pair<revolutions_per_minute_t, revolutions_per_minute_t>
-      getLRVelocity() const;
+  meters_per_second_t getVelocity() const;
 
   /**
    * @brief Sets the brake mode of the motors on the drive.

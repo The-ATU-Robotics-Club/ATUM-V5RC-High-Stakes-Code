@@ -1,4 +1,5 @@
 #include "drive.hpp"
+#include "atum/depend/units.h"
 
 namespace atum {
 Drive::Drive(std::unique_ptr<Motor> iLeft,
@@ -58,9 +59,10 @@ Pose Drive::getPose() const {
   return tracker->getPose();
 }
 
-std::pair<revolutions_per_minute_t, revolutions_per_minute_t>
-    Drive::getLRVelocity() const {
-  return std::make_pair(left->getVelocity(), right->getVelocity());
+meters_per_second_t
+    Drive::getVelocity() const {
+  const double rpm{getValueAs<revolutions_per_minute_t>(left->getVelocity() + right->getVelocity()) / 2.0};
+  return geometry.circum * rpm / 60.0_s;
 }
 
 void Drive::setBrakeMode(const pros::v5::MotorBrake brakeMode) {

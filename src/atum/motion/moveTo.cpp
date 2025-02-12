@@ -1,5 +1,6 @@
 #include "moveTo.hpp"
 
+
 namespace atum {
 MoveTo::MoveTo(Drive *iDrive,
                Turn *iTurn,
@@ -39,8 +40,9 @@ void MoveTo::moveToPoint(Pose target,
   follower->startProfile(0_m, distance(initialPose, target), specialParams);
   while(!follower->isDone() && !interrupted) {
     const Pose pose{drive->getPose()};
+    const meters_per_second_t v{abs(drive->getVelocity())};
     const meter_t traveled{distance(initialPose, pose)};
-    double moveOutput{follower->getOutput(traveled, abs(pose.v))};
+    double moveOutput{follower->getOutput(traveled, v)};
     degree_t targetH{(distance(pose, target) < turnToThreshold) ?
                          linearH :
                          angle(pose, target)};
