@@ -27,12 +27,6 @@ Odometry::Odometry(std::unique_ptr<Odometer> iForward,
 Pose Odometry::update() {
   inch_t dxR{side->traveled()};
   inch_t dyR{forward->traveled()};
-  if(drive) {
-    const inch_t dyRDrive {drive->traveled()};
-    dyR = dyRDrive;
-    if(abs(dyRDrive) < abs(dyR)) {
-    }
-  }
   const radian_t dh{imu->getTraveled()};
   const double dhScalar{getValueAs<radian_t>(dh)};
   // Initial values are found by their Taylor series evaluated at dh = 0.
@@ -42,9 +36,16 @@ Pose Odometry::update() {
     // Arc length estimation using the distance from the center to the
     // odometers.
     dxR = 2.0 * sin(dh / 2.0) * (dxR / dhScalar + side->getFromCenter());
-    dyR = 2.0 * sin(dh / 2.0) * (dyR / dhScalar + 0_in);
+    dyR = 2.0 * sin(dh / 2.0) * (dyR / dhScalar + forward->getFromCenter());
     sinDHOverDH = sin(dh) / dhScalar;
     cosDHMinusOneOverDH = (cos(dh) - 1.0) / dhScalar;
+  }
+  if(drive) {
+    inch_t dyRDrive {drive->traveled()};
+    if(dh) {
+      dyRDrive = 2.0 * sin(dh / 2.0) * (dyRDrive / dhScalar);
+    }
+    dyR = (dyR + dyRDrive) / 2.0;
   }
   // Accounting for angular velocity.
   const inch_t dxRAdj{sinDHOverDH * dxR + cosDHMinusOneOverDH * dyR};
