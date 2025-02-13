@@ -112,7 +112,6 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
 
 bool Ladybrown::hasRing() const {
   return getClosestNamedPosition() != LadybrownState::Resting && limitSwitch->isPressed();
-  return getClosestNamedPosition() != LadybrownState::Resting && switchPressed;
 }
 
 bool Ladybrown::readyToScore() {
