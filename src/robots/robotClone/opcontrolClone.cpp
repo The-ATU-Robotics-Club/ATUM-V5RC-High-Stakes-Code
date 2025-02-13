@@ -57,7 +57,7 @@ void RobotClone::opcontrol() {
       GUI::Manager::easteregg();
     }
 
-    wait();
+    wait(20_ms);
   }
 }
 

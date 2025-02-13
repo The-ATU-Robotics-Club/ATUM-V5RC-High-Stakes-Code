@@ -259,7 +259,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   Logger logger;
   std::optional<degree_t> holdPosition;
   bool enableSlew{false};
-
   double voltage;
 };
 } // namespace atum

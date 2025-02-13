@@ -112,6 +112,7 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
 
 bool Ladybrown::hasRing() const {
   return getClosestNamedPosition() != LadybrownState::Resting && limitSwitch->isPressed();
+  return getClosestNamedPosition() != LadybrownState::Resting && switchPressed;
 }
 
 bool Ladybrown::readyToScore() {
@@ -230,7 +231,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       default: moveTo(state); break;
     }
-    wait();
+    wait(50_ms);
   }
   END_TASK
 
