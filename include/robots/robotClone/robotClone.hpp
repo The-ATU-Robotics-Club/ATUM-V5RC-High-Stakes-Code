@@ -15,7 +15,6 @@
 #include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
 
-
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -154,6 +153,31 @@ class RobotClone : public Robot {
    *
    */
   void configurationControls();
+
+  // Autonomous helpers.
+  /**
+   * @brief Contains the behavior for the 15" robot during programming skills.
+   *
+   */
+  void skills15();
+
+  /**
+   * @brief Contains the behavior for the 24" robot during programming skills.
+   *
+   */
+  void skills24();
+  
+  /**
+   * @brief Contains the behavior for the ending of the negative side routines. 
+   * 
+   */
+   void endOfNegativeRoutines();
+
+  /**
+   * @brief Contains the behavior for the ending of the positive side routines. 
+   * 
+   */
+  void endOfPositiveRoutines();
 
   /**
    * @brief Sets up the robot with the appropriate starting pose and flips poses
