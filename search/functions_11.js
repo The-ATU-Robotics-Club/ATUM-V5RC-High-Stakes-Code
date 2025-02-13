@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['unclamp_0',['unclamp',['../classatum_1_1GoalClamp.html#a6ddd302625aa07e3f3ce8c8224dbb0ca',1,'atum::GoalClamp']]],
-  ['update_1',['update',['../classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5',1,'atum::Odometry::update()'],['../classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c',1,'atum::Tracker::update()']]]
+  ['velocity_0',['velocity',['../classatum_1_1Kinematics.html#aa92f74dfcb51bdc9b108f45aec5a5ce5',1,'atum::Kinematics::velocity(const second_t dt, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb j=UnitsPerSecondCb{0.0})'],['../classatum_1_1Kinematics.html#a7d2ec0b6700f5c356437bbf82f7440ea',1,'atum::Kinematics::velocity(const Unit dx, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{ 0.0})']]]
 ];

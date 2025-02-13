@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['velocity_0',['velocity',['../classatum_1_1Kinematics.html#aa92f74dfcb51bdc9b108f45aec5a5ce5',1,'atum::Kinematics::velocity(const second_t dt, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{0.0}, const UnitsPerSecondCb j=UnitsPerSecondCb{0.0})'],['../classatum_1_1Kinematics.html#a7d2ec0b6700f5c356437bbf82f7440ea',1,'atum::Kinematics::velocity(const Unit dx, const UnitsPerSecond v0, const UnitsPerSecondSq a0=UnitsPerSecondSq{ 0.0})']]]
+  ['wait_0',['wait',['../time_8hpp.html#a092f688fb161d6bd9b1d12751a77d08e',1,'atum']]],
+  ['waituntil_1',['waitUntil',['../time_8hpp.html#a4e56b7b76cc993a5b07841fe62488978',1,'atum']]],
+  ['warn_2',['warn',['../classatum_1_1Logger.html#a9a6b391293c2448fd93aa4d34848e29d',1,'atum::Logger']]],
+  ['write_3',['write',['../classatum_1_1GUI_1_1Log.html#a950ffc4500ffe65bc9eae2e37049bf85',1,'atum::GUI::Log']]]
 ];

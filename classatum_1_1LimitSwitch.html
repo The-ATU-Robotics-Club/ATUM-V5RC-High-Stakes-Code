@@ -108,27 +108,24 @@ $(document).ready(function(){initNavTree('classatum_1_1LimitSwitch.html',''); in
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a71a70b26d2a16246f5ea83914833a94f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a71a70b26d2a16246f5ea83914833a94f">LimitSwitch</a> (const std::uint8_t port, const bool performCheck=true, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a71a70b26d2a16246f5ea83914833a94f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch based on the given port. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction.  <br /></td></tr>
-<tr class="separator:a71a70b26d2a16246f5ea83914833a94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a588353679b7282060a788ea6eebb61b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a588353679b7282060a788ea6eebb61b5">LimitSwitch</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const bool performCheck=true, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a588353679b7282060a788ea6eebb61b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch by detecting the port for the sensor. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction.  <br /></td></tr>
-<tr class="separator:a588353679b7282060a788ea6eebb61b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb9d5788abd4d46bd2cdd173780c7b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#afbb9d5788abd4d46bd2cdd173780c7b9">LimitSwitch</a> (const std::uint8_t port, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:afbb9d5788abd4d46bd2cdd173780c7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch based on the given port.  <br /></td></tr>
+<tr class="separator:afbb9d5788abd4d46bd2cdd173780c7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7473eb0a0dbf2bcb83d7a2428d7d317e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a7473eb0a0dbf2bcb83d7a2428d7d317e">LimitSwitch</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a7473eb0a0dbf2bcb83d7a2428d7d317e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch by detecting the port for the sensor.  <br /></td></tr>
+<tr class="separator:a7473eb0a0dbf2bcb83d7a2428d7d317e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2e93cc97029444a846809c64ebc6415"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#aa2e93cc97029444a846809c64ebc6415">isPressed</a> ()</td></tr>
 <tr class="memdesc:aa2e93cc97029444a846809c64ebc6415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the limit switch is pressed.  <br /></td></tr>
 <tr class="separator:aa2e93cc97029444a846809c64ebc6415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0d337857217579bfb2eaff4cf4543d54"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a0d337857217579bfb2eaff4cf4543d54">isNewlyPressed</a> ()</td></tr>
 <tr class="memdesc:a0d337857217579bfb2eaff4cf4543d54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the limit switch has been newly pressed.  <br /></td></tr>
 <tr class="separator:a0d337857217579bfb2eaff4cf4543d54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acede9244db605592a30c3f6911e003ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#acede9244db605592a30c3f6911e003ea">check</a> () const</td></tr>
-<tr class="memdesc:acede9244db605592a30c3f6911e003ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the test at construction passed or not.  <br /></td></tr>
-<tr class="separator:acede9244db605592a30c3f6911e003ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A wrapper around the VEX limit switch to support dynamic port initialization and to provide a way to check the sensor is working at the beginning of a match. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a71a70b26d2a16246f5ea83914833a94f" name="a71a70b26d2a16246f5ea83914833a94f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71a70b26d2a16246f5ea83914833a94f">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[1/2]</span></h2>
+<a id="afbb9d5788abd4d46bd2cdd173780c7b9" name="afbb9d5788abd4d46bd2cdd173780c7b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbb9d5788abd4d46bd2cdd173780c7b9">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -142,12 +139,6 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>performCheck</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
           <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
         </tr>
@@ -159,11 +150,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new limit switch based on the given port. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction. </p>
+<p>Constructs a new limit switch based on the given port. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
-    <tr><td class="paramname">expectPress</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -171,8 +161,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a588353679b7282060a788ea6eebb61b5" name="a588353679b7282060a788ea6eebb61b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a588353679b7282060a788ea6eebb61b5">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[2/2]</span></h2>
+<a id="a7473eb0a0dbf2bcb83d7a2428d7d317e" name="a7473eb0a0dbf2bcb83d7a2428d7d317e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7473eb0a0dbf2bcb83d7a2428d7d317e">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -186,12 +176,6 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>performCheck</em> = <code>true</code>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
           <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
         </tr>
@@ -203,11 +187,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new limit switch by detecting the port for the sensor. If performCheck is true, will see if the sensor is pressed upon construction; if not, assumes there is a malfunction. </p>
+<p>Constructs a new limit switch by detecting the port for the sensor. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
-    <tr><td class="paramname">expectPress</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -216,28 +199,6 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="acede9244db605592a30c3f6911e003ea" name="acede9244db605592a30c3f6911e003ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acede9244db605592a30c3f6911e003ea">&#9670;&#160;</a></span>check()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool atum::LimitSwitch::check </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns if the test at construction passed or not. </p>
-<dl class="section return"><dt>Returns</dt><dd>true </dd>
-<dd>
-false </dd></dl>
-
-</div>
-</div>
 <a id="a0d337857217579bfb2eaff4cf4543d54" name="a0d337857217579bfb2eaff4cf4543d54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0d337857217579bfb2eaff4cf4543d54">&#9670;&#160;</a></span>isNewlyPressed()</h2>
 
