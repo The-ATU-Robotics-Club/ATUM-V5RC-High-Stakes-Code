@@ -193,14 +193,14 @@ void RobotClone::autonSetup15() {
   LateralProfile moveToProfile{moveToMotionParams};
   AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{0.25});
-  PID::Parameters moveToVelocityPIDParams{3, 0, 0, 6};
+      std::make_unique<PID>(PID::Parameters{0.375});
+  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   const AccelerationConstants kA{2.5, 1.25};
   std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{35});
+      std::make_unique<PID>(PID::Parameters{60});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
       std::make_unique<LateralProfileFollower>(moveToProfile,
                                                moveToAcceptable,

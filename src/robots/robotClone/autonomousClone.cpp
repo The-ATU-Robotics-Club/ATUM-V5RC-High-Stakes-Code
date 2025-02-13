@@ -21,6 +21,60 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
      |_|___/     |___/_\_\_|_|_/__/
 
     */
+   setupRoutine(
+    { 2.5_tile, 0_tile, 270_deg});
+    intake->setSortOutColor(ColorSensor::Color::None);
+    goalRushWhenReady();
+    intake->index();
+    moveTo->forward({2_tile, 0_tile});
+    moveTo->reverse({2.5_tile, 0_tile});
+    intake->intake();
+    wait(1000_ms);
+    turn->toward(-25_deg);
+    moveTo->forward({2_tile, 2_tile});
+    intake->index();
+    wait(100_ms);
+    turn->toward(90_deg);
+    moveTo->reverse({1_tile, 2_tile},
+                    LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
+    wait(100_ms);
+    goalClamp->clamp();
+    wait(100_ms);
+    turn->toward(180_deg);
+    intake->intake(); 
+    moveTo->forward({1_tile, 1_tile}); 
+    wait(1000_ms);
+    turn->toward(-45_deg);
+    intake->intake();
+    moveTo->forward({0_tile, 2.25_tile});
+    wait(1000_ms);
+    turn->toward(90_deg);
+    moveTo->forward({2_tile, 2_tile});
+    turn->toward(45_deg);
+    wait(100_ms);
+    intake->intake();
+    moveTo->forward({3_tile, 2.75_tile});
+    wait(1000_ms);
+    moveTo->reverse({2_tile, 2_tile});
+    turn->toward(225_deg);
+    moveTo->reverse({2.65_tile, 2.65_tile});
+    wait(100_ms);
+    goalClamp->unclamp();
+    moveTo->forward({2_tile, 2_tile});
+    turn->toward(270_deg);
+    /*intake->load();
+    moveTo->forward({0_tile, 2.5_tile});
+    wait(100_ms);
+    turn->toward(0_deg);
+    moveTo->reverse({0_tile, 2_tile});
+    ladybrown->extend();
+    moveTo->forward({0_tile, 3_tile});
+    wait(100_ms);
+    moveTo->reverse({0_tile, 2_tile});*/
+    
+
+
+
   } else if(id == ID24) {
     /*
           ___ _ _  _ _   ___ _   _ _ _
