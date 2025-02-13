@@ -13,12 +13,11 @@ GoalClamp::GoalClamp(std::unique_ptr<Piston> iPiston,
 }
 
 bool GoalClamp::hasGoal() {
-  if(limitSwitch1 && limitSwitch1->check() && limitSwitch2 &&
-     limitSwitch2->check()) {
+  if(limitSwitch1 && limitSwitch2) {
     return limitSwitch1->isPressed() && limitSwitch2->isPressed();
-  } else if(limitSwitch1 && limitSwitch1->check()) {
+  } else if(limitSwitch1) {
     return limitSwitch1->isPressed();
-  } else if(limitSwitch2 && limitSwitch2->check()) {
+  } else if(limitSwitch2) {
     return limitSwitch2->isPressed();
   }
   return false;

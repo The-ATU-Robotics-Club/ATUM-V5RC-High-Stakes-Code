@@ -111,17 +111,11 @@ LadybrownState Ladybrown::getClosestNamedPosition() const {
 }
 
 bool Ladybrown::hasRing() const {
-  return getClosestNamedPosition() != LadybrownState::Resting &&
-         limitSwitch->check() && limitSwitch->isPressed();
+  return getClosestNamedPosition() != LadybrownState::Resting && limitSwitch->isPressed();
 }
 
 bool Ladybrown::readyToScore() {
-  return getClosestNamedPosition() != LadybrownState::Loading &&
-         (hasRing() || noRingDetection());
-}
-
-bool Ladybrown::noRingDetection() {
-  return !limitSwitch->check();
+  return getClosestNamedPosition() != LadybrownState::Loading && hasRing();
 }
 
 bool Ladybrown::mayConflictWithIntake() {

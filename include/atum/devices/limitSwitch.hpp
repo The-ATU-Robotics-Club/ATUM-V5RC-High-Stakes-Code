@@ -23,28 +23,20 @@ class LimitSwitch {
   public:
   /**
    * @brief Constructs a new limit switch based on the given port.
-   * If performCheck is true, will see if the sensor is pressed upon
-   * construction; if not, assumes there is a malfunction.
    *
    * @param port
-   * @param expectPress
    * @param loggerLevel
    */
   LimitSwitch(const std::uint8_t port,
-              const bool performCheck = true,
               const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Constructs a new limit switch by detecting the port for the sensor.
-   * If performCheck is true, will see if the sensor is pressed upon
-   * construction; if not, assumes there is a malfunction.
    *
    * @param port
-   * @param expectPress
    * @param loggerLevel
    */
   LimitSwitch(const ADIExtenderPort &port,
-              const bool performCheck = true,
               const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -63,17 +55,8 @@ class LimitSwitch {
    */
   bool isNewlyPressed();
 
-  /**
-   * @brief Returns if the test at construction passed or not.
-   *
-   * @return true
-   * @return false
-   */
-  bool check() const;
-
   private:
   pros::adi::DigitalIn limitSwitch;
   Logger logger;
-  bool passedTest{true};
 };
 } // namespace atum

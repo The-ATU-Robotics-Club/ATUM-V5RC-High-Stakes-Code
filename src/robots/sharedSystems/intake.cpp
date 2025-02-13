@@ -1,5 +1,6 @@
 #include "intake.hpp"
 
+
 namespace atum {
 Intake::Intake(std::unique_ptr<Motor> iMtr,
                std::unique_ptr<ColorSensor> iColorSensor,
@@ -102,8 +103,7 @@ void Intake::unjamming() {
 }
 
 void Intake::sorting() {
-  if(!ladybrown->noRingDetection() &&
-     ladybrown->getClosestNamedPosition() == LadybrownState::Loading) {
+  if(ladybrown->getClosestNamedPosition() == LadybrownState::Loading) {
     ladybrown->prepare();
   }
   mtr->moveVoltage(12);
@@ -164,10 +164,8 @@ TASK_DEFINITIONS_FOR(Intake) {
     switch(state) {
       case IntakeState::Idle: mtr->brake(); break;
       case IntakeState::Loading:
-        if((ladybrown->noRingDetection() &&
-            ladybrown->getClosestNamedPosition() == LadybrownState::Resting) ||
-           (ladybrown->getClosestNamedPosition() != LadybrownState::Loading &&
-            !ladybrown->noRingDetection() && !ladybrown->hasRing())) {
+        if(ladybrown->getClosestNamedPosition() != LadybrownState::Loading &&
+           !ladybrown->hasRing()) {
           ladybrown->load();
         }
         // fall through

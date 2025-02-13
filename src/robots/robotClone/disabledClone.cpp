@@ -17,7 +17,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     intakeSetup24();
     goalSetup24();
     autonSetup24();
-    led = std::make_unique<LED>(ADIExtenderPort{16, 'H'}, 8);
+    led = std::make_unique<LED>(ADIExtenderPort{16, 'E'}, 8);
   }
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
@@ -75,7 +75,7 @@ void RobotClone::ladybrownSetup15() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, true)};
   std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>((ADIExtenderPort{16, 'A'}, false))};
+      std::make_unique<LimitSwitch>((ADIExtenderPort{21, 'A'}))};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 9_deg},
@@ -143,9 +143,9 @@ void RobotClone::goalSetup15() {
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('G', true, true)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'})};
   std::unique_ptr<LimitSwitch> limitSwitch2{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'H'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'H'})};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));
@@ -153,7 +153,7 @@ void RobotClone::goalSetup15() {
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('F')};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('H')};
   std::unique_ptr<LimitSwitch> limitSwitchRush{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'F'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'F'})};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
                                         std::move(goalRushClamp),
                                         std::move(limitSwitchRush));
@@ -270,8 +270,8 @@ void RobotClone::ladybrownSetup24() {
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('A')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, false)};
-  std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>((ADIExtenderPort{16, 'G'}, false))};
+      std::unique_ptr<LimitSwitch> ladybrownSwitch{
+          std::make_unique<LimitSwitch>((ADIExtenderPort{16, 'H'}))};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 20_deg},
@@ -339,9 +339,9 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('H', false, false)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'A'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'A'})};
   std::unique_ptr<LimitSwitch> limitSwitch2{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'B'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'B'})};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));
@@ -349,7 +349,7 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('G')};
   std::unique_ptr<LimitSwitch> limitSwitchRush{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'D'}, false)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'D'})};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
                                         std::move(goalRushClamp),
                                         std::move(limitSwitchRush));

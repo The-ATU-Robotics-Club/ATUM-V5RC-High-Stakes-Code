@@ -93,7 +93,7 @@ void RobotClone::ladybrownControls() {
 
   switch(remote.getLTrigger()) {
     case -1:
-      if(ladybrown->noRingDetection() || !ladybrown->hasRing()) {
+      if(!ladybrown->hasRing()) {
         ladybrown->rest();
       }
       break;
@@ -116,21 +116,13 @@ void RobotClone::ladybrownControls() {
     case 1: intake->load(); break;
     default: intake->stop(); break;
   }
-
-  static bool recentlyUnclamped{false};
-  if(goalClamp->hasGoal() && !recentlyUnclamped) {
-    goalClamp->clamp();
-    recentlyUnclamped = true;
-  } else if(!goalClamp->hasGoal()) {
-    recentlyUnclamped = false;
-  }
 }
 
 void RobotClone::intakeControls() {
   remote.print(2, "MODE: Intake");
 
   // Only go down if you know it's okay to go down.
-  if(!ladybrown->noRingDetection() && !ladybrown->hasRing()) {
+  if(!ladybrown->hasRing()) {
     ladybrown->rest();
   }
 
