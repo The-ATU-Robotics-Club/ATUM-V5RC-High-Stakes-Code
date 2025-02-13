@@ -206,5 +206,6 @@ class RobotClone : public Robot {
   bool useHangControls{false};
   double speedMultiplier{1.0};
   bool scored{false};
+  bool recentlyUnclamped{false};
 };
 } // namespace atum

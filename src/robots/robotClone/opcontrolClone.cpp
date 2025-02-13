@@ -116,6 +116,15 @@ void RobotClone::ladybrownControls() {
     case 1: intake->load(); break;
     default: intake->stop(); break;
   }
+
+  if(remote.getHold(Remote::Button::L2)) {
+    goalClamp->unclamp();
+  } else if(goalClamp->hasGoal() && !recentlyUnclamped) {
+    goalClamp->clamp();
+    recentlyUnclamped = true;
+  } else if(!goalClamp->hasGoal()) {
+    recentlyUnclamped = false;
+  }
 }
 
 void RobotClone::intakeControls() {
@@ -138,10 +147,7 @@ void RobotClone::intakeControls() {
     default: intake->stop(); break;
   }
 
-  static bool recentlyUnclamped{false};
-  if(remote.getHold(Remote::Button::L2)) {
-    goalClamp->unclamp();
-  } else if(goalClamp->hasGoal() && !recentlyUnclamped) {
+  if(goalClamp->hasGoal() && !recentlyUnclamped) {
     goalClamp->clamp();
     recentlyUnclamped = true;
   } else if(!goalClamp->hasGoal()) {
