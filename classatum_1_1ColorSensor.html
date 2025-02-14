@@ -121,12 +121,12 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac7713ebcf6bc103fdee7f806f704f189"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#ac7713ebcf6bc103fdee7f806f704f189">ColorSensor</a> (const std::int8_t port, const std::vector&lt; <a class="el" href="structatum_1_1ColorSensor_1_1HueField.html">HueField</a> &gt; iHueFields, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:ac7713ebcf6bc103fdee7f806f704f189"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> with the given port. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields.  <br /></td></tr>
-<tr class="separator:ac7713ebcf6bc103fdee7f806f704f189"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0392263b382eee7453186d46a9a1f488"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a0392263b382eee7453186d46a9a1f488">ColorSensor</a> (const std::vector&lt; <a class="el" href="structatum_1_1ColorSensor_1_1HueField.html">HueField</a> &gt; iHueFields, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a0392263b382eee7453186d46a9a1f488"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> by finding the port dynamically. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields.  <br /></td></tr>
-<tr class="separator:a0392263b382eee7453186d46a9a1f488"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950cd4baa56f620a63e0a7b0f5d73847"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a950cd4baa56f620a63e0a7b0f5d73847">ColorSensor</a> (const <a class="el" href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">PortsList</a> &amp;ports, const std::vector&lt; <a class="el" href="structatum_1_1ColorSensor_1_1HueField.html">HueField</a> &gt; iHueFields, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a950cd4baa56f620a63e0a7b0f5d73847"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new color sensor object with port numbers given.  <br /></td></tr>
+<tr class="separator:a950cd4baa56f620a63e0a7b0f5d73847"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acee2f5371bb21ea77f7c45c5e63d1121"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#acee2f5371bb21ea77f7c45c5e63d1121">ColorSensor</a> (const std::size_t expectedAmount, const std::vector&lt; <a class="el" href="structatum_1_1ColorSensor_1_1HueField.html">HueField</a> &gt; iHueFields, <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:acee2f5371bb21ea77f7c45c5e63d1121"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new color sensor object with ports dynamically found. Minimum amount refers to the acceptable minimum amount of sensors to be found to not trigger a warning (zero sensors will trigger an error).  <br /></td></tr>
+<tr class="separator:acee2f5371bb21ea77f7c45c5e63d1121"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classatum_1_1ColorSensor.html#a817dd3078f72068ae0b39adcc42dcb97">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a26cb4e38ef4adf2bd6bba32f65aebd44">getColor</a> ()</td></tr>
 <tr class="memdesc:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the detected color. Will return None if outside of proximity threshold given (unless 0). Turns <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> on if something is nearby.  <br /></td></tr>
 <tr class="separator:a26cb4e38ef4adf2bd6bba32f65aebd44"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,9 +139,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2bde5b21f0490af0ead152e6d57bcf59"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a2bde5b21f0490af0ead152e6d57bcf59">resetCount</a> ()</td></tr>
 <tr class="memdesc:a2bde5b21f0490af0ead152e6d57bcf59"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the count for the number of objects that have passed by the sensor.  <br /></td></tr>
 <tr class="separator:a2bde5b21f0490af0ead152e6d57bcf59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61bfb8618409f707da827f49dcb40fdf"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a61bfb8618409f707da827f49dcb40fdf">getRawHue</a> ()</td></tr>
-<tr class="memdesc:a61bfb8618409f707da827f49dcb40fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning purposes, prefer getColor.  <br /></td></tr>
-<tr class="separator:a61bfb8618409f707da827f49dcb40fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00c5f8f3832cb1e2efbceb07052c4fa9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9">check</a> ()</td></tr>
 <tr class="memdesc:a00c5f8f3832cb1e2efbceb07052c4fa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the color sensor is functioning by seeing if it is installed.  <br /></td></tr>
 <tr class="separator:a00c5f8f3832cb1e2efbceb07052c4fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,8 +175,8 @@ Static Public Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac7713ebcf6bc103fdee7f806f704f189" name="ac7713ebcf6bc103fdee7f806f704f189"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac7713ebcf6bc103fdee7f806f704f189">&#9670;&#160;</a></span>ColorSensor() <span class="overload">[1/2]</span></h2>
+<a id="a950cd4baa56f620a63e0a7b0f5d73847" name="a950cd4baa56f620a63e0a7b0f5d73847"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a950cd4baa56f620a63e0a7b0f5d73847">&#9670;&#160;</a></span>ColorSensor() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -187,8 +184,8 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">atum::ColorSensor::ColorSensor </td>
           <td>(</td>
-          <td class="paramtype">const std::int8_t&#160;</td>
-          <td class="paramname"><em>port</em>, </td>
+          <td class="paramtype">const <a class="el" href="misc_8hpp.html#a6a7b355273288f05264089a9f35493d4">PortsList</a> &amp;&#160;</td>
+          <td class="paramname"><em>ports</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -199,7 +196,7 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
           <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
         </tr>
         <tr>
@@ -210,12 +207,13 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> with the given port. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields. </p>
+<p>Constructs a new color sensor object with port numbers given. </p>
+<p>Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields.</p>
 <p>Also turns on <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> to max brightness and disables gestures.</p>
-<p>By providing a port, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
+<p>By providing ports, reconnecting is supported whenever the device isn't connected at the beginning of the match.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">port</td><td></td></tr>
+    <tr><td class="paramname">ports</td><td></td></tr>
     <tr><td class="paramname">iHueFields</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
@@ -224,8 +222,8 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a0392263b382eee7453186d46a9a1f488" name="a0392263b382eee7453186d46a9a1f488"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0392263b382eee7453186d46a9a1f488">&#9670;&#160;</a></span>ColorSensor() <span class="overload">[2/2]</span></h2>
+<a id="acee2f5371bb21ea77f7c45c5e63d1121" name="acee2f5371bb21ea77f7c45c5e63d1121"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acee2f5371bb21ea77f7c45c5e63d1121">&#9670;&#160;</a></span>ColorSensor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -233,13 +231,19 @@ Static Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">atum::ColorSensor::ColorSensor </td>
           <td>(</td>
+          <td class="paramtype">const std::size_t&#160;</td>
+          <td class="paramname"><em>expectedAmount</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const std::vector&lt; <a class="el" href="structatum_1_1ColorSensor_1_1HueField.html">HueField</a> &gt;&#160;</td>
           <td class="paramname"><em>iHueFields</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
           <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
         </tr>
         <tr>
@@ -250,10 +254,12 @@ Static Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructs a new <a class="el" href="classatum_1_1ColorSensor.html">ColorSensor</a> by finding the port dynamically. Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields. </p>
+<p>Constructs a new color sensor object with ports dynamically found. Minimum amount refers to the acceptable minimum amount of sensors to be found to not trigger a warning (zero sensors will trigger an error). </p>
+<p>Hue fields given should form a partition (i.e., they shouldn't overlap; think of centers and threshold as "angles"), otherwise will choose color based on order given when in the threshold for multiple fields.</p>
 <p>Also turns on <a class="el" href="classatum_1_1LED.html" title="Straightforward wrapper around the PROS LED class to support dynamically finding ADI extenders and ea...">LED</a> to max brightness and disables gestures.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">expectedAmount</td><td></td></tr>
     <tr><td class="paramname">iHueFields</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
@@ -323,26 +329,6 @@ false </dd></dl>
 
 <p>Gets the number of objects that have passed by the sensor. </p>
 <dl class="section return"><dt>Returns</dt><dd>int </dd></dl>
-
-</div>
-</div>
-<a id="a61bfb8618409f707da827f49dcb40fdf" name="a61bfb8618409f707da827f49dcb40fdf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61bfb8618409f707da827f49dcb40fdf">&#9670;&#160;</a></span>getRawHue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">double atum::ColorSensor::getRawHue </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the raw value for hue given by the sensor and logs the result. Mostly provided for tuning purposes, prefer getColor. </p>
-<dl class="section return"><dt>Returns</dt><dd>double </dd></dl>
 
 </div>
 </div>

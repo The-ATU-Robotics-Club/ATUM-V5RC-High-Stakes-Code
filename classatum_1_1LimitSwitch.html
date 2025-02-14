@@ -108,12 +108,12 @@ $(document).ready(function(){initNavTree('classatum_1_1LimitSwitch.html',''); in
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afbb9d5788abd4d46bd2cdd173780c7b9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#afbb9d5788abd4d46bd2cdd173780c7b9">LimitSwitch</a> (const std::uint8_t port, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:afbb9d5788abd4d46bd2cdd173780c7b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch based on the given port.  <br /></td></tr>
-<tr class="separator:afbb9d5788abd4d46bd2cdd173780c7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7473eb0a0dbf2bcb83d7a2428d7d317e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a7473eb0a0dbf2bcb83d7a2428d7d317e">LimitSwitch</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a7473eb0a0dbf2bcb83d7a2428d7d317e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch by detecting the port for the sensor.  <br /></td></tr>
-<tr class="separator:a7473eb0a0dbf2bcb83d7a2428d7d317e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae9f499f57a3ebc0ada363b460bf49db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#aae9f499f57a3ebc0ada363b460bf49db">LimitSwitch</a> (const std::uint8_t port, int iFilterSize=1, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:aae9f499f57a3ebc0ada363b460bf49db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch based on the given port.  <br /></td></tr>
+<tr class="separator:aae9f499f57a3ebc0ada363b460bf49db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45e0edd8812f302605fc477f2e598518"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#a45e0edd8812f302605fc477f2e598518">LimitSwitch</a> (const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;port, int iFilterSize=1, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a45e0edd8812f302605fc477f2e598518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new limit switch by detecting the port for the sensor.  <br /></td></tr>
+<tr class="separator:a45e0edd8812f302605fc477f2e598518"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2e93cc97029444a846809c64ebc6415"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1LimitSwitch.html#aa2e93cc97029444a846809c64ebc6415">isPressed</a> ()</td></tr>
 <tr class="memdesc:aa2e93cc97029444a846809c64ebc6415"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the limit switch is pressed.  <br /></td></tr>
 <tr class="separator:aa2e93cc97029444a846809c64ebc6415"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,8 +124,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A wrapper around the VEX limit switch to support dynamic port initialization and to provide a way to check the sensor is working at the beginning of a match. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="afbb9d5788abd4d46bd2cdd173780c7b9" name="afbb9d5788abd4d46bd2cdd173780c7b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afbb9d5788abd4d46bd2cdd173780c7b9">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[1/2]</span></h2>
+<a id="aae9f499f57a3ebc0ada363b460bf49db" name="aae9f499f57a3ebc0ada363b460bf49db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae9f499f57a3ebc0ada363b460bf49db">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -135,6 +135,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const std::uint8_t&#160;</td>
           <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iFilterSize</em> = <code>1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -151,9 +157,11 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new limit switch based on the given port. </p>
+<p>Filter size refers to how many presses are counted while determining if the switch is down or not; used for debouncing purposes.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
+    <tr><td class="paramname">iFilterSize</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
@@ -161,8 +169,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7473eb0a0dbf2bcb83d7a2428d7d317e" name="a7473eb0a0dbf2bcb83d7a2428d7d317e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7473eb0a0dbf2bcb83d7a2428d7d317e">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[2/2]</span></h2>
+<a id="a45e0edd8812f302605fc477f2e598518" name="a45e0edd8812f302605fc477f2e598518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45e0edd8812f302605fc477f2e598518">&#9670;&#160;</a></span>LimitSwitch() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -172,6 +180,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classatum_1_1ADIExtenderPort.html">ADIExtenderPort</a> &amp;&#160;</td>
           <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>iFilterSize</em> = <code>1</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -188,9 +202,11 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Constructs a new limit switch by detecting the port for the sensor. </p>
+<p>Filter size refers to how many presses are counted while determining if the switch is down or not; used for debouncing purposes.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">port</td><td></td></tr>
+    <tr><td class="paramname">filterSize</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
   </dd>
