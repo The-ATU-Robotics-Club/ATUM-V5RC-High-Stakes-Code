@@ -15,55 +15,74 @@ namespace atum {
 
 */
 void RobotClone::skills15() {
-  setupRoutine({2.5_tile, 0_tile, 270_deg});
-  intake->setSortOutColor(ColorSensor::Color::None);
-  goalRushWhenReady();
+  setupRoutine({-2.5_tile, 1.5_tile, 90_deg});
+  intake->setSortOutColor(ColorSensor::Color::Blue);
   intake->index();
-  moveTo->forward({2_tile, 0_tile});
-  moveTo->reverse({2.5_tile, 0_tile});
+  moveTo->forward({-0.5_tile, 1.5_tile});
+  moveTo->forward({0_tile, 2_tile});
+  wait(1_s);
+  clampWhenReady();
+  moveTo->reverse({-1.5_tile, 2_tile},
+        LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
   intake->intake();
-  wait(1000_ms);
-  turn->toward(-25_deg);
-  moveTo->forward({2_tile, 2_tile});
-  intake->index();
-  wait(100_ms);
-  turn->toward(90_deg);
-  moveTo->reverse({1_tile, 2_tile},
-                  LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
-  wait(100_ms);
-  goalClamp->clamp();
-  wait(100_ms);
-  turn->toward(180_deg);
-  intake->intake();
-  moveTo->forward({1_tile, 1_tile});
-  wait(1000_ms);
-  turn->toward(-45_deg);
-  intake->intake();
-  moveTo->forward({0_tile, 2.25_tile});
-  wait(1000_ms);
-  turn->toward(90_deg);
-  moveTo->forward({2_tile, 2_tile});
-  turn->toward(45_deg);
-  wait(100_ms);
-  intake->intake();
-  moveTo->forward({3_tile, 2.75_tile});
-  wait(1000_ms);
-  moveTo->reverse({2_tile, 2_tile});
-  turn->toward(225_deg);
-  moveTo->reverse({2.65_tile, 2.65_tile});
-  wait(100_ms);
+  moveTo->forward({-1_tile, 1_tile});
+  wait(1_s);
+  moveTo->forward({-3_tile, 3_tile},
+        LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
+  moveTo->reverse({-2.75_tile, 2.75_tile});
+  turn->awayFrom(-45_deg);
   goalClamp->unclamp();
-  moveTo->forward({2_tile, 2_tile});
-  turn->toward(270_deg);
-  /*intake->load();
-  moveTo->forward({0_tile, 2.5_tile});
-  wait(100_ms);
+  wait(0.5_s);
+  moveTo->forward({-.25_tile, 2.5_tile});
+  intake->load();
+  moveTo->forward({.5_tile, 2.5_tile},
+          LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
+  wait(1_s);
+  moveTo->reverse({0_tile, 2.5_tile});
   turn->toward(0_deg);
-  moveTo->reverse({0_tile, 2_tile});
-  ladybrown->extend();
-  moveTo->forward({0_tile, 3_tile});
-  wait(100_ms);
-  moveTo->reverse({0_tile, 2_tile});*/
+  ladybrown->fullyExtend();
+  moveTo->forward({0_tile, 2.8_tile},
+          LateralProfile::Parameters{15_in_per_s, 15_in_per_s_sq});
+  wait(1_s);
+  moveTo->reverse({0_tile, 2.5_tile},
+          LateralProfile::Parameters{45_in_per_s, 45_in_per_s_sq});
+  ladybrown->rest();
+  clampWhenReady();
+  moveTo->reverse({1.2_tile, .8_tile, 135_deg}, // check
+          LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
+  wait(1_s);
+  intake->intake();
+  moveTo->forward({1_tile, 2.2_tile});
+  wait(1_s);
+  moveTo->forward({2.2_tile, 0.8_tile});
+  wait(1_s);
+  moveTo->forward({2_tile, 2.2_tile});
+  wait(1_s);
+  for(int i{0}; i < 2; i++) {
+  moveTo->forward({3_tile, 3_tile},
+          LateralProfile::Parameters{40_in_per_s, 40_in_per_s_sq});
+          wait(.5_s);
+  moveTo->reverse({2.5_tile, 2.5_tile});
+  wait(.5_s);
+  }
+  turn->awayFrom(45_deg);
+  moveTo->reverse({2.8_tile, 2.8_tile},
+          LateralProfile::Parameters{10_in_per_s, 10_in_per_s_sq});
+  goalClamp->unclamp();
+  wait(.5_s);
+  moveTo->forward({2.5_tile, -0.5_tile});
+  wait(1_s);
+  clampWhenReady();
+  moveTo->reverse({1.8_tile, 0.2_tile},
+          LateralProfile::Parameters{20_in_per_s, 20_in_per_s_sq});
+  moveTo->reverse({1.5_tile, 1.5_tile});
+  goalClamp->unclamp();
+  ladybrown->fullyExtend();
+  goalRush->extendArm();
+  moveTo->reverse({1_tile, 1_tile});
+  moveTo->reverse({.25_tile, .25_tile},
+         LateralProfile::Parameters{38_in_per_s, 38_in_per_s_sq});
+         
 }
 
 /*
@@ -75,39 +94,65 @@ void RobotClone::skills15() {
 */
 void RobotClone::skills24() {
   setupRoutine({-2.5_tile, 0_tile, 90_deg});
-  intake->setSortOutColor(ColorSensor::Color::None);
-  goalRushWhenReady();
+  intake->setSortOutColor(ColorSensor::Color::Blue);
+  clampWhenReady();
   intake->index();
   moveTo->forward({-2_tile, 0_tile});
-  moveTo->reverse({-2.5_tile, 0_tile});
+  wait(1_s);
+  moveTo->reverse({-2.8_tile, 0_tile});
   intake->intake();
   wait(1_s);
-  turn->toward(155_deg);
-  moveTo->forward({-2_tile, -2_tile});
   intake->index();
-  wait(100_ms);
-  turn->toward(270_deg);
+  moveTo->forward({-2_tile, -2_tile});
+  wait(1_s);
   moveTo->reverse({-1_tile, -2_tile},
                   LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
-  wait(100_ms);
-  goalClamp->clamp();
-  wait(100_ms);
-  turn->toward(0_deg);
+  wait(500_ms);
   intake->intake();
   moveTo->forward({-1_tile, -.75_tile});
-  wait(100_ms);
-  turn->toward(135_deg);
-  intake->intake();
+  wait(1_s);
+  moveTo->forward({0_tile, -2_tile});// x -2 -> 0
+  wait(1_s);
   moveTo->forward({-2_tile, -2_tile});
-  turn->toward(270_deg);
-  moveTo->forward({-2_tile, -2_tile});
-  turn->toward(225_deg);
-  intake->intake();
+  wait(1_s);
   moveTo->forward({-2.75_tile, -2.75_tile});
+  wait(1_s);
   moveTo->reverse({-2_tile, -2_tile});
-  turn->toward(45_deg);
   moveTo->reverse({-2.75_tile, -2.75_tile});
   goalClamp->unclamp();
+  intake->load();
+  moveTo->forward({0_tile, -2.5_tile});
+  clampWhenReady();
+  wait(1_s);
+  ladybrown->fullyExtend();
+  moveTo->forward({0_tile, -2.75_tile});
+  wait(500_ms);
+  moveTo->reverse({0_tile, -2.5_tile});
+  ladybrown->rest();
+  intake->index();
+  moveTo->forward({1_tile, -2_tile});
+  moveTo->reverse({1_tile, -1_tile},
+    LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
+  wait(100_ms);
+  goalClamp->clamp();
+  intake->intake();
+  moveTo->forward({2_tile, -1_tile});
+  wait(500_ms);
+  moveTo->forward({2_tile, -2_tile});
+  wait(500_ms);
+  for(int i{0}; i < 2; i++) {
+  moveTo->forward({2.75_tile, -2.75_tile});//reverse after this?
+  moveTo->reverse({2.25_tile, -2.25_tile});
+  wait(500_ms);
+  }
+  moveTo->reverse({2.75_tile, -2.75_tile});
+  wait(100_ms);
+  goalClamp->unclamp();
+  moveTo->forward({2_tile, -2_tile});
+  ladybrown->fullyExtend();
+  goalRush->extendArm();
+  moveTo->reverse({.25_tile, -.25_tile},
+    LateralProfile::Parameters{38.25_in_per_s, 38.25_in_per_s_sq});
 }
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
