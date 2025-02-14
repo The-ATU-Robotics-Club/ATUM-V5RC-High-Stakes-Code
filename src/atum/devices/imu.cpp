@@ -77,7 +77,7 @@ degree_t IMU::getTraveled() {
 }
 
 void IMU::initializeIMUs() {
-  for(const auto &imu : imus) {
+  for(auto &imu : imus) {
     imu->set_data_rate(5); // Increase refresh rate of IMUs.
     imu->reset();
   }
@@ -85,7 +85,7 @@ void IMU::initializeIMUs() {
   bool stillCalibrating{true};
   while(stillCalibrating) {
     stillCalibrating = false;
-    for(const auto &imu : imus) {
+    for(auto &imu : imus) {
       stillCalibrating = stillCalibrating || imu->is_calibrating();
     }
     wait(10_ms);

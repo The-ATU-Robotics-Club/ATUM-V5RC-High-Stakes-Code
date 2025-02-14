@@ -10,7 +10,7 @@
 #pragma once
 
 #include "../../pros/optical.hpp"
-#include "../time/time.hpp"
+#include "../time/timer.hpp"
 #include "../utility/logger.hpp"
 #include <memory>
 #include <vector>
@@ -45,37 +45,43 @@ class ColorSensor {
   };
 
   /**
-   * @brief Constructs a new ColorSensor with the given port. Hue fields given
-   * should form a partition (i.e., they shouldn't overlap; think of centers and
-   * threshold as "angles"), otherwise will choose color based on order given
-   * when in the threshold for multiple fields.
+   * @brief Constructs a new color sensor object with port numbers given.
+   *
+   * Hue fields given should form a partition (i.e., they shouldn't overlap;
+   * think of centers and threshold as "angles"), otherwise will choose color
+   * based on order given when in the threshold for multiple fields.
    *
    * Also turns on LED to max brightness and disables gestures.
    *
-   * By providing a port, reconnecting is supported whenever the device isn't
+   * By providing ports, reconnecting is supported whenever the device isn't
    * connected at the beginning of the match.
    *
-   * @param port
+   * @param ports
    * @param iHueFields
    * @param loggerLevel
    */
-  ColorSensor(const std::int8_t port,
+  ColorSensor(const PortsList &ports,
               const std::vector<HueField> iHueFields,
-              const Logger::Level loggerLevel = Logger::Level::Info);
+              Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
-   * @brief Constructs a new ColorSensor by finding the port dynamically. Hue
-   * fields given should form a partition (i.e., they shouldn't overlap; think
-   * of centers and threshold as "angles"), otherwise will choose color based on
-   * order given when in the threshold for multiple fields.
+   * @brief Constructs a new color sensor object with ports dynamically found.
+   * Minimum amount refers to the acceptable minimum amount of sensors to be
+   * found to not trigger a warning (zero sensors will trigger an error).
+   *
+   * Hue fields given should form a partition (i.e., they shouldn't overlap;
+   * think of centers and threshold as "angles"), otherwise will choose color
+   * based on order given when in the threshold for multiple fields.
    *
    * Also turns on LED to max brightness and disables gestures.
    *
+   * @param expectedAmount
    * @param iHueFields
    * @param loggerLevel
    */
-  ColorSensor(const std::vector<HueField> iHueFields,
-              const Logger::Level loggerLevel = Logger::Level::Info);
+  ColorSensor(const std::size_t expectedAmount,
+              const std::vector<HueField> iHueFields,
+              Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Gets the detected color. Will return None if outside of proximity
@@ -108,14 +114,6 @@ class ColorSensor {
   void resetCount();
 
   /**
-   * @brief Returns the raw value for hue given by the sensor and logs the
-   * result. Mostly provided for tuning purposes, prefer getColor.
-   *
-   * @return double
-   */
-  double getRawHue();
-
-  /**
    * @brief Checks if the color sensor is functioning by seeing if it is
    * installed.
    *
@@ -130,7 +128,7 @@ class ColorSensor {
    * near according to the brain device menu.
    *
    */
-  static constexpr int32_t nearProximity{250};
+  static constexpr int32_t nearProximity{240};
 
   /**
    * @brief Turns the LED on, sets the integration time, and disables gestures.
@@ -138,11 +136,20 @@ class ColorSensor {
    */
   void initializeColorSensor();
 
-  std::unique_ptr<pros::v5::Optical> colorSensor;
+  /**
+   * @brief Gets the
+   *
+   * @return Color
+   */
+  Color rawGetColor();
+
+  std::vector<std::unique_ptr<pros::Optical>> opticals;
   std::vector<HueField> hueFields;
   Logger logger;
+  Timer timer{refreshRate};
   int count{0};
   bool previousNearby{false};
+  Color colorReading{Color::None};
 };
 
 /**

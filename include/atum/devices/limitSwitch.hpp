@@ -9,8 +9,10 @@
 
 #pragma once
 
+#include "../time/timer.hpp"
 #include "../utility/logger.hpp"
 #include "adi.hpp"
+
 
 namespace atum {
 /**
@@ -24,19 +26,29 @@ class LimitSwitch {
   /**
    * @brief Constructs a new limit switch based on the given port.
    *
+   * Filter size refers to how many presses are counted while determining if the
+   * switch is down or not; used for debouncing purposes.
+   *
    * @param port
+   * @param iFilterSize
    * @param loggerLevel
    */
   LimitSwitch(const std::uint8_t port,
+              int iFilterSize = 1,
               const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Constructs a new limit switch by detecting the port for the sensor.
    *
+   * Filter size refers to how many presses are counted while determining if the
+   * switch is down or not; used for debouncing purposes.
+   *
    * @param port
+   * @param filterSize
    * @param loggerLevel
    */
   LimitSwitch(const ADIExtenderPort &port,
+              int iFilterSize = 1,
               const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -56,7 +68,19 @@ class LimitSwitch {
   bool isNewlyPressed();
 
   private:
+  /**
+   * @brief Returns true if more than fifty percent of the values in presses are
+   * true.
+   *
+   * @return true
+   * @return false
+   */
+  bool debounce() const;
+
   pros::adi::DigitalIn limitSwitch;
+  int filterSize;
+  std::vector<bool> presses;
+  Timer timer{10_ms};
   Logger logger;
 };
 } // namespace atum
