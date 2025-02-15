@@ -1,7 +1,6 @@
 #include "atum/devices/colorSensor.hpp"
 #include "robotClone.hpp"
 
-
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
 static const tile_t pushDoubleStackY{2.4625_tile};
@@ -237,7 +236,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   goalRushWhenReady();
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {-0.44_tile, -0.44_tile, (id == ID15 ? 25_deg : 30_deg)},
+        {-0.4_tile, -0.4_tile, (id == ID15 ? 25_deg : 30_deg)},
         false,
         Path::Parameters{
             1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
@@ -290,7 +289,7 @@ void RobotClone::endOfNegativeRoutines() {
   moveTo->reverse({-1.9_tile, 0.1_tile},
                   LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
   goalClamp->clamp();
-  wait(200_ms);
+  wait(100_ms);
 
   moveTo->forward({-2_tile, 2_tile}, LateralProfile::Parameters{45_in_per_s});
   wait(1_s);
@@ -374,12 +373,13 @@ void RobotClone::setupRoutine(Pose startingPose) {
   setSortToOpposite();
 
   goalClamp->unclamp();
+  goalRush->release();
 
   if(id == ID15) {
     intake->outtake();
-    wait(0.1_s);
     intake->stop();
   }
+  wait(0.1_s);
 
   drive->setBrakeMode(pros::MotorBrake::brake);
 }
@@ -407,10 +407,11 @@ void RobotClone::goalRushWhenReady(const second_t timeout) {
                         if(goalRush->isClamped()) {
                           return;
                         }
+                        goalRush->grab();
+                        wait(100_ms);
                         turn->interrupt();
                         moveTo->interrupt();
                         pathFollower->interrupt();
-                        goalRush->grab();
                       },
                       timeout,
                       Scheduler::doNothing});
