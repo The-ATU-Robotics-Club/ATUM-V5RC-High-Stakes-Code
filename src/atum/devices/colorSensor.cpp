@@ -100,10 +100,6 @@ void ColorSensor::initializeColorSensor() {
 }
 
 ColorSensor::Color ColorSensor::rawGetColor() {
-  if(!timer.goneOff()) {
-    return colorReading;
-  }
-  timer.setTime();
   for(auto &optical : opticals) {
     if(!optical->is_installed() || optical->get_proximity() < nearProximity) {
       continue;
@@ -113,13 +109,11 @@ ColorSensor::Color ColorSensor::rawGetColor() {
       // Have to account for the "angle wrap" here.
       const double difference{remainder(hueField.center - reading, 360.0)};
       if(std::abs(difference) < hueField.threshold) {
-        colorReading = hueField.color;
-        return colorReading;
+        return hueField.color;
       }
     }
   }
-  colorReading = Color::None;
-  return colorReading;
+  return Color::None;
 }
 
 std::string toString(const ColorSensor::Color &color) {

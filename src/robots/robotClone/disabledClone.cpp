@@ -315,7 +315,7 @@ void RobotClone::intakeSetup24() {
   std::unique_ptr<Motor> intakeMtr{std::make_unique<Motor>(
       MotorPortsList{-10, 11}, Motor::Gearing{pros::v5::MotorGears::blue})};
   std::vector<ColorSensor::HueField> hueFields{
-      {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
+      {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 215, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
       std::make_unique<ColorSensor>(PortsList{17, 19}, hueFields)};
   Intake::Parameters intakeParams;

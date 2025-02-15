@@ -128,7 +128,7 @@ class ColorSensor {
    * near according to the brain device menu.
    *
    */
-  static constexpr int32_t nearProximity{240};
+  static constexpr int32_t nearProximity{250};
 
   /**
    * @brief Turns the LED on, sets the integration time, and disables gestures.
@@ -146,7 +146,6 @@ class ColorSensor {
   std::vector<std::unique_ptr<pros::Optical>> opticals;
   std::vector<HueField> hueFields;
   Logger logger;
-  Timer timer{refreshRate};
   int count{0};
   bool previousNearby{false};
   Color colorReading{Color::None};
