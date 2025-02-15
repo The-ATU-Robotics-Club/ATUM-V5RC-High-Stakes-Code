@@ -47,7 +47,7 @@ void RobotClone::driveSetup15() {
                                   std::move(rightDriveMtr),
                                   Drive::Geometry{11.862_in, 10.21_in});
 
-  const inch_t wheelCircumference{203.724231788_mm};
+  const inch_t wheelCircumference{200_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('A', 'B', wheelCircumference, -0.209_in)};
   std::unique_ptr<Odometer> sideOdometer{
@@ -75,7 +75,7 @@ void RobotClone::ladybrownSetup15() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, true)};
   std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>((ADIExtenderPort{21, 'A'}))};
+      std::make_unique<LimitSwitch>((ADIExtenderPort{21, 'A'}, 2))};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 9_deg},
@@ -122,13 +122,13 @@ void RobotClone::intakeSetup15() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(20, hueFields)};
+      std::make_unique<ColorSensor>(1, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 0.1_s;
+  intakeParams.pressLoadTime = 0.01_s;
   intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
   intakeParams.intakingVoltage = 12.0;
@@ -176,15 +176,14 @@ void RobotClone::autonSetup15() {
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants turnKA{0.75, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{30.0, 0.0, 60.0});
+      std::make_unique<PID>(PID::Parameters{30.0});
   std::unique_ptr<AngularProfileFollower> angularProfileFollower{
       std::make_unique<AngularProfileFollower>(
           turnProfile,
           turnAcceptable,
           std::move(turnVelocityController),
           turnKA,
-          std::move(turnPositionController),
-          10_deg)};
+          std::move(turnPositionController))};
   turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
 
   // Move to setup.
@@ -193,14 +192,14 @@ void RobotClone::autonSetup15() {
   LateralProfile moveToProfile{moveToMotionParams};
   AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{0.375});
-  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
+      std::make_unique<PID>(PID::Parameters{0.4});
+  PID::Parameters moveToVelocityPIDParams{12, 0, 0, 6};
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   const AccelerationConstants kA{2.5, 1.25};
   std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{60});
+      std::make_unique<PID>(PID::Parameters{90});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
       std::make_unique<LateralProfileFollower>(moveToProfile,
                                                moveToAcceptable,
@@ -239,15 +238,15 @@ void RobotClone::driveSetup24() {
       MotorPortsList{-1, 2, 3, 5},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "right drive")};
-  const inch_t wheelCircumference{203.724231788_mm};
-  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
-                                  std::move(rightDriveMtr),
-                                  Drive::Geometry{11.862_in, 10.21_in});
-
+      drive = std::make_unique<Drive>(std::move(leftDriveMtr),
+      std::move(rightDriveMtr),
+      Drive::Geometry{11.862_in, 10.213335_in});
+      
+      const inch_t wheelCircumference{198_mm};
   std::unique_ptr<Odometer> forwardOdometer{
-      std::make_unique<Odometer>('E', 'F', wheelCircumference, -0.209_in)};
+      std::make_unique<Odometer>('C', 'D', wheelCircumference, 0.1_in, true)};
   std::unique_ptr<Odometer> sideOdometer{
-      std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
+      std::make_unique<Odometer>('G', 'H', wheelCircumference, -1.752_in)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 14})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
@@ -271,7 +270,7 @@ void RobotClone::ladybrownSetup24() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, false)};
       std::unique_ptr<LimitSwitch> ladybrownSwitch{
-          std::make_unique<LimitSwitch>((ADIExtenderPort{16, 'H'}))};
+          std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'H'}, 2)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 20_deg},
@@ -318,16 +317,16 @@ void RobotClone::intakeSetup24() {
   std::vector<ColorSensor::HueField> hueFields{
       {ColorSensor::Color::Red, 10, 30}, {ColorSensor::Color::Blue, 216, 30}};
   std::unique_ptr<ColorSensor> colorSensor{
-      std::make_unique<ColorSensor>(17, hueFields)};
+      std::make_unique<ColorSensor>(PortsList{17, 19}, hueFields)};
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.25_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 0.1_s;
-  intakeParams.finishLoadingTime = 0.2_s;
+  intakeParams.pressLoadTime = 0.01_s;
+  intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
-  intakeParams.intakingVoltage = 10.5;
+  intakeParams.intakingVoltage = 12.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),
@@ -337,7 +336,7 @@ void RobotClone::intakeSetup24() {
 void RobotClone::goalSetup24() {
   // Setup goal clamp.
   std::unique_ptr<Piston> goalClampPiston{
-      std::make_unique<Piston>('H', false, false)};
+      std::make_unique<Piston>('F', false, false)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
       std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'A'})};
   std::unique_ptr<LimitSwitch> limitSwitch2{
@@ -347,7 +346,7 @@ void RobotClone::goalSetup24() {
                                           std::move(limitSwitch2));
   // Setup goal rush.
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
-  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('G')};
+  std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('E')};
   std::unique_ptr<LimitSwitch> limitSwitchRush{
       std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'D'})};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),

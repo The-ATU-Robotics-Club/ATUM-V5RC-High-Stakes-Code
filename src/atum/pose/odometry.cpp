@@ -47,10 +47,7 @@ Pose Odometry::update() {
     }
     dyR = (dyR + dyRDrive) / 2.0;
   }
-  // Accounting for angular velocity.
-  const inch_t dxRAdj{sinDHOverDH * dxR + cosDHMinusOneOverDH * dyR};
-  const inch_t dyRAdj{-cosDHMinusOneOverDH * dxR + sinDHOverDH * dyR};
-  return integratePose(dxRAdj, dyRAdj, dh);
+  return integratePose(dxR, dyR, dh);
 }
 
 Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
@@ -63,13 +60,13 @@ Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
     dh = 0_rad;
   }
   Pose currentPose{getPose()};
-  currentPose.x += cos(currentPose.h) * dx + sin(currentPose.h) * dy;
-  currentPose.y += -sin(currentPose.h) * dx + cos(currentPose.h) * dy;
+  const degree_t hAvg{currentPose.h + dh / 2.0};
+  currentPose.x += cos(hAvg) * dx + sin(hAvg) * dy;
+  currentPose.y += -sin(hAvg) * dx + cos(hAvg) * dy;
   currentPose.h += dh;
-  const second_t dt{timer.timeElapsed()};
+  const second_t dt{timer.getDT()};
   currentPose.v = dy / dt;
   currentPose.omega = dh / dt;
-  timer.setTime();
   setPose(currentPose);
   return getPose(); // Use getPose() for logging purposes.
 }

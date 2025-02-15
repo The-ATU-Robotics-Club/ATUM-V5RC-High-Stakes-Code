@@ -5,6 +5,12 @@
 // Max drive acceleration: 153 in. / s^2.
 static const tile_t pushDoubleStackY{2.4625_tile};
 
+// DATA:
+// ODOMS DRIVE
+// 12.2878 9.39187
+// 12.334 9.40656
+// 12.3254 9.4
+
 namespace atum {
 
 /*
@@ -93,66 +99,67 @@ void RobotClone::skills15() {
 
 */
 void RobotClone::skills24() {
-  setupRoutine({-2.5_tile, 0_tile, 90_deg});
-  intake->setSortOutColor(ColorSensor::Color::Blue);
-  clampWhenReady();
-  intake->index();
-  moveTo->forward({-2_tile, 0_tile});
-  wait(1_s);
-  moveTo->reverse({-2.8_tile, 0_tile});
-  intake->intake();
-  wait(1_s);
-  intake->index();
-  moveTo->forward({-2_tile, -2_tile});
-  wait(1_s);
-  moveTo->reverse({-1_tile, -2_tile},
-                  LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
-  wait(500_ms);
-  intake->intake();
-  moveTo->forward({-1_tile, -.75_tile});
-  wait(1_s);
-  moveTo->forward({0_tile, -2_tile});// x -2 -> 0
-  wait(1_s);
-  moveTo->forward({-2_tile, -2_tile});
-  wait(1_s);
-  moveTo->forward({-2.75_tile, -2.75_tile});
-  wait(1_s);
-  moveTo->reverse({-2_tile, -2_tile});
-  moveTo->reverse({-2.75_tile, -2.75_tile});
-  goalClamp->unclamp();
-  intake->load();
-  moveTo->forward({0_tile, -2.5_tile});
-  clampWhenReady();
-  wait(1_s);
-  ladybrown->fullyExtend();
-  moveTo->forward({0_tile, -2.75_tile});
-  wait(500_ms);
-  moveTo->reverse({0_tile, -2.5_tile});
-  ladybrown->rest();
-  intake->index();
-  moveTo->forward({1_tile, -2_tile});
-  moveTo->reverse({1_tile, -1_tile},
-    LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
-  wait(100_ms);
-  goalClamp->clamp();
-  intake->intake();
-  moveTo->forward({2_tile, -1_tile});
-  wait(500_ms);
-  moveTo->forward({2_tile, -2_tile});
-  wait(500_ms);
-  for(int i{0}; i < 2; i++) {
-  moveTo->forward({2.75_tile, -2.75_tile});//reverse after this?
-  moveTo->reverse({2.25_tile, -2.25_tile});
-  wait(500_ms);
-  }
-  moveTo->reverse({2.75_tile, -2.75_tile});
-  wait(100_ms);
-  goalClamp->unclamp();
-  moveTo->forward({2_tile, -2_tile});
-  ladybrown->fullyExtend();
-  goalRush->extendArm();
-  moveTo->reverse({.25_tile, -.25_tile},
-    LateralProfile::Parameters{38.25_in_per_s, 38.25_in_per_s_sq});
+  setupRoutine({-2_tile, 2_tile, 90_deg});
+  // setupRoutine({-2.5_tile, 0_tile, 90_deg});
+  // intake->setSortOutColor(ColorSensor::Color::Blue);
+  // clampWhenReady();
+  // intake->index();
+  // moveTo->forward({-2_tile, 0_tile});
+  // wait(1_s);
+  // moveTo->reverse({-2.8_tile, 0_tile});
+  // intake->intake();
+  // wait(1_s);
+  // intake->index();
+  // moveTo->forward({-2_tile, -2_tile});
+  // wait(1_s);
+  // moveTo->reverse({-1_tile, -2_tile},
+  //                 LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
+  // wait(500_ms);
+  // intake->intake();
+  // moveTo->forward({-1_tile, -.75_tile});
+  // wait(1_s);
+  // moveTo->forward({0_tile, -2_tile});// x -2 -> 0
+  // wait(1_s);
+  // moveTo->forward({-2_tile, -2_tile});
+  // wait(1_s);
+  // moveTo->forward({-2.75_tile, -2.75_tile});
+  // wait(1_s);
+  // moveTo->reverse({-2_tile, -2_tile});
+  // moveTo->reverse({-2.75_tile, -2.75_tile});
+  // goalClamp->unclamp();
+  // intake->load();
+  // moveTo->forward({0_tile, -2.5_tile});
+  // clampWhenReady();
+  // wait(1_s);
+  // ladybrown->fullyExtend();
+  // moveTo->forward({0_tile, -2.75_tile});
+  // wait(500_ms);
+  // moveTo->reverse({0_tile, -2.5_tile});
+  // ladybrown->rest();
+  // intake->index();
+  // moveTo->forward({1_tile, -2_tile});
+  // moveTo->reverse({1_tile, -1_tile},
+  //   LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
+  // wait(100_ms);
+  // goalClamp->clamp();
+  // intake->intake();
+  // moveTo->forward({2_tile, -1_tile});
+  // wait(500_ms);
+  // moveTo->forward({2_tile, -2_tile});
+  // wait(500_ms);
+  // for(int i{0}; i < 2; i++) {
+  // moveTo->forward({2.75_tile, -2.75_tile});//reverse after this?
+  // moveTo->reverse({2.25_tile, -2.25_tile});
+  // wait(500_ms);
+  // }
+  // moveTo->reverse({2.75_tile, -2.75_tile});
+  // wait(100_ms);
+  // goalClamp->unclamp();
+  // moveTo->forward({2_tile, -2_tile});
+  // ladybrown->fullyExtend();
+  // goalRush->extendArm();
+  // moveTo->reverse({.25_tile, -.25_tile},
+  //   LateralProfile::Parameters{38.25_in_per_s, 38.25_in_per_s_sq});
 }
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
