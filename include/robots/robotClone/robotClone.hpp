@@ -212,7 +212,7 @@ class RobotClone : public Robot {
    */
   void setSortToOpposite();
 
-  const int id;
+  int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
   std::unique_ptr<Intake> intake;

@@ -126,7 +126,7 @@ void RobotClone::intakeSetup15() {
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
-  intakeParams.timeUntilUnjammed = 0.25_s;
+  intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 0.01_s;
   intakeParams.finishLoadingTime = 0.1_s;
@@ -321,7 +321,7 @@ void RobotClone::intakeSetup24() {
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
-  intakeParams.timeUntilUnjammed = 0.25_s;
+  intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 0.01_s;
   intakeParams.finishLoadingTime = 0.1_s;
