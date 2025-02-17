@@ -117,19 +117,21 @@ void RobotClone::skills24() {
   intake->index();
   moveTo->forward({-2_tile, 0_tile});
   wait(1_s);
-  moveTo->reverse({-2.8_tile, 0_tile});
+  moveTo->reverse({-2.45_tile, 0_tile});
   intake->intake();
   wait(1_s);
+  intake->stop();
   intake->index();
   moveTo->forward({-2_tile, -2_tile});
   wait(1_s);
   moveTo->reverse({-1_tile, -2_tile},
                   LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
   wait(500_ms);
+  goalClamp->clamp();
   intake->intake();
   moveTo->forward({-1_tile, -.75_tile});
   wait(1_s);
-  moveTo->forward({0_tile, -2_tile}); // x -2 -> 0
+  moveTo->forward({0_tile, -1.75_tile}); // x -2 -> 0
   wait(1_s);
   moveTo->forward({-2_tile, -2_tile});
   wait(1_s);
@@ -138,15 +140,16 @@ void RobotClone::skills24() {
   moveTo->reverse({-2_tile, -2_tile});
   moveTo->reverse({-2.75_tile, -2.75_tile});
   goalClamp->unclamp();
-  intake->load();
+  intake->intake();
+  //intake->load();
   moveTo->forward({0_tile, -2.5_tile});
   clampWhenReady();
   wait(1_s);
-  ladybrown->fullyExtend();
+  //ladybrown->fullyExtend();
   moveTo->forward({0_tile, -2.75_tile});
   wait(500_ms);
   moveTo->reverse({0_tile, -2.5_tile});
-  ladybrown->rest();
+  //ladybrown->rest();
   intake->index();
   moveTo->forward({1_tile, -2_tile});
   moveTo->reverse({1_tile, -1_tile},
@@ -156,10 +159,12 @@ void RobotClone::skills24() {
   intake->intake();
   moveTo->forward({2_tile, -1_tile});
   wait(500_ms);
+  intake->intake();
   moveTo->forward({2_tile, -2_tile});
   wait(500_ms);
+  intake->intake();
   for(int i{0}; i < 2; i++) {
-    moveTo->forward({2.75_tile, -2.75_tile}); // reverse after this?
+    moveTo->forward({2.75_tile, -2.75_tile}); 
     moveTo->reverse({2.25_tile, -2.25_tile});
     wait(500_ms);
   }
@@ -171,7 +176,11 @@ void RobotClone::skills24() {
   goalRush->extendArm();
   moveTo->reverse(
       {.25_tile, -.25_tile},
-      LateralProfile::Parameters{38.25_in_per_s, 38.25_in_per_s_sq});
+      LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
+  moveTo->forward({.5_tile, -.5_tile});
+  intake->stop();
+  wait(2_s);
+  
 }
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
