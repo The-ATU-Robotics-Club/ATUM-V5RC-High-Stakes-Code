@@ -15,6 +15,7 @@
 #include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
 
+
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -166,16 +167,40 @@ class RobotClone : public Robot {
    *
    */
   void skills24();
-  
-  /**
-   * @brief Contains the behavior for the ending of the negative side routines. 
-   * 
-   */
-   void endOfNegativeRoutines();
 
   /**
-   * @brief Contains the behavior for the ending of the positive side routines. 
-   * 
+   * @brief Rushes a goal to the right of the robot. Adjusts as needed depending
+   * on the auto.
+   *
+   * @param extraY
+   */
+  void rushLeft(const tile_t extraY = 0_tile);
+
+  /**
+   * @brief Rushes a goal to the left of the robot. Adjusts as needed depending
+   * on the auto.
+   *
+   * @param extraY
+   */
+  void rushRight(const tile_t extraY = 0_tile);
+
+  /**
+   * @brief Collects the rings in a corner. Changes y-values if the negative
+   * corner.
+   *
+   * @param negative
+   */
+  void collectCorner(const bool negative);
+
+  /**
+   * @brief Contains the behavior for the ending of the negative side routines.
+   *
+   */
+  void endOfNegativeRoutines();
+
+  /**
+   * @brief Contains the behavior for the ending of the positive side routines.
+   *
    */
   void endOfPositiveRoutines();
 

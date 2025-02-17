@@ -45,13 +45,13 @@ void RobotClone::driveSetup15() {
       "right drive")};
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
-                                  Drive::Geometry{11.862_in, 10.21_in});
+                                  Drive::Geometry{11.862_in, 10.213335_in});
 
-  const inch_t wheelCircumference{200_mm};
+  const inch_t wheelCircumference{198_mm};
   std::unique_ptr<Odometer> forwardOdometer{
-      std::make_unique<Odometer>('A', 'B', wheelCircumference, -0.209_in)};
+      std::make_unique<Odometer>('A', 'B', wheelCircumference, 0.086_in)};
   std::unique_ptr<Odometer> sideOdometer{
-      std::make_unique<Odometer>('C', 'D', wheelCircumference, 1.791_in, true)};
+      std::make_unique<Odometer>('C', 'D', wheelCircumference, -1.685_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{14, 17})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
@@ -169,7 +169,7 @@ void RobotClone::autonSetup15() {
   turnMotionParams.usePosition = true;
   AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle turnAcceptable{forever, 1_deg, 5_deg_per_s};
+  AcceptableAngle turnAcceptable{forever, 5_deg, 2_rpm};
   PID::Parameters turnPIDParams{2.0, 0, 0, 0.875};
   turnPIDParams.ffScaling = true;
   std::unique_ptr<Controller> turnVelocityController =
@@ -190,16 +190,16 @@ void RobotClone::autonSetup15() {
   LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
   moveToMotionParams.usePosition = true;
   LateralProfile moveToProfile{moveToMotionParams};
-  AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
+  AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
   std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{0.4});
-  PID::Parameters moveToVelocityPIDParams{12, 0, 0, 6};
+      std::make_unique<PID>(PID::Parameters{0.35});
+  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   const AccelerationConstants kA{2.5, 1.25};
   std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{90});
+      std::make_unique<PID>(PID::Parameters{60});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
       std::make_unique<LateralProfileFollower>(moveToProfile,
                                                moveToAcceptable,
@@ -244,9 +244,9 @@ void RobotClone::driveSetup24() {
       
       const inch_t wheelCircumference{198_mm};
   std::unique_ptr<Odometer> forwardOdometer{
-      std::make_unique<Odometer>('C', 'D', wheelCircumference, 0.1_in, true)};
+      std::make_unique<Odometer>('C', 'D', wheelCircumference, 0.086_in, true)};
   std::unique_ptr<Odometer> sideOdometer{
-      std::make_unique<Odometer>('G', 'H', wheelCircumference, -1.752_in)};
+      std::make_unique<Odometer>('G', 'H', wheelCircumference, -1.685_in)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{13, 14})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
@@ -364,38 +364,37 @@ void RobotClone::autonSetup24() {
   turnMotionParams.usePosition = true;
   AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle turnAcceptable{forever, 1_deg, 5_deg_per_s};
+  AcceptableAngle turnAcceptable{forever, 5_deg, 2_rpm};
   PID::Parameters turnPIDParams{2.0, 0, 0, 0.875};
   turnPIDParams.ffScaling = true;
   std::unique_ptr<Controller> turnVelocityController =
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants turnKA{0.75, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{30.0, 0.0, 60.0});
+      std::make_unique<PID>(PID::Parameters{30.0});
   std::unique_ptr<AngularProfileFollower> angularProfileFollower{
       std::make_unique<AngularProfileFollower>(
           turnProfile,
           turnAcceptable,
           std::move(turnVelocityController),
           turnKA,
-          std::move(turnPositionController),
-          10_deg)};
+          std::move(turnPositionController))};
   turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
 
   // Move to setup.
   LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
   moveToMotionParams.usePosition = true;
   LateralProfile moveToProfile{moveToMotionParams};
-  AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
+  AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
   std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{0.25});
-  PID::Parameters moveToVelocityPIDParams{3, 0, 0, 6};
+      std::make_unique<PID>(PID::Parameters{0.35});
+  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
   moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> moveToVelocityPID{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   const AccelerationConstants kA{2.5, 1.25};
   std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{35});
+      std::make_unique<PID>(PID::Parameters{60});
   std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
       std::make_unique<LateralProfileFollower>(moveToProfile,
                                                moveToAcceptable,
@@ -415,7 +414,7 @@ void RobotClone::autonSetup24() {
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   std::unique_ptr<Controller> turnController =
-      std::make_unique<PID>(PID::Parameters{14});
+      std::make_unique<PID>(PID::Parameters{15});
   pathFollower = std::make_unique<PathFollower>(drive.get(),
                                                 acceptable,
                                                 std::move(forwardController),

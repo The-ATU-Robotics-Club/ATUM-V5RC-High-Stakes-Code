@@ -1,30 +1,28 @@
 #include "atum/devices/colorSensor.hpp"
 #include "robotClone.hpp"
 
+namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
 
 // General Constants
-static const tile_t pushDoubleStackY{2.4625_tile};
-static const second_t goalRushDelay{150_ms};
+static const LateralProfile::Parameters goalClampProfile{35_in_per_s,
+                                                         70_in_per_s_sq};
+static const LateralProfile::Parameters cornerMotionProfile{30_in_per_s,
+                                                            90_in_per_s_sq};
+LateralProfile::Parameters doubleStackProfile{40_in_per_s, 60_in_per_s_sq};
+static const inches_per_second_t singleRingSpeed{60_in_per_s};
+static const tile_t pushDoubleStackY{2.47_tile};
+static const second_t goalRushDelay{100_ms};
 static const second_t goalClampDelay{100_ms};
-static const second_t singleRingDelay{0.75_s};
-static const second_t doubleRingDelay{1.25_s};
-
-// Corner Constants
-static const second_t backupCornerDelay{0.3_s};
-static const second_t pressCornerDelay{0.15_s};
-static const tile_t pressCorner{2.625_tile};
-static const tile_t backupCorner{1.825_tile};
-static const tile_t intakeCorner{2.75_tile};
+static const second_t singleRingDelay{0.825_s};
+static const second_t doubleRingDelay{1.125_s};
 
 // DATA:
 // ODOMS DRIVE
 // 12.2878 9.39187
 // 12.334 9.40656
 // 12.3254 9.4
-
-namespace atum {
 
 /*
   _ ___ _ _   ___ _   _ _ _
@@ -177,12 +175,6 @@ void RobotClone::skills24() {
 }
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
-  /*
-    ___ _   _ _ _
-   / __| |_(_) | |___
-   \__ \ / / | | (_-<
-   |___/_\_\_|_|_/__/
-  */
   START_ROUTINE("Skills")
   if(id == ID15) {
     skills15();
@@ -191,132 +183,177 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   }
   END_ROUTINE
 
-  /*
-          ___ _    _
-    ___  / __(_)__| |___
-   |___| \__ \ / _` / -_)
-         |___/_\__,_\___|
-
-  */
   START_ROUTINE("Negative Side")
   setupRoutine(
       {-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 7.5_in), 1_tile, 90_deg});
-  intake->setSortOutColor(ColorSensor::Color::None);
-  goalRush->extendArm();
-  goalRush->release();
-  goalRushWhenReady();
-  intake->index();
-  pathFollower->follow(
-      {{AcceptableDistance{3_s},
-        {-0.45_tile, 1.55_tile, (id == ID15 ? 25_deg : 30_deg)},
-        false,
-        Path::Parameters{
-            1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
-  goalRush->grab();
-  wait(goalRushDelay);
-  moveTo->reverse({-1.25_tile, 0.75_tile});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(0_deg);
+    rushLeft(2_tile);
   } else {
-    turn->toward(110_deg);
+    rushRight(2_tile);
   }
-  goalRush->release();
-  wait(goalRushDelay);
-  intake->stop();
-  setSortToOpposite();
-  clampWhenReady();
-  moveTo->reverse({-0.45_tile, 1.55_tile},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  goalRush->retractArm();
-  goalClamp->clamp();
-  wait(goalClampDelay);
-
   endOfNegativeRoutines();
   END_ROUTINE
 
-  /*
-        _     __  __ _    _
-      _| |_  |  \/  (_)__| |
-     |_   _| | |\/| | / _` |
-       |_|   |_|  |_|_\__,_|
-
-  */
-  START_ROUTINE("Positive Mid")
+  START_ROUTINE("Negative Mid")
   setupRoutine(
-      {-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 7.5_in), -1_tile, 90_deg});
-  intake->setSortOutColor(ColorSensor::Color::None);
-  goalRush->extendArm();
-  goalRush->release();
-  intake->index();
-  goalRushWhenReady();
-  pathFollower->follow(
-      {{AcceptableDistance{3_s},
-        {-0.43_tile, -0.43_tile, 30_deg},
-        false,
-        Path::Parameters{
-            1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
-  goalRush->grab();
-  wait(goalRushDelay);
-  moveTo->reverse({-1.25_tile, -1.25_tile});
+      {-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 7.5_in), 1_tile, 90_deg});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(0_deg);
+    rushRight(2_tile);
   } else {
-    turn->toward(110_deg);
+    rushLeft(2_tile);
   }
-  goalRush->release();
-  wait(goalRushDelay);
-  intake->stop();
-  setSortToOpposite();
-  clampWhenReady();
-  moveTo->reverse({-0.4_tile, -0.4_tile},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  goalRush->retractArm();
-  goalClamp->clamp();
-  wait(goalClampDelay);
-
-  endOfPositiveRoutines();
+  endOfNegativeRoutines();
   END_ROUTINE
 
   START_ROUTINE("Positive Side")
-  id = ID15;
   setupRoutine(
       {-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 7.5_in), -1_tile, 90_deg});
-  intake->setSortOutColor(ColorSensor::Color::None);
-  goalRush->extendArm();
-  goalRush->release();
-  intake->index();
-  goalRushWhenReady();
-  pathFollower->follow(
-      {{AcceptableDistance{3_s},
-        {-0.43_tile, -1.63_tile, (id == ID15 ? 97.5_deg : 110_deg)},
-        false,
-        Path::Parameters{
-          (id == ID15 ? 0.5_tile : 0.5_tile), 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
-  goalRush->grab();
-  wait(goalRushDelay);
-  moveTo->reverse({-1.25_tile, -0.75_tile});
   if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(90_deg);
+    rushRight();
   } else {
-    turn->toward(70_deg);
+    rushLeft();
   }
-  goalRush->release();
-  wait(goalRushDelay);
-  intake->stop();
-  setSortToOpposite();
-  clampWhenReady();
-  moveTo->reverse({-0.4_tile, -1.6_tile},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  goalRush->retractArm();
-  goalClamp->clamp();
-  wait(400_ms);
+  endOfPositiveRoutines();
+  END_ROUTINE
 
+  START_ROUTINE("Positive Mid")
+  setupRoutine(
+      {-2.5_tile + 7.5_in + (id == ID15 ? 0_in : 7.5_in), -1_tile, 90_deg});
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    rushLeft();
+  } else {
+    rushRight();
+  }
   endOfPositiveRoutines();
   END_ROUTINE
 
   START_ROUTINE("Do Nothing")
   setupRoutine({});
   END_ROUTINE
+}
+
+/*
+  _      ___         _
+ | |    | _ \_  _ __| |_
+ | |__  |   / || (_-< ' \
+ |____| |_|_\\_,_/__/_||_|
+
+*/
+void RobotClone::rushLeft(const tile_t extraY) {
+  intake->setSortOutColor(ColorSensor::Color::None);
+  goalRush->extendArm();
+  goalRush->release();
+  intake->index();
+  goalRushWhenReady();
+  const tile_t rushYAdj{
+      extraY -
+      (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
+  degree_t rushH{30_deg};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    rushH = 180_deg - rushH;
+  }
+  pathFollower->follow(
+      {{AcceptableDistance{3_s},
+        {-0.43_tile, -0.43_tile + rushYAdj, rushH},
+        false,
+        Path::Parameters{
+            1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+  goalRush->grab();
+  wait(goalRushDelay);
+  moveTo->reverse(
+      {-1.2_tile,
+       (GUI::Routines::selectedColor() == MatchColor::Red ? -1.2_tile :
+                                                            -0.8_tile) +
+           extraY});
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    turn->toward(0_deg);
+  } else {
+    turn->toward(180_deg);
+  }
+  goalRush->release();
+  wait(goalRushDelay);
+  intake->stop();
+  setSortToOpposite();
+  clampWhenReady();
+  moveTo->reverse(
+      {-0.4_tile,
+       (GUI::Routines::selectedColor() == MatchColor::Red ? -0.4_tile :
+                                                            -1.6_tile) +
+           extraY},
+      goalClampProfile);
+  goalRush->retractArm();
+  goalClamp->clamp();
+  wait(goalClampDelay);
+}
+
+/*
+  ___   ___         _
+ | _ \ | _ \_  _ __| |_
+ |   / |   / || (_-< ' \
+ |_|_\ |_|_\\_,_/__/_||_|
+
+*/
+void RobotClone::rushRight(const tile_t extraY) {
+  intake->setSortOutColor(ColorSensor::Color::None);
+  goalRush->extendArm();
+  goalRush->release();
+  intake->index();
+  goalRushWhenReady();
+  const tile_t rushYAdj{
+      extraY +
+      (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
+  degree_t rushH{id == ID15 ? 105_deg : 110_deg};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    rushH = 180_deg - rushH;
+  }
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {-0.43_tile,
+                          -1.57_tile + rushYAdj,
+                          rushH},
+                         false,
+                         Path::Parameters{(id == ID15 ? 1_tile : 0.5_tile),
+                                          0_in_per_s,
+                                          0_in_per_s_sq,
+                                          76.5_in_per_s_sq}}});
+  goalRush->grab();
+  wait(goalRushDelay);
+  moveTo->reverse({-1.2_tile, 
+    (GUI::Routines::selectedColor() == MatchColor::Red ? -0.8_tile :
+                                                         -1.2_tile) + extraY});
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    turn->toward(90_deg);
+  } else {
+    turn->toward(180_deg);
+  }
+  goalRush->release();
+  wait(goalRushDelay);
+  intake->stop();
+  setSortToOpposite();
+  clampWhenReady();
+  moveTo->reverse({-0.4_tile, 
+    (GUI::Routines::selectedColor() == MatchColor::Red ? -1.6_tile :
+                                                         -0.4_tile) + extraY}, goalClampProfile);
+  goalRush->retractArm();
+  goalClamp->clamp();
+  wait(goalClampDelay);
+}
+
+void RobotClone::collectCorner(const bool negative) {
+  // Corner Constants
+  static const tile_t pressCorner{2.625_tile};
+  static const tile_t backupCorner{1.9_tile};
+  static const tile_t intakeCorner{3_tile};
+
+  const double yAdj{negative ? 1.0 : -1.0};
+  intake->intake();
+  moveTo->forward({-intakeCorner, yAdj * intakeCorner},
+                  LateralProfile::Parameters{20_in_per_s, 20_in_per_s_sq});
+  wait(1.5_s);
+  for(int i{0}; i < 0; i++) {
+    moveTo->reverse({-backupCorner, yAdj * backupCorner});
+    moveTo->forward({-intakeCorner, yAdj * intakeCorner});
+  }
+  moveTo->reverse({-backupCorner, yAdj * backupCorner});
 }
 
 /*
@@ -330,50 +367,21 @@ void RobotClone::endOfNegativeRoutines() {
   moveTo->forward({-1_tile, 1_tile});
   intake->intake();
 
-  moveTo->forward({-1_tile, pushDoubleStackY},
-                  LateralProfile::Parameters{45_in_per_s});
+  moveTo->forward({-1_tile, pushDoubleStackY}, doubleStackProfile);
+  wait(doubleRingDelay);
 
-  moveTo->reverse({-1_tile, 1_tile});
-  turn->awayFrom({0_tile, 0_tile});
-  goalClamp->unclamp();
-  turn->awayFrom({-2_tile, 0_tile});
-  clampWhenReady();
-  moveTo->reverse({-1.9_tile, 0.1_tile},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  goalClamp->clamp();
-  wait(goalClampDelay);
+  moveTo->forward({-2_tile, 2_tile},
+                  LateralProfile::Parameters{singleRingSpeed});
+  wait(singleRingDelay);
 
-  moveTo->forward({-2_tile, 2_tile}, LateralProfile::Parameters{45_in_per_s});
-  wait(1_s);
-  intake->stop();
-  moveTo->forward({-2.5_tile, 2.5_tile},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  intake->intake();
-  wait(0.25_s);
-  moveTo->forward({-3_tile, 3_tile},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  moveTo->reverse({-1.85_tile, 1.85_tile});
-  wait(0.15_s);
-  for(int i{0}; i < 3; i++) {
-    moveTo->forward({-2.5_tile, 2.5_tile},
-                    LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-    moveTo->reverse({-1.85_tile, 1.85_tile});
-    wait(0.15_s);
-  }
+  collectCorner(true);
 
-  turn->toward(-135_deg);
+  turn->toward({-1_tile, 0_tile});
   pathFollower->follow({{AcceptableDistance{3_s},
-                         {-2.45_tile, 0_tile, 180_deg, 45_in_per_s},
+                         {-1_tile, 0_tile, 180_deg},
                          false,
-                         Path::Parameters{2.5_tile, 45_in_per_s}},
-                        {AcceptableDistance{3_s},
-                         {-2_tile, -2_tile, 135_deg},
-                         false,
-                         Path::Parameters{2.5_tile, 45_in_per_s}}});
-  moveTo->reverse({-2.45_tile, -2.45_tile});
-  goalClamp->unclamp();
+                         Path::Parameters{0.5_tile, 40_in_per_s}}});
   intake->stop();
-  moveTo->forward({-2_tile, -2_tile});
 }
 
 /*
@@ -386,31 +394,40 @@ void RobotClone::endOfNegativeRoutines() {
 void RobotClone::endOfPositiveRoutines() {
   moveTo->forward({-1_tile, -1_tile});
   intake->intake();
+  wait(100_ms);
 
-  moveTo->forward({-1_tile, -pushDoubleStackY},
-                  LateralProfile::Parameters{40_in_per_s});
-
-  wait(doubleRingDelay);
-  moveTo->forward({-2_tile, -2_tile}, LateralProfile::Parameters{40_in_per_s});
+  moveTo->forward({-2.5_tile, -1_tile});
   wait(singleRingDelay);
 
-  intake->stop();
+  intake->index();
 
-  moveTo->forward({-pressCorner, -pressCorner},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
+  scheduler.schedule({"Release Goal When Ready",
+                      drive->checkIsNear({-2.5_tile, -0.2_tile}, 0.5_ft),
+                      [=]() { goalClamp->unclamp(); },
+                      1_s});
+  moveTo->forward({-2.5_tile, 0.4_tile});
+  moveTo->reverse({-1.95_tile, -0.05_tile});
+  goalClamp->clamp();
   intake->intake();
-  wait(pressCornerDelay);
-  moveTo->forward({-intakeCorner, -intakeCorner},
-                  LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-  moveTo->reverse({-backupCorner, -backupCorner});
-  wait(backupCornerDelay);
-  for(int i{0}; i < 3; i++) {
-    moveTo->forward({-intakeCorner, -intakeCorner},
-                    LateralProfile::Parameters{30_in_per_s, 60_in_per_s_sq});
-    moveTo->reverse({-backupCorner, -backupCorner});
-    wait(backupCornerDelay);
-  }
-  moveTo->forward({-1_tile, 0_tile}, LateralProfile::Parameters{40.5_in_per_s});
+  wait(singleRingDelay);
+  moveTo->forward({-2_tile, 1.25_tile});
+  moveTo->reverse({-2_tile, -1_tile});
+
+  moveTo->forward({-0.4_tile, -2.6_tile}, doubleStackProfile);
+  wait(singleRingDelay);
+
+  moveTo->forward({-2_tile, -2_tile},
+                  LateralProfile::Parameters{singleRingSpeed});
+  wait(singleRingDelay);
+
+  collectCorner(false);
+
+  moveTo->reverse({-2.625_tile, -2.625_tile});
+  goalClamp->unclamp();
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {-1_tile, 0_tile, 0_deg},
+                         false,
+                         Path::Parameters{0.5_tile, 40_in_per_s}}});
   intake->stop();
 }
 
@@ -440,36 +457,36 @@ void RobotClone::setupRoutine(Pose startingPose) {
 }
 
 void RobotClone::clampWhenReady(const second_t timeout) {
-  scheduler.schedule({"Clamp When Ready",
-                      [=]() { return goalClamp->hasGoal(); },
-                      [=]() {
-                        if(goalClamp->isClamped()) {
-                          return;
-                        }
-                        turn->interrupt();
-                        moveTo->interrupt();
-                        pathFollower->interrupt();
-                        goalClamp->clamp();
-                      },
-                      timeout,
-                      Scheduler::doNothing});
+  // scheduler.schedule({"Clamp When Ready",
+  //                     [=]() { return goalClamp->hasGoal(); },
+  //                     [=]() {
+  //                       if(goalClamp->isClamped()) {
+  //                         return;
+  //                       }
+  //                       turn->interrupt();
+  //                       moveTo->interrupt();
+  //                       pathFollower->interrupt();
+  //                       goalClamp->clamp();
+  //                     },
+  //                     timeout,
+  //                     Scheduler::doNothing});
 }
 
 void RobotClone::goalRushWhenReady(const second_t timeout) {
-  scheduler.schedule({"Goal Rush Grab When Ready",
-                      [=]() { return goalRush->hasGoal(); },
-                      [=]() {
-                        if(goalRush->isClamped()) {
-                          return;
-                        }
-                        goalRush->grab();
-                        wait(100_ms);
-                        turn->interrupt();
-                        moveTo->interrupt();
-                        pathFollower->interrupt();
-                      },
-                      timeout,
-                      Scheduler::doNothing});
+  // scheduler.schedule({"Goal Rush Grab When Ready",
+  //                     [=]() { return goalRush->hasGoal(); },
+  //                     [=]() {
+  //                       if(goalRush->isClamped()) {
+  //                         return;
+  //                       }
+  //                       goalRush->grab();
+  //                       wait(100_ms);
+  //                       turn->interrupt();
+  //                       moveTo->interrupt();
+  //                       pathFollower->interrupt();
+  //                     },
+  //                     timeout,
+  //                     Scheduler::doNothing});
 }
 
 void RobotClone::setSortToOpposite() {
