@@ -35,40 +35,50 @@ void RobotClone::skills15() {
   setupRoutine({-2.5_tile, 1.5_tile, 90_deg});
   intake->setSortOutColor(ColorSensor::Color::Blue);
   intake->index();
-  moveTo->forward({-0.5_tile, 1.5_tile});
-  moveTo->forward({0_tile, 2_tile});
+  pathFollower->follow({{AcceptableDistance{3_s},
+    {0_tile,
+     2_tile, 40_deg},
+    false,
+    Path::Parameters{{4_tile, 1_tile}}}});
   wait(1_s);
   clampWhenReady();
-  moveTo->reverse({-1.5_tile, 2_tile},
+  moveTo->reverse({-1.25_tile, 2_tile},
                   LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
   moveTo->forward({-1_tile, 1_tile});
   wait(1_s);
-  moveTo->forward({-3_tile, 3_tile},
+  moveTo->forward({-2_tile, 2_tile});
+  wait(1_s);
+  moveTo->forward({-2.75_tile, 2.75_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
-  moveTo->reverse({-2.75_tile, 2.75_tile});
+  moveTo->reverse({-2_tile, 2_tile});
   turn->awayFrom(-45_deg);
+  moveTo->reverse({-2.75_tile, 2.75_tile});
+  wait(1_s);
   goalClamp->unclamp();
   wait(0.5_s);
   moveTo->forward({-.25_tile, 2.5_tile});
-  intake->load();
+  intake->intake();
+  
+  //intake->load();
   moveTo->forward({.5_tile, 2.5_tile},
                   LateralProfile::Parameters{30_in_per_s, 30_in_per_s_sq});
   wait(1_s);
-  moveTo->reverse({0_tile, 2.5_tile});
+  moveTo->reverse({0_tile, 2.25_tile});
   turn->toward(0_deg);
-  ladybrown->fullyExtend();
+  //ladybrown->fullyExtend();
   moveTo->forward({0_tile, 2.8_tile},
                   LateralProfile::Parameters{15_in_per_s, 15_in_per_s_sq});
   wait(1_s);
   moveTo->reverse({0_tile, 2.5_tile},
                   LateralProfile::Parameters{45_in_per_s, 45_in_per_s_sq});
-  ladybrown->rest();
+  //ladybrown->rest();
   clampWhenReady();
   moveTo->reverse({1.2_tile, .8_tile, 135_deg}, // check
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
+  goalClamp->clamp();
   wait(1_s);
   intake->intake();
   moveTo->forward({1_tile, 2.2_tile});
@@ -188,7 +198,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   if(id == ID15) {
     skills15();
   } else if(id == ID24) {
-    skills24();
+    skills15();
   }
   END_ROUTINE
 
