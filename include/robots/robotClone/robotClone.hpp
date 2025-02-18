@@ -80,12 +80,6 @@ class RobotClone : public Robot {
   void goalSetup15();
 
   /**
-   * @brief Sets up the objects for autonomous routine usage for the 15 inch.
-   *
-   */
-  void autonSetup15();
-
-  /**
    * @brief Sets up the drive for the 24 inch.
    *
    */
@@ -110,10 +104,10 @@ class RobotClone : public Robot {
   void goalSetup24();
 
   /**
-   * @brief Sets up the objects for autonomous routine usage for the 24 inch.
+   * @brief Sets up the objects for autonomous routine usage.
    *
    */
-  void autonSetup24();
+  void autonSetup();
 
   // Opcontrol helpers.
   /**

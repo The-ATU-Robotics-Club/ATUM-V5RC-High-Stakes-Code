@@ -2,6 +2,7 @@
 #include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
@@ -9,16 +10,15 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     ladybrownSetup15();
     intakeSetup15();
     goalSetup15();
-    autonSetup15();
     led = std::make_unique<LED>(ADIExtenderPort{21, 'F'}, 8);
   } else if(id == ID24) {
     driveSetup24();
     ladybrownSetup24();
     intakeSetup24();
     goalSetup24();
-    autonSetup24();
-    led = std::make_unique<LED>(ADIExtenderPort{16, 'E'}, 8);
+    led = std::make_unique<LED>(ADIExtenderPort{21, 'E'}, 8);
   }
+  autonSetup();
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
 }
@@ -50,8 +50,8 @@ void RobotClone::driveSetup15() {
   const inch_t wheelCircumference{198_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('A', 'B', wheelCircumference, 0.086_in)};
-  std::unique_ptr<Odometer> sideOdometer{
-      std::make_unique<Odometer>('C', 'D', wheelCircumference, -1.685_in, true)};
+  std::unique_ptr<Odometer> sideOdometer{std::make_unique<Odometer>(
+      'C', 'D', wheelCircumference, -1.685_in, true)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{14, 17})};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
@@ -128,7 +128,7 @@ void RobotClone::intakeSetup15() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 0.01_s;
+  intakeParams.pressLoadTime = 50_ms;
   intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
   intakeParams.intakingVoltage = 12.0;
@@ -159,76 +159,6 @@ void RobotClone::goalSetup15() {
                                         std::move(limitSwitchRush));
 }
 
-void RobotClone::autonSetup15() {
-  meters_per_second_t maxV{76.5_in_per_s};
-  meters_per_second_squared_t maxA{153_in_per_s_sq};
-
-  // Turn setup.
-  AngularProfile::Parameters turnMotionParams{
-      720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
-  turnMotionParams.usePosition = true;
-  AngularProfile turnProfile{turnMotionParams};
-  // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle turnAcceptable{forever, 5_deg, 2_rpm};
-  PID::Parameters turnPIDParams{2.0, 0, 0, 0.875};
-  turnPIDParams.ffScaling = true;
-  std::unique_ptr<Controller> turnVelocityController =
-      std::make_unique<PID>(turnPIDParams);
-  const AccelerationConstants turnKA{0.75, 0.1};
-  std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{30.0});
-  std::unique_ptr<AngularProfileFollower> angularProfileFollower{
-      std::make_unique<AngularProfileFollower>(
-          turnProfile,
-          turnAcceptable,
-          std::move(turnVelocityController),
-          turnKA,
-          std::move(turnPositionController))};
-  turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
-
-  // Move to setup.
-  LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
-  moveToMotionParams.usePosition = true;
-  LateralProfile moveToProfile{moveToMotionParams};
-  AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
-  std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{0.35});
-  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
-  moveToVelocityPIDParams.ffScaling = true;
-  std::unique_ptr<Controller> moveToVelocityPID{
-      std::make_unique<PID>(moveToVelocityPIDParams)};
-  const AccelerationConstants kA{2.5, 1.25};
-  std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{60});
-  std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
-      std::make_unique<LateralProfileFollower>(moveToProfile,
-                                               moveToAcceptable,
-                                               std::move(moveToVelocityPID),
-                                               kA,
-                                               std::move(moveToPositionPID),
-                                               3_in)};
-  moveTo = std::make_unique<MoveTo>(drive.get(),
-                                    turn.get(),
-                                    std::move(lateralProfileFollower),
-                                    std::move(directionController));
-
-  // Path follower setup.
-  Path::setDefaultParams(
-      {1_tile, maxV, maxA, maxA, drive->getGeometry().track});
-  AcceptableDistance acceptable{forever};
-  std::unique_ptr<Controller> forwardController{
-      std::make_unique<PID>(moveToVelocityPIDParams)};
-  std::unique_ptr<Controller> turnController =
-      std::make_unique<PID>(PID::Parameters{15});
-  pathFollower = std::make_unique<PathFollower>(drive.get(),
-                                                acceptable,
-                                                std::move(forwardController),
-                                                std::move(turnController),
-                                                kA,
-                                                1_ft,
-                                                Logger::Level::Debug);
-}
-
 void RobotClone::driveSetup24() {
   std::unique_ptr<Motor> leftDriveMtr{std::make_unique<Motor>(
       MotorPortsList{-6, 7, -8, -9},
@@ -238,11 +168,11 @@ void RobotClone::driveSetup24() {
       MotorPortsList{-1, 2, 3, 5},
       Motor::Gearing{pros::v5::MotorGears::blue, 48.0 / 36.0},
       "right drive")};
-      drive = std::make_unique<Drive>(std::move(leftDriveMtr),
-      std::move(rightDriveMtr),
-      Drive::Geometry{11.862_in, 10.213335_in});
-      
-      const inch_t wheelCircumference{198_mm};
+  drive = std::make_unique<Drive>(std::move(leftDriveMtr),
+                                  std::move(rightDriveMtr),
+                                  Drive::Geometry{11.862_in, 10.213335_in});
+
+  const inch_t wheelCircumference{198_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('C', 'D', wheelCircumference, 0.086_in, true)};
   std::unique_ptr<Odometer> sideOdometer{
@@ -269,8 +199,8 @@ void RobotClone::ladybrownSetup24() {
   std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('A')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, false)};
-      std::unique_ptr<LimitSwitch> ladybrownSwitch{
-          std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'H'}, 2)};
+  std::unique_ptr<LimitSwitch> ladybrownSwitch{
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'H'}, 2)};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 20_deg},
@@ -323,7 +253,7 @@ void RobotClone::intakeSetup24() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 0.01_s;
+  intakeParams.pressLoadTime = 50_ms;
   intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
   intakeParams.intakingVoltage = 12.0;
@@ -338,9 +268,9 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('F', false, false)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'A'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'A'})};
   std::unique_ptr<LimitSwitch> limitSwitch2{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'B'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'B'})};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));
@@ -348,13 +278,13 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('E')};
   std::unique_ptr<LimitSwitch> limitSwitchRush{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{16, 'D'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'D'})};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
                                         std::move(goalRushClamp),
                                         std::move(limitSwitchRush));
 }
 
-void RobotClone::autonSetup24() {
+void RobotClone::autonSetup() {
   meters_per_second_t maxV{76.5_in_per_s};
   meters_per_second_squared_t maxA{153_in_per_s_sq};
 
@@ -364,14 +294,14 @@ void RobotClone::autonSetup24() {
   turnMotionParams.usePosition = true;
   AngularProfile turnProfile{turnMotionParams};
   // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle turnAcceptable{forever, 5_deg, 2_rpm};
-  PID::Parameters turnPIDParams{2.0, 0, 0, 0.875};
+  AcceptableAngle turnAcceptable{forever, 3_deg, 1.5_rpm};
+  PID::Parameters turnPIDParams{2.5, 0, 0, 0.875};
   turnPIDParams.ffScaling = true;
   std::unique_ptr<Controller> turnVelocityController =
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants turnKA{0.75, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{30.0});
+      std::make_unique<PID>(PID::Parameters{40.0});
   std::unique_ptr<AngularProfileFollower> angularProfileFollower{
       std::make_unique<AngularProfileFollower>(
           turnProfile,
@@ -414,7 +344,7 @@ void RobotClone::autonSetup24() {
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   std::unique_ptr<Controller> turnController =
-      std::make_unique<PID>(PID::Parameters{15});
+      std::make_unique<PID>(PID::Parameters{14});
   pathFollower = std::make_unique<PathFollower>(drive.get(),
                                                 acceptable,
                                                 std::move(forwardController),
