@@ -113,7 +113,7 @@ $(document).ready(function(){initNavTree('robotClone_8hpp_source.html',''); init
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">public</span>:</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="classatum_1_1RobotClone.html#ae34b167c48d6b3f8d039359de6baa84f">   33</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> <a class="code hl_variable" href="classatum_1_1RobotClone.html#ae34b167c48d6b3f8d039359de6baa84f">ID15</a>{0xe6ad4800};</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> ID24{0x64824900};</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> ID24{0x7cc04c00};</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0">   42</a></span>  <a class="code hl_function" href="classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0">RobotClone</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> iID);</div>
 <div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
@@ -184,20 +184,19 @@ $(document).ready(function(){initNavTree('robotClone_8hpp_source.html',''); init
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  std::unique_ptr&lt;Ladybrown&gt; ladybrown;</div>
 <div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  std::unique_ptr&lt;GoalClamp&gt; goalClamp;</div>
 <div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  std::unique_ptr&lt;GoalRush&gt; goalRush;</div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  std::unique_ptr&lt;LED&gt; led;</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <a class="code hl_class" href="classatum_1_1Scheduler.html">Scheduler</a> scheduler;</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  std::unique_ptr&lt;PathFollower&gt; pathFollower;</div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  std::unique_ptr&lt;MoveTo&gt; moveTo;</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  std::unique_ptr&lt;Turn&gt; turn;</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <a class="code hl_class" href="classatum_1_1Timer.html">Timer</a> matchTimer;</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  <span class="keywordtype">bool</span> useManualControls{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="keywordtype">bool</span> useLadybrownControls{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  <span class="keywordtype">bool</span> useHangControls{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keywordtype">double</span> speedMultiplier{1.0};</div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordtype">bool</span> scored{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>  <span class="keywordtype">bool</span> recentlyUnclamped{<span class="keyword">false</span>};</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>};</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>  <a class="code hl_class" href="classatum_1_1Scheduler.html">Scheduler</a> scheduler;</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  std::unique_ptr&lt;PathFollower&gt; pathFollower;</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>  std::unique_ptr&lt;MoveTo&gt; moveTo;</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span>  std::unique_ptr&lt;Turn&gt; turn;</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>  <a class="code hl_class" href="classatum_1_1Timer.html">Timer</a> matchTimer;</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <span class="keywordtype">bool</span> useManualControls{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>  <span class="keywordtype">bool</span> useLadybrownControls{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>  <span class="keywordtype">bool</span> useHangControls{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>  <span class="keywordtype">double</span> speedMultiplier{1.0};</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span>  <span class="keywordtype">bool</span> scored{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>  <span class="keywordtype">bool</span> recentlyUnclamped{<span class="keyword">false</span>};</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>};</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
 <div class="ttc" id="aclassatum_1_1Remote_html"><div class="ttname"><a href="classatum_1_1Remote.html">atum::Remote</a></div><div class="ttdoc">This class acts as awrapper around the PROS controller class, greatly simplifying printing to the scr...</div><div class="ttdef"><b>Definition:</b> remote.hpp:26</div></div>
 <div class="ttc" id="aclassatum_1_1RobotClone_html"><div class="ttname"><a href="classatum_1_1RobotClone.html">atum::RobotClone</a></div><div class="ttdoc">This encapsulates all of the behaviors related to the clone bots, differing only in setup where ports...</div><div class="ttdef"><b>Definition:</b> robotClone.hpp:25</div></div>
