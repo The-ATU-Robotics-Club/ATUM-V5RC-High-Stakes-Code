@@ -31,7 +31,7 @@ class RobotClone : public Robot {
    *
    */
   static constexpr int ID15{0xe6ad4800};
-  static constexpr int ID24{0x64824900};
+  static constexpr int ID24{0x7cc04c00};
 
   /**
    * @brief Setups the robot, changing the setup depending on what ID is
@@ -238,7 +238,6 @@ class RobotClone : public Robot {
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
   std::unique_ptr<GoalRush> goalRush;
-  std::unique_ptr<LED> led;
   Scheduler scheduler;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<MoveTo> moveTo;

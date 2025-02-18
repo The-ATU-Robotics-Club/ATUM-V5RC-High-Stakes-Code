@@ -2,7 +2,6 @@
 #include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
@@ -10,13 +9,11 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
     ladybrownSetup15();
     intakeSetup15();
     goalSetup15();
-    led = std::make_unique<LED>(ADIExtenderPort{21, 'F'}, 8);
   } else if(id == ID24) {
     driveSetup24();
     ladybrownSetup24();
     intakeSetup24();
     goalSetup24();
-    led = std::make_unique<LED>(ADIExtenderPort{21, 'E'}, 8);
   }
   autonSetup();
   intake->startBackgroundTasks();
@@ -24,14 +21,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
 }
 
 void RobotClone::disabled() {
-  while(true) {
-    if(GUI::Routines::selectedColor() == MatchColor::Red) {
-      led->setColor(LED::red);
-    } else {
-      led->setColor(LED::blue);
-    }
-    wait(100_ms);
-  }
+  wait(100_ms);
 }
 
 void RobotClone::driveSetup15() {
@@ -128,7 +118,7 @@ void RobotClone::intakeSetup15() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 50_ms;
+  intakeParams.pressLoadTime = 10_ms;
   intakeParams.finishLoadingTime = 0.1_s;
   intakeParams.generalTimeout = 1_s;
   intakeParams.intakingVoltage = 12.0;

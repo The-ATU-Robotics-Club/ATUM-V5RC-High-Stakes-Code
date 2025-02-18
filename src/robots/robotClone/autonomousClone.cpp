@@ -159,7 +159,7 @@ void RobotClone::skills24() {
   wait(singleRingDelay);
   intake->load();
   pathFollower->follow({{AcceptableDistance{3_s},
-                         {0.5_tile, -2.5625_tile, 90_deg},
+                         {0.5_tile, -2.56_tile, 90_deg},
                          false,
                          Path::Parameters{{0.5_tile, 3_tile}, 50_in_per_s}}});
   wait(.25_s);
@@ -168,10 +168,10 @@ void RobotClone::skills24() {
   moveTo->forward({0_tile, -2.6_tile});
   wait(singleRingDelay);
   intake->stop();
-  drive->arcade(2, 0);
+  drive->arcade(0.5, 0);
   ladybrown->fullyExtend();
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 3_s);
-  wait(2_s);
+  wait(1_s);
   moveTo->reverse({0_tile, -1.75_tile});
   ladybrown->rest();
   intake->index();

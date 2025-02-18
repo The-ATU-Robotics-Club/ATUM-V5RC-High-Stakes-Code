@@ -65,11 +65,6 @@ void RobotClone::visualFeedback() {
   remote.print(
       0, std::string{"CLAMP: "} + (goalClamp->isClamped() ? "Down" : "Up"));
   remote.print(1, "SORT: " + toString(intake->getSortOutColor()));
-  if(goalClamp->isClamped()) {
-    led->setColor(LED::green);
-  } else {
-    led->off();
-  }
 }
 
 void RobotClone::manualControls() {
