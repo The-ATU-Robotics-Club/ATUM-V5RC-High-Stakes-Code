@@ -152,18 +152,26 @@ void RobotClone::skills24() {
   moveTo->reverse({-2_tile, -2_tile});
   moveTo->reverse({-2.75_tile, -2.75_tile});
   goalClamp->unclamp();
+  moveTo->forward({-2.5_tile, -2.5_tile});
+  turn->toward(90_deg);
   intake->stop();
+  wait(.5_s);
   intake->load();
-  wait(.5_s);
-  moveTo->forward({0_tile, -2.5_tile});
+  pathFollower->follow({{AcceptableDistance{3_s},
+    {0.5_tile,
+     -2.375_tile, 80_deg},
+    false,
+    Path::Parameters{{3_tile, 1_tile}, 60_in_per_s}}});
   clampWhenReady();
-  wait(.5_s);
+  wait(.25_s);
   moveTo->reverse({0_tile, -2_tile});
+  wait(.25_s);
+  moveTo->forward({0_tile, -2.45_tile});
+  wait(.5_s);
   ladybrown->fullyExtend();
-  wait(.25_s);
-  moveTo->forward({0_tile, -2.75_tile});
-  wait(.25_s);
-  moveTo->reverse({0_tile, -2.5_tile});
+  drive->arcade(3, 0);
+  wait(1_s);
+  moveTo->reverse({0_tile, -1.75_tile});
   ladybrown->rest();
   intake->index();
   moveTo->forward({1_tile, -2_tile});
