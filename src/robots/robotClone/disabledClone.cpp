@@ -65,7 +65,7 @@ void RobotClone::ladybrownSetup15() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, true)};
   std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'}, 2)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 9_deg},
@@ -190,7 +190,7 @@ void RobotClone::ladybrownSetup24() {
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(15, false)};
   std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'H'}, 2)};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'H'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
                          {LadybrownState::Loading, 20_deg},
@@ -258,9 +258,9 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalClampPiston{
       std::make_unique<Piston>('F', false, false)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'A'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'A'})};
   std::unique_ptr<LimitSwitch> limitSwitch2{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'B'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'B'})};
   goalClamp = std::make_unique<GoalClamp>(std::move(goalClampPiston),
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));
@@ -268,7 +268,7 @@ void RobotClone::goalSetup24() {
   std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('B')};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('E')};
   std::unique_ptr<LimitSwitch> limitSwitchRush{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'D'})};
+      std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'D'})};
   goalRush = std::make_unique<GoalRush>(std::move(goalRushArm),
                                         std::move(goalRushClamp),
                                         std::move(limitSwitchRush));
@@ -291,14 +291,14 @@ void RobotClone::autonSetup() {
       std::make_unique<PID>(turnPIDParams);
   const AccelerationConstants turnKA{0.75, 0.1};
   std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{40.0});
+      std::make_unique<PID>(PID::Parameters{10.0});
   std::unique_ptr<AngularProfileFollower> angularProfileFollower{
       std::make_unique<AngularProfileFollower>(
           turnProfile,
           turnAcceptable,
           std::move(turnVelocityController),
           turnKA,
-          std::move(turnPositionController))};
+          std::move(turnPositionController), 15_deg)};
   turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
 
   // Move to setup.

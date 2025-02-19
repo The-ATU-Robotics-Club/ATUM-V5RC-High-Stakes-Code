@@ -45,7 +45,9 @@ Pose Odometry::update() {
     if(dh) {
       dyRDrive = 2.0 * sin(dh / 2.0) * (dyRDrive / dhScalar);
     }
-    // dyR = (dyR + dyRDrive) / 2.0;
+    if(abs(dyRDrive - dyR) <= 0.025_in) {
+      dyR = (dyR + dyRDrive) / 2.0;
+    }
   }
   return integratePose(dxR, dyR, dh);
 }
@@ -68,7 +70,7 @@ Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
   currentPose.v = dy / dt;
   currentPose.omega = dh / dt;
   setPose(currentPose);
-  return getPose(); // Use getPose() for logging purposes.f
+  return getPose(); // Use getPose() for logging purposes.
 }
 
 TASK_DEFINITIONS_FOR(Odometry) {
