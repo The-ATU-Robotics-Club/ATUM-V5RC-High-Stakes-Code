@@ -1,5 +1,6 @@
 #include "robotClone.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
@@ -154,16 +155,9 @@ void RobotClone::hangControls() {
   remote.print(2, "MODE: Hang");
 
   if(remote.getHold(Remote::Button::L1)) {
-    if(id == ID15){
-    speedMultiplier = 0.425; // 0.425 15 hang speed
+    speedMultiplier = 0.425;
     ladybrown->prepare();
     goalRush->retractArm();
-    }
-    else if(id == ID24){
-    speedMultiplier = 0.425; // unsure cuz im gay (; 
-    ladybrown->prepare();
-    goalRush->retractArm();
-    }
   } else {
     ladybrown->fullyExtend();
     goalRush->extendArm();

@@ -2,6 +2,7 @@
 #include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -120,8 +121,8 @@ void RobotClone::skills15() {
   ladybrown->fullyExtend();
   goalRush->extendArm();
   moveTo->reverse({1_tile, 1_tile});
-  moveTo->reverse({0_tile, 0_tile}, 
-    LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
+  moveTo->reverse({0_tile, 0_tile},
+                  LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
   moveTo->forward({0.5_tile, 0.5_tile});
 }
 
@@ -269,6 +270,35 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   endOfPositiveRoutines();
   END_ROUTINE
 
+  START_ROUTINE("Positive Rush-less")
+  setupRoutine({-2.5_tile, -1_tile, 0_deg});
+  intake->index();
+  moveTo->forward({-2.5_tile, 0.4_tile});
+  moveTo->reverse({-1.95_tile, -0.05_tile});
+  goalClamp->clamp();
+  intake->intake();
+  wait(singleRingDelay);
+  moveTo->forward({-2_tile, 1.25_tile});
+  wait(singleRingDelay);
+  moveTo->reverse({-2_tile, 0_tile});
+  moveTo->forward({-2_tile, -1_tile});
+  wait(singleRingDelay);
+  moveTo->forward({-2_tile, -2_tile});
+  wait(singleRingDelay);
+  collectCorner(false, 4);
+  wait(singleRingDelay);
+  intake->stop();
+  moveTo->reverse({-2.75_tile, -2.75_tile});
+  goalClamp->unclamp();
+  moveTo->forward({-2_tile, -2_tile});
+  intake->intake();
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {-1_tile, 0_tile, 0_deg},
+                         false,
+                         Path::Parameters{1_tile, 45_in_per_s}}});
+  intake->stop();
+  END_ROUTINE
+
   START_ROUTINE("Do Nothing")
   setupRoutine({});
   END_ROUTINE
@@ -383,21 +413,19 @@ void RobotClone::rushRight(const tile_t extraY) {
   wait(goalClampDelay);
 }
 
-void RobotClone::collectCorner(const bool negative) {
+void RobotClone::collectCorner(const bool negative, const int pushes) {
   // Corner Constants
   static const tile_t backupCorner{2_tile};
   static const tile_t intakeCorner{2.75_tile};
-  static const LateralProfile::Parameters intakeCornerProfile{40_in_per_s, 40_in_per_s_sq};
+  static const LateralProfile::Parameters backupProfile{35_in_per_s,
+                                                        35_in_per_s_sq};
 
   const double yAdj{negative ? 1.0 : -1.0};
   intake->intake();
-  moveTo->forward({-intakeCorner, yAdj * intakeCorner}, intakeCornerProfile);
-  wait(1.5_s);
-  for(int i{0}; i < 4; i++) {
-    moveTo->reverse({-backupCorner, yAdj * backupCorner});
-    moveTo->forward({-intakeCorner, yAdj * intakeCorner}, intakeCornerProfile);
+  for(int i{0}; i < pushes; i++) {
+    moveTo->forward({-intakeCorner, yAdj * intakeCorner});
+    moveTo->reverse({-backupCorner, yAdj * backupCorner}, backupProfile);
   }
-  moveTo->reverse({-backupCorner, yAdj * backupCorner});
 }
 
 /*
@@ -418,13 +446,13 @@ void RobotClone::endOfNegativeRoutines() {
                   LateralProfile::Parameters{singleRingSpeed});
   wait(singleRingDelay);
 
-  collectCorner(true);
+  collectCorner(true, 4);
 
   turn->toward({-1_tile, 0_tile});
   pathFollower->follow({{AcceptableDistance{3_s},
                          {-1_tile, 0_tile, 180_deg},
                          false,
-                         Path::Parameters{0.5_tile, 40_in_per_s}}});
+                         Path::Parameters{1_tile, 45_in_per_s}}});
   intake->stop();
 }
 
@@ -464,14 +492,18 @@ void RobotClone::endOfPositiveRoutines() {
                   LateralProfile::Parameters{singleRingSpeed});
   wait(singleRingDelay);
 
-  collectCorner(false);
+  collectCorner(false, 1);
+  wait(singleRingDelay);
 
-  moveTo->reverse({-2.625_tile, -2.625_tile});
+  moveTo->reverse({-2.55_tile, -2.4_tile});
   goalClamp->unclamp();
+  drive->arcade(2, 0);
+  wait(1_s);
+  drive->brake();
   pathFollower->follow({{AcceptableDistance{3_s},
                          {-1_tile, 0_tile, 0_deg},
                          false,
-                         Path::Parameters{0.5_tile, 40_in_per_s}}});
+                         Path::Parameters{1_tile, 45_in_per_s}}});
   intake->stop();
 }
 

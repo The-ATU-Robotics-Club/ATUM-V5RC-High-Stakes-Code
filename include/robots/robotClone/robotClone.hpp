@@ -183,8 +183,9 @@ class RobotClone : public Robot {
    * corner.
    *
    * @param negative
+   * @param pushes
    */
-  void collectCorner(const bool negative);
+  void collectCorner(const bool negative, const int pushes);
 
   /**
    * @brief Contains the behavior for the ending of the negative side routines.
