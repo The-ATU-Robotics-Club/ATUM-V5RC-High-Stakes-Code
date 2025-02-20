@@ -41,8 +41,8 @@ void RobotClone::driveSetup15() {
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>('G', 'H', wheelCircumference, 0.086_in, true)};
   std::unique_ptr<Odometer> sideOdometer{std::make_unique<Odometer>(
-      'C', 'D', wheelCircumference, -1.685_in, true)};
-  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{14, 17})};
+      'A', 'B', wheelCircumference, -1.685_in, false)};
+  std::unique_ptr<IMU> imu{std::make_unique<IMU>(PortsList{14, 17}, false)};
   std::unique_ptr<Odometry> odometry{
       std::make_unique<Odometry>(std::move(forwardOdometer),
                                  std::move(sideOdometer),
@@ -61,7 +61,7 @@ void RobotClone::ladybrownSetup15() {
       std::make_unique<Motor>(MotorPortsList{11},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "right ladybrown")};
-  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('B')};
+  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('D')};
   std::unique_ptr<RotationSensor> ladybrownRotation{
       std::make_unique<RotationSensor>(16, true)};
   std::unique_ptr<LimitSwitch> ladybrownSwitch{
@@ -140,7 +140,7 @@ void RobotClone::goalSetup15() {
                                           std::move(limitSwitch1),
                                           std::move(limitSwitch2));
   //  Setup goal rush.
-  std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('A')};
+  std::unique_ptr<Piston> goalRushArm{std::make_unique<Piston>('C')};
   std::unique_ptr<Piston> goalRushClamp{std::make_unique<Piston>('F')};
   std::unique_ptr<LimitSwitch> limitSwitchRush{
       std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'C'})};

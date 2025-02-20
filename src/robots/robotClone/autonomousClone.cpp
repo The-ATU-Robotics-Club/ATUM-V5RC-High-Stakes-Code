@@ -2,7 +2,6 @@
 #include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -79,8 +78,8 @@ void RobotClone::skills15() {
   ladybrown->fullyExtend();
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 3_s);
   wait(0.25_s);
-  ladybrown->rest();
   moveTo->reverse({0_tile, 1.75_tile});
+  ladybrown->rest();
   clampWhenReady();
   moveTo->reverse({1.25_tile, 0.75_tile}, goalClampProfile);
   goalClamp->clamp();
@@ -320,7 +319,8 @@ void RobotClone::rushLeft(const tile_t extraY) {
   const tile_t rushYAdj{
       extraY -
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
-  degree_t rushH{30_deg};
+
+  degree_t rushH{id == ID15 ? 30_deg : 30_deg};
   if(GUI::Routines::selectedColor() == MatchColor::Blue) {
     rushH = 180_deg - rushH;
   }
@@ -329,7 +329,7 @@ void RobotClone::rushLeft(const tile_t extraY) {
         {-0.43_tile, -0.43_tile + rushYAdj, rushH},
         false,
         Path::Parameters{
-            1_tile, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+            1_tile, 0_in_per_s, 76.5_in_per_s_sq, 76.5_in_per_s_sq}}});
   goalRush->grab();
   wait(goalRushDelay);
   moveTo->reverse(
@@ -383,7 +383,7 @@ void RobotClone::rushRight(const tile_t extraY) {
                          false,
                          Path::Parameters{(id == ID15 ? 1_tile : 0.5_tile),
                                           0_in_per_s,
-                                          0_in_per_s_sq,
+                                          76.5_in_per_s_sq,
                                           76.5_in_per_s_sq}}});
   goalRush->grab();
   wait(goalRushDelay);
