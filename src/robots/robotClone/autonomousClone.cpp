@@ -63,10 +63,10 @@ void RobotClone::skills15() {
 
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {0.25_tile, 2.5_tile, 90_deg},
+        {0.25_tile, 2.45_tile, 90_deg},
         false,
         Path::Parameters{
-            {0.5_tile, 3_tile}, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+            {0.5_tile, 3_tile}, 45_in_per_s, 45_in_per_s_sq}}});
   wait(singleRingDelay);
   moveTo->reverse({0_tile, 2_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
@@ -81,15 +81,14 @@ void RobotClone::skills15() {
   moveTo->reverse({0_tile, 1.75_tile});
   ladybrown->rest();
   clampWhenReady();
-  moveTo->reverse({1.25_tile, 0.75_tile}, goalClampProfile);
+  moveTo->reverse({1_tile, 1_tile}, goalClampProfile);
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
   moveTo->forward({1_tile, 2_tile});
   wait(singleRingDelay);
-  moveTo->forward({2.4_tile, 0.6_tile},
+  moveTo->forward({2_tile, 1_tile},
                   LateralProfile::Parameters{40_in_per_s, 40_in_per_s_sq});
-  moveTo->reverse({2_tile, 1_tile});
   wait(singleRingDelay);
   moveTo->forward({2_tile, 2_tile});
   wait(singleRingDelay);
@@ -108,7 +107,7 @@ void RobotClone::skills15() {
         {2.5_tile, -0.25_tile, 180_deg},
         false,
         Path::Parameters{
-            {0.5_tile, 3_tile}, 0_in_per_s, 0_in_per_s_sq, 76.5_in_per_s_sq}}});
+            {0.5_tile, 3_tile}, 50_in_per_s, 60_in_per_s_sq}}});
   clampWhenReady();
   moveTo->reverse({1.75_tile, 0.25_tile}, goalClampProfile);
   goalClamp->clamp();
@@ -117,12 +116,13 @@ void RobotClone::skills15() {
   moveTo->reverse({1.5_tile, 1.5_tile});
   goalClamp->unclamp();
   intake->stop();
-  ladybrown->fullyExtend();
-  goalRush->extendArm();
+  ladybrown->prepare();
   moveTo->reverse({1_tile, 1_tile});
   moveTo->reverse({0_tile, 0_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
-  moveTo->forward({0.5_tile, 0.5_tile});
+  moveTo->forward({0.75_tile, 0.75_tile});
+  ladybrown->fullyExtend();
+  goalRush->extendArm();
 }
 
 /*
@@ -143,6 +143,7 @@ void RobotClone::skills24() {
   wait(singleRingDelay);
   intake->stop();
   intake->index();
+  moveTo->forward({-2_tile, 0_tile});
   moveTo->forward({-2_tile, -2_tile});
   wait(singleRingDelay);
   clampWhenReady();
@@ -162,25 +163,25 @@ void RobotClone::skills24() {
   moveTo->reverse({-2_tile, -2_tile});
   moveTo->reverse({-2.75_tile, -2.75_tile});
   goalClamp->unclamp();
-  moveTo->forward({-2.375_tile, -2.375_tile});
+  moveTo->forward({-2.25_tile, -2.25_tile});
   turn->toward(100_deg);
   intake->stop();
   wait(singleRingDelay);
   intake->load();
   pathFollower->follow({{AcceptableDistance{3_s},
-                         {0.25_tile, -2.5_tile, 90_deg},
+                         {0.25_tile, -2.45_tile, 90_deg},
                          false,
-                         Path::Parameters{{0.5_tile, 3_tile}, 50_in_per_s}}});
+                         Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s, 45_in_per_s_sq}}});
   wait(.25_s);
   moveTo->reverse({0_tile, -2_tile});
   wait(.25_s);
-  moveTo->forward({0_tile, -2.6_tile});
+  moveTo->forward({0_tile, -2.575_tile});
   wait(singleRingDelay);
   intake->stop();
   drive->arcade(0.5, 0);
   ladybrown->fullyExtend();
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 3_s);
-  wait(1_s);
+  wait(0.25_s);
   moveTo->reverse({0_tile, -1.75_tile});
   ladybrown->rest();
   intake->index();
@@ -206,14 +207,15 @@ void RobotClone::skills24() {
   wait(100_ms);
   goalClamp->unclamp();
   moveTo->forward({2_tile, -2_tile});
+  
+  intake->stop();
+  ladybrown->prepare();
+  moveTo->forward({1_tile, -1_tile});
+  moveTo->reverse({0_tile, 0_tile},
+                  LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
+  moveTo->forward({0.75_tile, -0.75_tile});
   ladybrown->fullyExtend();
   goalRush->extendArm();
-  intake->stop();
-  moveTo->reverse({.25_tile, -.25_tile},
-                  LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
-  moveTo->forward({.5_tile, -.5_tile});
-  intake->stop();
-  wait(2_s);
 }
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
