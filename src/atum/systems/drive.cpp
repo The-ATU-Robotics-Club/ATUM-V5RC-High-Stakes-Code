@@ -1,5 +1,7 @@
-#include "drive.hpp"
 #include "atum/depend/units.h"
+#include "atum/gui/routines.hpp"
+#include "drive.hpp"
+
 
 namespace atum {
 Drive::Drive(std::unique_ptr<Motor> iLeft,
@@ -58,16 +60,18 @@ Pose Drive::getPose() const {
 }
 
 meter_t Drive::traveled() {
- const degree_t totalTraveled{(left->getPosition() + right->getPosition()) / 2.0};
- const degree_t deltaTraveled{totalTraveled - previousTraveled};
- previousTraveled = totalTraveled;
- const scalar_t revolutions{deltaTraveled / 360_deg};
- return revolutions * geometry.circum;
+  const degree_t totalTraveled{(left->getPosition() + right->getPosition()) /
+                               2.0};
+  const degree_t deltaTraveled{totalTraveled - previousTraveled};
+  previousTraveled = totalTraveled;
+  const scalar_t revolutions{deltaTraveled / 360_deg};
+  return revolutions * geometry.circum;
 }
 
-meters_per_second_t
-    Drive::getVelocity() const {
-  const double rpm{getValueAs<revolutions_per_minute_t>(left->getVelocity() + right->getVelocity()) / 2.0};
+meters_per_second_t Drive::getVelocity() const {
+  const double rpm{getValueAs<revolutions_per_minute_t>(left->getVelocity() +
+                                                        right->getVelocity()) /
+                   2.0};
   return geometry.circum * rpm / 60.0_s;
 }
 
@@ -93,7 +97,10 @@ meters_per_second_t Drive::getMaxVelocity() const {
   return maxRPM * geometry.circum / 1_min;
 }
 
-Condition Drive::checkIsNear(const Pose pose, const meter_t threshold) {
+Condition Drive::checkIsNear(Pose pose, const meter_t threshold) {
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    pose.flip();
+  }
   return [=]() { return distance(getPose(), pose) <= threshold; };
 }
 } // namespace atum

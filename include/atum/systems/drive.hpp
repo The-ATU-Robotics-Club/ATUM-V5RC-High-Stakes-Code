@@ -156,7 +156,7 @@ class Drive {
    * @param within
    * @return Condition
    */
-  Condition checkIsNear(const Pose pose, const meter_t threshold);
+  Condition checkIsNear(Pose pose, const meter_t threshold);
 
   private:
   std::unique_ptr<Motor> left;

@@ -2,7 +2,6 @@
 #include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -322,7 +321,7 @@ void RobotClone::rushLeft(const tile_t extraY) {
       extraY -
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
 
-  degree_t rushH{id == ID15 ? 32.5_deg : 27.5_deg};
+  degree_t rushH{id == ID15 ? 32.5_deg : 26.5_deg};
   if(GUI::Routines::selectedColor() == MatchColor::Blue) {
     rushH = 180_deg - rushH;
   }
@@ -348,10 +347,10 @@ void RobotClone::rushLeft(const tile_t extraY) {
   intake->stop();
   setSortToOpposite();
   scheduler.schedule({"Raise Goal Arm When Ready",
-    Scheduler::neverMet,
-    Scheduler::doNothing,
-    0.375_s,
-    [=]() { goalRush->retractArm(); }});
+                      Scheduler::neverMet,
+                      Scheduler::doNothing,
+                      0.375_s,
+                      [=]() { goalRush->retractArm(); }});
   clampWhenReady();
   moveTo->reverse(
       {-0.4_tile,
@@ -380,17 +379,15 @@ void RobotClone::rushRight(const tile_t extraY) {
   const tile_t rushYAdj{
       extraY +
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
-  degree_t rushH{id == ID15 ? 105_deg : 100_deg};
+  degree_t rushH{id == ID15 ? 103_deg : 100_deg};
   if(GUI::Routines::selectedColor() == MatchColor::Blue) {
     rushH = 180_deg - rushH;
   }
-  pathFollower->follow({{AcceptableDistance{3_s},
-                         {-0.43_tile, -1.57_tile + rushYAdj, rushH},
-                         false,
-                         Path::Parameters{1_tile,
-                                          0_in_per_s,
-                                          0_in_per_s_sq,
-                                          60_in_per_s_sq}}});
+  pathFollower->follow(
+      {{AcceptableDistance{3_s},
+        {-0.43_tile, -1.57_tile + rushYAdj, rushH},
+        false,
+        Path::Parameters{1_tile, 0_in_per_s, 0_in_per_s_sq, 60_in_per_s_sq}}});
   goalRush->grab();
   wait(goalRushDelay);
   moveTo->reverse(
@@ -531,9 +528,9 @@ void RobotClone::setupRoutine(Pose startingPose) {
 
   if(id == ID15) {
     intake->outtake();
+    wait(150_ms);
     intake->stop();
   }
-  wait(0.1_s);
 
   drive->setBrakeMode(pros::MotorBrake::brake);
 }
