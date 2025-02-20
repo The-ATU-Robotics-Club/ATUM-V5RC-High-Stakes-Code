@@ -5,7 +5,7 @@ var searchData=
   ['check_2',['check',['../classatum_1_1ColorSensor.html#a00c5f8f3832cb1e2efbceb07052c4fa9',1,'atum::ColorSensor::check()'],['../classatum_1_1DistanceSensor.html#a8f59d43990be1ad4acd97870d2a2444f',1,'atum::DistanceSensor::check()'],['../classatum_1_1LineTracker.html#a1abd38487289272836146e377018d77e',1,'atum::LineTracker::check()'],['../classatum_1_1Motor.html#a2de03a87ec300c3b4aed1c4aa1de0999',1,'atum::Motor::check()'],['../classatum_1_1RotationSensor.html#ade9e475ad0bcdfce697bc7f87cdc3aeb',1,'atum::RotationSensor::check()'],['../classatum_1_1GPS.html#a4b5357224c11900c974a8c7baf9aa456',1,'atum::GPS::check()']]],
   ['checkgoneoff_3',['checkGoneOff',['../classatum_1_1Timer.html#a89a2d01b5771f6bc8d58e43f509dc438',1,'atum::Timer']]],
   ['checkhasgoal_4',['checkHasGoal',['../classatum_1_1GoalClamp.html#af6ddfcc3a78ff2fb9967a9a5a24a6bf8',1,'atum::GoalClamp']]],
-  ['checkisnear_5',['checkIsNear',['../classatum_1_1Drive.html#aa8c881251daf4630ded8b096f6e6f056',1,'atum::Drive']]],
+  ['checkisnear_5',['checkIsNear',['../classatum_1_1Drive.html#aa70d8c82b0abcebf07d13bd40bd608ab',1,'atum::Drive']]],
   ['checkstateis_6',['checkStateIs',['../classatum_1_1StateMachine.html#a528bc101f8771596bb12802c81fc91b9',1,'atum::StateMachine']]],
   ['clamp_7',['clamp',['../classatum_1_1GoalClamp.html#a193e378cbd3cab744d5d6c6c7e63c9b6',1,'atum::GoalClamp']]],
   ['clearall_8',['clearAll',['../classatum_1_1GUI_1_1Graph.html#a611f75ceb666d14b61b5d2d13545cf89',1,'atum::GUI::Graph']]],

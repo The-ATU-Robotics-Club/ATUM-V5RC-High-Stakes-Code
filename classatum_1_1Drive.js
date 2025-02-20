@@ -4,7 +4,7 @@ var classatum_1_1Drive =
     [ "Drive", "classatum_1_1Drive.html#a5324e65dd90d601d646a01ec192ac070", null ],
     [ "arcade", "classatum_1_1Drive.html#a36ebb7dc126b52775dba69466a6f197c", null ],
     [ "brake", "classatum_1_1Drive.html#ad5c6a11cd5e284b5482f7f2b0158ef30", null ],
-    [ "checkIsNear", "classatum_1_1Drive.html#aa8c881251daf4630ded8b096f6e6f056", null ],
+    [ "checkIsNear", "classatum_1_1Drive.html#aa70d8c82b0abcebf07d13bd40bd608ab", null ],
     [ "getBrakeMode", "classatum_1_1Drive.html#acf43f1b97bb419b2d29eb9a7f3495206", null ],
     [ "getGeometry", "classatum_1_1Drive.html#acb0dff015d122c7438c3fbb00566bc50", null ],
     [ "getMaxRPM", "classatum_1_1Drive.html#ad7d6fd1a4535bbb464d42c7d42394981", null ],
