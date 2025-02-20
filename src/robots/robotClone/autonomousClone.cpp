@@ -2,6 +2,7 @@
 #include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -11,7 +12,7 @@ static const LateralProfile::Parameters goalClampProfile{35_in_per_s,
                                                          70_in_per_s_sq};
 static const LateralProfile::Parameters cornerMotionProfile{30_in_per_s,
                                                             90_in_per_s_sq};
-LateralProfile::Parameters doubleStackProfile{40_in_per_s, 60_in_per_s_sq};
+LateralProfile::Parameters doubleStackProfile{40_in_per_s, 50_in_per_s_sq};
 static const inches_per_second_t singleRingSpeed{60_in_per_s};
 static const tile_t pushDoubleStackY{2.47_tile};
 static const second_t goalRushDelay{100_ms};
@@ -277,13 +278,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   goalClamp->clamp();
   intake->intake();
   wait(singleRingDelay);
-  moveTo->forward({-2_tile, 1.25_tile});
+  moveTo->forward({-2_tile, 1_tile});
   wait(singleRingDelay);
   moveTo->reverse({-2_tile, 0_tile});
   moveTo->forward({-2_tile, -1_tile});
   wait(singleRingDelay);
-  moveTo->forward({-2_tile, -2_tile});
+  moveTo->forward({-2_tile, -pushDoubleStackY});
   wait(singleRingDelay);
+  moveTo->reverse({-2_tile, -2_tile});
   collectCorner(false, 4);
   wait(singleRingDelay);
   intake->stop();
@@ -320,7 +322,7 @@ void RobotClone::rushLeft(const tile_t extraY) {
       extraY -
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
 
-  degree_t rushH{id == ID15 ? 30_deg : 30_deg};
+  degree_t rushH{id == ID15 ? 32.5_deg : 27.5_deg};
   if(GUI::Routines::selectedColor() == MatchColor::Blue) {
     rushH = 180_deg - rushH;
   }
@@ -328,8 +330,7 @@ void RobotClone::rushLeft(const tile_t extraY) {
       {{AcceptableDistance{3_s},
         {-0.43_tile, -0.43_tile + rushYAdj, rushH},
         false,
-        Path::Parameters{
-            1_tile, 0_in_per_s, 76.5_in_per_s_sq, 76.5_in_per_s_sq}}});
+        Path::Parameters{1_tile, 0_in_per_s, 0_in_per_s_sq, 60_in_per_s_sq}}});
   goalRush->grab();
   wait(goalRushDelay);
   moveTo->reverse(
@@ -346,6 +347,11 @@ void RobotClone::rushLeft(const tile_t extraY) {
   wait(goalRushDelay);
   intake->stop();
   setSortToOpposite();
+  scheduler.schedule({"Raise Goal Arm When Ready",
+    Scheduler::neverMet,
+    Scheduler::doNothing,
+    0.375_s,
+    [=]() { goalRush->retractArm(); }});
   clampWhenReady();
   moveTo->reverse(
       {-0.4_tile,
@@ -374,17 +380,17 @@ void RobotClone::rushRight(const tile_t extraY) {
   const tile_t rushYAdj{
       extraY +
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
-  degree_t rushH{id == ID15 ? 105_deg : 110_deg};
+  degree_t rushH{id == ID15 ? 105_deg : 100_deg};
   if(GUI::Routines::selectedColor() == MatchColor::Blue) {
     rushH = 180_deg - rushH;
   }
   pathFollower->follow({{AcceptableDistance{3_s},
                          {-0.43_tile, -1.57_tile + rushYAdj, rushH},
                          false,
-                         Path::Parameters{(id == ID15 ? 1_tile : 0.5_tile),
+                         Path::Parameters{1_tile,
                                           0_in_per_s,
-                                          76.5_in_per_s_sq,
-                                          76.5_in_per_s_sq}}});
+                                          0_in_per_s_sq,
+                                          60_in_per_s_sq}}});
   goalRush->grab();
   wait(goalRushDelay);
   moveTo->reverse(
@@ -482,10 +488,10 @@ void RobotClone::endOfPositiveRoutines() {
   goalClamp->clamp();
   intake->intake();
   wait(singleRingDelay);
-  moveTo->forward({-2_tile, 1.25_tile});
+  moveTo->forward({-2_tile, 1_tile});
   moveTo->reverse({-2_tile, -1_tile});
 
-  moveTo->forward({-0.4_tile, -2.6_tile}, doubleStackProfile);
+  moveTo->forward({-0.55_tile, -2.45_tile}, doubleStackProfile);
   wait(singleRingDelay);
 
   moveTo->forward({-2_tile, -2_tile},

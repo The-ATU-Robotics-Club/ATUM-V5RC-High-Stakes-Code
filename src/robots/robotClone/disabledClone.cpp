@@ -334,7 +334,7 @@ void RobotClone::autonSetup() {
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   std::unique_ptr<Controller> turnController =
-      std::make_unique<PID>(PID::Parameters{14});
+      std::make_unique<PID>(PID::Parameters{7});
   pathFollower = std::make_unique<PathFollower>(drive.get(),
                                                 acceptable,
                                                 std::move(forwardController),
