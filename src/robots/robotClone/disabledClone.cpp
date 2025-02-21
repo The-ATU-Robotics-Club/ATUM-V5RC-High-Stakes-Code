@@ -69,7 +69,7 @@ void RobotClone::ladybrownSetup15() {
       std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 9_deg},
+                         {LadybrownState::Loading, 15_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 135_deg}};
   Ladybrown::Parameters ladybrownParameters{

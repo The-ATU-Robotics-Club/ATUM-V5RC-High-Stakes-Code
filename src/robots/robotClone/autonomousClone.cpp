@@ -61,13 +61,11 @@ void RobotClone::skills15() {
   turn->toward(80_deg);
 
   intake->load();
-
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {0.25_tile, 2.45_tile, 90_deg},
+        {0.1_tile, 2.35_tile, 91_deg},
         false,
-        Path::Parameters{
-            {0.5_tile, 3_tile}, 40_in_per_s}}});
+        Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
   wait(singleRingDelay);
   moveTo->reverse({0_tile, 2_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
@@ -108,7 +106,6 @@ void RobotClone::skills15() {
         {2.5_tile, -0.5_tile, 180_deg},
         false,
         Path::Parameters{{0.5_tile, 3_tile}, 50_in_per_s, 60_in_per_s_sq}}});
-  clampWhenReady();
   moveTo->reverse({1_tile, 1_tile}, goalClampProfile);
   goalClamp->clamp();
   wait(goalClampDelay);
