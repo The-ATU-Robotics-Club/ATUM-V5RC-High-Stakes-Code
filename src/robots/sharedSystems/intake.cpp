@@ -128,8 +128,10 @@ void Intake::finishLoading() {
   wait(params.pressLoadTime);
   mtr->moveVoltage(-12);
   wait(params.finishLoadingTime);
-  state = IntakeState::FinishedLoading;
+  mtr->brake();
   ladybrown->prepare();
+  wait(params.stopTime);
+  state = IntakeState::FinishedLoading;
 }
 
 void Intake::forceIntake(const IntakeState newState) {

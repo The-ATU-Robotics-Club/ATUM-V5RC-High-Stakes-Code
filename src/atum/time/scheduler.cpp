@@ -50,7 +50,7 @@ TASK_DEFINITIONS_FOR(Scheduler) {
       }
       if(item.timeout && timer.goneOff()) {
         if(item.todoTimeout.has_value()) {
-          item.todoTimeout.value();
+          item.todoTimeout.value()();
         } else {
           item.todo();
         }

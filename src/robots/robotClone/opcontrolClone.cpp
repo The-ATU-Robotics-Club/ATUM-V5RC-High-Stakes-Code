@@ -9,13 +9,21 @@ void RobotClone::opcontrol() {
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
     matchTimer.setAlarm(40_s);
-    intake->setSortOutColor(ColorSensor::Color::None);
     goalClamp->unclamp();
     if(id == ID15) {
       intake->outtake();
-      wait(0.1_s);
+      wait(0.25_s);
+      intake->stop();
+    } else {
+      setupRoutine({-2.5_tile, 0_tile, 90_deg});
+      intake->setSortOutColor(ColorSensor::Color::Blue);
+      intake->index();
+      moveTo->forward({-2_tile, 0_tile});
+      wait(.25_s);
+      moveTo->reverse({-2.45_tile, 0_tile});
       intake->stop();
     }
+    intake->setSortOutColor(ColorSensor::Color::None);
   }
   scheduler.schedule({"Rumble at 15s Away", matchTimer.checkGoneOff(), [=]() {
                         remote.rumble("---");
@@ -155,7 +163,11 @@ void RobotClone::hangControls() {
   remote.print(2, "MODE: Hang");
 
   if(remote.getHold(Remote::Button::L1)) {
-    speedMultiplier = 0.425;
+    if(id == ID15) {
+      speedMultiplier = 0.425;
+    } else {
+      speedMultiplier = 0.35;
+    }
     ladybrown->prepare();
     goalRush->retractArm();
   } else {

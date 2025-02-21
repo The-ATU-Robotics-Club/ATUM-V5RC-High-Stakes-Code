@@ -2,6 +2,7 @@
 #include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
@@ -118,8 +119,9 @@ void RobotClone::intakeSetup15() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 10_ms;
-  intakeParams.finishLoadingTime = 0.1_s;
+  intakeParams.pressLoadTime = 50_ms;
+  intakeParams.finishLoadingTime = 100_ms;
+  intakeParams.stopTime = 300_ms;
   intakeParams.generalTimeout = 1_s;
   intakeParams.intakingVoltage = 12.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
@@ -193,7 +195,7 @@ void RobotClone::ladybrownSetup24() {
       std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'H'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 20_deg},
+                         {LadybrownState::Loading, 22.5_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
@@ -244,7 +246,8 @@ void RobotClone::intakeSetup24() {
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 50_ms;
-  intakeParams.finishLoadingTime = 0.1_s;
+  intakeParams.finishLoadingTime = 100_ms;
+  intakeParams.stopTime = 300_ms;
   intakeParams.generalTimeout = 1_s;
   intakeParams.intakingVoltage = 12.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
@@ -298,7 +301,8 @@ void RobotClone::autonSetup() {
           turnAcceptable,
           std::move(turnVelocityController),
           turnKA,
-          std::move(turnPositionController), 15_deg)};
+          std::move(turnPositionController),
+          15_deg)};
   turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
 
   // Move to setup.

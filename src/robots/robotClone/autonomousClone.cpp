@@ -65,8 +65,7 @@ void RobotClone::skills15() {
       {{AcceptableDistance{3_s},
         {0.25_tile, 2.45_tile, 90_deg},
         false,
-        Path::Parameters{
-            {0.5_tile, 3_tile}, 45_in_per_s, 45_in_per_s_sq}}});
+        Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s, 45_in_per_s_sq}}});
   wait(singleRingDelay);
   moveTo->reverse({0_tile, 2_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
@@ -106,8 +105,7 @@ void RobotClone::skills15() {
       {{AcceptableDistance{3_s},
         {2.5_tile, -0.25_tile, 180_deg},
         false,
-        Path::Parameters{
-            {0.5_tile, 3_tile}, 50_in_per_s, 60_in_per_s_sq}}});
+        Path::Parameters{{0.5_tile, 3_tile}, 50_in_per_s, 60_in_per_s_sq}}});
   clampWhenReady();
   moveTo->reverse({1.75_tile, 0.25_tile}, goalClampProfile);
   goalClamp->clamp();
@@ -168,10 +166,11 @@ void RobotClone::skills24() {
   intake->stop();
   wait(singleRingDelay);
   intake->load();
-  pathFollower->follow({{AcceptableDistance{3_s},
-                         {0.25_tile, -2.45_tile, 90_deg},
-                         false,
-                         Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s, 45_in_per_s_sq}}});
+  pathFollower->follow(
+      {{AcceptableDistance{3_s},
+        {0.25_tile, -2.45_tile, 90_deg},
+        false,
+        Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s, 45_in_per_s_sq}}});
   wait(.25_s);
   moveTo->reverse({0_tile, -2_tile});
   wait(.25_s);
@@ -207,7 +206,7 @@ void RobotClone::skills24() {
   wait(100_ms);
   goalClamp->unclamp();
   moveTo->forward({2_tile, -2_tile});
-  
+
   intake->stop();
   ladybrown->prepare();
   moveTo->forward({1_tile, -1_tile});
@@ -322,16 +321,27 @@ void RobotClone::rushLeft(const tile_t extraY) {
   const tile_t rushYAdj{
       extraY -
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
-
-  degree_t rushH{id == ID15 ? 32.5_deg : 26.5_deg};
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-    rushH = 180_deg - rushH;
+  degree_t rushH;
+  if(id == ID15) {
+    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+      rushH = 152_deg;
+    } else {
+      rushH = 27_deg;
+    }
+  } else {
+    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+      rushH = 169_deg;
+    } else {
+      rushH = 15_deg;
+    }
   }
-  pathFollower->follow(
-      {{AcceptableDistance{3_s},
-        {-0.43_tile, -0.43_tile + rushYAdj, rushH},
-        false,
-        Path::Parameters{1_tile, 0_in_per_s, 0_in_per_s_sq, 60_in_per_s_sq}}});
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {-0.43_tile, -0.43_tile + rushYAdj, rushH},
+                         false,
+                         Path::Parameters{(id == ID15) ? 1_tile : 0.1_tile,
+                                          0_in_per_s,
+                                          0_in_per_s_sq,
+                                          60_in_per_s_sq}}});
   goalRush->grab();
   wait(goalRushDelay);
   moveTo->reverse(
@@ -381,9 +391,19 @@ void RobotClone::rushRight(const tile_t extraY) {
   const tile_t rushYAdj{
       extraY +
       (GUI::Routines::selectedColor() == MatchColor::Blue ? 1_tile : 0_tile)};
-  degree_t rushH{id == ID15 ? 103_deg : 100_deg};
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-    rushH = 180_deg - rushH;
+  degree_t rushH;
+  if(id == ID15) {
+    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+      rushH = 65_deg;
+    } else {
+      rushH = 98_deg;
+    }
+  } else {
+    if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+      rushH = 65_deg;
+    } else {
+      rushH = 98_deg;
+    }
   }
   pathFollower->follow(
       {{AcceptableDistance{3_s},
@@ -397,15 +417,16 @@ void RobotClone::rushRight(const tile_t extraY) {
        (GUI::Routines::selectedColor() == MatchColor::Red ? -0.8_tile :
                                                             -1.2_tile) +
            extraY});
-  if(GUI::Routines::selectedColor() == MatchColor::Red) {
-    turn->toward(90_deg);
-  } else {
-    turn->toward(180_deg);
-  }
+  turn->toward(90_deg);
   goalRush->release();
   wait(goalRushDelay);
   intake->stop();
   setSortToOpposite();
+  scheduler.schedule({"Raise Goal Arm When Ready",
+                      Scheduler::neverMet,
+                      Scheduler::doNothing,
+                      0.375_s,
+                      [=]() { goalRush->retractArm(); }});
   clampWhenReady();
   moveTo->reverse(
       {-0.4_tile,

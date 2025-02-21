@@ -56,6 +56,8 @@ class Intake : public Task, public StateMachine<IntakeState> {
     // The time the intake will run outward when throwing while finishing
     // loading.
     second_t finishLoadingTime;
+    // The time the intake will stop moving after reversing. 
+    second_t stopTime;
     // The time the intake will attempt to perform an action before giving up.
     second_t generalTimeout;
     double intakingVoltage{12.0};
