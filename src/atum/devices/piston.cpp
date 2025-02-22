@@ -26,6 +26,10 @@ Piston::Piston(const ADIExtenderPort &port,
 }
 
 void Piston::extend() {
+  // Don't actuate pistons if disabled. 
+  if(pros::competition::is_disabled()) {
+    return;
+  }
   if(reversed) {
     piston.retract();
   } else {
@@ -34,6 +38,10 @@ void Piston::extend() {
 }
 
 void Piston::retract() {
+  // Don't actuate pistons if disabled. 
+  if(pros::competition::is_disabled()) {
+    return;
+  }
   if(reversed) {
     piston.extend();
   } else {
@@ -42,6 +50,10 @@ void Piston::retract() {
 }
 
 void Piston::toggle() {
+  // Don't actuate pistons if disabled. 
+  if(pros::competition::is_disabled()) {
+    return;
+  }
   piston.toggle();
 }
 

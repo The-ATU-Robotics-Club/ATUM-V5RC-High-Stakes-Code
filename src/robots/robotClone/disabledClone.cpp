@@ -123,7 +123,6 @@ void RobotClone::intakeSetup15() {
   intakeParams.finishLoadingTime = 100_ms;
   intakeParams.stopTime = 300_ms;
   intakeParams.generalTimeout = 1_s;
-  intakeParams.intakingVoltage = 12.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),
@@ -195,7 +194,7 @@ void RobotClone::ladybrownSetup24() {
       std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'H'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
       ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 22.5_deg},
+                         {LadybrownState::Loading, 25_deg},
                          {LadybrownState::Preparing, 60_deg},
                          {LadybrownState::Scoring, 125_deg}};
   Ladybrown::Parameters ladybrownParameters{
@@ -245,11 +244,11 @@ void RobotClone::intakeSetup24() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 50_ms;
+  intakeParams.pressLoadTime = 25_ms;
   intakeParams.finishLoadingTime = 100_ms;
   intakeParams.stopTime = 300_ms;
   intakeParams.generalTimeout = 1_s;
-  intakeParams.intakingVoltage = 12.0;
+  intakeParams.indexingVoltage = 8.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),

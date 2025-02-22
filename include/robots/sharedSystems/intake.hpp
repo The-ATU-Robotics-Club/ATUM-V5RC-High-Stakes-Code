@@ -61,6 +61,7 @@ class Intake : public Task, public StateMachine<IntakeState> {
     // The time the intake will attempt to perform an action before giving up.
     second_t generalTimeout;
     double intakingVoltage{12.0};
+    double indexingVoltage{12.0};
   };
 
   /**

@@ -36,7 +36,7 @@ static const second_t doubleRingDelay{1.125_s};
 void RobotClone::skills15() {
   setupRoutine({-2.5_tile + 7.5_in, 1_tile, 90_deg});
   intake->setSortOutColor(ColorSensor::Color::Blue);
-  intake->index();
+  indexAfterFoldout();
   moveTo->forward({-1_tile, 1_tile});
   wait(singleRingDelay);
   clampWhenReady();
@@ -63,7 +63,7 @@ void RobotClone::skills15() {
   intake->load();
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {0.1_tile, 2.35_tile, 91_deg},
+        {0.1_tile, 2.4_tile, 91_deg},
         false,
         Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
   wait(singleRingDelay);
@@ -160,7 +160,7 @@ void RobotClone::skills24() {
   intake->load();
   pathFollower->follow(
       {{AcceptableDistance{3_s},
-        {0.1_tile, -2.35_tile, 89_deg},
+        {0.1_tile, -2.4_tile, 89_deg},
         false,
         Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
   wait(doubleRingDelay);
@@ -259,6 +259,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Positive Rush-less")
   setupRoutine({-2.5_tile, -1_tile, 0_deg});
+  intake->outtake();
+  wait(0.6_s);
   intake->index();
   moveTo->forward({-2.5_tile, 0.4_tile});
   moveTo->reverse({-1.95_tile, -0.05_tile});
@@ -289,6 +291,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Do Nothing")
   setupRoutine({});
+  intake->outtake();
+  wait(3_s);
+  intake->stop();
   END_ROUTINE
 }
 
@@ -303,7 +308,9 @@ void RobotClone::rushLeft(const tile_t extraY) {
   intake->setSortOutColor(ColorSensor::Color::None);
   goalRush->extendArm();
   goalRush->release();
-  intake->index();
+  
+  indexAfterFoldout();
+
   goalRushWhenReady();
   const tile_t rushYAdj{
       extraY -
@@ -373,7 +380,9 @@ void RobotClone::rushRight(const tile_t extraY) {
   intake->setSortOutColor(ColorSensor::Color::None);
   goalRush->extendArm();
   goalRush->release();
-  intake->index();
+  
+  indexAfterFoldout();
+
   goalRushWhenReady();
   const tile_t rushYAdj{
       extraY +
@@ -536,12 +545,6 @@ void RobotClone::setupRoutine(Pose startingPose) {
   goalClamp->unclamp();
   goalRush->release();
 
-  if(id == ID15) {
-    intake->outtake();
-    wait(150_ms);
-    intake->stop();
-  }
-
   drive->setBrakeMode(pros::MotorBrake::brake);
 }
 
@@ -577,6 +580,17 @@ void RobotClone::goalRushWhenReady(const second_t timeout) {
                       },
                       timeout,
                       Scheduler::doNothing});
+}
+
+
+void RobotClone::indexAfterFoldout() {
+  intake->outtake();
+  wait(0.2_s);
+  scheduler.schedule({"Index After Unfold",
+    Scheduler::neverMet,
+    Scheduler::doNothing,
+    0.4_s,
+    [=]() { intake->index(); }});
 }
 
 void RobotClone::setSortToOpposite() {

@@ -15,7 +15,6 @@
 #include "../sharedSystems/ladybrown.hpp"
 #include "atum/atum.hpp"
 
-
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -224,6 +223,12 @@ class RobotClone : public Robot {
    * @param timeout
    */
   void goalRushWhenReady(const second_t timeout = 4_s);
+
+  /**
+   * @brief Runs the intake outward for a moment, before starting to index.
+   *
+   */
+  void indexAfterFoldout();
 
   /**
    * @brief Sets the sort out color of the intake to the opposite color

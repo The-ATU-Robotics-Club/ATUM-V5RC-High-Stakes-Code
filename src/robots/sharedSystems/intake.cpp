@@ -90,7 +90,12 @@ void Intake::intaking() {
      mtr->getVelocity() < params.jamVelocity) {
     state = IntakeState::Jammed;
   }
-  mtr->moveVoltage(params.intakingVoltage);
+  if(state == IntakeState::Indexing ||
+     (state == IntakeState::Loading && ladybrown->hasRing())) {
+    mtr->moveVoltage(params.indexingVoltage);
+  } else {
+    mtr->moveVoltage(params.intakingVoltage);
+  }
 }
 
 void Intake::unjamming() {
