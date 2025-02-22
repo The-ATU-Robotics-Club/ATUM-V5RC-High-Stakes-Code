@@ -2,7 +2,6 @@
 #include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -61,11 +60,10 @@ void RobotClone::skills15() {
   turn->toward(80_deg);
 
   intake->load();
-  pathFollower->follow(
-      {{AcceptableDistance{3_s},
-        {0.1_tile, 2.4_tile, 91_deg},
-        false,
-        Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {0.1_tile, 2.4_tile, 91_deg},
+                         false,
+                         Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
   wait(singleRingDelay);
   moveTo->reverse({0_tile, 2_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
@@ -126,9 +124,9 @@ void RobotClone::skills24() {
   setupRoutine({-2.5_tile, 0_tile, 90_deg});
   intake->setSortOutColor(ColorSensor::Color::Blue);
   intake->index();
-  moveTo->forward({-2_tile, 0_tile}, slowProfile);
-  wait(.25_s);
-  moveTo->reverse({-2.45_tile, 0_tile}, slowProfile);
+  moveTo->forward({-2_tile, 0_tile});
+  wait(0.25_s);
+  moveTo->reverse({-2.525_tile, 0_tile});
   intake->intake();
   wait(singleRingDelay);
   intake->stop();
@@ -158,11 +156,10 @@ void RobotClone::skills24() {
   intake->stop();
   wait(singleRingDelay);
   intake->load();
-  pathFollower->follow(
-      {{AcceptableDistance{3_s},
-        {0.1_tile, -2.4_tile, 89_deg},
-        false,
-        Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
+  pathFollower->follow({{AcceptableDistance{3_s},
+                         {0.1_tile, -2.4_tile, 89_deg},
+                         false,
+                         Path::Parameters{{0.5_tile, 3_tile}, 45_in_per_s}}});
   wait(doubleRingDelay);
   moveTo->reverse({0_tile, -2_tile},
                   LateralProfile::Parameters{50_in_per_s, 50_in_per_s_sq});
@@ -263,8 +260,21 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   wait(0.6_s);
   intake->index();
   moveTo->forward({-2.5_tile, 0.4_tile});
-  moveTo->reverse({-1.95_tile, -0.05_tile});
+  
+  scheduler.schedule({"Goal Rush Grab When Ready",
+    [=]() { return goalRush->hasGoal(); },
+    [=]() {
+      if(goalRush->isClamped()) {
+        return;
+      }
+      goalRush->grab();
+    },
+    3_s,
+    Scheduler::doNothing});
+  moveTo->reverse({-1.9_tile, -0.1_tile}, goalClampProfile);
   goalClamp->clamp();
+  wait(goalClampDelay);
+  moveTo->forward({-2_tile, 0_tile});
   intake->intake();
   wait(singleRingDelay);
   moveTo->forward({-2_tile, 1_tile});
@@ -281,11 +291,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveTo->reverse({-2.75_tile, -2.75_tile});
   goalClamp->unclamp();
   moveTo->forward({-2_tile, -2_tile});
-  intake->intake();
-  pathFollower->follow({{AcceptableDistance{3_s},
-                         {-1_tile, 0_tile, 0_deg},
-                         false,
-                         Path::Parameters{1_tile, 45_in_per_s}}});
   intake->stop();
   END_ROUTINE
 
@@ -308,7 +313,7 @@ void RobotClone::rushLeft(const tile_t extraY) {
   intake->setSortOutColor(ColorSensor::Color::None);
   goalRush->extendArm();
   goalRush->release();
-  
+
   indexAfterFoldout();
 
   goalRushWhenReady();
@@ -380,7 +385,7 @@ void RobotClone::rushRight(const tile_t extraY) {
   intake->setSortOutColor(ColorSensor::Color::None);
   goalRush->extendArm();
   goalRush->release();
-  
+
   indexAfterFoldout();
 
   goalRushWhenReady();
@@ -470,11 +475,7 @@ void RobotClone::endOfNegativeRoutines() {
 
   collectCorner(true, 4);
 
-  turn->toward({-1_tile, 0_tile});
-  pathFollower->follow({{AcceptableDistance{3_s},
-                         {-1_tile, 0_tile, 180_deg},
-                         false,
-                         Path::Parameters{1_tile, 45_in_per_s}}});
+  moveTo->forward({-2_tile, 2_tile});
   intake->stop();
 }
 
@@ -500,8 +501,21 @@ void RobotClone::endOfPositiveRoutines() {
                       [=]() { goalClamp->unclamp(); },
                       1_s});
   moveTo->forward({-2.5_tile, 0.4_tile});
-  moveTo->reverse({-1.95_tile, -0.05_tile});
+  
+  scheduler.schedule({"Goal Rush Grab When Ready",
+    [=]() { return goalRush->hasGoal(); },
+    [=]() {
+      if(goalRush->isClamped()) {
+        return;
+      }
+      goalRush->grab();
+    },
+    3_s,
+    Scheduler::doNothing});
+  moveTo->reverse({-1.9_tile, -0.1_tile}, goalClampProfile);
   goalClamp->clamp();
+  wait(goalClampDelay);
+  moveTo->forward({-2_tile, 0_tile});
   intake->intake();
   wait(singleRingDelay);
   moveTo->forward({-2_tile, 1_tile});
@@ -522,10 +536,8 @@ void RobotClone::endOfPositiveRoutines() {
   drive->arcade(2, 0);
   wait(1_s);
   drive->brake();
-  pathFollower->follow({{AcceptableDistance{3_s},
-                         {-1_tile, 0_tile, 0_deg},
-                         false,
-                         Path::Parameters{1_tile, 45_in_per_s}}});
+
+  moveTo->forward({-2_tile, -2_tile});
   intake->stop();
 }
 
@@ -582,15 +594,16 @@ void RobotClone::goalRushWhenReady(const second_t timeout) {
                       Scheduler::doNothing});
 }
 
-
 void RobotClone::indexAfterFoldout() {
   intake->outtake();
-  wait(0.2_s);
+  if(id == ID15) {
+    wait(0.3_s);
+  }
   scheduler.schedule({"Index After Unfold",
-    Scheduler::neverMet,
-    Scheduler::doNothing,
-    0.4_s,
-    [=]() { intake->index(); }});
+                      Scheduler::neverMet,
+                      Scheduler::doNothing,
+                      0.4_s,
+                      [=]() { intake->index(); }});
 }
 
 void RobotClone::setSortToOpposite() {

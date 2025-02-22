@@ -11,15 +11,6 @@ void RobotClone::opcontrol() {
   if(GUI::Routines::selectedRoutine() == 0) {
     matchTimer.setAlarm(40_s);
     goalClamp->unclamp();
-    if(id == ID24) {
-      drive->setPose({-2.5_tile, 0_tile, 90_deg});
-      intake->setSortOutColor(ColorSensor::Color::Blue);
-      intake->index();
-      moveTo->forward({-2_tile, 0_tile});
-      wait(0.25_s);
-      moveTo->reverse({-2.45_tile, 0_tile});
-      intake->stop();
-    }
     intake->setSortOutColor(ColorSensor::Color::None);
   }
   scheduler.schedule({"Rumble at 15s Away", matchTimer.checkGoneOff(), [=]() {
