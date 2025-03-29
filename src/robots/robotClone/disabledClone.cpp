@@ -181,9 +181,9 @@ void RobotClone::driveSetup24() {
 void RobotClone::ladybrownSetup24() {
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-20},
-                              Motor::Gearing{pros::v5::MotorGears::green, 5},
+                              Motor::Gearing{pros::v5::MotorGears::green, 3},
                               "left ladybrown")};
-  std::unique_ptr<Motor> rightLadybrownMotor{
+ std::unique_ptr<Motor> rightLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{12},
                               Motor::Gearing{pros::v5::MotorGears::green, 5},
                               "right ladybrown")};
