@@ -153,7 +153,7 @@ degree_t Ladybrown::getPosition() const {
   }
   std::vector<degree_t> readings;
   if(left->check()) {
-    readings.push_back(motor->get_Position());
+    readings.push_back(left->getPosition());
   }
   if(right->check()) {
     readings.push_back(right->getPosition());
