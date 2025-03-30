@@ -67,6 +67,13 @@ void RobotClone::visualFeedback() {
 void RobotClone::manualControls() {
   remote.print(2, "MODE: Manual");
 
+  ladybrown->load();
+  while(remote.getHold(Remote::Button::L2)){
+    if ((ladybrown->getClosestNamedPosition()) == LadybrownState::Resting){
+    intakeControls();
+    }
+  }
+
   switch(remote.getLTrigger()) {
     case -1: ladybrown->retract(); break;
     case 1: ladybrown->extend(); break;
@@ -170,7 +177,7 @@ void RobotClone::hangControls() {
 }
 
 void RobotClone::configurationControls() {
-  if(remote.getPress(Remote::Button::X)) {
+  if(remote.getPress(Remote::Button::L1)) {
     useManualControls = !useManualControls;
     useHangControls = false; // Hang controls have the lowest precedence.
   }

@@ -56,22 +56,13 @@ void RobotClone::driveSetup15() {
 void RobotClone::ladybrownSetup15() {
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-19},
-                              Motor::Gearing{pros::v5::MotorGears::green, 5},
+                              Motor::Gearing{pros::v5::MotorGears::green, 3},
                               "left ladybrown")};
-  std::unique_ptr<Motor> rightLadybrownMotor{
-      std::make_unique<Motor>(MotorPortsList{11},
-                              Motor::Gearing{pros::v5::MotorGears::green, 5},
-                              "right ladybrown")};
-  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('D')};
-  std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>(16, true)};
-  std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{21, 'G'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
-      ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 15_deg},
-                         {LadybrownState::Preparing, 60_deg},
-                         {LadybrownState::Scoring, 135_deg}};
+      ladybrownPositions{{LadybrownState::Resting, 6_deg},
+                         {LadybrownState::Loading, -20_deg},
+                         {LadybrownState::Preparing, -110_deg},
+                         {LadybrownState::Scoring, -270_deg}};
   Ladybrown::Parameters ladybrownParameters{
       6, -5_deg, 50_deg, ladybrownPositions, 0.125_s};
   ladybrownParameters.kG = 0.2;
@@ -99,10 +90,6 @@ void RobotClone::ladybrownSetup15() {
           kA,
           std::move(ladybrownPositionController));
   ladybrown = std::make_unique<Ladybrown>(std::move(leftLadybrownMotor),
-                                          std::move(rightLadybrownMotor),
-                                          std::move(ladybrownPiston),
-                                          std::move(ladybrownRotation),
-                                          std::move(ladybrownSwitch),
                                           ladybrownParameters,
                                           std::move(profileFollower));
 }
@@ -181,22 +168,13 @@ void RobotClone::driveSetup24() {
 void RobotClone::ladybrownSetup24() {
   std::unique_ptr<Motor> leftLadybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-20},
-                              Motor::Gearing{pros::v5::MotorGears::green, 5},
+                              Motor::Gearing{pros::v5::MotorGears::green, 3},
                               "left ladybrown")};
-  std::unique_ptr<Motor> rightLadybrownMotor{
-      std::make_unique<Motor>(MotorPortsList{12},
-                              Motor::Gearing{pros::v5::MotorGears::green, 5},
-                              "right ladybrown")};
-  std::unique_ptr<Piston> ladybrownPiston{std::make_unique<Piston>('A')};
-  std::unique_ptr<RotationSensor> ladybrownRotation{
-      std::make_unique<RotationSensor>(15, false)};
-  std::unique_ptr<LimitSwitch> ladybrownSwitch{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'H'})};
   std::unordered_map<LadybrownState, std::optional<degree_t>>
-      ladybrownPositions{{LadybrownState::Resting, -11.1_deg},
-                         {LadybrownState::Loading, 25_deg},
-                         {LadybrownState::Preparing, 60_deg},
-                         {LadybrownState::Scoring, 125_deg}};
+      ladybrownPositions{{LadybrownState::Resting, 6_deg},
+                         {LadybrownState::Loading, -20_deg},
+                         {LadybrownState::Preparing, -110_deg},
+                         {LadybrownState::Scoring, -275_deg}};
   Ladybrown::Parameters ladybrownParameters{
       6, -5_deg, 50_deg, ladybrownPositions, 0.125_s};
   ladybrownParameters.kG = 0.2;
@@ -224,10 +202,6 @@ void RobotClone::ladybrownSetup24() {
           kA,
           std::move(ladybrownPositionController));
   ladybrown = std::make_unique<Ladybrown>(std::move(leftLadybrownMotor),
-                                          std::move(rightLadybrownMotor),
-                                          std::move(ladybrownPiston),
-                                          std::move(ladybrownRotation),
-                                          std::move(ladybrownSwitch),
                                           ladybrownParameters,
                                           std::move(profileFollower));
 }
