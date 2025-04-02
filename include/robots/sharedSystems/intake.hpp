@@ -128,19 +128,6 @@ class Intake : public Task, public StateMachine<IntakeState> {
    */
   ColorSensor::Color getSortOutColor() const;
 
-  /**
-   * @brief Gets the count for the number of rings that have passed.
-   *
-   * @return int
-   */
-  int getCount();
-
-  /**
-   * @brief Reset the count for the number of rings that have passed.
-   *
-   */
-  void resetCount();
-
   private:
   /**
    * @brief This method runs whenever we are intaking. It checks for jams or
