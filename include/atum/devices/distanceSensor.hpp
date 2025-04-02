@@ -10,7 +10,6 @@
 #pragma once
 
 #include "../utility/logger.hpp"
-#include "../utility/units.hpp"
 
 namespace atum {
 class DistanceSensor {
