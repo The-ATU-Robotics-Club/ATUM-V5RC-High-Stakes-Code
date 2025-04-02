@@ -1,7 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classatum_1_1Robot.html#a721e1155876bf8242337100f7ec26b58":[1,0,0,33,1],
-"classatum_1_1Robot.html#abc3667642b5afcf3961fabd2c21e9c1f":[1,0,0,33,2],
 "classatum_1_1Robot.html#ac5f63ac7b8a265cf8b275531e79a85ce":[1,0,0,33,0],
 "classatum_1_1RobotClone.html":[1,0,0,34],
 "classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0":[1,0,0,34,0],
@@ -249,5 +247,7 @@ var NAVTREEINDEX1 =
 "rotationSensor_8hpp.html":[2,0,0,0,1,11],
 "rotationSensor_8hpp_source.html":[2,0,0,0,1,11],
 "routines_8hpp.html":[2,0,0,0,2,5],
-"routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63":[2,0,0,0,2,5,1]
+"routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63":[2,0,0,0,2,5,1],
+"routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63a9594eec95be70e7b1710f730fdda33d9":[2,0,0,0,2,5,1,1],
+"routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63aee38e4d5dd68c4e440825018d549cb47":[2,0,0,0,2,5,1,0]
 };
