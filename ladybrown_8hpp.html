@@ -110,7 +110,7 @@ $(document).ready(function(){initNavTree('ladybrown_8hpp.html',''); initResizabl
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html">atum::Ladybrown</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding and balancing mechanism, as well as automates piston actuation.  <a href="classatum_1_1Ladybrown.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding mechanism.  <a href="classatum_1_1Ladybrown.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structatum_1_1Ladybrown_1_1Parameters.html">atum::Ladybrown::Parameters</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Different parameters to customize for the ladybrown to function well.  <a href="structatum_1_1Ladybrown_1_1Parameters.html#details">More...</a><br /></td></tr>
@@ -119,17 +119,13 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:a3ce269f3b8e5256ac1eef9553474f807"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807">atum::LadybrownState</a> { <br />
-&#160;&#160;<b>Idle</b>
+&#160;&#160;<b>Resting</b>
+, <b>Idle</b>
+, <b>Settling</b>
 , <b>Extending</b>
-, <b>Retracting</b>
-, <b>Resting</b>
 , <br />
-&#160;&#160;<b>Loading</b>
-, <b>Preparing</b>
-, <b>Scoring</b>
-, <b>FinishScoring</b>
-, <br />
-&#160;&#160;<b>FullyExtending</b>
+&#160;&#160;<b>Retracting</b>
+, <b>MovingTo</b>
 <br />
  }</td></tr>
 <tr class="memdesc:a3ce269f3b8e5256ac1eef9553474f807"><td class="mdescLeft">&#160;</td><td class="mdescRight">The various states that the ladybrown can be in.  <a href="ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807">More...</a><br /></td></tr>

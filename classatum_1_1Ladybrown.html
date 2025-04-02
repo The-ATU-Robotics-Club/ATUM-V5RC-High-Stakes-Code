@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('classatum_1_1Ladybrown.html',''); init
 </div><!--header-->
 <div class="contents">
 
-<p>Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding and balancing mechanism, as well as automates piston actuation.  
+<p>Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding mechanism.  
  <a href="classatum_1_1Ladybrown.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ladybrown_8hpp_source.html">ladybrown.hpp</a>&gt;</code></p>
@@ -125,9 +125,12 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7429ad757750cb91420568f45ac03962"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a7429ad757750cb91420568f45ac03962">Ladybrown</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iLeft, std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iRight, std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iPiston, std::unique_ptr&lt; <a class="el" href="classatum_1_1RotationSensor.html">RotationSensor</a> &gt; iRotation, std::unique_ptr&lt; <a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a> &gt; iLimitSwitch, const <a class="el" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> &amp;iParams, std::unique_ptr&lt; <a class="el" href="classatum_1_1ProfileFollower.html">AngularProfileFollower</a> &gt; iFollower, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a7429ad757750cb91420568f45ac03962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Ladybrown.html" title="Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...">Ladybrown</a> object with the provided parameters.  <br /></td></tr>
-<tr class="separator:a7429ad757750cb91420568f45ac03962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93be83f5809e9959be2b4fbacea51467"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a93be83f5809e9959be2b4fbacea51467">Ladybrown</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iMotor, std::unique_ptr&lt; <a class="el" href="classatum_1_1DistanceSensor.html">DistanceSensor</a> &gt; iDistance, const <a class="el" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> &amp;iParams, std::unique_ptr&lt; <a class="el" href="classatum_1_1ProfileFollower.html">AngularProfileFollower</a> &gt; iFollower, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a93be83f5809e9959be2b4fbacea51467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Ladybrown.html" title="Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...">Ladybrown</a> object with the provided parameters.  <br /></td></tr>
+<tr class="separator:a93be83f5809e9959be2b4fbacea51467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e">rest</a> ()</td></tr>
+<tr class="memdesc:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go back to its lowered position (where it started).  <br /></td></tr>
+<tr class="separator:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5eb901499ba9875edad45246948cf71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ab5eb901499ba9875edad45246948cf71">stop</a> ()</td></tr>
 <tr class="memdesc:ab5eb901499ba9875edad45246948cf71"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to stop moving and (in manual control) sets the position to hold.  <br /></td></tr>
 <tr class="separator:ab5eb901499ba9875edad45246948cf71"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,36 +140,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a01cbff85ba3d8f18ffe9aefbf9890bc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3">retract</a> ()</td></tr>
 <tr class="memdesc:a01cbff85ba3d8f18ffe9aefbf9890bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to manually retract.  <br /></td></tr>
 <tr class="separator:a01cbff85ba3d8f18ffe9aefbf9890bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e">rest</a> ()</td></tr>
-<tr class="memdesc:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go to its resting position (completely down).  <br /></td></tr>
-<tr class="separator:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bb52efac91285cc78d8da8892831d79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79">load</a> ()</td></tr>
-<tr class="memdesc:a8bb52efac91285cc78d8da8892831d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go to its loading position.  <br /></td></tr>
-<tr class="separator:a8bb52efac91285cc78d8da8892831d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73fd580e8e076475689a027ee08b9921"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a73fd580e8e076475689a027ee08b9921">prepare</a> ()</td></tr>
-<tr class="memdesc:a73fd580e8e076475689a027ee08b9921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go to its prepared position (past the loading position but not at the scored position).  <br /></td></tr>
-<tr class="separator:a73fd580e8e076475689a027ee08b9921"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab77cc33b8cf72bc9fd6abdd9741dbe9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#aab77cc33b8cf72bc9fd6abdd9741dbe9">score</a> ()</td></tr>
-<tr class="memdesc:aab77cc33b8cf72bc9fd6abdd9741dbe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go to its scoring position (completely extended).  <br /></td></tr>
-<tr class="separator:aab77cc33b8cf72bc9fd6abdd9741dbe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac47ff2bb34e764fb5eae8ffbed4cb87e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ac47ff2bb34e764fb5eae8ffbed4cb87e">finishScore</a> ()</td></tr>
-<tr class="memdesc:ac47ff2bb34e764fb5eae8ffbed4cb87e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to back up after scoring. Moves to the Preparing position.  <br /></td></tr>
-<tr class="separator:ac47ff2bb34e764fb5eae8ffbed4cb87e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adab362ef06cbe156266955583efa3a9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#adab362ef06cbe156266955583efa3a9f">fullyExtend</a> ()</td></tr>
-<tr class="memdesc:adab362ef06cbe156266955583efa3a9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to extend all the way out (to its scoring position).  <br /></td></tr>
-<tr class="separator:adab362ef06cbe156266955583efa3a9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ba7e632647e487901f8e6d2ba4c1650"><td class="memItemLeft" align="right" valign="top"><a class="el" href="ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807">LadybrownState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a5ba7e632647e487901f8e6d2ba4c1650">getClosestNamedPosition</a> () const</td></tr>
-<tr class="memdesc:a5ba7e632647e487901f8e6d2ba4c1650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the name state of the closest important position (Resting, Loading, Preparing, or Scoring) or Idle if moving.  <br /></td></tr>
-<tr class="separator:a5ba7e632647e487901f8e6d2ba4c1650"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ab1f25b77e6d72d040e3d4dbb70f6b284">hasRing</a> () const</td></tr>
-<tr class="memdesc:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the ladybown detects a ring based on the linetracker; always returns false if the ladybrown is down.  <br /></td></tr>
+<tr class="memdesc:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the ladybrown sees a ring based on the distance sensor and if it is resting.  <br /></td></tr>
 <tr class="separator:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a723123ef03689102d1d741161d39b6fb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a723123ef03689102d1d741161d39b6fb">readyToScore</a> ()</td></tr>
-<tr class="memdesc:a723123ef03689102d1d741161d39b6fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the ladybrown is ready to score.  <br /></td></tr>
-<tr class="separator:a723123ef03689102d1d741161d39b6fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d1fe46e01b0cae54359cd6aa8d0f0ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a5d1fe46e01b0cae54359cd6aa8d0f0ec">mayConflictWithIntake</a> ()</td></tr>
-<tr class="memdesc:a5d1fe46e01b0cae54359cd6aa8d0f0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if running the intake would conflict with a ring in the intake.  <br /></td></tr>
-<tr class="separator:a5d1fe46e01b0cae54359cd6aa8d0f0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb91103a150b6a03299011adbe9c2cde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">checkRingDetection</a> () const</td></tr>
+<tr class="memdesc:aeb91103a150b6a03299011adbe9c2cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the distance sensor is functional or not.  <br /></td></tr>
+<tr class="separator:aeb91103a150b6a03299011adbe9c2cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Task"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Task')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Task.html">atum::Task</a></td></tr>
 <tr class="memitem:a5a32417bc0b345e62446142173b492bf inherit pub_methods_classatum_1_1Task"><td class="memItemLeft" align="right" valign="top"><a id="a5a32417bc0b345e62446142173b492bf" name="a5a32417bc0b345e62446142173b492bf"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Task</b> (const <a class="el" href="classatum_1_1Task.html">Task</a> &amp;)=delete</td></tr>
@@ -207,10 +186,10 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 <tr class="separator:a1f04ef79e6a9fad1e4c71d208022b346 inherit pro_attribs_classatum_1_1StateMachine"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding and balancing mechanism, as well as automates piston actuation. </p>
+<div class="textblock"><p>Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding mechanism. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7429ad757750cb91420568f45ac03962" name="a7429ad757750cb91420568f45ac03962"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7429ad757750cb91420568f45ac03962">&#9670;&#160;</a></span>Ladybrown()</h2>
+<a id="a93be83f5809e9959be2b4fbacea51467" name="a93be83f5809e9959be2b4fbacea51467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93be83f5809e9959be2b4fbacea51467">&#9670;&#160;</a></span>Ladybrown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -219,31 +198,13 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
           <td class="memname">atum::Ladybrown::Ladybrown </td>
           <td>(</td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt;&#160;</td>
-          <td class="paramname"><em>iLeft</em>, </td>
+          <td class="paramname"><em>iMotor</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt;&#160;</td>
-          <td class="paramname"><em>iRight</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt;&#160;</td>
-          <td class="paramname"><em>iPiston</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1RotationSensor.html">RotationSensor</a> &gt;&#160;</td>
-          <td class="paramname"><em>iRotation</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a> &gt;&#160;</td>
-          <td class="paramname"><em>iLimitSwitch</em>, </td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1DistanceSensor.html">DistanceSensor</a> &gt;&#160;</td>
+          <td class="paramname"><em>iDistance</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -274,11 +235,8 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 <p>Constructs a new <a class="el" href="classatum_1_1Ladybrown.html" title="Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...">Ladybrown</a> object with the provided parameters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">iLeft</td><td></td></tr>
-    <tr><td class="paramname">iRight</td><td></td></tr>
-    <tr><td class="paramname">iPiston</td><td></td></tr>
-    <tr><td class="paramname">iRotation</td><td></td></tr>
-    <tr><td class="paramname">iLimitSwitch</td><td></td></tr>
+    <tr><td class="paramname">iMotor</td><td></td></tr>
+    <tr><td class="paramname">iDistance</td><td></td></tr>
     <tr><td class="paramname">iParams</td><td></td></tr>
     <tr><td class="paramname">iFollower</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
@@ -289,6 +247,28 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="aeb91103a150b6a03299011adbe9c2cde" name="aeb91103a150b6a03299011adbe9c2cde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb91103a150b6a03299011adbe9c2cde">&#9670;&#160;</a></span>checkRingDetection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::Ladybrown::checkRingDetection </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the distance sensor is functional or not. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
 <a id="aef9a36a0bf316bbcda55b782097e0008" name="aef9a36a0bf316bbcda55b782097e0008"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef9a36a0bf316bbcda55b782097e0008">&#9670;&#160;</a></span>extend()</h2>
 
@@ -308,64 +288,6 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 
 </div>
 </div>
-<a id="ac47ff2bb34e764fb5eae8ffbed4cb87e" name="ac47ff2bb34e764fb5eae8ffbed4cb87e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac47ff2bb34e764fb5eae8ffbed4cb87e">&#9670;&#160;</a></span>finishScore()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::Ladybrown::finishScore </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tells the ladybrown to back up after scoring. Moves to the Preparing position. </p>
-
-</div>
-</div>
-<a id="adab362ef06cbe156266955583efa3a9f" name="adab362ef06cbe156266955583efa3a9f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adab362ef06cbe156266955583efa3a9f">&#9670;&#160;</a></span>fullyExtend()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::Ladybrown::fullyExtend </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tells the ladybrown to extend all the way out (to its scoring position). </p>
-
-</div>
-</div>
-<a id="a5ba7e632647e487901f8e6d2ba4c1650" name="a5ba7e632647e487901f8e6d2ba4c1650"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5ba7e632647e487901f8e6d2ba4c1650">&#9670;&#160;</a></span>getClosestNamedPosition()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807">LadybrownState</a> atum::Ladybrown::getClosestNamedPosition </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Gets the name state of the closest important position (Resting, Loading, Preparing, or Scoring) or Idle if moving. </p>
-<dl class="section return"><dt>Returns</dt><dd>LadybrownState </dd></dl>
-
-</div>
-</div>
 <a id="ab1f25b77e6d72d040e3d4dbb70f6b284" name="ab1f25b77e6d72d040e3d4dbb70f6b284"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab1f25b77e6d72d040e3d4dbb70f6b284">&#9670;&#160;</a></span>hasRing()</h2>
 
@@ -381,89 +303,8 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
       </table>
 </div><div class="memdoc">
 
-<p>Returns if the ladybown detects a ring based on the linetracker; always returns false if the ladybrown is down. </p>
-<dl class="section return"><dt>Returns</dt><dd>true </dd>
-<dd>
-false </dd></dl>
-
-</div>
-</div>
-<a id="a8bb52efac91285cc78d8da8892831d79" name="a8bb52efac91285cc78d8da8892831d79"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8bb52efac91285cc78d8da8892831d79">&#9670;&#160;</a></span>load()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::Ladybrown::load </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tells the ladybrown to go to its loading position. </p>
-
-</div>
-</div>
-<a id="a5d1fe46e01b0cae54359cd6aa8d0f0ec" name="a5d1fe46e01b0cae54359cd6aa8d0f0ec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5d1fe46e01b0cae54359cd6aa8d0f0ec">&#9670;&#160;</a></span>mayConflictWithIntake()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool atum::Ladybrown::mayConflictWithIntake </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks if running the intake would conflict with a ring in the intake. </p>
-<dl class="section return"><dt>Returns</dt><dd>true </dd>
-<dd>
-false </dd></dl>
-
-</div>
-</div>
-<a id="a73fd580e8e076475689a027ee08b9921" name="a73fd580e8e076475689a027ee08b9921"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73fd580e8e076475689a027ee08b9921">&#9670;&#160;</a></span>prepare()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::Ladybrown::prepare </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tells the ladybrown to go to its prepared position (past the loading position but not at the scored position). </p>
-
-</div>
-</div>
-<a id="a723123ef03689102d1d741161d39b6fb" name="a723123ef03689102d1d741161d39b6fb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a723123ef03689102d1d741161d39b6fb">&#9670;&#160;</a></span>readyToScore()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool atum::Ladybrown::readyToScore </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Checks if the ladybrown is ready to score. </p>
+<p>Returns if the ladybrown sees a ring based on the distance sensor and if it is resting. </p>
+<p>This method is used to coordinate with the intake to manage indexing and color sorting.</p>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
@@ -485,7 +326,7 @@ false </dd></dl>
       </table>
 </div><div class="memdoc">
 
-<p>Tells the ladybrown to go to its resting position (completely down). </p>
+<p>Tells the ladybrown to go back to its lowered position (where it started). </p>
 
 </div>
 </div>
@@ -505,25 +346,6 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Tells the ladybrown to manually retract. </p>
-
-</div>
-</div>
-<a id="aab77cc33b8cf72bc9fd6abdd9741dbe9" name="aab77cc33b8cf72bc9fd6abdd9741dbe9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab77cc33b8cf72bc9fd6abdd9741dbe9">&#9670;&#160;</a></span>score()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::Ladybrown::score </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Tells the ladybrown to go to its scoring position (completely extended). </p>
 
 </div>
 </div>
