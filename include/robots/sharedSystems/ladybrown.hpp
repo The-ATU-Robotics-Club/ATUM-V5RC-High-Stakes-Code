@@ -11,18 +11,20 @@
 
 #include "atum/atum.hpp"
 
+
 namespace atum {
 /**
  * @brief The various states that the ladybrown can be in.
  *
  */
 enum class LadybrownState {
-  Resting,    // The ladybrown is completely down.
-  Idle,       // The ladybrown is not moving, but is not necessarily down.
-  Settling,   // The ladybrown is coming to a stop, but may still be moving.
-  Extending,  // The ladybrown is manually extending.
-  Retracting, // The ladybrown is manually retracting.
-  MovingTo    // The ladybrown is moving to a given position.
+  Resting,      // The ladybrown is completely down.
+  Idle,         // The ladybrown is not moving, but is not necessarily down.
+  Settling,     // The ladybrown is coming to a stop, but may still be moving.
+  Extending,    // The ladybrown is manually extending.
+  Retracting,   // The ladybrown is manually retracting.
+  MovingTo,     // The ladybrown is moving to a given position.
+  Loading       // The ladybrown is ready for a ring to be loaded.
 };
 
 /**
@@ -42,6 +44,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   struct Parameters {
     double manualVoltage;
+    degree_t loadingPosition;
     // Used to hold the arm in place (or move to a position if profile follower
     // failed to do so).
     PID holdController{{}};
@@ -99,22 +102,34 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   void retract();
 
   /**
-   * @brief Returns if the ladybrown sees a ring based on the distance
-   * sensor and if it is resting.
+   * @brief Tells the ladybrown to move to its loading position.
    *
-   * This method is used to coordinate with the intake to manage indexing and
-   * color sorting.
+   */
+  void load();
+
+  /**
+   * @brief Returns if the ladybrown sees a ring in the ladybrown carriage based
+   * on the distance sensor and if it is resting.
    *
    * @return true
    * @return false
    */
-  bool hasRing() const;
+  bool ringInCarriage() const;
 
   /**
-   * @brief Returns if the distance sensor is functional or not. 
-   * 
-   * @return true 
-   * @return false 
+   * @brief Returns if the ladybrown sees a ring in the indexer based on the
+   * distance sensor and if it is resting.
+   *
+   * @return true
+   * @return false
+   */
+  bool ringInIndexer() const;
+
+  /**
+   * @brief Returns if the distance sensor is functional or not.
+   *
+   * @return true
+   * @return false
    */
   bool checkRingDetection() const;
 
@@ -141,5 +156,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   Logger logger;
   degree_t target;
   double voltage;
+  std::optional<LadybrownState> nextState;
 };
 } // namespace atum

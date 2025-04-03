@@ -1,11 +1,14 @@
 #include "motor.hpp"
 
+
 namespace atum {
 Motor::Motor(const MotorPortsList &ports,
              const Gearing &iGearing,
              const std::string &iName,
              const Logger::Level loggerLevel) :
-    gearing{iGearing}, name{iName}, logger{loggerLevel} {
+    gearing{iGearing},
+    name{iName},
+    logger{loggerLevel} {
   for(std::int8_t port : ports) {
     motors.push_back(
         std::make_unique<pros::Motor>(std::abs(port),
@@ -30,6 +33,10 @@ void Motor::moveVelocity(const revolutions_per_minute_t velocity) {
 }
 
 void Motor::moveVoltage(double voltage) {
+  if(!voltage) {
+    brake();
+    return;
+  }
   check();
   voltage *= 1000;
   for(std::size_t i{0}; i < motors.size(); i++) {

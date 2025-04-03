@@ -1,7 +1,6 @@
 #include "pros/misc.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
@@ -129,9 +128,7 @@ void RobotClone::intakeControls() {
   remote.print(2, "MODE: Intake");
 
   // Only go down if you know it's okay to go down.
-  if(!ladybrown->hasRing()) {
-    ladybrown->rest();
-  }
+  ladybrown->rest();
 
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;

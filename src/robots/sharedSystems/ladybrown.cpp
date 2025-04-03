@@ -1,6 +1,5 @@
 #include "ladybrown.hpp"
 
-
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
                      std::unique_ptr<DistanceSensor> iDistance,
@@ -28,7 +27,8 @@ void Ladybrown::stop() {
     target = motor->getPosition();
     state = LadybrownState::Idle;
   } else if(state == LadybrownState::MovingTo) {
-    state = LadybrownState::Idle;
+    state = nextState.value_or(LadybrownState::Idle);
+    nextState = {};
   } else if(state == LadybrownState::Extending ||
             state == LadybrownState::Retracting) {
     state = LadybrownState::Settling;
@@ -47,11 +47,36 @@ void Ladybrown::retract() {
   }
 }
 
-bool Ladybrown::hasRing() const {
-  if(state == LadybrownState::Resting) {
-    return distance->getDistance() <= params.restingRingDistance;
+void Ladybrown::rest() {
+  if(ringInCarriage()) {
+    return;
   }
-  return distance->getDistance() <= params.generalRingDistance;
+  if(state != LadybrownState::Resting) {
+    nextState = LadybrownState::Resting;
+    state = LadybrownState::MovingTo;
+  }
+  target = 0_deg;
+}
+
+void Ladybrown::load() {
+  if(ringInCarriage()) {
+    return;
+  }
+  if(state != LadybrownState::MovingTo && state != LadybrownState::Loading) {
+    nextState = LadybrownState::Loading;
+    state = LadybrownState::MovingTo;
+  }
+  target = params.loadingPosition;
+}
+
+bool Ladybrown::ringInCarriage() const {
+  return state != LadybrownState::Resting &&
+         distance->getDistance() <= params.generalRingDistance;
+}
+
+bool Ladybrown::ringInIndexer() const {
+  return state == LadybrownState::Resting &&
+         distance->getDistance() <= params.restingRingDistance;
 }
 
 bool Ladybrown::checkRingDetection() const {
@@ -71,7 +96,7 @@ void Ladybrown::moveToControls() {
 }
 
 double Ladybrown::getHoldOutput() {
-  if(state != LadybrownState::Idle) {
+  if(state != LadybrownState::Idle || state == LadybrownState::Loading) {
     return 0.0;
   }
   const double holdError{getValueAs<degree_t>(target - motor->getPosition())};
@@ -84,6 +109,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
     switch(state) {
       case LadybrownState::Resting:
       case LadybrownState::Idle:
+      case LadybrownState::Loading:
       case LadybrownState::Settling: voltage = 0; break;
       case LadybrownState::Extending: voltage = params.manualVoltage; break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
@@ -96,7 +122,9 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
   START_TASK("Ladybrown Control")
   while(true) {
     const double slewedVoltage{params.manualSlew.slew(voltage)};
-    double output{state == LadybrownState::MovingTo ? voltage : slewedVoltage};
+    const bool macroMovement{state == LadybrownState::MovingTo ||
+                             state == LadybrownState::StartLoading};
+    double output{macroMovement ? voltage : slewedVoltage};
     output += getHoldOutput();
 
     motor->moveVoltage(output);
