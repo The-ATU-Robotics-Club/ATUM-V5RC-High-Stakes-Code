@@ -140,9 +140,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a01cbff85ba3d8f18ffe9aefbf9890bc3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3">retract</a> ()</td></tr>
 <tr class="memdesc:a01cbff85ba3d8f18ffe9aefbf9890bc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to manually retract.  <br /></td></tr>
 <tr class="separator:a01cbff85ba3d8f18ffe9aefbf9890bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ab1f25b77e6d72d040e3d4dbb70f6b284">hasRing</a> () const</td></tr>
-<tr class="memdesc:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the ladybrown sees a ring based on the distance sensor and if it is resting.  <br /></td></tr>
-<tr class="separator:ab1f25b77e6d72d040e3d4dbb70f6b284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bb52efac91285cc78d8da8892831d79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79">load</a> ()</td></tr>
+<tr class="memdesc:a8bb52efac91285cc78d8da8892831d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to move to its loading position.  <br /></td></tr>
+<tr class="separator:a8bb52efac91285cc78d8da8892831d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac98061be6c665009553eaf8d301fe989"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">ringInCarriage</a> () const</td></tr>
+<tr class="memdesc:ac98061be6c665009553eaf8d301fe989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the ladybrown sees a ring in the ladybrown carriage based on the distance sensor and if it is resting.  <br /></td></tr>
+<tr class="separator:ac98061be6c665009553eaf8d301fe989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30b1cd6fd4865f0506a07b530b7e9296"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a30b1cd6fd4865f0506a07b530b7e9296">ringInIndexer</a> () const</td></tr>
+<tr class="memdesc:a30b1cd6fd4865f0506a07b530b7e9296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the ladybrown sees a ring in the indexer based on the distance sensor and if it is resting.  <br /></td></tr>
+<tr class="separator:a30b1cd6fd4865f0506a07b530b7e9296"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb91103a150b6a03299011adbe9c2cde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">checkRingDetection</a> () const</td></tr>
 <tr class="memdesc:aeb91103a150b6a03299011adbe9c2cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the distance sensor is functional or not.  <br /></td></tr>
 <tr class="separator:aeb91103a150b6a03299011adbe9c2cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -288,26 +294,22 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="ab1f25b77e6d72d040e3d4dbb70f6b284" name="ab1f25b77e6d72d040e3d4dbb70f6b284"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab1f25b77e6d72d040e3d4dbb70f6b284">&#9670;&#160;</a></span>hasRing()</h2>
+<a id="a8bb52efac91285cc78d8da8892831d79" name="a8bb52efac91285cc78d8da8892831d79"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bb52efac91285cc78d8da8892831d79">&#9670;&#160;</a></span>load()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool atum::Ladybrown::hasRing </td>
+          <td class="memname">void atum::Ladybrown::load </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td> const</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns if the ladybrown sees a ring based on the distance sensor and if it is resting. </p>
-<p>This method is used to coordinate with the intake to manage indexing and color sorting.</p>
-<dl class="section return"><dt>Returns</dt><dd>true </dd>
-<dd>
-false </dd></dl>
+<p>Tells the ladybrown to move to its loading position. </p>
 
 </div>
 </div>
@@ -346,6 +348,50 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Tells the ladybrown to manually retract. </p>
+
+</div>
+</div>
+<a id="ac98061be6c665009553eaf8d301fe989" name="ac98061be6c665009553eaf8d301fe989"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac98061be6c665009553eaf8d301fe989">&#9670;&#160;</a></span>ringInCarriage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::Ladybrown::ringInCarriage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the ladybrown sees a ring in the ladybrown carriage based on the distance sensor and if it is resting. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+</div>
+</div>
+<a id="a30b1cd6fd4865f0506a07b530b7e9296" name="a30b1cd6fd4865f0506a07b530b7e9296"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30b1cd6fd4865f0506a07b530b7e9296">&#9670;&#160;</a></span>ringInIndexer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool atum::Ladybrown::ringInIndexer </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns if the ladybrown sees a ring in the indexer based on the distance sensor and if it is resting. </p>
+<dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
 
 </div>
 </div>
