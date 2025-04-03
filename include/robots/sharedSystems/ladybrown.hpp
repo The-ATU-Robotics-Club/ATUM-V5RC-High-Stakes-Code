@@ -50,14 +50,14 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     PID holdController{{}};
     // Used to limit jerk whenever manual controls are enabled.
     SlewRate manualSlew{0};
+    // Below this RPM, the ladybrown is considered still
+    revolutions_per_minute_t stillRPM;
     // Closer than this distance, a ring is considered present when the
     // ladybrown is resting.
     meter_t restingRingDistance;
     // Closer than this distance, a ring is considered present when the
     // ladybrown is not resting.
     meter_t generalRingDistance;
-    // Below this RPM, the ladybrown is considered still
-    revolutions_per_minute_t stillRPM{3_rpm};
   };
 
   /**

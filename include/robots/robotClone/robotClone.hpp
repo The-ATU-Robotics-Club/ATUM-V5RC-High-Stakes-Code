@@ -55,52 +55,28 @@ class RobotClone : public Robot {
   private:
   // Setup helpers.
   /**
-   * @brief Sets up the drive for the 15 inch.
+   * @brief Sets up the drive.
    *
    */
-  void driveSetup15();
+  void driveSetup();
 
   /**
-   * @brief Sets up the ladybrown for the 15 inch.
+   * @brief Sets up the ladybrown.
    *
    */
-  void ladybrownSetup15();
+  void ladybrownSetup();
 
   /**
-   * @brief Sets up the intake for the 15 inch.
+   * @brief Sets up the intake.
    *
    */
-  void intakeSetup15();
+  void intakeSetup();
 
   /**
-   * @brief Sets up the goal clamp and goal rush for the 15 inch.
+   * @brief Sets up the goal clamp and goal rush.
    *
    */
-  void goalSetup15();
-
-  /**
-   * @brief Sets up the drive for the 24 inch.
-   *
-   */
-  void driveSetup24();
-
-  /**
-   * @brief Sets up the ladybrown for the 24 inch.
-   *
-   */
-  void ladybrownSetup24();
-
-  /**
-   * @brief Sets up the intake for the 24 inch.
-   *
-   */
-  void intakeSetup24();
-
-  /**
-   * @brief Sets up the goal clamp and goal rush for the 24 inch.
-   *
-   */
-  void goalSetup24();
+  void goalSetup();
 
   /**
    * @brief Sets up the objects for autonomous routine usage.
@@ -255,5 +231,20 @@ class RobotClone : public Robot {
   double speedMultiplier{1.0};
   bool scored{false};
   bool recentlyUnclamped{false};
+
+  /**
+   * @brief Initializes the ports for the 15 inch.
+   * 
+   */
+  void initialize15Ports();
+
+  /**
+   * @brief Initializes the ports for the 24 inch.
+   * 
+   */
+  void initialize24Ports();
+
+  std::unordered_map<std::string, MotorPortsList> motorPorts;
+  std::unordered_map<std::string, uint8_t> otherPorts;
 };
 } // namespace atum

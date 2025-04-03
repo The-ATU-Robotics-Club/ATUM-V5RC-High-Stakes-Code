@@ -21,12 +21,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
 }
 
 void Ladybrown::stop() {
-  // During manual control, hold wherever you stop.
-  if(state == LadybrownState::Settling &&
-     abs(motor->getVelocity()) <= params.stillRPM) {
-    target = motor->getPosition();
-    state = LadybrownState::Idle;
-  } else if(state == LadybrownState::MovingTo) {
+  if(state == LadybrownState::MovingTo) {
     state = nextState.value_or(LadybrownState::Idle);
     nextState = {};
   } else if(state == LadybrownState::Extending ||
@@ -62,7 +57,7 @@ void Ladybrown::load() {
   if(ringInCarriage()) {
     return;
   }
-  if(state != LadybrownState::MovingTo && state != LadybrownState::Loading) {
+  if(state != LadybrownState::Loading) {
     nextState = LadybrownState::Loading;
     state = LadybrownState::MovingTo;
   }
@@ -96,11 +91,11 @@ void Ladybrown::moveToControls() {
 }
 
 double Ladybrown::getHoldOutput() {
-  if(state != LadybrownState::Idle || state == LadybrownState::Loading) {
-    return 0.0;
+  if(state == LadybrownState::Idle || state == LadybrownState::Loading) {
+    const double holdError{getValueAs<degree_t>(target - motor->getPosition())};
+    return params.holdController.getOutput(holdError);
   }
-  const double holdError{getValueAs<degree_t>(target - motor->getPosition())};
-  return params.holdController.getOutput(holdError);
+  return 0.0;
 }
 
 TASK_DEFINITIONS_FOR(Ladybrown) {
@@ -109,8 +104,15 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
     switch(state) {
       case LadybrownState::Resting:
       case LadybrownState::Idle:
-      case LadybrownState::Loading:
-      case LadybrownState::Settling: voltage = 0; break;
+      case LadybrownState::Loading: voltage = 0.0; break;
+      case LadybrownState::Settling:
+        voltage = 0.0;
+        // During manual control, hold wherever you stop.
+        if(abs(motor->getVelocity()) <= params.stillRPM) {
+          target = motor->getPosition();
+          state = LadybrownState::Idle;
+        }
+        break;
       case LadybrownState::Extending: voltage = params.manualVoltage; break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       default: moveToControls(); break;
@@ -122,8 +124,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
   START_TASK("Ladybrown Control")
   while(true) {
     const double slewedVoltage{params.manualSlew.slew(voltage)};
-    const bool macroMovement{state == LadybrownState::MovingTo ||
-                             state == LadybrownState::StartLoading};
+    const bool macroMovement{state == LadybrownState::MovingTo};
     double output{macroMovement ? voltage : slewedVoltage};
     output += getHoldOutput();
 
