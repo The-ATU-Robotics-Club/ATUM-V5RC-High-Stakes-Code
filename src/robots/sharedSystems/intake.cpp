@@ -1,5 +1,6 @@
 #include "intake.hpp"
 
+
 namespace atum {
 Intake::Intake(std::unique_ptr<Motor> iMotor,
                std::unique_ptr<ColorSensor> iColorSensor,
@@ -159,12 +160,13 @@ TASK_DEFINITIONS_FOR(Intake) {
         voltage = ladybrown->getState() == LadybrownState::Loading ?
                       params.intakingVoltage :
                       0.0;
-        if(ladybrown->getState() != LadybrownState::Loading || !ladybrown->ringInCarriage()) {
+        if(ladybrown->getState() != LadybrownState::Loading ||
+           !ladybrown->ringInCarriage()) {
           break;
         }
         state = IntakeState::PressLoading;
         break;
-      case IntakeState::PressLoading:
+      case IntakeState::PressLoading: {
         voltage = params.intakingVoltage;
         wait(params.pressLoadTime);
         voltage = -params.intakingVoltage;
@@ -175,7 +177,7 @@ TASK_DEFINITIONS_FOR(Intake) {
           wait();
         }
         state = IntakeState::FinishedLoading;
-        break;
+      } break;
       case IntakeState::FinishedLoading: voltage = 0.0; break;
       case IntakeState::Indexing:
         voltage = ladybrown->ringInIndexer() ? 0.0 : params.indexingVoltage;
@@ -185,6 +187,7 @@ TASK_DEFINITIONS_FOR(Intake) {
     }
     wait();
   }
+  END_TASK
 
   START_TASK("Intake Control")
   while(true) {
@@ -192,7 +195,7 @@ TASK_DEFINITIONS_FOR(Intake) {
 
     if(state == IntakeState::Idle || state == IntakeState::Outtaking ||
        state == IntakeState::PressLoading ||
-       state == IntakeState::FinishedLoading) {
+       state == IntakeState::FinishedLoading || !voltage) {
       params.timerUntilJamChecks.setTime();
     } else if(params.timerUntilJamChecks.goneOff() &&
               motor->getVelocity() < params.jamVelocity) {
@@ -203,7 +206,7 @@ TASK_DEFINITIONS_FOR(Intake) {
     }
 
     const bool sortingEnabled{sortOutColor != ColorSensor::Color::None};
-    const bool sortingState{state == IntakeState::Intaking &&
+    const bool sortingState{state == IntakeState::Intaking ||
                             state == IntakeState::Indexing};
     const bool sortSensorsWorking{ladybrown->checkRingDetection() &&
                                   colorSensor->check()};
@@ -211,7 +214,7 @@ TASK_DEFINITIONS_FOR(Intake) {
        ladybrown->ringInIndexer() && colorSensor->getColor() == sortOutColor) {
       motor->moveVoltage(params.intakingVoltage);
       Timer timeout{params.generalTimeout};
-      while(ladybrown->ringInIndexer() && !timeout.goneOff()) {
+      while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
         wait();
       }
       motor->moveVoltage(-12.0);

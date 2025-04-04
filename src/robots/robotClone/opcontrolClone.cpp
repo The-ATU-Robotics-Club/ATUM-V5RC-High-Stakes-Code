@@ -91,23 +91,9 @@ void RobotClone::ladybrownControls() {
   */
 
   switch(remote.getLTrigger()) {
-    case -1:
-      if(!ladybrown->hasRing()) {
-        ladybrown->rest();
-      }
-      break;
-    case 1:
-      if(ladybrown->readyToScore()) {
-        scored = true;
-        ladybrown->score();
-      }
-      break;
-    default:
-      if(scored) {
-        scored = false;
-        ladybrown->finishScore();
-      }
-      break;
+    case -1: ladybrown->retract(); break;
+    case 1: ladybrown->extend(); break;
+    default: ladybrown->stop(); break;
   }
 
   switch(remote.getRTrigger()) {
@@ -127,7 +113,6 @@ void RobotClone::ladybrownControls() {
 void RobotClone::intakeControls() {
   remote.print(2, "MODE: Intake");
 
-  // Only go down if you know it's okay to go down.
   ladybrown->rest();
 
   switch(remote.getRTrigger()) {
@@ -161,10 +146,10 @@ void RobotClone::hangControls() {
     } else {
       speedMultiplier = 0.35;
     }
-    ladybrown->prepare();
+    // ladybrown->prepare();
     goalRush->retractArm();
   } else {
-    ladybrown->fullyExtend();
+    // ladybrown->fullyExtend();
     goalRush->extendArm();
   }
   switch(remote.getRTrigger()) {

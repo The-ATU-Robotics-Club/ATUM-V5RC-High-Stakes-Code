@@ -18,13 +18,13 @@ namespace atum {
  *
  */
 enum class LadybrownState {
-  Resting,      // The ladybrown is completely down.
-  Idle,         // The ladybrown is not moving, but is not necessarily down.
-  Settling,     // The ladybrown is coming to a stop, but may still be moving.
-  Extending,    // The ladybrown is manually extending.
-  Retracting,   // The ladybrown is manually retracting.
-  MovingTo,     // The ladybrown is moving to a given position.
-  Loading       // The ladybrown is ready for a ring to be loaded.
+  Resting,    // The ladybrown is completely down.
+  Idle,       // The ladybrown is not moving, but is not necessarily down.
+  Settling,   // The ladybrown is coming to a stop, but may still be moving.
+  Extending,  // The ladybrown is manually extending.
+  Retracting, // The ladybrown is manually retracting.
+  MovingTo,   // The ladybrown is moving to a given position.
+  Loading     // The ladybrown is ready for a ring to be loaded.
 };
 
 /**
@@ -52,12 +52,10 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     SlewRate manualSlew{0};
     // Below this RPM, the ladybrown is considered still
     revolutions_per_minute_t stillRPM;
-    // Closer than this distance, a ring is considered present when the
-    // ladybrown is resting.
-    meter_t restingRingDistance;
-    // Closer than this distance, a ring is considered present when the
-    // ladybrown is not resting.
-    meter_t generalRingDistance;
+    // Closer than this distance, a ring is considered present when loading.
+    meter_t loadRingDistance;
+    // Closer than this distance, a ring is considered present when indexing.
+    meter_t indexRingDistance;
   };
 
   /**

@@ -1,5 +1,6 @@
 #include "ladybrown.hpp"
 
+
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
                      std::unique_ptr<DistanceSensor> iDistance,
@@ -66,12 +67,12 @@ void Ladybrown::load() {
 
 bool Ladybrown::ringInCarriage() const {
   return state != LadybrownState::Resting &&
-         distance->getDistance() <= params.generalRingDistance;
+         distance->getDistance() <= params.loadRingDistance;
 }
 
 bool Ladybrown::ringInIndexer() const {
   return state == LadybrownState::Resting &&
-         distance->getDistance() <= params.restingRingDistance;
+         distance->getDistance() <= params.indexRingDistance;
 }
 
 bool Ladybrown::checkRingDetection() const {

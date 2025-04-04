@@ -60,4 +60,65 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->stop();
   END_ROUTINE
 }
+
+void RobotClone::setupRoutine(Pose startingPose) {
+  matchTimer.setTime();
+
+  const bool flipped{GUI::Routines::selectedColor() == MatchColor::Blue};
+  if(flipped) {
+    startingPose.flip();
+  }
+  Movement::setFlipped(flipped);
+
+  drive->setPose(startingPose);
+
+  setSortToOpposite();
+
+  goalClamp->unclamp();
+  goalRush->release();
+
+  drive->setBrakeMode(pros::MotorBrake::brake);
+}
+
+void RobotClone::clampWhenReady(const second_t timeout) {
+  scheduler.schedule({"Clamp When Ready",
+                      [=]() { return goalClamp->hasGoal(); },
+                      [=]() {
+                        if(goalClamp->isClamped()) {
+                          return;
+                        }
+                        goalClamp->clamp();
+                        wait(goalClampDelay);
+                        turn->interrupt();
+                        moveTo->interrupt();
+                        pathFollower->interrupt();
+                      },
+                      timeout,
+                      Scheduler::doNothing});
+}
+
+void RobotClone::goalRushWhenReady(const second_t timeout) {
+  scheduler.schedule({"Goal Rush Grab When Ready",
+                      [=]() { return goalRush->hasGoal(); },
+                      [=]() {
+                        if(goalRush->isClamped()) {
+                          return;
+                        }
+                        goalRush->grab();
+                        wait(goalRushDelay);
+                        turn->interrupt();
+                        moveTo->interrupt();
+                        pathFollower->interrupt();
+                      },
+                      timeout,
+                      Scheduler::doNothing});
+}
+
+void RobotClone::setSortToOpposite() {
+  if(GUI::Routines::selectedColor() == MatchColor::Red) {
+    intake->setSortOutColor(ColorSensor::Color::Blue);
+  } else {
+    intake->setSortOutColor(ColorSensor::Color::Red);
+  }
+}
 } // namespace atum
