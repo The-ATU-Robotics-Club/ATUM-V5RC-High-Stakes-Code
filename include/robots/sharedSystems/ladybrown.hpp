@@ -106,6 +106,13 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   void load();
 
   /**
+   * @brief Tells the ladybrown to move to a certain position. 
+   * 
+   * @param iTarget 
+   */
+  void moveTo(const degree_t iTarget);
+
+  /**
    * @brief Returns if the ladybrown sees a ring in the ladybrown carriage based
    * on the distance sensor and if it is resting.
    *
