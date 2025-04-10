@@ -150,27 +150,29 @@ $(document).ready(function(){initNavTree('ladybrown_8hpp_source.html',''); initR
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
 <div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79">  106</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79">load</a>();</div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">  115</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">ringInCarriage</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#a30b1cd6fd4865f0506a07b530b7e9296">  124</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#a30b1cd6fd4865f0506a07b530b7e9296">ringInIndexer</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">  132</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">checkRingDetection</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>  <span class="keywordtype">void</span> moveToControls();</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>  <span class="keywordtype">double</span> getHoldOutput();</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>  std::unique_ptr&lt;Motor&gt; motor;</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>  std::unique_ptr&lt;DistanceSensor&gt; distance;</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>  <a class="code hl_struct" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> params;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  std::unique_ptr&lt;AngularProfileFollower&gt; follower;</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  degree_t target;</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  <span class="keywordtype">double</span> voltage;</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  std::optional&lt;LadybrownState&gt; nextState;</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>};</div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930">  113</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930">moveTo</a>(<span class="keyword">const</span> degree_t iTarget);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">  122</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">ringInCarriage</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#a30b1cd6fd4865f0506a07b530b7e9296">  131</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#a30b1cd6fd4865f0506a07b530b7e9296">ringInIndexer</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">  139</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">checkRingDetection</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>  <span class="keywordtype">void</span> moveToControls();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="keywordtype">double</span> getHoldOutput();</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>  std::unique_ptr&lt;Motor&gt; motor;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>  std::unique_ptr&lt;DistanceSensor&gt; distance;</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>  <a class="code hl_struct" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> params;</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>  std::unique_ptr&lt;AngularProfileFollower&gt; follower;</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>  <a class="code hl_class" href="classatum_1_1Logger.html">Logger</a> logger;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>  degree_t target;</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>  <span class="keywordtype">double</span> voltage;</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  std::optional&lt;LadybrownState&gt; nextState;</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>};</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
 <div class="ttc" id="aclassatum_1_1Ladybrown_html"><div class="ttname"><a href="classatum_1_1Ladybrown.html">atum::Ladybrown</a></div><div class="ttdoc">Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...</div><div class="ttdef"><b>Definition:</b> ladybrown.hpp:36</div></div>
 <div class="ttc" id="aclassatum_1_1Ladybrown_html_a01cbff85ba3d8f18ffe9aefbf9890bc3"><div class="ttname"><a href="classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3">atum::Ladybrown::retract</a></div><div class="ttdeci">void retract()</div><div class="ttdoc">Tells the ladybrown to manually retract.</div></div>
@@ -182,6 +184,7 @@ $(document).ready(function(){initNavTree('ladybrown_8hpp_source.html',''); initR
 <div class="ttc" id="aclassatum_1_1Ladybrown_html_ac98061be6c665009553eaf8d301fe989"><div class="ttname"><a href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">atum::Ladybrown::ringInCarriage</a></div><div class="ttdeci">bool ringInCarriage() const</div><div class="ttdoc">Returns if the ladybrown sees a ring in the ladybrown carriage based on the distance sensor and if it...</div></div>
 <div class="ttc" id="aclassatum_1_1Ladybrown_html_aeb91103a150b6a03299011adbe9c2cde"><div class="ttname"><a href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">atum::Ladybrown::checkRingDetection</a></div><div class="ttdeci">bool checkRingDetection() const</div><div class="ttdoc">Returns if the distance sensor is functional or not.</div></div>
 <div class="ttc" id="aclassatum_1_1Ladybrown_html_aef9a36a0bf316bbcda55b782097e0008"><div class="ttname"><a href="classatum_1_1Ladybrown.html#aef9a36a0bf316bbcda55b782097e0008">atum::Ladybrown::extend</a></div><div class="ttdeci">void extend()</div><div class="ttdoc">Tells the ladybrown to manually extend.</div></div>
+<div class="ttc" id="aclassatum_1_1Ladybrown_html_af8efc4b03ad17ee212b63484671d5930"><div class="ttname"><a href="classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930">atum::Ladybrown::moveTo</a></div><div class="ttdeci">void moveTo(const degree_t iTarget)</div><div class="ttdoc">Tells the ladybrown to move to a certain position.</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html"><div class="ttname"><a href="classatum_1_1Logger.html">atum::Logger</a></div><div class="ttdoc">This class handles logging to the terminal, SD card, and log screen. Messages are displayed depending...</div><div class="ttdef"><b>Definition:</b> logger.hpp:31</div></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
 <div class="ttc" id="aclassatum_1_1PID_html"><div class="ttname"><a href="classatum_1_1PID.html">atum::PID</a></div><div class="ttdoc">Implementation of a PID controller with the option for feedforward control; feedforward control is a ...</div><div class="ttdef"><b>Definition:</b> pid.hpp:24</div></div>
