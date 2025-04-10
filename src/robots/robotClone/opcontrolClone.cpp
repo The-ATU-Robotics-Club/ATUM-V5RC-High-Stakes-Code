@@ -1,6 +1,7 @@
 #include "pros/misc.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
@@ -90,16 +91,17 @@ void RobotClone::ladybrownControls() {
 
   */
 
-  switch(remote.getLTrigger()) {
-    case -1: ladybrown->retract(); break;
-    case 1: ladybrown->extend(); break;
-    default: ladybrown->stop(); break;
-  }
-
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1: intake->load(); break;
-    default: intake->stop(); break;
+    default:
+      intake->stop();
+      switch(remote.getLTrigger()) {
+        case -1: ladybrown->retract(); break;
+        case 1: ladybrown->extend(); break;
+        default: ladybrown->stop(); break;
+      }
+      break;
   }
 
   if(goalClamp->hasGoal() && !recentlyUnclamped) {

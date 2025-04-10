@@ -1,6 +1,5 @@
 #include "intake.hpp"
 
-
 namespace atum {
 Intake::Intake(std::unique_ptr<Motor> iMotor,
                std::unique_ptr<ColorSensor> iColorSensor,
@@ -13,6 +12,7 @@ Intake::Intake(std::unique_ptr<Motor> iMotor,
     ladybrown{iLadybrown},
     logger{loggerLevel},
     params{iParams} {
+  motor->setBrakeMode(pros::v5::MotorBrake::brake);
   logger.info("Intake is constructed!");
   stop();
 }
@@ -158,7 +158,7 @@ TASK_DEFINITIONS_FOR(Intake) {
       case IntakeState::Loading:
         ladybrown->load();
         voltage = ladybrown->getState() == LadybrownState::Loading ?
-                      params.intakingVoltage :
+                      params.indexingVoltage :
                       0.0;
         if(ladybrown->getState() != LadybrownState::Loading ||
            !ladybrown->ringInCarriage()) {
@@ -167,12 +167,12 @@ TASK_DEFINITIONS_FOR(Intake) {
         state = IntakeState::PressLoading;
         break;
       case IntakeState::PressLoading: {
-        voltage = params.intakingVoltage;
+        voltage = 5.5;
         wait(params.pressLoadTime);
-        voltage = -params.intakingVoltage;
+        voltage = -params.indexingVoltage;
         Timer timeout{params.generalTimeout};
         motor->resetPosition();
-        while(motor->getPosition() < params.backupFromLoad &&
+        while(motor->getPosition() > -params.backupFromLoad &&
               !timeout.goneOff()) {
           wait();
         }

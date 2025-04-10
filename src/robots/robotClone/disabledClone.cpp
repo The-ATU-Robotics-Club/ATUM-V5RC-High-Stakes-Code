@@ -64,38 +64,41 @@ void RobotClone::driveSetup() {
 void RobotClone::ladybrownSetup() {
   std::unique_ptr<Motor> ladybrownMotor{
       std::make_unique<Motor>(MotorPortsList{-20},
-                              Motor::Gearing{pros::v5::MotorGears::green, 5},
-                              "left ladybrown")};
+                              Motor::Gearing{pros::v5::MotorGears::green},
+                              "ladybrown")};
   std::unique_ptr<DistanceSensor> ladybrownDistanceSensor{
       std::make_unique<DistanceSensor>(16)};
   Ladybrown::Parameters ladybrownParameters{
       12.0,
-      10_deg,
-      PID{{0.3}},
-      SlewRate{std::pair<double, double>{1, 0.5}},
+      80_deg,
+      PID{{0.4}},
+      SlewRate{std::pair<double, double>{0.5, 1}},
       3_rpm,
-      50_mm,
-      100_mm};
+      120_mm,
+      120_mm};
   AngularProfile::Parameters ladybrownMotionParams{
-      240_deg_per_s, 10000_deg_per_s_sq, 5000_deg_per_s_cb};
+      400_deg_per_s, 6000_deg_per_s_sq, 30000_deg_per_s_cb};
   ladybrownMotionParams.usePosition = true;
-  AngularProfile ladybrownProfile{ladybrownMotionParams};
+  AngularProfile ladybrownProfile{ladybrownMotionParams, Logger::Level::Debug};
   // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle ladybrownAcceptable{forever, 3_deg};
-  PID::Parameters ladybrownPIDParams{0.15, 0, 0, 1.65};
+  AcceptableAngle ladybrownAcceptable{3_s, 3_deg};
+  PID::Parameters ladybrownPIDParams{0.4, 0, 0, 0.7};
   ladybrownPIDParams.ffScaling = true;
   std::unique_ptr<Controller> ladybrownVelocityController =
       std::make_unique<PID>(ladybrownPIDParams);
-  const AccelerationConstants kA{0.44, 0.1};
+  const AccelerationConstants kA{0.025, 0.06};
   std::unique_ptr<Controller> ladybrownPositionController =
-      std::make_unique<PID>(PID::Parameters{0.15});
+      std::make_unique<PID>(PID::Parameters{0.4});
   std::unique_ptr<AngularProfileFollower> profileFollower =
       std::make_unique<AngularProfileFollower>(
           ladybrownProfile,
           ladybrownAcceptable,
           std::move(ladybrownVelocityController),
           kA,
-          std::move(ladybrownPositionController));
+          std::move(ladybrownPositionController),
+          radian_t{infinite},
+          2,
+          Logger::Level::Debug);
   ladybrown = std::make_unique<Ladybrown>(std::move(ladybrownMotor),
                                           std::move(ladybrownDistanceSensor),
                                           ladybrownParameters,
@@ -114,8 +117,10 @@ void RobotClone::intakeSetup() {
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
-  intakeParams.pressLoadTime = 50_ms;
+  intakeParams.pressLoadTime = 750_ms;
+  intakeParams.backupFromLoad = 30_deg;
   intakeParams.generalTimeout = 1_s;
+  intakeParams.indexingVoltage = 9.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),
