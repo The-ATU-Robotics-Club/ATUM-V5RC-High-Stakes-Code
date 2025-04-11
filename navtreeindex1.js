@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"classatum_1_1Robot.html":[1,0,0,33],
+"classatum_1_1Robot.html#a1a801e96c8b03d5261d78e40abd8704d":[1,0,0,33,4],
 "classatum_1_1Robot.html#a350525cf6a3f4e8d3b9606fdce39667e":[1,0,0,33,3],
 "classatum_1_1Robot.html#a721e1155876bf8242337100f7ec26b58":[1,0,0,33,1],
 "classatum_1_1Robot.html#abc3667642b5afcf3961fabd2c21e9c1f":[1,0,0,33,2],
@@ -13,13 +15,13 @@ var NAVTREEINDEX1 =
 "classatum_1_1RobotPrototype.html#a69beaa427ac592ab102ee17202e6ac2b":[1,0,0,35,1],
 "classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f":[1,0,0,35,0],
 "classatum_1_1RotationSensor.html":[1,0,0,36],
+"classatum_1_1RotationSensor.html#a2b91b576b12c9bb2362b4be2bfbbe291":[1,0,0,36,0],
 "classatum_1_1RotationSensor.html#a3983094568445e65911be457823c024d":[1,0,0,36,3],
 "classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62":[1,0,0,36,4],
-"classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db":[1,0,0,36,0],
+"classatum_1_1RotationSensor.html#a851e3c355d55b18b900034402b8bf629":[1,0,0,36,1],
 "classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d":[1,0,0,36,5],
 "classatum_1_1RotationSensor.html#ac956db731262b4aba4c38ef549d6865f":[1,0,0,36,6],
 "classatum_1_1RotationSensor.html#ade9e475ad0bcdfce697bc7f87cdc3aeb":[1,0,0,36,2],
-"classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd":[1,0,0,36,1],
 "classatum_1_1Scheduler.html":[1,0,0,37],
 "classatum_1_1Scheduler.html#a2416d1a11bf2011c1e853671d50718e0":[1,0,0,37,3],
 "classatum_1_1Scheduler.html#a4338b959e324bf7870ab55e3e75e67a6":[1,0,0,37,1],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "robot_8hpp.html#a923969c94a209631c9147d6871ee1c8b":[2,0,0,0,5,2,1],
 "robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fceebb258":[2,0,0,0,5,2,5],
 "robot_8hpp_source.html":[2,0,0,0,5,2],
-"rotationSensor_8hpp.html":[2,0,0,0,1,11],
-"rotationSensor_8hpp_source.html":[2,0,0,0,1,11],
-"routines_8hpp.html":[2,0,0,0,2,5]
+"rotationSensor_8hpp.html":[2,0,0,0,1,11]
 };

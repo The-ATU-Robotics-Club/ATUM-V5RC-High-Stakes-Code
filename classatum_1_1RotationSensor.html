@@ -108,12 +108,12 @@ $(document).ready(function(){initNavTree('classatum_1_1RotationSensor.html','');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a49af994aaa3e2377a6a4eedee0e969db"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db">RotationSensor</a> (const std::int8_t port, const bool reversed=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a49af994aaa3e2377a6a4eedee0e969db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new rotation sensor based on a given port. Reverses if requested.  <br /></td></tr>
-<tr class="separator:a49af994aaa3e2377a6a4eedee0e969db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9847b10bbeb51ba2f93ae5ab67341bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd">RotationSensor</a> (const bool reversed=false, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:af9847b10bbeb51ba2f93ae5ab67341bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new rotation sensor by finding its port dynamically. Reverses if requested.  <br /></td></tr>
-<tr class="separator:af9847b10bbeb51ba2f93ae5ab67341bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b91b576b12c9bb2362b4be2bfbbe291"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a2b91b576b12c9bb2362b4be2bfbbe291">RotationSensor</a> (const std::int8_t port, const bool reversed, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a2b91b576b12c9bb2362b4be2bfbbe291"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new rotation sensor based on a given port. Reverses if requested.  <br /></td></tr>
+<tr class="separator:a2b91b576b12c9bb2362b4be2bfbbe291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a851e3c355d55b18b900034402b8bf629"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a851e3c355d55b18b900034402b8bf629">RotationSensor</a> (const bool reversed, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a851e3c355d55b18b900034402b8bf629"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new rotation sensor by finding its port dynamically. Reverses if requested.  <br /></td></tr>
+<tr class="separator:a851e3c355d55b18b900034402b8bf629"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a480d99ff4f2d792d7f64bbe22ff20a62"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1RotationSensor.html#a480d99ff4f2d792d7f64bbe22ff20a62">getPosition</a> ()</td></tr>
 <tr class="memdesc:a480d99ff4f2d792d7f64bbe22ff20a62"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the absolute position of the rotation sensor from 0 to 360 degrees with wrapping.  <br /></td></tr>
 <tr class="separator:a480d99ff4f2d792d7f64bbe22ff20a62"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,8 +133,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A simple wrapper around the rotation sensor to support logging, dynamic initialization, and dimensional units. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a49af994aaa3e2377a6a4eedee0e969db" name="a49af994aaa3e2377a6a4eedee0e969db"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49af994aaa3e2377a6a4eedee0e969db">&#9670;&#160;</a></span>RotationSensor() <span class="overload">[1/2]</span></h2>
+<a id="a2b91b576b12c9bb2362b4be2bfbbe291" name="a2b91b576b12c9bb2362b4be2bfbbe291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b91b576b12c9bb2362b4be2bfbbe291">&#9670;&#160;</a></span>RotationSensor() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,7 +149,7 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>reversed</em> = <code>false</code>, </td>
+          <td class="paramname"><em>reversed</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -178,8 +178,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af9847b10bbeb51ba2f93ae5ab67341bd" name="af9847b10bbeb51ba2f93ae5ab67341bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9847b10bbeb51ba2f93ae5ab67341bd">&#9670;&#160;</a></span>RotationSensor() <span class="overload">[2/2]</span></h2>
+<a id="a851e3c355d55b18b900034402b8bf629" name="a851e3c355d55b18b900034402b8bf629"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a851e3c355d55b18b900034402b8bf629">&#9670;&#160;</a></span>RotationSensor() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +188,7 @@ Public Member Functions</h2></td></tr>
           <td class="memname">atum::RotationSensor::RotationSensor </td>
           <td>(</td>
           <td class="paramtype">const bool&#160;</td>
-          <td class="paramname"><em>reversed</em> = <code>false</code>, </td>
+          <td class="paramname"><em>reversed</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>

@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"rotationSensor_8hpp_source.html":[2,0,0,0,1,11],
+"routines_8hpp.html":[2,0,0,0,2,5],
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63":[2,0,0,0,2,5,1],
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63a9594eec95be70e7b1710f730fdda33d9":[2,0,0,0,2,5,1,1],
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63aee38e4d5dd68c4e440825018d549cb47":[2,0,0,0,2,5,1,0],

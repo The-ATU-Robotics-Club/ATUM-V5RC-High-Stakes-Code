@@ -17,6 +17,6 @@ var searchData=
   ['robot_14',['Robot',['../classatum_1_1Robot.html#ac5f63ac7b8a265cf8b275531e79a85ce',1,'atum::Robot']]],
   ['robotclone_15',['RobotClone',['../classatum_1_1RobotClone.html#a4fe43f48ac6c918f810a1b06c5ec48f0',1,'atum::RobotClone']]],
   ['robotprototype_16',['RobotPrototype',['../classatum_1_1RobotPrototype.html#aa15aadb44ce0ae525a7ee91f433b8b6f',1,'atum::RobotPrototype']]],
-  ['rotationsensor_17',['RotationSensor',['../classatum_1_1RotationSensor.html#a49af994aaa3e2377a6a4eedee0e969db',1,'atum::RotationSensor::RotationSensor(const std::int8_t port, const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1RotationSensor.html#af9847b10bbeb51ba2f93ae5ab67341bd',1,'atum::RotationSensor::RotationSensor(const bool reversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
+  ['rotationsensor_17',['RotationSensor',['../classatum_1_1RotationSensor.html#a2b91b576b12c9bb2362b4be2bfbbe291',1,'atum::RotationSensor::RotationSensor(const std::int8_t port, const bool reversed, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1RotationSensor.html#a851e3c355d55b18b900034402b8bf629',1,'atum::RotationSensor::RotationSensor(const bool reversed, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['rumble_18',['rumble',['../classatum_1_1Remote.html#a0164e292529181e2e23fbf00bd504527',1,'atum::Remote']]]
 ];

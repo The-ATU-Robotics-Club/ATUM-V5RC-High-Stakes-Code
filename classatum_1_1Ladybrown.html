@@ -125,9 +125,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a93be83f5809e9959be2b4fbacea51467"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a93be83f5809e9959be2b4fbacea51467">Ladybrown</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iMotor, std::unique_ptr&lt; <a class="el" href="classatum_1_1DistanceSensor.html">DistanceSensor</a> &gt; iDistance, const <a class="el" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> &amp;iParams, std::unique_ptr&lt; <a class="el" href="classatum_1_1ProfileFollower.html">AngularProfileFollower</a> &gt; iFollower, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a93be83f5809e9959be2b4fbacea51467"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Ladybrown.html" title="Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...">Ladybrown</a> object with the provided parameters.  <br /></td></tr>
-<tr class="separator:a93be83f5809e9959be2b4fbacea51467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a142e00777cb39e0eda3dcd9061da8eb0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a142e00777cb39e0eda3dcd9061da8eb0">Ladybrown</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iMotor, std::unique_ptr&lt; <a class="el" href="classatum_1_1DistanceSensor.html">DistanceSensor</a> &gt; iDistance, std::unique_ptr&lt; <a class="el" href="classatum_1_1RotationSensor.html">RotationSensor</a> &gt; iRotation, const <a class="el" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> &amp;iParams, std::unique_ptr&lt; <a class="el" href="classatum_1_1ProfileFollower.html">AngularProfileFollower</a> &gt; iFollower, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:a142e00777cb39e0eda3dcd9061da8eb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Ladybrown.html" title="Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...">Ladybrown</a> object with the provided parameters.  <br /></td></tr>
+<tr class="separator:a142e00777cb39e0eda3dcd9061da8eb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e">rest</a> ()</td></tr>
 <tr class="memdesc:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go back to its lowered position (where it started).  <br /></td></tr>
 <tr class="separator:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,6 +155,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb91103a150b6a03299011adbe9c2cde"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde">checkRingDetection</a> () const</td></tr>
 <tr class="memdesc:aeb91103a150b6a03299011adbe9c2cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the distance sensor is functional or not.  <br /></td></tr>
 <tr class="separator:aeb91103a150b6a03299011adbe9c2cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c1d35994cc827b6de3ac1c1cbf822d"><td class="memItemLeft" align="right" valign="top">degree_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ac3c1d35994cc827b6de3ac1c1cbf822d">getPosition</a> () const</td></tr>
+<tr class="memdesc:ac3c1d35994cc827b6de3ac1c1cbf822d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the position of the arm based on the rotation sensor if available and the motor.  <br /></td></tr>
+<tr class="separator:ac3c1d35994cc827b6de3ac1c1cbf822d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7920b2babb48267df8616e3d686327d2"><td class="memItemLeft" align="right" valign="top">degrees_per_second_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a7920b2babb48267df8616e3d686327d2">getVelocity</a> () const</td></tr>
+<tr class="memdesc:a7920b2babb48267df8616e3d686327d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the velocity of the arm based on the rotation sensor if available and the motor.  <br /></td></tr>
+<tr class="separator:a7920b2babb48267df8616e3d686327d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Task"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Task')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Task.html">atum::Task</a></td></tr>
 <tr class="memitem:a5a32417bc0b345e62446142173b492bf inherit pub_methods_classatum_1_1Task"><td class="memItemLeft" align="right" valign="top"><a id="a5a32417bc0b345e62446142173b492bf" name="a5a32417bc0b345e62446142173b492bf"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Task</b> (const <a class="el" href="classatum_1_1Task.html">Task</a> &amp;)=delete</td></tr>
@@ -197,8 +203,8 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to several important positions. Additionally provides a holding mechanism. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a93be83f5809e9959be2b4fbacea51467" name="a93be83f5809e9959be2b4fbacea51467"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a93be83f5809e9959be2b4fbacea51467">&#9670;&#160;</a></span>Ladybrown()</h2>
+<a id="a142e00777cb39e0eda3dcd9061da8eb0" name="a142e00777cb39e0eda3dcd9061da8eb0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a142e00777cb39e0eda3dcd9061da8eb0">&#9670;&#160;</a></span>Ladybrown()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -214,6 +220,12 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
           <td></td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1DistanceSensor.html">DistanceSensor</a> &gt;&#160;</td>
           <td class="paramname"><em>iDistance</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1RotationSensor.html">RotationSensor</a> &gt;&#160;</td>
+          <td class="paramname"><em>iRotation</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -246,6 +258,7 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
   <table class="params">
     <tr><td class="paramname">iMotor</td><td></td></tr>
     <tr><td class="paramname">iDistance</td><td></td></tr>
+    <tr><td class="paramname">iRotation</td><td></td></tr>
     <tr><td class="paramname">iParams</td><td></td></tr>
     <tr><td class="paramname">iFollower</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
@@ -294,6 +307,47 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Tells the ladybrown to manually extend. </p>
+
+</div>
+</div>
+<a id="ac3c1d35994cc827b6de3ac1c1cbf822d" name="ac3c1d35994cc827b6de3ac1c1cbf822d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c1d35994cc827b6de3ac1c1cbf822d">&#9670;&#160;</a></span>getPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">degree_t atum::Ladybrown::getPosition </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the position of the arm based on the rotation sensor if available and the motor. </p>
+<dl class="section return"><dt>Returns</dt><dd>degree_t </dd></dl>
+
+</div>
+</div>
+<a id="a7920b2babb48267df8616e3d686327d2" name="a7920b2babb48267df8616e3d686327d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7920b2babb48267df8616e3d686327d2">&#9670;&#160;</a></span>getVelocity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">degrees_per_second_t atum::Ladybrown::getVelocity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the velocity of the arm based on the rotation sensor if available and the motor. </p>
+<p>Filters values by taking the larger of the two.</p>
+<dl class="section return"><dt>Returns</dt><dd>degrees_per_second_t </dd></dl>
 
 </div>
 </div>
