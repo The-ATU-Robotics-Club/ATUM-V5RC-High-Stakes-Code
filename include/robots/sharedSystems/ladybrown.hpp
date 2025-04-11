@@ -44,10 +44,15 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   struct Parameters {
     double manualVoltage;
+    // The lower and upper bounds for movement of the ladybrown.
+    std::pair<degree_t, degree_t> bounds;
     degree_t loadingPosition;
     // Used to hold the arm in place (or move to a position if profile follower
     // failed to do so).
     PID holdController{{}};
+    // Constant for overcoming gravity (overestimating will make the arm "float"
+    // use lowest value to keep arm up).
+    double kG;
     // Used to limit jerk whenever manual controls are enabled.
     SlewRate manualSlew{0};
     // Below this RPM, the ladybrown is considered still
@@ -63,12 +68,14 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    *
    * @param iMotor
    * @param iDistance
+   * @param iRotation
    * @param iParams
    * @param iFollower
    * @param loggerLevel
    */
   Ladybrown(std::unique_ptr<Motor> iMotor,
             std::unique_ptr<DistanceSensor> iDistance,
+            std::unique_ptr<RotationSensor> iRotation,
             const Parameters &iParams,
             std::unique_ptr<AngularProfileFollower> iFollower,
             const Logger::Level loggerLevel = Logger::Level::Info);
@@ -106,9 +113,9 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   void load();
 
   /**
-   * @brief Tells the ladybrown to move to a certain position. 
-   * 
-   * @param iTarget 
+   * @brief Tells the ladybrown to move to a certain position.
+   *
+   * @param iTarget
    */
   void moveTo(const degree_t iTarget);
 
@@ -138,6 +145,24 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   bool checkRingDetection() const;
 
+  /**
+   * @brief Gets the position of the arm based on the rotation sensor if
+   * available and the motor.
+   *
+   * @return degree_t
+   */
+  degree_t getPosition() const;
+
+  /**
+   * @brief Gets the velocity of the arm based on the rotation sensor if
+   * available and the motor.
+   *
+   * Filters values by taking the larger of the two.
+   *
+   * @return degrees_per_second_t
+   */
+  degrees_per_second_t getVelocity() const;
+
   private:
   /**
    * @brief Moves to the position associated with a given state, so long as the
@@ -156,6 +181,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
 
   std::unique_ptr<Motor> motor;
   std::unique_ptr<DistanceSensor> distance;
+  std::unique_ptr<RotationSensor> rotation;
   Parameters params;
   std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;

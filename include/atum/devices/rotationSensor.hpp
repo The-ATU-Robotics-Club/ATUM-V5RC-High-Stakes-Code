@@ -35,7 +35,7 @@ class RotationSensor {
    * @param loggerLevel
    */
   RotationSensor(const std::int8_t port,
-                 const bool reversed = false,
+                 const bool reversed,
                  const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -45,7 +45,7 @@ class RotationSensor {
    * @param reversed
    * @param loggerLevel
    */
-  RotationSensor(const bool reversed = false,
+  RotationSensor(const bool reversed,
                  const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**

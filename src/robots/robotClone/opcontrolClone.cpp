@@ -1,7 +1,6 @@
 #include "pros/misc.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
