@@ -1,18 +1,17 @@
 #include "ladybrown.hpp"
 
+
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
                      std::unique_ptr<DistanceSensor> iDistance,
                      std::unique_ptr<RotationSensor> iRotation,
                      const Parameters &iParams,
-                     std::unique_ptr<AngularProfileFollower> iFollower,
                      const Logger::Level loggerLevel) :
     Task{this, loggerLevel},
     motor{std::move(iMotor)},
     distance{std::move(iDistance)},
     rotation{std::move(iRotation)},
     params{iParams},
-    follower{std::move(iFollower)},
     logger{loggerLevel} {
   // Reset devices.
   motor->setBrakeMode(pros::MotorBrake::brake);
@@ -24,9 +23,9 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
 }
 
 void Ladybrown::stop() {
+  nextState = {};
   if(state == LadybrownState::MovingTo) {
     state = nextState.value_or(LadybrownState::Idle);
-    nextState = {};
   } else if(state == LadybrownState::Extending ||
             state == LadybrownState::Retracting) {
     state = LadybrownState::Settling;
@@ -50,6 +49,7 @@ void Ladybrown::rest() {
     return;
   }
   if(state != LadybrownState::Resting) {
+    params.acceptable.reset();
     nextState = LadybrownState::Resting;
     state = LadybrownState::MovingTo;
   }
@@ -61,6 +61,7 @@ void Ladybrown::load() {
     return;
   }
   if(state != LadybrownState::Loading) {
+    params.acceptable.reset();
     nextState = LadybrownState::Loading;
     state = LadybrownState::MovingTo;
   }
@@ -68,6 +69,7 @@ void Ladybrown::load() {
 }
 
 void Ladybrown::moveTo(const degree_t iTarget) {
+  params.acceptable.reset();
   target = iTarget;
   nextState = {};
   state = LadybrownState::MovingTo;
@@ -94,58 +96,28 @@ degree_t Ladybrown::getPosition() const {
   return motor->getPosition();
 }
 
-degrees_per_second_t Ladybrown::getVelocity() const {
-  if(rotation->check()) {
-    const degrees_per_second_t rotationV{rotation->getVelocity()};
-    const degrees_per_second_t motorV{motor->getVelocity()};
-    if(abs(rotationV) > abs(motorV)) {
-      return rotationV;
-    }
-    return motorV;
-  }
-  return motor->getVelocity();
-}
-
 void Ladybrown::moveToControls() {
-  // const LadybrownState startingState{state};
-  // const degree_t startingTarget{target};
-  // follower->startProfile(rotation->getDisplacement(), target);
-  // while(!follower->isDone() && state == startingState &&
-  //       target == startingTarget) {
-  //   const double followerOutput{
-  //       follower->getOutput(rotation->getDisplacement(), motor->getVelocity())};
-  //   voltage = followerOutput;
-  //   wait();
-  // }
-  // if(target != startingTarget) {
-  //   moveToControls();
-  // }
-  stop();
-}
-
-double Ladybrown::getHoldOutput() {
-  if(state == LadybrownState::Resting) {
-    return 0.0;
+  if(state != LadybrownState::Idle && state != LadybrownState::MovingTo &&
+     state != LadybrownState::Loading) {
+    return;
   }
   double output{0.0};
   if(rotation->check()) {
     output = params.kG * cos(getValueAs<radian_t>(rotation->getPosition()));
   }
-  if(state == LadybrownState::Idle || state == LadybrownState::Loading) {
-    const double holdError{
-        getValueAs<degree_t>(target - rotation->getDisplacement())};
-    output += params.holdController.getOutput(holdError);
+  const degree_t error{target - rotation->getDisplacement()};
+  output += params.holdController.getOutput(getValueAs<degree_t>(error));
+  voltage = output;
+  if(params.acceptable.canAccept(error)) {
+    state = nextState.value_or(LadybrownState::Idle);
   }
-  return output;
 }
 
 TASK_DEFINITIONS_FOR(Ladybrown) {
   START_TASK("Ladybrown State Machine")
   while(true) {
     switch(state) {
-      case LadybrownState::Resting:
-      case LadybrownState::Idle:
-      case LadybrownState::Loading: voltage = 0.0; break;
+      case LadybrownState::Resting: voltage = 0.0; break;
       case LadybrownState::Settling:
         voltage = 0.0;
         // During manual control, hold wherever you stop.
@@ -164,10 +136,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
 
   START_TASK("Ladybrown Control")
   while(true) {
-    const double slewedVoltage{params.manualSlew.slew(voltage)};
-    const bool macroMovement{state == LadybrownState::MovingTo};
-    double output{macroMovement ? voltage : slewedVoltage};
-    output += getHoldOutput();
+    double output{params.manualSlew.slew(voltage)};
 
     if((output < 0.0 && rotation->getDisplacement() < params.bounds.first) ||
        (output > 0.0 && rotation->getDisplacement() >= params.bounds.second)) {

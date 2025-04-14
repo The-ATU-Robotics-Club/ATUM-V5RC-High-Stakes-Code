@@ -11,7 +11,6 @@
 
 #include "atum/atum.hpp"
 
-
 namespace atum {
 /**
  * @brief The various states that the ladybrown can be in.
@@ -53,8 +52,10 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     // Constant for overcoming gravity (overestimating will make the arm "float"
     // use lowest value to keep arm up).
     double kG;
-    // Used to limit jerk whenever manual controls are enabled.
+    // Used to limit jerk.
     SlewRate manualSlew{0};
+    // Used to determine when the ladybrown is done moving.
+    AcceptableAngle acceptable;
     // Below this RPM, the ladybrown is considered still
     revolutions_per_minute_t stillRPM;
     // Closer than this distance, a ring is considered present when loading.
@@ -70,14 +71,12 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    * @param iDistance
    * @param iRotation
    * @param iParams
-   * @param iFollower
    * @param loggerLevel
    */
   Ladybrown(std::unique_ptr<Motor> iMotor,
             std::unique_ptr<DistanceSensor> iDistance,
             std::unique_ptr<RotationSensor> iRotation,
             const Parameters &iParams,
-            std::unique_ptr<AngularProfileFollower> iFollower,
             const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -153,15 +152,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   degree_t getPosition() const;
 
-  /**
-   * @brief Gets the velocity of the arm based on the rotation sensor if
-   * available and the motor.
-   *
-   * Filters values by taking the larger of the two.
-   *
-   * @return degrees_per_second_t
-   */
-  degrees_per_second_t getVelocity() const;
 
   private:
   /**
@@ -171,19 +161,10 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   void moveToControls();
 
-  /**
-   * @brief Gets the output for holding the ladybrown in place. If not moving,
-   * will use the given hold controller.
-   *
-   * @return double
-   */
-  double getHoldOutput();
-
   std::unique_ptr<Motor> motor;
   std::unique_ptr<DistanceSensor> distance;
   std::unique_ptr<RotationSensor> rotation;
   Parameters params;
-  std::unique_ptr<AngularProfileFollower> follower;
   Logger logger;
   degree_t target;
   double voltage;

@@ -166,18 +166,7 @@ TASK_DEFINITIONS_FOR(Intake) {
         }
         state = IntakeState::PressLoading;
         break;
-      case IntakeState::PressLoading: {
-        voltage = 5.5;
-        wait(params.pressLoadTime);
-        voltage = -params.indexingVoltage;
-        Timer timeout{params.generalTimeout};
-        motor->resetPosition();
-        while(motor->getPosition() > -params.backupFromLoad &&
-              !timeout.goneOff()) {
-          wait();
-        }
-        state = IntakeState::FinishedLoading;
-      } break;
+      case IntakeState::PressLoading: voltage = 5; break;
       case IntakeState::FinishedLoading: voltage = 0.0; break;
       case IntakeState::Indexing:
         voltage = ladybrown->ringInIndexer() ? 0.0 : params.indexingVoltage;
@@ -194,14 +183,23 @@ TASK_DEFINITIONS_FOR(Intake) {
     wait(); // At the top for continue statements below.
 
     if(state == IntakeState::Idle || state == IntakeState::Outtaking ||
-       state == IntakeState::PressLoading ||
        state == IntakeState::FinishedLoading || !voltage) {
       params.timerUntilJamChecks.setTime();
     } else if(params.timerUntilJamChecks.goneOff() &&
               motor->getVelocity() < params.jamVelocity) {
       motor->moveVoltage(-12.0);
-      wait(params.timeUntilUnjammed);
-      params.timerUntilJamChecks.setTime();
+      if(state == IntakeState::PressLoading) {
+        Timer timeout{params.generalTimeout};
+        motor->resetPosition();
+        while(motor->getPosition() > -params.backupFromLoad &&
+              !timeout.goneOff()) {
+          wait();
+        }
+        state = IntakeState::FinishedLoading;
+      } else {
+        wait(params.timeUntilUnjammed);
+        params.timerUntilJamChecks.setTime();
+      }
       continue;
     }
 

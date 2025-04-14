@@ -72,41 +72,18 @@ void RobotClone::ladybrownSetup() {
   Ladybrown::Parameters ladybrownParameters{
       12.0,
       {5_deg, 235_deg},
-      15_deg,
+      14_deg,
       PID{{0.25, 0.0, 0.05}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},
+      AcceptableAngle{2_s, 2_deg},
       2_rpm,
       120_mm,
       120_mm};
-  AngularProfile::Parameters ladybrownMotionParams{
-      400_deg_per_s, 4000_deg_per_s_sq, 10000_deg_per_s_cb};
-  ladybrownMotionParams.usePosition = true;
-  AngularProfile ladybrownProfile{ladybrownMotionParams, Logger::Level::Debug};
-  // Timeout here gets set by the follower, so don't worry about the "forever."
-  AcceptableAngle ladybrownAcceptable{forever};
-  PID::Parameters ladybrownPIDParams{1.75, 0, 0, 1.9};
-  ladybrownPIDParams.ffScaling = true;
-  std::unique_ptr<Controller> ladybrownVelocityController =
-      std::make_unique<PID>(ladybrownPIDParams);
-  const AccelerationConstants kA{0.075, 0.15};
-  std::unique_ptr<Controller> ladybrownPositionController =
-      std::make_unique<PID>(PID::Parameters{0});
-  std::unique_ptr<AngularProfileFollower> profileFollower =
-      std::make_unique<AngularProfileFollower>(
-          ladybrownProfile,
-          ladybrownAcceptable,
-          std::move(ladybrownVelocityController),
-          kA,
-          std::move(ladybrownPositionController),
-          radian_t{infinite},
-          2,
-          Logger::Level::Debug);
   ladybrown = std::make_unique<Ladybrown>(std::move(ladybrownMotor),
                                           std::move(ladybrownDistanceSensor),
                                           std::move(ladybrownRotationSensor),
-                                          ladybrownParameters,
-                                          std::move(profileFollower));
+                                          ladybrownParameters);
 }
 
 void RobotClone::intakeSetup() {
@@ -122,7 +99,7 @@ void RobotClone::intakeSetup() {
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 750_ms;
-  intakeParams.backupFromLoad = 30_deg;
+  intakeParams.backupFromLoad = 15_deg;
   intakeParams.generalTimeout = 1_s;
   intakeParams.indexingVoltage = 9.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),

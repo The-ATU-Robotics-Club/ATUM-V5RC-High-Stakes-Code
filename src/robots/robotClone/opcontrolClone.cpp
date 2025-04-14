@@ -83,11 +83,10 @@ void RobotClone::ladybrownControls() {
   remote.print(2, "MODE: Ladybrown");
 
   /*
-  R1 will lower ladybrown to loading position and load a ring if there is no
-  ring in the ladybrown, otherwise it will index to the front stage. R2 will
-  outtake. Pressing L1 will raise the ladybrown and L2 will lower it; using L2
-  below a certain point will and with no ring will cause the ladybrown to rest.
-
+  L1 brings ladybrown into loading from rest and go to ladybrown mode.
+  When loading, if there's no ring, pressing L2 will make the ladybrown rest and go to intake mode.
+  If trying to lower past a certain position, ladybrown will go back to loading.
+  L1 and L2 work as expected otherwise.
   */
 
   switch(remote.getRTrigger()) {
