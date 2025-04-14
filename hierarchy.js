@@ -3,6 +3,7 @@ var hierarchy =
     [ "atum::AccelerationConstants", "structatum_1_1AccelerationConstants.html", null ],
     [ "atum::Acceptable< Unit >", "classatum_1_1Acceptable.html", null ],
     [ "atum::Acceptable< meter_t >", "classatum_1_1Acceptable.html", null ],
+    [ "atum::Acceptable< radian_t >", "classatum_1_1Acceptable.html", null ],
     [ "atum::ADIExtenderPort", "classatum_1_1ADIExtenderPort.html", null ],
     [ "atum::ColorSensor", "classatum_1_1ColorSensor.html", null ],
     [ "atum::PathFollower::Command", "structatum_1_1PathFollower_1_1Command.html", null ],

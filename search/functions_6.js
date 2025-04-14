@@ -42,7 +42,7 @@ var searchData=
   ['gettotaltime_39',['getTotalTime',['../classatum_1_1MotionProfile.html#ab9647a647322ffba5bb6b026ab08846a',1,'atum::MotionProfile']]],
   ['gettraveled_40',['getTraveled',['../classatum_1_1IMU.html#affd387999e140b063ded3d003fc36aeb',1,'atum::IMU']]],
   ['getvalueas_41',['getValueAs',['../units_8hpp.html#aeac34d4fb84865ae14173383554ea741',1,'atum']]],
-  ['getvelocity_42',['getVelocity',['../classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d',1,'atum::RotationSensor::getVelocity()'],['../classatum_1_1Drive.html#aa2f99853184f4ef5118e31f34f390993',1,'atum::Drive::getVelocity()'],['../classatum_1_1Ladybrown.html#a7920b2babb48267df8616e3d686327d2',1,'atum::Ladybrown::getVelocity()'],['../classatum_1_1Motor.html#a406cefc8ce3d7ee302057bbcecb08673',1,'atum::Motor::getVelocity() const']]],
+  ['getvelocity_42',['getVelocity',['../classatum_1_1Motor.html#a406cefc8ce3d7ee302057bbcecb08673',1,'atum::Motor::getVelocity()'],['../classatum_1_1RotationSensor.html#ab500022219f45c262a86ccbaf651399d',1,'atum::RotationSensor::getVelocity()'],['../classatum_1_1Drive.html#aa2f99853184f4ef5118e31f34f390993',1,'atum::Drive::getVelocity()']]],
   ['getvoltage_43',['getVoltage',['../classatum_1_1Motor.html#ab52a3589c274b9d92fef6153af1a04cc',1,'atum::Motor']]],
   ['goalclamp_44',['GoalClamp',['../classatum_1_1GoalClamp.html#aa4106d707f8fd97e0dcbe8e4130c5310',1,'atum::GoalClamp']]],
   ['goalrush_45',['GoalRush',['../classatum_1_1GoalRush.html#aa09c44f1ad7c2f771bd3b0146757315f',1,'atum::GoalRush']]],

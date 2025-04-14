@@ -1,11 +1,10 @@
 var classatum_1_1Ladybrown =
 [
     [ "Parameters", "structatum_1_1Ladybrown_1_1Parameters.html", null ],
-    [ "Ladybrown", "classatum_1_1Ladybrown.html#a142e00777cb39e0eda3dcd9061da8eb0", null ],
+    [ "Ladybrown", "classatum_1_1Ladybrown.html#a59e1198935faf7012f30b50930bae866", null ],
     [ "checkRingDetection", "classatum_1_1Ladybrown.html#aeb91103a150b6a03299011adbe9c2cde", null ],
     [ "extend", "classatum_1_1Ladybrown.html#aef9a36a0bf316bbcda55b782097e0008", null ],
     [ "getPosition", "classatum_1_1Ladybrown.html#ac3c1d35994cc827b6de3ac1c1cbf822d", null ],
-    [ "getVelocity", "classatum_1_1Ladybrown.html#a7920b2babb48267df8616e3d686327d2", null ],
     [ "load", "classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79", null ],
     [ "moveTo", "classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930", null ],
     [ "rest", "classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e", null ],

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['ladybrown_0',['Ladybrown',['../classatum_1_1Ladybrown.html',1,'atum::Ladybrown'],['../classatum_1_1Ladybrown.html#a142e00777cb39e0eda3dcd9061da8eb0',1,'atum::Ladybrown::Ladybrown()']]],
+  ['ladybrown_0',['Ladybrown',['../classatum_1_1Ladybrown.html',1,'atum::Ladybrown'],['../classatum_1_1Ladybrown.html#a59e1198935faf7012f30b50930bae866',1,'atum::Ladybrown::Ladybrown()']]],
   ['ladybrown_2ehpp_1',['ladybrown.hpp',['../ladybrown_8hpp.html',1,'']]],
   ['ladybrownstate_2',['LadybrownState',['../ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807',1,'atum']]],
   ['lateralkinematics_3',['LateralKinematics',['../kinematics_8hpp.html#a6055403e999315f4b2943639e7abe38f',1,'atum']]],
