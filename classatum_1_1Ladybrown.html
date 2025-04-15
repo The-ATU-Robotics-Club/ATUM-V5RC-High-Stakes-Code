@@ -128,6 +128,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a59e1198935faf7012f30b50930bae866"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a59e1198935faf7012f30b50930bae866">Ladybrown</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Motor.html">Motor</a> &gt; iMotor, std::unique_ptr&lt; <a class="el" href="classatum_1_1DistanceSensor.html">DistanceSensor</a> &gt; iDistance, std::unique_ptr&lt; <a class="el" href="classatum_1_1RotationSensor.html">RotationSensor</a> &gt; iRotation, const <a class="el" href="structatum_1_1Ladybrown_1_1Parameters.html">Parameters</a> &amp;iParams, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
 <tr class="memdesc:a59e1198935faf7012f30b50930bae866"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1Ladybrown.html" title="Class to implement the ladybrown for the robot. Includes manual controls as well as macros to move to...">Ladybrown</a> object with the provided parameters.  <br /></td></tr>
 <tr class="separator:a59e1198935faf7012f30b50930bae866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8533f2b16d167547c74c7624ed5786d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a8533f2b16d167547c74c7624ed5786d4">setIntake</a> (<a class="el" href="classatum_1_1Intake.html">Intake</a> *iIntake)</td></tr>
+<tr class="memdesc:a8533f2b16d167547c74c7624ed5786d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the intake reference and should be provided as soon as possible.  <br /></td></tr>
+<tr class="separator:a8533f2b16d167547c74c7624ed5786d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e">rest</a> ()</td></tr>
 <tr class="memdesc:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to go back to its lowered position (where it started).  <br /></td></tr>
 <tr class="separator:a59b7fe59428f7cde8bb0bfd4fb9a8e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +146,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8bb52efac91285cc78d8da8892831d79"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79">load</a> ()</td></tr>
 <tr class="memdesc:a8bb52efac91285cc78d8da8892831d79"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to move to its loading position.  <br /></td></tr>
 <tr class="separator:a8bb52efac91285cc78d8da8892831d79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb32368d4f5d25a6eac85d11e6e71e33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#abb32368d4f5d25a6eac85d11e6e71e33">pack</a> ()</td></tr>
+<tr class="memdesc:abb32368d4f5d25a6eac85d11e6e71e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to pack down the ring.  <br /></td></tr>
+<tr class="separator:abb32368d4f5d25a6eac85d11e6e71e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8efc4b03ad17ee212b63484671d5930"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930">moveTo</a> (const degree_t iTarget)</td></tr>
 <tr class="memdesc:af8efc4b03ad17ee212b63484671d5930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to move to a certain position.  <br /></td></tr>
 <tr class="separator:af8efc4b03ad17ee212b63484671d5930"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -365,6 +371,25 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="abb32368d4f5d25a6eac85d11e6e71e33" name="abb32368d4f5d25a6eac85d11e6e71e33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb32368d4f5d25a6eac85d11e6e71e33">&#9670;&#160;</a></span>pack()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::Ladybrown::pack </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tells the ladybrown to pack down the ring. </p>
+
+</div>
+</div>
 <a id="a59b7fe59428f7cde8bb0bfd4fb9a8e3e" name="a59b7fe59428f7cde8bb0bfd4fb9a8e3e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a59b7fe59428f7cde8bb0bfd4fb9a8e3e">&#9670;&#160;</a></span>rest()</h2>
 
@@ -444,6 +469,32 @@ false </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
+
+</div>
+</div>
+<a id="a8533f2b16d167547c74c7624ed5786d4" name="a8533f2b16d167547c74c7624ed5786d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8533f2b16d167547c74c7624ed5786d4">&#9670;&#160;</a></span>setIntake()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::Ladybrown::setIntake </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Intake.html">Intake</a> *&#160;</td>
+          <td class="paramname"><em>iIntake</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the intake reference and should be provided as soon as possible. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iIntake</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -1,5 +1,12 @@
 var NAVTREEINDEX2 =
 {
+"robot_8hpp.html#a59075617124f921f77ec12a1b57ced6e":[2,0,0,0,5,2,2],
+"robot_8hpp.html#a85f4d8fe87af7e40a6b588febc446223":[2,0,0,0,5,2,3],
+"robot_8hpp.html#a923969c94a209631c9147d6871ee1c8b":[2,0,0,0,5,2,1],
+"robot_8hpp.html#ab8b9d6f38e3aca258e3f1a0fceebb258":[2,0,0,0,5,2,5],
+"robot_8hpp_source.html":[2,0,0,0,5,2],
+"rotationSensor_8hpp.html":[2,0,0,0,1,11],
+"rotationSensor_8hpp_source.html":[2,0,0,0,1,11],
 "routines_8hpp.html":[2,0,0,0,2,5],
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63":[2,0,0,0,2,5,1],
 "routines_8hpp.html#ad9d160f62c7365d7be24b88e0631ab63a9594eec95be70e7b1710f730fdda33d9":[2,0,0,0,2,5,1,1],

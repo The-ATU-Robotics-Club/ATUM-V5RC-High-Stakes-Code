@@ -9,6 +9,8 @@ var intake_8hpp =
       [ "Outtaking", "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa41d4c71faaf9ec2d1d9883df8540e77c", null ],
       [ "Loading", "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa16bfbf9c462762cf1cba4134ec53c504", null ],
       [ "PressLoading", "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa5a216d6c8fe85820e7eebd3b58b9b07e", null ],
+      [ "Pressed", "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fad78a68f6a85421ae121c2cb5b73a1040", null ],
+      [ "UnpressLoading", "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fa76037cc30805cf350341eb012fe607c8", null ],
       [ "FinishedLoading", "intake_8hpp.html#afe5a0214875f664ac0b2e585da2a044fafc78e4ddc4a5e37fe35151514d0c7ebb", null ]
     ] ]
 ];
