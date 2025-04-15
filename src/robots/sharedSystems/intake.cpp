@@ -26,11 +26,18 @@ void Intake::index() {
 }
 
 void Intake::load() {
-  if(state == IntakeState::PressLoading ||
+  if(state == IntakeState::PressLoading || state == IntakeState::Pressed ||
+     state == IntakeState::UnpressLoading ||
      state == IntakeState::FinishedLoading) {
     return;
   }
   state = IntakeState::Loading;
+}
+
+void Intake::finishLoading() {
+  if(state == IntakeState::Pressed) {
+    state = IntakeState::UnpressLoading;
+  }
 }
 
 void Intake::outtake() {
@@ -38,6 +45,9 @@ void Intake::outtake() {
 }
 
 void Intake::stop() {
+  if(state == IntakeState::Pressed || state == IntakeState::UnpressLoading) {
+    return;
+  }
   state = IntakeState::Idle;
 }
 
@@ -49,112 +59,20 @@ ColorSensor::Color Intake::getSortOutColor() const {
   return sortOutColor;
 }
 
-// void Intake::intaking() {
-//   if(ladybrown->mayConflictWithIntake()) {
-//     params.timerUntilJamChecks.setTime();
-//     if(state != IntakeState::FinishedLoading) {
-//       finishLoading();
-//     }
-//     return;
-//   } else if(state == IntakeState::FinishedLoading) {
-//     state = IntakeState::Loading;
-//     return;
-//   }
-//   if(shouldSort()) {
-//     state = IntakeState::Sorting;
-//     return;
-//   }
-//   if(shouldIndex()) {
-//     if(colorSensor->getColor() != ColorSensor::Color::None) {
-//       params.timerUntilJamChecks.setTime();
-//       motor->brake();
-//       return;
-//     }
-//   }
-//   if(params.timerUntilJamChecks.goneOff() &&
-//      motor->getVelocity() < params.jamVelocity) {
-//     state = IntakeState::Jammed;
-//   }
-//   if(state == IntakeState::Indexing ||
-//      (state == IntakeState::Loading && ladybrown->hasRing())) {
-//     motor->moveVoltage(params.indexingVoltage);
-//   } else {
-//     motor->moveVoltage(params.intakingVoltage);
-//   }
-// }
-
-// void Intake::unjamming() {
-//   motor->moveVoltage(-12);
-//   wait(params.timeUntilUnjammed);
-//   if(returnState == IntakeState::Loading) {
-//     ladybrown->prepare();
-//   }
-//   forceIntake(returnState);
-// }
-
-// void Intake::sorting() {
-//   if(ladybrown->getClosestNamedPosition() == LadybrownState::Loading) {
-//     ladybrown->prepare();
-//   }
-//   motor->moveVoltage(12);
-//   Timer timeout{params.generalTimeout};
-//   while(shouldSort() && !timeout.goneOff()) {
-//     if(params.timerUntilJamChecks.goneOff() &&
-//        motor->getVelocity() < params.jamVelocity) {
-//       state = IntakeState::Jammed;
-//       return;
-//     }
-//     wait(ColorSensor::refreshRate);
-//   }
-//   // Short delay after seems to provide minor advantage.
-//   wait();
-//   motor->moveVoltage(-12);
-//   wait(params.sortThrowTime);
-//   forceIntake(returnState);
-// }
-
-// void Intake::finishLoading() {
-//   motor->moveVoltage(params.intakingVoltage);
-//   wait(params.pressLoadTime);
-//   motor->moveVoltage(-12);
-//   wait(params.finishLoadingTime);
-//   motor->brake();
-//   ladybrown->prepare();
-//   wait(params.stopTime);
-//   state = IntakeState::FinishedLoading;
-// }
-
-// void Intake::forceIntake(const IntakeState newState) {
-//   // It should at least be at a standstill before checks occur. This is to
-//   // prevent false jams if going from outtaking to intaking quickly.
-//   if((state != IntakeState::Intaking && state != IntakeState::Indexing &&
-//       state != IntakeState::Loading) ||
-//      motor->getVelocity() < 0_rpm) {
-//     params.timerUntilJamChecks.setTime();
-//   }
-//   state = newState;
-//   returnState = newState;
-// }
-
-// bool Intake::shouldIndex() const {
-//   bool ladybrownNotInPosition{state == IntakeState::Loading &&
-//                               ladybrown->getClosestNamedPosition() !=
-//                                   LadybrownState::Loading};
-//   // If indexing or loading while the ladybrown isn't ready, index.
-//   return colorSensor->check() &&
-//          (state == IntakeState::Indexing || ladybrownNotInPosition);
-// }
-
-// bool Intake::shouldSort() const {
-//   return colorSensor->check() && sortOutColor != ColorSensor::Color::None &&
-//          colorSensor->getColor() == sortOutColor;
-// }
+ColorSensor::Color Intake::getColor() const {
+  if(!colorSensor->check()) {
+    return ColorSensor::Color::None;
+  }
+  return colorSensor->getColor();
+}
 
 TASK_DEFINITIONS_FOR(Intake) {
   START_TASK("Intake State Machine")
   while(true) {
     switch(state) {
-      case IntakeState::Idle: voltage = 0.0; break;
+      case IntakeState::Idle:
+      case IntakeState::Pressed:
+      case IntakeState::FinishedLoading: voltage = 0.0; break;
       case IntakeState::Loading:
         ladybrown->load();
         voltage = ladybrown->getState() == LadybrownState::Loading ?
@@ -166,8 +84,19 @@ TASK_DEFINITIONS_FOR(Intake) {
         }
         state = IntakeState::PressLoading;
         break;
-      case IntakeState::PressLoading: voltage = 5; break;
-      case IntakeState::FinishedLoading: voltage = 0.0; break;
+      case IntakeState::PressLoading: voltage = 7; break;
+      case IntakeState::UnpressLoading: {
+        voltage = -12.0;
+        Timer timeout{params.generalTimeout};
+        motor->resetPosition();
+        while(motor->getPosition() > -params.backupFromLoad &&
+              !timeout.goneOff()) {
+          wait();
+        }
+        ladybrown->pack();
+        state = IntakeState::FinishedLoading;
+        break;
+      }
       case IntakeState::Indexing:
         voltage = ladybrown->ringInIndexer() ? 0.0 : params.indexingVoltage;
         break;
@@ -183,23 +112,18 @@ TASK_DEFINITIONS_FOR(Intake) {
     wait(); // At the top for continue statements below.
 
     if(state == IntakeState::Idle || state == IntakeState::Outtaking ||
+       state == IntakeState::Pressed || state == IntakeState::UnpressLoading ||
        state == IntakeState::FinishedLoading || !voltage) {
       params.timerUntilJamChecks.setTime();
     } else if(params.timerUntilJamChecks.goneOff() &&
               motor->getVelocity() < params.jamVelocity) {
-      motor->moveVoltage(-12.0);
       if(state == IntakeState::PressLoading) {
-        Timer timeout{params.generalTimeout};
-        motor->resetPosition();
-        while(motor->getPosition() > -params.backupFromLoad &&
-              !timeout.goneOff()) {
-          wait();
-        }
-        state = IntakeState::FinishedLoading;
+        state = IntakeState::Pressed;
       } else {
+        motor->moveVoltage(-12.0);
         wait(params.timeUntilUnjammed);
-        params.timerUntilJamChecks.setTime();
       }
+      params.timerUntilJamChecks.setTime();
       continue;
     }
 
@@ -212,8 +136,9 @@ TASK_DEFINITIONS_FOR(Intake) {
        ladybrown->ringInIndexer() && colorSensor->getColor() == sortOutColor) {
       motor->moveVoltage(params.intakingVoltage);
       Timer timeout{params.generalTimeout};
-      while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
-        wait();
+      while(colorSensor->getColor() == sortOutColor &&
+            ladybrown->ringInIndexer() && !timeout.goneOff()) {
+        wait(5_ms);
       }
       motor->moveVoltage(-12.0);
       wait(params.sortThrowTime);

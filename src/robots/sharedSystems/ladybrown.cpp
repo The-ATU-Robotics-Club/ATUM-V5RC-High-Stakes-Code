@@ -1,5 +1,5 @@
+#include "atum/devices/colorSensor.hpp"
 #include "ladybrown.hpp"
-
 
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
@@ -22,6 +22,10 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
   logger.info("Ladybrown is constructed!");
 }
 
+void Ladybrown::setIntake(Intake *iIntake) {
+  intake = iIntake;
+}
+
 void Ladybrown::stop() {
   nextState = {};
   if(state == LadybrownState::MovingTo) {
@@ -39,7 +43,12 @@ void Ladybrown::extend() {
 }
 
 void Ladybrown::retract() {
-  if(state != LadybrownState::MovingTo) {
+  if(state == LadybrownState::MovingTo) {
+    return;
+  }
+  if(getPosition() <= params.bounds.first) {
+    rest();
+  } else {
     state = LadybrownState::Retracting;
   }
 }
@@ -68,6 +77,13 @@ void Ladybrown::load() {
   target = params.loadingPosition;
 }
 
+void Ladybrown::pack() {
+  params.acceptable.reset();
+  nextState = LadybrownState::Packed;
+  state = LadybrownState::MovingTo;
+  target = params.packingPosition;
+}
+
 void Ladybrown::moveTo(const degree_t iTarget) {
   params.acceptable.reset();
   target = iTarget;
@@ -77,7 +93,8 @@ void Ladybrown::moveTo(const degree_t iTarget) {
 
 bool Ladybrown::ringInCarriage() const {
   return state != LadybrownState::Resting &&
-         distance->getDistance() <= params.loadRingDistance;
+         distance->getDistance() <= params.loadRingDistance &&
+         intake->getColor() == ColorSensor::Color::None;
 }
 
 bool Ladybrown::ringInIndexer() const {
@@ -126,7 +143,16 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
           state = LadybrownState::Idle;
         }
         break;
-      case LadybrownState::Extending: voltage = params.manualVoltage; break;
+      case LadybrownState::Extending:
+        intake->finishLoading();
+        if(intake->getState() == IntakeState::Pressed ||
+           intake->getState() == IntakeState::UnpressLoading) {
+          voltage = 0.0;
+          break;
+        } else {
+          voltage = params.manualVoltage;
+        }
+        break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       default: moveToControls(); break;
     }

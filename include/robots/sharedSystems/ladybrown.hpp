@@ -10,8 +10,11 @@
 #pragma once
 
 #include "atum/atum.hpp"
+#include "intake.hpp"
 
 namespace atum {
+class Intake;
+
 /**
  * @brief The various states that the ladybrown can be in.
  *
@@ -23,7 +26,8 @@ enum class LadybrownState {
   Extending,  // The ladybrown is manually extending.
   Retracting, // The ladybrown is manually retracting.
   MovingTo,   // The ladybrown is moving to a given position.
-  Loading     // The ladybrown is ready for a ring to be loaded.
+  Loading,    // The ladybrown is ready for a ring to be loaded.
+  Packed      // The ladybrown has a ring packed and ready.
 };
 
 /**
@@ -46,6 +50,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     // The lower and upper bounds for movement of the ladybrown.
     std::pair<degree_t, degree_t> bounds;
     degree_t loadingPosition;
+    degree_t packingPosition;
     // Used to hold the arm in place (or move to a position if profile follower
     // failed to do so).
     PID holdController{{}};
@@ -80,6 +85,14 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
             const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
+   * @brief Sets the intake reference and should be provided as soon as
+   * possible.
+   *
+   * @param iIntake
+   */
+  void setIntake(Intake *iIntake);
+
+  /**
    * @brief Tells the ladybrown to go back to its lowered position (where it
    * started).
    *
@@ -110,6 +123,12 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    *
    */
   void load();
+
+  /**
+   * @brief Tells the ladybrown to pack down the ring.
+   *
+   */
+  void pack();
 
   /**
    * @brief Tells the ladybrown to move to a certain position.
@@ -152,7 +171,6 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
    */
   degree_t getPosition() const;
 
-
   private:
   /**
    * @brief Moves to the position associated with a given state, so long as the
@@ -164,6 +182,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   std::unique_ptr<Motor> motor;
   std::unique_ptr<DistanceSensor> distance;
   std::unique_ptr<RotationSensor> rotation;
+  Intake *intake;
   Parameters params;
   Logger logger;
   degree_t target;

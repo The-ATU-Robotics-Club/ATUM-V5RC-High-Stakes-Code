@@ -24,6 +24,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   intakeSetup();
   goalSetup();
   autonSetup();
+  ladybrown->setIntake(intake.get());
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
 }
@@ -72,11 +73,12 @@ void RobotClone::ladybrownSetup() {
   Ladybrown::Parameters ladybrownParameters{
       12.0,
       {5_deg, 235_deg},
-      14_deg,
-      PID{{0.25, 0.0, 0.05}},
+      15_deg,
+      13_deg,
+      PID{{0.2, 0.005, 0.05, 0.0, 4.0}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},
-      AcceptableAngle{2_s, 2_deg},
+      AcceptableAngle{2_s, 1_deg},
       2_rpm,
       120_mm,
       120_mm};
@@ -99,7 +101,7 @@ void RobotClone::intakeSetup() {
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 750_ms;
-  intakeParams.backupFromLoad = 15_deg;
+  intakeParams.backupFromLoad = 100_deg;
   intakeParams.generalTimeout = 1_s;
   intakeParams.indexingVoltage = 9.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
@@ -111,7 +113,7 @@ void RobotClone::intakeSetup() {
 void RobotClone::goalSetup() {
   // Setup goal clamp.
   std::unique_ptr<Piston> goalClampPiston{
-      std::make_unique<Piston>('F', false, false)};
+      std::make_unique<Piston>('F', true, true)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
       std::make_unique<LimitSwitch>(ADIExtenderPort{18, 'A'})};
   std::unique_ptr<LimitSwitch> limitSwitch2{

@@ -13,6 +13,8 @@
 #include "ladybrown.hpp"
 
 namespace atum {
+class Ladybrown;
+
 /**
  * @brief The various states that the intake can be in.
  *
@@ -24,6 +26,8 @@ enum class IntakeState {
   Outtaking,
   Loading,
   PressLoading,
+  Pressed,
+  UnpressLoading,
   FinishedLoading
 };
 
@@ -100,6 +104,12 @@ class Intake : public Task, public StateMachine<IntakeState> {
   void load();
 
   /**
+   * @brief Tells the intake to backup and finish loading.
+   *
+   */
+  void finishLoading();
+
+  /**
    * @brief Tell the intake run outward.
    *
    */
@@ -126,6 +136,14 @@ class Intake : public Task, public StateMachine<IntakeState> {
    */
   ColorSensor::Color getSortOutColor() const;
 
+  /**
+   * @brief Gets the color seen by the color sensor. Returns none if it isn't
+   * working.
+   *
+   * @return ColorSensor::Color
+   */
+  ColorSensor::Color getColor() const;
+
   private:
   std::unique_ptr<Motor> motor;
   std::unique_ptr<ColorSensor> colorSensor;
@@ -134,73 +152,5 @@ class Intake : public Task, public StateMachine<IntakeState> {
   Parameters params;
   ColorSensor::Color sortOutColor{ColorSensor::Color::Red};
   double voltage;
-
-  // private:
-  // /**
-  //  * @brief This method runs whenever we are intaking. It checks for jams or
-  //  * when to color sort and changes state accordingly.
-  //  *
-  //  */
-  // void intaking();
-
-  // /**
-  //  * @brief This method runs whenever we need to get the intake unjammed.
-  //  When
-  //  * finished, it goes back to the state it was called from.
-  //  *
-  //  */
-  // void unjamming();
-
-  // /**
-  //  * @brief This method runs whenever we need to sort a ring. When
-  //  * finished, it goes back to an appropriate state (intaking, loading, or
-  //  * indexing). If loading, may override lift controls.
-  //  *
-  //  */
-  // void sorting();
-
-  // /**
-  //  * @brief Runs the intake outward for a time to get the hooks away from the
-  //  * ring, before specifying that we are finished loading by changing state
-  //  (so
-  //  * we don't repeat the action).
-  //  *
-  //  */
-  // void finishLoading();
-
-  // /**
-  //  * @brief For internal use, doesn't have the check on state before
-  //  switching
-  //  * to intaking/indexing.
-  //  *
-  //  * @param newState
-  //  */
-  // void forceIntake(const IntakeState newState);
-
-  // /**
-  //  * @brief Checks if the intake should index based on the state, sensor
-  //  * functionality, and if enabled (and potentially where the ladybrown is).
-  //  *
-  //  * @return true
-  //  * @return false
-  //  */
-  // bool shouldIndex() const;
-
-  // /**
-  //  * @brief Checks if the intake should sort based on the state, sensor
-  //  * functionality, and if enabled.
-  //  *
-  //  * @return true
-  //  * @return false
-  //  */
-  // bool shouldSort() const;
-
-  // std::unique_ptr<Motor> motor;
-  // std::unique_ptr<ColorSensor> colorSensor;
-  // Ladybrown *ladybrown;
-  // Logger logger;
-  // Parameters params;
-  // ColorSensor::Color sortOutColor{ColorSensor::Color::Red};
-  // IntakeState returnState{IntakeState::Intaking};
 };
 } // namespace atum
