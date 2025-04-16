@@ -1,5 +1,6 @@
 #include "intake.hpp"
 
+
 namespace atum {
 Intake::Intake(std::unique_ptr<Motor> iMotor,
                std::unique_ptr<ColorSensor> iColorSensor,
@@ -26,7 +27,8 @@ void Intake::index() {
 }
 
 void Intake::load() {
-  if(state == IntakeState::PressLoading || state == IntakeState::Pressed ||
+  if(state == IntakeState::PressLoading ||
+     (state == IntakeState::Pressed && !ladybrown->ringInCarriage()) ||
      state == IntakeState::UnpressLoading ||
      state == IntakeState::FinishedLoading) {
     return;

@@ -74,11 +74,11 @@ void RobotClone::ladybrownSetup() {
       12.0,
       {5_deg, 235_deg},
       15_deg,
-      13_deg,
+      0.1_s,
       PID{{0.2, 0.005, 0.05, 0.0, 4.0}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},
-      AcceptableAngle{2_s, 1_deg},
+      AcceptableAngle{1.5_s, 1_deg},
       2_rpm,
       120_mm,
       120_mm};

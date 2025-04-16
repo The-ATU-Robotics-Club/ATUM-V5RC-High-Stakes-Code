@@ -12,6 +12,7 @@
 #include "atum/atum.hpp"
 #include "intake.hpp"
 
+
 namespace atum {
 class Intake;
 
@@ -27,7 +28,7 @@ enum class LadybrownState {
   Retracting, // The ladybrown is manually retracting.
   MovingTo,   // The ladybrown is moving to a given position.
   Loading,    // The ladybrown is ready for a ring to be loaded.
-  Packed      // The ladybrown has a ring packed and ready.
+  Packing     // The ladybrown is packing a ring down.
 };
 
 /**
@@ -50,7 +51,7 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
     // The lower and upper bounds for movement of the ladybrown.
     std::pair<degree_t, degree_t> bounds;
     degree_t loadingPosition;
-    degree_t packingPosition;
+    second_t packingTime;
     // Used to hold the arm in place (or move to a position if profile follower
     // failed to do so).
     PID holdController{{}};

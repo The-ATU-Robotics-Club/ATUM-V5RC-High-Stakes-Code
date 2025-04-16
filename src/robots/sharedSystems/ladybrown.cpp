@@ -79,9 +79,8 @@ void Ladybrown::load() {
 
 void Ladybrown::pack() {
   params.acceptable.reset();
-  nextState = LadybrownState::Packed;
-  state = LadybrownState::MovingTo;
-  target = params.packingPosition;
+  nextState = state;
+  state = LadybrownState::Packing;
 }
 
 void Ladybrown::moveTo(const degree_t iTarget) {
@@ -153,6 +152,12 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
           voltage = params.manualVoltage;
         }
         break;
+      case LadybrownState::Packing:
+      voltage = -12.0;
+      wait(params.packingTime);
+      voltage = 0.0;
+      state = nextState.value_or(LadybrownState::Idle);
+      break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       default: moveToControls(); break;
     }
