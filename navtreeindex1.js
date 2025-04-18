@@ -67,6 +67,7 @@ var NAVTREEINDEX1 =
 "classatum_1_1Turn.html#a324922158bc27f9506cfe5070076ad97":[1,0,0,44,2],
 "classatum_1_1Turn.html#a54d06437ed2fe5f89dc14ab9ba7b6f1d":[1,0,0,44,0],
 "classatum_1_1Turn.html#abda35649f18952e33457f6cfdce891ce":[1,0,0,44,3],
+"classatum_1_1UKF.html":[1,0,0,45],
 "classes.html":[1,1],
 "colorSensor_8hpp.html":[2,0,0,0,1,1],
 "colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6":[2,0,0,0,1,1,2],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "robotClone_8hpp_source.html":[2,0,0,1,0,0],
 "robotPrototype_8hpp.html":[2,0,0,1,1,0],
 "robotPrototype_8hpp_source.html":[2,0,0,1,1,0],
-"robot_8hpp.html":[2,0,0,0,5,2],
-"robot_8hpp.html#a4165bd784e25f6655d5d9ca18cefc743":[2,0,0,0,5,2,4]
+"robot_8hpp.html":[2,0,0,0,5,2]
 };

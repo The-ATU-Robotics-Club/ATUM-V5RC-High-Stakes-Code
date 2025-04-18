@@ -82,5 +82,6 @@ var hierarchy =
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
     ] ],
+    [ "atum::UKF< TotalStates, TotalInputs, TotalOutputs >", "classatum_1_1UKF.html", null ],
     [ "atum::UnwrappedPose", "structatum_1_1UnwrappedPose.html", null ]
 ];
