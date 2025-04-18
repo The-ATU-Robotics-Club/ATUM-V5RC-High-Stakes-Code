@@ -36,9 +36,9 @@ double PID::getOutput(const double state, const double reference) {
 };
 
 void PID::reset() {
-  I = 0;
-  prevState = 0;
-  prevError = 0;
+  I = 0.0;
+  prevState = 0.0;
+  prevError = 0.0;
 }
 
 PID::Parameters PID::getParams() const {
@@ -49,7 +49,7 @@ void PID::updateI(const double error) {
   if(std::abs(error) <= params.threshI) {
     I += params.kI * error;
   } else {
-    I = 0;
+    I = 0.0;
   }
   if(std::signbit(error) != std::signbit(prevError)) {
     I = 0.0;
