@@ -1,6 +1,7 @@
 #include "atum/devices/colorSensor.hpp"
 #include "ladybrown.hpp"
 
+
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
                      std::unique_ptr<DistanceSensor> iDistance,
@@ -37,7 +38,7 @@ void Ladybrown::stop() {
 }
 
 void Ladybrown::extend() {
-  if(state != LadybrownState::MovingTo) {
+  if(state != LadybrownState::MovingTo && state != LadybrownState::Packing) {
     state = LadybrownState::Extending;
   }
 }
@@ -153,11 +154,11 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
         }
         break;
       case LadybrownState::Packing:
-      voltage = -12.0;
-      wait(params.packingTime);
-      voltage = 0.0;
-      state = nextState.value_or(LadybrownState::Idle);
-      break;
+        voltage = -12.0;
+        wait(params.packingTime);
+        voltage = 0.0;
+        state = nextState.value_or(LadybrownState::Idle);
+        break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       default: moveToControls(); break;
     }
