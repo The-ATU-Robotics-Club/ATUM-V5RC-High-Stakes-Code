@@ -13,6 +13,7 @@
 #include "../sharedSystems/goalRush.hpp"
 #include "../sharedSystems/intake.hpp"
 #include "../sharedSystems/ladybrown.hpp"
+#include "../sharedSystems/poseEstimator.hpp"
 #include "atum/atum.hpp"
 
 namespace atum {
