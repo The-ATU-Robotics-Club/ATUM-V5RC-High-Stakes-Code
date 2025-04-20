@@ -38,6 +38,7 @@ var annotated_dup =
       [ "PID", "classatum_1_1PID.html", "classatum_1_1PID" ],
       [ "Piston", "classatum_1_1Piston.html", "classatum_1_1Piston" ],
       [ "Pose", "structatum_1_1Pose.html", "structatum_1_1Pose" ],
+      [ "PoseEstimator", "classatum_1_1PoseEstimator.html", null ],
       [ "Potentiometer", "classatum_1_1Potentiometer.html", "classatum_1_1Potentiometer" ],
       [ "ProfileFollower", "classatum_1_1ProfileFollower.html", "classatum_1_1ProfileFollower" ],
       [ "Remote", "classatum_1_1Remote.html", "classatum_1_1Remote" ],

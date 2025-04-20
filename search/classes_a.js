@@ -7,6 +7,7 @@ var searchData=
   ['piston_4',['Piston',['../classatum_1_1Piston.html',1,'atum']]],
   ['point_5',['Point',['../structatum_1_1MotionProfile_1_1Point.html',1,'atum::MotionProfile']]],
   ['pose_6',['Pose',['../structatum_1_1Pose.html',1,'atum']]],
-  ['potentiometer_7',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]],
-  ['profilefollower_8',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
+  ['poseestimator_7',['PoseEstimator',['../classatum_1_1PoseEstimator.html',1,'atum']]],
+  ['potentiometer_8',['Potentiometer',['../classatum_1_1Potentiometer.html',1,'atum']]],
+  ['profilefollower_9',['ProfileFollower',['../classatum_1_1ProfileFollower.html',1,'atum']]]
 ];
