@@ -14,7 +14,7 @@ class PoseEstimator : public PoseEstimatorUKF {
   private:
   State f(State x, Input u) override {}
 
-  Input h(State x, Input u) override {}
+  Output h(State x, Input u) override {}
 
   Input getInput() override {}
 
