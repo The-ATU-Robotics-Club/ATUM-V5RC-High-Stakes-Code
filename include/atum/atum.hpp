@@ -56,4 +56,5 @@
 #include "utility/logger.hpp"
 #include "utility/misc.hpp"
 #include "utility/units.hpp"
+#include "utility/eigen.hpp"
 

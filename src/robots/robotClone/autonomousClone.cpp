@@ -1,5 +1,3 @@
-#include "atum/devices/colorSensor.hpp"
-#include "atum/time/time.hpp"
 #include "robotClone.hpp"
 
 

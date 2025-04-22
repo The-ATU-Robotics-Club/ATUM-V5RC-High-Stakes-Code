@@ -1,7 +1,4 @@
-#include "atum/depend/units.h"
-#include "atum/motion/motionProfile.hpp"
 #include "robotClone.hpp"
-#include "robots/sharedSystems/poseEstimator.hpp"
 
 namespace atum {
 
@@ -29,7 +26,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
 
-  PoseEstimator estimator{};
+//   PoseEstimator estimator{};
 }
 
 void RobotClone::disabled() {

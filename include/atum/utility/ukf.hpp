@@ -21,7 +21,8 @@ class UKF {
       const OutputCovariance &R,
       const double alpha = 0.5,
       const double beta = 2.0) :
-      QSqrt{Q.sqrt()}, RSqrt{R.sqrt()} {
+      QSqrt{Q.sqrt()},
+      RSqrt{R.sqrt()} {
     const double alpha2{alpha * alpha};
     const double lambda{TotalStates * (alpha2 - 1.0)};
     Wm[0] = lambda / (TotalStates + lambda);
@@ -60,56 +61,54 @@ class UKF {
       xHatPriori += Wm[i] * chiPropagated.col(i);
     }
 
-    StateCovariance SPriori{
-        std::sqrt(Wc[1]) *
-        merweAdd(chi.rightCols(chi.cols() - 1), -xHatPriori)};
-    SPriori << QSqrt;
-    SPriori = Eigen::HouseholderQR<StateCovariance>{SPriori}
-                  .matrixQR()
-                  .template triangularView<Eigen::Upper>();
-    Eigen::internal::llt_inplace<double, Eigen::Upper>::rankUpdate(
-        SPriori, chi.col(0) - xHatPriori, Wc[0]);
-    SPriori.transposeInPlace();
+    Eigen::Matrix<double, TotalStates, 3 * TotalStates> SPrioriTemp;
+    SPrioriTemp << std::sqrt(Wc[1]) *
+                   merweAdd(chi.rightCols(chi.cols() - 1), -xHatPriori),
+        QSqrt;
+        SPrioriTemp.householderQr();
+    // Eigen::internal::llt_inplace<double, Eigen::Upper>::rankUpdate(
+    //     SPriori, chi.col(0) - xHatPriori, Wc[0]);
+    // SPriori.transposeInPlace();
 
-    SigmaOutputPoints chiOutput;
-    for(int i{0}; i < chiPropagated.cols(); i++) {
-      chiOutput.col(i) = h(chiPropagated.col(i), u);
-    }
+    // SigmaOutputPoints chiOutput;
+    // for(int i{0}; i < chiPropagated.cols(); i++) {
+    //   chiOutput.col(i) = h(chiPropagated.col(i), u);
+    // }
 
-    Output yHatPriori;
-    for(int i{0}; i < chiOutput.size(); i++) {
-      yHatPriori += Wm[i] * chiOutput.col(i);
-    }
+    // Output yHatPriori;
+    // for(int i{0}; i < chiOutput.size(); i++) {
+    //   yHatPriori += Wm[i] * chiOutput.col(i);
+    // }
 
-    // UPDATE STEP
-    OutputCovariance Sy{
-        std::sqrt(Wc[1]) *
-        merweAdd(chiOutput.rightCols(chiOutput.cols() - 1), -yHatPriori)};
-    Sy << RSqrt;
-    Sy = Eigen::HouseholderQR<OutputCovariance>{Sy}
-             .matrixQR()
-             .template triangularView<Eigen::Upper>();
-    Eigen::internal::llt_inplace<double, Eigen::Upper>::rankUpdate(
-        Sy, chiOutput.col(0) - yHatPriori, Wc[0]);
-    Sy.transposeInPlace();
+    // // UPDATE STEP
+    // OutputCovariance Sy{
+    //     std::sqrt(Wc[1]) *
+    //     merweAdd(chiOutput.rightCols(chiOutput.cols() - 1), -yHatPriori)};
+    // Sy << RSqrt;
+    // Sy = Eigen::HouseholderQR<OutputCovariance>{Sy}
+    //          .matrixQR()
+    //          .template triangularView<Eigen::Upper>();
+    // Eigen::internal::llt_inplace<double, Eigen::Upper>::rankUpdate(
+    //     Sy, chiOutput.col(0) - yHatPriori, Wc[0]);
+    // Sy.transposeInPlace();
 
-    KalmanGain Pxy;
-    for(int i{0}; i < Wc.size(); i++) {
-      Pxy += Wc[i] * (chiPropagated.col(i) - xHatPriori) *
-             (chiOutput.col(i) - yHatPriori).transpose();
-    }
+    // KalmanGain Pxy;
+    // for(int i{0}; i < Wc.size(); i++) {
+    //   Pxy += Wc[i] * (chiPropagated.col(i) - xHatPriori) *
+    //          (chiOutput.col(i) - yHatPriori).transpose();
+    // }
 
-    KalmanGain K{(Pxy * Sy.transpose().inverse()) * Sy.inverse()};
+    // KalmanGain K{(Pxy * Sy.transpose().inverse()) * Sy.inverse()};
 
-    const Output y{getOutput()};
-    xHat = xHatPriori + K * (y - yHatPriori);
+    // const Output y{getOutput()};
+    // xHat = xHatPriori + K * (y - yHatPriori);
 
-    KalmanGain U{K * Sy};
-    for(int i{0}; i < U.cols(); i++) {
-      Eigen::internal::llt_inplace<double, Eigen::Lower>::rankUpdate(
-          SPriori, U.col(i), -1.0);
-    }
-    S = SPriori;
+    // KalmanGain U{K * Sy};
+    // for(int i{0}; i < U.cols(); i++) {
+    //   Eigen::internal::llt_inplace<double, Eigen::Lower>::rankUpdate(
+    //       SPriori, U.col(i), -1.0);
+    // }
+    // S = SPriori;
   }
 
   private:

@@ -2,22 +2,19 @@
 
 #include "atum/atum.hpp"
 
-namespace atum {
-using PoseEstimatorUKF = UKF<6, 2, 5>;
 
-class PoseEstimator : public PoseEstimatorUKF {
+namespace atum {
+class PoseEstimator : public UKF<6, 2, 5> {
   public:
-  PoseEstimator() :
-      PoseEstimatorUKF{PoseEstimator::StateCovariance{},
-                       PoseEstimator::OutputCovariance{}} {}
+  PoseEstimator();
 
   private:
-  State f(State x, Input u) override {}
+  State f(State x, Input u) override;
 
-  Output h(State x, Input u) override {}
+  Output h(State x, Input u) override;
 
-  Input getInput() override {}
+  Input getInput() override;
 
-  Output getOutput() override {}
+  Output getOutput() override;
 };
 } // namespace atum
