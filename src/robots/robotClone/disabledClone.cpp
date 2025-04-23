@@ -26,7 +26,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
 
-//   PoseEstimator estimator{};
+  PoseEstimator estimator{};
 }
 
 void RobotClone::disabled() {
