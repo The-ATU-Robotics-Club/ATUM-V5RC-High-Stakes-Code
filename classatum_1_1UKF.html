@@ -134,18 +134,21 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>Weights</b> = std::a
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1506c9bcabbbafd28327d0e4aad7dbd8"><td class="memItemLeft" align="right" valign="top"><a id="a1506c9bcabbbafd28327d0e4aad7dbd8" name="a1506c9bcabbbafd28327d0e4aad7dbd8"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;Q, const OutputCovariance &amp;R, const double alpha=0.5, const double beta=2.0)</td></tr>
-<tr class="separator:a1506c9bcabbbafd28327d0e4aad7dbd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a409a6b45fd58ef35a019e09bf44ae73c"><td class="memItemLeft" align="right" valign="top"><a id="a409a6b45fd58ef35a019e09bf44ae73c" name="a409a6b45fd58ef35a019e09bf44ae73c"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (const State &amp;x, const StateCovariance &amp;P)</td></tr>
-<tr class="separator:a409a6b45fd58ef35a019e09bf44ae73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11f96f240220142dc6ef788c99693bf4"><td class="memItemLeft" align="right" valign="top"><a id="a11f96f240220142dc6ef788c99693bf4" name="a11f96f240220142dc6ef788c99693bf4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR, const double alpha=0.5, const double beta=2.0)</td></tr>
+<tr class="separator:a11f96f240220142dc6ef788c99693bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2f5c06cf95a38751451d1b71665956a"><td class="memItemLeft" align="right" valign="top"><a id="ad2f5c06cf95a38751451d1b71665956a" name="ad2f5c06cf95a38751451d1b71665956a"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (const State &amp;x)</td></tr>
+<tr class="separator:ad2f5c06cf95a38751451d1b71665956a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a585a62882745721a4d4ee0c2d82fd8bf"><td class="memItemLeft" align="right" valign="top"><a id="a585a62882745721a4d4ee0c2d82fd8bf" name="a585a62882745721a4d4ee0c2d82fd8bf"></a>
 State&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> () const</td></tr>
 <tr class="separator:a585a62882745721a4d4ee0c2d82fd8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f147c0d94cc49634c754efe2f3cde89"><td class="memItemLeft" align="right" valign="top"><a id="a2f147c0d94cc49634c754efe2f3cde89" name="a2f147c0d94cc49634c754efe2f3cde89"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>predict</b> ()</td></tr>
 <tr class="separator:a2f147c0d94cc49634c754efe2f3cde89"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fb4c889c9af081c3235341e01bb4b60"><td class="memItemLeft" align="right" valign="top"><a id="a9fb4c889c9af081c3235341e01bb4b60" name="a9fb4c889c9af081c3235341e01bb4b60"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
+<tr class="separator:a9fb4c889c9af081c3235341e01bb4b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/utility/<a class="el" href="ukf_8hpp_source.html">ukf.hpp</a></li>
