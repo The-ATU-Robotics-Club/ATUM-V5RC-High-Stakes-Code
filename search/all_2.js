@@ -21,7 +21,8 @@ var searchData=
   ['constrainpi_18',['constrainPI',['../units_8hpp.html#aee1159569c3996f970fd44e0d814ee6d',1,'atum']]],
   ['controller_19',['Controller',['../classatum_1_1Controller.html',1,'atum::Controller'],['../classatum_1_1Controller.html#a401558bc2468addd0a7a39eaef73f62f',1,'atum::Controller::Controller()']]],
   ['controller_2ehpp_20',['controller.hpp',['../controller_8hpp.html',1,'']]],
-  ['createlabel_21',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
-  ['createscreenchangebutton_22',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],
-  ['createscreens_23',['createScreens',['../classatum_1_1GUI_1_1Screen.html#af3c83a1c8ba658abc30263271a0f38da',1,'atum::GUI::Screen']]]
+  ['correct_21',['correct',['../structatum_1_1Packet.html#a41dd5209e5cc1d09a7f81bf14b91d079',1,'atum::Packet']]],
+  ['createlabel_22',['createLabel',['../classatum_1_1GUI_1_1Screen.html#ac8a141bf3947f6fc6345b8eef3e74558',1,'atum::GUI::Screen']]],
+  ['createscreenchangebutton_23',['createScreenChangeButton',['../classatum_1_1GUI_1_1Screen.html#a1c71b12617443ed15f555eca6f7b3bb4',1,'atum::GUI::Screen']]],
+  ['createscreens_24',['createScreens',['../classatum_1_1GUI_1_1Screen.html#af3c83a1c8ba658abc30263271a0f38da',1,'atum::GUI::Screen']]]
 ];

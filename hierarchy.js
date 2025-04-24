@@ -36,6 +36,7 @@ var hierarchy =
       [ "atum::Turn", "classatum_1_1Turn.html", null ]
     ] ],
     [ "atum::Odometer", "classatum_1_1Odometer.html", null ],
+    [ "atum::Packet", "structatum_1_1Packet.html", null ],
     [ "atum::Intake::Parameters", "structatum_1_1Intake_1_1Parameters.html", null ],
     [ "atum::Ladybrown::Parameters", "structatum_1_1Ladybrown_1_1Parameters.html", null ],
     [ "atum::MotionProfile< Unit >::Parameters", "structatum_1_1MotionProfile_1_1Parameters.html", null ],
@@ -43,6 +44,7 @@ var hierarchy =
     [ "atum::PID::Parameters", "structatum_1_1PID_1_1Parameters.html", null ],
     [ "atum::TBH::Parameters", "structatum_1_1TBH_1_1Parameters.html", null ],
     [ "atum::Path", "classatum_1_1Path.html", null ],
+    [ "atum::PiecedData< T >", "unionatum_1_1PiecedData.html", null ],
     [ "atum::Piston", "classatum_1_1Piston.html", null ],
     [ "atum::MotionProfile< Unit >::Point", "structatum_1_1MotionProfile_1_1Point.html", null ],
     [ "atum::Pose", "structatum_1_1Pose.html", null ],
@@ -60,6 +62,7 @@ var hierarchy =
       [ "atum::GUI::Map", "classatum_1_1GUI_1_1Map.html", null ],
       [ "atum::GUI::Routines", "classatum_1_1GUI_1_1Routines.html", null ]
     ] ],
+    [ "atum::SerialDevice", "classatum_1_1SerialDevice.html", null ],
     [ "atum::GUI::Graph::SeriesRange", "structatum_1_1GUI_1_1Graph_1_1SeriesRange.html", null ],
     [ "atum::SlewRate", "classatum_1_1SlewRate.html", null ],
     [ "atum::StateMachine< State >", "classatum_1_1StateMachine.html", null ],
@@ -80,6 +83,7 @@ var hierarchy =
     [ "atum::Task::TaskParams", "structatum_1_1Task_1_1TaskParams.html", null ],
     [ "atum::Timer", "classatum_1_1Timer.html", null ],
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
+      [ "atum::OTOS", "classatum_1_1OTOS.html", null ],
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ]
     ] ],
     [ "atum::UKF< TotalStates, TotalInputs, TotalOutputs >", "classatum_1_1UKF.html", null ],
