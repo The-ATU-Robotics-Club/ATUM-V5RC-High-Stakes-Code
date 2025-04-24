@@ -1,5 +1,6 @@
 #include "atum/depend/units.h"
 #include "atum/gui/routines.hpp"
+#include "atum/utility/units.hpp"
 #include "drive.hpp"
 
 
@@ -73,6 +74,14 @@ meters_per_second_t Drive::getVelocity() const {
                                                         right->getVelocity()) /
                    2.0};
   return geometry.circum * rpm / 60.0_s;
+}
+
+radians_per_second_t Drive::getAngularVelocity() const {
+  const double vDiff{getValueAs<meter_t>(geometry.circum) *
+                     getValueAs<revolutions_per_minute_t>(right->getVelocity() -
+                                                          left->getVelocity()) /
+                     60.0};
+  return radians_per_second_t{vDiff / getValueAs<meter_t>(geometry.track)};
 }
 
 void Drive::setBrakeMode(const pros::v5::MotorBrake brakeMode) {

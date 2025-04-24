@@ -74,7 +74,7 @@ void RobotClone::ladybrownSetup() {
       12.0,
       {5_deg, 235_deg},
       15_deg,
-      0.1_s,
+      0.05_s,
       PID{{0.2, 0.005, 0.05, 0.0, 4.0}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},
@@ -101,7 +101,7 @@ void RobotClone::intakeSetup() {
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 750_ms;
-  intakeParams.backupFromLoad = 100_deg;
+  intakeParams.backupFromLoad = 50_deg;
   intakeParams.generalTimeout = 1_s;
   intakeParams.indexingVoltage = 9.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),

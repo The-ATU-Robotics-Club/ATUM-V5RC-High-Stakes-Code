@@ -15,6 +15,7 @@
 #include "../utility/misc.hpp"
 #include "api.h"
 
+
 namespace atum {
 /**
  * @brief This class encapsulates all of the logic behind the drive.
@@ -59,7 +60,7 @@ class Drive {
    * @param iTracker
    */
   void setTracker(std::unique_ptr<Tracker> iTracker);
-  
+
   /**
    * @brief Provides tank controls: the left voltage and right voltage are
    * applied directly to the corresponding sides of the drive.
@@ -111,6 +112,13 @@ class Drive {
    * @return meters_per_second_t
    */
   meters_per_second_t getVelocity() const;
+
+  /**
+   * @brief Gets the current angular velocity of the drive.
+   *
+   * @return radians_per_second_t
+   */
+  radians_per_second_t getAngularVelocity() const;
 
   /**
    * @brief Sets the brake mode of the motors on the drive.
