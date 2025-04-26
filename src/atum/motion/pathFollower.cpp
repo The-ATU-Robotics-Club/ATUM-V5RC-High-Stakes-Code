@@ -82,11 +82,11 @@ void PathFollower::follow(Command cmd) {
     refV *= std::abs(std::cos(hError));
     const meters_per_second_t v{
         std::abs(getValueAs<meters_per_second_t>(drive->getVelocity()))};
-    const double forwardOutput{forward->getOutput(state.v, refV)};
+    const double forwardOutput{forward->getOutput(state.vf, refV)};
     const double turnOutput{turn->getOutput(hError)};
     drive->tank(forwardOutput + turnOutput + aFF,
                 forwardOutput - turnOutput + aFF);
-    graphPoints(state.v, refV);
+    graphPoints(state.vf, refV);
     wait();
   }
 }
@@ -109,7 +109,7 @@ void PathFollower::reset(PathFollower::Command &cmd) {
       getValueAs<meters_per_second_t>(path->getParams().maxA * standardDelay)};
   accelLimiter =
       std::make_unique<SlewRate>(std::make_pair(infinite, maxVelChange),
-                                 getValueAs<meters_per_second_t>(start.v));
+                                 getValueAs<meters_per_second_t>(start.vf));
   forward->reset();
   turn->reset();
   closestIndex = 0;
@@ -125,7 +125,7 @@ std::pair<double, double> PathFollower::getVHReference(const Pose &state) {
   } else {
     lookaheadAngle = angle(state, getLookahead(state));
   }
-  return {getValueAs<meters_per_second_t>(closest.v),
+  return {getValueAs<meters_per_second_t>(closest.vf),
           getValueAs<radian_t>(lookaheadAngle)};
 }
 
@@ -173,8 +173,8 @@ Pose PathFollower::getClosest(const Pose &state) {
   }
   Pose closestPose{path->getPose(closestIndex)};
   const meters_per_second_t adjV{
-      accelLimiter->slew(getValueAs<meters_per_second_t>(closestPose.v))};
-  closestPose.v = adjV;
+      accelLimiter->slew(getValueAs<meters_per_second_t>(closestPose.vf))};
+  closestPose.vf = adjV;
   closest = closestPose;
   return closestPose;
 }

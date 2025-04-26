@@ -5,29 +5,23 @@ namespace atum {
 UnwrappedPose::UnwrappedPose(const double iX,
                              const double iY,
                              const double iH,
-                             const double iV,
-                             const double iA,
-                             const double iOmega,
-                             const double iAlpha,
-                             const double iT) :
+                             const double iVF,
+                             const double iVS,
+                             const double iOmega) :
     x{iX},
     y{iY},
     h{iH},
-    v{iV},
-    a{iA},
-    omega{iOmega},
-    alpha{iAlpha},
-    t{iT} {}
+    vf{iVF},
+    vs{iVS},
+    omega{iOmega} {}
 
 UnwrappedPose::UnwrappedPose(const Pose &pose) :
     x{getValueAs<meter_t>(pose.x)},
     y{getValueAs<meter_t>(pose.y)},
     h{getValueAs<radian_t>(pose.h)},
-    v{getValueAs<meters_per_second_t>(pose.v)},
-    a{getValueAs<meters_per_second_squared_t>(pose.a)},
-    omega{getValueAs<radians_per_second_t>(pose.omega)},
-    alpha{getValueAs<radians_per_second_squared_t>(pose.alpha)},
-    t{getValueAs<second_t>(pose.t)} {}
+    vf{getValueAs<meters_per_second_t>(pose.vf)},
+    vs{getValueAs<meters_per_second_t>(pose.vs)},
+    omega{getValueAs<radians_per_second_t>(pose.omega)} {}
 
 bool UnwrappedPose::operator==(const UnwrappedPose &rhs) const {
   return x == rhs.x && y == rhs.y && h == rhs.h;
@@ -84,29 +78,23 @@ std::string toString(const UnwrappedPose &pose) {
 Pose::Pose(const meter_t iX,
            const meter_t iY,
            const radian_t iH,
-           const meters_per_second_t iV,
-           const meters_per_second_squared_t iA,
-           const radians_per_second_t iOmega,
-           const radians_per_second_squared_t iAlpha,
-           const second_t iT) :
+           const meters_per_second_t iVF,
+           const meters_per_second_t iVS,
+           const radians_per_second_t iOmega) :
     x{iX},
     y{iY},
     h{iH},
-    v{iV},
-    a{iA},
-    omega{iOmega},
-    alpha{iAlpha},
-    t{iT} {}
+    vf{iVF},
+    vs{iVS},
+    omega{iOmega} {}
 
 Pose::Pose(const UnwrappedPose &unwrappedPose) :
     x{meter_t{unwrappedPose.x}},
     y{meter_t{unwrappedPose.y}},
     h{radian_t{unwrappedPose.h}},
-    v{meters_per_second_t{unwrappedPose.v}},
-    a{meters_per_second_squared_t{unwrappedPose.a}},
-    omega{radians_per_second_t{unwrappedPose.omega}},
-    alpha{radians_per_second_squared_t{unwrappedPose.alpha}},
-    t{second_t{unwrappedPose.t}} {}
+    vf{meters_per_second_t{unwrappedPose.vf}},
+    vs{meters_per_second_t{unwrappedPose.vs}},
+    omega{radians_per_second_t{unwrappedPose.omega}} {}
 
 bool Pose::operator==(const Pose &rhs) const {
   return x == rhs.x && y == rhs.y && h == rhs.h;

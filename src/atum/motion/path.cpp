@@ -117,12 +117,12 @@ void Path::generate() {
 }
 
 void Path::parameterize() {
-  path[0].v = params.maxV;
+  path[0].vf = params.maxV;
   for(int i{path.size() - 2}; i >= 0; i--) {
     const meters_per_second_squared_t twoD{2.0 * params.maxD};
     const meters_per_second_t decelerated{
-        sqrt(path[i + 1].v * path[i + 1].v + twoD * params.spacing)};
-    path[i].v = units::math::min(decelerated, path[i].v);
+        sqrt(path[i + 1].vf * path[i + 1].vf + twoD * params.spacing)};
+    path[i].vf = units::math::min(decelerated, path[i].vf);
   }
   graphPath();
 }
@@ -145,7 +145,7 @@ double Path::addNextPoint(double t0) {
     p1 = getPoint(t1);
     distanceToNext = distance(p0, p1);
   }
-  p1.v = units::math::min(
+  p1.vf = units::math::min(
       params.maxV,
       params.maxV / std::abs(getCurvature(t1)) /
           getValueAs<meter_t>(params.track)); // Maybe multiply by 2?

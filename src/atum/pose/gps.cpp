@@ -63,11 +63,8 @@ void GPS::resetTracker(Tracker *tracker) {
                (1.0 - fullPoseTrust) * tracker->getPose()};
   newPose.h = getHeading(currentPose.h);
   // Don't reset anything but x, y, and h.
-  newPose.v = currentPose.v;
-  newPose.a = currentPose.a;
+  newPose.vf = currentPose.vf;
   newPose.omega = currentPose.omega;
-  newPose.alpha = currentPose.alpha;
-  newPose.t = currentPose.t;
   tracker->setPose(newPose);
 }
 

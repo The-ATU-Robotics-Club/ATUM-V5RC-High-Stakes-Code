@@ -67,7 +67,8 @@ Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
   currentPose.y += -sin(hAvg) * dx + cos(hAvg) * dy;
   currentPose.h += dh;
   const second_t dt{timer.getDT()};
-  currentPose.v = dy / dt;
+  currentPose.vf = dy / dt;
+  currentPose.vs = dx / dt;
   currentPose.omega = dh / dt;
   setPose(currentPose);
   return getPose(); // Use getPose() for logging purposes.

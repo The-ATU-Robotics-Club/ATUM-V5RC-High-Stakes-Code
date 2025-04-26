@@ -27,20 +27,16 @@ struct UnwrappedPose {
   UnwrappedPose(const double iX = 0.0,
                 const double iY = 0.0,
                 const double iH = 0.0,
-                const double iV = 0.0,
-                const double iA = 0.0,
-                const double iOmega = 0.0,
-                const double iAlpha = 0.0,
-                const double iT = 0.0);
+                const double iVF = 0.0,
+                const double iVS = 0.0,
+                const double iOmega = 0.0);
   UnwrappedPose(const Pose &pose);
   double x{0.0};
   double y{0.0};
   double h{0.0};
-  double v{0.0};
-  double a{0.0};
+  double vf{0.0};
+  double vs{0.0};
   double omega{0.0};
-  double alpha{0.0};
-  double t{0.0};
 
   /**
    * @brief Returns if the two unwrapped poses are equal to each other in x, y,
@@ -146,20 +142,16 @@ struct Pose {
   Pose(const meter_t iX = 0_m,
        const meter_t iY = 0_m,
        const radian_t iH = 0_rad,
-       const meters_per_second_t iV = 0_mps,
-       const meters_per_second_squared_t iA = 0_mps_sq,
-       const radians_per_second_t iOmega = 0_rad_per_s,
-       const radians_per_second_squared_t iAlpha = 0_rad_per_s_sq,
-       const second_t iT = 0_s);
+       const meters_per_second_t iVF = 0_mps,
+       const meters_per_second_t iVS = 0_mps,
+       const radians_per_second_t iOmega = 0_rad_per_s);
   Pose(const UnwrappedPose &unwrappedPose);
   meter_t x{0_m};
   meter_t y{0_m};
   radian_t h{0_rad};
-  meters_per_second_t v{0_mps};
-  meters_per_second_squared_t a{0_mps_sq};
+  meters_per_second_t vf{0_mps};
+  meters_per_second_t vs{0_mps};
   radians_per_second_t omega{0_rad_per_s};
-  radians_per_second_squared_t alpha{0_rad_per_s_sq};
-  second_t t{0_s};
 
   /**
    * @brief Returns if the two poses are equal to each other in x, y,
