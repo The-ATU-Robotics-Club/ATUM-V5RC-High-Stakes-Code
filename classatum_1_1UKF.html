@@ -97,6 +97,8 @@ $(document).ready(function(){initNavTree('classatum_1_1UKF.html',''); initResiza
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classatum_1_1UKF-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">atum::UKF&lt; TotalStates, TotalInputs, TotalOutputs &gt; Class Template Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div></div>
 </div><!--header-->
@@ -134,9 +136,9 @@ using&#160;</td><td class="memItemRight" valign="bottom"><b>Weights</b> = std::a
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a11f96f240220142dc6ef788c99693bf4"><td class="memItemLeft" align="right" valign="top"><a id="a11f96f240220142dc6ef788c99693bf4" name="a11f96f240220142dc6ef788c99693bf4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR, const double alpha=0.5, const double beta=2.0)</td></tr>
-<tr class="separator:a11f96f240220142dc6ef788c99693bf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacf09c6da82f08b96cae2e6445ea2d4b"><td class="memItemLeft" align="right" valign="top"><a id="aacf09c6da82f08b96cae2e6445ea2d4b" name="aacf09c6da82f08b96cae2e6445ea2d4b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR, const double alpha=0.001, const double beta=2.0)</td></tr>
+<tr class="separator:aacf09c6da82f08b96cae2e6445ea2d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2f5c06cf95a38751451d1b71665956a"><td class="memItemLeft" align="right" valign="top"><a id="ad2f5c06cf95a38751451d1b71665956a" name="ad2f5c06cf95a38751451d1b71665956a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (const State &amp;x)</td></tr>
 <tr class="separator:ad2f5c06cf95a38751451d1b71665956a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,9 +148,66 @@ State&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> () cons
 <tr class="memitem:a2f147c0d94cc49634c754efe2f3cde89"><td class="memItemLeft" align="right" valign="top"><a id="a2f147c0d94cc49634c754efe2f3cde89" name="a2f147c0d94cc49634c754efe2f3cde89"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>predict</b> ()</td></tr>
 <tr class="separator:a2f147c0d94cc49634c754efe2f3cde89"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb4c889c9af081c3235341e01bb4b60"><td class="memItemLeft" align="right" valign="top"><a id="a9fb4c889c9af081c3235341e01bb4b60" name="a9fb4c889c9af081c3235341e01bb4b60"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>update</b> ()</td></tr>
-<tr class="separator:a9fb4c889c9af081c3235341e01bb4b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e31a44b4f6881f46e44aa1e3fed97d"><td class="memItemLeft" align="right" valign="top"><a id="a36e31a44b4f6881f46e44aa1e3fed97d" name="a36e31a44b4f6881f46e44aa1e3fed97d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>correct</b> ()</td></tr>
+<tr class="separator:a36e31a44b4f6881f46e44aa1e3fed97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a80a973853575b5cfe2fbbc10681ca1d2"><td class="memItemLeft" align="right" valign="top"><a id="a80a973853575b5cfe2fbbc10681ca1d2" name="a80a973853575b5cfe2fbbc10681ca1d2"></a>
+virtual State&#160;</td><td class="memItemRight" valign="bottom"><b>f</b> (const State &amp;x, const Input &amp;u)=0</td></tr>
+<tr class="separator:a80a973853575b5cfe2fbbc10681ca1d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3fb400a69d21d08a1fd920c103d5fa9"><td class="memItemLeft" align="right" valign="top"><a id="ad3fb400a69d21d08a1fd920c103d5fa9" name="ad3fb400a69d21d08a1fd920c103d5fa9"></a>
+virtual Output&#160;</td><td class="memItemRight" valign="bottom"><b>h</b> (const State &amp;x, const Input &amp;u)=0</td></tr>
+<tr class="separator:ad3fb400a69d21d08a1fd920c103d5fa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e1e73eedac92e6d2e118778b347c8d6"><td class="memItemLeft" align="right" valign="top"><a id="a9e1e73eedac92e6d2e118778b347c8d6" name="a9e1e73eedac92e6d2e118778b347c8d6"></a>
+virtual Input&#160;</td><td class="memItemRight" valign="bottom"><b>getInput</b> ()=0</td></tr>
+<tr class="separator:a9e1e73eedac92e6d2e118778b347c8d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a669dcc8676d6f195ee60a5e3cec09ec6"><td class="memItemLeft" align="right" valign="top"><a id="a669dcc8676d6f195ee60a5e3cec09ec6" name="a669dcc8676d6f195ee60a5e3cec09ec6"></a>
+virtual Output&#160;</td><td class="memItemRight" valign="bottom"><b>getOutput</b> ()=0</td></tr>
+<tr class="separator:a669dcc8676d6f195ee60a5e3cec09ec6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20ae47fc67c0bbd69bd8d188819f9ecd"><td class="memItemLeft" align="right" valign="top"><a id="a20ae47fc67c0bbd69bd8d188819f9ecd" name="a20ae47fc67c0bbd69bd8d188819f9ecd"></a>
+Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>merweAdd</b> (Eigen::MatrixXd A, const Eigen::VectorXd &amp;u)</td></tr>
+<tr class="separator:a20ae47fc67c0bbd69bd8d188819f9ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a066c66b2bfbf1c0a0f080c9b08e68044"><td class="memItemLeft" align="right" valign="top"><a id="a066c66b2bfbf1c0a0f080c9b08e68044" name="a066c66b2bfbf1c0a0f080c9b08e68044"></a>
+State&#160;</td><td class="memItemRight" valign="bottom"><b>xHat</b></td></tr>
+<tr class="separator:a066c66b2bfbf1c0a0f080c9b08e68044"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a164a4ddd537bddc63924cb2d7ce0a3"><td class="memItemLeft" align="right" valign="top"><a id="a3a164a4ddd537bddc63924cb2d7ce0a3" name="a3a164a4ddd537bddc63924cb2d7ce0a3"></a>
+StateCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>P</b></td></tr>
+<tr class="separator:a3a164a4ddd537bddc63924cb2d7ce0a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab479347efd5e60527f3409e3169c16c4"><td class="memItemLeft" align="right" valign="top"><a id="ab479347efd5e60527f3409e3169c16c4" name="ab479347efd5e60527f3409e3169c16c4"></a>
+const StateCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>Q</b></td></tr>
+<tr class="separator:ab479347efd5e60527f3409e3169c16c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac24dd9a6371fa6a4416cabf375c6536c"><td class="memItemLeft" align="right" valign="top"><a id="ac24dd9a6371fa6a4416cabf375c6536c" name="ac24dd9a6371fa6a4416cabf375c6536c"></a>
+const OutputCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>R</b></td></tr>
+<tr class="separator:ac24dd9a6371fa6a4416cabf375c6536c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46b3c71f6176e35baa7a2fac48e26351"><td class="memItemLeft" align="right" valign="top"><a id="a46b3c71f6176e35baa7a2fac48e26351" name="a46b3c71f6176e35baa7a2fac48e26351"></a>
+Weights&#160;</td><td class="memItemRight" valign="bottom"><b>Wm</b></td></tr>
+<tr class="separator:a46b3c71f6176e35baa7a2fac48e26351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac759932e57dc12985f91234821142c99"><td class="memItemLeft" align="right" valign="top"><a id="ac759932e57dc12985f91234821142c99" name="ac759932e57dc12985f91234821142c99"></a>
+Weights&#160;</td><td class="memItemRight" valign="bottom"><b>Wc</b></td></tr>
+<tr class="separator:ac759932e57dc12985f91234821142c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8ff6530ee04534e9040e28c5fa04914"><td class="memItemLeft" align="right" valign="top"><a id="aa8ff6530ee04534e9040e28c5fa04914" name="aa8ff6530ee04534e9040e28c5fa04914"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>eta</b></td></tr>
+<tr class="separator:aa8ff6530ee04534e9040e28c5fa04914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a283a159a05f9e05de205ad2b56790212"><td class="memItemLeft" align="right" valign="top"><a id="a283a159a05f9e05de205ad2b56790212" name="a283a159a05f9e05de205ad2b56790212"></a>
+SigmaPoints&#160;</td><td class="memItemRight" valign="bottom"><b>chiF</b></td></tr>
+<tr class="separator:a283a159a05f9e05de205ad2b56790212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6ea5bf4ad5cd4a2eae98b1aae8aa37"><td class="memItemLeft" align="right" valign="top"><a id="a2d6ea5bf4ad5cd4a2eae98b1aae8aa37" name="a2d6ea5bf4ad5cd4a2eae98b1aae8aa37"></a>
+State&#160;</td><td class="memItemRight" valign="bottom"><b>xHatPriori</b></td></tr>
+<tr class="separator:a2d6ea5bf4ad5cd4a2eae98b1aae8aa37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35b52daf34ce0a6719f7adfdc5613cc3"><td class="memItemLeft" align="right" valign="top"><a id="a35b52daf34ce0a6719f7adfdc5613cc3" name="a35b52daf34ce0a6719f7adfdc5613cc3"></a>
+StateCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>PPriori</b></td></tr>
+<tr class="separator:a35b52daf34ce0a6719f7adfdc5613cc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3295891794c3b58c6ee0d4195d990a5"><td class="memItemLeft" align="right" valign="top"><a id="aa3295891794c3b58c6ee0d4195d990a5" name="aa3295891794c3b58c6ee0d4195d990a5"></a>
+Output&#160;</td><td class="memItemRight" valign="bottom"><b>yHatPriori</b></td></tr>
+<tr class="separator:aa3295891794c3b58c6ee0d4195d990a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab28fb0fe1d4f0fa87154848e79fc8ebc"><td class="memItemLeft" align="right" valign="top"><a id="ab28fb0fe1d4f0fa87154848e79fc8ebc" name="ab28fb0fe1d4f0fa87154848e79fc8ebc"></a>
+SigmaOutputPoints&#160;</td><td class="memItemRight" valign="bottom"><b>upsilon</b></td></tr>
+<tr class="separator:ab28fb0fe1d4f0fa87154848e79fc8ebc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/utility/<a class="el" href="ukf_8hpp_source.html">ukf.hpp</a></li>

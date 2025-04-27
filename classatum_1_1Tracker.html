@@ -112,8 +112,9 @@ Inheritance diagram for atum::Tracker:</div>
  <div class="center">
   <img src="classatum_1_1Tracker.png" usemap="#atum::Tracker_map" alt=""/>
   <map id="atum::Tracker_map" name="atum::Tracker_map">
-<area href="classatum_1_1OTOS.html" alt="atum::OTOS" shape="rect" coords="0,56,99,80"/>
-<area href="classatum_1_1Odometry.html" title="Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for ..." alt="atum::Odometry" shape="rect" coords="109,56,208,80"/>
+<area href="classatum_1_1OTOS.html" alt="atum::OTOS" shape="rect" coords="0,56,123,80"/>
+<area href="classatum_1_1Odometry.html" title="Performs tracking using two odometers perpendicular to eachother. Uses arc estimation and twists for ..." alt="atum::Odometry" shape="rect" coords="133,56,256,80"/>
+<area href="classatum_1_1PoseEstimator.html" alt="atum::PoseEstimator" shape="rect" coords="266,56,389,80"/>
   </map>
 </div></div>
 <table class="memberdecls">
@@ -197,6 +198,8 @@ Protected Attributes</h2></td></tr>
 <p>Gets the current pose of the tracker. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
 
+<p>Reimplemented in <a class="el" href="classatum_1_1PoseEstimator.html#a0099ab248889e96c80de92d4fe101709">atum::PoseEstimator</a>.</p>
+
 </div>
 </div>
 <a id="ad3af8500f4e8b72a2b99794c5e7234c1" name="ad3af8500f4e8b72a2b99794c5e7234c1"></a>
@@ -231,6 +234,8 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
+<p>Reimplemented in <a class="el" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">atum::PoseEstimator</a>.</p>
+
 </div>
 </div>
 <a id="a47b4cb3c903a8e29ef251354f18e6e8c" name="a47b4cb3c903a8e29ef251354f18e6e8c"></a>
@@ -259,7 +264,7 @@ Protected Attributes</h2></td></tr>
 <p>This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5">atum::Odometry</a>.</p>
+<p>Implemented in <a class="el" href="classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5">atum::Odometry</a>, and <a class="el" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">atum::PoseEstimator</a>.</p>
 
 </div>
 </div>

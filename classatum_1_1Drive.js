@@ -12,6 +12,7 @@ var classatum_1_1Drive =
     [ "getMaxVelocity", "classatum_1_1Drive.html#ade0a3728a002db943bb77c8580a5f3ea", null ],
     [ "getPose", "classatum_1_1Drive.html#a5fbfa40771fdbc33fecc5cff6646c72e", null ],
     [ "getVelocity", "classatum_1_1Drive.html#aa2f99853184f4ef5118e31f34f390993", null ],
+    [ "getVoltageLR", "classatum_1_1Drive.html#af22a0cf3c9886e0316e46fc535aeaa64", null ],
     [ "setBrakeMode", "classatum_1_1Drive.html#a4a79e70a717144ce96f00fc72febc0c1", null ],
     [ "setPose", "classatum_1_1Drive.html#a1b21296734df5a8105b52342b6a7f456", null ],
     [ "setTracker", "classatum_1_1Drive.html#a83f6ca5f747c4015776c11d8287de86d", null ],
