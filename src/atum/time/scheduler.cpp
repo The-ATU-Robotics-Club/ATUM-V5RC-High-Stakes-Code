@@ -30,11 +30,10 @@ Scheduler::~Scheduler() {
   logger.debug("Scheduler was interrupted (out of scope).");
 }
 
-void Scheduler::schedule(Scheduler::Item toSchedule) {
+void Scheduler::schedule(const Scheduler::Item &toSchedule) {
   if(scheduled.size()) {
     logger.warn("Scheduling another item before previous is completed.");
   }
-  toSchedule.timeout.setTime();
   scheduled.push(toSchedule);
   logger.debug("The item \"" + toSchedule.name + "\" has been scheduled.");
 }

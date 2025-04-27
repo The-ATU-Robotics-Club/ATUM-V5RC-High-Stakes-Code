@@ -87,7 +87,7 @@ class Scheduler : public Task {
    *
    * @param toSchedule
    */
-  void schedule(Scheduler::Item toSchedule);
+  void schedule(const Scheduler::Item &toSchedule);
 
   private:
   /**
