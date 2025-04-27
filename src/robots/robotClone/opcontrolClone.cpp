@@ -1,24 +1,33 @@
 #include "robotClone.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
   matchTimer.setTime();
-  matchTimer.setAlarm(1_min + 10_s);
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
-    matchTimer.setAlarm(40_s);
     goalClamp->unclamp();
     intake->setSortOutColor(ColorSensor::Color::None);
   }
-  scheduler.schedule({"Rumble at 15s Away", matchTimer.checkGoneOff(), [=]() {
-                        remote.rumble("---");
-                      }});
+  scheduler.schedule({"Rumble at 30s Away",
+                      Scheduler::neverMet,
+                      [=]() { remote.rumble("---"); },
+                      GUI::Routines::selectedRoutine() ? 60_s : 30_s});
+  scheduler.schedule({"Drop Goal",
+                      Scheduler::neverMet,
+                      [=]() {
+                        if(useHangControls) {
+                          goalClamp->unclamp();
+                        }
+                      },
+                      GUI::Routines::selectedRoutine() ? 89.95_s : 59.95_s});
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
     const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
-    drive->arcade(forward, turn);
+    drive->arcade(forward,
+                  ((turn < 0) ? -1 : 1) * turn * turn / Motor::maxVoltage);
 
     visualFeedback();
 
@@ -83,9 +92,9 @@ void RobotClone::ladybrownControls() {
 
   /*
   L1 brings ladybrown into loading from rest and go to ladybrown mode.
-  When loading, if there's no ring, pressing L2 will make the ladybrown rest and go to intake mode.
-  If trying to lower past a certain position, ladybrown will go back to loading.
-  L1 and L2 work as expected otherwise.
+  When loading, if there's no ring, pressing L2 will make the ladybrown rest and
+  go to intake mode. If trying to lower past a certain position, ladybrown will
+  go back to loading. L1 and L2 work as expected otherwise.
   */
 
   switch(remote.getRTrigger()) {

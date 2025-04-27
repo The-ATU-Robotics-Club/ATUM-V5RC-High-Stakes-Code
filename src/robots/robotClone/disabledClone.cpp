@@ -25,8 +25,6 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   ladybrown->setIntake(intake.get());
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
-
-  PoseEstimator estimator{};
 }
 
 void RobotClone::disabled() {
@@ -57,8 +55,30 @@ void RobotClone::driveSetup() {
                                  std::move(sideOdometer),
                                  std::move(imu),
                                  drive.get())};
-  odometry->startBackgroundTasks();
-  drive->setTracker(std::move(odometry));
+  //   odometry->startBackgroundTasks();
+
+  const PoseEstimator::StateCovariance P{{0.02, 0.0, 0.0, 0.0, 0.0, 0.0},
+                                         {0.0, 0.02, 0.0, 0.0, 0.0, 0.0},
+                                         {0.0, 0.0, 0.05, 0.0, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.02, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.2, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.05}};
+
+  const PoseEstimator::StateCovariance Q{{0.0, 0.0, 0.0, 0.001, 0.002, 0.0},
+                                         {0.0, 0.0, 0.0, 0.001, 0.002, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.001},
+                                         {0.001, 0.001, 0.0, 0.001, 0.0, 0.0},
+                                         {0.002, 0.002, 0.0, 0.0, 0.002, 0.0},
+                                         {0.0, 0.0, 0.001, 0.0, 0.0, 0.001}};
+
+  const PoseEstimator::OutputCovariance R{{0.02, 0.0}, {0.0, 0.02}};
+
+  std::unique_ptr<PoseEstimator> estimator{
+      std::make_unique<PoseEstimator>(drive.get(), P, Q, R)};
+  wait(100_ms);
+  estimator->startBackgroundTasks();
+
+  drive->setTracker(std::move(estimator));
 }
 
 void RobotClone::ladybrownSetup() {

@@ -2,10 +2,19 @@
 
 
 namespace atum {
-#define SCHEDULE()
-
 const std::function<void()> Scheduler::doNothing{[]() {}};
 const Condition Scheduler::neverMet{[]() { return false; }};
+
+Scheduler::Item::Item(const std::string &iName,
+                      const Condition &iCondition,
+                      const std::function<void()> &iTodo,
+                      const second_t &iTimeout,
+                      const std::optional<std::function<void()>> iTodoTimeout) :
+    name{iName},
+    condition{iCondition},
+    todo{iTodo},
+    timeout{iTimeout},
+    todoTimeout{iTodoTimeout} {}
 
 Scheduler::Scheduler(const Logger::Level loggerLevel) :
     Task{this, loggerLevel},
@@ -21,10 +30,11 @@ Scheduler::~Scheduler() {
   logger.debug("Scheduler was interrupted (out of scope).");
 }
 
-void Scheduler::schedule(const Scheduler::Item &toSchedule) {
+void Scheduler::schedule(Scheduler::Item toSchedule) {
   if(scheduled.size()) {
     logger.warn("Scheduling another item before previous is completed.");
   }
+  toSchedule.timeout.setTime();
   scheduled.push(toSchedule);
   logger.debug("The item \"" + toSchedule.name + "\" has been scheduled.");
 }
@@ -36,9 +46,8 @@ TASK_DEFINITIONS_FOR(Scheduler) {
     if(scheduled.size()) {
       Item item{scheduled.front()};
       const uint8_t initialStatus{pros::competition::get_status()};
-      Timer timer{item.timeout};
       while(pros::competition::get_status() == initialStatus &&
-            !timer.goneOff() && !item.condition()) {
+            !item.timeout.goneOff() && !item.condition()) {
         wait(schedulerLoopDelay);
       }
       if(pros::competition::get_status() != initialStatus) {
@@ -48,12 +57,8 @@ TASK_DEFINITIONS_FOR(Scheduler) {
         logger.debug("Scheduled items were interrupted (status change).");
         continue;
       }
-      if(item.timeout && timer.goneOff()) {
-        if(item.todoTimeout.has_value()) {
-          item.todoTimeout.value()();
-        } else {
-          item.todo();
-        }
+      if(item.timeout.goneOff()) {
+        item.todoTimeout.value_or(item.todo)();
         scheduled.pop();
         logger.debug("The scheduled item \"" + item.name + "\" has timed out.");
         continue;

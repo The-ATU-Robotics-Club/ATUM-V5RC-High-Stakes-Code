@@ -1,6 +1,7 @@
 #pragma once
 
 #include "eigen.hpp"
+#include <iostream>
 
 namespace atum {
 template <int TotalStates, int TotalInputs, int TotalOutputs>
@@ -20,11 +21,18 @@ class UKF {
   UKF(const StateCovariance &iP,
       const StateCovariance &iQ,
       const OutputCovariance &iR,
-      const double alpha = 0.5,
+      const double alpha = 0.001,
       const double beta = 2.0) :
       P{iP},
       Q{iQ},
       R{iR} {
+    xHat.setZero();
+    chiF.setZero();
+    xHatPriori.setZero();
+    PPriori.setZero();
+    yHatPriori.setZero();
+    upsilon.setZero();
+
     const double alpha2{alpha * alpha};
     const double lambda{TotalStates * (alpha2 - 1.0)};
     Wm[0] = lambda / (TotalStates + lambda);
@@ -33,6 +41,7 @@ class UKF {
       Wm[i] = Wc[i] = 1.0 / (2.0 * (TotalStates + lambda));
     }
     eta = std::sqrt(TotalStates + lambda);
+    std::cout << "ETA: " << eta << '\n';
   }
 
   virtual void initialize(const State &x) {
@@ -45,46 +54,58 @@ class UKF {
 
   void predict() {
     const Input u{getInput()};
+    std::cout << "LINE: " << __LINE__ << '\n' << u << '\n';
 
-    StateCovariance PSqrt{P.sqrt()};
+    std::cout << "LINE: " << __LINE__ << '\n' << P << '\n';
+    Eigen::LLT<StateCovariance> chol{P};
+    StateCovariance PSqrt{chol.matrixL()};
+    std::cout << "LINE: " << __LINE__ << '\n' << PSqrt << '\n';
     SigmaPoints chi;
     chi << xHat, merweAdd(eta * PSqrt, xHat), merweAdd(-eta * PSqrt, xHat);
+    std::cout << "LINE: " << __LINE__ << '\n' << chi << '\n';
 
     chiF = chi;
     for(auto point : chiF.colwise()) {
       point = f(point, u);
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << chiF << '\n';
 
-    xHatPriori = State{};
-    for(int i{0}; i < chiF.size(); i++) {
+    xHatPriori.setZero();
+    for(int i{0}; i < Wm.size(); i++) {
       xHatPriori += Wm[i] * chiF.col(i);
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << xHatPriori << '\n';
 
     PPriori = Q;
     for(int i{0}; i < Wc.size(); i++) {
       const State diff{chiF.col(i) - xHatPriori};
       PPriori += Wc[i] * diff * diff.transpose();
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << PPriori << '\n';
 
-    upsilon = SigmaOutputPoints{};
+    upsilon.setZero();
     for(int i{0}; i < chiF.cols(); i++) {
       upsilon.col(i) = h(chiF.col(i), u);
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << upsilon << '\n';
 
-    yHatPriori = Output{};
-    for(int i{0}; i < upsilon.size(); i++) {
+    yHatPriori.setZero();
+    for(int i{0}; i < Wm.size(); i++) {
       yHatPriori += Wm[i] * upsilon.col(i);
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << yHatPriori << '\n';
   }
 
-  void update() {
+  void correct() {
     const Output y{getOutput()};
+    std::cout << "LINE: " << __LINE__ << '\n' << y << '\n';
 
     OutputCovariance Py{R};
     for(int i{0}; i < Wc.size(); i++) {
       const Output diff{upsilon.col(i) - yHatPriori};
       Py += Wc[i] * diff * diff.transpose();
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << Py << '\n';
 
     Eigen::Matrix<double, TotalStates, TotalOutputs> Pxy;
     for(int i{0}; i < Wc.size(); i++) {
@@ -92,17 +113,20 @@ class UKF {
       const Output yDiff{upsilon.col(i) - yHatPriori};
       Pxy += Wc[i] * xDiff * yDiff.transpose();
     }
+    std::cout << "LINE: " << __LINE__ << '\n' << Pxy << '\n';
 
     const KalmanGain K{Pxy * Py.inverse()};
+    std::cout << "LINE: " << __LINE__ << '\n' << K << '\n';
 
     xHat = xHatPriori + K * (y - yHatPriori);
     P = PPriori - K * Py * K.transpose();
+    std::cout << "LINE: " << __LINE__ << '\n' << P << '\n';
   }
 
-  private:
-  virtual State f(State x, Input u) = 0;
+  protected:
+  virtual State f(const State &x, const Input &u) = 0;
 
-  virtual Output h(State x, Input u) = 0;
+  virtual Output h(const State &x, const Input &u) = 0;
 
   virtual Input getInput() = 0;
 
@@ -123,7 +147,7 @@ class UKF {
   double eta;
   SigmaPoints chiF;
   State xHatPriori;
-  StateCovariance PPriori{Q};
+  StateCovariance PPriori;
   Output yHatPriori;
   SigmaOutputPoints upsilon;
 };

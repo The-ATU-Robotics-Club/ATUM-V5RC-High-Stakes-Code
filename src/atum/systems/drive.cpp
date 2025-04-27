@@ -3,7 +3,6 @@
 #include "atum/utility/units.hpp"
 #include "drive.hpp"
 
-
 namespace atum {
 Drive::Drive(std::unique_ptr<Motor> iLeft,
              std::unique_ptr<Motor> iRight,
@@ -67,6 +66,10 @@ meter_t Drive::traveled() {
   previousTraveled = totalTraveled;
   const scalar_t revolutions{deltaTraveled / 360_deg};
   return revolutions * geometry.circum;
+}
+
+std::pair<double, double> Drive::getVoltageLR() const {
+  return {left->getVoltage(), right->getVoltage()};
 }
 
 meters_per_second_t Drive::getVelocity() const {

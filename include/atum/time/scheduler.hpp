@@ -13,7 +13,6 @@
 #include "timer.hpp"
 #include <queue>
 
-
 namespace atum {
 /**
  * @brief This class serves as a way to perform actions once certain conditions
@@ -45,11 +44,26 @@ class Scheduler : public Task {
    *
    */
   struct Item {
+    /**
+     * @brief Constructs a new scheduler item. 
+     * 
+     * @param iName 
+     * @param iCondition 
+     * @param iTodo 
+     * @param iTimeout 
+     * @param iTodoTimeout 
+     */
+    Item(const std::string &iName,
+         const Condition &iCondition,
+         const std::function<void()> &iTodo,
+         const second_t &iTimeout = forever,
+         const std::optional<std::function<void()>> iTodoTimeout = {});
+
     std::string name;
     Condition condition;
     std::function<void()> todo;
     // The time before the scheduler gives up and runs timeout action.
-    second_t timeout{forever};
+    Timer timeout;
     // Unless provided, the default timeout action is the todo action.
     std::optional<std::function<void()>> todoTimeout{};
   };
@@ -73,7 +87,7 @@ class Scheduler : public Task {
    *
    * @param toSchedule
    */
-  void schedule(const Scheduler::Item &toSchedule);
+  void schedule(Scheduler::Item toSchedule);
 
   private:
   /**

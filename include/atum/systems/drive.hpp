@@ -15,7 +15,6 @@
 #include "../utility/misc.hpp"
 #include "api.h"
 
-
 namespace atum {
 /**
  * @brief This class encapsulates all of the logic behind the drive.
@@ -105,6 +104,13 @@ class Drive {
    * @return meter_t
    */
   meter_t traveled();
+
+  /**
+   * @brief Gets the voltage applied to the left and right sides of the drive.
+   *
+   * @return std::pair<double, double>
+   */
+  std::pair<double, double> getVoltageLR() const;
 
   /**
    * @brief Gets the current velocity of the drive.
