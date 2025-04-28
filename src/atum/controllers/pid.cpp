@@ -51,7 +51,7 @@ void PID::updateI(const double error) {
   } else {
     I = 0.0;
   }
-  if(std::signbit(error) != std::signbit(prevError)) {
+  if(error * prevError < 0.0) {
     I = 0.0;
   }
   prevError = error;

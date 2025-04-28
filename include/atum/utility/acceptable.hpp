@@ -45,16 +45,16 @@ class Acceptable {
    * @param minTime
    * @param loggerLevel
    */
-  Acceptable(const second_t iTimeout,
+  Acceptable(const second_t iTimeout = 0_s,
              const Unit &iMaxError = Unit{0.0},
              const UnitsPerSecond &iMaxDeriv =
                  UnitsPerSecond{infinite},
-             const second_t minTime = 0_s,
+             const second_t iMinTime = 0_s,
              const Logger::Level loggerLevel = Logger::Level::Info) :
       timeout{iTimeout},
       maxError{iMaxError},
       maxDeriv{iMaxDeriv},
-      minTimer{minTime},
+      minTime{iMinTime},
       logger{loggerLevel} {
     logger.debug("Acceptable checker has been constructed!");
   }
@@ -79,21 +79,17 @@ class Acceptable {
    * @return false
    */
   bool canAccept(const Unit &error) {
-    if(!timeoutTimer) {
-      timeoutTimer = Timer{timeout};
-    }
-    const second_t currentTime{time()};
-    const UnitsPerSecond deriv{(error - prevError) / (currentTime - prevTime)};
+    timeout.start();
+    const UnitsPerSecond deriv{(error - prevError) / timeout.getDT()};
     accepted = abs(error) <= maxError;
-    accepted = accepted && abs(deriv) <= maxDeriv;
+    accepted = accepted && (abs(deriv) <= maxDeriv);
     if(!accepted) {
-      minTimer.setTime();
+      minTime.setTime();
     }
-    accepted = accepted && minTimer.goneOff();
+    accepted = accepted && minTime.goneOff();
     // If given timeout has been passed, accepted should always be true.
-    accepted = accepted || timeoutTimer.value().goneOff();
+    accepted = accepted || timeout.goneOff();
     prevError = error;
-    prevTime = currentTime;
     return canAccept(); // Use canAccept() logging purposes.
   }
 
@@ -118,12 +114,9 @@ class Acceptable {
    */
   void reset() {
     accepted = false;
-    minTimer.setTime();
-    if(timeoutTimer.has_value()) {
-      timeoutTimer = {};
-    }
+    minTime.setTime();
+    timeout.restart();
     prevError = Unit{0};
-    prevTime = 0_s;
   }
 
   /**
@@ -133,20 +126,18 @@ class Acceptable {
    * @param newTimeout
    */
   void reset(const second_t newTimeout) {
-    timeout = newTimeout;
+    timeout.setAlarm(newTimeout);
     reset();
   }
 
   private:
   bool accepted{false};
-  second_t timeout;
+  Timer timeout;
   const Unit maxError;
   const UnitsPerSecond maxDeriv;
-  Timer minTimer;
+  Timer minTime;
   Logger logger;
-  std::optional<Timer> timeoutTimer;
   Unit prevError{0};
-  second_t prevTime{0_s};
 };
 
 /**

@@ -86,19 +86,29 @@ TASK_DEFINITIONS_FOR(Intake) {
         }
         state = IntakeState::PressLoading;
         break;
-      case IntakeState::PressLoading: voltage = 7; break;
+      case IntakeState::PressLoading: {
+        voltage = 7;
+        Timer timeout{params.generalTimeout};
+        while(state == IntakeState::PressLoading && !timeout.goneOff()) {
+          wait();
+        }
+        if(state == IntakeState::PressLoading) {
+          state = IntakeState::Loading;
+        }
+      } break;
       case IntakeState::UnpressLoading: {
-        voltage = -12.0;
+        voltage = -12;
         Timer timeout{params.generalTimeout};
         motor->resetPosition();
         while(motor->getPosition() > -params.backupFromLoad &&
               !timeout.goneOff()) {
           wait();
         }
+        voltage = 0;
+        wait(100_ms);
         ladybrown->pack();
         state = IntakeState::FinishedLoading;
-        break;
-      }
+      } break;
       case IntakeState::Indexing:
         voltage = ladybrown->ringInIndexer() ? 0.0 : params.indexingVoltage;
         break;

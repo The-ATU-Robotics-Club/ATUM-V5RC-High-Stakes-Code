@@ -49,11 +49,11 @@ void RobotClone::opcontrol() {
     }
 
     if(remote.getPress(Remote::Button::Left)) {
-      goalRush->toggleArm();
+      goalRush1->toggle();
     }
 
     if(remote.getPress(Remote::Button::A)) {
-      goalRush->toggleClamp();
+      goalRush2->toggle();
     }
 
     if(remote.getHold(Remote::Button::Up) &&
@@ -155,10 +155,12 @@ void RobotClone::hangControls() {
       speedMultiplier = 0.35;
     }
     // ladybrown->prepare();
-    goalRush->retractArm();
+    goalRush1->retract();
+    goalRush2->retract();
   } else {
     // ladybrown->fullyExtend();
-    goalRush->extendArm();
+    goalRush1->extend();
+    goalRush2->extend();
   }
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;

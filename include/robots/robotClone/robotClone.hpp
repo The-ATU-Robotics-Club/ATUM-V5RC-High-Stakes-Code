@@ -29,7 +29,7 @@ class RobotClone : public Robot {
    * @brief Constants storing the brain IDs for the 15" and 24" bots.
    *
    */
-  static constexpr int ID15{0xe6ad4800};
+  static constexpr int ID15{0x60539e00};
   static constexpr int ID24{0x7cc04c00};
 
   /**
@@ -219,7 +219,8 @@ class RobotClone : public Robot {
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
-  std::unique_ptr<GoalRush> goalRush;
+  std::unique_ptr<GoalRush> goalRush1;
+  std::unique_ptr<GoalRush> goalRush2;
   Scheduler scheduler;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<MoveTo> moveTo;

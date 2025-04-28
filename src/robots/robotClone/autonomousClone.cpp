@@ -18,12 +18,6 @@ static const second_t goalClampDelay{100_ms};
 static const second_t singleRingDelay{0.825_s};
 static const second_t doubleRingDelay{1.125_s};
 
-// DATA:
-// ODOMS DRIVE
-// 12.2878 9.39187
-// 12.334 9.40656
-// 12.3254 9.4
-
 /*
   _ ___ _ _   ___ _   _ _ _
  / | __( | ) / __| |_(_) | |___
@@ -73,7 +67,8 @@ void RobotClone::setupRoutine(Pose startingPose) {
   setSortToOpposite();
 
   goalClamp->unclamp();
-  goalRush->release();
+  goalRush1->retract();
+  goalRush2->retract();
 
   drive->setBrakeMode(pros::MotorBrake::brake);
 }
@@ -97,12 +92,12 @@ void RobotClone::clampWhenReady(const second_t timeout) {
 
 void RobotClone::goalRushWhenReady(const second_t timeout) {
   scheduler.schedule({"Goal Rush Grab When Ready",
-                      [=]() { return goalRush->hasGoal(); },
+                      [=]() { return goalRush1->hasGoal(); },
                       [=]() {
-                        if(goalRush->isClamped()) {
+                        if(goalRush1->isUp()) {
                           return;
                         }
-                        goalRush->grab();
+                        goalRush1->retract();
                         wait(goalRushDelay);
                         turn->interrupt();
                         moveTo->interrupt();

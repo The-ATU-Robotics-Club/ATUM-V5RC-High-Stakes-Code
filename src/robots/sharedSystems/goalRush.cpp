@@ -1,45 +1,29 @@
 #include "goalRush.hpp"
 
-
 namespace atum {
-
 GoalRush::GoalRush(std::unique_ptr<Piston> iArm,
-                   std::unique_ptr<Piston> iClamp,
                    std::unique_ptr<LimitSwitch> iLimitSwitch,
                    const Logger::Level loggerLevel) :
     arm{std::move(iArm)},
-    clamp{std::move(iClamp)},
     limitSwitch{std::move(iLimitSwitch)},
     logger{loggerLevel} {
   logger.info("Goal rush is constructed!");
 }
 
-void GoalRush::extendArm() {
+void GoalRush::extend() {
   arm->extend();
 }
 
-void GoalRush::retractArm() {
+void GoalRush::retract() {
   arm->retract();
 }
 
-void GoalRush::toggleArm() {
+void GoalRush::toggle() {
   arm->toggle();
 }
 
-void GoalRush::grab() {
-  clamp->retract();
-}
-
-void GoalRush::release() {
-  clamp->extend();
-}
-
-void GoalRush::toggleClamp() {
-  clamp->toggle();
-}
-
-bool GoalRush::isClamped() const {
-  return !clamp->isExtended();
+bool GoalRush::isUp() const {
+  return !arm->isExtended();
 }
 
 bool GoalRush::hasGoal() const {

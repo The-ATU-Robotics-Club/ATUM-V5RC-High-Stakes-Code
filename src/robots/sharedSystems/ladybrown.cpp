@@ -67,15 +67,10 @@ void Ladybrown::rest() {
 }
 
 void Ladybrown::load() {
-  if(ringInCarriage()) {
+  if(ringInCarriage() || state == LadybrownState::Loading) {
     return;
   }
-  if(state != LadybrownState::Loading) {
-    params.acceptable.reset();
-    nextState = LadybrownState::Loading;
-    state = LadybrownState::MovingTo;
-  }
-  target = params.loadingPosition;
+  moveTo(params.loadingPosition, LadybrownState::Loading);
 }
 
 void Ladybrown::pack() {
@@ -84,10 +79,13 @@ void Ladybrown::pack() {
   state = LadybrownState::Packing;
 }
 
-void Ladybrown::moveTo(const degree_t iTarget) {
-  params.acceptable.reset();
+void Ladybrown::moveTo(const degree_t iTarget,
+                       const std::optional<LadybrownState> &iNextState) {
+  if(target != iTarget) {
+    params.acceptable.reset();
+  }
   target = iTarget;
-  nextState = {};
+  nextState = iNextState;
   state = LadybrownState::MovingTo;
 }
 

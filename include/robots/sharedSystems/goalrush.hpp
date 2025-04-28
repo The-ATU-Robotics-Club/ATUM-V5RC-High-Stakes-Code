@@ -22,12 +22,10 @@ class GoalRush {
    * @brief Constructs a new GoalRush object.
    *
    * @param iArm
-   * @param iClamp
    * @param iLimitSwitch
    * @param loggerLevel
    */
   GoalRush(std::unique_ptr<Piston> iArm,
-           std::unique_ptr<Piston> iClamp,
            std::unique_ptr<LimitSwitch> iLimitSwitch,
            const Logger::Level loggerLevel = Logger::Level::Info);
 
@@ -35,57 +33,38 @@ class GoalRush {
    * @brief Extends the arm of the goal rush.
    *
    */
-  void extendArm();
+  void extend();
 
   /**
    * @brief Retracts the arm of the goal rush.
    *
    */
-  void retractArm();
-
-  /**
-   * @brief Grabs a goal.
-   *
-   */
-  void grab();
-
-  /**
-   * @brief Releases a goal.
-   *
-   */
-  void release();
+  void retract();
 
   /**
    * @brief Toggles whether the arm is down or up.
    *
    */
-  void toggleArm();
+  void toggle();
 
   /**
-   * @brief Toggles whether the goal is grabbed or not.
+   * @brief Returns whether the arm is up or not.
    *
+   * @return true
+   * @return false
    */
-  void toggleClamp();
+  bool isUp() const;
 
   /**
-   * @brief 
-   * 
-   * @return true 
-   * @return false 
-   */
-  bool isClamped() const;
-
-  /**
-   * @brief Returns whether a goal is detected in the rush or not. 
-   * 
-   * @return true 
-   * @return false 
+   * @brief Returns whether a goal is detected in the rush or not.
+   *
+   * @return true
+   * @return false
    */
   bool hasGoal() const;
 
   private:
   std::unique_ptr<Piston> arm;
-  std::unique_ptr<Piston> clamp;
   std::unique_ptr<LimitSwitch> limitSwitch;
   Logger logger;
 };

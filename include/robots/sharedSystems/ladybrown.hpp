@@ -12,7 +12,6 @@
 #include "atum/atum.hpp"
 #include "intake.hpp"
 
-
 namespace atum {
 class Intake;
 
@@ -134,9 +133,13 @@ class Ladybrown : public Task, public StateMachine<LadybrownState> {
   /**
    * @brief Tells the ladybrown to move to a certain position.
    *
+   * When done, goes to the optional next state.
+   *
    * @param iTarget
+   * @param iNextState
    */
-  void moveTo(const degree_t iTarget);
+  void moveTo(const degree_t iTarget,
+              const std::optional<LadybrownState> &iNextState = {});
 
   /**
    * @brief Returns if the ladybrown sees a ring in the ladybrown carriage based

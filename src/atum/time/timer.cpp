@@ -1,5 +1,6 @@
 #include "timer.hpp"
 
+
 namespace atum {
 Timer::Timer(const second_t iAlarmTime) :
     startTime{time()},
@@ -12,8 +13,9 @@ void Timer::setAlarm(const second_t iAlarmTime) {
 }
 
 void Timer::setTime(const second_t newTime) {
+  const second_t dt{startTime - previousTime};
   startTime = time() - newTime;
-  previousTime = time();
+  previousTime = startTime - dt;
 }
 
 void Timer::start() {
@@ -25,6 +27,9 @@ void Timer::start() {
 }
 
 void Timer::restart() {
+  if(!started) {
+    return;
+  }
   started = false;
   setTime();
 }
