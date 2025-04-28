@@ -1,12 +1,9 @@
 var classatum_1_1GoalRush =
 [
-    [ "GoalRush", "classatum_1_1GoalRush.html#aa09c44f1ad7c2f771bd3b0146757315f", null ],
-    [ "extendArm", "classatum_1_1GoalRush.html#a30acb3cba7c8cc5d3501d467e793b155", null ],
-    [ "grab", "classatum_1_1GoalRush.html#a625bb958c72092e377c1a590d0803f99", null ],
+    [ "GoalRush", "classatum_1_1GoalRush.html#aa77c37aa82759827c9b4d9c4405163e6", null ],
+    [ "extend", "classatum_1_1GoalRush.html#ada0ac367865e1ec82430ce7484631e6f", null ],
     [ "hasGoal", "classatum_1_1GoalRush.html#a1dc4bd40b080c1230b4ce783dc4c4633", null ],
-    [ "isClamped", "classatum_1_1GoalRush.html#aec0a724753c41a9eb469b23cf5f40374", null ],
-    [ "release", "classatum_1_1GoalRush.html#a35c198fdd8b678d8eca392c1d514f3cb", null ],
-    [ "retractArm", "classatum_1_1GoalRush.html#a5b64b073a329108919d14ed207983383", null ],
-    [ "toggleArm", "classatum_1_1GoalRush.html#a6e60915241a2ce045283c56b8ce05c8d", null ],
-    [ "toggleClamp", "classatum_1_1GoalRush.html#aa3bbbcc0b0b675f0f0fdc26f950b4293", null ]
+    [ "isUp", "classatum_1_1GoalRush.html#ad5cb11ead81181fd6352cd879aee706c", null ],
+    [ "retract", "classatum_1_1GoalRush.html#a210af02836d274ad854ca7ce6eccc386", null ],
+    [ "toggle", "classatum_1_1GoalRush.html#a68bdc4fafb94f7c7da1d59b06815a99f", null ]
 ];

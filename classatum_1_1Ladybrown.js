@@ -6,7 +6,7 @@ var classatum_1_1Ladybrown =
     [ "extend", "classatum_1_1Ladybrown.html#aef9a36a0bf316bbcda55b782097e0008", null ],
     [ "getPosition", "classatum_1_1Ladybrown.html#ac3c1d35994cc827b6de3ac1c1cbf822d", null ],
     [ "load", "classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79", null ],
-    [ "moveTo", "classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930", null ],
+    [ "moveTo", "classatum_1_1Ladybrown.html#a2a8ddc4cb7e46042fe2aab80240b3a83", null ],
     [ "pack", "classatum_1_1Ladybrown.html#abb32368d4f5d25a6eac85d11e6e71e33", null ],
     [ "rest", "classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e", null ],
     [ "retract", "classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3", null ],

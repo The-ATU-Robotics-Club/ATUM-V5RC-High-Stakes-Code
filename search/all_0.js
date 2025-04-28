@@ -2,7 +2,7 @@ var searchData=
 [
   ['accel_0',['accel',['../classatum_1_1Kinematics.html#ae7a11a6296d61d9d3718001f7dbc62c1',1,'atum::Kinematics']]],
   ['accelerationconstants_1',['AccelerationConstants',['../structatum_1_1AccelerationConstants.html',1,'atum']]],
-  ['acceptable_2',['Acceptable',['../classatum_1_1Acceptable.html#af22a9b39ac3a2bc9c856b9e34de095c9',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
+  ['acceptable_2',['Acceptable',['../classatum_1_1Acceptable.html#afa1868808bf175188438d2a1a2dc93e9',1,'atum::Acceptable::Acceptable()'],['../classatum_1_1Acceptable.html',1,'atum::Acceptable&lt; Unit &gt;']]],
   ['acceptable_2ehpp_3',['acceptable.hpp',['../acceptable_8hpp.html',1,'']]],
   ['acceptable_3c_20meter_5ft_20_3e_4',['Acceptable&lt; meter_t &gt;',['../classatum_1_1Acceptable.html',1,'atum']]],
   ['acceptable_3c_20radian_5ft_20_3e_5',['Acceptable&lt; radian_t &gt;',['../classatum_1_1Acceptable.html',1,'atum']]],

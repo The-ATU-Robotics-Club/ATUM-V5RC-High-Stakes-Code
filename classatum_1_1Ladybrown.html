@@ -149,9 +149,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:abb32368d4f5d25a6eac85d11e6e71e33"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#abb32368d4f5d25a6eac85d11e6e71e33">pack</a> ()</td></tr>
 <tr class="memdesc:abb32368d4f5d25a6eac85d11e6e71e33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to pack down the ring.  <br /></td></tr>
 <tr class="separator:abb32368d4f5d25a6eac85d11e6e71e33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8efc4b03ad17ee212b63484671d5930"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#af8efc4b03ad17ee212b63484671d5930">moveTo</a> (const degree_t iTarget)</td></tr>
-<tr class="memdesc:af8efc4b03ad17ee212b63484671d5930"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to move to a certain position.  <br /></td></tr>
-<tr class="separator:af8efc4b03ad17ee212b63484671d5930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a8ddc4cb7e46042fe2aab80240b3a83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#a2a8ddc4cb7e46042fe2aab80240b3a83">moveTo</a> (const degree_t iTarget, const std::optional&lt; <a class="el" href="ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807">LadybrownState</a> &gt; &amp;iNextState={})</td></tr>
+<tr class="memdesc:a2a8ddc4cb7e46042fe2aab80240b3a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tells the ladybrown to move to a certain position.  <br /></td></tr>
+<tr class="separator:a2a8ddc4cb7e46042fe2aab80240b3a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac98061be6c665009553eaf8d301fe989"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989">ringInCarriage</a> () const</td></tr>
 <tr class="memdesc:ac98061be6c665009553eaf8d301fe989"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns if the ladybrown sees a ring in the ladybrown carriage based on the distance sensor and if it is resting.  <br /></td></tr>
 <tr class="separator:ac98061be6c665009553eaf8d301fe989"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,8 +345,8 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="af8efc4b03ad17ee212b63484671d5930" name="af8efc4b03ad17ee212b63484671d5930"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8efc4b03ad17ee212b63484671d5930">&#9670;&#160;</a></span>moveTo()</h2>
+<a id="a2a8ddc4cb7e46042fe2aab80240b3a83" name="a2a8ddc4cb7e46042fe2aab80240b3a83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a8ddc4cb7e46042fe2aab80240b3a83">&#9670;&#160;</a></span>moveTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -355,16 +355,28 @@ false </dd></dl>
           <td class="memname">void atum::Ladybrown::moveTo </td>
           <td>(</td>
           <td class="paramtype">const degree_t&#160;</td>
-          <td class="paramname"><em>iTarget</em></td><td>)</td>
+          <td class="paramname"><em>iTarget</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const std::optional&lt; <a class="el" href="ladybrown_8hpp.html#a3ce269f3b8e5256ac1eef9553474f807">LadybrownState</a> &gt; &amp;&#160;</td>
+          <td class="paramname"><em>iNextState</em> = <code>{}</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Tells the ladybrown to move to a certain position. </p>
+<p>When done, goes to the optional next state.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iTarget</td><td></td></tr>
+    <tr><td class="paramname">iNextState</td><td></td></tr>
   </table>
   </dd>
 </dl>

@@ -1,6 +1,6 @@
 var classatum_1_1Acceptable =
 [
-    [ "Acceptable", "classatum_1_1Acceptable.html#af22a9b39ac3a2bc9c856b9e34de095c9", null ],
+    [ "Acceptable", "classatum_1_1Acceptable.html#afa1868808bf175188438d2a1a2dc93e9", null ],
     [ "canAccept", "classatum_1_1Acceptable.html#a275bdfa48b6f5f18d69de566b4b490df", null ],
     [ "canAccept", "classatum_1_1Acceptable.html#af9d129547305ba86da61e8f73e431851", null ],
     [ "canAccept", "classatum_1_1Acceptable.html#aa5b3b6e75f7316c179429a22b7366165", null ],

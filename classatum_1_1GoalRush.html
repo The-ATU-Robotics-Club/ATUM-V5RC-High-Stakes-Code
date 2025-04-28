@@ -108,29 +108,21 @@ $(document).ready(function(){initNavTree('classatum_1_1GoalRush.html',''); initR
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa09c44f1ad7c2f771bd3b0146757315f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aa09c44f1ad7c2f771bd3b0146757315f">GoalRush</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iArm, std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iClamp, std::unique_ptr&lt; <a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a> &gt; iLimitSwitch, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:aa09c44f1ad7c2f771bd3b0146757315f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1GoalRush.html" title="This class encapsulates the logic behind the goal rush mechanism.">GoalRush</a> object.  <br /></td></tr>
-<tr class="separator:aa09c44f1ad7c2f771bd3b0146757315f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30acb3cba7c8cc5d3501d467e793b155"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a30acb3cba7c8cc5d3501d467e793b155">extendArm</a> ()</td></tr>
-<tr class="memdesc:a30acb3cba7c8cc5d3501d467e793b155"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends the arm of the goal rush.  <br /></td></tr>
-<tr class="separator:a30acb3cba7c8cc5d3501d467e793b155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b64b073a329108919d14ed207983383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a5b64b073a329108919d14ed207983383">retractArm</a> ()</td></tr>
-<tr class="memdesc:a5b64b073a329108919d14ed207983383"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retracts the arm of the goal rush.  <br /></td></tr>
-<tr class="separator:a5b64b073a329108919d14ed207983383"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a625bb958c72092e377c1a590d0803f99"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a625bb958c72092e377c1a590d0803f99">grab</a> ()</td></tr>
-<tr class="memdesc:a625bb958c72092e377c1a590d0803f99"><td class="mdescLeft">&#160;</td><td class="mdescRight">Grabs a goal.  <br /></td></tr>
-<tr class="separator:a625bb958c72092e377c1a590d0803f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35c198fdd8b678d8eca392c1d514f3cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a35c198fdd8b678d8eca392c1d514f3cb">release</a> ()</td></tr>
-<tr class="memdesc:a35c198fdd8b678d8eca392c1d514f3cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Releases a goal.  <br /></td></tr>
-<tr class="separator:a35c198fdd8b678d8eca392c1d514f3cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6e60915241a2ce045283c56b8ce05c8d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a6e60915241a2ce045283c56b8ce05c8d">toggleArm</a> ()</td></tr>
-<tr class="memdesc:a6e60915241a2ce045283c56b8ce05c8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles whether the arm is down or up.  <br /></td></tr>
-<tr class="separator:a6e60915241a2ce045283c56b8ce05c8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3bbbcc0b0b675f0f0fdc26f950b4293"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aa3bbbcc0b0b675f0f0fdc26f950b4293">toggleClamp</a> ()</td></tr>
-<tr class="memdesc:aa3bbbcc0b0b675f0f0fdc26f950b4293"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles whether the goal is grabbed or not.  <br /></td></tr>
-<tr class="separator:aa3bbbcc0b0b675f0f0fdc26f950b4293"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec0a724753c41a9eb469b23cf5f40374"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aec0a724753c41a9eb469b23cf5f40374">isClamped</a> () const</td></tr>
-<tr class="separator:aec0a724753c41a9eb469b23cf5f40374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa77c37aa82759827c9b4d9c4405163e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#aa77c37aa82759827c9b4d9c4405163e6">GoalRush</a> (std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt; iArm, std::unique_ptr&lt; <a class="el" href="classatum_1_1LimitSwitch.html">LimitSwitch</a> &gt; iLimitSwitch, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:aa77c37aa82759827c9b4d9c4405163e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1GoalRush.html" title="This class encapsulates the logic behind the goal rush mechanism.">GoalRush</a> object.  <br /></td></tr>
+<tr class="separator:aa77c37aa82759827c9b4d9c4405163e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada0ac367865e1ec82430ce7484631e6f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#ada0ac367865e1ec82430ce7484631e6f">extend</a> ()</td></tr>
+<tr class="memdesc:ada0ac367865e1ec82430ce7484631e6f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extends the arm of the goal rush.  <br /></td></tr>
+<tr class="separator:ada0ac367865e1ec82430ce7484631e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a210af02836d274ad854ca7ce6eccc386"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a210af02836d274ad854ca7ce6eccc386">retract</a> ()</td></tr>
+<tr class="memdesc:a210af02836d274ad854ca7ce6eccc386"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retracts the arm of the goal rush.  <br /></td></tr>
+<tr class="separator:a210af02836d274ad854ca7ce6eccc386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68bdc4fafb94f7c7da1d59b06815a99f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a68bdc4fafb94f7c7da1d59b06815a99f">toggle</a> ()</td></tr>
+<tr class="memdesc:a68bdc4fafb94f7c7da1d59b06815a99f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Toggles whether the arm is down or up.  <br /></td></tr>
+<tr class="separator:a68bdc4fafb94f7c7da1d59b06815a99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5cb11ead81181fd6352cd879aee706c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#ad5cb11ead81181fd6352cd879aee706c">isUp</a> () const</td></tr>
+<tr class="memdesc:ad5cb11ead81181fd6352cd879aee706c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the arm is up or not.  <br /></td></tr>
+<tr class="separator:ad5cb11ead81181fd6352cd879aee706c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dc4bd40b080c1230b4ce783dc4c4633"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1GoalRush.html#a1dc4bd40b080c1230b4ce783dc4c4633">hasGoal</a> () const</td></tr>
 <tr class="memdesc:a1dc4bd40b080c1230b4ce783dc4c4633"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether a goal is detected in the rush or not.  <br /></td></tr>
 <tr class="separator:a1dc4bd40b080c1230b4ce783dc4c4633"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,8 +130,8 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class encapsulates the logic behind the goal rush mechanism. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa09c44f1ad7c2f771bd3b0146757315f" name="aa09c44f1ad7c2f771bd3b0146757315f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa09c44f1ad7c2f771bd3b0146757315f">&#9670;&#160;</a></span>GoalRush()</h2>
+<a id="aa77c37aa82759827c9b4d9c4405163e6" name="aa77c37aa82759827c9b4d9c4405163e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa77c37aa82759827c9b4d9c4405163e6">&#9670;&#160;</a></span>GoalRush()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -149,12 +141,6 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt;&#160;</td>
           <td class="paramname"><em>iArm</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Piston.html">Piston</a> &gt;&#160;</td>
-          <td class="paramname"><em>iClamp</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -180,7 +166,6 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iArm</td><td></td></tr>
-    <tr><td class="paramname">iClamp</td><td></td></tr>
     <tr><td class="paramname">iLimitSwitch</td><td></td></tr>
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
   </table>
@@ -190,14 +175,14 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a30acb3cba7c8cc5d3501d467e793b155" name="a30acb3cba7c8cc5d3501d467e793b155"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a30acb3cba7c8cc5d3501d467e793b155">&#9670;&#160;</a></span>extendArm()</h2>
+<a id="ada0ac367865e1ec82430ce7484631e6f" name="ada0ac367865e1ec82430ce7484631e6f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada0ac367865e1ec82430ce7484631e6f">&#9670;&#160;</a></span>extend()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::GoalRush::extendArm </td>
+          <td class="memname">void atum::GoalRush::extend </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -206,25 +191,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Extends the arm of the goal rush. </p>
-
-</div>
-</div>
-<a id="a625bb958c72092e377c1a590d0803f99" name="a625bb958c72092e377c1a590d0803f99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a625bb958c72092e377c1a590d0803f99">&#9670;&#160;</a></span>grab()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::GoalRush::grab </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Grabs a goal. </p>
 
 </div>
 </div>
@@ -250,53 +216,36 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="aec0a724753c41a9eb469b23cf5f40374" name="aec0a724753c41a9eb469b23cf5f40374"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec0a724753c41a9eb469b23cf5f40374">&#9670;&#160;</a></span>isClamped()</h2>
+<a id="ad5cb11ead81181fd6352cd879aee706c" name="ad5cb11ead81181fd6352cd879aee706c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5cb11ead81181fd6352cd879aee706c">&#9670;&#160;</a></span>isUp()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool atum::GoalRush::isClamped </td>
+          <td class="memname">bool atum::GoalRush::isUp </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Returns whether the arm is up or not. </p>
 <dl class="section return"><dt>Returns</dt><dd>true </dd>
 <dd>
 false </dd></dl>
 
 </div>
 </div>
-<a id="a35c198fdd8b678d8eca392c1d514f3cb" name="a35c198fdd8b678d8eca392c1d514f3cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a35c198fdd8b678d8eca392c1d514f3cb">&#9670;&#160;</a></span>release()</h2>
+<a id="a210af02836d274ad854ca7ce6eccc386" name="a210af02836d274ad854ca7ce6eccc386"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a210af02836d274ad854ca7ce6eccc386">&#9670;&#160;</a></span>retract()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::GoalRush::release </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Releases a goal. </p>
-
-</div>
-</div>
-<a id="a5b64b073a329108919d14ed207983383" name="a5b64b073a329108919d14ed207983383"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5b64b073a329108919d14ed207983383">&#9670;&#160;</a></span>retractArm()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::GoalRush::retractArm </td>
+          <td class="memname">void atum::GoalRush::retract </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -308,14 +257,14 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="a6e60915241a2ce045283c56b8ce05c8d" name="a6e60915241a2ce045283c56b8ce05c8d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6e60915241a2ce045283c56b8ce05c8d">&#9670;&#160;</a></span>toggleArm()</h2>
+<a id="a68bdc4fafb94f7c7da1d59b06815a99f" name="a68bdc4fafb94f7c7da1d59b06815a99f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a68bdc4fafb94f7c7da1d59b06815a99f">&#9670;&#160;</a></span>toggle()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void atum::GoalRush::toggleArm </td>
+          <td class="memname">void atum::GoalRush::toggle </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -324,25 +273,6 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Toggles whether the arm is down or up. </p>
-
-</div>
-</div>
-<a id="aa3bbbcc0b0b675f0f0fdc26f950b4293" name="aa3bbbcc0b0b675f0f0fdc26f950b4293"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3bbbcc0b0b675f0f0fdc26f950b4293">&#9670;&#160;</a></span>toggleClamp()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void atum::GoalRush::toggleClamp </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Toggles whether the goal is grabbed or not. </p>
 
 </div>
 </div>
