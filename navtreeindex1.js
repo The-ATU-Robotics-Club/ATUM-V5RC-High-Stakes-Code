@@ -1,6 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40a6f041af43be87a195bd3f075922f344a":[1,0,0,36,2,1],
 "classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40af03bde11d261f185cbacfa32c1c6538c":[1,0,0,36,2,0],
 "classatum_1_1Remote.html#a9ffd0c323b48688b33550b30098b243f":[1,0,0,36,9],
 "classatum_1_1Remote.html#acb026dbb81e8e2b1347d2e0cdc0b3d13":[1,0,0,36,7],
@@ -249,5 +248,6 @@ var NAVTREEINDEX1 =
 "pose_8hpp.html#ae21223d7edec5e922e8bd4c245bb350b":[2,0,0,0,4,3,7],
 "pose_8hpp.html#af72dcde98eb24c8474189fc391b5d849":[2,0,0,0,4,3,9],
 "pose_8hpp.html#af9c2f1ae255f3f4781b06957ec9d5bfb":[2,0,0,0,4,3,10],
-"pose_8hpp_source.html":[2,0,0,0,4,3]
+"pose_8hpp_source.html":[2,0,0,0,4,3],
+"potentiometer_8hpp.html":[2,0,0,0,1,11]
 };

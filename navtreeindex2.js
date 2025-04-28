@@ -1,6 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"potentiometer_8hpp.html":[2,0,0,0,1,11],
 "potentiometer_8hpp_source.html":[2,0,0,0,1,11],
 "profileFollower_8hpp.html":[2,0,0,0,3,6],
 "profileFollower_8hpp.html#a2bd4ee01721625f47226b5fc5cda189f":[2,0,0,0,3,6,2],

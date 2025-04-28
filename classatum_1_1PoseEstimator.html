@@ -114,22 +114,19 @@ Inheritance diagram for atum::PoseEstimator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a01e86473f335cdcc0318d95ba8257b7d"><td class="memItemLeft" align="right" valign="top"><a id="a01e86473f335cdcc0318d95ba8257b7d" name="a01e86473f335cdcc0318d95ba8257b7d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PoseEstimator</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR, const double alpha=0.9, const double beta=2.0)</td></tr>
-<tr class="separator:a01e86473f335cdcc0318d95ba8257b7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f578710bae25ce13012227190fa9844"><td class="memItemLeft" align="right" valign="top"><a id="a9f578710bae25ce13012227190fa9844" name="a9f578710bae25ce13012227190fa9844"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PoseEstimator</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR, const double alpha=0.5, const double beta=2.0)</td></tr>
+<tr class="separator:a9f578710bae25ce13012227190fa9844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a847538308c2c2e2a1431ca01e53fcee7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">update</a> () override</td></tr>
 <tr class="memdesc:a847538308c2c2e2a1431ca01e53fcee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>.  <br /></td></tr>
 <tr class="separator:a847538308c2c2e2a1431ca01e53fcee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d6e7d615193dca29d9be17dd59f4041"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">setPose</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) override</td></tr>
 <tr class="memdesc:a7d6e7d615193dca29d9be17dd59f4041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current pose of the tracker.  <br /></td></tr>
 <tr class="separator:a7d6e7d615193dca29d9be17dd59f4041"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0099ab248889e96c80de92d4fe101709"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a0099ab248889e96c80de92d4fe101709">getPose</a> () override</td></tr>
-<tr class="memdesc:a0099ab248889e96c80de92d4fe101709"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current pose of the tracker.  <br /></td></tr>
-<tr class="separator:a0099ab248889e96c80de92d4fe101709"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1UKF"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1UKF')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1UKF.html">atum::UKF&lt; 6, 2, 2 &gt;</a></td></tr>
-<tr class="memitem:aacf09c6da82f08b96cae2e6445ea2d4b inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="aacf09c6da82f08b96cae2e6445ea2d4b" name="aacf09c6da82f08b96cae2e6445ea2d4b"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR, const double alpha=0.001, const double beta=2.0)</td></tr>
-<tr class="separator:aacf09c6da82f08b96cae2e6445ea2d4b inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11f96f240220142dc6ef788c99693bf4 inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a11f96f240220142dc6ef788c99693bf4" name="a11f96f240220142dc6ef788c99693bf4"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR, const double alpha=0.5, const double beta=2.0)</td></tr>
+<tr class="separator:a11f96f240220142dc6ef788c99693bf4 inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2f5c06cf95a38751451d1b71665956a inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ad2f5c06cf95a38751451d1b71665956a" name="ad2f5c06cf95a38751451d1b71665956a"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (const State &amp;x)</td></tr>
 <tr class="separator:ad2f5c06cf95a38751451d1b71665956a inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -272,36 +269,6 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 <tr class="separator:a3cf9d82c6dcfa388cef9410b0dc14dd9 inherit pro_attribs_classatum_1_1Task"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a0099ab248889e96c80de92d4fe101709" name="a0099ab248889e96c80de92d4fe101709"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0099ab248889e96c80de92d4fe101709">&#9670;&#160;</a></span>getPose()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structatum_1_1Pose.html">Pose</a> atum::PoseEstimator::getPose </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Gets the current pose of the tracker. </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
-
-<p>Reimplemented from <a class="el" href="classatum_1_1Tracker.html#aa6c8fdba0cf87e8d055530708ab83273">atum::Tracker</a>.</p>
-
-</div>
-</div>
 <a id="a7d6e7d615193dca29d9be17dd59f4041" name="a7d6e7d615193dca29d9be17dd59f4041"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d6e7d615193dca29d9be17dd59f4041">&#9670;&#160;</a></span>setPose()</h2>
 

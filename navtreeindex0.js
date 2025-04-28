@@ -219,9 +219,8 @@ var NAVTREEINDEX0 =
 "classatum_1_1Piston.html#aa7b54191c7c7e07172fc80562514a0b4":[1,0,0,31,3],
 "classatum_1_1Piston.html#adfe6feb46339310b7ad6c606fb84a506":[1,0,0,31,0],
 "classatum_1_1PoseEstimator.html":[1,0,0,33],
-"classatum_1_1PoseEstimator.html#a0099ab248889e96c80de92d4fe101709":[1,0,0,33,0],
-"classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041":[1,0,0,33,1],
-"classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7":[1,0,0,33,2],
+"classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041":[1,0,0,33,0],
+"classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7":[1,0,0,33,1],
 "classatum_1_1Potentiometer.html":[1,0,0,34],
 "classatum_1_1Potentiometer.html#a77814abd14df2fba6c44d658b3813ead":[1,0,0,34,1],
 "classatum_1_1Potentiometer.html#a880e89d80f583f77940cc1a2d1f83c3a":[1,0,0,34,2],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "classatum_1_1Remote.html#a29e153d5fa6a6ceb27c53613e6c58013":[1,0,0,36,8],
 "classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2":[1,0,0,36,10],
 "classatum_1_1Remote.html#a55689afd46e411b6fd27cf9ed4e42def":[1,0,0,36,6],
-"classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40":[1,0,0,36,2]
+"classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40":[1,0,0,36,2],
+"classatum_1_1Remote.html#a7d7611bf51b2d30a218543bea7733d40a6f041af43be87a195bd3f075922f344a":[1,0,0,36,2,1]
 };
