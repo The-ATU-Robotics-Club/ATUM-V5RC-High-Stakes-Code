@@ -12,14 +12,12 @@ class PoseEstimator : public UKF<6, 2, 2>, public Tracker, public Task {
                 const PoseEstimator::StateCovariance &iP,
                 const PoseEstimator::StateCovariance &iQ,
                 const PoseEstimator::OutputCovariance &iR,
-                const double alpha = 0.9,
+                const double alpha = 0.5,
                 const double beta = 2.0);
 
   Pose update() override;
 
   void setPose(const Pose &iPose) override;
-
-  Pose getPose() override;
 
   private:
   static constexpr double dt{0.01};

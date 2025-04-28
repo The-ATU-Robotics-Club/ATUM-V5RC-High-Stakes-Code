@@ -16,8 +16,11 @@ PoseEstimator::PoseEstimator(Drive *iDrive,
     drive{iDrive} {}
 
 Pose PoseEstimator::update() {
-  pose = getPose();
-  return pose;
+  const State state{getState()};
+  const UnwrappedPose raw{
+      state(0), state(1), state(2), state(3), state(4), state(5)};
+  setPose(raw);
+  return Tracker::getPose();
 }
 
 void PoseEstimator::setPose(const Pose &iPose) {
@@ -28,13 +31,7 @@ void PoseEstimator::setPose(const Pose &iPose) {
   xHat(3) = raw.vf;
   xHat(4) = raw.vs;
   xHat(5) = raw.omega;
-}
-
-Pose PoseEstimator::getPose() {
-  const State state{getState()};
-  const UnwrappedPose raw{
-      state(0), state(1), state(2), state(3), state(4), state(5)};
-  return raw;
+  Tracker::setPose(raw);
 }
 
 PoseEstimator::State PoseEstimator::f(const PoseEstimator::State &x,
@@ -45,13 +42,13 @@ PoseEstimator::State PoseEstimator::f(const PoseEstimator::State &x,
   const int n{4};
   const double rb{0.15113};
   const double rw{0.041275};
-  const double J{0.501};
+  const double J{0.0501};
   const double G{0.75};
   const double m{8.2781};
 
   const double C1{-(G * G * kT * n) / (kV * R * rw * rw)};
   const double C2{(G * kT * n) / (R * rw)};
-  const double D1{2.0 * C2 / m};
+  const double D1{2.0 * C1 / m};
   const double D2{C2 / m};
   const double D3{2.0 * rb * rb * C1 / J};
   const double D4{rb * C2 / J};

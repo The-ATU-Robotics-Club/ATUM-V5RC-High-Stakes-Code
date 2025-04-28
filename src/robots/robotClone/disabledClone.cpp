@@ -36,7 +36,7 @@ void RobotClone::initialize24Ports() {
                 {"imu 2", 14},
                 {"ladybrown distance", 16},
                 {"ladybrown rotation", 12},
-                {"intake color 1", 19},
+                {"intake color 1", 17},
                 {"intake color 2", errorPort},
                 {"goal clamp piston", 'F'},
                 {"adi extender", 18},
@@ -110,11 +110,11 @@ void RobotClone::driveSetup() {
                                          {0.0, 0.02, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.05, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.02, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.0, 0.2, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.02, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.05}};
 
-  const PoseEstimator::StateCovariance Q{{0.0, 0.0, 0.0, 0.001, 0.002, 0.0},
-                                         {0.0, 0.0, 0.0, 0.001, 0.002, 0.0},
+  const PoseEstimator::StateCovariance Q{{0.0, 0.0, 0.0, 0.001, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.001, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.001},
                                          {0.001, 0.001, 0.0, 0.001, 0.0, 0.0},
                                          {0.002, 0.002, 0.0, 0.0, 0.002, 0.0},

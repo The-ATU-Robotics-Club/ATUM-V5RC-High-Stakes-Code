@@ -21,7 +21,7 @@ class UKF {
   UKF(const StateCovariance &iP,
       const StateCovariance &iQ,
       const OutputCovariance &iR,
-      const double alpha = 0.001,
+      const double alpha = 0.5,
       const double beta = 2.0) :
       P{iP},
       Q{iQ},

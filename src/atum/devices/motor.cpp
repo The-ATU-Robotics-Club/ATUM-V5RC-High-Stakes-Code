@@ -147,7 +147,7 @@ double Motor::getTorque() const {
 std::int32_t Motor::getVoltage() const {
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      return directions[i] * motors[i]->get_voltage();
+      return directions[i] * motors[i]->get_voltage() / 1000.0;
     }
   }
   return 0;
