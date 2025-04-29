@@ -1,5 +1,6 @@
 #include "robotClone.hpp"
 
+
 namespace atum {
 
 void RobotClone::initialize15Ports() {
@@ -83,7 +84,7 @@ void RobotClone::driveSetup() {
       "right drive")};
   drive = std::make_unique<Drive>(std::move(leftDriveMtr),
                                   std::move(rightDriveMtr),
-                                  Drive::Geometry{11.862_in, 10.213335_in});
+                                  Drive::Geometry{11.9_in, 10.21_in});
 
   const inch_t wheelCircumference{198_mm};
   std::unique_ptr<Odometer> forwardOdometer{
@@ -106,21 +107,16 @@ void RobotClone::driveSetup() {
                                  drive.get())};
   //   odometry->startBackgroundTasks();
 
-  const PoseEstimator::StateCovariance P{{0.02, 0.0, 0.0, 0.0, 0.0, 0.0},
-                                         {0.0, 0.02, 0.0, 0.0, 0.0, 0.0},
-                                         {0.0, 0.0, 0.05, 0.0, 0.0, 0.0},
+  const PoseEstimator::StateCovariance P{{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.02, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.0, 0.02, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.05}};
 
-  const PoseEstimator::StateCovariance Q{{0.0, 0.0, 0.0, 0.001, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.001, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.001},
-                                         {0.001, 0.001, 0.0, 0.001, 0.0, 0.0},
-                                         {0.002, 0.002, 0.0, 0.0, 0.002, 0.0},
-                                         {0.0, 0.0, 0.001, 0.0, 0.0, 0.001}};
+  const PoseEstimator::StateCovariance Q{P};
 
-  const PoseEstimator::OutputCovariance R{{0.02, 0.0}, {0.0, 0.02}};
+  const PoseEstimator::OutputCovariance R{{0.1, 0.0}, {0.0, 0.1}};
 
   std::unique_ptr<PoseEstimator> estimator{
       std::make_unique<PoseEstimator>(drive.get(), P, Q, R)};
@@ -220,7 +216,8 @@ void RobotClone::autonSetup() {
       720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
   turnMotionParams.usePosition = true;
   AngularProfile turnProfile{turnMotionParams};
-  // Timeout here gets set by the follower, so don't worry about the "forever."
+  // Timeout here gets set by the follower, so don't worry about the
+  // "forever."
   AcceptableAngle turnAcceptable{forever, 3_deg, 1.5_rpm};
   PID::Parameters turnPIDParams{2.5, 0, 0, 0.875};
   turnPIDParams.ffScaling = true;

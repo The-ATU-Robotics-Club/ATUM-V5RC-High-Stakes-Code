@@ -2,18 +2,32 @@
 #include "atum/pose/pose.hpp"
 #include "poseEstimator.hpp"
 
-
 namespace atum {
 PoseEstimator::PoseEstimator(Drive *iDrive,
                              const PoseEstimator::StateCovariance &iP,
                              const PoseEstimator::StateCovariance &iQ,
-                             const PoseEstimator::OutputCovariance &iR,
-                             const double alpha,
-                             const double beta) :
-    UKF{iP, iQ, iR, alpha, beta},
+                             const PoseEstimator::OutputCovariance &iR) :
+    EKF{iP, iQ, iR},
     Tracker{Logger::Level::Debug},
     Task(this, Logger::Level::Info),
-    drive{iDrive} {}
+    drive{iDrive} {
+  const double kT{0.142275};
+  const double R{2.61};
+  const double kV{6.30581};
+  const int n{4};
+  const double rb{0.15113};
+  const double rw{0.041275};
+  const double J{0.1001};
+  const double G{0.75};
+  const double m{8.2781};
+
+  const double C1{-(G * G * kT * n) / (kV * R * rw * rw)};
+  const double C2{(G * kT * n) / (R * rw)};
+  D1 = 2.0 * C1 / m;
+  D2 = C2 / m;
+  D3 = 2.0 * rb * rb * C1 / J;
+  D4 = rb * C2 / J;
+}
 
 Pose PoseEstimator::update() {
   const State state{getState()};
@@ -31,32 +45,20 @@ void PoseEstimator::setPose(const Pose &iPose) {
   xHat(3) = raw.vf;
   xHat(4) = raw.vs;
   xHat(5) = raw.omega;
+  xHatPriori(0) = raw.x;
+  xHatPriori(1) = raw.y;
+  xHatPriori(2) = raw.h;
+  xHatPriori(3) = raw.vf;
+  xHatPriori(4) = raw.vs;
+  xHatPriori(5) = raw.omega;
   Tracker::setPose(raw);
 }
 
 PoseEstimator::State PoseEstimator::f(const PoseEstimator::State &x,
                                       const PoseEstimator::Input &u) {
-  const double kT{0.142275};
-  const double R{2.3641};
-  const double kV{6.30581};
-  const int n{4};
-  const double rb{0.15113};
-  const double rw{0.041275};
-  const double J{0.0501};
-  const double G{0.75};
-  const double m{8.2781};
-
-  const double C1{-(G * G * kT * n) / (kV * R * rw * rw)};
-  const double C2{(G * kT * n) / (R * rw)};
-  const double D1{2.0 * C1 / m};
-  const double D2{C2 / m};
-  const double D3{2.0 * rb * rb * C1 / J};
-  const double D4{rb * C2 / J};
-
   State newX{x};
-  const double hAdj{M_PI_2 - x(2)};
-  newX(0) += dt * (x(3) * std::cos(hAdj) + x(4) * std::sin(hAdj));
-  newX(1) += dt * (x(3) * std::sin(hAdj) - x(4) * std::cos(hAdj));
+  newX(0) += dt * (x(3) * std::sin(x(2)) + x(4) * std::cos(x(2)));
+  newX(1) += dt * (x(3) * std::cos(x(2)) - x(4) * std::sin(x(2)));
   newX(2) += dt * x(5);
   newX(3) += dt * (D1 * x(3) + D2 * (u(0) + u(1)));
   newX(4) += dt * D1 * x(4);
@@ -65,9 +67,27 @@ PoseEstimator::State PoseEstimator::f(const PoseEstimator::State &x,
   return newX;
 }
 
-PoseEstimator::Output PoseEstimator::h(const PoseEstimator::State &x,
-                                       const PoseEstimator::Input &u) {
+PoseEstimator::Output PoseEstimator::h(const PoseEstimator::State &x) {
   return {x(3), x(5)};
+}
+
+PoseEstimator::JacobianF PoseEstimator::linearF(const PoseEstimator::State &x,
+                                                const PoseEstimator::Input &u) {
+  const double h{x(2)};
+  const double vf{x(3)};
+  const double vs{x(4)};
+  return JacobianF{
+      {1, 0, (vf * cos(h) - vs * sin(h)) * dt, sin(h) * dt, cos(h) * dt, 0},
+      {0, 1, (-vf * sin(h) - vs * cos(h)) * dt, cos(h) * dt, -sin(h) * dt, 0},
+      {0, 0, 1, 0, 0, dt},
+      {0, 0, 0, 1 + D1 * dt, 0, 0},
+      {0, 0, 0, 0, 1 + D1 * dt, 0},
+      {0, 0, 0, 0, 0, 1 + D3 * dt}};
+}
+
+PoseEstimator::JacobianH PoseEstimator::linearH(const PoseEstimator::State &x) {
+  return JacobianH{{0.0, 0.0, 0.0, 1.0, 0.0, 0.0},
+                   {0.0, 0.0, 0.0, 0.0, 0.0, 1.0}};
 }
 
 PoseEstimator::Input PoseEstimator::getInput() {

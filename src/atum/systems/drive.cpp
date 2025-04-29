@@ -81,8 +81,8 @@ meters_per_second_t Drive::getVelocity() const {
 
 radians_per_second_t Drive::getAngularVelocity() const {
   const double vDiff{getValueAs<meter_t>(geometry.circum) *
-                     getValueAs<revolutions_per_minute_t>(right->getVelocity() -
-                                                          left->getVelocity()) /
+                     getValueAs<revolutions_per_minute_t>(left->getVelocity() -
+                                                          right->getVelocity()) /
                      60.0};
   return radians_per_second_t{vDiff / getValueAs<meter_t>(geometry.track)};
 }

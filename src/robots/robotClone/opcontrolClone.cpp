@@ -23,6 +23,7 @@ void RobotClone::opcontrol() {
                       },
                       GUI::Routines::selectedRoutine() ? 89.95_s : 59.95_s});
   drive->setBrakeMode(pros::MotorBrake::coast);
+  drive->setPose({-2_tile, 2_tile, 90_deg});
   while(true) {
     const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
