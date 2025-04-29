@@ -106,7 +106,7 @@ Inheritance diagram for atum::PoseEstimator:</div>
  <div class="center">
   <img src="classatum_1_1PoseEstimator.png" usemap="#atum::PoseEstimator_map" alt=""/>
   <map id="atum::PoseEstimator_map" name="atum::PoseEstimator_map">
-<area href="classatum_1_1UKF.html" alt="atum::UKF&lt; 6, 2, 2 &gt;" shape="rect" coords="0,0,131,24"/>
+<area href="classatum_1_1EKF.html" alt="atum::EKF&lt; 6, 2, 2 &gt;" shape="rect" coords="0,0,131,24"/>
 <area href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking." alt="atum::Tracker" shape="rect" coords="141,0,272,24"/>
 <area href="classatum_1_1Task.html" title="This class allows its derivatives to &quot;own&quot; their own tasks and better control their management...." alt="atum::Task" shape="rect" coords="282,0,413,24"/>
   </map>
@@ -114,31 +114,31 @@ Inheritance diagram for atum::PoseEstimator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9f578710bae25ce13012227190fa9844"><td class="memItemLeft" align="right" valign="top"><a id="a9f578710bae25ce13012227190fa9844" name="a9f578710bae25ce13012227190fa9844"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PoseEstimator</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR, const double alpha=0.5, const double beta=2.0)</td></tr>
-<tr class="separator:a9f578710bae25ce13012227190fa9844"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bd76248357e7fc260c1bedffb56cd02"><td class="memItemLeft" align="right" valign="top"><a id="a8bd76248357e7fc260c1bedffb56cd02" name="a8bd76248357e7fc260c1bedffb56cd02"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>PoseEstimator</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR)</td></tr>
+<tr class="separator:a8bd76248357e7fc260c1bedffb56cd02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a847538308c2c2e2a1431ca01e53fcee7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">update</a> () override</td></tr>
 <tr class="memdesc:a847538308c2c2e2a1431ca01e53fcee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>.  <br /></td></tr>
 <tr class="separator:a847538308c2c2e2a1431ca01e53fcee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d6e7d615193dca29d9be17dd59f4041"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">setPose</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) override</td></tr>
 <tr class="memdesc:a7d6e7d615193dca29d9be17dd59f4041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current pose of the tracker.  <br /></td></tr>
 <tr class="separator:a7d6e7d615193dca29d9be17dd59f4041"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pub_methods_classatum_1_1UKF"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1UKF')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1UKF.html">atum::UKF&lt; 6, 2, 2 &gt;</a></td></tr>
-<tr class="memitem:a11f96f240220142dc6ef788c99693bf4 inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a11f96f240220142dc6ef788c99693bf4" name="a11f96f240220142dc6ef788c99693bf4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>UKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR, const double alpha=0.5, const double beta=2.0)</td></tr>
-<tr class="separator:a11f96f240220142dc6ef788c99693bf4 inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2f5c06cf95a38751451d1b71665956a inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ad2f5c06cf95a38751451d1b71665956a" name="ad2f5c06cf95a38751451d1b71665956a"></a>
+<tr class="inherit_header pub_methods_classatum_1_1EKF"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1EKF')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1EKF.html">atum::EKF&lt; 6, 2, 2 &gt;</a></td></tr>
+<tr class="memitem:a337a8b3401b7c422259795be71e32b54 inherit pub_methods_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a337a8b3401b7c422259795be71e32b54" name="a337a8b3401b7c422259795be71e32b54"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>EKF</b> (const StateCovariance &amp;iP, const StateCovariance &amp;iQ, const OutputCovariance &amp;iR)</td></tr>
+<tr class="separator:a337a8b3401b7c422259795be71e32b54 inherit pub_methods_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a224357784fa7bf861fcf1f80096f6b33 inherit pub_methods_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a224357784fa7bf861fcf1f80096f6b33" name="a224357784fa7bf861fcf1f80096f6b33"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>initialize</b> (const State &amp;x)</td></tr>
-<tr class="separator:ad2f5c06cf95a38751451d1b71665956a inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a585a62882745721a4d4ee0c2d82fd8bf inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a585a62882745721a4d4ee0c2d82fd8bf" name="a585a62882745721a4d4ee0c2d82fd8bf"></a>
+<tr class="separator:a224357784fa7bf861fcf1f80096f6b33 inherit pub_methods_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5bf682c6744ba304a5081eec5dbf0dc inherit pub_methods_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="ac5bf682c6744ba304a5081eec5dbf0dc" name="ac5bf682c6744ba304a5081eec5dbf0dc"></a>
 State&#160;</td><td class="memItemRight" valign="bottom"><b>getState</b> () const</td></tr>
-<tr class="separator:a585a62882745721a4d4ee0c2d82fd8bf inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f147c0d94cc49634c754efe2f3cde89 inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a2f147c0d94cc49634c754efe2f3cde89" name="a2f147c0d94cc49634c754efe2f3cde89"></a>
+<tr class="separator:ac5bf682c6744ba304a5081eec5dbf0dc inherit pub_methods_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a060f5343061c60b881fd1a90f8d2b2d4 inherit pub_methods_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a060f5343061c60b881fd1a90f8d2b2d4" name="a060f5343061c60b881fd1a90f8d2b2d4"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>predict</b> ()</td></tr>
-<tr class="separator:a2f147c0d94cc49634c754efe2f3cde89 inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a36e31a44b4f6881f46e44aa1e3fed97d inherit pub_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a36e31a44b4f6881f46e44aa1e3fed97d" name="a36e31a44b4f6881f46e44aa1e3fed97d"></a>
+<tr class="separator:a060f5343061c60b881fd1a90f8d2b2d4 inherit pub_methods_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cbd990958f8b3b5044ee42dc977e42f inherit pub_methods_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a4cbd990958f8b3b5044ee42dc977e42f" name="a4cbd990958f8b3b5044ee42dc977e42f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>correct</b> ()</td></tr>
-<tr class="separator:a36e31a44b4f6881f46e44aa1e3fed97d inherit pub_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a4cbd990958f8b3b5044ee42dc977e42f inherit pub_methods_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Tracker"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Tracker')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Tracker.html">atum::Tracker</a></td></tr>
 <tr class="memitem:ace62a5d033aff5bae893b268617a0e4d inherit pub_methods_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d">Tracker</a> (const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
 <tr class="memdesc:ace62a5d033aff5bae893b268617a0e4d inherit pub_methods_classatum_1_1Tracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new tracker and performs logging.  <br /></td></tr>
@@ -172,87 +172,68 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>correct</b> ()</td></
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
-<tr class="inherit_header pub_types_classatum_1_1UKF"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classatum_1_1UKF')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classatum_1_1UKF.html">atum::UKF&lt; 6, 2, 2 &gt;</a></td></tr>
-<tr class="memitem:ace38c3c3675385cadf93757e805b6532 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ace38c3c3675385cadf93757e805b6532" name="ace38c3c3675385cadf93757e805b6532"></a>
+<tr class="inherit_header pub_types_classatum_1_1EKF"><td colspan="2" onclick="javascript:toggleInherit('pub_types_classatum_1_1EKF')"><img src="closed.png" alt="-"/>&#160;Public Types inherited from <a class="el" href="classatum_1_1EKF.html">atum::EKF&lt; 6, 2, 2 &gt;</a></td></tr>
+<tr class="memitem:a4240b201d124f356883902c4789c654e inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a4240b201d124f356883902c4789c654e" name="a4240b201d124f356883902c4789c654e"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>State</b> = Eigen::Vector&lt; double, TotalStates &gt;</td></tr>
-<tr class="separator:ace38c3c3675385cadf93757e805b6532 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a339d8305b1c2695e09d24da6d8cf456e inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a339d8305b1c2695e09d24da6d8cf456e" name="a339d8305b1c2695e09d24da6d8cf456e"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>StateCovariance</b> = Eigen::Matrix&lt; double, TotalStates, TotalStates &gt;</td></tr>
-<tr class="separator:a339d8305b1c2695e09d24da6d8cf456e inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0d642a5430def78849d304f9d43f1e0 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ab0d642a5430def78849d304f9d43f1e0" name="ab0d642a5430def78849d304f9d43f1e0"></a>
+<tr class="separator:a4240b201d124f356883902c4789c654e inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87550955b006b2ca5a5402f7e79e3e3a inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a87550955b006b2ca5a5402f7e79e3e3a" name="a87550955b006b2ca5a5402f7e79e3e3a"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>Input</b> = Eigen::Vector&lt; double, TotalInputs &gt;</td></tr>
-<tr class="separator:ab0d642a5430def78849d304f9d43f1e0 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae68e621d3c76ef236a0e046fe8afe9b5 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ae68e621d3c76ef236a0e046fe8afe9b5" name="ae68e621d3c76ef236a0e046fe8afe9b5"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>KalmanGain</b> = Eigen::Matrix&lt; double, TotalStates, TotalOutputs &gt;</td></tr>
-<tr class="separator:ae68e621d3c76ef236a0e046fe8afe9b5 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65141305eb96a2c4463350dfdcda47e5 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a65141305eb96a2c4463350dfdcda47e5" name="a65141305eb96a2c4463350dfdcda47e5"></a>
+<tr class="separator:a87550955b006b2ca5a5402f7e79e3e3a inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09a001f132d916716c402068fde0197e inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a09a001f132d916716c402068fde0197e" name="a09a001f132d916716c402068fde0197e"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>Output</b> = Eigen::Vector&lt; double, TotalOutputs &gt;</td></tr>
-<tr class="separator:a65141305eb96a2c4463350dfdcda47e5 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2eaac7bb60f649e756981a3f804df55 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="af2eaac7bb60f649e756981a3f804df55" name="af2eaac7bb60f649e756981a3f804df55"></a>
+<tr class="separator:a09a001f132d916716c402068fde0197e inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1199038e0e28676574e1e22ce481a3b inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="ad1199038e0e28676574e1e22ce481a3b" name="ad1199038e0e28676574e1e22ce481a3b"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>StateCovariance</b> = Eigen::Matrix&lt; double, TotalStates, TotalStates &gt;</td></tr>
+<tr class="separator:ad1199038e0e28676574e1e22ce481a3b inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add61b5588fdb964997456f47b7837a89 inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="add61b5588fdb964997456f47b7837a89" name="add61b5588fdb964997456f47b7837a89"></a>
 using&#160;</td><td class="memItemRight" valign="bottom"><b>OutputCovariance</b> = Eigen::Matrix&lt; double, TotalOutputs, TotalOutputs &gt;</td></tr>
-<tr class="separator:af2eaac7bb60f649e756981a3f804df55 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a069d696b62728d11e1e78f6c897de092 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a069d696b62728d11e1e78f6c897de092" name="a069d696b62728d11e1e78f6c897de092"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>SigmaPoints</b> = Eigen::Matrix&lt; double, TotalStates, 2 *TotalStates+1 &gt;</td></tr>
-<tr class="separator:a069d696b62728d11e1e78f6c897de092 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28f79c02f0ae326778d5c88bfe293c92 inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a28f79c02f0ae326778d5c88bfe293c92" name="a28f79c02f0ae326778d5c88bfe293c92"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>SigmaOutputPoints</b> = Eigen::Matrix&lt; double, TotalOutputs, 2 *TotalStates+1 &gt;</td></tr>
-<tr class="separator:a28f79c02f0ae326778d5c88bfe293c92 inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ebfd4bf365f0b35cbea4390c017fedc inherit pub_types_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a3ebfd4bf365f0b35cbea4390c017fedc" name="a3ebfd4bf365f0b35cbea4390c017fedc"></a>
-using&#160;</td><td class="memItemRight" valign="bottom"><b>Weights</b> = std::array&lt; double, 2 *TotalStates+1 &gt;</td></tr>
-<tr class="separator:a3ebfd4bf365f0b35cbea4390c017fedc inherit pub_types_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_methods_classatum_1_1UKF"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classatum_1_1UKF')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classatum_1_1UKF.html">atum::UKF&lt; 6, 2, 2 &gt;</a></td></tr>
-<tr class="memitem:a80a973853575b5cfe2fbbc10681ca1d2 inherit pro_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a80a973853575b5cfe2fbbc10681ca1d2" name="a80a973853575b5cfe2fbbc10681ca1d2"></a>
+<tr class="separator:add61b5588fdb964997456f47b7837a89 inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae620091a8154ca6f133af4a38b3cca0c inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="ae620091a8154ca6f133af4a38b3cca0c" name="ae620091a8154ca6f133af4a38b3cca0c"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>KalmanGain</b> = Eigen::Matrix&lt; double, TotalStates, TotalOutputs &gt;</td></tr>
+<tr class="separator:ae620091a8154ca6f133af4a38b3cca0c inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a930aaf59ab8751840fe53ca75718d081 inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a930aaf59ab8751840fe53ca75718d081" name="a930aaf59ab8751840fe53ca75718d081"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>JacobianF</b> = Eigen::Matrix&lt; double, TotalStates, TotalStates &gt;</td></tr>
+<tr class="separator:a930aaf59ab8751840fe53ca75718d081 inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afaec67c1a164a18cf4bc9a61cbf50dd8 inherit pub_types_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="afaec67c1a164a18cf4bc9a61cbf50dd8" name="afaec67c1a164a18cf4bc9a61cbf50dd8"></a>
+using&#160;</td><td class="memItemRight" valign="bottom"><b>JacobianH</b> = Eigen::Matrix&lt; double, TotalOutputs, TotalStates &gt;</td></tr>
+<tr class="separator:afaec67c1a164a18cf4bc9a61cbf50dd8 inherit pub_types_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ac735d5c0ecee9a8f08f88c0a5c4be1"><td class="memItemLeft" align="right" valign="top"><a id="a4ac735d5c0ecee9a8f08f88c0a5c4be1" name="a4ac735d5c0ecee9a8f08f88c0a5c4be1"></a>
 virtual State&#160;</td><td class="memItemRight" valign="bottom"><b>f</b> (const State &amp;x, const Input &amp;u)=0</td></tr>
-<tr class="separator:a80a973853575b5cfe2fbbc10681ca1d2 inherit pro_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3fb400a69d21d08a1fd920c103d5fa9 inherit pro_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ad3fb400a69d21d08a1fd920c103d5fa9" name="ad3fb400a69d21d08a1fd920c103d5fa9"></a>
-virtual Output&#160;</td><td class="memItemRight" valign="bottom"><b>h</b> (const State &amp;x, const Input &amp;u)=0</td></tr>
-<tr class="separator:ad3fb400a69d21d08a1fd920c103d5fa9 inherit pro_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e1e73eedac92e6d2e118778b347c8d6 inherit pro_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a9e1e73eedac92e6d2e118778b347c8d6" name="a9e1e73eedac92e6d2e118778b347c8d6"></a>
+<tr class="separator:a4ac735d5c0ecee9a8f08f88c0a5c4be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12b8365a90f081ca2fb56f21fb34e3d0"><td class="memItemLeft" align="right" valign="top"><a id="a12b8365a90f081ca2fb56f21fb34e3d0" name="a12b8365a90f081ca2fb56f21fb34e3d0"></a>
+virtual Output&#160;</td><td class="memItemRight" valign="bottom"><b>h</b> (const State &amp;x)=0</td></tr>
+<tr class="separator:a12b8365a90f081ca2fb56f21fb34e3d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b96ee5e8b773c58a66d7db3717cbf42"><td class="memItemLeft" align="right" valign="top"><a id="a5b96ee5e8b773c58a66d7db3717cbf42" name="a5b96ee5e8b773c58a66d7db3717cbf42"></a>
+virtual JacobianF&#160;</td><td class="memItemRight" valign="bottom"><b>linearF</b> (const State &amp;x, const Input &amp;u)=0</td></tr>
+<tr class="separator:a5b96ee5e8b773c58a66d7db3717cbf42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ef58749cd84d8b6a7736efd232a2a35"><td class="memItemLeft" align="right" valign="top"><a id="a1ef58749cd84d8b6a7736efd232a2a35" name="a1ef58749cd84d8b6a7736efd232a2a35"></a>
+virtual JacobianH&#160;</td><td class="memItemRight" valign="bottom"><b>linearH</b> (const State &amp;x)=0</td></tr>
+<tr class="separator:a1ef58749cd84d8b6a7736efd232a2a35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38fdabbd9612548c807c2714922b5703"><td class="memItemLeft" align="right" valign="top"><a id="a38fdabbd9612548c807c2714922b5703" name="a38fdabbd9612548c807c2714922b5703"></a>
 virtual Input&#160;</td><td class="memItemRight" valign="bottom"><b>getInput</b> ()=0</td></tr>
-<tr class="separator:a9e1e73eedac92e6d2e118778b347c8d6 inherit pro_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a669dcc8676d6f195ee60a5e3cec09ec6 inherit pro_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a669dcc8676d6f195ee60a5e3cec09ec6" name="a669dcc8676d6f195ee60a5e3cec09ec6"></a>
+<tr class="separator:a38fdabbd9612548c807c2714922b5703"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1fc30708ff6668c2b1dd4ebcf4c45aae"><td class="memItemLeft" align="right" valign="top"><a id="a1fc30708ff6668c2b1dd4ebcf4c45aae" name="a1fc30708ff6668c2b1dd4ebcf4c45aae"></a>
 virtual Output&#160;</td><td class="memItemRight" valign="bottom"><b>getOutput</b> ()=0</td></tr>
-<tr class="separator:a669dcc8676d6f195ee60a5e3cec09ec6 inherit pro_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20ae47fc67c0bbd69bd8d188819f9ecd inherit pro_methods_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a20ae47fc67c0bbd69bd8d188819f9ecd" name="a20ae47fc67c0bbd69bd8d188819f9ecd"></a>
-Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><b>merweAdd</b> (Eigen::MatrixXd A, const Eigen::VectorXd &amp;u)</td></tr>
-<tr class="separator:a20ae47fc67c0bbd69bd8d188819f9ecd inherit pro_methods_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header pro_attribs_classatum_1_1UKF"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classatum_1_1UKF')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classatum_1_1UKF.html">atum::UKF&lt; 6, 2, 2 &gt;</a></td></tr>
-<tr class="memitem:a066c66b2bfbf1c0a0f080c9b08e68044 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a066c66b2bfbf1c0a0f080c9b08e68044" name="a066c66b2bfbf1c0a0f080c9b08e68044"></a>
+<tr class="separator:a1fc30708ff6668c2b1dd4ebcf4c45aae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classatum_1_1EKF"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classatum_1_1EKF')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classatum_1_1EKF.html">atum::EKF&lt; 6, 2, 2 &gt;</a></td></tr>
+<tr class="memitem:a0abba72187caddcd51742a0b2d4e6e2d inherit pro_attribs_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a0abba72187caddcd51742a0b2d4e6e2d" name="a0abba72187caddcd51742a0b2d4e6e2d"></a>
 State&#160;</td><td class="memItemRight" valign="bottom"><b>xHat</b></td></tr>
-<tr class="separator:a066c66b2bfbf1c0a0f080c9b08e68044 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a164a4ddd537bddc63924cb2d7ce0a3 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a3a164a4ddd537bddc63924cb2d7ce0a3" name="a3a164a4ddd537bddc63924cb2d7ce0a3"></a>
+<tr class="separator:a0abba72187caddcd51742a0b2d4e6e2d inherit pro_attribs_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0dd8d8257d6cd0569c1ba13e9fd18c inherit pro_attribs_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a1e0dd8d8257d6cd0569c1ba13e9fd18c" name="a1e0dd8d8257d6cd0569c1ba13e9fd18c"></a>
 StateCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>P</b></td></tr>
-<tr class="separator:a3a164a4ddd537bddc63924cb2d7ce0a3 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab479347efd5e60527f3409e3169c16c4 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ab479347efd5e60527f3409e3169c16c4" name="ab479347efd5e60527f3409e3169c16c4"></a>
+<tr class="separator:a1e0dd8d8257d6cd0569c1ba13e9fd18c inherit pro_attribs_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82e993a5d0529aa24605bf065af1ac31 inherit pro_attribs_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a82e993a5d0529aa24605bf065af1ac31" name="a82e993a5d0529aa24605bf065af1ac31"></a>
 const StateCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>Q</b></td></tr>
-<tr class="separator:ab479347efd5e60527f3409e3169c16c4 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac24dd9a6371fa6a4416cabf375c6536c inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ac24dd9a6371fa6a4416cabf375c6536c" name="ac24dd9a6371fa6a4416cabf375c6536c"></a>
+<tr class="separator:a82e993a5d0529aa24605bf065af1ac31 inherit pro_attribs_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2878663132bf9cc3e81faed49ac2d0a inherit pro_attribs_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="ac2878663132bf9cc3e81faed49ac2d0a" name="ac2878663132bf9cc3e81faed49ac2d0a"></a>
 const OutputCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>R</b></td></tr>
-<tr class="separator:ac24dd9a6371fa6a4416cabf375c6536c inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46b3c71f6176e35baa7a2fac48e26351 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a46b3c71f6176e35baa7a2fac48e26351" name="a46b3c71f6176e35baa7a2fac48e26351"></a>
-Weights&#160;</td><td class="memItemRight" valign="bottom"><b>Wm</b></td></tr>
-<tr class="separator:a46b3c71f6176e35baa7a2fac48e26351 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac759932e57dc12985f91234821142c99 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ac759932e57dc12985f91234821142c99" name="ac759932e57dc12985f91234821142c99"></a>
-Weights&#160;</td><td class="memItemRight" valign="bottom"><b>Wc</b></td></tr>
-<tr class="separator:ac759932e57dc12985f91234821142c99 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa8ff6530ee04534e9040e28c5fa04914 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="aa8ff6530ee04534e9040e28c5fa04914" name="aa8ff6530ee04534e9040e28c5fa04914"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>eta</b></td></tr>
-<tr class="separator:aa8ff6530ee04534e9040e28c5fa04914 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a283a159a05f9e05de205ad2b56790212 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a283a159a05f9e05de205ad2b56790212" name="a283a159a05f9e05de205ad2b56790212"></a>
-SigmaPoints&#160;</td><td class="memItemRight" valign="bottom"><b>chiF</b></td></tr>
-<tr class="separator:a283a159a05f9e05de205ad2b56790212 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d6ea5bf4ad5cd4a2eae98b1aae8aa37 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a2d6ea5bf4ad5cd4a2eae98b1aae8aa37" name="a2d6ea5bf4ad5cd4a2eae98b1aae8aa37"></a>
+<tr class="separator:ac2878663132bf9cc3e81faed49ac2d0a inherit pro_attribs_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06f5e150602e75f39cd782264042fe04 inherit pro_attribs_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a06f5e150602e75f39cd782264042fe04" name="a06f5e150602e75f39cd782264042fe04"></a>
 State&#160;</td><td class="memItemRight" valign="bottom"><b>xHatPriori</b></td></tr>
-<tr class="separator:a2d6ea5bf4ad5cd4a2eae98b1aae8aa37 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35b52daf34ce0a6719f7adfdc5613cc3 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="a35b52daf34ce0a6719f7adfdc5613cc3" name="a35b52daf34ce0a6719f7adfdc5613cc3"></a>
+<tr class="separator:a06f5e150602e75f39cd782264042fe04 inherit pro_attribs_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa86a77348ce933f4401b2eb42c8d789d inherit pro_attribs_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="aa86a77348ce933f4401b2eb42c8d789d" name="aa86a77348ce933f4401b2eb42c8d789d"></a>
 StateCovariance&#160;</td><td class="memItemRight" valign="bottom"><b>PPriori</b></td></tr>
-<tr class="separator:a35b52daf34ce0a6719f7adfdc5613cc3 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3295891794c3b58c6ee0d4195d990a5 inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="aa3295891794c3b58c6ee0d4195d990a5" name="aa3295891794c3b58c6ee0d4195d990a5"></a>
-Output&#160;</td><td class="memItemRight" valign="bottom"><b>yHatPriori</b></td></tr>
-<tr class="separator:aa3295891794c3b58c6ee0d4195d990a5 inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab28fb0fe1d4f0fa87154848e79fc8ebc inherit pro_attribs_classatum_1_1UKF"><td class="memItemLeft" align="right" valign="top"><a id="ab28fb0fe1d4f0fa87154848e79fc8ebc" name="ab28fb0fe1d4f0fa87154848e79fc8ebc"></a>
-SigmaOutputPoints&#160;</td><td class="memItemRight" valign="bottom"><b>upsilon</b></td></tr>
-<tr class="separator:ab28fb0fe1d4f0fa87154848e79fc8ebc inherit pro_attribs_classatum_1_1UKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aa86a77348ce933f4401b2eb42c8d789d inherit pro_attribs_classatum_1_1EKF"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classatum_1_1Tracker"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classatum_1_1Tracker')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classatum_1_1Tracker.html">atum::Tracker</a></td></tr>
 <tr class="memitem:a9d2eede90b61d19b7444776382e649f7 inherit pro_attribs_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top"><a id="a9d2eede90b61d19b7444776382e649f7" name="a9d2eede90b61d19b7444776382e649f7"></a>
 <a class="el" href="classatum_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>

@@ -13,6 +13,10 @@ var hierarchy =
     ] ],
     [ "atum::DistanceSensor", "classatum_1_1DistanceSensor.html", null ],
     [ "atum::Drive", "classatum_1_1Drive.html", null ],
+    [ "atum::EKF< TotalStates, TotalInputs, TotalOutputs >", "classatum_1_1EKF.html", null ],
+    [ "atum::EKF< 6, 2, 2 >", "classatum_1_1EKF.html", [
+      [ "atum::PoseEstimator", "classatum_1_1PoseEstimator.html", null ]
+    ] ],
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],
     [ "atum::Drive::Geometry", "structatum_1_1Drive_1_1Geometry.html", null ],
     [ "atum::GoalClamp", "classatum_1_1GoalClamp.html", null ],
@@ -86,10 +90,6 @@ var hierarchy =
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
       [ "atum::OTOS", "classatum_1_1OTOS.html", null ],
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ],
-      [ "atum::PoseEstimator", "classatum_1_1PoseEstimator.html", null ]
-    ] ],
-    [ "atum::UKF< TotalStates, TotalInputs, TotalOutputs >", "classatum_1_1UKF.html", null ],
-    [ "atum::UKF< 6, 2, 2 >", "classatum_1_1UKF.html", [
       [ "atum::PoseEstimator", "classatum_1_1PoseEstimator.html", null ]
     ] ],
     [ "atum::UnwrappedPose", "structatum_1_1UnwrappedPose.html", null ]

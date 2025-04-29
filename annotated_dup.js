@@ -16,6 +16,7 @@ var annotated_dup =
       [ "Controller", "classatum_1_1Controller.html", "classatum_1_1Controller" ],
       [ "DistanceSensor", "classatum_1_1DistanceSensor.html", "classatum_1_1DistanceSensor" ],
       [ "Drive", "classatum_1_1Drive.html", "classatum_1_1Drive" ],
+      [ "EKF", "classatum_1_1EKF.html", null ],
       [ "GoalClamp", "classatum_1_1GoalClamp.html", "classatum_1_1GoalClamp" ],
       [ "GoalRush", "classatum_1_1GoalRush.html", "classatum_1_1GoalRush" ],
       [ "GPS", "classatum_1_1GPS.html", "classatum_1_1GPS" ],
@@ -58,7 +59,6 @@ var annotated_dup =
       [ "Timer", "classatum_1_1Timer.html", "classatum_1_1Timer" ],
       [ "Tracker", "classatum_1_1Tracker.html", "classatum_1_1Tracker" ],
       [ "Turn", "classatum_1_1Turn.html", "classatum_1_1Turn" ],
-      [ "UKF", "classatum_1_1UKF.html", null ],
       [ "UnwrappedPose", "structatum_1_1UnwrappedPose.html", "structatum_1_1UnwrappedPose" ]
     ] ]
 ];
