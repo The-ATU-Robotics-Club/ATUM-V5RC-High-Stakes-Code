@@ -47,6 +47,12 @@ void RobotClone::opcontrol() {
 
     if(remote.getPress(Remote::Button::Y)) {
       goalClamp->toggleClamp();
+      if(!goalClamp->isClamped()) {
+        clampTimer.setTime();
+      }
+    }
+    if(clampTimer.goneOff() && goalClamp->hasGoal()) {
+      goalClamp->clamp();
     }
 
     if(remote.getPress(Remote::Button::Left)) {
@@ -98,24 +104,27 @@ void RobotClone::ladybrownControls() {
   go back to loading. L1 and L2 work as expected otherwise.
   */
 
+  if(remote.getHold(Remote::Button::L2) &&
+     ladybrown->getState() == LadybrownState::Loading) {
+    useLadybrownControls = false;
+  }
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1: intake->load(); break;
     default:
       intake->stop();
       switch(remote.getLTrigger()) {
-        case -1: ladybrown->retract(); break;
+        case -1:
+          if(ladybrown->getPosition() >= 45_deg) {
+            ladybrown->retract();
+          } else {
+            ladybrown->load();
+          }
+          break;
         case 1: ladybrown->extend(); break;
         default: ladybrown->stop(); break;
       }
       break;
-  }
-
-  if(goalClamp->hasGoal() && !recentlyUnclamped) {
-    goalClamp->clamp();
-    recentlyUnclamped = true;
-  } else if(!goalClamp->hasGoal()) {
-    recentlyUnclamped = false;
   }
 }
 
@@ -127,7 +136,7 @@ void RobotClone::intakeControls() {
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1:
-      if(remote.getHold(Remote::Button::L1) || goalClamp->isClamped()) {
+      if(goalClamp->isClamped()) {
         intake->intake();
       } else {
         intake->index();
@@ -136,13 +145,8 @@ void RobotClone::intakeControls() {
     default: intake->stop(); break;
   }
 
-  if(remote.getHold(Remote::Button::L2)) {
-    goalClamp->unclamp();
-  } else if(goalClamp->hasGoal() && !recentlyUnclamped) {
-    goalClamp->clamp();
-    recentlyUnclamped = true;
-  } else if(!goalClamp->hasGoal()) {
-    recentlyUnclamped = false;
+  if(remote.getPress(Remote::Button::L1)) {
+    useLadybrownControls = true;
   }
 }
 

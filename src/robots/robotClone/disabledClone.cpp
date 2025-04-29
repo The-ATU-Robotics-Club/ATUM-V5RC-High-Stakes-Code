@@ -139,8 +139,8 @@ void RobotClone::ladybrownSetup() {
   Ladybrown::Parameters ladybrownParameters{
       12.0,
       {5_deg, 235_deg},
-      16_deg,
-      0.0_s,
+      15_deg,
+      0.05_s,
       PID{{0.25, 0.0, 0.05}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},

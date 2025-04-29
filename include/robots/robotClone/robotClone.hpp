@@ -231,7 +231,7 @@ class RobotClone : public Robot {
   bool useHangControls{false};
   double speedMultiplier{1.0};
   bool scored{false};
-  bool recentlyUnclamped{false};
+  Timer clampTimer{0.5_s};
 
   /**
    * @brief Initializes the ports for the 15 inch.
