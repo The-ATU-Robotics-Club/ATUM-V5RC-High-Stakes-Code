@@ -38,15 +38,6 @@ Pose Odometry::update() {
     sinDHOverDH = sin(dh) / dhScalar;
     cosDHMinusOneOverDH = (cos(dh) - 1.0) / dhScalar;
   }
-  if(drive) {
-    inch_t dyRDrive {drive->traveled()};
-    if(dh) {
-      dyRDrive = 2.0 * sin(dh / 2.0) * (dyRDrive / dhScalar);
-    }
-    if(abs(dyRDrive - dyR) <= 0.025_in) {
-      dyR = (dyR + dyRDrive) / 2.0;
-    }
-  }
   return integratePose(dxR, dyR, dh);
 }
 
