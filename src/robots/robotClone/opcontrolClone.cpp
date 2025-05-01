@@ -1,5 +1,5 @@
 #include "robotClone.hpp"
-
+#include "robots/sharedSystems/ladybrown.hpp"
 
 namespace atum {
 void RobotClone::opcontrol() {
@@ -108,23 +108,36 @@ void RobotClone::ladybrownControls() {
      ladybrown->getState() == LadybrownState::Loading) {
     useLadybrownControls = false;
   }
-  switch(remote.getRTrigger()) {
-    case -1: intake->outtake(); break;
-    case 1: intake->load(); break;
-    default:
-      intake->stop();
-      switch(remote.getLTrigger()) {
-        case -1:
-          if(ladybrown->getPosition() >= 45_deg) {
-            ladybrown->retract();
-          } else {
-            ladybrown->load();
-          }
-          break;
-        case 1: ladybrown->extend(); break;
-        default: ladybrown->stop(); break;
-      }
-      break;
+  if(intake->getState() == IntakeState::Pressed &&
+     remote.getPress(Remote::Button::R2)) {
+    ladybrown->prepare();
+  } else {
+    switch(remote.getRTrigger()) {
+      case -1:
+        if(ladybrown->getState() != LadybrownState::Preparing && ladybrown->getState() != LadybrownState::Packing) {
+          intake->outtake();
+        }
+        break;
+      case 1:
+        if(ladybrown->getState() != LadybrownState::Preparing && ladybrown->getState() != LadybrownState::Packing) {
+          intake->load();
+        }
+        break;
+      default:
+        intake->stop();
+        switch(remote.getLTrigger()) {
+          case -1:
+            if(ladybrown->getPosition() >= 45_deg) {
+              ladybrown->retract();
+            } else {
+              ladybrown->load();
+            }
+            break;
+          case 1: ladybrown->extend(); break;
+          default: ladybrown->stop(); break;
+        }
+        break;
+    }
   }
 }
 

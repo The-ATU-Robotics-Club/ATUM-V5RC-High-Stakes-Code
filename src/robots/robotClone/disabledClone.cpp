@@ -2,7 +2,7 @@
 
 
 namespace atum {
-
+// White
 void RobotClone::initialize15Ports() {
   motorPorts = {{"left drive", {-16, 17, -18, -19}},
                 {"right drive", {6, -7, 8, 9}},
@@ -15,7 +15,7 @@ void RobotClone::initialize15Ports() {
                 {"intake color 1", 4},
                 {"intake color 2", 5},
                 {"goal clamp piston", 'F'},
-                {"adi extender", 18},
+                {"adi extender", 3},
                 {"goal limit switch 1", 'A'},
                 {"goal limit switch 2", 'B'},
                 {"forward odometer 1", 'C'},
@@ -28,6 +28,7 @@ void RobotClone::initialize15Ports() {
                 {"goal rush switch 2", 'D'}};
 }
 
+// Yellow
 void RobotClone::initialize24Ports() {
   motorPorts = {{"left drive", {-6, 7, -8, -9}},
                 {"right drive", {-1, 2, 3, 5}},
@@ -140,7 +141,8 @@ void RobotClone::ladybrownSetup() {
       12.0,
       {5_deg, 235_deg},
       15_deg,
-      0.05_s,
+      60_deg,
+      0.1_s,
       PID{{0.25, 0.0, 0.05}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},
@@ -168,8 +170,10 @@ void RobotClone::intakeSetup() {
   intakeParams.timeUntilUnjammed = 0.3_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 300_ms;
-  intakeParams.backupFromLoad = 6_deg;
+  intakeParams.backupFromLoad = 20_deg;
   intakeParams.generalTimeout = 1_s;
+  intakeParams.indexingVoltage = 10.0;
+  intakeParams.pressVoltage = 7.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
                                     ladybrown.get(),

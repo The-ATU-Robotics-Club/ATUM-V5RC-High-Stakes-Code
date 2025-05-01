@@ -89,15 +89,15 @@ revolutions_per_minute_t Motor::getTargetVelocity() const {
   return 0_rpm;
 }
 
-std::int32_t Motor::getCurrentDraw() const {
-  std::vector<std::int32_t> currents;
+double Motor::getCurrentDraw() const {
+  std::vector<double> currents;
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      const std::int32_t current{motors[i]->get_current_draw()};
+      const double current{motors[i]->get_current_draw()};
       currents.push_back(current);
     }
   }
-  return average(currents);
+  return average(currents) / 1000.0;
 }
 
 double Motor::getEfficiency() const {
@@ -144,13 +144,15 @@ double Motor::getTorque() const {
   return average(torques);
 }
 
-std::int32_t Motor::getVoltage() const {
+double Motor::getVoltage() const {
+  std::vector<double> voltages;
   for(std::size_t i{0}; i < motors.size(); i++) {
     if(enabled[i]) {
-      return directions[i] * motors[i]->get_voltage() / 1000.0;
+      const double voltage{directions[i] * motors[i]->get_voltage()};
+      voltages.push_back(voltage);
     }
   }
-  return 0;
+  return average(voltages) / 1000.0;
 }
 
 pros::v5::MotorBrake Motor::getBrakeMode() const {

@@ -96,9 +96,9 @@ class Motor {
   /**
    * @brief Get the average current draw of all the motors in mA.
    *
-   * @return std::int32_t
+   * @return double
    */
-  std::int32_t getCurrentDraw() const;
+  double getCurrentDraw() const;
 
   /**
    * @brief Get the average efficiency of all the motors as a percentage.
@@ -131,9 +131,9 @@ class Motor {
   /**
    * @brief Get the voltage of the motors in volts.
    *
-   * @return std::int32_t
+   * @return double
    */
-  std::int32_t getVoltage() const;
+   double getVoltage() const;
 
   /**
    * @brief Gets the brake mode of the motors.

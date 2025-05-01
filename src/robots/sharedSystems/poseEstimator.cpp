@@ -8,7 +8,7 @@ PoseEstimator::PoseEstimator(Drive *iDrive,
                              const PoseEstimator::StateCovariance &iQ,
                              const PoseEstimator::OutputCovariance &iR) :
     EKF{iP, iQ, iR},
-    Tracker{Logger::Level::Debug},
+    Tracker{Logger::Level::Info},
     Task(this, Logger::Level::Info),
     drive{iDrive} {
   const double kT{0.142275};

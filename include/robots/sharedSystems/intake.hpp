@@ -12,6 +12,7 @@
 #include "atum/atum.hpp"
 #include "ladybrown.hpp"
 
+
 namespace atum {
 class Ladybrown;
 
@@ -63,6 +64,7 @@ class Intake : public Task, public StateMachine<IntakeState> {
     second_t generalTimeout;
     double intakingVoltage{12.0};
     double indexingVoltage{12.0};
+    double pressVoltage{12.0};
   };
 
   /**
@@ -145,6 +147,14 @@ class Intake : public Task, public StateMachine<IntakeState> {
   ColorSensor::Color getColor() const;
 
   private:
+  /**
+   * @brief Returns if a ring is in the indexer.
+   *
+   * @return true
+   * @return false
+   */
+  bool inIndexer() const;
+
   std::unique_ptr<Motor> motor;
   std::unique_ptr<ColorSensor> colorSensor;
   Ladybrown *ladybrown;

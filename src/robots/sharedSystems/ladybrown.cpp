@@ -1,7 +1,6 @@
 #include "atum/devices/colorSensor.hpp"
 #include "ladybrown.hpp"
 
-
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
                      std::unique_ptr<DistanceSensor> iDistance,
@@ -79,6 +78,19 @@ void Ladybrown::pack() {
   state = LadybrownState::Packing;
 }
 
+void Ladybrown::prepare() {
+  if(intake->getState() != IntakeState::Pressed) {
+    return;
+  }
+  if(target != params.preparedPosition) {
+    params.acceptable.reset();
+  }
+  target = params.preparedPosition;
+  nextState = LadybrownState::Idle;
+  state = LadybrownState::Preparing;
+
+}
+
 void Ladybrown::moveTo(const degree_t iTarget,
                        const std::optional<LadybrownState> &iNextState) {
   if(target != iTarget) {
@@ -91,8 +103,7 @@ void Ladybrown::moveTo(const degree_t iTarget,
 
 bool Ladybrown::ringInCarriage() const {
   return state != LadybrownState::Resting &&
-         distance->getDistance() <= params.loadRingDistance &&
-         intake->getColor() == ColorSensor::Color::None;
+         distance->getDistance() <= params.loadRingDistance;
 }
 
 bool Ladybrown::ringInIndexer() const {
@@ -158,6 +169,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
         state = nextState.value_or(LadybrownState::Idle);
         break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
+      case LadybrownState::Preparing: intake->finishLoading();
       default: moveToControls(); break;
     }
     wait();

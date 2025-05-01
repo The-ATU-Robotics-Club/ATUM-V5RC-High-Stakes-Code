@@ -36,6 +36,9 @@ void Drive::tank(const double leftVoltage, const double rightVoltage) {
     left->moveVoltage(leftVoltage);
     right->moveVoltage(rightVoltage);
   }
+  std::cout << "VOLTAGE: " << (left->getVoltage() + right->getVoltage()) / 2.0 << '\n';
+  std::cout << "VELOCITY: " << getValueAs<radians_per_second_t>((left->getVelocity() + right->getVelocity()) / 2.0) << '\n';
+  std::cout << "CURRENT: " << (left->getCurrentDraw() + right->getCurrentDraw()) / 2.0 << '\n';
 }
 
 void Drive::arcade(const double forwardVoltage, const double turnVoltage) {

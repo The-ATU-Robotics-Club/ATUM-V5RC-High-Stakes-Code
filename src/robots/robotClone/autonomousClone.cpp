@@ -1,4 +1,6 @@
 #include "robotClone.hpp"
+#include "robots/sharedSystems/intake.hpp"
+#include "robots/sharedSystems/ladybrown.hpp"
 
 
 namespace atum {
@@ -43,6 +45,13 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   } else if(id == ID24) {
     skills24();
   }
+  END_ROUTINE
+
+  START_ROUTINE("LADYBROWN TEST")
+  intake->load();
+  waitUntil(intake->checkStateIs(IntakeState::FinishedLoading), 3_s);
+  ladybrown->moveTo(60_deg);
+  intake->load();
   END_ROUTINE
 
   START_ROUTINE("Do Nothing")

@@ -68,6 +68,11 @@ ColorSensor::Color Intake::getColor() const {
   return colorSensor->getColor();
 }
 
+bool Intake::inIndexer() const {
+  return ladybrown->ringInIndexer() ||
+         colorSensor->getColor() != ColorSensor::Color::None;
+}
+
 TASK_DEFINITIONS_FOR(Intake) {
   START_TASK("Intake State Machine")
   while(true) {
@@ -77,7 +82,7 @@ TASK_DEFINITIONS_FOR(Intake) {
       case IntakeState::FinishedLoading: voltage = 0.0; break;
       case IntakeState::Loading:
         ladybrown->load();
-        voltage = ladybrown->getState() == LadybrownState::Loading ?
+        voltage = ladybrown->getState() == LadybrownState::Loading || !inIndexer() ?
                       params.indexingVoltage :
                       0.0;
         if(ladybrown->getState() != LadybrownState::Loading ||
@@ -87,7 +92,7 @@ TASK_DEFINITIONS_FOR(Intake) {
         state = IntakeState::PressLoading;
         break;
       case IntakeState::PressLoading: {
-        voltage = 7;
+        voltage = params.pressVoltage;
         Timer timeout{params.generalTimeout};
         while(state == IntakeState::PressLoading && !timeout.goneOff()) {
           wait();
@@ -97,7 +102,7 @@ TASK_DEFINITIONS_FOR(Intake) {
         }
       } break;
       case IntakeState::UnpressLoading: {
-        voltage = -12;
+        voltage = -12.0;
         Timer timeout{params.generalTimeout};
         motor->resetPosition();
         while(motor->getPosition() > -params.backupFromLoad &&
@@ -110,7 +115,7 @@ TASK_DEFINITIONS_FOR(Intake) {
         state = IntakeState::FinishedLoading;
       } break;
       case IntakeState::Indexing:
-        voltage = ladybrown->ringInIndexer() ? 0.0 : params.indexingVoltage;
+        voltage = inIndexer() ? 0.0 : params.indexingVoltage;
         break;
       case IntakeState::Intaking: voltage = params.intakingVoltage; break;
       case IntakeState::Outtaking: voltage = -12.0; break;
