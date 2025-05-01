@@ -9,6 +9,7 @@ var searchData=
   ['piston_6',['Piston',['../classatum_1_1Piston.html#adfe6feb46339310b7ad6c606fb84a506',1,'atum::Piston::Piston(const std::uint8_t port, const bool iReversed=false, const bool startExtended=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1Piston.html#a712cea64261f3968234e648108e37026',1,'atum::Piston::Piston(const ADIExtenderPort &amp;port, const bool iReversed=false, const bool startExtended=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
   ['position_7',['position',['../classatum_1_1Kinematics.html#ab666af72a80cdac8f615955dd71a27cb',1,'atum::Kinematics']]],
   ['potentiometer_8',['Potentiometer',['../classatum_1_1Potentiometer.html#ac47916cfa85d8d6593edad3a80ac7ab2',1,'atum::Potentiometer::Potentiometer(const std::uint8_t port, const bool iReversed=false, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1Potentiometer.html#a77814abd14df2fba6c44d658b3813ead',1,'atum::Potentiometer::Potentiometer(const ADIExtenderPort &amp;port, const bool iReversed=false, const Logger::Level loggerLevel=Logger::Level::Info)']]],
-  ['print_9',['print',['../classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2',1,'atum::Remote']]],
-  ['profilefollower_10',['ProfileFollower',['../classatum_1_1ProfileFollower.html#a837a7de2efad49f9069865b68ce32e07',1,'atum::ProfileFollower']]]
+  ['prepare_9',['prepare',['../classatum_1_1Ladybrown.html#a73fd580e8e076475689a027ee08b9921',1,'atum::Ladybrown']]],
+  ['print_10',['print',['../classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2',1,'atum::Remote']]],
+  ['profilefollower_11',['ProfileFollower',['../classatum_1_1ProfileFollower.html#a837a7de2efad49f9069865b68ce32e07',1,'atum::ProfileFollower']]]
 ];

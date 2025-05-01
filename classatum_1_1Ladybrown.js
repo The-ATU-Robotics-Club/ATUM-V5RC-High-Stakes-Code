@@ -8,6 +8,7 @@ var classatum_1_1Ladybrown =
     [ "load", "classatum_1_1Ladybrown.html#a8bb52efac91285cc78d8da8892831d79", null ],
     [ "moveTo", "classatum_1_1Ladybrown.html#a2a8ddc4cb7e46042fe2aab80240b3a83", null ],
     [ "pack", "classatum_1_1Ladybrown.html#abb32368d4f5d25a6eac85d11e6e71e33", null ],
+    [ "prepare", "classatum_1_1Ladybrown.html#a73fd580e8e076475689a027ee08b9921", null ],
     [ "rest", "classatum_1_1Ladybrown.html#a59b7fe59428f7cde8bb0bfd4fb9a8e3e", null ],
     [ "retract", "classatum_1_1Ladybrown.html#a01cbff85ba3d8f18ffe9aefbf9890bc3", null ],
     [ "ringInCarriage", "classatum_1_1Ladybrown.html#ac98061be6c665009553eaf8d301fe989", null ],
