@@ -95,6 +95,7 @@ $(document).ready(function(){initNavTree('classatum_1_1OTOS.html',''); initResiz
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="classatum_1_1OTOS-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">atum::OTOS Class Reference</div></div>
@@ -112,13 +113,22 @@ Inheritance diagram for atum::OTOS:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac9f272a780e55d9757685db3e3c8180d"><td class="memItemLeft" align="right" valign="top"><a id="ac9f272a780e55d9757685db3e3c8180d" name="ac9f272a780e55d9757685db3e3c8180d"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>OTOS</b> (const std::int8_t port, const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;offset, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="separator:ac9f272a780e55d9757685db3e3c8180d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96b8fd2ec2557d42531042f5d509f0e1"><td class="memItemLeft" align="right" valign="top"><a id="a96b8fd2ec2557d42531042f5d509f0e1" name="a96b8fd2ec2557d42531042f5d509f0e1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>OTOS</b> (const std::int8_t port, const <a class="el" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;offset=<a class="el" href="structatum_1_1Pose.html">Pose</a>{}, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="separator:a96b8fd2ec2557d42531042f5d509f0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd0c5691d156729ca74d4e6d19a78381"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381">update</a> () override</td></tr>
+<tr class="memdesc:afd0c5691d156729ca74d4e6d19a78381"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>.  <br /></td></tr>
+<tr class="separator:afd0c5691d156729ca74d4e6d19a78381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a694c9407c3b83851a2eeb8ba4c4634ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce">setPose</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) override</td></tr>
+<tr class="memdesc:a694c9407c3b83851a2eeb8ba4c4634ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current pose of the tracker.  <br /></td></tr>
+<tr class="separator:a694c9407c3b83851a2eeb8ba4c4634ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79b6e2db22c828da64f9936f7515184c"><td class="memItemLeft" align="right" valign="top"><a id="a79b6e2db22c828da64f9936f7515184c" name="a79b6e2db22c828da64f9936f7515184c"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>check</b> () const</td></tr>
+<tr class="separator:a79b6e2db22c828da64f9936f7515184c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Tracker"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Tracker')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Tracker.html">atum::Tracker</a></td></tr>
-<tr class="memitem:ace62a5d033aff5bae893b268617a0e4d inherit pub_methods_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d">Tracker</a> (const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:ace62a5d033aff5bae893b268617a0e4d inherit pub_methods_classatum_1_1Tracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new tracker and performs logging.  <br /></td></tr>
-<tr class="separator:ace62a5d033aff5bae893b268617a0e4d inherit pub_methods_classatum_1_1Tracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592dc97fb4d21f740331d2fe589ccab0 inherit pub_methods_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#a592dc97fb4d21f740331d2fe589ccab0">Tracker</a> (const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info, const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">GUI::SeriesColor</a> iDotColor=GUI::SeriesColor::Green)</td></tr>
+<tr class="memdesc:a592dc97fb4d21f740331d2fe589ccab0 inherit pub_methods_classatum_1_1Tracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new tracker and performs logging.  <br /></td></tr>
+<tr class="separator:a592dc97fb4d21f740331d2fe589ccab0 inherit pub_methods_classatum_1_1Tracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47b4cb3c903a8e29ef251354f18e6e8c inherit pub_methods_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c">update</a> ()=0</td></tr>
 <tr class="memdesc:a47b4cb3c903a8e29ef251354f18e6e8c inherit pub_methods_classatum_1_1Tracker"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>.  <br /></td></tr>
 <tr class="separator:a47b4cb3c903a8e29ef251354f18e6e8c inherit pub_methods_classatum_1_1Tracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,10 +145,80 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a9d2eede90b61d19b7444776382e649f7 inherit pro_attribs_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top"><a id="a9d2eede90b61d19b7444776382e649f7" name="a9d2eede90b61d19b7444776382e649f7"></a>
 <a class="el" href="classatum_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
 <tr class="separator:a9d2eede90b61d19b7444776382e649f7 inherit pro_attribs_classatum_1_1Tracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9cbe1f31be974b31c3a5b086ea9b8a5 inherit pro_attribs_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top"><a id="ad9cbe1f31be974b31c3a5b086ea9b8a5" name="ad9cbe1f31be974b31c3a5b086ea9b8a5"></a>
+const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">GUI::SeriesColor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dotColor</b></td></tr>
+<tr class="separator:ad9cbe1f31be974b31c3a5b086ea9b8a5 inherit pro_attribs_classatum_1_1Tracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a872fa8166743fffed374232815caf39c inherit pro_attribs_classatum_1_1Tracker"><td class="memItemLeft" align="right" valign="top"><a id="a872fa8166743fffed374232815caf39c" name="a872fa8166743fffed374232815caf39c"></a>
 <a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pose</b></td></tr>
 <tr class="separator:a872fa8166743fffed374232815caf39c inherit pro_attribs_classatum_1_1Tracker"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a694c9407c3b83851a2eeb8ba4c4634ce" name="a694c9407c3b83851a2eeb8ba4c4634ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a694c9407c3b83851a2eeb8ba4c4634ce">&#9670;&#160;</a></span>setPose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void atum::OTOS::setPose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;&#160;</td>
+          <td class="paramname"><em>iPose</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the current pose of the tracker. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iPose</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Reimplemented from <a class="el" href="classatum_1_1Tracker.html#ad3af8500f4e8b72a2b99794c5e7234c1">atum::Tracker</a>.</p>
+
+</div>
+</div>
+<a id="afd0c5691d156729ca74d4e6d19a78381" name="afd0c5691d156729ca74d4e6d19a78381"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd0c5691d156729ca74d4e6d19a78381">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structatum_1_1Pose.html">Pose</a> atum::OTOS::update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>. </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
+
+<p>Implements <a class="el" href="classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c">atum::Tracker</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>include/atum/pose/<a class="el" href="otos_8hpp_source.html">otos.hpp</a></li>
 </ul>

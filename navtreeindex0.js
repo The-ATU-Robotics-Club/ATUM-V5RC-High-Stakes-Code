@@ -191,6 +191,8 @@ var NAVTREEINDEX0 =
 "classatum_1_1Movement.html":[1,0,0,22],
 "classatum_1_1Movement.html#a893ace5b2be17a29a85ac67aefd305a3":[1,0,0,22,0],
 "classatum_1_1OTOS.html":[1,0,0,26],
+"classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce":[1,0,0,26,0],
+"classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381":[1,0,0,26,1],
 "classatum_1_1Odometer.html":[1,0,0,24],
 "classatum_1_1Odometer.html#a0db24a49cb5fdfaa427de18b70fb0b85":[1,0,0,24,1],
 "classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf":[1,0,0,24,3],
@@ -198,7 +200,7 @@ var NAVTREEINDEX0 =
 "classatum_1_1Odometer.html#af08eb1ba0516005beee7de3177aab0b2":[1,0,0,24,2],
 "classatum_1_1Odometry.html":[1,0,0,25],
 "classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5":[1,0,0,25,1],
-"classatum_1_1Odometry.html#ad28d93c8003cfec933d9a39e25be2f8a":[1,0,0,25,0],
+"classatum_1_1Odometry.html#a0e57504d1d22260b724a3533d362c17d":[1,0,0,25,0],
 "classatum_1_1PID.html":[1,0,0,30],
 "classatum_1_1PID.html#a1c8bf498d7b7a33024d2f3347da94e2d":[1,0,0,30,2],
 "classatum_1_1PID.html#a862ac97c898e8e2bfce2c8f00fa361f2":[1,0,0,30,3],
@@ -247,7 +249,5 @@ var NAVTREEINDEX0 =
 "classatum_1_1Remote.html#a27903f9a01525e064e73ac9aa89637f3a9d5ed678fe57bcca610140957afab571":[1,0,0,37,1,1],
 "classatum_1_1Remote.html#a27903f9a01525e064e73ac9aa89637f3a9ec4c0afd450ceac7adb81c3bcfc9732":[1,0,0,37,1,8],
 "classatum_1_1Remote.html#a27903f9a01525e064e73ac9aa89637f3acda522d4353b166cc2dee84673307b4e":[1,0,0,37,1,10],
-"classatum_1_1Remote.html#a29e153d5fa6a6ceb27c53613e6c58013":[1,0,0,37,8],
-"classatum_1_1Remote.html#a4b07d1aa7c94a610215124ec8125afc2":[1,0,0,37,10],
-"classatum_1_1Remote.html#a55689afd46e411b6fd27cf9ed4e42def":[1,0,0,37,6]
+"classatum_1_1Remote.html#a29e153d5fa6a6ceb27c53613e6c58013":[1,0,0,37,8]
 };

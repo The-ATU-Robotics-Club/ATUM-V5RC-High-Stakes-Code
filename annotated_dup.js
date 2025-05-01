@@ -34,7 +34,7 @@ var annotated_dup =
       [ "MoveTo", "classatum_1_1MoveTo.html", "classatum_1_1MoveTo" ],
       [ "Odometer", "classatum_1_1Odometer.html", "classatum_1_1Odometer" ],
       [ "Odometry", "classatum_1_1Odometry.html", "classatum_1_1Odometry" ],
-      [ "OTOS", "classatum_1_1OTOS.html", null ],
+      [ "OTOS", "classatum_1_1OTOS.html", "classatum_1_1OTOS" ],
       [ "Packet", "structatum_1_1Packet.html", "structatum_1_1Packet" ],
       [ "Path", "classatum_1_1Path.html", "classatum_1_1Path" ],
       [ "PathFollower", "classatum_1_1PathFollower.html", "classatum_1_1PathFollower" ],

@@ -18,7 +18,7 @@ var searchData=
   ['toggleclamp_15',['toggleClamp',['../classatum_1_1GoalClamp.html#abdee71986e38923c72c74ca76064802c',1,'atum::GoalClamp']]],
   ['tostring_16',['toString',['../colorSensor_8hpp.html#a19441251e989ce4d927e58eeaf7eaef6',1,'atum::toString(const ColorSensor::Color &amp;color)'],['../pose_8hpp.html#acfd7d943111074dac94ff54503425d5b',1,'atum::toString(const UnwrappedPose &amp;pose)'],['../pose_8hpp.html#a5686b3a5ace12704f9d7722ffbd8fd65',1,'atum::toString(const Pose &amp;pose)']]],
   ['toward_17',['toward',['../classatum_1_1Turn.html#a1d1eb3094a9c03b185b017ffe95fc1da',1,'atum::Turn::toward(const Pose &amp;target, const AngularProfile::Parameters &amp;specialParams={})'],['../classatum_1_1Turn.html#abda35649f18952e33457f6cfdce891ce',1,'atum::Turn::toward(const degree_t target, const AngularProfile::Parameters &amp;specialParams={})']]],
-  ['tracker_18',['Tracker',['../classatum_1_1Tracker.html',1,'atum::Tracker'],['../classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d',1,'atum::Tracker::Tracker()']]],
+  ['tracker_18',['Tracker',['../classatum_1_1Tracker.html',1,'atum::Tracker'],['../classatum_1_1Tracker.html#a592dc97fb4d21f740331d2fe589ccab0',1,'atum::Tracker::Tracker()']]],
   ['tracker_2ehpp_19',['tracker.hpp',['../tracker_8hpp.html',1,'']]],
   ['traveled_20',['traveled',['../classatum_1_1Odometer.html#a6e629d1831b5e53ec814e8b72731e3bf',1,'atum::Odometer::traveled()'],['../classatum_1_1Drive.html#ab24ecfbda89df0d6a24c2f4ad6d149b8',1,'atum::Drive::traveled()']]],
   ['triggered_21',['triggered',['../classatum_1_1LineTracker.html#aa6c2077261f93ad1af01386fb35d9b63',1,'atum::LineTracker']]],

@@ -14,7 +14,7 @@ var hierarchy =
     [ "atum::DistanceSensor", "classatum_1_1DistanceSensor.html", null ],
     [ "atum::Drive", "classatum_1_1Drive.html", null ],
     [ "atum::EKF< TotalStates, TotalInputs, TotalOutputs >", "classatum_1_1EKF.html", null ],
-    [ "atum::EKF< 6, 2, 2 >", "classatum_1_1EKF.html", [
+    [ "atum::EKF< 6, 2, 8 >", "classatum_1_1EKF.html", [
       [ "atum::PoseEstimator", "classatum_1_1PoseEstimator.html", null ]
     ] ],
     [ "atum::Motor::Gearing", "structatum_1_1Motor_1_1Gearing.html", null ],

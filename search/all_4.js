@@ -2,7 +2,7 @@ var searchData=
 [
   ['easteregg_0',['easteregg',['../classatum_1_1GUI_1_1Manager.html#a3d2d83773a9f74248e95d61ca027db69',1,'atum::GUI::Manager']]],
   ['ekf_1',['EKF',['../classatum_1_1EKF.html',1,'atum']]],
-  ['ekf_3c_206_2c_202_2c_202_20_3e_2',['EKF&lt; 6, 2, 2 &gt;',['../classatum_1_1EKF.html',1,'atum']]],
+  ['ekf_3c_206_2c_202_2c_208_20_3e_2',['EKF&lt; 6, 2, 8 &gt;',['../classatum_1_1EKF.html',1,'atum']]],
   ['end_5froutine_3',['END_ROUTINE',['../robot_8hpp.html#a923969c94a209631c9147d6871ee1c8b',1,'robot.hpp']]],
   ['end_5ftask_4',['END_TASK',['../task_8hpp.html#ac8780c7afc15b7c45ed3cb994320466c',1,'task.hpp']]],
   ['error_5',['error',['../classatum_1_1GUI_1_1Manager.html#ac21e3f6e977683296afc48cf5a64c47e',1,'atum::GUI::Manager::error()'],['../classatum_1_1Logger.html#a66749b87ece0705cd8d32d3effff924c',1,'atum::Logger::error()']]],

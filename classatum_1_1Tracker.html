@@ -120,9 +120,9 @@ Inheritance diagram for atum::Tracker:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ace62a5d033aff5bae893b268617a0e4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#ace62a5d033aff5bae893b268617a0e4d">Tracker</a> (const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:ace62a5d033aff5bae893b268617a0e4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new tracker and performs logging.  <br /></td></tr>
-<tr class="separator:ace62a5d033aff5bae893b268617a0e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a592dc97fb4d21f740331d2fe589ccab0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#a592dc97fb4d21f740331d2fe589ccab0">Tracker</a> (const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info, const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">GUI::SeriesColor</a> iDotColor=GUI::SeriesColor::Green)</td></tr>
+<tr class="memdesc:a592dc97fb4d21f740331d2fe589ccab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new tracker and performs logging.  <br /></td></tr>
+<tr class="separator:a592dc97fb4d21f740331d2fe589ccab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47b4cb3c903a8e29ef251354f18e6e8c"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c">update</a> ()=0</td></tr>
 <tr class="memdesc:a47b4cb3c903a8e29ef251354f18e6e8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>.  <br /></td></tr>
 <tr class="separator:a47b4cb3c903a8e29ef251354f18e6e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -138,6 +138,9 @@ Protected Attributes</h2></td></tr>
 <tr class="memitem:a9d2eede90b61d19b7444776382e649f7"><td class="memItemLeft" align="right" valign="top"><a id="a9d2eede90b61d19b7444776382e649f7" name="a9d2eede90b61d19b7444776382e649f7"></a>
 <a class="el" href="classatum_1_1Logger.html">Logger</a>&#160;</td><td class="memItemRight" valign="bottom"><b>logger</b></td></tr>
 <tr class="separator:a9d2eede90b61d19b7444776382e649f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9cbe1f31be974b31c3a5b086ea9b8a5"><td class="memItemLeft" align="right" valign="top"><a id="ad9cbe1f31be974b31c3a5b086ea9b8a5" name="ad9cbe1f31be974b31c3a5b086ea9b8a5"></a>
+const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">GUI::SeriesColor</a>&#160;</td><td class="memItemRight" valign="bottom"><b>dotColor</b></td></tr>
+<tr class="separator:ad9cbe1f31be974b31c3a5b086ea9b8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a872fa8166743fffed374232815caf39c"><td class="memItemLeft" align="right" valign="top"><a id="a872fa8166743fffed374232815caf39c" name="a872fa8166743fffed374232815caf39c"></a>
 <a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pose</b></td></tr>
 <tr class="separator:a872fa8166743fffed374232815caf39c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -145,8 +148,8 @@ Protected Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This class creates an interface for any system that can do pose tracking. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ace62a5d033aff5bae893b268617a0e4d" name="ace62a5d033aff5bae893b268617a0e4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace62a5d033aff5bae893b268617a0e4d">&#9670;&#160;</a></span>Tracker()</h2>
+<a id="a592dc97fb4d21f740331d2fe589ccab0" name="a592dc97fb4d21f740331d2fe589ccab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a592dc97fb4d21f740331d2fe589ccab0">&#9670;&#160;</a></span>Tracker()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,8 +158,18 @@ Protected Attributes</h2></td></tr>
           <td class="memname">atum::Tracker::Tracker </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
-          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code></td><td>)</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="screen_8hpp.html#af2f88b33e852a85a006cf2eddc712e41">GUI::SeriesColor</a>&#160;</td>
+          <td class="paramname"><em>iDotColor</em> = <code>GUI::SeriesColor::Green</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -165,6 +178,7 @@ Protected Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">loggerLevel</td><td></td></tr>
+    <tr><td class="paramname">iDotColor</td><td></td></tr>
   </table>
   </dd>
 </dl>
@@ -232,7 +246,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">atum::PoseEstimator</a>.</p>
+<p>Reimplemented in <a class="el" href="classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce">atum::OTOS</a>, and <a class="el" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">atum::PoseEstimator</a>.</p>
 
 </div>
 </div>
@@ -262,7 +276,7 @@ Protected Attributes</h2></td></tr>
 <p>This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
 
-<p>Implemented in <a class="el" href="classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5">atum::Odometry</a>, and <a class="el" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">atum::PoseEstimator</a>.</p>
+<p>Implemented in <a class="el" href="classatum_1_1Odometry.html#a0173e9ac58dcef215df4888831d0dde5">atum::Odometry</a>, <a class="el" href="classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381">atum::OTOS</a>, and <a class="el" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">atum::PoseEstimator</a>.</p>
 
 </div>
 </div>

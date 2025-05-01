@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"pose_8hpp.html#ae21223d7edec5e922e8bd4c245bb350b":[2,0,0,0,4,3,7],
+"pose_8hpp.html#af72dcde98eb24c8474189fc391b5d849":[2,0,0,0,4,3,9],
 "pose_8hpp.html#af9c2f1ae255f3f4781b06957ec9d5bfb":[2,0,0,0,4,3,10],
 "pose_8hpp_source.html":[2,0,0,0,4,3],
 "potentiometer_8hpp.html":[2,0,0,0,1,11],
@@ -61,10 +63,9 @@ var NAVTREEINDEX2 =
 "structatum_1_1Motor_1_1Gearing.html":[1,0,0,21,0],
 "structatum_1_1PID_1_1Parameters.html":[1,0,0,30,0],
 "structatum_1_1Packet.html":[1,0,0,27],
-"structatum_1_1Packet.html#a41dd5209e5cc1d09a7f81bf14b91d079":[1,0,0,27,3],
+"structatum_1_1Packet.html#a41dd5209e5cc1d09a7f81bf14b91d079":[1,0,0,27,2],
 "structatum_1_1Packet.html#a455de999e3483fc4a40545056ab4476a":[1,0,0,27,0],
-"structatum_1_1Packet.html#a8a0f59c5506443ace53ca2fc930e76f8":[1,0,0,27,1],
-"structatum_1_1Packet.html#ac3781d67bc291e9cddc01cb716abae38":[1,0,0,27,2],
+"structatum_1_1Packet.html#a6f89f19565b9c8fd79fcd652968e6c42":[1,0,0,27,1],
 "structatum_1_1PathFollower_1_1Command.html":[1,0,0,29,0],
 "structatum_1_1PathFollower_1_1Command.html#a102dcb5df0d7cb5b8a9c66241a93708f":[1,0,0,29,0,0],
 "structatum_1_1PathFollower_1_1Command.html#a8780aa65999961ffefd9a9065e8d5910":[1,0,0,29,0,1],
