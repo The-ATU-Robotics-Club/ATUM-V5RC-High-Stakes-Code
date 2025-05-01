@@ -24,12 +24,15 @@ struct Pose; // Forward declaration for UnwrappedPose.
  *
  */
 struct UnwrappedPose {
+  UnwrappedPose() = default;
+
   UnwrappedPose(const double iX = 0.0,
                 const double iY = 0.0,
                 const double iH = 0.0,
                 const double iVF = 0.0,
                 const double iVS = 0.0,
                 const double iOmega = 0.0);
+                
   UnwrappedPose(const Pose &pose);
   double x{0.0};
   double y{0.0};

@@ -2,15 +2,16 @@
  * @file packet.hpp
  * @brief Includes the Packet struct.
  * @date 2025-04-24
- * 
+ *
  * @copyright Copyright (c) 2025
- * 
+ *
  */
 
 #pragma once
 
 #include <cstdint>
 #include <vector>
+
 
 namespace atum {
 /**
@@ -43,29 +44,13 @@ struct Packet {
   /**
    * @brief Constructs a new Packet object.
    *
-   * ID referring to the type of message.
+   * ID referring to the type of message. The iData parameter will be sent as
+   * well as the ID and parity byte.
    *
    * @param iID
+   * @param iData
    */
-  Packet(const uint8_t iID);
-
-  /**
-   * @brief Constructs a new Packet object.
-   *
-   * ID referring to the type of message. The value for raw is whatever data
-   * will be passed along with the ID in the message.
-   *
-   * @tparam T
-   * @param iID
-   * @param raw
-   */
-  template <typename T>
-  Packet(const uint8_t iID, const T &raw) {
-    PiecedData<T> pieced{raw};
-    Packet(
-        iID,
-        std::vector<uint8_t>(std::begin(pieced.bytes), std::end(pieced.bytes)));
-  }
+  Packet(const uint8_t iID, const std::vector<uint8_t> &iData = {});
 
   /**
    * @brief Returns true if the parity byte is correct given the ID

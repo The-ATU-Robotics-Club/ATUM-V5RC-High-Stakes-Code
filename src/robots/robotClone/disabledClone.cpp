@@ -1,5 +1,5 @@
+#include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
-
 
 namespace atum {
 // White
@@ -18,10 +18,10 @@ void RobotClone::initialize15Ports() {
                 {"adi extender", 3},
                 {"goal limit switch 1", 'A'},
                 {"goal limit switch 2", 'B'},
-                {"forward odometer 1", 'C'},
-                {"forward odometer 2", 'D'},
-                {"side odometer 1", 'G'},
-                {"side odometer 2", 'H'},
+                {"forward odometer 1", 'A'},
+                {"forward odometer 2", 'B'},
+                {"side odometer 1", 'C'},
+                {"side odometer 2", 'D'},
                 {"goal rush piston 1", 'G'},
                 {"goal rush switch 1", 'D'},
                 {"goal rush piston 2", 'H'},
@@ -101,26 +101,39 @@ void RobotClone::driveSetup() {
                                  -1.685_in)};
   std::unique_ptr<IMU> imu{std::make_unique<IMU>(
       PortsList{otherPorts["imu 1"], otherPorts["imu 2"]})};
-  std::unique_ptr<Odometry> odometry{
-      std::make_unique<Odometry>(std::move(forwardOdometer),
-                                 std::move(sideOdometer),
-                                 std::move(imu),
-                                 drive.get())};
+  std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
+      std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
   //   odometry->startBackgroundTasks();
+
+  std::unique_ptr<OTOS> otos{
+      std::make_unique<OTOS>(21, Pose{0_in, 0_in, -90_deg})};
 
   const PoseEstimator::StateCovariance P{{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.02, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.01, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.01, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.02}};
+
+  const PoseEstimator::StateCovariance Q{{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.05}};
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.1, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 1, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.1}};
 
-  const PoseEstimator::StateCovariance Q{P};
+  const PoseEstimator::OutputCovariance R{
+      {0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.001, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.001, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0002, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.005}};
 
-  const PoseEstimator::OutputCovariance R{{0.1, 0.0}, {0.0, 0.1}};
-
-  std::unique_ptr<PoseEstimator> estimator{
-      std::make_unique<PoseEstimator>(drive.get(), P, Q, R)};
+  std::unique_ptr<PoseEstimator> estimator{std::make_unique<PoseEstimator>(
+      drive.get(), std::move(odometry), std::move(otos), P, Q, R)};
   wait(100_ms);
   estimator->startBackgroundTasks();
 

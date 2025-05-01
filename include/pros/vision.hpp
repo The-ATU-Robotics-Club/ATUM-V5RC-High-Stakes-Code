@@ -766,7 +766,6 @@ class Vision : public Device {
 	private:
 	///@}
 };
-}  // namespace v5
 namespace literals {
 /**
  * Constructs a Vision sensor from a litteral ending in _vis
@@ -783,5 +782,6 @@ namespace literals {
  */
 const pros::Vision operator"" _vis(const unsigned long long int m);
 }  // namespace literals
+}  // namespace v5
 }  // namespace pros
 #endif  // _PROS_VISION_HPP_

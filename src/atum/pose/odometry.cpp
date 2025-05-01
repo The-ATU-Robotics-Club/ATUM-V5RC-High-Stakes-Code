@@ -4,14 +4,12 @@ namespace atum {
 Odometry::Odometry(std::unique_ptr<Odometer> iForward,
                    std::unique_ptr<Odometer> iSide,
                    std::unique_ptr<IMU> iImu,
-                   Drive *iDrive,
                    Logger::Level loggerLevel) :
-    Tracker(loggerLevel),
+    Tracker(loggerLevel, GUI::SeriesColor::Green),
     Task(this, loggerLevel),
     forward{std::move(iForward)},
     side{std::move(iSide)},
-    imu{std::move(iImu)},
-    drive{iDrive} {
+    imu{std::move(iImu)} {
   if(!forward) {
     logger.error("The forward odometer must be provided.");
   }
@@ -75,7 +73,7 @@ Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
 }
 
 TASK_DEFINITIONS_FOR(Odometry) {
-  START_TASK("Odometry Loop", TASK_PRIORITY_MAX)
+  START_TASK("Odometry Loop")
   while(true) {
     update();
     wait(10_ms);

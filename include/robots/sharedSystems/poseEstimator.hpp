@@ -2,12 +2,15 @@
 
 #include "atum/atum.hpp"
 
+
 namespace atum {
-class PoseEstimator : public EKF<6, 2, 2>, public Tracker, public Task {
+class PoseEstimator : public EKF<6, 2, 8>, public Tracker, public Task {
   TASK_BOILERPLATE(); // Included in all task derivatives for setup.
 
   public:
   PoseEstimator(Drive *iDrive,
+                std::unique_ptr<Odometry> iOdometry,
+                std::unique_ptr<OTOS> iOTOS,
                 const PoseEstimator::StateCovariance &iP,
                 const PoseEstimator::StateCovariance &iQ,
                 const PoseEstimator::OutputCovariance &iR);
@@ -31,7 +34,11 @@ class PoseEstimator : public EKF<6, 2, 2>, public Tracker, public Task {
 
   Output getOutput() override;
 
+  void setPoseInternal(const Pose &iPose);
+
   Drive *drive;
+  std::unique_ptr<Odometry> odometry;
+  std::unique_ptr<OTOS> otos;
 
   double D1, D2, D3, D4;
 };

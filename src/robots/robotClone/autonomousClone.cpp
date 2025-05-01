@@ -47,13 +47,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   }
   END_ROUTINE
 
-  START_ROUTINE("LADYBROWN TEST")
-  intake->load();
-  waitUntil(intake->checkStateIs(IntakeState::FinishedLoading), 3_s);
-  ladybrown->moveTo(60_deg);
-  intake->load();
-  END_ROUTINE
-
   START_ROUTINE("Do Nothing")
   setupRoutine({});
   intake->outtake();

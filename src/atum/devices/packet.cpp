@@ -1,9 +1,7 @@
 #include "packet.hpp"
 
-namespace atum {
-Packet::Packet(const uint8_t iID) : id{iID}, checksum{iID} {}
 
-template <>
+namespace atum {
 Packet::Packet(const uint8_t iID, const std::vector<uint8_t> &iData) :
     id{iID},
     data{iData} {

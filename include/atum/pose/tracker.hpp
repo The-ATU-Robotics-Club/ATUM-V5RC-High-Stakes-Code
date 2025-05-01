@@ -11,6 +11,7 @@
 
 #include "../time/timer.hpp"
 #include "../utility/logger.hpp"
+#include "atum/gui/screen.hpp"
 #include "pose.hpp"
 
 namespace atum {
@@ -25,8 +26,9 @@ class Tracker {
    * @brief Constructs a new tracker and performs logging.
    *
    * @param loggerLevel
+   * @param iDotColor
    */
-  Tracker(const Logger::Level loggerLevel = Logger::Level::Info);
+  Tracker(const Logger::Level loggerLevel = Logger::Level::Info, const GUI::SeriesColor iDotColor = GUI::SeriesColor::Green);
 
   /**
    * @brief This method should update the current tracked pose.
@@ -52,6 +54,7 @@ class Tracker {
 
   protected:
   Logger logger;
+  const GUI::SeriesColor dotColor;
   Pose pose;
 };
 } // namespace atum

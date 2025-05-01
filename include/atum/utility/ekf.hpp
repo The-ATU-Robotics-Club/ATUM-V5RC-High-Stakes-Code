@@ -1,6 +1,7 @@
 #pragma once
 
 #include "eigen.hpp"
+#include <iostream>
 
 namespace atum {
 template <int TotalStates, int TotalInputs, int TotalOutputs>
