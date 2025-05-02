@@ -1,6 +1,7 @@
 #include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // White
 void RobotClone::initialize15Ports() {
@@ -14,8 +15,8 @@ void RobotClone::initialize15Ports() {
                 {"ladybrown rotation", 12},
                 {"intake color 1", 4},
                 {"intake color 2", 5},
-                {"goal clamp piston", 'F'},
                 {"adi extender", 3},
+                {"goal clamp piston", 'F'},
                 {"goal limit switch 1", 'A'},
                 {"goal limit switch 2", 'B'},
                 {"forward odometer 1", 'A'},
@@ -25,23 +26,24 @@ void RobotClone::initialize15Ports() {
                 {"goal rush piston 1", 'G'},
                 {"goal rush switch 1", 'D'},
                 {"goal rush piston 2", 'H'},
-                {"goal rush switch 2", 'D'}};
+                {"goal rush switch 2", 'D'},
+                {"kaboomer", 'F'}};
 }
 
 // Yellow
 void RobotClone::initialize24Ports() {
-  motorPorts = {{"left drive", {-6, 7, -8, -9}},
-                {"right drive", {-1, 2, 3, 5}},
-                {"ladybrown", {-20}},
-                {"intake", {-10, 11}}};
-  otherPorts = {{"imu 1", 13},
-                {"imu 2", 14},
-                {"ladybrown distance", 16},
+  motorPorts = {{"left drive", {-16, 17, -18, -19}},
+                {"right drive", {6, -7, 8, 9}},
+                {"ladybrown", {-13}},
+                {"intake", {-14, 15}}};
+  otherPorts = {{"imu 1", 10},
+                {"imu 2", 20},
+                {"ladybrown distance", 11},
                 {"ladybrown rotation", 12},
-                {"intake color 1", 17},
-                {"intake color 2", errorPort},
+                {"intake color 1", 4},
+                {"intake color 2", 5},
+                {"adi extender", 3},
                 {"goal clamp piston", 'F'},
-                {"adi extender", 18},
                 {"goal limit switch 1", 'A'},
                 {"goal limit switch 2", 'B'},
                 {"forward odometer 1", 'C'},
@@ -51,7 +53,8 @@ void RobotClone::initialize24Ports() {
                 {"goal rush piston 1", 'B'},
                 {"goal rush switch 1", 'D'},
                 {"goal rush piston 2", 'B'},
-                {"goal rush switch 2", 'D'}};
+                {"goal rush switch 2", 'D'},
+                {"kaboomer", 'F'}};
 }
 
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
@@ -65,6 +68,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   intakeSetup();
   goalSetup();
   autonSetup();
+  kaboomer = std::make_unique<Piston>(otherPorts["kaboomer"]);
   ladybrown->setIntake(intake.get());
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
@@ -103,7 +107,7 @@ void RobotClone::driveSetup() {
       PortsList{otherPorts["imu 1"], otherPorts["imu 2"]})};
   std::unique_ptr<Odometry> odometry{std::make_unique<Odometry>(
       std::move(forwardOdometer), std::move(sideOdometer), std::move(imu))};
-  //   odometry->startBackgroundTasks();
+  odometry->startBackgroundTasks();
 
   std::unique_ptr<OTOS> otos{
       std::make_unique<OTOS>(21, Pose{0_in, 0_in, -90_deg})};
@@ -118,22 +122,23 @@ void RobotClone::driveSetup() {
   const PoseEstimator::StateCovariance Q{{0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
                                          {0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.1, 0.0, 0.0},
-                                         {0.0, 0.0, 0.0, 0.0, 1, 0.0},
-                                         {0.0, 0.0, 0.0, 0.0, 0.0, 0.1}};
+                                         {0.0, 0.0, 0.0, 1, 0.0, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 100, 0.0},
+                                         {0.0, 0.0, 0.0, 0.0, 0.0, 20}};
 
   const PoseEstimator::OutputCovariance R{
-      {0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.001, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.001, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0002, 0.0, 0.0},
+      {0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.00001, 0.0, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.00025, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.00025, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.000025, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.005}};
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.001}};
 
   std::unique_ptr<PoseEstimator> estimator{std::make_unique<PoseEstimator>(
       drive.get(), std::move(odometry), std::move(otos), P, Q, R)};
+
   wait(100_ms);
   estimator->startBackgroundTasks();
 

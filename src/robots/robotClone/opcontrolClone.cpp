@@ -97,13 +97,6 @@ void RobotClone::manualControls() {
 void RobotClone::ladybrownControls() {
   remote.print(2, "MODE: Ladybrown");
 
-  /*
-  L1 brings ladybrown into loading from rest and go to ladybrown mode.
-  When loading, if there's no ring, pressing L2 will make the ladybrown rest and
-  go to intake mode. If trying to lower past a certain position, ladybrown will
-  go back to loading. L1 and L2 work as expected otherwise.
-  */
-
   if(remote.getHold(Remote::Button::L2) &&
      ladybrown->getState() == LadybrownState::Loading) {
     useLadybrownControls = false;
@@ -114,12 +107,14 @@ void RobotClone::ladybrownControls() {
   } else {
     switch(remote.getRTrigger()) {
       case -1:
-        if(ladybrown->getState() != LadybrownState::Preparing && ladybrown->getState() != LadybrownState::Packing) {
+        if(ladybrown->getState() != LadybrownState::Preparing &&
+           ladybrown->getState() != LadybrownState::Packing) {
           intake->outtake();
         }
         break;
       case 1:
-        if(ladybrown->getState() != LadybrownState::Preparing && ladybrown->getState() != LadybrownState::Packing) {
+        if(ladybrown->getState() != LadybrownState::Preparing &&
+           ladybrown->getState() != LadybrownState::Packing) {
           intake->load();
         }
         break;
@@ -210,11 +205,7 @@ void RobotClone::configurationControls() {
   }
 
   if(remote.getPress(Remote::Button::B)) {
-    if(drive->getBrakeMode() == pros::MotorBrake::coast) {
-      drive->setBrakeMode(pros::MotorBrake::hold);
-    } else {
-      drive->setBrakeMode(pros::MotorBrake::coast);
-    }
+    kaboomer->toggle();
   }
 }
 } // namespace atum

@@ -64,7 +64,7 @@ Pose Odometry::integratePose(inch_t dx, inch_t dy, radian_t dh) {
 }
 
 TASK_DEFINITIONS_FOR(Odometry) {
-  START_TASK("Odometry Loop")
+  START_TASK("Odometry Loop", TASK_PRIORITY_MAX)
   while(true) {
     update();
     wait(10_ms);

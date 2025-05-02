@@ -27,28 +27,15 @@ OTOS::OTOS(const std::int8_t port,
 
 Pose OTOS::update() {
   UnwrappedPose newPose{pose};
-  auto pos = otos->msg(Packet{Command::GetPosition}, 14);
-  if(pos.id == Response::Success) {
-    PiecedData<float[3]> posPieced;
-    for(int i{0}; i < pos.data.size(); i++) {
-      posPieced.bytes[i] = pos.data[i];
-    }
-    newPose.x = posPieced.value[0];
-    newPose.y = posPieced.value[1];
-    newPose.h = posPieced.value[2];
-  }
   auto vel = otos->msg(Packet{Command::GetVelocity}, 14);
-  if(vel.id == Response::Success) {
+  if(vel.id == Response::Success && vel.correct()) {
     PiecedData<float[3]> velPieced;
     for(int i{0}; i < vel.data.size(); i++) {
       velPieced.bytes[i] = vel.data[i];
     }
-    const double vx{2 * velPieced.value[0]};
-    const double vy{2 * velPieced.value[1]};
-    const double h{M_PI_2 - newPose.h};
-    newPose.vf = vx * std::cos(h) + vy * std::sin(h);
-    newPose.vs = -vx * std::sin(h) + vy * std::cos(h);
-    newPose.omega = -velPieced.value[2];
+    newPose.vf = -0.97 * velPieced.value[0];
+    newPose.vs = 0.97 * velPieced.value[1];
+    newPose.omega = -0.9825 * velPieced.value[2];
   }
   pose = newPose;
   return getPose(); // Use getPose() for logging purposes.
@@ -57,7 +44,7 @@ Pose OTOS::update() {
 void OTOS::setPose(const Pose &iPose) {
   const UnwrappedPose raw{iPose};
   PiecedData<OTOSData> rawPieced;
-  rawPieced.value = {raw.x, raw.y, raw.h};
+  rawPieced.value = {raw.x, raw.y, -raw.h};
   otos->msg(Packet{Command::SetPosition,
                    std::vector<uint8_t>(std::begin(rawPieced.bytes),
                                         std::end(rawPieced.bytes))},

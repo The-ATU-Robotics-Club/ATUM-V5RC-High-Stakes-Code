@@ -43,5 +43,6 @@ class OTOS : public Tracker {
 
   std::unique_ptr<SerialDevice> otos;
   Logger logger;
+  Timer timer;
 };
 } // namespace atum

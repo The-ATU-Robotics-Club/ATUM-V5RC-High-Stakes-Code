@@ -2,6 +2,7 @@
 #include "atum/pose/pose.hpp"
 #include "poseEstimator.hpp"
 
+
 namespace atum {
 PoseEstimator::PoseEstimator(Drive *iDrive,
                              std::unique_ptr<Odometry> iOdometry,
@@ -106,8 +107,8 @@ PoseEstimator::Input PoseEstimator::getInput() {
 }
 
 PoseEstimator::Output PoseEstimator::getOutput() {
-  UnwrappedPose odomReading{odometry->update()};
-  UnwrappedPose otosReading{otos->update()};
+  UnwrappedPose odomReading{odometry->getPose()};
+  UnwrappedPose otosReading{otos->getPose()};
   const double vfDrive{getValueAs<meters_per_second_t>(drive->getVelocity())};
   const double wDrive{
       getValueAs<radians_per_second_t>(drive->getAngularVelocity())};
@@ -145,6 +146,13 @@ TASK_DEFINITIONS_FOR(PoseEstimator) {
     wait(second_t{dt});
     correct();
     update();
+  }
+  END_TASK
+
+  START_TASK("Update OTOS")
+  while(true) {
+    otos->update();
+    wait();
   }
   END_TASK
 }

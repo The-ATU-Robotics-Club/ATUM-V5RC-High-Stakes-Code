@@ -221,6 +221,7 @@ class RobotClone : public Robot {
   std::unique_ptr<GoalClamp> goalClamp;
   std::unique_ptr<GoalRush> goalRush1;
   std::unique_ptr<GoalRush> goalRush2;
+  std::unique_ptr<Piston> kaboomer;
   Scheduler scheduler;
   std::unique_ptr<PathFollower> pathFollower;
   std::unique_ptr<MoveTo> moveTo;
