@@ -38,9 +38,9 @@ void RobotClone::initialize24Ports() {
                 {"intake", {-14, 15}}};
   otherPorts = {{"imu 1", 10}, //
                 {"imu 2", 20},
-                {"ladybrown distance", 11}, //
-                {"ladybrown rotation", 12}, // 
-                {"intake color 1", 4}, // 
+                {"ladybrown distance", 11},
+                {"ladybrown rotation", 12},
+                {"intake color 1", 4},
                 {"intake color 2", 5},
                 {"adi extender", 3},
                 {"goal clamp piston", 'F'},
