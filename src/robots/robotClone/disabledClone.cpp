@@ -1,6 +1,6 @@
+#include "atum/devices/adi.hpp"
 #include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
-
 
 namespace atum {
 // White
@@ -33,9 +33,9 @@ void RobotClone::initialize15Ports() {
 // Yellow
 void RobotClone::initialize24Ports() {
   motorPorts = {{"left drive", {-16, 17, -18, -19}},
-                {"right drive", {6, -7, 8, 9}},
+                {"right drive", {6, 7, 8, -9}},
                 {"ladybrown", {-13}},
-                {"intake", {-14, 15}}};
+                {"intake", {14, -15}}};
   otherPorts = {{"imu 1", 10}, //
                 {"imu 2", 20},
                 {"ladybrown distance", 11},
@@ -43,17 +43,17 @@ void RobotClone::initialize24Ports() {
                 {"intake color 1", 4},
                 {"intake color 2", 5},
                 {"adi extender", 3},
-                {"goal clamp piston", 'F'},
+                {"goal clamp piston", 'E'},
                 {"goal limit switch 1", 'A'},
                 {"goal limit switch 2", 'B'},
                 {"forward odometer 1", 'C'},
                 {"forward odometer 2", 'D'},
-                {"side odometer 1", 'G'},
-                {"side odometer 2", 'H'},
-                {"goal rush piston 1", 'B'},
+                {"side odometer 1", 'A'},
+                {"side odometer 2", 'B'},
+                {"goal rush piston 1", 'G'},
                 {"goal rush switch 1", 'D'},
-                {"goal rush piston 2", 'B'},
-                {"goal rush switch 2", 'D'},
+                {"goal rush piston 2", 'H'},
+                {"goal rush switch 2", 'C'},
                 {"kaboomer", 'F'}};
 }
 
@@ -201,7 +201,9 @@ void RobotClone::intakeSetup() {
 void RobotClone::goalSetup() {
   // Setup goal clamp.
   std::unique_ptr<Piston> goalClampPiston{
-      std::make_unique<Piston>(otherPorts["goal clamp piston"], true, true)};
+      std::make_unique<Piston>(otherPorts["goal clamp piston"],
+                               id == ID15 ? true : false,
+                               id == ID15 ? true : false)};
   std::unique_ptr<LimitSwitch> limitSwitch1{
       std::make_unique<LimitSwitch>(ADIExtenderPort{
           otherPorts["adi extender"], otherPorts["goal limit switch 1"]})};
@@ -214,14 +216,14 @@ void RobotClone::goalSetup() {
 
   // Setup goal rush.
   std::unique_ptr<Piston> goalRushArm1{
-      std::make_unique<Piston>(otherPorts["goal rush piston 1"])};
+    std::make_unique<Piston>(otherPorts["goal rush piston 1"])};
   std::unique_ptr<LimitSwitch> goalRushSwitch1{
       std::make_unique<LimitSwitch>(ADIExtenderPort{
           otherPorts["adi extender"], otherPorts["goal rush switch 1"]})};
   goalRush1 = std::make_unique<GoalRush>(std::move(goalRushArm1),
                                          std::move(goalRushSwitch1));
   std::unique_ptr<Piston> goalRushArm2{
-      std::make_unique<Piston>(otherPorts["goal rush piston 2"])};
+    std::make_unique<Piston>(otherPorts["goal rush piston 2"])};
   std::unique_ptr<LimitSwitch> goalRushSwitch2{
       std::make_unique<LimitSwitch>(ADIExtenderPort{
           otherPorts["adi extender"], otherPorts["goal rush switch 2"]})};

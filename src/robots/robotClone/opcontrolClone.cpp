@@ -47,6 +47,7 @@ void RobotClone::opcontrol() {
 
     if(remote.getPress(Remote::Button::Y)) {
       goalClamp->toggleClamp();
+
       if(!goalClamp->isClamped()) {
         clampTimer.setTime();
       }
@@ -54,6 +55,7 @@ void RobotClone::opcontrol() {
     if(clampTimer.goneOff() && goalClamp->hasGoal()) {
       goalClamp->clamp();
     }
+  
 
     if(remote.getPress(Remote::Button::Left)) {
       goalRush1->toggle();

@@ -47,15 +47,137 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   }
   END_ROUTINE
 
+
   START_ROUTINE("Do Nothing")
   setupRoutine({});
   intake->outtake();
   wait(3_s);
   intake->stop();
   END_ROUTINE
-}
 
-void RobotClone::setupRoutine(Pose startingPose) {
+/*
+  START_ROUTINE("Positive Safe")
+
+  if(id == ID24){
+  setupRoutine({ rushPositive });
+  endOfPositiveRushRoutines();
+  }
+  else{
+  setupRoutine({ safeNegative });
+  endOfNegativeSafeRoutines();
+  }
+  END_ROUTINE
+
+
+  START_ROUTINE("Mid Safe")
+  if(id == ID24){
+  setupRoutine({ rushMidFromNegative });
+  endOfMidRushRoutines();
+  }
+  else{
+  setupRoutine({ safePositive });
+  endOfPositiveSafeRoutines();
+  }
+  END_ROUTINE
+
+
+  START_ROUTINE("Negative Safe")
+  if(id == ID24){
+  setupRoutine({ rushNegative });
+  endOfNegativeRushRoutines();
+  }
+  else{
+  setupRoutine({ safePositive });
+  endOfPositiveSafeRoutines();
+  }
+  END_ROUTINE
+
+
+  START_ROUTINE("Positive Negative")
+  if(id == ID24){
+  setupRoutine({ rushNegative });     // 24 rushes negative because negative goal more important to hold 
+  endOfNegativeRushRoutines();
+  }
+  else{
+  setupRoutine({ rushPositive });
+  endOfPositiveDoubleRushRoutines();
+  }
+  END_ROUTINE
+
+
+  START_ROUTINE("Negative Mid")
+  if(id == ID24){
+  setupRoutine({ rushNegative });
+  endOfNegativeDoubleRushRoutines();
+  }
+  else{
+  setupRoutine({ rushMidFromPositive });
+  endOfPositiveDoubleRushRoutines();
+  }
+  END_ROUTINE
+
+
+  START_ROUTINE("Positive Mid")
+  if(id == ID24){
+  setupRoutine({ rushMidFromNegative });
+  endOfNegativeDoubleRushRoutines();
+  }
+  else{
+  setupRoutine({ rushPositive });
+  endOfPositiveDoubleRushRoutines();
+  }
+  END_ROUTINE
+
+    void RobotClone::safePositive(){
+  
+    }
+
+    void RobotClone::safeNegative(){
+  
+    }
+
+    void RobotClone::rushPositive(){
+  
+    }
+
+    void RobotClone::rushNegative(){
+  
+    }
+
+    void RobotClone::rushMidFromNegative(){
+  
+    }
+
+    void RobotClone::rushMidFromPositive(){
+  
+    }
+
+    void RobotClone::endOfPositiveRushRoutines(){
+  
+    }
+
+    void RobotClone::endOfNegativeRushRoutines(){
+  
+    }
+
+    void RobotClone::endOfPositiveSafeRoutines(){
+  
+    }
+
+    void RobotClone::endOfNegativeSafeRoutines(){
+  
+    }
+
+    void RobotClone::endOfPositiveDoubleRushRoutines(){
+  
+    }
+
+    void RobotClone::endOfNegativeDoubleRushRoutines(){
+  
+    }
+    */
+}
+void RobotClone::setupRoutine(Pose startingPose){
   matchTimer.setTime();
 
   const bool flipped{GUI::Routines::selectedColor() == MatchColor::Blue};

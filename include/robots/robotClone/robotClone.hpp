@@ -213,6 +213,80 @@ class RobotClone : public Robot {
    */
   void setSortToOpposite();
 
+  /**
+   * @brief Autonomous position setup for the safe-acting robot on the positive
+   * side.
+   *
+   */
+  void safePositive();
+
+  /**
+   * @brief Autonomous position setup for the safe-acting robot on the negative
+   * side.
+   *
+   */
+  void safeNegative();
+
+  /**
+   * @brief Autonomous position setup for the positive-goal rushing robot.
+   *
+   */
+  void rushPositive();
+
+  /**
+   * @brief Autonomous position setup for the negative-goal rushing robot.
+   *
+   */
+  void rushNegative();
+
+  /**
+   * @brief Autonomous routine for the mid-goal rushing robot from the negative side. 
+   * 
+   */
+  void rushMidFromNegative();
+
+   /**
+   * @brief Autonomous routine for the mid-goal rushing robot from the positive side. 
+   * 
+   */
+  void rushMidFromPositive();
+
+   /**
+   * @brief End autonomous routine for the positive side rushing robot
+   * 
+   */
+  void endOfPositiveRushRoutines();
+
+   /**
+   * @brief End autonomous routine for the negative-side rushing robot
+   * 
+   */
+  void endOfNegativeRushRoutines();
+
+  /**
+   * @brief End autonomous routine for the positive-side safe robot
+   * 
+   */
+  void endOfPositiveSafeRoutines();
+
+  /**
+   * @brief End autonomous routine for the negative-side safe robot
+   * 
+   */
+  void endOfNegativeSafeRoutines();
+
+  /**
+   * @brief End autonomous routine for the positive-side rushing robot ONLY whenever both are rushing
+   *
+   */
+  void endOfPositiveDoubleRushRoutines();
+
+  /**
+   * @brief End autonomous routine for the negative-side rushing robot ONLY whenever both are rushing
+   * 
+   */
+  void endOfNegativeDoubleRushRoutines();
+
   int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
@@ -236,13 +310,13 @@ class RobotClone : public Robot {
 
   /**
    * @brief Initializes the ports for the 15 inch.
-   * 
+   *
    */
   void initialize15Ports();
 
   /**
    * @brief Initializes the ports for the 24 inch.
-   * 
+   *
    */
   void initialize24Ports();
 
