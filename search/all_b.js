@@ -14,10 +14,11 @@ var searchData=
   ['motorportslist_11',['MotorPortsList',['../misc_8hpp.html#a20c281f24bce247514f2ccabf0454c5c',1,'atum']]],
   ['movement_12',['Movement',['../classatum_1_1Movement.html',1,'atum']]],
   ['movement_2ehpp_13',['movement.hpp',['../movement_8hpp.html',1,'']]],
-  ['moveto_14',['MoveTo',['../classatum_1_1MoveTo.html',1,'atum::MoveTo'],['../classatum_1_1MoveTo.html#a6bcef324300f46aff0c201a26320ebc3',1,'atum::MoveTo::MoveTo()']]],
+  ['moveto_14',['MoveTo',['../classatum_1_1MoveTo.html',1,'atum']]],
   ['moveto_15',['moveTo',['../classatum_1_1Ladybrown.html#a2a8ddc4cb7e46042fe2aab80240b3a83',1,'atum::Ladybrown']]],
-  ['moveto_2ehpp_16',['moveTo.hpp',['../moveTo_8hpp.html',1,'']]],
-  ['movevelocity_17',['moveVelocity',['../classatum_1_1Motor.html#a19351834929f898f34dd480b87863fc5',1,'atum::Motor']]],
-  ['movevoltage_18',['moveVoltage',['../classatum_1_1Motor.html#ad3b1560d5e7f791821526a2e82898f37',1,'atum::Motor']]],
-  ['msg_19',['msg',['../classatum_1_1SerialDevice.html#aa61b2c309617386561a276b1612c93e5',1,'atum::SerialDevice']]]
+  ['moveto_16',['MoveTo',['../classatum_1_1MoveTo.html#a6bcef324300f46aff0c201a26320ebc3',1,'atum::MoveTo']]],
+  ['moveto_2ehpp_17',['moveTo.hpp',['../moveTo_8hpp.html',1,'']]],
+  ['movevelocity_18',['moveVelocity',['../classatum_1_1Motor.html#a19351834929f898f34dd480b87863fc5',1,'atum::Motor']]],
+  ['movevoltage_19',['moveVoltage',['../classatum_1_1Motor.html#ad3b1560d5e7f791821526a2e82898f37',1,'atum::Motor']]],
+  ['msg_20',['msg',['../classatum_1_1SerialDevice.html#aa61b2c309617386561a276b1612c93e5',1,'atum::SerialDevice']]]
 ];
