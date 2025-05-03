@@ -30,7 +30,7 @@ class RobotClone : public Robot {
    *
    */
   static constexpr int ID15{0x60539e00};
-  static constexpr int ID24{0x7cc04c00};
+  static constexpr int ID24{0x64899e00};
 
   /**
    * @brief Setups the robot, changing the setup depending on what ID is
