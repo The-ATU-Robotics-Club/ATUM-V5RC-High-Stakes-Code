@@ -293,8 +293,8 @@ class RobotClone : public Robot {
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
-  std::unique_ptr<GoalRush> goalRush1;
-  std::unique_ptr<GoalRush> goalRush2;
+  std::unique_ptr<GoalRush> goalRushL;
+  std::unique_ptr<GoalRush> goalRushR;
   std::unique_ptr<Piston> kaboomer;
   Scheduler scheduler;
   std::unique_ptr<MoveTo> moveToClose;
