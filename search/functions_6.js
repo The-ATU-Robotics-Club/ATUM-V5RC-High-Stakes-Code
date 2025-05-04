@@ -47,7 +47,7 @@ var searchData=
   ['getvoltage_44',['getVoltage',['../classatum_1_1Motor.html#a9f8c15253903c0825fce235b5c2ec078',1,'atum::Motor']]],
   ['getvoltagelr_45',['getVoltageLR',['../classatum_1_1Drive.html#af22a0cf3c9886e0316e46fc535aeaa64',1,'atum::Drive']]],
   ['goalclamp_46',['GoalClamp',['../classatum_1_1GoalClamp.html#aa4106d707f8fd97e0dcbe8e4130c5310',1,'atum::GoalClamp']]],
-  ['goalrush_47',['GoalRush',['../classatum_1_1GoalRush.html#aa77c37aa82759827c9b4d9c4405163e6',1,'atum::GoalRush']]],
+  ['goalrush_47',['GoalRush',['../classatum_1_1GoalRush.html#a194e96695af73e80f9581596d41a7e1c',1,'atum::GoalRush']]],
   ['goneoff_48',['goneOff',['../classatum_1_1Timer.html#a64b59dcb1eed397de325f17f3718830e',1,'atum::Timer']]],
   ['gps_49',['GPS',['../classatum_1_1GPS.html#a12ead31c25884d23b2b59c71b4c04f05',1,'atum::GPS::GPS(const std::int8_t port, const Pose &amp;offset, const double iHeadingTrust=0.5, const double iFullPoseTrust=1.0, const Logger::Level loggerLevel=Logger::Level::Info)'],['../classatum_1_1GPS.html#ac25f9a0c527216a486d8ef8d3fe2287a',1,'atum::GPS::GPS(const Pose &amp;offset, const double iHeadingTrust=0.5, const double iFullPoseTrust=1.0, const Logger::Level loggerLevel=Logger::Level::Info)']]]
 ];

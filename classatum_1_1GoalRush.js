@@ -1,6 +1,6 @@
 var classatum_1_1GoalRush =
 [
-    [ "GoalRush", "classatum_1_1GoalRush.html#aa77c37aa82759827c9b4d9c4405163e6", null ],
+    [ "GoalRush", "classatum_1_1GoalRush.html#a194e96695af73e80f9581596d41a7e1c", null ],
     [ "extend", "classatum_1_1GoalRush.html#ada0ac367865e1ec82430ce7484631e6f", null ],
     [ "hasGoal", "classatum_1_1GoalRush.html#a1dc4bd40b080c1230b4ce783dc4c4633", null ],
     [ "isUp", "classatum_1_1GoalRush.html#ad5cb11ead81181fd6352cd879aee706c", null ],
