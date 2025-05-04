@@ -1,6 +1,7 @@
 #include "robotClone.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
@@ -23,7 +24,6 @@ void RobotClone::opcontrol() {
                       },
                       GUI::Routines::selectedRoutine() ? 89.95_s : 59.95_s});
   drive->setBrakeMode(pros::MotorBrake::coast);
-  drive->setPose({-2_tile, 2_tile, 90_deg});
   while(true) {
     const double forward{speedMultiplier * remote.getLStick().y};
     const double turn{remote.getRStick().x};
@@ -55,7 +55,6 @@ void RobotClone::opcontrol() {
     if(clampTimer.goneOff() && goalClamp->hasGoal()) {
       goalClamp->clamp();
     }
-  
 
     if(remote.getPress(Remote::Button::Left)) {
       goalRush1->toggle();
@@ -146,7 +145,7 @@ void RobotClone::intakeControls() {
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1:
-      if(goalClamp->isClamped()) {
+      if(goalClamp->isClamped() || remote.getLTrigger() == -1) {
         intake->intake();
       } else {
         intake->index();

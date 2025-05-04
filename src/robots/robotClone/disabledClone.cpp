@@ -69,7 +69,7 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   intakeSetup();
   goalSetup();
   autonSetup();
-  kaboomer = std::make_unique<Piston>(otherPorts["kaboomer"]);
+  kaboomer = std::make_unique<Piston>(otherPorts["kaboomer"], true, true);
   ladybrown->setIntake(intake.get());
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
@@ -92,7 +92,7 @@ void RobotClone::driveSetup() {
                                   std::move(rightDriveMtr),
                                   Drive::Geometry{11.9_in, 10.21_in});
 
-  const inch_t wheelCircumference{198_mm};
+  const inch_t wheelCircumference{202_mm};
   std::unique_ptr<Odometer> forwardOdometer{
       std::make_unique<Odometer>(otherPorts["forward odometer 1"],
                                  otherPorts["forward odometer 2"],
@@ -133,9 +133,9 @@ void RobotClone::driveSetup() {
       {0.0, 0.0, 0.00001, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0003, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0003, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0, 0.00002, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.00003, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.001}};
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.002}};
 
   std::unique_ptr<PoseEstimator> estimator{std::make_unique<PoseEstimator>(
       drive.get(), std::move(odometry), std::move(otos), P, Q, R)};
@@ -241,13 +241,13 @@ void RobotClone::autonSetup() {
   // Move to setup.
   PID directionPID{PID::Parameters{7}};
   AcceptableDistance moveToAcceptable{forever, 0.1_in, 1.5_in_per_s};
-  PID moveToClosePID{PID::Parameters{45, 0.1, 380, 0.05}};
+  PID moveToClosePID{PID::Parameters{45, 2.0, 380, 0.0, 0.05}};
   moveToClose = std::make_unique<MoveTo>(drive.get(),
                                          turn.get(),
                                          moveToClosePID,
                                          directionPID,
                                          moveToAcceptable);                         
-  PID moveToFarPID{PID::Parameters{20, 0.0, 0, 0.05}};
+  PID moveToFarPID{PID::Parameters{20.0, 2.0, 185.0, 0.0, 0.05}};
   moveToFar = std::make_unique<MoveTo>(drive.get(),
                                          turn.get(),
                                          moveToFarPID,
