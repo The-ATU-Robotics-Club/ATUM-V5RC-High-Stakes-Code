@@ -1,8 +1,9 @@
 #include "goalRush.hpp"
+#include "atum/devices/lineTracker.hpp"
 
 namespace atum {
 GoalRush::GoalRush(std::unique_ptr<Piston> iArm,
-                   std::unique_ptr<LimitSwitch> iLimitSwitch,
+                   std::unique_ptr<LineTracker> iLimitSwitch,
                    const Logger::Level loggerLevel) :
     arm{std::move(iArm)},
     limitSwitch{std::move(iLimitSwitch)},
@@ -27,6 +28,6 @@ bool GoalRush::isUp() const {
 }
 
 bool GoalRush::hasGoal() const {
-  return limitSwitch->isPressed();
+  return limitSwitch->triggered();
 }
 } // namespace atum

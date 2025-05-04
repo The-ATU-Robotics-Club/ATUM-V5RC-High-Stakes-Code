@@ -2,7 +2,6 @@
 #include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // White
 void RobotClone::initialize15Ports() {
@@ -97,8 +96,7 @@ void RobotClone::driveSetup() {
       std::make_unique<Odometer>(otherPorts["forward odometer 1"],
                                  otherPorts["forward odometer 2"],
                                  wheelCircumference,
-                                 0.086_in,
-                                 true)};
+                                 0.086_in)};
   std::unique_ptr<Odometer> sideOdometer{
       std::make_unique<Odometer>(otherPorts["side odometer 1"],
                                  otherPorts["side odometer 2"],
@@ -240,19 +238,16 @@ void RobotClone::autonSetup() {
 
   // Move to setup.
   PID directionPID{PID::Parameters{7}};
-  AcceptableDistance moveToAcceptable{forever, 0.1_in, 1.5_in_per_s};
+  AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
   PID moveToClosePID{PID::Parameters{45, 2.0, 380, 0.0, 0.05}};
-  moveToClose = std::make_unique<MoveTo>(drive.get(),
-                                         turn.get(),
-                                         moveToClosePID,
-                                         directionPID,
-                                         moveToAcceptable);                         
+  moveToClose = std::make_unique<MoveTo>(
+      drive.get(), turn.get(), moveToClosePID, directionPID, moveToAcceptable);
   PID moveToFarPID{PID::Parameters{20.0, 2.0, 185.0, 0.0, 0.05}};
-  moveToFar = std::make_unique<MoveTo>(drive.get(),
-                                         turn.get(),
-                                         moveToFarPID,
-                                         directionPID,
-                                         moveToAcceptable);
+  moveToFar = std::make_unique<MoveTo>(
+      drive.get(), turn.get(), moveToFarPID, directionPID, moveToAcceptable);
+  PID moveToRushPID{PID::Parameters{33, 0.0, 340.0}};
+  moveToRush = std::make_unique<MoveTo>(
+      drive.get(), turn.get(), moveToRushPID, directionPID, moveToAcceptable);
 
   // Path follower setup.
   meters_per_second_t maxV{76.5_in_per_s};

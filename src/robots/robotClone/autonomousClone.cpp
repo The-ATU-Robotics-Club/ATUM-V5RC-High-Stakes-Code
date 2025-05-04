@@ -7,7 +7,7 @@ namespace atum {
 // Max drive acceleration: 153 in. / s^2.
 
 // General Constants
-static const second_t goalRushDelay{150_ms};
+static const second_t goalRushDelay{100_ms};
 static const second_t goalClampDelay{100_ms};
 
 /*
@@ -29,10 +29,11 @@ void RobotClone::skills15() {}
 void RobotClone::skills24() {
   setupRoutine({-2_tile, 2_tile, 90_deg});
   goalRush1->extend();
-  goalRushWhenReady();
+  // goalRushWhenReady();
   kaboomer->retract();
-  moveToFar->forward(2_s, {-0.55_tile, 2_tile}, 12.0, false);
+  moveToRush->forward(2_s, {-0.65_tile, 2_tile}, 12.0, false);
   goalRush1->retract();
+  wait(goalRushDelay);
   moveToClose->reverse(3_s, {-1.5_tile, 2_tile}, 12.0, false);
 }
 

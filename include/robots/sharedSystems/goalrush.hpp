@@ -26,7 +26,7 @@ class GoalRush {
    * @param loggerLevel
    */
   GoalRush(std::unique_ptr<Piston> iArm,
-           std::unique_ptr<LimitSwitch> iLimitSwitch,
+           std::unique_ptr<LineTracker> iLimitSwitch,
            const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -65,7 +65,7 @@ class GoalRush {
 
   private:
   std::unique_ptr<Piston> arm;
-  std::unique_ptr<LimitSwitch> limitSwitch;
+  std::unique_ptr<LineTracker> limitSwitch;
   Logger logger;
 };
 } // namespace atum

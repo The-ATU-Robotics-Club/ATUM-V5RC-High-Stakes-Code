@@ -299,6 +299,7 @@ class RobotClone : public Robot {
   Scheduler scheduler;
   std::unique_ptr<MoveTo> moveToClose;
   std::unique_ptr<MoveTo> moveToFar;
+  std::unique_ptr<MoveTo> moveToRush;
   std::unique_ptr<Turn> turn;
   std::unique_ptr<PathFollower> pathFollower;
   Timer matchTimer;
