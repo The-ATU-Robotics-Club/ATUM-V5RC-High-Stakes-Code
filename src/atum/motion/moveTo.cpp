@@ -1,5 +1,6 @@
 #include "moveTo.hpp"
 
+
 namespace atum {
 MoveTo::MoveTo(Drive *iDrive,
                Turn *iTurn,
@@ -18,21 +19,25 @@ MoveTo::MoveTo(Drive *iDrive,
 
 void MoveTo::forward(const second_t timeout,
                      Pose target,
-                     const double maxVoltage) {
-  startTime = time();
-  turn->toward(timeout, target, maxVoltage);
+                     const double maxVoltage,
+                     const bool turnToFirst) {
+  if(turnToFirst) {
+    turn->toward(timeout, target, maxVoltage);
+  }
   moveToPoint(timeout, target, maxVoltage, false);
 }
 
 void MoveTo::reverse(const second_t timeout,
                      Pose target,
-                     const double maxVoltage) {
-  startTime = time();
-  turn->awayFrom(timeout, target, maxVoltage);
+                     const double maxVoltage,
+                     const bool turnToFirst) {
+  if(turnToFirst) {
+    turn->awayFrom(timeout, target, maxVoltage);
+  }
   moveToPoint(timeout, target, maxVoltage, true);
 }
 
-void MoveTo::moveToPoint(second_t timeout,
+void MoveTo::moveToPoint(const second_t timeout,
                          Pose target,
                          const double maxVoltage,
                          const bool reversed) {
@@ -41,8 +46,6 @@ void MoveTo::moveToPoint(second_t timeout,
     target.flip();
   }
   logger.debug("Moving to " + toString(target) + ".");
-  const second_t timeSpent{time() - startTime};
-  timeout -= timeSpent;
   acceptable.reset(timeout);
   lateralPID.reset();
   directionPID.reset();
@@ -52,8 +55,8 @@ void MoveTo::moveToPoint(second_t timeout,
   while(!acceptable.canAccept() && !interrupted) {
     const Pose pose{drive->getPose()};
     const meter_t traveled{distance(initialPose, pose)};
-    double moveOutput{lateralPID.getOutput(
-        getValueAs<meter_t>(traveled), getValueAs<meter_t>(totalDistance))};
+    double moveOutput{lateralPID.getOutput(getValueAs<meter_t>(traveled),
+                                           getValueAs<meter_t>(totalDistance))};
     moveOutput = std::clamp(moveOutput, -maxVoltage, maxVoltage);
     degree_t targetH{(distance(pose, target) < turnToThreshold) ?
                          linearH :

@@ -297,9 +297,10 @@ class RobotClone : public Robot {
   std::unique_ptr<GoalRush> goalRush2;
   std::unique_ptr<Piston> kaboomer;
   Scheduler scheduler;
-  std::unique_ptr<PathFollower> pathFollower;
-  std::unique_ptr<MoveTo> moveTo;
+  std::unique_ptr<MoveTo> moveToClose;
+  std::unique_ptr<MoveTo> moveToFar;
   std::unique_ptr<Turn> turn;
+  std::unique_ptr<PathFollower> pathFollower;
   Timer matchTimer;
   bool useManualControls{false};
   bool useLadybrownControls{false};

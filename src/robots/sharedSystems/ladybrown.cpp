@@ -17,7 +17,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
   motor->setBrakeMode(pros::MotorBrake::brake);
   motor->resetPosition();
   rotation->resetDisplacement();
-  stop();
+  rest();
 
   logger.info("Ladybrown is constructed!");
 }
@@ -88,7 +88,6 @@ void Ladybrown::prepare() {
   target = params.preparedPosition;
   nextState = LadybrownState::Idle;
   state = LadybrownState::Preparing;
-
 }
 
 void Ladybrown::moveTo(const degree_t iTarget,

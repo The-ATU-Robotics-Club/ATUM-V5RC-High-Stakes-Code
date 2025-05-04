@@ -39,7 +39,7 @@ class MoveTo : public Movement {
          const PID &iLateralPID,
          const PID &iDirectionPID,
          const AcceptableDistance &iAcceptable,
-         const meter_t iTurnToThreshold = 0.5_tile,
+         const meter_t iTurnToThreshold = 1_tile,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
@@ -48,10 +48,12 @@ class MoveTo : public Movement {
    * @param timeout
    * @param target
    * @param maxVoltage
+   * @param turnToFirst
    */
   void forward(const second_t timeout,
                Pose target,
-               const double maxVoltage = Motor::maxVoltage);
+               const double maxVoltage = Motor::maxVoltage,
+               const bool turnToFirst = true);
 
   /**
    * @brief Moves towards the given target position, going in reverse.
@@ -59,10 +61,12 @@ class MoveTo : public Movement {
    * @param timeout
    * @param target
    * @param maxVoltage
+   * @param turnToFirst
    */
   void reverse(const second_t timeout,
                Pose target,
-               const double maxVoltage = Motor::maxVoltage);
+               const double maxVoltage = Motor::maxVoltage,
+               const bool turnToFirst = true);
 
   private:
   /**
@@ -74,7 +78,7 @@ class MoveTo : public Movement {
    * @param maxVoltage
    * @param reversed
    */
-  void moveToPoint(second_t timeout,
+  void moveToPoint(const second_t timeout,
                    Pose target,
                    const double maxVoltage,
                    const bool reversed);
@@ -86,6 +90,5 @@ class MoveTo : public Movement {
   AcceptableDistance acceptable;
   const meter_t turnToThreshold;
   Logger logger;
-  second_t startTime;
 };
 } // namespace atum

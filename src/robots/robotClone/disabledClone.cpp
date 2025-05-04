@@ -239,11 +239,20 @@ void RobotClone::autonSetup() {
   turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
-  PID moveToPID{PID::Parameters{60}};
-  PID directionPID{PID::Parameters{0.35}};
-  AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
-  moveTo = std::make_unique<MoveTo>(
-      drive.get(), turn.get(), moveToPID, directionPID, moveToAcceptable);
+  PID directionPID{PID::Parameters{7}};
+  AcceptableDistance moveToAcceptable{forever, 0.1_in, 1.5_in_per_s};
+  PID moveToClosePID{PID::Parameters{45, 0.1, 380, 0.05}};
+  moveToClose = std::make_unique<MoveTo>(drive.get(),
+                                         turn.get(),
+                                         moveToClosePID,
+                                         directionPID,
+                                         moveToAcceptable);                         
+  PID moveToFarPID{PID::Parameters{20, 0.0, 0, 0.05}};
+  moveToFar = std::make_unique<MoveTo>(drive.get(),
+                                         turn.get(),
+                                         moveToFarPID,
+                                         directionPID,
+                                         moveToAcceptable);
 
   // Path follower setup.
   meters_per_second_t maxV{76.5_in_per_s};
@@ -251,10 +260,10 @@ void RobotClone::autonSetup() {
   Path::setDefaultParams(
       {1_tile, maxV, maxA, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
-  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
-  moveToVelocityPIDParams.ffScaling = true;
+  PID::Parameters moveToCloseVelocityPIDParams{6, 0, 0, 6};
+  moveToCloseVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> forwardController{
-      std::make_unique<PID>(moveToVelocityPIDParams)};
+      std::make_unique<PID>(moveToCloseVelocityPIDParams)};
   std::unique_ptr<Controller> turnController =
       std::make_unique<PID>(PID::Parameters{7});
   const AccelerationConstants kA{2.5, 1.25};

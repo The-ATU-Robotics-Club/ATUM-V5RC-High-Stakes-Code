@@ -40,13 +40,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Negative Side: N/M Rush")
   setupRoutine({});
-  goalClamp->clamp();
-  wait(goalClampDelay);
-  turn->toward(4_s, 45_deg);
-  wait(3_s);
-  turn->toward(4_s, 135_deg);
-  wait(3_s);
-  turn->toward(4_s, -45_deg);
+  moveToFar->forward(2_s, {0.0_tile, 4_tile}, 12.0, false);
+  wait(1.5_s);
+  moveToFar->reverse(2_s, {0.0_tile, 0.0_tile}, 12.0, false);
   END_ROUTINE
 
   START_ROUTINE("Do Nothing")
@@ -208,7 +204,7 @@ void RobotClone::clampWhenReady(const second_t timeout) {
                         goalClamp->clamp();
                         wait(goalClampDelay);
                         turn->interrupt();
-                        moveTo->interrupt();
+                        moveToClose->interrupt();
                         pathFollower->interrupt();
                       },
                       timeout,
@@ -225,7 +221,7 @@ void RobotClone::goalRushWhenReady(const second_t timeout) {
                         goalRush1->retract();
                         wait(goalRushDelay);
                         turn->interrupt();
-                        moveTo->interrupt();
+                        moveToClose->interrupt();
                         pathFollower->interrupt();
                       },
                       timeout,
