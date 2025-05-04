@@ -117,15 +117,15 @@ Inheritance diagram for atum::MoveTo:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a40901252a7dfbb2f2df43b89c08bdb0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#a40901252a7dfbb2f2df43b89c08bdb0e">MoveTo</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, <a class="el" href="classatum_1_1Turn.html">Turn</a> *iTurn, const <a class="el" href="classatum_1_1PID.html">PID</a> &amp;iLateralPID, const <a class="el" href="classatum_1_1PID.html">PID</a> &amp;iDirectionPID, const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;iAcceptable, const meter_t iTurnToThreshold=0.5_tile, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
-<tr class="memdesc:a40901252a7dfbb2f2df43b89c08bdb0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1MoveTo.html" title="Encapsulates the logic behind point-to-point movements.">MoveTo</a> object.  <br /></td></tr>
-<tr class="separator:a40901252a7dfbb2f2df43b89c08bdb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3e2c52873227849c08989ab46157abf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#aa3e2c52873227849c08989ab46157abf">forward</a> (const second_t timeout, <a class="el" href="structatum_1_1Pose.html">Pose</a> target, const double maxVoltage=<a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>)</td></tr>
-<tr class="memdesc:aa3e2c52873227849c08989ab46157abf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going forward.  <br /></td></tr>
-<tr class="separator:aa3e2c52873227849c08989ab46157abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0d0c3108f06607b9c1f55b5bef659bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#af0d0c3108f06607b9c1f55b5bef659bf">reverse</a> (const second_t timeout, <a class="el" href="structatum_1_1Pose.html">Pose</a> target, const double maxVoltage=<a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>)</td></tr>
-<tr class="memdesc:af0d0c3108f06607b9c1f55b5bef659bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going in reverse.  <br /></td></tr>
-<tr class="separator:af0d0c3108f06607b9c1f55b5bef659bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa263db66b5aedd4cb11ab57a2f2d842"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#aaa263db66b5aedd4cb11ab57a2f2d842">MoveTo</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, <a class="el" href="classatum_1_1Turn.html">Turn</a> *iTurn, const <a class="el" href="classatum_1_1PID.html">PID</a> &amp;iLateralPID, const <a class="el" href="classatum_1_1PID.html">PID</a> &amp;iDirectionPID, const <a class="el" href="acceptable_8hpp.html#a2ced36be98b215924043da849414aded">AcceptableDistance</a> &amp;iAcceptable, const meter_t iTurnToThreshold=1_tile, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:aaa263db66b5aedd4cb11ab57a2f2d842"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1MoveTo.html" title="Encapsulates the logic behind point-to-point movements.">MoveTo</a> object.  <br /></td></tr>
+<tr class="separator:aaa263db66b5aedd4cb11ab57a2f2d842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9803a545a395ebff7927867c537635b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#a9803a545a395ebff7927867c537635b3">forward</a> (const second_t timeout, <a class="el" href="structatum_1_1Pose.html">Pose</a> target, const double maxVoltage=<a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>, const bool turnToFirst=true)</td></tr>
+<tr class="memdesc:a9803a545a395ebff7927867c537635b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going forward.  <br /></td></tr>
+<tr class="separator:a9803a545a395ebff7927867c537635b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad030b6d300e43341aa20c57992237b36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1MoveTo.html#ad030b6d300e43341aa20c57992237b36">reverse</a> (const second_t timeout, <a class="el" href="structatum_1_1Pose.html">Pose</a> target, const double maxVoltage=<a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a>, const bool turnToFirst=true)</td></tr>
+<tr class="memdesc:ad030b6d300e43341aa20c57992237b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves towards the given target position, going in reverse.  <br /></td></tr>
+<tr class="separator:ad030b6d300e43341aa20c57992237b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1Movement"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1Movement')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1Movement.html">atum::Movement</a></td></tr>
 <tr class="memitem:a893ace5b2be17a29a85ac67aefd305a3 inherit pub_methods_classatum_1_1Movement"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Movement.html#a893ace5b2be17a29a85ac67aefd305a3">interrupt</a> ()</td></tr>
 <tr class="memdesc:a893ace5b2be17a29a85ac67aefd305a3 inherit pub_methods_classatum_1_1Movement"><td class="mdescLeft">&#160;</td><td class="mdescRight">Interrupts the current movement. Up to children to reset the interrupted variable.  <br /></td></tr>
@@ -149,8 +149,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Encapsulates the logic behind point-to-point movements. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a40901252a7dfbb2f2df43b89c08bdb0e" name="a40901252a7dfbb2f2df43b89c08bdb0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40901252a7dfbb2f2df43b89c08bdb0e">&#9670;&#160;</a></span>MoveTo()</h2>
+<a id="aaa263db66b5aedd4cb11ab57a2f2d842" name="aaa263db66b5aedd4cb11ab57a2f2d842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa263db66b5aedd4cb11ab57a2f2d842">&#9670;&#160;</a></span>MoveTo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -189,7 +189,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const meter_t&#160;</td>
-          <td class="paramname"><em>iTurnToThreshold</em> = <code>0.5_tile</code>, </td>
+          <td class="paramname"><em>iTurnToThreshold</em> = <code>1_tile</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -223,8 +223,8 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="aa3e2c52873227849c08989ab46157abf" name="aa3e2c52873227849c08989ab46157abf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa3e2c52873227849c08989ab46157abf">&#9670;&#160;</a></span>forward()</h2>
+<a id="a9803a545a395ebff7927867c537635b3" name="a9803a545a395ebff7927867c537635b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9803a545a395ebff7927867c537635b3">&#9670;&#160;</a></span>forward()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -245,7 +245,13 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>maxVoltage</em> = <code><a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a></code>&#160;</td>
+          <td class="paramname"><em>maxVoltage</em> = <code><a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>turnToFirst</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -261,14 +267,15 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
     <tr><td class="paramname">timeout</td><td></td></tr>
     <tr><td class="paramname">target</td><td></td></tr>
     <tr><td class="paramname">maxVoltage</td><td></td></tr>
+    <tr><td class="paramname">turnToFirst</td><td></td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="af0d0c3108f06607b9c1f55b5bef659bf" name="af0d0c3108f06607b9c1f55b5bef659bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0d0c3108f06607b9c1f55b5bef659bf">&#9670;&#160;</a></span>reverse()</h2>
+<a id="ad030b6d300e43341aa20c57992237b36" name="ad030b6d300e43341aa20c57992237b36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad030b6d300e43341aa20c57992237b36">&#9670;&#160;</a></span>reverse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +296,13 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const double&#160;</td>
-          <td class="paramname"><em>maxVoltage</em> = <code><a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a></code>&#160;</td>
+          <td class="paramname"><em>maxVoltage</em> = <code><a class="el" href="classatum_1_1Motor.html#a0cbd6a6fc77539659ad69a8b35d37ec4">Motor::maxVoltage</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const bool&#160;</td>
+          <td class="paramname"><em>turnToFirst</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -305,6 +318,7 @@ static bool&#160;</td><td class="memItemRight" valign="bottom"><b>flipped</b></t
     <tr><td class="paramname">timeout</td><td></td></tr>
     <tr><td class="paramname">target</td><td></td></tr>
     <tr><td class="paramname">maxVoltage</td><td></td></tr>
+    <tr><td class="paramname">turnToFirst</td><td></td></tr>
   </table>
   </dd>
 </dl>
