@@ -1,49 +1,60 @@
 #include "moveTo.hpp"
 
-
 namespace atum {
 MoveTo::MoveTo(Drive *iDrive,
                Turn *iTurn,
-               std::unique_ptr<LateralProfileFollower> iFollower,
-               std::unique_ptr<PID> iDirectionController,
+               const PID &iLateralPID,
+               const PID &iDirectionPID,
+               const AcceptableDistance &iAcceptable,
                const meter_t iTurnToThreshold,
                const Logger::Level loggerLevel) :
     drive{iDrive},
     turn{iTurn},
-    follower{std::move(iFollower)},
-    directionController{std::move(iDirectionController)},
+    lateralPID{iLateralPID},
+    directionPID{iDirectionPID},
+    acceptable{iAcceptable},
     turnToThreshold{iTurnToThreshold},
     logger{loggerLevel} {}
 
-void MoveTo::forward(Pose target,
-                     const LateralProfile::Parameters &specialParams) {
-  turn->toward(target);
-  moveToPoint(target, specialParams, false);
+void MoveTo::forward(const second_t timeout,
+                     Pose target,
+                     const double maxVoltage) {
+  startTime = time();
+  turn->toward(timeout, target, maxVoltage);
+  moveToPoint(timeout, target, maxVoltage, false);
 }
 
-void MoveTo::reverse(Pose target,
-                     const LateralProfile::Parameters &specialParams) {
-  turn->awayFrom(target);
-  moveToPoint(target, specialParams, true);
+void MoveTo::reverse(const second_t timeout,
+                     Pose target,
+                     const double maxVoltage) {
+  startTime = time();
+  turn->awayFrom(timeout, target, maxVoltage);
+  moveToPoint(timeout, target, maxVoltage, true);
 }
 
-void MoveTo::moveToPoint(Pose target,
-                         const LateralProfile::Parameters &specialParams,
+void MoveTo::moveToPoint(second_t timeout,
+                         Pose target,
+                         const double maxVoltage,
                          const bool reversed) {
-                          interrupted = false;
-  directionController->reset();
+  interrupted = false;
   if(flipped) {
     target.flip();
   }
   logger.debug("Moving to " + toString(target) + ".");
+  const second_t timeSpent{time() - startTime};
+  timeout -= timeSpent;
+  acceptable.reset(timeout);
+  lateralPID.reset();
+  directionPID.reset();
   const Pose initialPose{drive->getPose()};
   const degree_t linearH{angle(initialPose, target)};
-  follower->startProfile(0_m, distance(initialPose, target), specialParams);
-  while(!follower->isDone() && !interrupted) {
+  const meter_t totalDistance{distance(initialPose, target)};
+  while(!acceptable.canAccept() && !interrupted) {
     const Pose pose{drive->getPose()};
-    const meters_per_second_t v{abs(drive->getVelocity())};
     const meter_t traveled{distance(initialPose, pose)};
-    double moveOutput{follower->getOutput(traveled, v)};
+    double moveOutput{lateralPID.getOutput(
+        getValueAs<meter_t>(traveled), getValueAs<meter_t>(totalDistance))};
+    moveOutput = std::clamp(moveOutput, -maxVoltage, maxVoltage);
     degree_t targetH{(distance(pose, target) < turnToThreshold) ?
                          linearH :
                          angle(pose, target)};
@@ -51,9 +62,10 @@ void MoveTo::moveToPoint(Pose target,
       moveOutput *= -1;
       targetH += 180_deg;
     }
-    const double hError{getValueAs<degree_t>(constrain180(targetH - pose.h))};
-    const double directionOutput{directionController->getOutput(hError)};
+    const double hError{getValueAs<radian_t>(constrain180(targetH - pose.h))};
+    const double directionOutput{directionPID.getOutput(hError)};
     drive->arcade(moveOutput, directionOutput);
+    acceptable.canAccept(traveled, totalDistance);
     wait();
   }
   drive->brake();

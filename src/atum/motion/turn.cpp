@@ -1,36 +1,45 @@
+#include "atum/depend/units.h"
 #include "turn.hpp"
+
 
 namespace atum {
 Turn::Turn(Drive *iDrive,
-           std::unique_ptr<AngularProfileFollower> iFollower,
+  const PID &iPID,
+  const AcceptableAngle &iAcceptable,
            const Logger::Level loggerLevel) :
-    drive{iDrive}, follower{std::move(iFollower)}, logger{loggerLevel} {}
+    drive{iDrive},
+    pid{iPID},
+    acceptable{iAcceptable},
+    logger{loggerLevel} {}
 
-void Turn::toward(const Pose &target,
-                  const AngularProfile::Parameters &specialParams) {
+void Turn::toward(const second_t timeout,
+                  const Pose &target,
+                  const double maxVoltage) {
   Pose state{drive->getPose()};
   if(flipped) {
     state.flip();
   }
   const degree_t targetAngle{angle(state, target)};
-  toward(targetAngle, specialParams);
+  toward(timeout, targetAngle, maxVoltage);
 }
 
-void Turn::toward(degree_t target,
-                  const AngularProfile::Parameters &specialParams) {
+void Turn::toward(const second_t timeout,
+                  degree_t target,
+                  const double maxVoltage) {
   interrupted = false;
   if(flipped) {
     target *= -1;
   }
   logger.debug("Turning to " + to_string(target) + ".");
-  const degree_t initialHeading{drive->getPose().h};
-  const degree_t shortestAngle{constrain180(target - initialHeading)};
-  follower->startProfile(
-      initialHeading, initialHeading + shortestAngle, specialParams);
-  while(!follower->isDone() && !interrupted) {
-    const Pose state{drive->getPose()};
-    const double output{follower->getOutput(state.h, state.omega)};
+  acceptable.reset(timeout);
+  pid.reset();
+  while(!acceptable.canAccept() && !interrupted) {
+    const degree_t state{drive->getPose().h};
+    double output{
+        pid.getOutput(getValueAs<radian_t>(constrain180(target - state)))};
+    output = std::clamp(output, -maxVoltage, maxVoltage);
     drive->arcade(0, output);
+    acceptable.canAccept(state, target);
     wait();
   }
   drive->brake();
@@ -42,18 +51,20 @@ void Turn::toward(degree_t target,
   }
 }
 
-void Turn::awayFrom(const Pose &target,
-                    const AngularProfile::Parameters &specialParams) {
+void Turn::awayFrom(const second_t timeout,
+                    const Pose &target,
+                    const double maxVoltage) {
   Pose state{drive->getPose()};
   if(flipped) {
     state.flip();
   }
   const degree_t targetAngle{angle(state, target)};
-  awayFrom(targetAngle, specialParams);
+  awayFrom(timeout, targetAngle, maxVoltage);
 }
 
-void Turn::awayFrom(const degree_t target,
-                    const AngularProfile::Parameters &specialParams) {
-  toward(target + 180_deg, specialParams);
+void Turn::awayFrom(const second_t timeout,
+                    const degree_t target,
+                    const double maxVoltage) {
+  toward(timeout, target + 180_deg, maxVoltage);
 }
 } // namespace atum

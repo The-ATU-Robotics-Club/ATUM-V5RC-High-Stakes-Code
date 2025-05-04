@@ -8,17 +8,8 @@ namespace atum {
 // Max drive acceleration: 153 in. / s^2.
 
 // General Constants
-static const LateralProfile::Parameters goalClampProfile{35_in_per_s,
-                                                         70_in_per_s_sq};
-static const LateralProfile::Parameters cornerMotionProfile{30_in_per_s,
-                                                            90_in_per_s_sq};
-LateralProfile::Parameters doubleStackProfile{40_in_per_s, 50_in_per_s_sq};
-static const inches_per_second_t singleRingSpeed{60_in_per_s};
-static const tile_t pushDoubleStackY{2.47_tile};
 static const second_t goalRushDelay{100_ms};
 static const second_t goalClampDelay{100_ms};
-static const second_t singleRingDelay{0.825_s};
-static const second_t doubleRingDelay{1.125_s};
 
 /*
   _ ___ _ _   ___ _   _ _ _
@@ -47,6 +38,16 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   }
   END_ROUTINE
 
+  START_ROUTINE("Negative Side: N/M Rush")
+  setupRoutine({});
+  goalClamp->clamp();
+  wait(goalClampDelay);
+  turn->toward(4_s, 45_deg);
+  wait(3_s);
+  turn->toward(4_s, 135_deg);
+  wait(3_s);
+  turn->toward(4_s, -45_deg);
+  END_ROUTINE
 
   START_ROUTINE("Do Nothing")
   setupRoutine({});

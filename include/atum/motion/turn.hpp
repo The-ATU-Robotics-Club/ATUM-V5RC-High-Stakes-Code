@@ -9,14 +9,14 @@
 
 #pragma once
 
+#include "../controllers/pid.hpp"
 #include "../systems/drive.hpp"
+#include "../utility/acceptable.hpp"
 #include "movement.hpp"
-#include "profileFollower.hpp"
 
 namespace atum {
 /**
- * @brief Encapsulates the logic behind turns. Mostly combines the drive with
- * the profile follower class.
+ * @brief Encapsulates the logic behind turns.
  *
  */
 class Turn : public Movement {
@@ -25,52 +25,63 @@ class Turn : public Movement {
    * @brief Constructs a new Turn object.
    *
    * @param iDrive
-   * @param iFollower
+   * @param iPID
+   * @param iAcceptable
    * @param loggerLevel
    */
   Turn(Drive *iDrive,
-       std::unique_ptr<AngularProfileFollower> iFollower,
+       const PID &iPID,
+       const AcceptableAngle &iAcceptable,
        const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Points towards the given target angle.
    *
+   * @param timeout
    * @param target
-   * @param specialParams
+   * @param maxVoltage
    */
-  void toward(const Pose &target,
-              const AngularProfile::Parameters &specialParams = {});
+  void toward(const second_t timeout,
+              const Pose &target,
+              const double maxVoltage = Motor::maxVoltage);
 
   /**
    * @brief Points towards the given target pose.
    *
+   * @param timeout
    * @param target
-   * @param specialParams
+   * @param maxVoltage
    */
-  void toward(const degree_t target,
-              const AngularProfile::Parameters &specialParams = {});
+  void toward(const second_t timeout,
+              const degree_t target,
+              const double maxVoltage = Motor::maxVoltage);
 
   /**
    * @brief Points away from the given target pose.
    *
+   * @param timeout
    * @param target
-   * @param specialParams
+   * @param maxVoltage
    */
-  void awayFrom(const Pose &target,
-                const AngularProfile::Parameters &specialParams = {});
+  void awayFrom(const second_t timeout,
+                const Pose &target,
+                const double maxVoltage = Motor::maxVoltage);
 
   /**
    * @brief Points away from the given target angle.
    *
+   * @param timeout
    * @param target
-   * @param specialParams
+   * @param maxVoltage
    */
-  void awayFrom(const degree_t target,
-                const AngularProfile::Parameters &specialParams = {});
+  void awayFrom(const second_t timeout,
+                const degree_t target,
+                const double maxVoltage = Motor::maxVoltage);
 
   private:
   Drive *drive;
-  std::unique_ptr<AngularProfileFollower> follower;
+  PID pid;
+  AcceptableAngle acceptable;
   Logger logger;
 };
 } // namespace atum

@@ -2,6 +2,7 @@
 #include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // White
 void RobotClone::initialize15Ports() {
@@ -130,9 +131,9 @@ void RobotClone::driveSetup() {
       {0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.00001, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.00025, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.00025, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0, 0.000025, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0003, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0003, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.00002, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.001}};
 
@@ -216,14 +217,14 @@ void RobotClone::goalSetup() {
 
   // Setup goal rush.
   std::unique_ptr<Piston> goalRushArm1{
-    std::make_unique<Piston>(otherPorts["goal rush piston 1"])};
+      std::make_unique<Piston>(otherPorts["goal rush piston 1"])};
   std::unique_ptr<LimitSwitch> goalRushSwitch1{
       std::make_unique<LimitSwitch>(ADIExtenderPort{
           otherPorts["adi extender"], otherPorts["goal rush switch 1"]})};
   goalRush1 = std::make_unique<GoalRush>(std::move(goalRushArm1),
                                          std::move(goalRushSwitch1));
   std::unique_ptr<Piston> goalRushArm2{
-    std::make_unique<Piston>(otherPorts["goal rush piston 2"])};
+      std::make_unique<Piston>(otherPorts["goal rush piston 2"])};
   std::unique_ptr<LimitSwitch> goalRushSwitch2{
       std::make_unique<LimitSwitch>(ADIExtenderPort{
           otherPorts["adi extender"], otherPorts["goal rush switch 2"]})};
@@ -232,68 +233,31 @@ void RobotClone::goalSetup() {
 }
 
 void RobotClone::autonSetup() {
-  meters_per_second_t maxV{76.5_in_per_s};
-  meters_per_second_squared_t maxA{153_in_per_s_sq};
-
   // Turn setup.
-  AngularProfile::Parameters turnMotionParams{
-      720_deg_per_s, 10000_deg_per_s_sq, 10000_deg_per_s_cb};
-  turnMotionParams.usePosition = true;
-  AngularProfile turnProfile{turnMotionParams};
-  // Timeout here gets set by the follower, so don't worry about the
-  // "forever."
+  PID turnPID{PID::Parameters{10.0, 0.5, 70.0, 0, 0.1}};
   AcceptableAngle turnAcceptable{forever, 3_deg, 1.5_rpm};
-  PID::Parameters turnPIDParams{2.5, 0, 0, 0.875};
-  turnPIDParams.ffScaling = true;
-  std::unique_ptr<Controller> turnVelocityController =
-      std::make_unique<PID>(turnPIDParams);
-  const AccelerationConstants turnKA{0.75, 0.1};
-  std::unique_ptr<Controller> turnPositionController =
-      std::make_unique<PID>(PID::Parameters{10.0});
-  std::unique_ptr<AngularProfileFollower> angularProfileFollower{
-      std::make_unique<AngularProfileFollower>(
-          turnProfile,
-          turnAcceptable,
-          std::move(turnVelocityController),
-          turnKA,
-          std::move(turnPositionController),
-          15_deg)};
-  turn = std::make_unique<Turn>(drive.get(), std::move(angularProfileFollower));
+  turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
-  LateralProfile::Parameters moveToMotionParams{maxV, maxA, 612_in_per_s_cb};
-  moveToMotionParams.usePosition = true;
-  LateralProfile moveToProfile{moveToMotionParams};
+  PID moveToPID{PID::Parameters{60}};
+  PID directionPID{PID::Parameters{0.35}};
   AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
-  std::unique_ptr<PID> directionController =
-      std::make_unique<PID>(PID::Parameters{0.35});
-  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
-  moveToVelocityPIDParams.ffScaling = true;
-  std::unique_ptr<Controller> moveToVelocityPID{
-      std::make_unique<PID>(moveToVelocityPIDParams)};
-  const AccelerationConstants kA{2.5, 1.25};
-  std::unique_ptr<PID> moveToPositionPID =
-      std::make_unique<PID>(PID::Parameters{60});
-  std::unique_ptr<LateralProfileFollower> lateralProfileFollower{
-      std::make_unique<LateralProfileFollower>(moveToProfile,
-                                               moveToAcceptable,
-                                               std::move(moveToVelocityPID),
-                                               kA,
-                                               std::move(moveToPositionPID),
-                                               3_in)};
-  moveTo = std::make_unique<MoveTo>(drive.get(),
-                                    turn.get(),
-                                    std::move(lateralProfileFollower),
-                                    std::move(directionController));
+  moveTo = std::make_unique<MoveTo>(
+      drive.get(), turn.get(), moveToPID, directionPID, moveToAcceptable);
 
   // Path follower setup.
+  meters_per_second_t maxV{76.5_in_per_s};
+  meters_per_second_squared_t maxA{153_in_per_s_sq};
   Path::setDefaultParams(
       {1_tile, maxV, maxA, maxA, drive->getGeometry().track});
   AcceptableDistance acceptable{forever};
+  PID::Parameters moveToVelocityPIDParams{6, 0, 0, 6};
+  moveToVelocityPIDParams.ffScaling = true;
   std::unique_ptr<Controller> forwardController{
       std::make_unique<PID>(moveToVelocityPIDParams)};
   std::unique_ptr<Controller> turnController =
       std::make_unique<PID>(PID::Parameters{7});
+  const AccelerationConstants kA{2.5, 1.25};
   pathFollower = std::make_unique<PathFollower>(drive.get(),
                                                 acceptable,
                                                 std::move(forwardController),

@@ -9,16 +9,11 @@
 
 #pragma once
 
-#include "../controllers/pid.hpp"
-#include "../systems/drive.hpp"
-#include "profileFollower.hpp"
 #include "turn.hpp"
-
 
 namespace atum {
 /**
- * @brief Encapsulates the logic behind point-to-point movements. Mostly
- * combines the drive with the profile follower class.
+ * @brief Encapsulates the logic behind point-to-point movements.
  *
  */
 class MoveTo : public Movement {
@@ -33,35 +28,41 @@ class MoveTo : public Movement {
    *
    * @param iDrive
    * @param iTurn
-   * @param iFollower
-   * @param iDirectionController
+   * @param iLateralPID
+   * @param iDirectionPID
    * @param iTurnToThreshold
+   * @param iAcceptable
    * @param loggerLevel
    */
   MoveTo(Drive *iDrive,
          Turn *iTurn,
-         std::unique_ptr<LateralProfileFollower> iFollower,
-         std::unique_ptr<PID> iDirectionController,
+         const PID &iLateralPID,
+         const PID &iDirectionPID,
+         const AcceptableDistance &iAcceptable,
          const meter_t iTurnToThreshold = 0.5_tile,
          const Logger::Level loggerLevel = Logger::Level::Info);
 
   /**
    * @brief Moves towards the given target position, going forward.
    *
+   * @param timeout
    * @param target
-   * @param specialParams
+   * @param maxVoltage
    */
-  void forward(Pose target,
-               const LateralProfile::Parameters &specialParams = {});
+  void forward(const second_t timeout,
+               Pose target,
+               const double maxVoltage = Motor::maxVoltage);
 
   /**
    * @brief Moves towards the given target position, going in reverse.
    *
+   * @param timeout
    * @param target
-   * @param specialParams
+   * @param maxVoltage
    */
-  void reverse(Pose target,
-               const LateralProfile::Parameters &specialParams = {});
+  void reverse(const second_t timeout,
+               Pose target,
+               const double maxVoltage = Motor::maxVoltage);
 
   private:
   /**
@@ -69,18 +70,22 @@ class MoveTo : public Movement {
    * accounting for if we are reversing or not.
    *
    * @param target
-   * @param specialParams
+   * @param timeout
+   * @param maxVoltage
    * @param reversed
    */
-  void moveToPoint(Pose target,
-                   const LateralProfile::Parameters &specialParams,
+  void moveToPoint(second_t timeout,
+                   Pose target,
+                   const double maxVoltage,
                    const bool reversed);
 
   Drive *drive;
   Turn *turn;
-  std::unique_ptr<LateralProfileFollower> follower;
-  std::unique_ptr<PID> directionController;
+  PID lateralPID;
+  PID directionPID;
+  AcceptableDistance acceptable;
   const meter_t turnToThreshold;
   Logger logger;
+  second_t startTime;
 };
 } // namespace atum
