@@ -47,7 +47,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveToRush->forward(2_s, getInFrontOf(28_in), 12.0, false);
   goalRushL->retract();
   wait(goalRushDelay);
-  moveToClose->reverse(3_s, {-2_tile, 1.375_tile}, 12.0, false);
+  moveToClose->reverse(3_s, {-2_tile, 1.2_tile}, 12.0, false);
   turn->toward(1_s, 90_deg + 30_deg);
   goalRushL->extend();
   moveToClose->forward(0.25_s, getInFrontOf(1_in), 12.0, false);
@@ -62,13 +62,16 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->intake();
   moveToFar->forward(3_s, {-1.25_tile, 2.5_tile}, 5.0);
   wait(1_s);
-  moveToClose->forward(3_s, {-2_tile, 2_tile});
-  moveToClose->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.75);
-  moveToFar->reverse(1_s, {-2.39_tile, 2.39_tile}, 8.0, false);
-  moveToFar->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.5, false);
-  moveToFar->reverse(1_s, {-2.39_tile, 2.39_tile}, 8.0, false);
+  moveToClose->forward(3_s, {-1.5_tile, 1.5_tile, -45_deg}, 4.0);
+  moveToClose->forward(2_s, {-2.25_tile, 2.25_tile}, 4.0);
+  wait(.5_s);
+  moveToClose->reverse(2_s, {-1.5_tile, 1.5_tile}, 4.0);
+  moveToClose->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.5, false);
+  moveToFar->reverse(1_s, {-2.2_tile, 2.2_tile}, 8.0, false);
+  moveToFar->forward(1.5_s, {-2.825_tile, 2.825_tile}, 5, false);
+  moveToFar->reverse(1_s, {-2.2_tile, 2.2_tile}, 8.0, false);
   intake->index();
-  moveToFar->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.5, false);
+  moveToFar->forward(1.5_s, {-2.825_tile, 2.825_tile}, 5, false);
   moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
 
 
