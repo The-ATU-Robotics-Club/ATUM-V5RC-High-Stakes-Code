@@ -2,7 +2,6 @@
 #include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
 
-
 namespace atum {
 // White
 void RobotClone::initialize15Ports() {
@@ -24,10 +23,8 @@ void RobotClone::initialize15Ports() {
                 {"forward odometer 2", 'B'},
                 {"side odometer 1", 'C'},
                 {"side odometer 2", 'D'},
-                {"goal rush piston 1", 'G'},
-                {"goal rush switch 1", 'D'},
-                {"goal rush piston 2", 'H'},
-                {"goal rush switch 2", 'D'},
+                {"goal rush piston l", 'G'},
+                {"goal rush piston r", 'H'},
                 {"kaboomer", 'F'}};
 }
 
@@ -51,10 +48,8 @@ void RobotClone::initialize24Ports() {
                 {"forward odometer 2", 'D'},
                 {"side odometer 1", 'A'},
                 {"side odometer 2", 'B'},
-                {"goal rush piston 1", 'G'},
-                {"goal rush switch 1", 'D'},
-                {"goal rush piston 2", 'H'},
-                {"goal rush switch 2", 'C'},
+                {"goal rush piston l", 'H'},
+                {"goal rush piston r", 'G'},
                 {"kaboomer", 'F'}};
 }
 
@@ -215,18 +210,18 @@ void RobotClone::goalSetup() {
                                           std::move(limitSwitch2));
 
   // Setup goal rush.
-  goalRushL = std::make_unique<Piston>(otherPorts["goal rush piston L"]);
-  goalRushR = std::make_unique<Piston>(otherPorts["goal rush piston R"]);
+  goalRushL = std::make_unique<Piston>(otherPorts["goal rush piston l"]);
+  goalRushR = std::make_unique<Piston>(otherPorts["goal rush piston r"]);
 }
 
 void RobotClone::autonSetup() {
   // Turn setup.
-  PID turnPID{PID::Parameters{10.0, 0.5, 70.0, 0, 0.1}};
-  AcceptableAngle turnAcceptable{forever, 3_deg, 1.5_rpm};
+  PID turnPID{PID::Parameters{10.0, 0.5, 70.0, 0, 0.2}};
+  AcceptableAngle turnAcceptable{forever, 6_deg, 3_rpm};
   turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
-  PID directionPID{PID::Parameters{7}};
+  PID directionPID{PID::Parameters{7.5}};
   AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
   PID moveToClosePID{PID::Parameters{45, 2.0, 380, 0.0, 0.05}};
   moveToClose = std::make_unique<MoveTo>(
@@ -234,7 +229,7 @@ void RobotClone::autonSetup() {
   PID moveToFarPID{PID::Parameters{20.0, 2.0, 185.0, 0.0, 0.05}};
   moveToFar = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToFarPID, directionPID, moveToAcceptable);
-  PID moveToRushPID{PID::Parameters{33, 0.0, 340.0}};
+  PID moveToRushPID{PID::Parameters{35, 0.0, 340.0}};
   moveToRush = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToRushPID, directionPID, moveToAcceptable);
 

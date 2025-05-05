@@ -81,6 +81,8 @@ class IMU {
    */
   void initializeIMUs();
 
+  const degree_t driftThreshold{0.01_deg};
+
   std::vector<std::unique_ptr<pros::IMU>> imus;
   const bool reversed;
   Logger logger;

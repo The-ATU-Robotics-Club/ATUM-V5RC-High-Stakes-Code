@@ -192,6 +192,14 @@ class RobotClone : public Robot {
   void clampWhenReady(const second_t timeout = 4_s);
 
   /**
+   * @brief Gets the position a given offset in front of robot. 
+   * 
+   * @param offset 
+   * @return Pose 
+   */
+  Pose getInFrontOf(const meter_t offset) const;
+
+  /**
    * @brief Runs the intake outward for a moment, before starting to index.
    *
    */

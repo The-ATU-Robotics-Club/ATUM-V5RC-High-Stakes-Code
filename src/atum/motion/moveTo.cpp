@@ -22,7 +22,7 @@ void MoveTo::forward(const second_t timeout,
                      const double maxVoltage,
                      const bool turnToFirst) {
   if(turnToFirst) {
-    turn->toward(timeout, target, maxVoltage);
+    turn->toward(timeout, target);
   }
   moveToPoint(timeout, target, maxVoltage, false);
 }
@@ -32,7 +32,7 @@ void MoveTo::reverse(const second_t timeout,
                      const double maxVoltage,
                      const bool turnToFirst) {
   if(turnToFirst) {
-    turn->awayFrom(timeout, target, maxVoltage);
+    turn->awayFrom(timeout, target);
   }
   moveToPoint(timeout, target, maxVoltage, true);
 }

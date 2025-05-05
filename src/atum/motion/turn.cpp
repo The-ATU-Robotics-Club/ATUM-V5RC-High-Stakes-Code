@@ -35,11 +35,12 @@ void Turn::toward(const second_t timeout,
   pid.reset();
   while(!acceptable.canAccept() && !interrupted) {
     const degree_t state{drive->getPose().h};
+    const degree_t error{constrain180(target - state)};
     double output{
-        pid.getOutput(getValueAs<radian_t>(constrain180(target - state)))};
+        pid.getOutput(getValueAs<radian_t>(error))};
     output = std::clamp(output, -maxVoltage, maxVoltage);
     drive->arcade(0, output);
-    acceptable.canAccept(state, target);
+    acceptable.canAccept(error);
     wait();
   }
   drive->brake();

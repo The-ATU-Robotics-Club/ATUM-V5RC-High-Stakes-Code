@@ -2,6 +2,7 @@
 #include "robots/sharedSystems/intake.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -28,13 +29,6 @@ void RobotClone::skills15() {}
 */
 void RobotClone::skills24() {
   setupRoutine({-2_tile, 2_tile, 90_deg});
-  goalRushL->extend();
-  // goalRushWhenReady();
-  kaboomer->retract();
-  moveToRush->forward(2_s, {-0.65_tile, 2_tile}, 12.0, false);
-  goalRushL->retract();
-  wait(goalRushDelay);
-  moveToClose->reverse(3_s, {-1.5_tile, 2_tile}, 12.0, false);
 }
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
@@ -47,11 +41,51 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   END_ROUTINE
 
   START_ROUTINE("Negative Side: N/M Rush")
-  setupRoutine({-2_tile, 2_tile, 90_deg});
-  pathFollower->follow({{AcceptableDistance{3_s},
-                         {2_tile, 0_tile, 180_deg},
-                         false,
-                         Path::Parameters{{3_tile, 5_tile}, 45_in_per_s}}});
+  setupRoutine({-41.5_in, 30.5_in, 78_deg});
+  goalRushL->extend();
+  kaboomer->retract();
+  moveToRush->forward(2_s, getInFrontOf(28_in), 12.0, false);
+  goalRushL->retract();
+  wait(goalRushDelay);
+  moveToClose->reverse(3_s, {-2_tile, 1.375_tile}, 12.0, false);
+  turn->toward(1_s, 90_deg + 30_deg);
+  goalRushL->extend();
+  moveToClose->forward(0.25_s, getInFrontOf(1_in), 12.0, false);
+  turn->toward(1_s, 70_deg);
+  goalRushL->retract();
+  wait(goalRushDelay);
+  moveToFar->reverse(2_s, {-0.75_tile, 1.375_tile}, 6.0);
+  goalClamp->clamp();
+  wait(goalClampDelay);
+
+
+  intake->intake();
+  moveToFar->forward(3_s, {-1.25_tile, 2.5_tile}, 5.0);
+  wait(1_s);
+  moveToClose->forward(3_s, {-2_tile, 2_tile});
+  moveToClose->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.75);
+  moveToFar->reverse(1_s, {-2.39_tile, 2.39_tile}, 8.0, false);
+  moveToFar->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.5, false);
+  moveToFar->reverse(1_s, {-2.39_tile, 2.39_tile}, 8.0, false);
+  intake->index();
+  moveToFar->forward(1.5_s, {-2.825_tile, 2.825_tile}, 4.5, false);
+  moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
+
+
+  moveToFar->forward(4_s, {-2_tile, 0_tile});
+  intake->load();
+  moveToClose->forward(2_s, {-3_tile, 0_tile}, 4);
+  intake->finishLoading();
+  moveToClose->reverse(2_s, getInFrontOf(-10_in));
+  ladybrown->moveTo(190_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 2_s);
+  ladybrown->moveTo(90_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Resting), 2_s);
+  ladybrown->rest();
+
+
+  moveToFar->forward(4_s, {-1.5_tile, -2_tile});
+  turn->toward(2_s, {0_tile, 0_tile});
   END_ROUTINE
 
   START_ROUTINE("Do Nothing")
@@ -60,8 +94,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   wait(3_s);
   intake->stop();
   END_ROUTINE
-
-  
 
   START_ROUTINE("Positive Side: P Rush")
   setupRoutine({});
@@ -90,9 +122,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveToClose->reverse(2_s, {2.75_tile, 2.25_tile});
   wait(100_ms);
   goalClamp->unclamp();
-  moveToFar->forward(2_s, {1_tile, 0_tile});  
+  moveToFar->forward(2_s, {1_tile, 0_tile});
   END_ROUTINE
-
 
   START_ROUTINE("Negative Side: P Rush")
   setupRoutine({});
@@ -130,7 +161,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveToFar->forward(2_s, {2.5_tile, 2.5_tile});
   END_ROUTINE
 
-
   START_ROUTINE("Positive Side: M Rush")
   setupRoutine({});
   intake->index();
@@ -164,9 +194,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   moveToClose->reverse(2_s, {2.75_tile, 2.25_tile});
   wait(100_ms);
   goalClamp->unclamp();
-  moveToFar->forward(2_s, {1_tile, 0_tile});  
+  moveToFar->forward(2_s, {1_tile, 0_tile});
   END_ROUTINE
-
 
   START_ROUTINE("Negative Side: M Rush")
   setupRoutine({});
@@ -207,7 +236,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   ladybrown->retract();
   moveToFar->forward(2_s, {2.5_tile, 2.5_tile});
   END_ROUTINE
-  
+
   START_ROUTINE("Positive Side: N Rush")
   setupRoutine({});
   intake->index();
@@ -243,7 +272,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   goalClamp->unclamp();
   moveToFar->forward(2_s, {1_tile, 0_tile});
 
-  
   END_ROUTINE
 
   START_ROUTINE("Negative Side: N Rush")
@@ -281,7 +309,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   ladybrown->retract();
   moveToFar->forward(2_s, {2.5_tile, 2.5_tile});
   END_ROUTINE
-
 
   START_ROUTINE("Positive Side: P/N Rush")
   setupRoutine({});
@@ -351,9 +378,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   wait(100_ms);
   moveToClose->forward(5_s, {-2.75_tile, -2.75_tile});
 
-  
   END_ROUTINE
-
 
   START_ROUTINE("Positive Side: N/M Rush")
   setupRoutine({});
@@ -422,19 +447,15 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   ladybrown->rest();
   wait(100_ms);
   moveToClose->forward(5_s, {-2.75_tile, -2.75_tile});
-  
+
   END_ROUTINE
 
-  //START_ROUTINE("Negative Side: N/M Rush")
-  //setupRoutine({});
-  //moveToFar->forward(2_s, {0.0_tile, 4_tile}, 12.0, false);
-
+  // START_ROUTINE("Negative Side: N/M Rush")
+  // setupRoutine({});
+  // moveToFar->forward(2_s, {0.0_tile, 4_tile}, 12.0, false);
 }
 
-
-    void RobotClone::safePositive(){
-  
-    }
+void RobotClone::safePositive() {}
 
 void RobotClone::setupRoutine(Pose startingPose) {
   matchTimer.setTime();
@@ -472,6 +493,12 @@ void RobotClone::clampWhenReady(const second_t timeout) {
                       Scheduler::doNothing});
 }
 
+Pose RobotClone::getInFrontOf(const meter_t offset) const {
+  const Pose current{drive->getPose()};
+  const degree_t hAdj{90_deg - current.h};
+  const Pose offset2d{offset * cos(hAdj), offset * sin(hAdj)};
+  return current + offset2d;
+}
 
 void RobotClone::setSortToOpposite() {
   if(GUI::Routines::selectedColor() == MatchColor::Red) {

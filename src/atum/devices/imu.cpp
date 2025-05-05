@@ -88,7 +88,12 @@ void IMU::initializeIMUs() {
     for(auto &imu : imus) {
       stillCalibrating = stillCalibrating || imu->is_calibrating();
     }
-    wait(10_ms);
+    wait();
+  }
+  getTraveled();
+  wait(100_ms);
+  if(abs(getTraveled()) > driftThreshold) {
+    logger.error("IMU drift detected!");
   }
   logger.info("IMU is calibrated!");
 }
