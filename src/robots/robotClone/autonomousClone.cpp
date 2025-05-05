@@ -28,11 +28,11 @@ void RobotClone::skills15() {}
 */
 void RobotClone::skills24() {
   setupRoutine({-2_tile, 2_tile, 90_deg});
-  goalRush1->extend();
+  goalRushL->extend();
   // goalRushWhenReady();
   kaboomer->retract();
   moveToRush->forward(2_s, {-0.65_tile, 2_tile}, 12.0, false);
-  goalRush1->retract();
+  goalRushL->retract();
   wait(goalRushDelay);
   moveToClose->reverse(3_s, {-1.5_tile, 2_tile}, 12.0, false);
 }
@@ -66,7 +66,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Positive Side: P Rush")
   setupRoutine({});
   moveToClose->reverse(2_s, {1_tile, 1.5_tile});
-  clampWhenReady;
+  clampWhenReady();
   moveToClose->reverse(2_s, {.5_tile, 1.75_tile});
   goalClamp->clamp();
   intake->intake();
@@ -97,7 +97,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Negative Side: P Rush")
   setupRoutine({});
   moveToClose->reverse(2_s, {2_tile, .75_tile});
-  clampWhenReady;
+  clampWhenReady();
   goalClamp->clamp();
   intake->intake();
   wait(100_ms);
@@ -136,7 +136,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->index();
   moveToClose->forward(2_s, {2.5_tile, -.5_tile});
   wait(100_ms);
-  clampWhenReady;
+  clampWhenReady();
   moveToClose->reverse(2_s, {2_tile, 0_tile});
   wait(100_ms);
   goalClamp->clamp();
@@ -170,8 +170,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Negative Side: M Rush")
   setupRoutine({});
-  goalRushWhenReady;
-  clampWhenReady;
+  clampWhenReady();
   goalClamp->clamp();
   intake->intake();
   wait(100_ms);
@@ -212,7 +211,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Positive Side: N Rush")
   setupRoutine({});
   intake->index();
-  clampWhenReady;
+  clampWhenReady();
   moveToClose->forward(2_s, {2.5_tile, -.75_tile});
   wait(100_ms);
   moveToClose->reverse(2_s, {2_tile, 0_tile});
@@ -249,7 +248,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Negative Side: N Rush")
   setupRoutine({});
-  clampWhenReady;
+  clampWhenReady();
   goalClamp->clamp();
   intake->intake();
   moveToClose->forward(2_s, {1_tile, -2_tile});
@@ -436,67 +435,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
     void RobotClone::safePositive(){
   
     }
-    else{
-    setupRoutine({ safeNegative });
-    endOfNegativeSafeRoutines();
-    }
-    END_ROUTINE
 
-
-    START_ROUTINE("Mid Safe")
-    if(id == ID24){
-    setupRoutine({ rushMidFromNegative });
-    endOfMidRushRoutines();
-    }
-    else{
-    setupRoutine({ safePositive });
-    endOfPositiveSafeRoutines();
-    }
-    END_ROUTINE
-
-
-    START_ROUTINE("Negative Safe")
-    if(id == ID24){
-    setupRoutine({ rushNegative });
-    endOfNegativeRushRoutines();
-    }
-    else{
-    setupRoutine({ safePositive });
-    endOfPositiveSafeRoutines();
-    }
-    END_ROUTINE
-
-
-    START_ROUTINE("Positive Negative")
-    if(id == ID24){
-    setupRoutine({ rushNegative });     // 24 rushes negative because negative
-    goal more important to hold endOfNegativeRushRoutines();
-    }
-    else{
-    setupRoutine({ rushPositive });
-    endOfPositiveDoubleRushRoutines();
-    }
-    END_ROUTINE
-
-
-    START_ROUTINE("Negative Mid")
-    if(id == ID24){
-    setupRoutine({ rushNegative });
-    endOfNegativeDoubleRushRoutines();
-    }
-    else{
-    setupRoutine({ rushMidFromPositive });
-    endOfPositiveDoubleRushRoutines();
-    }
-    END_ROUTINE
-
-
-    START_ROUTINE("Positive Mid")
-    if(id == ID24){
-    setupRoutine({ rushMidFromNegative });
-    endOfNegativeDoubleRushRoutines();
-    }
-}
 void RobotClone::setupRoutine(Pose startingPose) {
   matchTimer.setTime();
 
@@ -511,8 +450,8 @@ void RobotClone::setupRoutine(Pose startingPose) {
   setSortToOpposite();
 
   goalClamp->unclamp();
-  goalRush1->retract();
-  goalRush2->retract();
+  goalRushL->retract();
+  goalRushR->retract();
 
   drive->setBrakeMode(pros::MotorBrake::brake);
 }
@@ -533,23 +472,6 @@ void RobotClone::clampWhenReady(const second_t timeout) {
                       Scheduler::doNothing});
 }
 
-void RobotClone::goalRushWhenReady(const second_t timeout) {
-  scheduler.schedule({"Goal Rush Grab When Ready",
-                      [=]() { return goalRush1->hasGoal(); },
-                      [=]() {
-                        if(goalRush1->isUp()) {
-                          return;
-                        }
-                        goalRush1->retract();
-                        wait(goalRushDelay);
-                        turn->interrupt();
-                        moveToClose->interrupt();
-                        moveToFar->interrupt();
-                        pathFollower->interrupt();
-                      },
-                      timeout,
-                      Scheduler::doNothing});
-}
 
 void RobotClone::setSortToOpposite() {
   if(GUI::Routines::selectedColor() == MatchColor::Red) {

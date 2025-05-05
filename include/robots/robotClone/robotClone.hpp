@@ -192,15 +192,6 @@ class RobotClone : public Robot {
   void clampWhenReady(const second_t timeout = 4_s);
 
   /**
-   * @brief Grabs a goal with the goal rush when one is detected. If the given
-   * timeout is exceeded before a goal is found, does nothing (so you should
-   * place a manual grab at the point you expect the goal to be there).
-   *
-   * @param timeout
-   */
-  void goalRushWhenReady(const second_t timeout = 4_s);
-
-  /**
    * @brief Runs the intake outward for a moment, before starting to index.
    *
    */
@@ -293,8 +284,8 @@ class RobotClone : public Robot {
   std::unique_ptr<Intake> intake;
   std::unique_ptr<Ladybrown> ladybrown;
   std::unique_ptr<GoalClamp> goalClamp;
-  std::unique_ptr<GoalRush> goalRushL;
-  std::unique_ptr<GoalRush> goalRushR;
+  std::unique_ptr<Piston> goalRushL;
+  std::unique_ptr<Piston> goalRushR;
   std::unique_ptr<Piston> kaboomer;
   Scheduler scheduler;
   std::unique_ptr<MoveTo> moveToClose;

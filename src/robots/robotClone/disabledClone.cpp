@@ -2,6 +2,7 @@
 #include "atum/utility/misc.hpp"
 #include "robotClone.hpp"
 
+
 namespace atum {
 // White
 void RobotClone::initialize15Ports() {
@@ -214,20 +215,8 @@ void RobotClone::goalSetup() {
                                           std::move(limitSwitch2));
 
   // Setup goal rush.
-  std::unique_ptr<Piston> goalRushArmL{
-      std::make_unique<Piston>(otherPorts["goal rush piston L"])};
-  std::unique_ptr<LimitSwitch> goalRushSwitchL{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{
-          otherPorts["adi extender"], otherPorts["goal rush switch L"]})};
-  goalRushL = std::make_unique<GoalRush>(std::move(goalRushArmL),
-                                         std::move(goalRushSwitchL));
-  std::unique_ptr<Piston> goalRushArmR{
-      std::make_unique<Piston>(otherPorts["goal rush piston R"])};
-  std::unique_ptr<LimitSwitch> goalRushSwitchR{
-      std::make_unique<LimitSwitch>(ADIExtenderPort{
-          otherPorts["adi extender"], otherPorts["goal rush switch R"]})};
-  goalRushR = std::make_unique<GoalRush>(std::move(goalRushArmR),
-                                         std::move(goalRushSwitchR));
+  goalRushL = std::make_unique<Piston>(otherPorts["goal rush piston L"]);
+  goalRushR = std::make_unique<Piston>(otherPorts["goal rush piston R"]);
 }
 
 void RobotClone::autonSetup() {
