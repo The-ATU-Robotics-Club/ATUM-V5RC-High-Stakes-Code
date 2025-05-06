@@ -1,7 +1,6 @@
 #include "robotClone.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
-
 namespace atum {
 void RobotClone::opcontrol() {
   setSortToOpposite();
@@ -25,14 +24,13 @@ void RobotClone::opcontrol() {
                       GUI::Routines::selectedRoutine() ? 89.95_s : 59.95_s});
   drive->setBrakeMode(pros::MotorBrake::coast);
   while(true) {
-    const double forward{speedMultiplier * remote.getLStick().y};
+    const double forward{remote.getLStick().y};
     const double turn{remote.getRStick().x};
     drive->arcade(forward,
                   ((turn < 0) ? -1 : 1) * turn * turn / Motor::maxVoltage);
 
     visualFeedback();
 
-    speedMultiplier = 1.0;
     if(useHangControls) {
       hangControls();
     } else if(useManualControls) {
@@ -162,20 +160,12 @@ void RobotClone::intakeControls() {
 void RobotClone::hangControls() {
   remote.print(2, "MODE: Hang");
 
-  if(remote.getHold(Remote::Button::L1)) {
-    if(id == ID15) {
-      speedMultiplier = 0.425;
-    } else {
-      speedMultiplier = 0.35;
-    }
-    // ladybrown->prepare();
-    goalRushL->retract();
-    goalRushR->retract();
-  } else {
-    // ladybrown->fullyExtend();
-    goalRushL->extend();
-    goalRushR->extend();
+  switch(remote.getLTrigger()) {
+    case -1: ladybrown->retract(); break;
+    case 1: ladybrown->extend(); break;
+    default: ladybrown->stop(); break;
   }
+
   switch(remote.getRTrigger()) {
     case -1: intake->outtake(); break;
     case 1: intake->intake(); break;

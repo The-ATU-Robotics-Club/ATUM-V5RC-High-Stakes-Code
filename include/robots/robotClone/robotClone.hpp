@@ -15,6 +15,7 @@
 #include "../sharedSystems/ladybrown.hpp"
 #include "../sharedSystems/poseEstimator.hpp"
 
+
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -138,8 +139,9 @@ class RobotClone : public Robot {
   void skills24();
 
   /**
-   * @brief Rushes a goal. The first boolean changes if the robot is rushing right or
-   * left. The second boolean changes if the robot will clamp as soon as it detects a goal.
+   * @brief Rushes a goal. The first boolean changes if the robot is rushing
+   * right or left. The second boolean changes if the robot will clamp as soon
+   * as it detects a goal.
    *
    * @param extraY
    * @param clampImmediately
@@ -152,20 +154,11 @@ class RobotClone : public Robot {
    *
    * @param negative
    * @param pushes
+   * @param shouldIndexLastRing
    */
-  void collectCorner(const bool negative, const int pushes);
-
-  /**
-   * @brief Contains the behavior for the ending of the negative side routines.
-   *
-   */
-  void endOfNegativeRoutines();
-
-  /**
-   * @brief Contains the behavior for the ending of the positive side routines.
-   *
-   */
-  void endOfPositiveRoutines();
+  void collectCorner(const bool negative,
+                     const int pushes,
+                     const bool shouldIndexLastRing);
 
   /**
    * @brief Sets up the robot with the appropriate starting pose and flips poses
@@ -215,6 +208,35 @@ class RobotClone : public Robot {
    */
   void setSortToOpposite();
 
+  /**
+   * @brief Finishes all positive routines and sends the robot to the given
+   * position.
+   *
+   * @param endPosition
+   */
+  void endOfPositive(const Pose &endPosition);
+
+  /**
+   * @brief Collects the two stacks and the rings in the corner on the negative
+   * side. Indexes the last ring of the negative side stack.
+   *
+   */
+  void collectNegative();
+
+  /**
+   * @brief Places an indexed ring on our alliance stake coming from the
+   * negative side.
+   *
+   */
+  void allianceStake();
+
+  /**
+   * @brief Collects the rings near the middle and grabs the goal.
+   * 
+   * @param negative 
+   */
+  void collectMiddle(const bool negative);
+
   int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
@@ -224,7 +246,7 @@ class RobotClone : public Robot {
   std::unique_ptr<Piston> goalRushL;
   std::unique_ptr<Piston> goalRushR;
   std::unique_ptr<Piston> kaboomer;
-  const inch_t extensionDistance{8.25_in};
+  const inch_t extensionDistance{8_in};
   Scheduler scheduler;
   std::unique_ptr<MoveTo> moveToClose;
   std::unique_ptr<MoveTo> moveToFar;
@@ -235,7 +257,6 @@ class RobotClone : public Robot {
   bool useManualControls{false};
   bool useLadybrownControls{false};
   bool useHangControls{false};
-  double speedMultiplier{1.0};
   bool scored{false};
   Timer clampTimer{0.5_s};
 

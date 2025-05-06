@@ -125,9 +125,9 @@ void RobotClone::driveSetup() {
       {0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0001, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0},
       {0.0, 0.0, 0.00001, 0.0, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0003, 0.0, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0003, 0.0, 0.0, 0.0},
-      {0.0, 0.0, 0.0, 0.0, 0.0, 0.00003, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.00025, 0.0, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.00025, 0.0, 0.0, 0.0},
+      {0.0, 0.0, 0.0, 0.0, 0.0, 0.00002, 0.0, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.01, 0.0},
       {0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.002}};
 
@@ -216,8 +216,8 @@ void RobotClone::goalSetup() {
 
 void RobotClone::autonSetup() {
   // Turn setup.
-  PID turnPID{PID::Parameters{10.0, 0.5, 70.0, 0, 0.2}};
-  AcceptableAngle turnAcceptable{forever, 6_deg, 3_rpm};
+  PID turnPID{PID::Parameters{11, 0.75, 70.0, 0, 0.2}};
+  AcceptableAngle turnAcceptable{forever, 3_deg, 3_rpm};
   turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
@@ -229,7 +229,7 @@ void RobotClone::autonSetup() {
   PID moveToFarPID{PID::Parameters{20.0, 2.0, 185.0, 0.0, 0.05}};
   moveToFar = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToFarPID, directionPID, moveToAcceptable);
-  PID moveToRushPID{PID::Parameters{35, 0.0, 340.0}};
+  PID moveToRushPID{PID::Parameters{32, 0.0, 340.0}};
   moveToRush = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToRushPID, directionPID, moveToAcceptable);
 

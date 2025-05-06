@@ -17,8 +17,7 @@ Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
   motor->setBrakeMode(pros::MotorBrake::brake);
   motor->resetPosition();
   rotation->resetDisplacement();
-  rest();
-
+  state = LadybrownState::Resting;
   logger.info("Ladybrown is constructed!");
 }
 
