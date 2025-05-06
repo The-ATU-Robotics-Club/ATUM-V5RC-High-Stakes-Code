@@ -138,20 +138,13 @@ class RobotClone : public Robot {
   void skills24();
 
   /**
-   * @brief Rushes a goal to the right of the robot. Adjusts as needed depending
-   * on the auto.
+   * @brief Rushes a goal. The first boolean changes if the robot is rushing right or
+   * left. The second boolean changes if the robot will clamp as soon as it detects a goal.
    *
    * @param extraY
+   * @param clampImmediately
    */
-  void rushLeft(const tile_t extraY = 0_tile);
-
-  /**
-   * @brief Rushes a goal to the left of the robot. Adjusts as needed depending
-   * on the auto.
-   *
-   * @param extraY
-   */
-  void rushRight(const tile_t extraY = 0_tile);
+  void rush(const bool right, const bool clampImmediately);
 
   /**
    * @brief Collects the rings in a corner. Changes y-values if the negative
@@ -189,15 +182,25 @@ class RobotClone : public Robot {
    *
    * @param timeout
    */
-  void clampWhenReady(const second_t timeout = 4_s);
+  void clampWhenReady(const second_t timeout = 5_s);
 
   /**
-   * @brief Gets the position a given offset in front of robot. 
-   * 
-   * @param offset 
-   * @return Pose 
+   * @brief Gets the position a given offset in front of robot.
+   *
+   * @param offset
+   * @return Pose
    */
   Pose getInFrontOf(const meter_t offset) const;
+
+  /**
+   * @brief Gets a pose a certain distance past a target, linear with the
+   * robot.
+   *
+   * @param target
+   * @param past
+   * @return Pose
+   */
+  Pose getPast(const Pose &target, const meter_t past) const;
 
   /**
    * @brief Runs the intake outward for a moment, before starting to index.
@@ -212,80 +215,6 @@ class RobotClone : public Robot {
    */
   void setSortToOpposite();
 
-  /**
-   * @brief Autonomous position setup for the safe-acting robot on the positive
-   * side.
-   *
-   */
-  void safePositive();
-
-  /**
-   * @brief Autonomous position setup for the safe-acting robot on the negative
-   * side.
-   *
-   */
-  void safeNegative();
-
-  /**
-   * @brief Autonomous position setup for the positive-goal rushing robot.
-   *
-   */
-  void rushPositive();
-
-  /**
-   * @brief Autonomous position setup for the negative-goal rushing robot.
-   *
-   */
-  void rushNegative();
-
-  /**
-   * @brief Autonomous routine for the mid-goal rushing robot from the negative side. 
-   * 
-   */
-  void rushMidFromNegative();
-
-   /**
-   * @brief Autonomous routine for the mid-goal rushing robot from the positive side. 
-   * 
-   */
-  void rushMidFromPositive();
-
-   /**
-   * @brief End autonomous routine for the positive side rushing robot
-   * 
-   */
-  void endOfPositiveRushRoutines();
-
-   /**
-   * @brief End autonomous routine for the negative-side rushing robot
-   * 
-   */
-  void endOfNegativeRushRoutines();
-
-  /**
-   * @brief End autonomous routine for the positive-side safe robot
-   * 
-   */
-  void endOfPositiveSafeRoutines();
-
-  /**
-   * @brief End autonomous routine for the negative-side safe robot
-   * 
-   */
-  void endOfNegativeSafeRoutines();
-
-  /**
-   * @brief End autonomous routine for the positive-side rushing robot ONLY whenever both are rushing
-   *
-   */
-  void endOfPositiveDoubleRushRoutines();
-
-  /**
-   * @brief End autonomous routine for the negative-side rushing robot ONLY whenever both are rushing
-   * 
-   */
-  void endOfNegativeDoubleRushRoutines();
-
   int id;
   Remote remote;
   std::unique_ptr<Drive> drive;
@@ -295,6 +224,7 @@ class RobotClone : public Robot {
   std::unique_ptr<Piston> goalRushL;
   std::unique_ptr<Piston> goalRushR;
   std::unique_ptr<Piston> kaboomer;
+  const inch_t extensionDistance{8.25_in};
   Scheduler scheduler;
   std::unique_ptr<MoveTo> moveToClose;
   std::unique_ptr<MoveTo> moveToFar;
