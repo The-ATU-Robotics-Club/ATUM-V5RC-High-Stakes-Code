@@ -56,8 +56,12 @@ void RobotClone::initialize24Ports() {
 RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   if(id == ID15) {
     initialize15Ports();
+    logger.info("Using 15\" (white) configuration.");
   } else if(id == ID24) {
     initialize24Ports();
+    logger.info("Using 24\" (yellow) configuration.");
+  } else {
+    logger.error("Brain ID invalid.");
   }
   driveSetup();
   ladybrownSetup();
@@ -68,9 +72,14 @@ RobotClone::RobotClone(const int iID) : Robot{this}, id{iID} {
   ladybrown->setIntake(intake.get());
   intake->startBackgroundTasks();
   ladybrown->startBackgroundTasks();
+  if(static_cast<int>(pros::battery::get_capacity()) < 25) {
+    logger.error("Battery is low.");
+  }
+  logger.info("Robot constructed.");
 }
 
 void RobotClone::disabled() {
+  logger.info("The robot is disabled.");
   wait(100_ms);
 }
 

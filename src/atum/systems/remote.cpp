@@ -77,6 +77,9 @@ void Remote::rumble(const std::string &pattern) {
 TASK_DEFINITIONS_FOR(Remote) {
   START_TASK("Print Handler")
   while(true) {
+    if(static_cast<int>(remote.get_battery_capacity()) < 25) {
+      logger.error("Remote battery is low.");
+    }
     for(std::size_t line{0}; line < 3; line++) {
       if(rowQueues[line].size()) {
         const auto output = rowQueues[line].front();

@@ -55,6 +55,8 @@ void Logger::log(const std::string &prefix,
   fmtMsg << std::setw(5) << prefix << std::setw(0) << ": " + msg << '\n';
   std::cout << fmtMsg.str();
   if(msgLevel <= Level::Info) {
+    std::fstream file{logFilename, std::fstream::app};
+     file << fmtMsg.str();
     GUI::Log::write(fmtMsg.str());
   }
 }

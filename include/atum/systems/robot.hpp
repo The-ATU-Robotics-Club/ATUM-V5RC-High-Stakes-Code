@@ -10,6 +10,7 @@
 #pragma once
 
 #include "../gui/manager.hpp"
+#include "../utility/logger.hpp"
 #include <functional>
 #include <string>
 
@@ -107,6 +108,7 @@ class Robot {
   protected:
   std::string routineNames;
   std::vector<Routine> routines;
+  Logger logger{Logger::Level::Debug};
 };
 
 } // namespace atum
