@@ -1,5 +1,7 @@
 var classatum_1_1OTOS =
 [
-    [ "setPose", "classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce", null ],
-    [ "update", "classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381", null ]
+    [ "OTOS", "classatum_1_1OTOS.html#a96b8fd2ec2557d42531042f5d509f0e1", null ],
+    [ "getOmega", "classatum_1_1OTOS.html#aee491d97ef111572cdee0645828b9959", null ],
+    [ "getVF", "classatum_1_1OTOS.html#a18126120537a1faac54d282c7de1b985", null ],
+    [ "getVS", "classatum_1_1OTOS.html#a38066d8623bc88707858ef8a2ca7f072", null ]
 ];

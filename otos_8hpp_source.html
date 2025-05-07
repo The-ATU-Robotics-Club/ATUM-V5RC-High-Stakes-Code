@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: include/atum/pose/otos.hpp Source File</title>
+<title>VURC Team ATUM: include/atum/devices/otos.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,68 +97,79 @@ $(document).ready(function(){initNavTree('otos_8hpp_source.html',''); initResiza
   <div class="headertitle"><div class="title">otos.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;../devices/serialDevice.hpp&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="tracker_8hpp.html">tracker.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>atum {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1OTOS.html">OTOS</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Tracker.html">Tracker</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <a class="code hl_class" href="classatum_1_1OTOS.html">OTOS</a>(<span class="keyword">const</span> std::int8_t port,</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>       <span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;offset = <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a>{},</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>       <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381">   13</a></span>  <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> <a class="code hl_function" href="classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381">update</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce">   15</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce">setPose</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) <span class="keyword">override</span>;</div>
+<a href="otos_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;../devices/serialDevice.hpp&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;../pose/pose.hpp&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;../time/task.hpp&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;../time/timer.hpp&quot;</span></div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordtype">bool</span> check() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keyword">enum</span> Command {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    Initialize,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    Calibrate,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    IsCalibrating,</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    Reset,</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    SetOffset,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    SetPosition,</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    GetPosition,</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    GetVelocity,</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    Check,</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    SelfTest,</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    Invalid <span class="comment">// ALL NEW COMMANDS SHOULD BE PLACED ABOVE THIS ONE!</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  };</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">enum</span> Response { Success, Error, Waiting, Unknown };</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">struct </span>OTOSData {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordtype">float</span> x;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">float</span> y;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">float</span> h;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  };</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span>atum {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1OTOS.html">OTOS</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Task.html">Task</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  TASK_BOILERPLATE(); <span class="comment">// Included in all task derivatives for setup.</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html#a96b8fd2ec2557d42531042f5d509f0e1">   38</a></span>  <a class="code hl_function" href="classatum_1_1OTOS.html#a96b8fd2ec2557d42531042f5d509f0e1">OTOS</a>(<span class="keyword">const</span> std::int8_t port,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>       <span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1UnwrappedPose.html">UnwrappedPose</a> &amp;offset = <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a>{},</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>       <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keyword">const</span> second_t calibrationTimeout{1_s};</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  std::unique_ptr&lt;SerialDevice&gt; otos;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  Logger logger;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  Timer timer;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>};</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html#a18126120537a1faac54d282c7de1b985">   47</a></span>  meters_per_second_t <a class="code hl_function" href="classatum_1_1OTOS.html#a18126120537a1faac54d282c7de1b985">getVF</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html#a38066d8623bc88707858ef8a2ca7f072">   54</a></span>  meters_per_second_t <a class="code hl_function" href="classatum_1_1OTOS.html#a38066d8623bc88707858ef8a2ca7f072">getVS</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classatum_1_1OTOS.html#aee491d97ef111572cdee0645828b9959">   61</a></span>  radians_per_second_t <a class="code hl_function" href="classatum_1_1OTOS.html#aee491d97ef111572cdee0645828b9959">getOmega</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordtype">bool</span> check();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keyword">enum</span> Command {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    Initialize,</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    Calibrate,</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    IsCalibrating,</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    Reset,</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    SetOffset,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    SetPosition,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    GetPosition,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    GetVelocity,</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Check,</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    SelfTest,</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    Invalid <span class="comment">// ALL NEW COMMANDS SHOULD BE PLACED ABOVE THIS ONE!</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  };</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <span class="keyword">enum</span> Response { Success, Error, Waiting, Unknown };</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keyword">struct </span>OTOSData {</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="keywordtype">float</span> x;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    <span class="keywordtype">float</span> y;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordtype">float</span> h;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  };</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  <span class="keyword">const</span> second_t calibrationTimeout{1_s};</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  std::unique_ptr&lt;SerialDevice&gt; otos;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  Logger logger;</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  Timer timer;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  meters_per_second_t vf;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  meters_per_second_t vs;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  radians_per_second_t omega;</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>};</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
-<div class="ttc" id="aclassatum_1_1OTOS_html"><div class="ttname"><a href="classatum_1_1OTOS.html">atum::OTOS</a></div><div class="ttdef"><b>Definition:</b> otos.hpp:7</div></div>
-<div class="ttc" id="aclassatum_1_1OTOS_html_a694c9407c3b83851a2eeb8ba4c4634ce"><div class="ttname"><a href="classatum_1_1OTOS.html#a694c9407c3b83851a2eeb8ba4c4634ce">atum::OTOS::setPose</a></div><div class="ttdeci">void setPose(const Pose &amp;iPose) override</div><div class="ttdoc">Sets the current pose of the tracker.</div></div>
-<div class="ttc" id="aclassatum_1_1OTOS_html_afd0c5691d156729ca74d4e6d19a78381"><div class="ttname"><a href="classatum_1_1OTOS.html#afd0c5691d156729ca74d4e6d19a78381">atum::OTOS::update</a></div><div class="ttdeci">Pose update() override</div><div class="ttdoc">This method should update the current tracked pose. It should be overriden in derivatives of Tracker.</div></div>
-<div class="ttc" id="aclassatum_1_1Tracker_html"><div class="ttname"><a href="classatum_1_1Tracker.html">atum::Tracker</a></div><div class="ttdoc">This class creates an interface for any system that can do pose tracking.</div><div class="ttdef"><b>Definition:</b> tracker.hpp:23</div></div>
+<div class="ttc" id="aclassatum_1_1OTOS_html"><div class="ttname"><a href="classatum_1_1OTOS.html">atum::OTOS</a></div><div class="ttdoc">This class encapsulates the logic behind the Sparkfun Optical Tracking Odometry Sensor (OTOS)....</div><div class="ttdef"><b>Definition:</b> otos.hpp:26</div></div>
+<div class="ttc" id="aclassatum_1_1OTOS_html_a18126120537a1faac54d282c7de1b985"><div class="ttname"><a href="classatum_1_1OTOS.html#a18126120537a1faac54d282c7de1b985">atum::OTOS::getVF</a></div><div class="ttdeci">meters_per_second_t getVF() const</div><div class="ttdoc">Gets the forward velocity according to the OTOS.</div></div>
+<div class="ttc" id="aclassatum_1_1OTOS_html_a38066d8623bc88707858ef8a2ca7f072"><div class="ttname"><a href="classatum_1_1OTOS.html#a38066d8623bc88707858ef8a2ca7f072">atum::OTOS::getVS</a></div><div class="ttdeci">meters_per_second_t getVS() const</div><div class="ttdoc">Gets the side velocity according to the OTOS.</div></div>
+<div class="ttc" id="aclassatum_1_1OTOS_html_a96b8fd2ec2557d42531042f5d509f0e1"><div class="ttname"><a href="classatum_1_1OTOS.html#a96b8fd2ec2557d42531042f5d509f0e1">atum::OTOS::OTOS</a></div><div class="ttdeci">OTOS(const std::int8_t port, const UnwrappedPose &amp;offset=Pose{}, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new OTOS. Offset referring to where the OTOS is relative to the center of the bot.</div></div>
+<div class="ttc" id="aclassatum_1_1OTOS_html_aee491d97ef111572cdee0645828b9959"><div class="ttname"><a href="classatum_1_1OTOS.html#aee491d97ef111572cdee0645828b9959">atum::OTOS::getOmega</a></div><div class="ttdeci">radians_per_second_t getOmega() const</div><div class="ttdoc">Gets the angular velocity according to the OTOS.</div></div>
+<div class="ttc" id="aclassatum_1_1Task_html"><div class="ttname"><a href="classatum_1_1Task.html">atum::Task</a></div><div class="ttdoc">This class allows its derivatives to &quot;own&quot; their own tasks and better control their management....</div><div class="ttdef"><b>Definition:</b> task.hpp:85</div></div>
 <div class="ttc" id="astructatum_1_1Pose_html"><div class="ttname"><a href="structatum_1_1Pose.html">atum::Pose</a></div><div class="ttdoc">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...</div><div class="ttdef"><b>Definition:</b> pose.hpp:144</div></div>
 <div class="ttc" id="astructatum_1_1UnwrappedPose_html"><div class="ttname"><a href="structatum_1_1UnwrappedPose.html">atum::UnwrappedPose</a></div><div class="ttdoc">This is used to &quot;unwrap&quot; the Pose objects for easier manipulation. Generally, Pose should be used ove...</div><div class="ttdef"><b>Definition:</b> pose.hpp:26</div></div>
-<div class="ttc" id="atracker_8hpp_html"><div class="ttname"><a href="tracker_8hpp.html">tracker.hpp</a></div><div class="ttdoc">Includes the Tracker parent class.</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_94010ad16aedcb2a9149365d3e62b963.html">pose</a></li><li class="navelem"><b>otos.hpp</b></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_08e4f34e5757a9a4bec0186f517c23a4.html">devices</a></li><li class="navelem"><a class="el" href="otos_8hpp.html">otos.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

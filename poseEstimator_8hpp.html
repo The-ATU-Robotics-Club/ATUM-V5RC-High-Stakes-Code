@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VURC Team ATUM: include/atum/pose/odometry.hpp File Reference</title>
+<title>VURC Team ATUM: include/robots/sharedSystems/poseEstimator.hpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('odometry_8hpp.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('poseEstimator_8hpp.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -96,37 +96,32 @@ $(document).ready(function(){initNavTree('odometry_8hpp.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a>  </div>
-  <div class="headertitle"><div class="title">odometry.hpp File Reference</div></div>
+  <div class="headertitle"><div class="title">poseEstimator.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Includes the Odometry class.  
+<p>Includes the PoseEstimator class.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="imu_8hpp_source.html">../devices/imu.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="odometer_8hpp_source.html">../devices/odometer.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="drive_8hpp_source.html">../systems/drive.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="task_8hpp_source.html">../time/task.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="units_8hpp_source.html">../utility/units.hpp</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="tracker_8hpp_source.html">tracker.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="atum_8hpp_source.html">atum/atum.hpp</a>&quot;</code><br />
 </div>
-<p><a href="odometry_8hpp_source.html">Go to the source code of this file.</a></p>
+<p><a href="poseEstimator_8hpp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1Odometry.html">atum::Odometry</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs tracking using two odometers perpendicular to each other. Uses arc estimation and twists for improved accuracy.  <a href="classatum_1_1Odometry.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html">atum::PoseEstimator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class incorporates a model of the robot's differential drive with given sensors using an <a class="el" href="classatum_1_1EKF.html">EKF</a>.  <a href="classatum_1_1PoseEstimator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Includes the Odometry class. </p>
-<dl class="section date"><dt>Date</dt><dd>2024-12-23</dd></dl>
-<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024 </dd></dl>
+<div class="textblock"><p>Includes the PoseEstimator class. </p>
+<dl class="section date"><dt>Date</dt><dd>2025-05-06</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2025 </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_1732e9565d92c6ba339fd4fffe6281f5.html">atum</a></li><li class="navelem"><a class="el" href="dir_94010ad16aedcb2a9149365d3e62b963.html">pose</a></li><li class="navelem"><a class="el" href="odometry_8hpp.html">odometry.hpp</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_98c01ade21989893abaa4aeb26e1ba26.html">robots</a></li><li class="navelem"><a class="el" href="dir_21f24c98fefbd3010fbdfb2adbe9602d.html">sharedSystems</a></li><li class="navelem"><a class="el" href="poseEstimator_8hpp.html">poseEstimator.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

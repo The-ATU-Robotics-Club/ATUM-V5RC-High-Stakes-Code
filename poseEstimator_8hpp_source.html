@@ -97,57 +97,60 @@ $(document).ready(function(){initNavTree('poseEstimator_8hpp_source.html',''); i
   <div class="headertitle"><div class="title">poseEstimator.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="atum_8hpp.html">atum/atum.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span>atum {</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1PoseEstimator.html">PoseEstimator</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1EKF.html">EKF</a>&lt;6, 2, 8&gt;, <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Tracker.html">Tracker</a>, <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Task.html">Task</a> {</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  TASK_BOILERPLATE(); <span class="comment">// Included in all task derivatives for setup.</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <a class="code hl_class" href="classatum_1_1PoseEstimator.html">PoseEstimator</a>(<a class="code hl_class" href="classatum_1_1Drive.html">Drive</a> *iDrive,</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>                std::unique_ptr&lt;Odometry&gt; iOdometry,</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>                std::unique_ptr&lt;OTOS&gt; iOTOS,</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>                <span class="keyword">const</span> PoseEstimator::StateCovariance &amp;iP,</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>                <span class="keyword">const</span> PoseEstimator::StateCovariance &amp;iQ,</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>                <span class="keyword">const</span> PoseEstimator::OutputCovariance &amp;iR);</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">   18</a></span>  <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> <a class="code hl_function" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">update</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">   20</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">setPose</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">double</span> dt{0.01};</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  State f(<span class="keyword">const</span> State &amp;x, <span class="keyword">const</span> Input &amp;u) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  Output h(<span class="keyword">const</span> State &amp;x) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  JacobianF linearF(<span class="keyword">const</span> State &amp;x, <span class="keyword">const</span> Input &amp;u) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  JacobianH linearH(<span class="keyword">const</span> State &amp;x) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  Input getInput() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  Output getOutput() <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordtype">void</span> setPoseInternal(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> &amp;iPose);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_class" href="classatum_1_1Drive.html">Drive</a> *drive;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  std::unique_ptr&lt;Odometry&gt; odometry;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  std::unique_ptr&lt;OTOS&gt; otos;</div>
+<a href="poseEstimator_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="atum_8hpp.html">atum/atum.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span>atum {</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html">   20</a></span><span class="keyword">class </span><a class="code hl_class" href="classatum_1_1PoseEstimator.html">PoseEstimator</a> : <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1EKF.html">EKF</a>&lt;6, 2, 8&gt;, <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Tracker.html">Tracker</a>, <span class="keyword">public</span> <a class="code hl_class" href="classatum_1_1Task.html">Task</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  TASK_BOILERPLATE(); <span class="comment">// Included in all task derivatives for setup.</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html#acfa9c9bc2d81a8c9864c312e90f57840">   35</a></span>  <a class="code hl_function" href="classatum_1_1PoseEstimator.html#acfa9c9bc2d81a8c9864c312e90f57840">PoseEstimator</a>(<a class="code hl_class" href="classatum_1_1Drive.html">Drive</a> *iDrive,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>                std::unique_ptr&lt;Odometry&gt; iOdometry,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>                std::unique_ptr&lt;OTOS&gt; iOTOS,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>                <span class="keyword">const</span> PoseEstimator::StateCovariance &amp;iP,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>                <span class="keyword">const</span> PoseEstimator::StateCovariance &amp;iQ,</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                <span class="keyword">const</span> PoseEstimator::OutputCovariance &amp;iR,</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                <span class="keyword">const</span> <a class="code hl_enumeration" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel = Logger::Level::Info);</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordtype">double</span> D1, D2, D3, D4;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>} <span class="comment">// namespace atum</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">   48</a></span>  <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> <a class="code hl_function" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">update</a>() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">   55</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">setPose</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">double</span> dt{0.01};</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  State f(<span class="keyword">const</span> State &amp;x, <span class="keyword">const</span> Input &amp;u) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  Output h(<span class="keyword">const</span> State &amp;x) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  JacobianF linearF(<span class="keyword">const</span> State &amp;x, <span class="keyword">const</span> Input &amp;u) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  JacobianH linearH(<span class="keyword">const</span> State &amp;x) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>  Input getInput() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  Output getOutput() <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="keywordtype">void</span> setPoseInternal(<span class="keyword">const</span> <a class="code hl_struct" href="structatum_1_1Pose.html">Pose</a> &amp;iPose);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <a class="code hl_class" href="classatum_1_1Drive.html">Drive</a> *drive;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  std::unique_ptr&lt;Odometry&gt; odometry;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  std::unique_ptr&lt;OTOS&gt; otos;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>  <span class="keywordtype">double</span> D1, D2, D3, D4;</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>};</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>} <span class="comment">// namespace atum</span></div>
 <div class="ttc" id="aatum_8hpp_html"><div class="ttname"><a href="atum_8hpp.html">atum.hpp</a></div><div class="ttdoc">Lists the header files of the ATUM API to make it easier to include all-at-once.</div></div>
 <div class="ttc" id="aclassatum_1_1Drive_html"><div class="ttname"><a href="classatum_1_1Drive.html">atum::Drive</a></div><div class="ttdoc">This class encapsulates all of the logic behind the drive. Including tank and arcade controls,...</div><div class="ttdef"><b>Definition:</b> drive.hpp:25</div></div>
 <div class="ttc" id="aclassatum_1_1EKF_html"><div class="ttname"><a href="classatum_1_1EKF.html">atum::EKF</a></div><div class="ttdef"><b>Definition:</b> ekf.hpp:8</div></div>
-<div class="ttc" id="aclassatum_1_1PoseEstimator_html"><div class="ttname"><a href="classatum_1_1PoseEstimator.html">atum::PoseEstimator</a></div><div class="ttdef"><b>Definition:</b> poseEstimator.hpp:7</div></div>
-<div class="ttc" id="aclassatum_1_1PoseEstimator_html_a7d6e7d615193dca29d9be17dd59f4041"><div class="ttname"><a href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">atum::PoseEstimator::setPose</a></div><div class="ttdeci">void setPose(const Pose &amp;iPose) override</div><div class="ttdoc">Sets the current pose of the tracker.</div></div>
-<div class="ttc" id="aclassatum_1_1PoseEstimator_html_a847538308c2c2e2a1431ca01e53fcee7"><div class="ttname"><a href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">atum::PoseEstimator::update</a></div><div class="ttdeci">Pose update() override</div><div class="ttdoc">This method should update the current tracked pose. It should be overriden in derivatives of Tracker.</div></div>
+<div class="ttc" id="aclassatum_1_1Logger_html_af914fa875adcdf7a15fa471f865a177b"><div class="ttname"><a href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">atum::Logger::Level</a></div><div class="ttdeci">Level</div><div class="ttdoc">Various levels for logging. Controls what messages are logged.</div><div class="ttdef"><b>Definition:</b> logger.hpp:37</div></div>
+<div class="ttc" id="aclassatum_1_1PoseEstimator_html"><div class="ttname"><a href="classatum_1_1PoseEstimator.html">atum::PoseEstimator</a></div><div class="ttdoc">This class incorporates a model of the robot's differential drive with given sensors using an EKF.</div><div class="ttdef"><b>Definition:</b> poseEstimator.hpp:20</div></div>
+<div class="ttc" id="aclassatum_1_1PoseEstimator_html_a7d6e7d615193dca29d9be17dd59f4041"><div class="ttname"><a href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">atum::PoseEstimator::setPose</a></div><div class="ttdeci">void setPose(const Pose &amp;iPose) override</div><div class="ttdoc">Sets the internal pose as well as the pose of the odometers and OTOS.</div></div>
+<div class="ttc" id="aclassatum_1_1PoseEstimator_html_a847538308c2c2e2a1431ca01e53fcee7"><div class="ttname"><a href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">atum::PoseEstimator::update</a></div><div class="ttdeci">Pose update() override</div><div class="ttdoc">Updates the current pose to the estimate by the EKF.</div></div>
+<div class="ttc" id="aclassatum_1_1PoseEstimator_html_acfa9c9bc2d81a8c9864c312e90f57840"><div class="ttname"><a href="classatum_1_1PoseEstimator.html#acfa9c9bc2d81a8c9864c312e90f57840">atum::PoseEstimator::PoseEstimator</a></div><div class="ttdeci">PoseEstimator(Drive *iDrive, std::unique_ptr&lt; Odometry &gt; iOdometry, std::unique_ptr&lt; OTOS &gt; iOTOS, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR, const Logger::Level loggerLevel=Logger::Level::Info)</div><div class="ttdoc">Constructs a new PoseEstimator.</div></div>
 <div class="ttc" id="aclassatum_1_1Task_html"><div class="ttname"><a href="classatum_1_1Task.html">atum::Task</a></div><div class="ttdoc">This class allows its derivatives to &quot;own&quot; their own tasks and better control their management....</div><div class="ttdef"><b>Definition:</b> task.hpp:85</div></div>
 <div class="ttc" id="aclassatum_1_1Tracker_html"><div class="ttname"><a href="classatum_1_1Tracker.html">atum::Tracker</a></div><div class="ttdoc">This class creates an interface for any system that can do pose tracking.</div><div class="ttdef"><b>Definition:</b> tracker.hpp:23</div></div>
 <div class="ttc" id="astructatum_1_1Pose_html"><div class="ttname"><a href="structatum_1_1Pose.html">atum::Pose</a></div><div class="ttdoc">This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...</div><div class="ttdef"><b>Definition:</b> pose.hpp:144</div></div>
@@ -156,7 +159,7 @@ $(document).ready(function(){initNavTree('poseEstimator_8hpp_source.html',''); i
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_98c01ade21989893abaa4aeb26e1ba26.html">robots</a></li><li class="navelem"><a class="el" href="dir_21f24c98fefbd3010fbdfb2adbe9602d.html">sharedSystems</a></li><li class="navelem"><b>poseEstimator.hpp</b></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_98c01ade21989893abaa4aeb26e1ba26.html">robots</a></li><li class="navelem"><a class="el" href="dir_21f24c98fefbd3010fbdfb2adbe9602d.html">sharedSystems</a></li><li class="navelem"><a class="el" href="poseEstimator_8hpp.html">poseEstimator.hpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

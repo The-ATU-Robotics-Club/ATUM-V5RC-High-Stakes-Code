@@ -100,6 +100,11 @@ $(document).ready(function(){initNavTree('classatum_1_1PoseEstimator.html',''); 
   <div class="headertitle"><div class="title">atum::PoseEstimator Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>This class incorporates a model of the robot's differential drive with given sensors using an <a class="el" href="classatum_1_1EKF.html">EKF</a>.  
+ <a href="classatum_1_1PoseEstimator.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="poseEstimator_8hpp_source.html">poseEstimator.hpp</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for atum::PoseEstimator:</div>
 <div class="dyncontent">
@@ -114,14 +119,14 @@ Inheritance diagram for atum::PoseEstimator:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:afecfe282e2238af5fc00298f42fdba24"><td class="memItemLeft" align="right" valign="top"><a id="afecfe282e2238af5fc00298f42fdba24" name="afecfe282e2238af5fc00298f42fdba24"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>PoseEstimator</b> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometry.html">Odometry</a> &gt; iOdometry, std::unique_ptr&lt; <a class="el" href="classatum_1_1OTOS.html">OTOS</a> &gt; iOTOS, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR)</td></tr>
-<tr class="separator:afecfe282e2238af5fc00298f42fdba24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfa9c9bc2d81a8c9864c312e90f57840"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#acfa9c9bc2d81a8c9864c312e90f57840">PoseEstimator</a> (<a class="el" href="classatum_1_1Drive.html">Drive</a> *iDrive, std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometry.html">Odometry</a> &gt; iOdometry, std::unique_ptr&lt; <a class="el" href="classatum_1_1OTOS.html">OTOS</a> &gt; iOTOS, const PoseEstimator::StateCovariance &amp;iP, const PoseEstimator::StateCovariance &amp;iQ, const PoseEstimator::OutputCovariance &amp;iR, const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a> loggerLevel=Logger::Level::Info)</td></tr>
+<tr class="memdesc:acfa9c9bc2d81a8c9864c312e90f57840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="classatum_1_1PoseEstimator.html" title="This class incorporates a model of the robot&#39;s differential drive with given sensors using an EKF.">PoseEstimator</a>.  <br /></td></tr>
+<tr class="separator:acfa9c9bc2d81a8c9864c312e90f57840"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a847538308c2c2e2a1431ca01e53fcee7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structatum_1_1Pose.html">Pose</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a847538308c2c2e2a1431ca01e53fcee7">update</a> () override</td></tr>
-<tr class="memdesc:a847538308c2c2e2a1431ca01e53fcee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>.  <br /></td></tr>
+<tr class="memdesc:a847538308c2c2e2a1431ca01e53fcee7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates the current pose to the estimate by the <a class="el" href="classatum_1_1EKF.html">EKF</a>.  <br /></td></tr>
 <tr class="separator:a847538308c2c2e2a1431ca01e53fcee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d6e7d615193dca29d9be17dd59f4041"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classatum_1_1PoseEstimator.html#a7d6e7d615193dca29d9be17dd59f4041">setPose</a> (const <a class="el" href="structatum_1_1Pose.html">Pose</a> &amp;iPose) override</td></tr>
-<tr class="memdesc:a7d6e7d615193dca29d9be17dd59f4041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current pose of the tracker.  <br /></td></tr>
+<tr class="memdesc:a7d6e7d615193dca29d9be17dd59f4041"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the internal pose as well as the pose of the odometers and <a class="el" href="classatum_1_1OTOS.html" title="This class encapsulates the logic behind the Sparkfun Optical Tracking Odometry Sensor (OTOS)....">OTOS</a>.  <br /></td></tr>
 <tr class="separator:a7d6e7d615193dca29d9be17dd59f4041"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classatum_1_1EKF"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classatum_1_1EKF')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classatum_1_1EKF.html">atum::EKF&lt; 6, 2, 8 &gt;</a></td></tr>
 <tr class="memitem:a337a8b3401b7c422259795be71e32b54 inherit pub_methods_classatum_1_1EKF"><td class="memItemLeft" align="right" valign="top"><a id="a337a8b3401b7c422259795be71e32b54" name="a337a8b3401b7c422259795be71e32b54"></a>
@@ -252,6 +257,81 @@ std::vector&lt; <a class="el" href="structatum_1_1Task_1_1TaskParams.html">TaskP
 const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerName</b></td></tr>
 <tr class="separator:a3cf9d82c6dcfa388cef9410b0dc14dd9 inherit pro_attribs_classatum_1_1Task"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class incorporates a model of the robot's differential drive with given sensors using an <a class="el" href="classatum_1_1EKF.html">EKF</a>. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="acfa9c9bc2d81a8c9864c312e90f57840" name="acfa9c9bc2d81a8c9864c312e90f57840"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfa9c9bc2d81a8c9864c312e90f57840">&#9670;&#160;</a></span>PoseEstimator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">atum::PoseEstimator::PoseEstimator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classatum_1_1Drive.html">Drive</a> *&#160;</td>
+          <td class="paramname"><em>iDrive</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1Odometry.html">Odometry</a> &gt;&#160;</td>
+          <td class="paramname"><em>iOdometry</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classatum_1_1OTOS.html">OTOS</a> &gt;&#160;</td>
+          <td class="paramname"><em>iOTOS</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const PoseEstimator::StateCovariance &amp;&#160;</td>
+          <td class="paramname"><em>iP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const PoseEstimator::StateCovariance &amp;&#160;</td>
+          <td class="paramname"><em>iQ</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const PoseEstimator::OutputCovariance &amp;&#160;</td>
+          <td class="paramname"><em>iR</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classatum_1_1Logger.html#af914fa875adcdf7a15fa471f865a177b">Logger::Level</a>&#160;</td>
+          <td class="paramname"><em>loggerLevel</em> = <code>Logger::Level::Info</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="classatum_1_1PoseEstimator.html" title="This class incorporates a model of the robot&#39;s differential drive with given sensors using an EKF.">PoseEstimator</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iDrive</td><td></td></tr>
+    <tr><td class="paramname">iOdometry</td><td></td></tr>
+    <tr><td class="paramname">iOTOS</td><td></td></tr>
+    <tr><td class="paramname">iP</td><td></td></tr>
+    <tr><td class="paramname">iQ</td><td></td></tr>
+    <tr><td class="paramname">iR</td><td></td></tr>
+    <tr><td class="paramname">loggerLevel</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a7d6e7d615193dca29d9be17dd59f4041" name="a7d6e7d615193dca29d9be17dd59f4041"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7d6e7d615193dca29d9be17dd59f4041">&#9670;&#160;</a></span>setPose()</h2>
@@ -277,7 +357,7 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 </table>
 </div><div class="memdoc">
 
-<p>Sets the current pose of the tracker. </p>
+<p>Sets the internal pose as well as the pose of the odometers and <a class="el" href="classatum_1_1OTOS.html" title="This class encapsulates the logic behind the Sparkfun Optical Tracking Odometry Sensor (OTOS)....">OTOS</a>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">iPose</td><td></td></tr>
@@ -312,7 +392,7 @@ const std::string&#160;</td><td class="memItemRight" valign="bottom"><b>handlerN
 </table>
 </div><div class="memdoc">
 
-<p>This method should update the current tracked pose. It should be overriden in derivatives of <a class="el" href="classatum_1_1Tracker.html" title="This class creates an interface for any system that can do pose tracking.">Tracker</a>. </p>
+<p>Updates the current pose to the estimate by the <a class="el" href="classatum_1_1EKF.html">EKF</a>. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="structatum_1_1Pose.html" title="This is the struct used to represent poses: x and y coordinates with a heading. For reference on the ...">Pose</a> </dd></dl>
 
 <p>Implements <a class="el" href="classatum_1_1Tracker.html#a47b4cb3c903a8e29ef251354f18e6e8c">atum::Tracker</a>.</p>

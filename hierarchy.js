@@ -80,6 +80,7 @@ var hierarchy =
     [ "atum::Task", "classatum_1_1Task.html", [
       [ "atum::Intake", "classatum_1_1Intake.html", null ],
       [ "atum::Ladybrown", "classatum_1_1Ladybrown.html", null ],
+      [ "atum::OTOS", "classatum_1_1OTOS.html", null ],
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ],
       [ "atum::PoseEstimator", "classatum_1_1PoseEstimator.html", null ],
       [ "atum::Remote", "classatum_1_1Remote.html", null ],
@@ -88,7 +89,6 @@ var hierarchy =
     [ "atum::Task::TaskParams", "structatum_1_1Task_1_1TaskParams.html", null ],
     [ "atum::Timer", "classatum_1_1Timer.html", null ],
     [ "atum::Tracker", "classatum_1_1Tracker.html", [
-      [ "atum::OTOS", "classatum_1_1OTOS.html", null ],
       [ "atum::Odometry", "classatum_1_1Odometry.html", null ],
       [ "atum::PoseEstimator", "classatum_1_1PoseEstimator.html", null ]
     ] ],

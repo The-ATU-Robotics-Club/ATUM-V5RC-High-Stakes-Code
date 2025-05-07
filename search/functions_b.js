@@ -13,5 +13,6 @@ var searchData=
   ['operator_2d_10',['operator-',['../structatum_1_1Pose.html#ac8226d9282ae520de67d6e853d3fcbc8',1,'atum::Pose::operator-()'],['../structatum_1_1UnwrappedPose.html#a10b53bd40d43bc05a33185313c7bd05c',1,'atum::UnwrappedPose::operator-()']]],
   ['operator_3d_11',['operator=',['../structatum_1_1Path_1_1Parameters.html#ae84aca3117b9de71198ed8b657acce36',1,'atum::Path::Parameters']]],
   ['operator_3d_3d_12',['operator==',['../structatum_1_1UnwrappedPose.html#ad5795f5243a8f573cb3b09da5e0a9017',1,'atum::UnwrappedPose::operator==()'],['../structatum_1_1Pose.html#a6dd3b89884c6d569c616a066d8b68022',1,'atum::Pose::operator==()']]],
-  ['outtake_13',['outtake',['../classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6',1,'atum::Intake']]]
+  ['otos_13',['OTOS',['../classatum_1_1OTOS.html#a96b8fd2ec2557d42531042f5d509f0e1',1,'atum::OTOS']]],
+  ['outtake_14',['outtake',['../classatum_1_1Intake.html#a8b68a73407b07cdd4825cd50e8d52ba6',1,'atum::Intake']]]
 ];
