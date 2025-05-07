@@ -2,20 +2,20 @@
 #include "atum/pose/pose.hpp"
 #include "poseEstimator.hpp"
 
-
 namespace atum {
 PoseEstimator::PoseEstimator(Drive *iDrive,
                              std::unique_ptr<Odometry> iOdometry,
                              std::unique_ptr<OTOS> iOTOS,
                              const PoseEstimator::StateCovariance &iP,
                              const PoseEstimator::StateCovariance &iQ,
-                             const PoseEstimator::OutputCovariance &iR) :
+                             const PoseEstimator::OutputCovariance &iR,
+                             const Logger::Level loggerLevel) :
     EKF{iP, iQ, iR},
-    Tracker{Logger::Level::Info, GUI::SeriesColor::White},
+    Tracker{loggerLevel, GUI::SeriesColor::White},
     Task{this, Logger::Level::Info},
     drive{iDrive},
     odometry{std::move(iOdometry)},
-    otos{std::move(iOTOS)} {
+    otos{std::move(iOTOS)}{
   const double kT{0.142275};
   const double R{2.61};
   const double kV{6.30581};
@@ -32,6 +32,7 @@ PoseEstimator::PoseEstimator(Drive *iDrive,
   D2 = C2 / m;
   D3 = 2.0 * rb * rb * C1 / J;
   D4 = rb * C2 / J;
+  logger.info("Pose Estimator constructed.");
 }
 
 Pose PoseEstimator::update() {
@@ -45,7 +46,6 @@ Pose PoseEstimator::update() {
 void PoseEstimator::setPose(const Pose &iPose) {
   setPoseInternal(iPose);
   odometry->setPose(iPose);
-  otos->setPose(iPose);
 }
 
 PoseEstimator::State PoseEstimator::f(const PoseEstimator::State &x,
@@ -108,16 +108,15 @@ PoseEstimator::Input PoseEstimator::getInput() {
 
 PoseEstimator::Output PoseEstimator::getOutput() {
   UnwrappedPose odomReading{odometry->getPose()};
-  UnwrappedPose otosReading{otos->getPose()};
   const double vfDrive{getValueAs<meters_per_second_t>(drive->getVelocity())};
   const double wDrive{
       getValueAs<radians_per_second_t>(drive->getAngularVelocity())};
   return {odomReading.vf,
           odomReading.vs,
           odomReading.omega,
-          otosReading.vf,
-          otosReading.vs,
-          otosReading.omega,
+          getValueAs<meters_per_second_t>(otos->getVF()),
+          getValueAs<meters_per_second_t>(otos->getVS()),
+          getValueAs<radians_per_second_t>(otos->getOmega()),
           vfDrive,
           wDrive};
 }
@@ -146,13 +145,6 @@ TASK_DEFINITIONS_FOR(PoseEstimator) {
     wait(second_t{dt});
     correct();
     update();
-  }
-  END_TASK
-
-  START_TASK("Update OTOS")
-  while(true) {
-    otos->update();
-    wait();
   }
   END_TASK
 }

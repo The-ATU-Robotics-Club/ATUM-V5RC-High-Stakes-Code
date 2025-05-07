@@ -1,5 +1,5 @@
-#include "atum/devices/colorSensor.hpp"
 #include "ladybrown.hpp"
+#include "atum/devices/colorSensor.hpp"
 
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
@@ -167,7 +167,7 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
         state = nextState.value_or(LadybrownState::Idle);
         break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
-      case LadybrownState::Preparing: intake->finishLoading();
+      case LadybrownState::Preparing: intake->finishLoading(); [[fallthrough]];
       default: moveToControls(); break;
     }
     wait();

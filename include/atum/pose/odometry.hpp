@@ -18,7 +18,7 @@
 
 namespace atum {
 /**
- * @brief Performs tracking using two odometers perpendicular to eachother.
+ * @brief Performs tracking using two odometers perpendicular to each other.
  * Uses arc estimation and twists for improved accuracy.
  *
  */

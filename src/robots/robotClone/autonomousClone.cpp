@@ -7,6 +7,7 @@ namespace atum {
 // Max drive acceleration: 153 in. / s^2.
 
 // General Constants
+static const Pose noRushStart{-2.5_tile, -1_tile, 0_deg};
 static const second_t goalRushDelay{100_ms};
 static const second_t goalClampDelay{100_ms};
 
@@ -26,9 +27,7 @@ void RobotClone::skills15() {}
      /___| |_|      |___/_\_\_|_|_/__/
 
 */
-void RobotClone::skills24() {
-  setupRoutine({-2_tile, 2_tile, 90_deg});
-}
+void RobotClone::skills24() {}
 
 ROUTINE_DEFINITIONS_FOR(RobotClone) {
   START_ROUTINE("Skills")
@@ -39,31 +38,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   }
   END_ROUTINE
 
-  START_ROUTINE("Negative Side: N/M Rush")
-  setupRoutine({-41.5_in, 30.5_in, 78_deg});
-  if(id == ID15) {
-    drive->setPose(getInFrontOf(-extensionDistance));
-  }
-  rush(false, false);
-  collectNegative();
-  allianceStake();
-  moveToFar->forward(4_s, {-1.5_tile, -2_tile});
-  turn->toward(2_s, {0_tile, 0_tile});
-  END_ROUTINE
-
-  START_ROUTINE("Positive Side: P/N Rush")
-  setupRoutine({-41.5_in, -30.5_in, 102_deg});
-  if(id == ID15) {
-    drive->setPose(getInFrontOf(-extensionDistance));
-  }
-  rush(true, true);
-  intake->intake();
-  wait(2_s);
-  goalClamp->unclamp();
-  collectMiddle(false);
-  endOfPositive({-1.8_tile, -1.8_tile});
-  END_ROUTINE
-
   START_ROUTINE("Do Nothing")
   setupRoutine({});
   intake->outtake();
@@ -71,336 +45,190 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   intake->stop();
   END_ROUTINE
 
-  START_ROUTINE("Positive Side: P Rush")
-  setupRoutine({});
-  moveToClose->reverse(2_s, {1_tile, 1.5_tile});
-  clampWhenReady();
-  moveToClose->reverse(2_s, {.5_tile, 1.75_tile});
-  goalClamp->clamp();
+  START_ROUTINE("Negative Side: N & M Rush")
+  rushSetup(true, true);
+  rush(true, false);
+  collectNegative();
+  allianceStake();
+  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
+  END_ROUTINE
+
+  START_ROUTINE("Positive Side: N & M Rush")
+  rushSetup(false, true);
+  rush(true, true);
   intake->intake();
-  wait(100_ms);
-  moveToClose->forward(2_s, {1_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.75_tile, 2.25_tile});
-  wait(100_ms);
+  wait(2_s);
   goalClamp->unclamp();
-  moveToFar->forward(2_s, {1_tile, 0_tile});
+  collectMiddle(false, true);
+  endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
 
-  START_ROUTINE("Negative Side: P Rush")
-  setupRoutine({});
-  moveToClose->reverse(2_s, {2_tile, .75_tile});
-  clampWhenReady();
-  goalClamp->clamp();
-  intake->intake();
-  wait(100_ms);
-  intake->load();
-  moveToClose->forward(2_s, {2.5_tile, 0_tile, -90_deg});
-  ladybrown->extend();
-  ladybrown->retract();
-  wait(100_ms);
-  intake->intake();
-  moveToFar->forward(2_s, {1_tile, -2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, -2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {1_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToFar->forward(2_s, {2.5_tile, 2.5_tile});
+  START_ROUTINE("Negative Side: N & P Rush")
+  rushSetup(true, true);
+  rush(true, false);
+  collectNegative();
+  allianceStake();
+  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
   END_ROUTINE
 
-  START_ROUTINE("Positive Side: M Rush")
-  setupRoutine({});
-  intake->index();
-  moveToClose->forward(2_s, {2.5_tile, -.5_tile});
-  wait(100_ms);
-  clampWhenReady();
-  moveToClose->reverse(2_s, {2_tile, 0_tile});
-  wait(100_ms);
-  goalClamp->clamp();
+  START_ROUTINE("Positive Side: N & P Rush")
+  rushSetup(false, false);
+  rush(false, true);
   intake->intake();
-  moveToClose->forward(2_s, {2_tile, 1_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {1_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.5_tile, 2.5_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.75_tile, 2.25_tile});
-  wait(100_ms);
+  wait(2_s);
   goalClamp->unclamp();
-  moveToFar->forward(2_s, {1_tile, 0_tile});
+  collectMiddle(false, true);
+  endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
 
-  START_ROUTINE("Negative Side: M Rush")
-  setupRoutine({});
-  clampWhenReady();
-  goalClamp->clamp();
-  intake->intake();
-  wait(100_ms);
-  intake->stop();
-  moveToClose->forward(2_s, {1_tile, -1_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {1_tile, -2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, -2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.5_tile, -2.5_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  intake->stop();
-  intake->load();
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToFar->forward(2_s, {2.5_tile, 0_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2_tile, 0_tile});
-  wait(100_ms);
-  moveToFar->forward(2_s, {2.5_tile, 0_tile});
-  ladybrown->extend();
-  wait(100_ms);
-  ladybrown->retract();
-  moveToFar->forward(2_s, {2.5_tile, 2.5_tile});
+  START_ROUTINE("Negative Side: M & P Rush")
+  rushSetup(true, false);
+  rush(false, true);
+  collectNegative();
+  allianceStake();
+  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
   END_ROUTINE
 
-  START_ROUTINE("Positive Side: N Rush")
-  setupRoutine({});
-  intake->index();
-  clampWhenReady();
-  moveToClose->forward(2_s, {2.5_tile, -.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2_tile, 0_tile});
-  goalClamp->clamp();
+  START_ROUTINE("Positive Side: M & P Rush")
+  rushSetup(false, false);
+  rush(false, true);
   intake->intake();
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, 1_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {1_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, 2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.5_tile, 2.5_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, 2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, 2.25_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.75_tile, 2.25_tile});
-  wait(100_ms);
+  wait(2_s);
   goalClamp->unclamp();
-  moveToFar->forward(2_s, {1_tile, 0_tile});
-
+  collectMiddle(false, true);
+  endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
 
-  START_ROUTINE("Negative Side: N Rush")
-  setupRoutine({});
-  clampWhenReady();
-  goalClamp->clamp();
-  intake->intake();
-  moveToClose->forward(2_s, {1_tile, -2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2_tile, -2_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.5_tile, -2.5_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  intake->stop();
-  intake->load();
-  wait(100_ms);
-  moveToClose->forward(2_s, {2.75_tile, -2.75_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile});
-  wait(100_ms);
-  moveToFar->forward(2_s, {2.5_tile, 0_tile});
-  wait(100_ms);
-  moveToClose->reverse(2_s, {2_tile, 0_tile});
-  wait(100_ms);
-  moveToFar->forward(2_s, {2.5_tile, 0_tile});
-  ladybrown->extend();
-  wait(100_ms);
-  ladybrown->retract();
-  moveToFar->forward(2_s, {2.5_tile, 2.5_tile});
+  START_ROUTINE("Negative Side: N Only Rush")
+  rushSetup(true, true);
+  rush(true, false);
+  collectNegative();
+  allianceStake();
+  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
   END_ROUTINE
 
-  START_ROUTINE("Negative Side: P/N Rush")
-  setupRoutine({});
-  moveToClose->reverse(5_s, {-1_tile, 1.5_tile});
-  goalRushL->extend();
-  clampWhenReady();
-  moveToClose->reverse(5_s, {-0.5_tile, 1.25_tile});
-  goalClamp->clamp();
-  goalClampDelay();
-  intake->intake();
-  wait(100_ms);
-  moveToClose->forward(5_s, {-1.2_tile, 2.2_tile});
-  moveToClose->forward(5_s, {-2_tile, 2_tile});
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, 2.5_tile});
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, 2.5_tile});
-  ladybrown->load();
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, 2.5_tile});
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.75_tile, 2.75_tile});
-  moveToFar->forward(5_s, {-2.8_tile, 0.2_tile});
-  turn->toward(5_s, {-3_tile, 0_tile});
-  ladybrown->extend();
-  wait(500_ms);
-  ladybrown->rest();
-  wait(100_ms);
-  moveToClose->forward(5_s, {-2.75_tile, -2.75_tile});
-
+  START_ROUTINE("Positive Side: N Only Rush")
+  setupRoutine(noRushStart);
+  if(id == ID15) {
+    intake->outtake();
+    wait(0.25_s);
+  }
+  collectMiddle(false, false);
+  endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
 
-  START_ROUTINE("Positive Side: N/M Rush")
-  setupRoutine({});
-  moveToFar->reverse(5_s, {-1_tile, -1_tile});
-  clampWhenReady();
-  moveToClose->reverse(5_s, {-0.5_tile, -0.50_tile});
-  goalClamp->clamp();
-  goalClampDelay();
-  intake->intake();
-  wait(100_ms);
-  moveToFar->forward(5_s, {-2.5_tile, -1_tile});
-  intake->index();
-  moveToFar->forward(5_s, {-2.5_tile, 0.5_tile});
-  clampWhenReady();
-  moveToClose->reverse(5_s, {-1.8_tile, -0.2_tile});
-  goalClamp->clamp();
-  intake->intake();
-  moveToClose->forward(5_s, {-2_tile, 1_tile});
-  wait(1_s);
-  moveToFar->forward(5_s, {-0.75_tile, -2.25_tile});
-  moveToClose->forward(5_s, {-2.2_tile, -2.0_tile});
-  wait(100_ms);
-  moveToClose->forward(5_s, {-3_tile, -3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, -2.5_tile});
-  moveToClose->forward(5_s, {-3_tile, -3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, -2.5_tile});
-  moveToClose->forward(5_s, {-3_tile, -3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, -2.5_tile});
-  moveToClose->reverse(5_s, {-3_tile, -3_tile});
-  goalClamp->toggleClamp();
-  moveToFar->forward(5_s, {-1_tile, 3_tile});
+  START_ROUTINE("Negative Side: M Only Rush")
+  rushSetup(true, false);
+  rush(false, true);
+  collectNegative();
+  allianceStake();
+  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
   END_ROUTINE
 
-  START_ROUTINE("Negative Side: N/M Rush")
-  setupRoutine({});
-  moveToClose->reverse(5_s, {-1_tile, 1.5_tile});
-  goalRushL->extend();
-  clampWhenReady();
-  moveToClose->reverse(5_s, {-0.5_tile, 1.25_tile});
-  goalClamp->clamp();
-  goalClampDelay();
-  intake->intake();
-  wait(100_ms);
-  moveToClose->forward(5_s, {-1.2_tile, 2.2_tile});
-  moveToClose->forward(5_s, {-2_tile, 2_tile});
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, 2.5_tile});
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, 2.5_tile});
-  ladybrown->load();
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.5_tile, 2.5_tile});
-  moveToClose->forward(5_s, {-3_tile, 3_tile});
-  wait(500_ms);
-  moveToClose->reverse(5_s, {-2.75_tile, 2.75_tile});
-  moveToFar->forward(5_s, {-2.8_tile, 0.2_tile});
-  turn->toward(5_s, {-3_tile, 0_tile});
-  ladybrown->extend();
-  wait(500_ms);
-  ladybrown->rest();
-  wait(100_ms);
-  moveToClose->forward(5_s, {-2.75_tile, -2.75_tile});
-
+  START_ROUTINE("Positive Side: M Only Rush")
+  setupRoutine(noRushStart);
+  if(id == ID15) {
+    intake->outtake();
+    wait(0.25_s);
+  }
+  collectMiddle(false, false);
+  endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
 
-  // START_ROUTINE("Negative Side: N/M Rush")
-  // setupRoutine({});
-  // moveToFar->forward(2_s, {0.0_tile, 4_tile}, 12.0, false);
+  START_ROUTINE("Negative Side: P Only Rush")
+  Pose negativeStart{noRushStart};
+  negativeStart.y *= -1;
+  negativeStart.h += 180_deg;
+  setupRoutine(negativeStart);
+  if(id == ID15) {
+    intake->outtake();
+    wait(0.25_s);
+  }
+  collectMiddle(true, false);
+  collectNegative();
+  allianceStake();
+  moveToFar->reverse(3_s, {-3_tile, -3_tile});
+  goalClamp->unclamp();
+  moveToClose->forward(3_s, {-1.8_tile, -1.8_tile});
+  END_ROUTINE
+
+  START_ROUTINE("Positive Side: P Only Rush")
+  rushSetup(false, false);
+  rush(false, false);
+  endOfPositive({-1_tile, 0_tile});
+  END_ROUTINE
 }
 
-void RobotClone::rush(const bool right, const bool clampImmediately) {
+void RobotClone::endOfPositive(const Pose &endPosition) {
+  intake->intake();
+  moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.25_ft), 6.0);
+  wait(1_s);
+  moveToClose->forward(5_s, {-2.0_tile, -2.0_tile});
+  collectCorner(false, 4, false);
+  moveToClose->reverse(5_s, {-2_tile, -2_tile}, 12.0, false);
+  moveToClose->reverse(2_s, {-2.5_tile, -2.5_tile});
+  goalClamp->unclamp();
+  moveToClose->forward(5_s, {-2_tile, -2_tile}, 12.0, false);
+  moveToClose->forward(5_s, endPosition, 6.0);
+}
+
+void RobotClone::collectNegative() {
+  intake->intake();
+  moveToFar->forward(5_s, getPast({-1_tile, 2_tile}, 1.25_ft), 6.0);
+  wait(1_s);
+  moveToClose->forward(3_s, {-2_tile, 2_tile});
+  collectCorner(true, 3, true);
+  moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
+}
+
+void RobotClone::allianceStake() {
+  moveToFar->forward(4_s, {-2_tile, 0_tile});
+  intake->load();
+  moveToClose->forward(2_s, {-3_tile, 0_tile}, 4);
+  intake->finishLoading();
+  moveToClose->reverse(2_s, getInFrontOf(-10_in));
+  ladybrown->moveTo(190_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 2_s);
+  ladybrown->moveTo(90_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Resting), 2_s);
+  ladybrown->rest();
+}
+
+void RobotClone::collectMiddle(const bool negative, const bool goToStart) {
+  const int shouldFlipY{negative ? -1.0 : 1.0};
+  if(goToStart) {
+    intake->intake();
+    moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 6.0);
+  }
+  intake->index();
+  moveToFar->forward(5_s, {-2.5_tile, shouldFlipY * 0.5_tile});
+  clampWhenReady();
+  moveToClose->reverse(5_s, {-1.75_tile, shouldFlipY * -0.25_tile}, 6.0);
+  goalClamp->clamp();
+  wait(goalClampDelay);
+  intake->intake();
+  moveToClose->forward(5_s, {-2_tile, shouldFlipY * 1_tile});
+  wait(1_s);
+  if(negative) {
+    moveToFar->forward(5_s, {-2_tile, 1_tile});
+  }
+}
+
+void RobotClone::rush(const bool left, const bool clampImmediately) {
   const int shouldFlipY{drive->getPose().y < 0_in ? -1.0 : 1.0};
-  const int shouldFlipH{right ? -1.0 : 1.0};
-  Piston *goalRush{right ? goalRushR.get() : goalRushL.get()};
-  goalRush->extend();
+  const int shouldFlipH{left ? 1.0 : -1.0};
+  Piston *goalRush{left ? goalRushL.get() : goalRushR.get()};
+  scheduler.schedule({"Lower Goal Rush",
+                      Scheduler::neverMet,
+                      [=]() {
+                        goalRush->extend();
+                        wait(150_ms);
+                        intake->index();
+                      },
+                      100_ms});
+  if(id == ID15) {
+    intake->outtake();
+  }
   kaboomer->retract();
   moveToRush->forward(
       2_s,
@@ -440,26 +268,6 @@ void RobotClone::collectCorner(const bool negative,
     intake->index();
   }
   moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4.5, false);
-}
-
-void RobotClone::setupRoutine(Pose startingPose) {
-  matchTimer.setTime();
-
-  const bool flipped{GUI::Routines::selectedColor() == MatchColor::Blue};
-  if(flipped) {
-    startingPose.flip();
-  }
-  Movement::setFlipped(flipped);
-
-  drive->setPose(startingPose);
-
-  setSortToOpposite();
-
-  goalClamp->unclamp();
-  goalRushL->retract();
-  goalRushR->retract();
-
-  drive->setBrakeMode(pros::MotorBrake::brake);
 }
 
 void RobotClone::clampWhenReady(const second_t timeout) {
@@ -506,56 +314,50 @@ void RobotClone::setSortToOpposite() {
   }
 }
 
-void RobotClone::endOfPositive(const Pose &endPosition) {
-  intake->intake();
-  moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.25_ft), 6.0);
-  wait(1_s);
-  moveToClose->forward(5_s, {-2.0_tile, -2.0_tile});
-  collectCorner(false, 4, false);
-  moveToClose->reverse(5_s, {-2_tile, -2_tile}, 12.0, false);
-  moveToClose->reverse(2_s, {-2.5_tile, -2.5_tile});
-  goalClamp->unclamp();
-  moveToClose->forward(5_s, {-2_tile, -2_tile}, 12.0, false);
-  moveToClose->forward(5_s, endPosition, 6.0);
-}
-
-void RobotClone::collectNegative() {
-  intake->intake();
-  moveToFar->forward(5_s, getPast({-1_tile, 2_tile}, 1.25_ft), 6.0);
-  wait(1_s);
-  moveToClose->forward(3_s, {-2_tile, 2_tile});
-  collectCorner(true, 3, true);
-  moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
-}
-
-void RobotClone::allianceStake() {
-  moveToFar->forward(4_s, {-2_tile, 0_tile});
-  intake->load();
-  moveToClose->forward(2_s, {-3_tile, 0_tile}, 4);
-  intake->finishLoading();
-  moveToClose->reverse(2_s, getInFrontOf(-10_in));
-  ladybrown->moveTo(190_deg);
-  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 2_s);
-  ladybrown->moveTo(90_deg);
-  waitUntil(ladybrown->checkStateIs(LadybrownState::Resting), 2_s);
-  ladybrown->rest();
-}
-
-void RobotClone::collectMiddle(const bool negative) {
-  const int shouldFlipY{negative ? -1.0 : 1.0};
-  intake->intake();
-  moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 6.0);
-  intake->index();
-  moveToFar->forward(5_s, {-2.5_tile, shouldFlipY * 0.5_tile});
-  clampWhenReady();
-  moveToClose->reverse(5_s, {-1.75_tile, shouldFlipY * -0.25_tile}, 6.0);
-  goalClamp->clamp();
-  wait(goalClampDelay);
-  intake->intake();
-  moveToClose->forward(5_s, {-2_tile, shouldFlipY * 1_tile});
-  wait(1_s);
-  if(negative) {
-    moveToFar->forward(5_s, {-2_tile, 1_tile});
+void RobotClone::rushSetup(const bool negative, const bool rushingLeft) {
+  Pose basePose{-41.5_in, 30.5_in, 90_deg};
+  const degree_t angleOffset{12_deg};
+  if(rushingLeft) {
+    if(!negative) {
+      basePose.y -= 1_tile;
+      basePose.y *= -1;
+      basePose.y += 1_tile;
+      basePose.y *= -1;
+    }
+    basePose.h -= angleOffset;
+  } else {
+    if(negative) {
+      basePose.y -= 1_tile;
+      basePose.y *= -1;
+      basePose.y += 1_tile;
+    } else {
+      basePose.y *= -1;
+    }
+    basePose.h += angleOffset;
   }
+  setupRoutine(basePose);
+  if(id == ID15) {
+    drive->setPose(getInFrontOf(-extensionDistance));
+  }
+}
+
+void RobotClone::setupRoutine(Pose startingPose) {
+  matchTimer.setTime();
+
+  const bool flipped{GUI::Routines::selectedColor() == MatchColor::Blue};
+  if(flipped) {
+    startingPose.flip();
+  }
+  Movement::setFlipped(flipped);
+
+  drive->setPose(startingPose);
+
+  setSortToOpposite();
+
+  goalClamp->unclamp();
+  goalRushL->retract();
+  goalRushR->retract();
+
+  drive->setBrakeMode(pros::MotorBrake::brake);
 }
 } // namespace atum

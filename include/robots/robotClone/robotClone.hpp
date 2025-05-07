@@ -15,7 +15,6 @@
 #include "../sharedSystems/ladybrown.hpp"
 #include "../sharedSystems/poseEstimator.hpp"
 
-
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -139,14 +138,44 @@ class RobotClone : public Robot {
   void skills24();
 
   /**
+   * @brief Finishes all positive routines and sends the robot to the given
+   * position.
+   *
+   * @param endPosition
+   */
+  void endOfPositive(const Pose &endPosition);
+
+  /**
+   * @brief Collects the two stacks and the rings in the corner on the negative
+   * side. Indexes the last ring of the negative side stack.
+   *
+   */
+  void collectNegative();
+
+  /**
+   * @brief Places an indexed ring on our alliance stake coming from the
+   * negative side.
+   *
+   */
+  void allianceStake();
+
+  /**
+   * @brief Collects the rings near the middle and grabs the goal. Go to start
+   * will have the robot move to the position next to the middle ring stack.
+   *
+   * @param negative
+   */
+  void collectMiddle(const bool negative, const bool goToStart);
+
+  /**
    * @brief Rushes a goal. The first boolean changes if the robot is rushing
-   * right or left. The second boolean changes if the robot will clamp as soon
+   * left or right. The second boolean changes if the robot will clamp as soon
    * as it detects a goal.
    *
-   * @param extraY
+   * @param left
    * @param clampImmediately
    */
-  void rush(const bool right, const bool clampImmediately);
+  void rush(const bool left, const bool clampImmediately);
 
   /**
    * @brief Collects the rings in a corner. Changes y-values if the negative
@@ -159,14 +188,6 @@ class RobotClone : public Robot {
   void collectCorner(const bool negative,
                      const int pushes,
                      const bool shouldIndexLastRing);
-
-  /**
-   * @brief Sets up the robot with the appropriate starting pose and flips poses
-   * if necessary.
-   *
-   * @param startingPose
-   */
-  void setupRoutine(Pose startingPose);
 
   /**
    * @brief Clamps down whenever a goal is aligned. If the given timeout is
@@ -196,12 +217,6 @@ class RobotClone : public Robot {
   Pose getPast(const Pose &target, const meter_t past) const;
 
   /**
-   * @brief Runs the intake outward for a moment, before starting to index.
-   *
-   */
-  void indexAfterFoldout();
-
-  /**
    * @brief Sets the sort out color of the intake to the opposite color
    * selected.
    *
@@ -209,33 +224,21 @@ class RobotClone : public Robot {
   void setSortToOpposite();
 
   /**
-   * @brief Finishes all positive routines and sends the robot to the given
-   * position.
+   * @brief Sets up the starting position of the robot based on if we're
+   * starting on the negative side and if which way we're rushing.
    *
-   * @param endPosition
+   * @param negative
+   * @param rushingLeft
    */
-  void endOfPositive(const Pose &endPosition);
+  void rushSetup(const bool negative, const bool rushingLeft);
 
   /**
-   * @brief Collects the two stacks and the rings in the corner on the negative
-   * side. Indexes the last ring of the negative side stack.
+   * @brief Sets up the robot with the appropriate starting pose and flips poses
+   * if necessary.
    *
+   * @param startingPose
    */
-  void collectNegative();
-
-  /**
-   * @brief Places an indexed ring on our alliance stake coming from the
-   * negative side.
-   *
-   */
-  void allianceStake();
-
-  /**
-   * @brief Collects the rings near the middle and grabs the goal.
-   * 
-   * @param negative 
-   */
-  void collectMiddle(const bool negative);
+  void setupRoutine(Pose startingPose);
 
   int id;
   Remote remote;
