@@ -16,7 +16,7 @@ void RobotClone::initialize15Ports() {
                 {"intake color 1", 4},
                 {"intake color 2", 5},
                 {"adi extender", 3},
-                {"goal clamp piston", 'F'},
+                {"goal clamp piston", 'E'},
                 {"goal limit switch 1", 'A'},
                 {"goal limit switch 2", 'B'},
                 {"forward odometer 1", 'A'},
@@ -194,7 +194,7 @@ void RobotClone::intakeSetup() {
   intakeParams.pressLoadTime = 300_ms;
   intakeParams.backupFromLoad = 20_deg;
   intakeParams.generalTimeout = 1_s;
-  intakeParams.indexingVoltage = 10.0;
+  intakeParams.indexingVoltage = 8.0;
   intakeParams.pressVoltage = 7.0;
   intake = std::make_unique<Intake>(std::move(intakeMtr),
                                     std::move(colorSensor),
@@ -226,12 +226,12 @@ void RobotClone::goalSetup() {
 void RobotClone::autonSetup() {
   // Turn setup.
   PID turnPID{PID::Parameters{11, 0.75, 70.0, 0, 0.2}};
-  AcceptableAngle turnAcceptable{forever, 2_deg, 2_rpm};
+  AcceptableAngle turnAcceptable{forever, 3_deg, 3_rpm};
   turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
   PID directionPID{PID::Parameters{7.5}};
-  AcceptableDistance moveToAcceptable{forever, 1.5_in, 1.5_in_per_s};
+  AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
   PID moveToClosePID{PID::Parameters{45, 2.0, 380, 0.0, 0.05}};
   moveToClose = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToClosePID, directionPID, moveToAcceptable);

@@ -4,6 +4,7 @@
 namespace atum {
 void RobotClone::opcontrol() {
   logger.info("Operator control has begun.");
+  kaboomer->retract();
   setSortToOpposite();
   matchTimer.setTime();
   // Where the first routine should be skills.

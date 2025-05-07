@@ -255,7 +255,7 @@ class RobotClone : public Robot {
   std::unique_ptr<Piston> goalRushL;
   std::unique_ptr<Piston> goalRushR;
   std::unique_ptr<Piston> kaboomer;
-  const inch_t extensionDistance{8_in};
+  const inch_t extensionDistance{8.5_in};
   Scheduler scheduler;
   std::unique_ptr<MoveTo> moveToClose;
   std::unique_ptr<MoveTo> moveToFar;

@@ -50,7 +50,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(true, false);
   collectNegative();
   allianceStake();
-  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: N & M Rush")
@@ -68,7 +68,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(true, false);
   collectNegative();
   allianceStake();
-  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: N & P Rush")
@@ -86,7 +86,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(false, true);
   collectNegative();
   allianceStake();
-  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: M & P Rush")
@@ -104,7 +104,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(true, false);
   collectNegative();
   allianceStake();
-  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: N Only Rush")
@@ -122,7 +122,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(false, true);
   collectNegative();
   allianceStake();
-  moveToClose->reverse(4_s, {-1_tile, 0_tile}, 6.0, false);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: M Only Rush")
@@ -148,10 +148,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   collectNegative();
   allianceStake();
   intake->intake();
-  moveToFar->forward(3_s, {-2_tile, -2_tile});
-  moveToClose->reverse(2_s, {-2.45_tile, -2.45_tile});
+  moveToClose->reverse(2_s, {-2.4_tile, -2.4_tile});
   goalClamp->unclamp();
-  moveToClose->forward(3_s, {-1.8_tile, -1.8_tile}, 12.0, false);
+  moveToClose->forward(3_s, getInFrontOf(1.25_tile), 12.0, false);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: P Only Rush")
@@ -163,9 +162,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
 void RobotClone::endOfPositive(const Pose &endPosition) {
   intake->intake();
-  moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.25_ft), 6.0);
-  wait(1_s);
-  moveToClose->forward(5_s, {-2.0_tile, -2.0_tile});
+  moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.3_ft), 5.0);
+  moveToClose->forward(3_s, getPast({-2_tile, -2_tile}, 1.125_ft), 5.0);
+  moveToClose->reverse(1_s, {-2_tile, -2_tile}, 12.0, false);
   collectCorner(false, 4, false);
   moveToClose->reverse(5_s, {-2_tile, -2_tile}, 12.0, false);
   moveToClose->reverse(2_s, {-2.5_tile, -2.5_tile});
@@ -176,25 +175,26 @@ void RobotClone::endOfPositive(const Pose &endPosition) {
 
 void RobotClone::collectNegative() {
   intake->intake();
-  moveToFar->forward(5_s, getPast({-1_tile, 2_tile}, 1.25_ft), 6.0);
-  wait(1_s);
-  moveToClose->forward(3_s, {-2_tile, 2_tile});
+  moveToFar->forward(4_s, getPast({-1_tile, 2_tile}, 1.3_ft), 5.0);
+  moveToClose->forward(3_s, getPast({-2_tile, 2_tile}, 1.125_ft), 5.0);
+  moveToClose->reverse(1_s, {-2_tile, 2_tile}, 12.0, false);
   collectCorner(true, 3, true);
   moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
 }
 
 void RobotClone::allianceStake() {
-  moveToFar->forward(4_s, {-2_tile, 0_tile});
+  moveToFar->forward(5_s, {-52_in, 0_tile});
   intake->load();
   moveToClose->forward(1_s, {-3_tile, 0_tile}, 4);
   if(intake->getColor() != intake->getSortOutColor()) {
     intake->finishLoading();
   }
-  moveToClose->reverse(2_s, getInFrontOf(-10_in));
-  ladybrown->moveTo(190_deg);
-  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 2_s);
+  moveToClose->reverse(2_s, getInFrontOf(-9_in));
+  ladybrown->moveTo(185_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+  moveToClose->reverse(2_s, getInFrontOf(-4_in));
   ladybrown->moveTo(90_deg);
-  waitUntil(ladybrown->checkStateIs(LadybrownState::Resting), 2_s);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   ladybrown->rest();
 }
 
@@ -208,7 +208,7 @@ void RobotClone::collectMiddle(const bool negative,
     moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 6.0);
   }
   intake->index();
-  moveToFar->forward(5_s, {-2.5_tile, shouldFlipY * 0.5_tile}, 8.0);
+  moveToFar->forward(5_s, {-2.5_tile, shouldFlipY * 0.5_tile}, 9.0);
   clampWhenReady();
   moveToClose->reverse(5_s, {-1.75_tile, shouldFlipY * -0.25_tile}, 6.0);
   goalClamp->clamp();
@@ -225,14 +225,16 @@ void RobotClone::collectMiddle(const bool negative,
 void RobotClone::rush(const bool left, const bool clampImmediately) {
   const int shouldFlipY{drive->getPose().y < 0_in ? -1.0 : 1.0};
   const int shouldFlipH{left ? 1.0 : -1.0};
-  const bool middle{(left && shouldFlipY) || (!left && !shouldFlipY)};
+  const bool middle{(left && shouldFlipY == -1.0) ||
+                    (!left && shouldFlipY == 1.0)};
   Piston *goalRush{left ? goalRushL.get() : goalRushR.get()};
   scheduler.schedule({"Lower Goal Rush",
                       Scheduler::neverMet,
                       [=]() {
-                        goalRush->extend();
                         wait(150_ms);
                         intake->index();
+                        wait(50_ms);
+                        goalRush->extend();
                       },
                       100_ms});
   if(id == ID15) {
@@ -246,12 +248,12 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
       false);
   goalRush->retract();
   wait(goalRushDelay);
-  moveToClose->reverse(3_s, {-2_tile, shouldFlipY * 1.2_tile}, 12.0, false);
-  turn->toward(1_s, 90_deg + shouldFlipH * 30_deg);
+  moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * 1.5_tile}, 12.0, false);
+  turn->toward(1_s, 90_deg + shouldFlipH * 30_deg, 6.0);
   goalRush->extend();
-  moveToClose->forward(0.25_s, getInFrontOf(1_in), 12.0, false);
+  moveToClose->forward(0.25_s, getInFrontOf(2_in), 12.0, false);
   wait(goalRushDelay);
-  turn->toward(1_s, 90_deg - shouldFlipH * 20_deg);
+  turn->toward(1_s, 90_deg - shouldFlipH * 30_deg);
   goalRush->retract();
   wait(goalRushDelay);
   if(clampImmediately) {
@@ -274,16 +276,16 @@ void RobotClone::collectCorner(const bool negative,
                                const bool shouldIndexLastRing) {
   const int shouldFlipY{negative ? 1 : -1};
   intake->intake();
-  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 6);
-  moveToClose->reverse(1_s, getInFrontOf(-5_in), 8.0, false);
+  moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 4);
+  moveToClose->reverse(1_s, getInFrontOf(-4.5_in), 8.0, false);
   for(int i{0}; i < pushes - 2; i++) {
-    moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4.5, false);
-    moveToClose->reverse(1_s, getInFrontOf(-5_in), 8.0, false);
+    moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
+    moveToClose->reverse(1_s, getInFrontOf(-4.5_in), 8.0, false);
   }
   if(shouldIndexLastRing) {
     intake->index();
   }
-  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4.5, false);
+  moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
 }
 
 void RobotClone::clampWhenReady(const second_t timeout) {
@@ -332,7 +334,7 @@ void RobotClone::setSortToOpposite() {
 
 void RobotClone::rushSetup(const bool negative, const bool rushingLeft) {
   Pose basePose{-41.5_in, 30.5_in, 90_deg};
-  const degree_t angleOffset{12_deg};
+  const degree_t angleOffset{11_deg};
   if(rushingLeft) {
     if(!negative) {
       basePose.y -= 1_tile;
@@ -353,6 +355,7 @@ void RobotClone::rushSetup(const bool negative, const bool rushingLeft) {
   }
   setupRoutine(basePose);
   if(id == ID15) {
+    wait();
     drive->setPose(getInFrontOf(-extensionDistance));
   }
 }
