@@ -192,11 +192,17 @@ void RobotClone::skills24() {
   
   moveToClose->forward(2_s, {2.85_tile, -2.85_tile}, 8);
   wait(300_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile},6);
+  moveToClose->reverse(2_s, {2.5_tile, -2.5_tile},6);
   wait(100_ms);
-  moveToClose->reverse(2_s, {2.75_tile, -2.75_tile},6);
+  moveToClose->forward(2_s, {2.25_tile, -2.25_tile},6);
   wait(100_ms);
   goalClamp->unclamp();
+  moveToClose->forward(2_s, {1.75_tile, -1.75_tile}, 6);
+  wait(100_ms);
+  moveToClose->forward(2_s, {2.75_tile, -2.75_tile}, 6);
+  wait(100_ms);
+  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile},6);
+
 
   moveToClose->forward(2_s, {2_tile, -2_tile},6);
   clampWhenReady();
