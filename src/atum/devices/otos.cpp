@@ -23,6 +23,7 @@ OTOS::OTOS(const std::int8_t port,
     wait();
   }
   otos->msg({Command::SelfTest});
+  wait(100_ms);
   check();
   startBackgroundTasks();
   logger.info("OTOS constructed!");
@@ -41,7 +42,7 @@ radians_per_second_t OTOS::getOmega() const {
 }
 
 bool OTOS::check() {
-  auto response = otos->msg({Command::SelfTest});
+  auto response = otos->msg({Command::Check});
   const bool good{response.correct() && response.id == Response::Success};
   if(!good) {
     logger.error("Detected issue with OTOS.");

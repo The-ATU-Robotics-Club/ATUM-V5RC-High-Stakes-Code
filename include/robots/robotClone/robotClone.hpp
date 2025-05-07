@@ -15,6 +15,7 @@
 #include "../sharedSystems/ladybrown.hpp"
 #include "../sharedSystems/poseEstimator.hpp"
 
+
 namespace atum {
 /**
  * @brief This encapsulates all of the behaviors related to the clone bots,
@@ -163,9 +164,14 @@ class RobotClone : public Robot {
    * @brief Collects the rings near the middle and grabs the goal. Go to start
    * will have the robot move to the position next to the middle ring stack.
    *
+   * The other booleans refer to what the robot will try to grab. 
+   *
    * @param negative
    */
-  void collectMiddle(const bool negative, const bool goToStart);
+  void collectMiddle(const bool negative,
+                     const bool goToStart,
+                     const bool otherPreload,
+                     const bool startPreload);
 
   /**
    * @brief Rushes a goal. The first boolean changes if the robot is rushing

@@ -226,7 +226,7 @@ void RobotClone::goalSetup() {
 void RobotClone::autonSetup() {
   // Turn setup.
   PID turnPID{PID::Parameters{11, 0.75, 70.0, 0, 0.2}};
-  AcceptableAngle turnAcceptable{forever, 3_deg, 3_rpm};
+  AcceptableAngle turnAcceptable{forever, 2_deg, 2_rpm};
   turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
