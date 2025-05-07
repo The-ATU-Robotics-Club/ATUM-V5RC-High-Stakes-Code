@@ -2,7 +2,6 @@
 #include "robots/sharedSystems/intake.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -164,8 +163,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 void RobotClone::endOfPositive(const Pose &endPosition) {
   intake->intake();
   moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.3_ft), 5.0);
-  moveToClose->forward(3_s, getPast({-2_tile, 2_tile}, 1.125_ft), 5.0);
-  moveToClose->reverse(1_s, {-2_tile, 2_tile}, 12.0, false);  collectCorner(false, 4, false);
+  moveToClose->forward(3_s, getPast({-2_tile, -2_tile}, 1.125_ft), 5.0);
+  moveToClose->reverse(1_s, {-2_tile, -2_tile}, 12.0, false);
+  collectCorner(false, 4, false);
   moveToClose->reverse(5_s, {-2_tile, -2_tile}, 12.0, false);
   moveToClose->reverse(2_s, {-2.5_tile, -2.5_tile});
   goalClamp->unclamp();
@@ -225,7 +225,8 @@ void RobotClone::collectMiddle(const bool negative,
 void RobotClone::rush(const bool left, const bool clampImmediately) {
   const int shouldFlipY{drive->getPose().y < 0_in ? -1.0 : 1.0};
   const int shouldFlipH{left ? 1.0 : -1.0};
-  const bool middle{(left && shouldFlipY == -1.0) || (!left && shouldFlipY == 1.0)};
+  const bool middle{(left && shouldFlipY == -1.0) ||
+                    (!left && shouldFlipY == 1.0)};
   Piston *goalRush{left ? goalRushL.get() : goalRushR.get()};
   scheduler.schedule({"Lower Goal Rush",
                       Scheduler::neverMet,
@@ -247,7 +248,11 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
       false);
   goalRush->retract();
   wait(goalRushDelay);
-  moveToClose->reverse(3_s, {-2_tile, shouldFlipY * 1.5_tile}, 12.0, false);
+  if(middle) {
+    moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * 0.5_tile}, 12.0, false);
+  } else {
+    moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * 1.5_tile}, 12.0, false);
+  }
   turn->toward(1_s, 90_deg + shouldFlipH * 30_deg);
   goalRush->extend();
   moveToClose->forward(0.25_s, getInFrontOf(2_in), 12.0, false);
@@ -275,16 +280,16 @@ void RobotClone::collectCorner(const bool negative,
                                const bool shouldIndexLastRing) {
   const int shouldFlipY{negative ? 1 : -1};
   intake->intake();
-  moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 4);
-  moveToClose->reverse(1_s, getInFrontOf(-4.5_in), 8.0, false);
+  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4);
+  moveToClose->reverse(1.5_s, getInFrontOf(-4.5_in), 6.0, false);
   for(int i{0}; i < pushes - 2; i++) {
-    moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
-    moveToClose->reverse(1_s, getInFrontOf(-4.5_in), 8.0, false);
+    moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
+    moveToClose->reverse(1.5_s, getInFrontOf(-4.5_in), 6.0, false);
   }
   if(shouldIndexLastRing) {
     intake->index();
   }
-  moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
+  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
 }
 
 void RobotClone::clampWhenReady(const second_t timeout) {
