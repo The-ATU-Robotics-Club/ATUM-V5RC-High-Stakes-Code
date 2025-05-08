@@ -38,57 +38,58 @@ void RobotClone::skills15() {
   moveToClose->forward(1.5_s, {-3_tile, 3_tile}, 4);
   moveToClose->reverse(1.5_s, getInFrontOf(-4.5_in), 6.0, false);
   wait(100_ms);
-  moveToClose->reverse(3_s, {-2.75_tile, 2.75_tile}, 6);
+  moveToClose->reverse(1_s, {-2.75_tile, 2.75_tile}, 6);
   goalClamp->unclamp();
   moveToClose->forward(2_s, {-2.25_tile, 2.25_tile}, 6);
 
   intake->load();
 
-  moveToClose->forward(4_s, {0_tile, 2.45_tile}, 8);
-    
-wait(100_ms);
-moveToClose->reverse(3_s, {0_tile, 2.2_tile}, 6);
-ladybrown->load();
-moveToClose->forward(3_s, {0_tile, 2.75_tile}, 4);
-ladybrown->moveTo(170_deg);
-waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
-ladybrown->moveTo(60_deg);
-waitUntil(ladybrown->checkStateIs(LadybrownState::Resting), 1_s);
-ladybrown->rest();
-moveToClose->reverse(2_s, {0_tile, 1.75_tile});
-ladybrown->rest();
-clampWhenReady();
-moveToClose->reverse(5_s, {1.25_tile, 0.75_tile}, 8);
-goalClamp->clamp();
-wait(goalClampDelay);
-intake->intake();
-moveToClose->forward(5_s, {1_tile, 2_tile}, 10);
-wait(200_ms);
-moveToClose->forward(5_s, {2_tile, 1_tile}, 10);
-wait(200_ms);
-moveToClose->forward(5_s, {2_tile, 2_tile}, 10);
-wait(200_ms);
-intake->load();
-moveToClose->forward(2_s, {2.8_tile, 2.8_tile}, 8);
-moveToClose->reverse(2_s, {2.4_tile, 2.4_tile});
-wait(200_ms);
-moveToClose->reverse(2_s, {2.9_tile, 2.9_tile}, 8);
-goalClamp->unclamp();
-wait(goalClampDelay);
-ladybrown->moveTo(60_deg);
-moveToClose->forward(5_s, {2.5_tile, 2_tile});
-intake->index();
-moveToFar->forward(5_s, {2.5_tile, -0.5_tile}, 9);
-wait(200_ms);
-clampWhenReady();
-moveToClose->reverse(5_s, {1.8_tile, 0.2_tile}, 6);
-goalClamp->clamp();
-intake->intake();
-  moveToClose->forward(1_s, {3_tile, 0_tile}, 4);
-  if(intake->getColor() != intake->getSortOutColor()) {
+  moveToClose->forward(4_s, {0.25_tile, 2.475_tile}, 8);
+  moveToClose->forward(4_s, {0_tile, 2_tile}, 8);
+
+  intake->finishLoading();
+  wait(100_ms);
+  moveToClose->forward(2_s, {0_tile, 3_tile}, 8);  
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+  drive->arcade(2, 0);
+  ladybrown->moveTo(185_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+  moveToClose->reverse(2_s, getInFrontOf(-1_ft));
+  ladybrown->moveTo(90_deg);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+  moveToClose->reverse(2_s, {0_tile, 2_tile});
+  ladybrown->rest();
+  clampWhenReady();
+  moveToClose->reverse(5_s, {1.25_tile, 0.75_tile}, 8);
+  goalClamp->clamp();
+  wait(goalClampDelay);
+  intake->intake();
+  moveToClose->forward(5_s, {1_tile, 2_tile}, 10);
+  wait(200_ms);
+  moveToClose->forward(5_s, {2_tile, 1_tile}, 10);
+  wait(200_ms);
+  moveToClose->forward(5_s, {2_tile, 2_tile}, 10);
+  wait(200_ms);
+  moveToClose->forward(2_s, {2.6_tile, 2.6_tile}, 10);
+  intake->load();
+  moveToClose->forward(2_s, {3_tile, 3_tile}, 4);
+  moveToClose->reverse(2_s, {2.4_tile, 2.4_tile});
+  wait(200_ms);
+  moveToClose->reverse(2_s, {2.9_tile, 2.9_tile}, 8);
+  ladybrown->prepare();
+  goalClamp->unclamp();
+  wait(goalClampDelay);
+  moveToClose->forward(5_s, {2.5_tile, 2_tile});
+  intake->index();
+  moveToFar->forward(5_s, {2.65_tile, -0.5_tile}, 10);
+  wait(200_ms);
+  clampWhenReady();
+  moveToClose->reverse(5_s, {1.8_tile, 0.2_tile}, 6);
+  goalClamp->clamp();
+  intake->intake();
+  moveToClose->forward(1.5_s, {3_tile, 0_tile}, 4);
     intake->finishLoading();
-  }
-  moveToClose->reverse(2_s, getInFrontOf(-9.5_in));
+  moveToClose->reverse(2_s, getInFrontOf(-8.5_in));
   ladybrown->moveTo(185_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   moveToClose->reverse(2_s, getInFrontOf(-4_in));
@@ -97,7 +98,7 @@ intake->intake();
   ladybrown->rest();
   moveToFar->reverse(5_s, {1_tile, 1_tile}, 10);
   ladybrown->moveTo(135_deg);
-  moveToClose->reverse(5_s, {0_tile, 0_tile}, 6);
+  moveToClose->reverse(5_s, {0_tile, 0_tile}, 7);
   moveToClose->forward(2_s, {1_tile, 1_tile});
 }
 
@@ -111,12 +112,12 @@ intake->intake();
 void RobotClone::skills24() {
   setupRoutine({-2.5_tile, 0_tile, 90_deg});
   intake->setSortOutColor(ColorSensor::Color::Blue);
-  
+
   intake->index();
   moveToClose->forward(2_s, {-2_tile, 0_tile});
   wait(300_ms);
   intake->load();
- moveToClose->forward(1_s, {-3_tile, 0_tile}, 4);
+  moveToClose->forward(1_s, {-3_tile, 0_tile}, 4);
   if(intake->getColor() != intake->getSortOutColor()) {
     intake->finishLoading();
   }
@@ -127,7 +128,7 @@ void RobotClone::skills24() {
   ladybrown->moveTo(90_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   ladybrown->rest();
- 
+
   intake->index();
   moveToClose->forward(2_s, {-1_tile, -1_tile}, 4);
   wait(100_ms);
@@ -144,7 +145,7 @@ void RobotClone::skills24() {
 
   moveToFar->forward(2_s, {-2_tile, -2_tile}, 6);
   wait(100_ms);
-  
+
   moveToClose->forward(2_s, {-2.75_tile, -2.75_tile}, 6);
   wait(100_ms);
   moveToClose->reverse(2_s, {-2_tile, -2_tile}, 6);
@@ -176,7 +177,7 @@ void RobotClone::skills24() {
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
-  
+
   intake->setSortOutColor(ColorSensor::Color::Blue);
 
   moveToClose->forward(2_s, {2.25_tile, -1_tile}, 4);
@@ -184,38 +185,37 @@ void RobotClone::skills24() {
   intake->intake();
 
   moveToClose->forward(2_s, {2_tile, -2_tile}, 4);
-  wait(1_s); 
+  wait(1_s);
   intake->stop();
-  
+
   moveToClose->reverse(2_s, {1.5_tile, -1.5_tile}, 4);
   intake->index();
-  
+
   moveToClose->forward(2_s, {2.85_tile, -2.85_tile}, 8);
   wait(300_ms);
-  moveToClose->reverse(2_s, {2.5_tile, -2.5_tile},6);
+  moveToClose->reverse(2_s, {2.5_tile, -2.5_tile}, 6);
   wait(100_ms);
-  moveToClose->forward(2_s, {2.25_tile, -2.25_tile},6);
+  moveToClose->forward(2_s, {2.25_tile, -2.25_tile}, 6);
   wait(100_ms);
   goalClamp->unclamp();
   moveToClose->forward(2_s, {1.75_tile, -1.75_tile}, 6);
   wait(100_ms);
   moveToClose->forward(2_s, {2.75_tile, -2.75_tile}, 6);
   wait(100_ms);
-  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile},6);
+  moveToClose->reverse(2_s, {2.25_tile, -2.25_tile}, 6);
 
-
-  moveToClose->forward(2_s, {2_tile, -2_tile},6);
+  moveToClose->forward(2_s, {2_tile, -2_tile}, 6);
   clampWhenReady();
   moveToFar->reverse(2_s, {2_tile, 0_tile}, 6);
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
   wait(500_ms);
-  moveToClose->forward(2_s, {2_tile, -2_tile},6);
+  moveToClose->forward(2_s, {2_tile, -2_tile}, 6);
   intake->stop();
   goalClamp->unclamp();
 
-  moveToClose->reverse(2_s, {2_tile, -2_tile},6);
+  moveToClose->reverse(2_s, {2_tile, -2_tile}, 6);
   ladybrown->moveTo(135_deg);
   moveToClose->reverse(2_s, {0_tile, 0_tile}, 6);
 }
@@ -440,9 +440,11 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
   goalRush->retract();
   wait(goalRushDelay);
   if(middle) {
-    moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * 0.5_tile}, 12.0, false);
+    moveToClose->reverse(
+        3_s, {-1.75_tile, shouldFlipY * 0.5_tile}, 12.0, false);
   } else {
-    moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * 1.5_tile}, 12.0, false);
+    moveToClose->reverse(
+        3_s, {-1.75_tile, shouldFlipY * 1.5_tile}, 12.0, false);
   }
   turn->toward(1_s, 90_deg + shouldFlipH * 30_deg);
   goalRush->extend();
