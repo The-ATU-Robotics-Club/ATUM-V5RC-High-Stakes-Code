@@ -1,6 +1,5 @@
 #include "intake.hpp"
 
-
 namespace atum {
 Intake::Intake(std::unique_ptr<Motor> iMotor,
                std::unique_ptr<ColorSensor> iColorSensor,
@@ -82,9 +81,10 @@ TASK_DEFINITIONS_FOR(Intake) {
       case IntakeState::FinishedLoading: voltage = 0.0; break;
       case IntakeState::Loading:
         ladybrown->load();
-        voltage = ladybrown->getState() == LadybrownState::Loading || !inIndexer() ?
-                      params.indexingVoltage :
-                      0.0;
+        voltage =
+            ladybrown->getState() == LadybrownState::Loading || !inIndexer() ?
+                params.indexingVoltage :
+                0.0;
         if(ladybrown->getState() != LadybrownState::Loading ||
            !ladybrown->ringInCarriage()) {
           break;
@@ -147,14 +147,11 @@ TASK_DEFINITIONS_FOR(Intake) {
     const bool sortingEnabled{sortOutColor != ColorSensor::Color::None};
     const bool sortingState{state == IntakeState::Intaking ||
                             state == IntakeState::Indexing};
-    const bool sortSensorsWorking{ladybrown->checkRingDetection() &&
-                                  colorSensor->check()};
-    if(sortingEnabled && sortingState && sortSensorsWorking &&
-       ladybrown->ringInIndexer() && colorSensor->getColor() == sortOutColor) {
+    if(sortingEnabled && sortingState && colorSensor->check() &&
+       colorSensor->getColor() == sortOutColor) {
       motor->moveVoltage(params.intakingVoltage);
       Timer timeout{params.generalTimeout};
-      while(colorSensor->getColor() == sortOutColor &&
-            ladybrown->ringInIndexer() && !timeout.goneOff()) {
+      while(colorSensor->getColor() == sortOutColor && !timeout.goneOff()) {
         wait(5_ms);
       }
       motor->moveVoltage(-12.0);

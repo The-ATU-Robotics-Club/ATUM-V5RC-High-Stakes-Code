@@ -189,7 +189,7 @@ void RobotClone::intakeSetup() {
   Intake::Parameters intakeParams;
   intakeParams.jamVelocity = 20_rpm;
   intakeParams.timerUntilJamChecks = Timer{0.25_s};
-  intakeParams.timeUntilUnjammed = 0.3_s;
+  intakeParams.timeUntilUnjammed = 0.325_s;
   intakeParams.sortThrowTime = 0.05_s;
   intakeParams.pressLoadTime = 300_ms;
   intakeParams.backupFromLoad = 20_deg;
@@ -226,19 +226,19 @@ void RobotClone::goalSetup() {
 void RobotClone::autonSetup() {
   // Turn setup.
   PID turnPID{PID::Parameters{11, 0.75, 70.0, 0, 0.2}};
-  AcceptableAngle turnAcceptable{forever, 3_deg, 3_rpm};
+  AcceptableAngle turnAcceptable{forever, 5_deg, 2.5_rpm};
   turn = std::make_unique<Turn>(drive.get(), turnPID, turnAcceptable);
 
   // Move to setup.
   PID directionPID{PID::Parameters{7.5}};
-  AcceptableDistance moveToAcceptable{forever, 1_in, 1_in_per_s};
+  AcceptableDistance moveToAcceptable{forever, 1.5_in, 3_in_per_s};
   PID moveToClosePID{PID::Parameters{45, 2.0, 380, 0.0, 0.05}};
   moveToClose = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToClosePID, directionPID, moveToAcceptable);
-  PID moveToFarPID{PID::Parameters{20.0, 2.0, 185.0, 0.0, 0.05}};
+  PID moveToFarPID{PID::Parameters{21.0, 2.0, 185.0, 0.0, 0.05}};
   moveToFar = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToFarPID, directionPID, moveToAcceptable);
-  PID moveToRushPID{PID::Parameters{32, 0.0, 340.0}};
+  PID moveToRushPID{PID::Parameters{33, 0.0, 340.0}};
   moveToRush = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToRushPID, directionPID, moveToAcceptable);
 

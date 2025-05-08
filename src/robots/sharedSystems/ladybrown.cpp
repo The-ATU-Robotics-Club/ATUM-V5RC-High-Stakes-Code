@@ -1,5 +1,6 @@
-#include "ladybrown.hpp"
 #include "atum/devices/colorSensor.hpp"
+#include "ladybrown.hpp"
+
 
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
@@ -121,8 +122,7 @@ degree_t Ladybrown::getPosition() const {
 }
 
 void Ladybrown::moveToControls() {
-  if(state != LadybrownState::Idle && state != LadybrownState::MovingTo &&
-     state != LadybrownState::Loading) {
+  if(state != LadybrownState::Idle && state != LadybrownState::MovingTo) {
     return;
   }
   double output{0.0};
@@ -168,7 +168,10 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
         break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       case LadybrownState::Preparing: intake->finishLoading(); [[fallthrough]];
-      default: moveToControls(); break;
+      default:
+        intake->finishLoading();
+        moveToControls();
+        break;
     }
     wait();
   }

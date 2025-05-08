@@ -1,3 +1,4 @@
+#include "atum/gui/routines.hpp"
 #include "robotClone.hpp"
 #include "robots/sharedSystems/intake.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
@@ -49,7 +50,7 @@ void RobotClone::skills15() {
 
   intake->finishLoading();
   wait(100_ms);
-  moveToClose->forward(2_s, {0_tile, 3_tile}, 8);  
+  moveToClose->forward(2_s, {0_tile, 3_tile}, 8);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   drive->arcade(2, 0);
   ladybrown->moveTo(185_deg);
@@ -88,7 +89,7 @@ void RobotClone::skills15() {
   goalClamp->clamp();
   intake->intake();
   moveToClose->forward(1.5_s, {3_tile, 0_tile}, 4);
-    intake->finishLoading();
+  intake->finishLoading();
   moveToClose->reverse(2_s, getInFrontOf(-8.5_in));
   ladybrown->moveTo(185_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
@@ -241,15 +242,21 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(true, false);
   collectNegative();
   allianceStake();
-  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 8.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: N & M Rush")
   rushSetup(false, true);
   rush(true, true);
   intake->intake();
-  wait(2_s);
-  goalClamp->unclamp();
+  Pose dropPoint{-2.5_tile, -0.5_tile};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    dropPoint.flip();
+  }
+  scheduler.schedule({"Drop Goal",
+                      drive->checkIsNear(dropPoint, 4_in),
+                      [=]() { goalClamp->unclamp(); },
+                      3_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -259,14 +266,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(true, false);
   collectNegative();
   allianceStake();
-  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 8.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: N & P Rush")
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  wait(2_s);
+  wait(1_s);
   goalClamp->unclamp();
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
@@ -277,14 +284,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(false, true);
   collectNegative();
   allianceStake();
-  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 8.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: M & P Rush")
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  wait(2_s);
+  wait(1_s);
   goalClamp->unclamp();
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
@@ -295,7 +302,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(true, false);
   collectNegative();
   allianceStake();
-  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 8.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: N Only Rush")
@@ -313,7 +320,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rush(false, true);
   collectNegative();
   allianceStake();
-  moveToClose->forward(4_s, {-1_tile, 0_tile}, 6.0);
+  moveToClose->forward(4_s, {-1_tile, 0_tile}, 8.0);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: M Only Rush")
@@ -339,9 +346,9 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   collectNegative();
   allianceStake();
   intake->intake();
-  moveToClose->reverse(2_s, {-2.4_tile, -2.4_tile});
+  moveToClose->reverse(2_s, {-2.6_tile, -2.4_tile});
   goalClamp->unclamp();
-  moveToClose->forward(3_s, getInFrontOf(1.25_tile), 12.0, false);
+  moveToClose->forward(3_s, {-1.5_tile, -1.5_tile}, 12.0, false);
   END_ROUTINE
 
   START_ROUTINE("Positive Side: P Only Rush")
@@ -353,21 +360,21 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
 void RobotClone::endOfPositive(const Pose &endPosition) {
   intake->intake();
-  moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.3_ft), 5.0);
-  moveToClose->forward(3_s, getPast({-2_tile, -2_tile}, 1.125_ft), 5.0);
+  moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.3_ft), 6.0);
+  moveToClose->forward(3_s, getPast({-2_tile, -2_tile}, 1.125_ft), 9.0);
   moveToClose->reverse(1_s, {-2_tile, -2_tile}, 12.0, false);
   collectCorner(false, 4, false);
-  moveToClose->reverse(5_s, {-2_tile, -2_tile}, 12.0, false);
-  moveToClose->reverse(2_s, {-2.5_tile, -2.5_tile});
+  moveToClose->reverse(2_s, {-2_tile, -2_tile}, 12.0, false);
+  moveToClose->reverse(1_s, {-2.5_tile, -2.5_tile});
   goalClamp->unclamp();
   moveToClose->forward(5_s, {-2_tile, -2_tile}, 12.0, false);
-  moveToClose->forward(5_s, endPosition, 6.0);
+  moveToClose->forward(5_s, endPosition, 8.0);
 }
 
 void RobotClone::collectNegative() {
   intake->intake();
-  moveToFar->forward(4_s, getPast({-1_tile, 2_tile}, 1.3_ft), 5.0);
-  moveToClose->forward(3_s, getPast({-2_tile, 2_tile}, 1.125_ft), 5.0);
+  moveToFar->forward(4_s, getPast({-1_tile, 2_tile}, 1.3_ft), 6.0);
+  moveToClose->forward(3_s, getPast({-2_tile, 2_tile}, 1.125_ft), 9.0);
   moveToClose->reverse(1_s, {-2_tile, 2_tile}, 12.0, false);
   collectCorner(true, 3, true);
   moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
@@ -377,9 +384,6 @@ void RobotClone::allianceStake() {
   moveToFar->forward(5_s, {-52_in, 0_tile});
   intake->load();
   moveToClose->forward(1_s, {-3_tile, 0_tile}, 4);
-  if(intake->getColor() != intake->getSortOutColor()) {
-    intake->finishLoading();
-  }
   moveToClose->reverse(2_s, getInFrontOf(-9.5_in));
   ladybrown->moveTo(185_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
@@ -396,20 +400,22 @@ void RobotClone::collectMiddle(const bool negative,
   const int shouldFlipY{negative ? -1.0 : 1.0};
   if(goToStart) {
     intake->intake();
-    moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 6.0);
+    moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 8.0);
   }
   intake->index();
-  moveToFar->forward(5_s, {-2.5_tile, shouldFlipY * 0.5_tile}, 9.0);
+  moveToClose->forward(3_s, {-2.5_tile, shouldFlipY * 0.5_tile}, 8.0);
   clampWhenReady();
-  moveToClose->reverse(5_s, {-1.75_tile, shouldFlipY * -0.25_tile}, 6.0);
+  moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * -0.25_tile}, 8.0);
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
   if(otherPreload) {
-    moveToClose->forward(5_s, {-2_tile, shouldFlipY * 1.125_tile});
+    moveToClose->forward(2_s, {-2_tile, shouldFlipY * 1_tile});
   }
   if(startPreload) {
-    moveToFar->forward(5_s, {-2_tile, shouldFlipY * -1.125_tile});
+    moveToClose->forward(2_s, {-2_tile, shouldFlipY * -1_tile});
+  } else {
+    moveToClose->reverse(2_s, {-2_tile, shouldFlipY * -1_tile});
   }
 }
 
@@ -418,13 +424,16 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
   const int shouldFlipH{left ? 1.0 : -1.0};
   const bool middle{(left && shouldFlipY == -1.0) ||
                     (!left && shouldFlipY == 1.0)};
-  Piston *goalRush{left ? goalRushL.get() : goalRushR.get()};
+  Piston *goalRush{
+      (left && GUI::Routines::selectedColor() == MatchColor::Red) ||
+              (!left && GUI::Routines::selectedColor() != MatchColor::Red) ?
+          goalRushL.get() :
+          goalRushR.get()};
   scheduler.schedule({"Lower Goal Rush",
                       Scheduler::neverMet,
                       [=]() {
                         wait(150_ms);
                         intake->index();
-                        wait(50_ms);
                         goalRush->extend();
                       },
                       100_ms});
@@ -432,6 +441,7 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
     intake->outtake();
   }
   kaboomer->retract();
+  wait(25_ms);
   moveToRush->forward(
       2_s,
       getInFrontOf(id == ID15 ? 28_in + extensionDistance : 28_in),
@@ -448,7 +458,7 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
   }
   turn->toward(1_s, 90_deg + shouldFlipH * 30_deg);
   goalRush->extend();
-  moveToClose->forward(0.25_s, getInFrontOf(2_in), 12.0, false);
+  moveToClose->forward(0.25_s, getInFrontOf(1_in), 12.0, false);
   wait(goalRushDelay);
   turn->toward(1_s, 90_deg - shouldFlipH * 30_deg);
   goalRush->retract();
@@ -457,13 +467,13 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
     clampWhenReady();
   }
   if(middle) {
-    moveToFar->reverse(2_s, {-0.75_tile, shouldFlipY * 0.625_tile}, 6.0);
+    moveToClose->reverse(2_s, {-0.7_tile, shouldFlipY * 0.625_tile}, 6.0);
   } else {
-    moveToFar->reverse(2_s, {-0.75_tile, shouldFlipY * 1.375_tile}, 6.0);
+    moveToClose->reverse(2_s, {-0.7_tile, shouldFlipY * 1.4_tile}, 6.0);
   }
   goalClamp->clamp();
   if(middle) {
-    moveToClose->forward(3_s, {-1_tile, shouldFlipY * 1_tile});
+    moveToClose->forward(3_s, {-0.91_tile, shouldFlipY * 0.91_tile});
   }
   wait(goalClampDelay);
 }
@@ -473,16 +483,16 @@ void RobotClone::collectCorner(const bool negative,
                                const bool shouldIndexLastRing) {
   const int shouldFlipY{negative ? 1 : -1};
   intake->intake();
-  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4);
-  moveToClose->reverse(1.5_s, getInFrontOf(-4.5_in), 6.0, false);
+  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile});
+  moveToClose->reverse(1_s, getInFrontOf(-6.5_in), 12.0, false);
   for(int i{0}; i < pushes - 2; i++) {
-    moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
-    moveToClose->reverse(1.5_s, getInFrontOf(-4.5_in), 6.0, false);
+    moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 12.0, false);
+    moveToClose->reverse(1_s, getInFrontOf(-6.5_in), 12.0, false);
   }
   if(shouldIndexLastRing) {
     intake->index();
   }
-  moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile}, 4, false);
+  moveToClose->forward(1_s, {-3_tile, shouldFlipY * 3_tile}, 12.0, false);
 }
 
 void RobotClone::clampWhenReady(const second_t timeout) {
@@ -502,7 +512,10 @@ void RobotClone::clampWhenReady(const second_t timeout) {
 }
 
 Pose RobotClone::getInFrontOf(const meter_t offset) const {
-  const Pose current{drive->getPose()};
+  Pose current{drive->getPose()};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    current.flip();
+  }
   const degree_t hAdj{90_deg - current.h};
   const Pose offset2d{offset * cos(hAdj), offset * sin(hAdj)};
   Pose target{current + offset2d};
@@ -516,8 +529,7 @@ Pose RobotClone::getPast(const Pose &target, const meter_t past) const {
     current.flip();
   }
   const double hDiff{getValueAs<radian_t>(90_deg - angle(current, target))};
-  const Pose pastTarget{cos(hDiff) * past + target.x,
-                        sin(hDiff) * past + target.y};
+  Pose pastTarget{cos(hDiff) * past + target.x, sin(hDiff) * past + target.y};
   return pastTarget;
 }
 
