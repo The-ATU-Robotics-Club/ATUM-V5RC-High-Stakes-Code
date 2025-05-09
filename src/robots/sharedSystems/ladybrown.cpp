@@ -1,7 +1,6 @@
 #include "atum/devices/colorSensor.hpp"
 #include "ladybrown.hpp"
 
-
 namespace atum {
 Ladybrown::Ladybrown(std::unique_ptr<Motor> iMotor,
                      std::unique_ptr<DistanceSensor> iDistance,
@@ -122,7 +121,8 @@ degree_t Ladybrown::getPosition() const {
 }
 
 void Ladybrown::moveToControls() {
-  if(state != LadybrownState::Idle && state != LadybrownState::MovingTo) {
+  if(state != LadybrownState::Idle && state != LadybrownState::MovingTo &&
+     state != LadybrownState::Loading) {
     return;
   }
   double output{0.0};

@@ -449,7 +449,6 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
   }
   turn->toward(1_s, 90_deg + shouldFlipH * 30_deg);
   goalRush->extend();
-  moveToClose->forward(0.25_s, getInFrontOf(1_in), 12.0, false);
   wait(goalRushDelay);
   turn->toward(1_s, 90_deg - shouldFlipH * 30_deg);
   goalRush->retract();
