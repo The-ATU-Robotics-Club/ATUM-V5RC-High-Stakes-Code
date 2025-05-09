@@ -208,9 +208,10 @@ class RobotClone : public Robot {
    * @brief Gets the position a given offset in front of robot.
    *
    * @param offset
+   * @param shouldFlip
    * @return Pose
    */
-  Pose getInFrontOf(const meter_t offset) const;
+  Pose getInFrontOf(const meter_t offset, const bool shouldFlip = true) const;
 
   /**
    * @brief Gets a pose a certain distance past a target, linear with the

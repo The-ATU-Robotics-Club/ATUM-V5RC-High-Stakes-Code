@@ -3,6 +3,7 @@
 #include "robots/sharedSystems/intake.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -247,12 +248,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, true);
   rush(true, true);
   intake->intake();
-  Pose dropPoint{-2.5_tile, -0.5_tile};
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-    dropPoint.flip();
-  }
   scheduler.schedule({"Drop Goal",
-                      drive->checkIsNear(dropPoint, 4_in),
+                      drive->checkIsNear({-2.5_tile, -0.5_tile}, 4_in),
                       [=]() { goalClamp->unclamp(); },
                       4_s});
   collectMiddle(false, true, true, false);
@@ -271,12 +268,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  Pose dropPoint{-2.5_tile, -0.5_tile};
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-    dropPoint.flip();
-  }
   scheduler.schedule({"Drop Goal",
-                      drive->checkIsNear(dropPoint, 4_in),
+                      drive->checkIsNear({-2.5_tile, -0.5_tile}, 4_in),
                       [=]() { goalClamp->unclamp(); },
                       4_s});
   collectMiddle(false, true, true, false);
@@ -295,12 +288,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  Pose dropPoint{-2.5_tile, -0.5_tile};
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
-    dropPoint.flip();
-  }
   scheduler.schedule({"Drop Goal",
-                      drive->checkIsNear(dropPoint, 4_in),
+                      drive->checkIsNear({-2.5_tile, -0.5_tile}, 4_in),
                       [=]() { goalClamp->unclamp(); },
                       4_s});
   collectMiddle(false, true, true, false);
@@ -317,10 +306,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Positive Side: N Only Rush")
   setupRoutine(noRushStart);
-  if(id == ID15) {
-    intake->outtake();
-    wait(0.25_s);
-  }
+  intake->outtake();
+  wait(0.25_s);
   collectMiddle(false, false, false, true);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -335,10 +322,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 
   START_ROUTINE("Positive Side: M Only Rush")
   setupRoutine(noRushStart);
-  if(id == ID15) {
-    intake->outtake();
-    wait(0.25_s);
-  }
+  intake->outtake();
+  wait(0.25_s);
   collectMiddle(false, false, false, true);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -348,10 +333,8 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   negativeStart.y *= -1;
   negativeStart.h += 180_deg;
   setupRoutine(negativeStart);
-  if(id == ID15) {
-    intake->outtake();
-    wait(0.25_s);
-  }
+  intake->outtake();
+  wait(0.25_s);
   collectMiddle(true, false, true, true);
   collectNegative();
   allianceStake();
@@ -447,9 +430,7 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
                         goalRush->extend();
                       },
                       100_ms});
-  if(id == ID15) {
-    intake->outtake();
-  }
+  intake->outtake();
   kaboomer->retract();
   wait(25_ms);
   moveToRush->forward(
@@ -521,9 +502,10 @@ void RobotClone::clampWhenReady(const second_t timeout) {
                       Scheduler::doNothing});
 }
 
-Pose RobotClone::getInFrontOf(const meter_t offset) const {
+Pose RobotClone::getInFrontOf(const meter_t offset,
+                              const bool shouldFlip) const {
   Pose current{drive->getPose()};
-  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+  if(GUI::Routines::selectedColor() == MatchColor::Blue && shouldFlip) {
     current.flip();
   }
   const degree_t hAdj{90_deg - current.h};
@@ -575,7 +557,7 @@ void RobotClone::rushSetup(const bool negative, const bool rushingLeft) {
   setupRoutine(basePose);
   if(id == ID15) {
     wait();
-    drive->setPose(getInFrontOf(-extensionDistance));
+    drive->setPose(getInFrontOf(-extensionDistance, false));
   }
 }
 
