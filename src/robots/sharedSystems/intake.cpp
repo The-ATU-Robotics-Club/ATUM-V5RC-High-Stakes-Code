@@ -38,7 +38,7 @@ void Intake::load() {
 void Intake::finishLoading() {
   if(state == IntakeState::Pressed) {
     state = IntakeState::UnpressLoading;
-  }
+  } 
 }
 
 void Intake::outtake() {

@@ -168,7 +168,12 @@ TASK_DEFINITIONS_FOR(Ladybrown) {
         break;
       case LadybrownState::Retracting: voltage = -params.manualVoltage; break;
       case LadybrownState::Preparing:
-      case LadybrownState::MovingTo: intake->finishLoading();
+      case LadybrownState::MovingTo:
+        if(intake->getState() == IntakeState::Pressed) {
+          intake->finishLoading();
+          waitUntil(intake->checkStateIs(IntakeState::FinishedLoading),
+                    1_s);
+        }
       case LadybrownState::Idle:
       case LadybrownState::Loading: moveToControls(); break;
     }

@@ -39,19 +39,15 @@ void RobotClone::skills15() {
   moveToClose->forward(1.5_s, {-3_tile, 3_tile}, 4);
   moveToClose->reverse(1.5_s, getInFrontOf(-4.5_in), 6.0, false);
   wait(100_ms);
-  moveToClose->reverse(1_s, {-2.75_tile, 2.75_tile}, 6);
+  moveToClose->reverse(1_s, {-2.5_tile, 2.5_tile});
   goalClamp->unclamp();
-  moveToClose->forward(2_s, {-2.25_tile, 2.25_tile}, 6);
+  moveToClose->forward(1_s, {-2.125_tile, 2.125_tile});
 
   intake->load();
 
-  moveToClose->forward(4_s, {0.25_tile, 2.475_tile}, 8);
+  moveToClose->forward(4_s, {0.25_tile, 2.475_tile}, 7);
   moveToClose->forward(4_s, {0_tile, 2_tile}, 8);
-
-  intake->finishLoading();
-  wait(100_ms);
-  moveToClose->forward(2_s, {0_tile, 3_tile}, 8);
-  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+  moveToClose->forward(2_s, {0_tile, 3_tile}, 6);
   drive->arcade(2, 0);
   ladybrown->moveTo(185_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
@@ -60,8 +56,9 @@ void RobotClone::skills15() {
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   moveToClose->reverse(2_s, {0_tile, 2_tile});
   ladybrown->rest();
+  intake->stop();
   clampWhenReady();
-  moveToClose->reverse(5_s, {1.25_tile, 0.75_tile}, 8);
+  moveToClose->reverse(5_s, {1.25_tile, 0.75_tile}, 6);
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
@@ -71,13 +68,13 @@ void RobotClone::skills15() {
   wait(200_ms);
   moveToClose->forward(5_s, {2_tile, 2_tile}, 10);
   wait(200_ms);
-  moveToClose->forward(2_s, {2.6_tile, 2.6_tile}, 10);
+  moveToClose->forward(2_s, {2.5_tile, 2.5_tile}, 4);
   intake->load();
-  moveToClose->forward(2_s, {3_tile, 3_tile}, 4);
-  moveToClose->reverse(2_s, {2.4_tile, 2.4_tile});
-  wait(200_ms);
-  moveToClose->reverse(2_s, {2.9_tile, 2.9_tile}, 8);
-  ladybrown->prepare();
+  moveToClose->forward(2.5_s, {3_tile, 3_tile}, 6);
+  moveToClose->reverse(2_s, {2.5_tile, 2.5_tile}, 8);
+  wait(1_s);
+  ladybrown->moveTo(60_deg);
+  wait(1_s);
   goalClamp->unclamp();
   wait(goalClampDelay);
   moveToClose->forward(5_s, {2.5_tile, 2_tile});
@@ -89,7 +86,6 @@ void RobotClone::skills15() {
   goalClamp->clamp();
   intake->intake();
   moveToClose->forward(1.5_s, {3_tile, 0_tile}, 4);
-  intake->finishLoading();
   moveToClose->reverse(2_s, getInFrontOf(-8.5_in));
   ladybrown->moveTo(185_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
@@ -98,8 +94,10 @@ void RobotClone::skills15() {
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   ladybrown->rest();
   moveToFar->reverse(5_s, {1_tile, 1_tile}, 10);
+  goalClamp->unclamp();
   ladybrown->moveTo(135_deg);
-  moveToClose->reverse(5_s, {0_tile, 0_tile}, 7);
+  intake->stop();
+  moveToClose->reverse(3_s, {0_tile, 0_tile}, 8);
   moveToClose->forward(2_s, {1_tile, 1_tile});
 }
 
@@ -256,7 +254,7 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   scheduler.schedule({"Drop Goal",
                       drive->checkIsNear(dropPoint, 4_in),
                       [=]() { goalClamp->unclamp(); },
-                      3_s});
+                      4_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -273,8 +271,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  wait(1_s);
-  goalClamp->unclamp();
+  Pose dropPoint{-2.5_tile, -0.5_tile};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    dropPoint.flip();
+  }
+  scheduler.schedule({"Drop Goal",
+                      drive->checkIsNear(dropPoint, 4_in),
+                      [=]() { goalClamp->unclamp(); },
+                      4_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -291,8 +295,14 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  wait(1_s);
-  goalClamp->unclamp();
+  Pose dropPoint{-2.5_tile, -0.5_tile};
+  if(GUI::Routines::selectedColor() == MatchColor::Blue) {
+    dropPoint.flip();
+  }
+  scheduler.schedule({"Drop Goal",
+                      drive->checkIsNear(dropPoint, 4_in),
+                      [=]() { goalClamp->unclamp(); },
+                      4_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -368,7 +378,7 @@ void RobotClone::endOfPositive(const Pose &endPosition) {
   moveToClose->reverse(1_s, {-2.5_tile, -2.5_tile});
   goalClamp->unclamp();
   moveToClose->forward(5_s, {-2_tile, -2_tile}, 12.0, false);
-  moveToClose->forward(5_s, endPosition, 8.0);
+  moveToClose->forward(5_s, endPosition, 8.0, false);
 }
 
 void RobotClone::collectNegative() {
@@ -585,6 +595,9 @@ void RobotClone::setupRoutine(Pose startingPose) {
   goalClamp->unclamp();
   goalRushL->retract();
   goalRushR->retract();
+
+  ladybrown->rest();
+  intake->stop();
 
   drive->setBrakeMode(pros::MotorBrake::brake);
 }
