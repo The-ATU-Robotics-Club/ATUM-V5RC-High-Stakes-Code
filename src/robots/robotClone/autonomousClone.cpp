@@ -3,7 +3,6 @@
 #include "robots/sharedSystems/intake.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
-
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -248,10 +247,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, true);
   rush(true, true);
   intake->intake();
-  scheduler.schedule({"Drop Goal",
-                      drive->checkIsNear({-2.5_tile, -0.5_tile}, 4_in),
-                      [=]() { goalClamp->unclamp(); },
-                      4_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -268,10 +263,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  scheduler.schedule({"Drop Goal",
-                      drive->checkIsNear({-2.5_tile, -0.5_tile}, 4_in),
-                      [=]() { goalClamp->unclamp(); },
-                      4_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -288,10 +279,6 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
   rushSetup(false, false);
   rush(false, true);
   intake->intake();
-  scheduler.schedule({"Drop Goal",
-                      drive->checkIsNear({-2.5_tile, -0.5_tile}, 4_in),
-                      [=]() { goalClamp->unclamp(); },
-                      4_s});
   collectMiddle(false, true, true, false);
   endOfPositive({-1.8_tile, -1.8_tile});
   END_ROUTINE
@@ -394,11 +381,13 @@ void RobotClone::collectMiddle(const bool negative,
   if(goToStart) {
     intake->intake();
     moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 8.0);
+    moveToClose->forward(1_s, {-2.425_tile, shouldFlipY * -0.375_tile}, 7.0);
+    goalClamp->unclamp();
   }
   intake->index();
-  moveToClose->forward(3_s, {-2.5_tile, shouldFlipY * 0.5_tile}, 8.0);
+  moveToClose->forward(3_s, {-2.45_tile, shouldFlipY * 0.625_tile}, 7.0);
   clampWhenReady();
-  moveToClose->reverse(3_s, {-1.75_tile, shouldFlipY * -0.25_tile}, 8.0);
+  moveToClose->reverse(3_s, getPast({-2_tile, 0_tile}, 0.375_tile), 6.0);
   goalClamp->clamp();
   wait(goalClampDelay);
   intake->intake();
@@ -435,7 +424,7 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
   wait(25_ms);
   moveToRush->forward(
       2_s,
-      getInFrontOf(id == ID15 ? 28_in + extensionDistance : 28_in),
+      getInFrontOf(26_in + (id == ID15 ? extensionDistance : 0_in)),
       12.0,
       false);
   goalRush->retract();

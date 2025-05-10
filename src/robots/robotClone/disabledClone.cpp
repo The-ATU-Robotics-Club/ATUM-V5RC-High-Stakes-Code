@@ -165,7 +165,7 @@ void RobotClone::ladybrownSetup() {
       15_deg,
       60_deg,
       0.1_s,
-      PID{{0.25, 0.0, 0.05}},
+      PID{{0.3, 0.003, 0.05, 0.0, 0.03}},
       1,
       SlewRate{std::pair<double, double>{0.8, 0.8}},
       AcceptableAngle{1.5_s, 3_deg, 3_rpm, 0.1_s},
@@ -238,9 +238,10 @@ void RobotClone::autonSetup() {
   PID moveToFarPID{PID::Parameters{21.0, 2.0, 185.0, 0.0, 0.05}};
   moveToFar = std::make_unique<MoveTo>(
       drive.get(), turn.get(), moveToFarPID, directionPID, moveToAcceptable);
-  PID moveToRushPID{PID::Parameters{33, 0.0, 340.0}};
+  AcceptableDistance moveToRushAcceptable{forever, 2_in};
+  PID moveToRushPID{PID::Parameters{50}};
   moveToRush = std::make_unique<MoveTo>(
-      drive.get(), turn.get(), moveToRushPID, directionPID, moveToAcceptable);
+      drive.get(), turn.get(), moveToRushPID, directionPID, moveToRushAcceptable);
 
   // Path follower setup.
   meters_per_second_t maxV{76.5_in_per_s};
