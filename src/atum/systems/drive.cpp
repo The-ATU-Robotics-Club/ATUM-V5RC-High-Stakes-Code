@@ -113,6 +113,6 @@ Condition Drive::checkIsNear(Pose pose, const meter_t threshold) {
   if(GUI::Routines::selectedColor() == MatchColor::Blue) {
     pose.flip();
   }
-  return [=]() { return distance(getPose(), pose) <= threshold; };
+  return [this, pose, threshold]() { return distance(getPose(), pose) <= threshold; };
 }
 } // namespace atum

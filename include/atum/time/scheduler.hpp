@@ -95,7 +95,7 @@ class Scheduler : public Task {
    * with little impact.
    *
    */
-  static constexpr second_t schedulerLoopDelay{100_ms};
+  static constexpr second_t schedulerLoopDelay{20_ms};
 
   std::queue<Item> scheduled;
   Logger logger;

@@ -11,6 +11,7 @@
 
 #include "../gui/routines.hpp"
 #include "../utility/units.hpp"
+#include <cmath>
 
 namespace atum {
 struct Pose; // Forward declaration for UnwrappedPose.

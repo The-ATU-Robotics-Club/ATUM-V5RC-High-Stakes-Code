@@ -3,6 +3,7 @@
 #include "robots/sharedSystems/intake.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
+
 namespace atum {
 // Max drive velocity: 76.5 in. / s.
 // Max drive acceleration: 153 in. / s^2.
@@ -117,9 +118,7 @@ void RobotClone::skills24() {
   wait(300_ms);
   intake->load();
   moveToClose->forward(1_s, {-3_tile, 0_tile}, 4);
-  if(intake->getColor() != intake->getSortOutColor()) {
-    intake->finishLoading();
-  }
+  intake->finishLoading();
   moveToClose->reverse(2_s, getInFrontOf(-9.5_in));
   ladybrown->moveTo(225_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
@@ -164,7 +163,7 @@ void RobotClone::skills24() {
   ladybrown->moveTo(150_deg);
   waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   ladybrown->moveTo(90_deg);
-  waitUntil(ladybrown->checkStateIs(LadybrownState::Resting), 1_s);
+  waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
   ladybrown->rest();
   wait(100_ms);
 
@@ -204,17 +203,6 @@ void RobotClone::skills24() {
   moveToClose->reverse(2_s, {2.25_tile, -2.25_tile}, 6);
 
   moveToClose->forward(2_s, {2_tile, -2_tile}, 6);
-  clampWhenReady();
-  moveToFar->reverse(2_s, {2_tile, 0_tile}, 6);
-  goalClamp->clamp();
-  wait(goalClampDelay);
-  intake->intake();
-  wait(500_ms);
-  moveToClose->forward(2_s, {2_tile, -2_tile}, 6);
-  intake->stop();
-  goalClamp->unclamp();
-
-  moveToClose->reverse(2_s, {2_tile, -2_tile}, 6);
   ladybrown->moveTo(135_deg);
   moveToClose->reverse(2_s, {0_tile, 0_tile}, 6);
 }
@@ -341,12 +329,20 @@ ROUTINE_DEFINITIONS_FOR(RobotClone) {
 void RobotClone::endOfPositive(const Pose &endPosition) {
   intake->intake();
   moveToFar->forward(5_s, getPast({-1_tile, -2_tile}, 1.3_ft), 6.0);
-  moveToClose->forward(3_s, getPast({-2_tile, -2_tile}, 1.125_ft), 9.0);
-  moveToClose->reverse(1_s, {-2_tile, -2_tile}, 12.0, false);
-  collectCorner(false, 4, false);
-  moveToClose->reverse(2_s, {-2_tile, -2_tile}, 12.0, false);
-  moveToClose->reverse(1_s, {-2.5_tile, -2.5_tile});
+  moveToClose->forward(3_s, getPast({-2_tile, -2_tile}, 0.5_ft), 9.0);
+  moveToClose->reverse(3_s, {-2_tile, -2_tile}, 12.0, false);
+  collectCorner(false, 3, false);
+  moveToClose->reverse(2_s, {-2.3_tile, -2.3_tile}, 12.0, false);
+  Piston *goalRush{GUI::Routines::selectedColor() == MatchColor::Blue ?
+                       goalRushL.get() :
+                       goalRushR.get()};
+  goalRush->extend();
+  turn->toward(2_s, -135_deg);
+  wait(goalRushDelay);
+  turn->toward(2_s, 135_deg);
+  turn->awayFrom(1_s, {-3_tile, -3_tile});
   goalClamp->unclamp();
+  moveToClose->reverse(1_s, {-3_tile, -3_tile});
   moveToClose->forward(5_s, {-2_tile, -2_tile}, 12.0, false);
   moveToClose->forward(5_s, endPosition, 8.0, false);
 }
@@ -354,7 +350,7 @@ void RobotClone::endOfPositive(const Pose &endPosition) {
 void RobotClone::collectNegative() {
   intake->intake();
   moveToFar->forward(4_s, getPast({-1_tile, 2_tile}, 1.3_ft), 6.0);
-  moveToClose->forward(3_s, getPast({-2_tile, 2_tile}, 1.125_ft), 9.0);
+  moveToClose->forward(3_s, getPast({-2_tile, 2_tile}, 0.5_ft), 9.0);
   moveToClose->reverse(1_s, {-2_tile, 2_tile}, 12.0, false);
   collectCorner(true, 3, true);
   moveToFar->reverse(1_s, {-2_tile, 2_tile}, 8.0, false);
@@ -380,12 +376,14 @@ void RobotClone::collectMiddle(const bool negative,
   const int shouldFlipY{negative ? -1.0 : 1.0};
   if(goToStart) {
     intake->intake();
-    moveToClose->forward(5_s, {-2.4_tile, shouldFlipY * -1_tile}, 8.0);
-    moveToClose->forward(1_s, {-2.425_tile, shouldFlipY * -0.375_tile}, 7.0);
-    goalClamp->unclamp();
+    scheduler.schedule({"Drop Goal",
+                        drive->checkIsNear({-2.5_tile, -0.5_tile}, 5_in),
+                        [=]() { goalClamp->unclamp(); },
+                        4_s});
+    moveToClose->forward(5_s, {-2.45_tile, shouldFlipY * -1_tile}, 8.0);
   }
   intake->index();
-  moveToClose->forward(3_s, {-2.45_tile, shouldFlipY * 0.625_tile}, 7.0);
+  moveToClose->forward(2_s, {-2.425_tile, shouldFlipY * 0.625_tile}, 7.0);
   clampWhenReady();
   moveToClose->reverse(3_s, getPast({-2_tile, 0_tile}, 0.375_tile), 6.0);
   goalClamp->clamp();
@@ -395,9 +393,9 @@ void RobotClone::collectMiddle(const bool negative,
     moveToClose->forward(2_s, {-2_tile, shouldFlipY * 1_tile});
   }
   if(startPreload) {
-    moveToClose->forward(2_s, {-2_tile, shouldFlipY * -1_tile});
+    moveToClose->forward(2_s, {-2_tile, shouldFlipY * -1.375_tile});
   } else {
-    moveToClose->reverse(2_s, {-2_tile, shouldFlipY * -1_tile});
+    moveToClose->reverse(2_s, {-2_tile, shouldFlipY * -1.375_tile});
   }
 }
 
@@ -424,7 +422,7 @@ void RobotClone::rush(const bool left, const bool clampImmediately) {
   wait(25_ms);
   moveToRush->forward(
       2_s,
-      getInFrontOf(26_in + (id == ID15 ? extensionDistance : 0_in)),
+      getInFrontOf(25_in + (id == ID15 ? extensionDistance : 0_in)),
       12.0,
       false);
   goalRush->retract();
@@ -462,6 +460,7 @@ void RobotClone::collectCorner(const bool negative,
                                const bool shouldIndexLastRing) {
   const int shouldFlipY{negative ? 1 : -1};
   intake->intake();
+  turn->toward(2_s, {-3_tile, shouldFlipY * 3_tile});
   moveToClose->forward(1.5_s, {-3_tile, shouldFlipY * 3_tile});
   moveToClose->reverse(1_s, getInFrontOf(-6.5_in), 12.0, false);
   for(int i{0}; i < pushes - 2; i++) {

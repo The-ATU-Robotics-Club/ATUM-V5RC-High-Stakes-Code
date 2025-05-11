@@ -126,7 +126,9 @@ Pose operator*(const Pose &lhs, const double rhs) {
 }
 
 tile_t distance(const Pose &a, const Pose &b) {
-  return sqrt(pow<2>(a.x - b.x) + pow<2>(a.y - b.y));
+  const double dx{getValueAs<tile_t>(a.x - b.x)};
+  const double dy{getValueAs<tile_t>(a.y - b.y)};
+  return tile_t{sqrt(dx * dx + dy * dy)};
 }
 
 degree_t angle(const Pose &state, Pose reference) {

@@ -1,6 +1,7 @@
 #include "robotClone.hpp"
 #include "robots/sharedSystems/ladybrown.hpp"
 
+
 namespace atum {
 void RobotClone::opcontrol() {
   logger.info("Operator control has begun.");
@@ -10,6 +11,24 @@ void RobotClone::opcontrol() {
   // Where the first routine should be skills.
   if(GUI::Routines::selectedRoutine() == 0) {
     goalClamp->unclamp();
+    if(id == ID24) {
+      setupRoutine({-2.5_tile, 0_tile, 90_deg});
+      intake->setSortOutColor(ColorSensor::Color::Blue);
+
+      intake->index();
+      moveToClose->forward(2_s, {-2_tile, 0_tile});
+      wait(300_ms);
+      intake->load();
+      moveToClose->forward(1_s, {-3_tile, 0_tile}, 4);
+      intake->finishLoading();
+      moveToClose->reverse(2_s, getInFrontOf(-9.5_in));
+      ladybrown->moveTo(225_deg);
+      waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+      moveToClose->reverse(2_s, getInFrontOf(-4_in));
+      ladybrown->moveTo(90_deg);
+      waitUntil(ladybrown->checkStateIs(LadybrownState::Idle), 1_s);
+      ladybrown->rest();
+    }
     intake->setSortOutColor(ColorSensor::Color::None);
   }
   scheduler.schedule({"Rumble at 30s Away",
